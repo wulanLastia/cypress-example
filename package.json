@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "cypress": "^11.0.1",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-xpath": "^2.0.1"
+  },
+  "dependencies": {
+    "cypress-qase-reporter": "^1.4.2-alpha.2"
+  }
+}
