@@ -12,7 +12,7 @@ before(() => {
 })
 
 describe('Login Skenario', () => {
-    qase(1,
+    qase(79,
         it('Login', () => {
             loginPage.navigateLoginPage()
             loginPage.enterUsername(userDetails.username)
