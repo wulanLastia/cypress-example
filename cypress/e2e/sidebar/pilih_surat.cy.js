@@ -53,5 +53,18 @@ describe('Pilih Surat', () => {
             pilihSuratPage.batalDrafting()
         })
     )
+
+    qase(105,
+        it('Hapus lampiran drafting surat biasa', () => {
+            pilihSuratPage.openSuratBiasa()
+            pilihSuratPage.hapusLampiran()
+        })
+    )
+
+    qase(104,
+        it('Tambah lampiran drafting surat biasa', () => {
+            pilihSuratPage.tambahLampiran()
+        })
+    )
     
 })
