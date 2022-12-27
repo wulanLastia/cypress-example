@@ -54,4 +54,13 @@ export class PilihSuratPage {
         cy.get("div[class='font-manrope text-xl font-extrabold leading-[33px]']").should('contain','Buat Naskah Baru')
     }
 
+    hapusLampiran(){
+        cy.xpath("//span[@aria-hidden='true']").click()
+        cy.xpath("//div[@class='flex justify-center']//div[@class='dashed p-12']").should('not.exist')
+    }
+
+    tambahLampiran(){
+        cy.xpath("//img[@alt='Buat Lampiran']").click()
+        cy.xpath("//div[@class='flex justify-center']//div[@class='dashed p-12']").should('exist')
+    }
 }
