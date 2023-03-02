@@ -8,17 +8,22 @@ module.exports = defineConfig({
       },
 
       env: {
-        base_url: "https://sidebar-jabarprov.netlify.app"
+        base_url: "https://sidebar-jabarprov.netlify.app",
+        base_url_v1: "https://devsidebar.digitalservice.id/"
       },
     },
     "reporter": "cypress-qase-reporter",
     "reporterOptions": {
-        "apiToken": "4d3d3edc2670b9a997ebdac5e28232f418208067",
+        "apiToken": "c3d992720d9ef15f98784893f5c63ea8d10b0359",
         "projectCode": "SIDEBAR2",
         "logging": true,
         "runComplete": true,
         "sendScreenshot": false,
         "video": false,
         "basePath": "https://api.qase.io/v1"
-    }
+    },
+    "chromeWebSecurity": false,
+    // Width x Height preview in cypress GUI 
+    "viewportWidth": 1280,
+    "viewportHeight": 800,
 })

@@ -21,3 +21,6 @@ import './commands'
 
 // Using xpath command
 require('cypress-xpath');
+
+// Cypress real events
+import 'cypress-real-events/support'
