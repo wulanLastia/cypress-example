@@ -1,4 +1,4 @@
-import { qase } from 'cypress-qase-reporter/dist/mocha'
+import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../support/pages/auth/login.cy"
 import { MenuPage } from "../../../support/pages/sidebar/menu.cy"
 

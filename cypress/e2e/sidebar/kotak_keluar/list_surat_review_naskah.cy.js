@@ -1,9 +1,9 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../support/pages/auth/login.cy"
 import { MenuPage } from "../../../support/pages/sidebar/menu.cy"
-import { ListSuratReviewNaskahPage } from "../../../support/pages/sidebar/kotak_masuk/list_surat_review_naskah.cy"
+import { ListSuratReviewNaskahKeluarPage } from "../../../support/pages/sidebar/kotak_keluar/list_surat_review_naskah.cy"
 
-let listSuratReviewNaskahPage = new ListSuratReviewNaskahPage()
+let listSuratReviewNaskahKeluarPage = new ListSuratReviewNaskahKeluarPage()
 let menuPage = new MenuPage()
 let loginPage = new LoginPage()
 let user
@@ -20,19 +20,19 @@ after(() => {
     )
 })
 
-describe('List Surat Review Naskah Kotak Masuk Skenario', () => {
-    qase(97,
-        it('Akses menu kotak masuk (Review naskah)', () => {
+describe('List Review Naskah Kotak Keluar Skenario', () => {
+    qase(313,
+        it('Akses menu kotak keluar (Review naskah)', () => {
             loginPage.navigateLoginPage()
             loginPage.enterNip(user.nip)
             loginPage.clickBtnMasuk()
-            menuPage.goToKotakMasukReviewNaskah()
+            menuPage.goToKotakKeluarReviewNaskah()
         })
     )
 
-    qase(202,
-        it('Cek detail halaman naskah kotak masuk review naskah', () => {
-            listSuratReviewNaskahPage.checkDetailHalaman()
+    qase(314,
+        it('Cek detail halaman naskah kotak keluar review naskah', () => {
+            listSuratReviewNaskahKeluarPage.checkDetailHalaman()
         })
     )
 })
