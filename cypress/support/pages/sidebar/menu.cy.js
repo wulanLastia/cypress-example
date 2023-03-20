@@ -157,4 +157,11 @@ export class MenuPage {
         cy.url().should('eq', Cypress.env('base_url_v1'))
     }
 
+    goToKonsepNaskahKeluar() {
+        const konsepNaskahMenu = cy.xpath(menu.konsepNaskahMenu).as('konsepNaskah')
+        
+        konsepNaskahMenu.should('contain','Konsep Naskah')
+        konsepNaskahMenu.click()
+    }
+
 }
