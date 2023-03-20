@@ -24,10 +24,10 @@ afterEach(() => {
     )
 })
 
-describe('List Surat Skenario', () => {
-    qase(18,
-        it('Cek detail container Konsep Naskah', () => {
-            konsepNaskahPage.checkDetailContainerKonsepNaskah()
+describe('List Review Naskah Keluar', () => {
+    qase(46,
+        it('Cek detail container naskah keluar', () => {
+            konsepNaskahPage.checkDetailContainerNaskahKeluar()
         })
     )
 })
