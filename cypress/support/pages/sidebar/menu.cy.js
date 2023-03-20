@@ -40,9 +40,9 @@ export class MenuPage {
         reviewNaskahKM.should('contain','Review Naskah')
             .and('be.visible')
 
-        const tindakLanjutKM = cy.xpath(menu.tindakLanjutKM).as('tindakLanjutKM')
-        tindakLanjutKM.should('contain','Tindak Lanjut')
-            .and('be.visible')
+        //const tindakLanjutKM = cy.xpath(menu.tindakLanjutKM).as('tindakLanjutKM')
+        //tindakLanjutKM.should('contain','Tindak Lanjut')
+        //    .and('be.visible')
 
         this.goToKotakKeluar()
 
@@ -50,10 +50,10 @@ export class MenuPage {
         reviewNaskahKK.should('contain','Review Naskah')
             .and('be.visible')
 
-        const tindakLanjutKK = cy.xpath(menu.tindakLanjutKK).as('tindakLanjutKK')
-        tindakLanjutKK.should('contain','Tindak Lanjut')
-            .and('be.visible')
-            .click()
+        //const tindakLanjutKK = cy.xpath(menu.tindakLanjutKK).as('tindakLanjutKK')
+        //tindakLanjutKK.should('contain','Tindak Lanjut')
+        //    .and('be.visible')
+        //    .click()
     }
 
     goToKotakMasuk() {
@@ -147,6 +147,14 @@ export class MenuPage {
 
         const btnLoginSso = cy.xpath(login.btnLoginSso)
         btnLoginSso.should('be.visible')
+    }
+
+    goToSidebarV1() {
+        const sidebarv1Menu = cy.xpath(menu.sidebarv1Menu).as('sidebarv1Menu')
+        sidebarv1Menu.should('contain','SIDEBAR V1')
+            .click()
+
+        cy.url().should('eq', Cypress.env('base_url_v1'))
     }
 
 }

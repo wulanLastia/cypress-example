@@ -83,7 +83,6 @@ export class DraftingKonsepNaskahPage {
             .and('be.visible')
             
         this.checkPreviewNaskah()
-
         menuPage.goToKotakMasukReviewNaskah()
     }
 
