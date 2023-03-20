@@ -40,8 +40,11 @@ export class LoginPage {
         btnProfile.should('be.visible')
         btnProfile.click()
 
+        const popupProfile = cy.xpath(navbar.popupProfile).as('popupProfile')
+        popupProfile.should('be.visible')
+        
         const btnKeluar = cy.xpath(navbar.btnKeluar).as('btnKeluar')
-        btnKeluar.should('be.visible').and('contain', 'Logout')
+        btnKeluar.should('be.visible').and('contain', 'Log Out')
         btnKeluar.click()
 
         cy.url().should('eq', Cypress.env('base_url') + '/login?logout=true')
@@ -59,6 +62,10 @@ export class LoginPage {
 
         alert.should('be.visible')
              .and('contain', '{"nip":"Isian nip tidak boleh string kosong."}')
+    }
+
+    navigateLoginPageV2() {
+        cy.visit(Cypress.env('base_url'))
     }
 
 }

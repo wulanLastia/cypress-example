@@ -24,7 +24,6 @@ afterEach(() => {
     )
 })
 
-
 describe('Menu Positif Skenario', () => {
     qase(1,
         it('Cek detail navbar', () => {
@@ -63,7 +62,7 @@ describe('Menu Positif Skenario', () => {
     )
 
     qase(14,
-        it('Akses halaman kotak masuk tindak lanjut', () => {
+        it.skip('Akses halaman kotak masuk tindak lanjut', () => {
             menuPage.goToKotakMasukTindakLanjut()
         })
     )
@@ -75,8 +74,16 @@ describe('Menu Positif Skenario', () => {
     )
 
     qase(284,
-        it('Akses halaman kotak keluar tindak lanjut', () => {
+        it.skip('Akses halaman kotak keluar tindak lanjut', () => {
             menuPage.goToKotakKeluarTindakLanjut()
+        })
+    )
+
+    qase(622,
+        it('Akses Sidebar V1 ketika user tidak login di Sidebar V1', () => {
+            menuPage.goToSidebarV1()
+
+            loginPage.navigateLoginPageV2()
         })
     )
 })

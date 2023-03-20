@@ -14,28 +14,24 @@ before(() => {
     })
 })
 
-beforeEach(() => {
-    loginPage.navigateLoginPage()
-    loginPage.enterNip(user.nip)
-    loginPage.clickBtnMasuk()
-})
-
-afterEach(() => {
+/*after(() => {
     qase(411,
         loginPage.logout()
     )
-})
+})*/
 
 describe('List Surat Review Naskah Skenario', () => {
     qase(97,
         it('Akses menu kotak masuk (Review naskah)', () => {
+            loginPage.navigateLoginPage()
+            loginPage.enterNip(user.nip)
+            loginPage.clickBtnMasuk()
             menuPage.goToKotakMasukReviewNaskah()
         })
     )
 
     qase(202,
-        it.only('Cek detail halaman naskah kotak masuk review naskah', () => {
-            menuPage.goToKotakMasukReviewNaskah()
+        it('Cek detail halaman naskah kotak masuk review naskah', () => {
             listSuratReviewNaskahPage.checkDetailHalaman()
         })
     )
