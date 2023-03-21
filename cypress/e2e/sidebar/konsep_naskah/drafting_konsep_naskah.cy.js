@@ -14,13 +14,13 @@ before(() => {
     })
 })
 
-beforeEach(() => {
+before(() => {
     loginPage.navigateLoginPage()
     loginPage.enterNip(user.nip)
     loginPage.clickBtnMasuk()
 })
 
-afterEach(() => {
+after(() => {
     qase(411,
         loginPage.logout()
     )
