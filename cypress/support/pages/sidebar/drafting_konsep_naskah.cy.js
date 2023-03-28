@@ -83,12 +83,9 @@ export class DraftingKonsepNaskahPage {
             .and('be.visible')
             
         this.checkPreviewNaskah()
-        menuPage.goToKotakMasukReviewNaskah()
     }
 
     batalDrafting() {
-        this.checkKonsepNaskah()
-
         this.clickbtnKembali()
 
         const titleBatalDrafting = cy.xpath(konsep_naskah.titleBatalDrafting).as('titleBatalDrafting')
