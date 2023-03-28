@@ -6,7 +6,7 @@ export class MenuPage {
 
     checkProfile() {
         const profileName = cy.xpath(navbar.profileName).as('profileName')
-        profileName.should('contain','VITA PUTRI UTAMI, S.Sos., M.I.Kom')
+        profileName.should('contain','Vita Putri Utami, S.Sos., M.I.Kom')
 
         const profilePosition = cy.xpath(navbar.profilePosition).as('profilePosition')
         profilePosition.should('contain','ARSIPARIS AHLI MUDA')
