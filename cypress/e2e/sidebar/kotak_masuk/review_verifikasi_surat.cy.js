@@ -35,15 +35,15 @@ describe('Detail Review dan Verifikasi hasil Surat (Kotak Masuk) Skenario', () =
         })
     )
 
-    qase(77,
-        it('Melanjutkan drafting konsep naskah', () => {
-            draftingKonsepNaskahPage.lanjutkanDrafting()
-        })
-    )
-
     qase(358,
         it('Cek detail halaman detail kotak masuk review naskah dengan status belum direview', () => {
             reviewVerifikasiSuratPage.suratBelumDireview()
+        })
+    )
+
+    qase(77,
+        it('Melanjutkan drafting konsep naskah', () => {
+            reviewVerifikasiSuratPage.lanjutkanReviewDrafting()
         })
     )
 })

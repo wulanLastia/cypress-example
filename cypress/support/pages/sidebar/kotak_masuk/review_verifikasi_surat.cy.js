@@ -1,4 +1,7 @@
 import review_verifikasi from "../../../selectors/sidebar/kotak_masuk/review_verifikasi_surat"
+import { ListSuratReviewNaskahPage } from "../kotak_masuk/list_surat_review_naskah.cy"
+
+const listSuratReviewNaskahPage = new ListSuratReviewNaskahPage()
 
 export class ReviewVerifikasiSuratPage {
 
@@ -64,4 +67,11 @@ export class ReviewVerifikasiSuratPage {
             .and('be.visible')
     }
 
+    lanjutkanReviewDrafting() {
+        const btnKembali = cy.xpath(review_verifikasi.btnKembali).as('btnKembali')
+        btnKembali.should('have.class', '-mt-1.5 cursor-pointer -ml-4')
+            .click()
+
+        listSuratReviewNaskahPage.checkTitleReviewNaskah()
+    }
 }
