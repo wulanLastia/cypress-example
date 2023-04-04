@@ -3,7 +3,7 @@ module.exports = {
     profilePicture: '.h-\[36px\]',
 
     // XPATH
-    titleSimulasi:'/html[1]/body[1]/h1[1]',
+    titleSimulasi: '/html[1]/body[1]/h1[1]',
     btnProfile: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]/button[1]',
     btnKeluar: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]/div[2]/div[1]/button[1]',
     responseNip: '/html[1]/body[1]/pre[1]',
