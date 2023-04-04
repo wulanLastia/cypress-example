@@ -1,7 +1,7 @@
 import badan_naskah from "../../../selectors/sidebar/konsep_naskah/drafting_badan_naskah"
-import konsep_naskah from "../../../selectors/sidebar/konsep_naskah"
+import konsep_naskah from "../../../selectors/sidebar/konsep_naskah/konsep_naskah"
 
-import { MenuPage } from "../menu.cy"
+import { MenuPage } from "../menu/menu.cy"
 
 const menuPage = new MenuPage()
 
@@ -9,13 +9,13 @@ export class DraftingBadanNaskahPage {
 
     checkKonsepNaskah() {
         const titleKonsepNaskah = cy.xpath(badan_naskah.titleKonsepNaskah).as('titleKonsepNaskah')
-        titleKonsepNaskah.should('contain','Buat Naskah Baru')
+        titleKonsepNaskah.should('contain', 'Buat Naskah Baru')
             .and('be.visible')
 
         const subTitleKonsepNaskah = cy.xpath(badan_naskah.subTitleKonsepNaskah).as('subTitleKonsepNaskah')
-        subTitleKonsepNaskah.should('contain','TEMPLATE NASKAH')
+        subTitleKonsepNaskah.should('contain', 'TEMPLATE NASKAH')
             .and('be.visible')
-        
+
         const suratBiasa = cy.xpath(badan_naskah.suratBiasa).as('suratBiasa')
         suratBiasa.should('be.visible')
             .click()
@@ -30,7 +30,7 @@ export class DraftingBadanNaskahPage {
         previewBadan.click(180, 360)
 
         const titleBadan = cy.xpath(badan_naskah.titleBadan).as('titleBadan')
-        titleBadan.should('contain','Badan Naskah')
+        titleBadan.should('contain', 'Badan Naskah')
     }
 
     checkPreviewTextBold() {
@@ -45,7 +45,7 @@ export class DraftingBadanNaskahPage {
             .then(cy.wrap)
             .type('Ditujukan kepada anggota JDS untuk hadir di acara Townhall bulan Maret 2023 dengan tema')
             .find('strong')
-            .should('contain','Ditujukan kepada anggota JDS untuk hadir di acara Townhall bulan Maret 2023 dengan tema')
+            .should('contain', 'Ditujukan kepada anggota JDS untuk hadir di acara Townhall bulan Maret 2023 dengan tema')
     }
 
     checkPreviewTextItalic() {
@@ -61,7 +61,7 @@ export class DraftingBadanNaskahPage {
             .then(cy.wrap)
             .type(' Around The World.')
             .find('em')
-            .should('contain',' Around The World.')
+            .should('contain', ' Around The World.')
     }
 
     checkPreviewTextNumeric() {
@@ -83,7 +83,7 @@ export class DraftingBadanNaskahPage {
             .then(cy.wrap)
             .type('Memakai pakaian bebas dengan tema Around The World{enter}Membawa makanan dengan huruf awal sesuai abjad awal nama masing-masing')
             .find('ol')
-            .should('contain','Memakai pakaian bebas dengan tema Around The World')
+            .should('contain', 'Memakai pakaian bebas dengan tema Around The World')
     }
 
     insertNewParagraph() {
@@ -91,7 +91,7 @@ export class DraftingBadanNaskahPage {
         iframeBadan.its('0.contentDocument.body')
             .should('be.visible')
             .then(cy.wrap)
-            .type('{enter}{enter}Makanan yang dibawa oleh peserta dapat berupa{enter}')      
+            .type('{enter}{enter}Makanan yang dibawa oleh peserta dapat berupa{enter}')
     }
 
     checkPreviewTextBullet() {
@@ -107,7 +107,7 @@ export class DraftingBadanNaskahPage {
             .then(cy.wrap)
             .type('Makanan berat{enter}Makanan ringan{enter}Snack')
             .find('ul')
-            .should('contain','Makanan berat')
+            .should('contain', 'Makanan berat')
     }
 
     insertTable() {
@@ -119,7 +119,7 @@ export class DraftingBadanNaskahPage {
 
         const scrollTable = cy.xpath(badan_naskah.scrollTable).as('scrollTable')
         scrollTable.scrollTo(0, 500)
-            
+
         const btnTable = cy.xpath(badan_naskah.btnTable).as('btnTable')
         btnTable.click()
 
@@ -140,7 +140,7 @@ export class DraftingBadanNaskahPage {
 
         const scrollTable = cy.xpath(badan_naskah.scrollTable).as('scrollTable')
         scrollTable.scrollTo(0, 500)
-            
+
         const btnTable = cy.xpath(badan_naskah.btnTable).as('btnTable')
         btnTable.click()
 
@@ -167,7 +167,7 @@ export class DraftingBadanNaskahPage {
         cy.wait(3000)
 
         const insertImage = cy.xpath(badan_naskah.insertImage).as('insertImage')
-        insertImage.attachFile(fileUploadSingleFile).trigger('click', {force: true})
+        insertImage.attachFile(fileUploadSingleFile).trigger('click', { force: true })
     }
 
     closeBadanNaskah() {
@@ -175,7 +175,7 @@ export class DraftingBadanNaskahPage {
         closeBadanNaskah.click()
 
         const editFormDefault = cy.xpath(konsep_naskah.editFormDefault).as('editFormDefault')
-        editFormDefault.should('contain','Klik bagian surat di samping untuk mengisi dan mengubah isi naskah')
+        editFormDefault.should('contain', 'Klik bagian surat di samping untuk mengisi dan mengubah isi naskah')
             .and('be.visible')
     }
 
@@ -191,9 +191,9 @@ export class DraftingBadanNaskahPage {
 
         this.closeBadanNaskah()
 
-        const btnKirim = cy.xpath(badan_naskah.btnKirim).as('btnKirim')
-        btnKirim.should('have.class', 'gap-3 cursor-pointer hover:bg-blue-100 rounded-lg mb-2.5 base-button base-button--primary base-button--disabled')
-    
+        const btnKirim = cy.get(badan_naskah.btnKirim).as('btnKirim')
+        btnKirim.should('have.class', 'flex gap-4 margin-start')
+
         menuPage.goToKotakMasukReviewNaskah()
     }
 }

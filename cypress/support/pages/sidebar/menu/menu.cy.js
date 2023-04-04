@@ -1,15 +1,15 @@
-import login from "../../selectors/login"
-import navbar from "../../selectors/navbar"
-import menu from "../../selectors/sidebar/menu"
+import login from "../../../selectors/login"
+import navbar from "../../../selectors/navbar"
+import menu from "../../../selectors/sidebar/menu/menu"
 
 export class MenuPage {
 
     checkProfile() {
         const profileName = cy.xpath(navbar.profileName).as('profileName')
-        profileName.should('contain','Vita Putri Utami, S.Sos., M.I.Kom')
+        profileName.should('contain', 'Vita Putri Utami, S.Sos., M.I.Kom')
 
         const profilePosition = cy.xpath(navbar.profilePosition).as('profilePosition')
-        profilePosition.should('contain','ARSIPARIS AHLI MUDA')
+        profilePosition.should('contain', 'ARSIPARIS AHLI MUDA')
     }
 
     clickBtnHideMenu() {
@@ -17,7 +17,7 @@ export class MenuPage {
         hideMenu.click()
 
         const sidebar = cy.xpath(menu.sidebarClass).as('sidebarClass')
-        sidebar.should('have.class','flex h-full bg-white transition-[width] duration-500 w-[64px]')
+        sidebar.should('have.class', 'flex h-full bg-white transition-[width] duration-500 w-[64px]')
     }
 
     clickBtnShowMenu() {
@@ -28,7 +28,7 @@ export class MenuPage {
         showMenu.click()
 
         const sidebar = cy.xpath(menu.sidebarClass).as('sidebarClass')
-        sidebar.should('have.class','flex h-full bg-white transition-[width] duration-500 w-[240px]')
+        sidebar.should('have.class', 'flex h-full bg-white transition-[width] duration-500 w-[240px]')
     }
 
     checkMenu() {
@@ -37,7 +37,7 @@ export class MenuPage {
         this.goToKotakMasuk()
 
         const reviewNaskahKM = cy.xpath(menu.reviewNaskahKM).as('reviewNaskahKM')
-        reviewNaskahKM.should('contain','Review Naskah')
+        reviewNaskahKM.should('contain', 'Review Naskah')
             .and('be.visible')
 
         //const tindakLanjutKM = cy.xpath(menu.tindakLanjutKM).as('tindakLanjutKM')
@@ -47,7 +47,7 @@ export class MenuPage {
         this.goToKotakKeluar()
 
         const reviewNaskahKK = cy.xpath(menu.reviewNaskahKK).as('reviewNaskahKK')
-        reviewNaskahKK.should('contain','Review Naskah')
+        reviewNaskahKK.should('contain', 'Review Naskah')
             .and('be.visible')
 
         //const tindakLanjutKK = cy.xpath(menu.tindakLanjutKK).as('tindakLanjutKK')
@@ -68,12 +68,12 @@ export class MenuPage {
 
     goToKonsepNaskah() {
         const konsepNaskahMenu = cy.xpath(menu.konsepNaskahMenu).as('konsepNaskah')
-        
-        konsepNaskahMenu.should('contain','Konsep Naskah')
+
+        konsepNaskahMenu.should('contain', 'Konsep Naskah')
         konsepNaskahMenu.click()
 
         const titleKonsepNaskah = cy.xpath(menu.titleKonsepNaskah).as('titleKonsepNaskah')
-        titleKonsepNaskah.should('contain','Buat Naskah Baru')
+        titleKonsepNaskah.should('contain', 'Buat Naskah Baru')
 
         this.goToKotakMasukReviewNaskah()
     }
@@ -82,7 +82,7 @@ export class MenuPage {
         this.goToKotakMasuk()
 
         const reviewNaskahKM = cy.xpath(menu.reviewNaskahKM).as('reviewNaskahKM')
-        reviewNaskahKM.should('contain','Review Naskah')
+        reviewNaskahKM.should('contain', 'Review Naskah')
             .and('be.visible')
             .click()
     }
@@ -91,7 +91,7 @@ export class MenuPage {
         this.goToKotakMasuk()
 
         const tindakLanjutKM = cy.xpath(menu.tindakLanjutKM).as('tindakLanjutKM')
-        tindakLanjutKM.should('contain','Tindak Lanjut')
+        tindakLanjutKM.should('contain', 'Tindak Lanjut')
             .and('be.visible')
             .click()
     }
@@ -100,7 +100,7 @@ export class MenuPage {
         this.goToKotakKeluar()
 
         const reviewNaskahKK = cy.xpath(menu.reviewNaskahKK).as('reviewNaskahKK')
-        reviewNaskahKK.should('contain','Review Naskah')
+        reviewNaskahKK.should('contain', 'Review Naskah')
             .and('be.visible')
             .click()
     }
@@ -109,7 +109,7 @@ export class MenuPage {
         this.goToKotakKeluar()
 
         const tindakLanjutKK = cy.xpath(menu.tindakLanjutKK).as('tindakLanjutKK')
-        tindakLanjutKK.should('contain','Tindak Lanjut')
+        tindakLanjutKK.should('contain', 'Tindak Lanjut')
             .and('be.visible')
             .click()
     }
@@ -151,7 +151,7 @@ export class MenuPage {
 
     goToSidebarV1() {
         const sidebarv1Menu = cy.xpath(menu.sidebarv1Menu).as('sidebarv1Menu')
-        sidebarv1Menu.should('contain','SIDEBAR V1')
+        sidebarv1Menu.should('contain', 'SIDEBAR V1')
             .click()
 
         cy.url().should('eq', Cypress.env('base_url_v1'))
@@ -159,8 +159,8 @@ export class MenuPage {
 
     goToKonsepNaskahKeluar() {
         const konsepNaskahMenu = cy.xpath(menu.konsepNaskahMenu).as('konsepNaskah')
-        
-        konsepNaskahMenu.should('contain','Konsep Naskah')
+
+        konsepNaskahMenu.should('contain', 'Konsep Naskah')
         konsepNaskahMenu.click()
     }
 

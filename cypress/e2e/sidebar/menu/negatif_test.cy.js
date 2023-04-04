@@ -1,6 +1,6 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../support/pages/sidebar/menu.cy"
+import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
 
 let menuPage = new MenuPage()
 let loginPage = new LoginPage()
@@ -27,13 +27,13 @@ describe('Menu Negatif Skenario', () => {
 
     qase(414,
         it('Akses halaman kotak masuk tindak lanjut setelah logout', () => {
-            menuPage.navigateKotakMasukTindakLanjutPage()            
+            menuPage.navigateKotakMasukTindakLanjutPage()
         })
     )
 
     qase(415,
         it('Akses halaman kotak keluar review naskah setelah logout', () => {
-            menuPage.navigateKotakKeluarReviewNaskahPage()            
+            menuPage.navigateKotakKeluarReviewNaskahPage()
         })
     )
 

@@ -5,12 +5,12 @@ export class LoginPage {
 
     navigateLoginPage() {
         cy.visit(Cypress.env('base_url'))
-        
+
         const btnLoginSso = cy.xpath(login.btnLoginSso)
         btnLoginSso.click()
 
         const titleSso = cy.xpath(navbar.titleSimulasi)
-        titleSso.should('contain','Simulasi login di Sidebar v1')
+        titleSso.should('contain', 'Simulasi login di Sidebar v1')
     }
 
     navigateLoginPageV1() {
@@ -42,7 +42,7 @@ export class LoginPage {
 
         const popupProfile = cy.xpath(navbar.popupProfile).as('popupProfile')
         popupProfile.should('be.visible')
-        
+
         const btnKeluar = cy.xpath(navbar.btnKeluar).as('btnKeluar')
         btnKeluar.should('be.visible').and('contain', 'Log Out')
         btnKeluar.click()
@@ -54,14 +54,14 @@ export class LoginPage {
         const alert = cy.xpath(navbar.responseNip)
 
         alert.should('be.visible')
-             .and('contain', '{"nip":"Isian nip harus minimal 18 karakter."}')
+            .and('contain', '{"nip":"Isian nip harus minimal 18 karakter."}')
     }
 
     alertFailedNipKosong() {
         const alert = cy.xpath(navbar.responseNip)
 
         alert.should('be.visible')
-             .and('contain', '{"nip":"Isian nip tidak boleh string kosong."}')
+            .and('contain', '{"nip":"Isian nip tidak boleh string kosong."}')
     }
 
     navigateLoginPageV2() {

@@ -1,6 +1,6 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../support/pages/sidebar/menu.cy"
+import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
 
 let menuPage = new MenuPage()
 let loginPage = new LoginPage()
@@ -39,13 +39,13 @@ describe('Menu Positif Skenario', () => {
 
     qase(3,
         it('Menampilkan menu', () => {
-            menuPage.clickBtnShowMenu()            
+            menuPage.clickBtnShowMenu()
         })
     )
 
     qase(4,
         it('Cek Detail Sidebar', () => {
-            menuPage.checkMenu()            
+            menuPage.checkMenu()
         })
     )
 
