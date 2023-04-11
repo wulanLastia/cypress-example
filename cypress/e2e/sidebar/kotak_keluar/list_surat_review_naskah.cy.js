@@ -26,6 +26,7 @@ describe('List Review Naskah Kotak Keluar Skenario', () => {
             loginPage.navigateLoginPage()
             loginPage.enterNip(user.nip)
             loginPage.clickBtnMasuk()
+            loginPage.closePopupLandingPage()
             menuPage.goToKotakKeluarReviewNaskah()
         })
     )

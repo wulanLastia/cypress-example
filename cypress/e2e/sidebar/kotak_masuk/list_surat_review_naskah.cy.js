@@ -26,6 +26,7 @@ describe('List Surat Review Naskah Kotak Masuk Skenario', () => {
             loginPage.navigateLoginPage()
             loginPage.enterNip(user.nip)
             loginPage.clickBtnMasuk()
+            loginPage.closePopupLandingPage()
             menuPage.goToKotakMasukReviewNaskah()
         })
     )

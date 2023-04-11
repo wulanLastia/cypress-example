@@ -16,6 +16,7 @@ beforeEach(() => {
     loginPage.navigateLoginPage()
     loginPage.enterNip(user.nip)
     loginPage.clickBtnMasuk()
+    loginPage.closePopupLandingPage()
 })
 
 afterEach(() => {

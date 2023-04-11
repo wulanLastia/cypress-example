@@ -57,7 +57,7 @@ export class MenuPage {
     }
 
     goToKotakMasuk() {
-        const parentKotakMasuk = cy.xpath(menu.parentKotakMasuk).as('parentKotakMasuk')
+        const parentKotakMasuk = cy.get(menu.menuKotakMasuk).as('parentKotakMasuk')
         parentKotakMasuk.click()
     }
 
@@ -67,21 +67,19 @@ export class MenuPage {
     }
 
     goToKonsepNaskah() {
-        const konsepNaskahMenu = cy.xpath(menu.konsepNaskahMenu).as('konsepNaskah')
+        const konsepNaskahMenu = cy.get(menu.menuKonsepNaskah).as('konsepNaskah')
 
         konsepNaskahMenu.should('contain', 'Konsep Naskah')
         konsepNaskahMenu.click()
 
         const titleKonsepNaskah = cy.xpath(menu.titleKonsepNaskah).as('titleKonsepNaskah')
         titleKonsepNaskah.should('contain', 'Buat Naskah Baru')
-
-        this.goToKotakMasukReviewNaskah()
     }
 
     goToKotakMasukReviewNaskah() {
         this.goToKotakMasuk()
 
-        const reviewNaskahKM = cy.xpath(menu.reviewNaskahKM).as('reviewNaskahKM')
+        const reviewNaskahKM = cy.get(menu.menuKotakMasukReviewNaskah).as('reviewNaskahKM')
         reviewNaskahKM.should('contain', 'Review Naskah')
             .and('be.visible')
             .click()

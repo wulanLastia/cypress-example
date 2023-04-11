@@ -96,8 +96,6 @@ export class DraftingKonsepNaskahPage {
         const titleKonsepNaskah2 = cy.xpath(konsep_naskah.titleKonsepNaskah).as('titleKonsepNaskah')
         titleKonsepNaskah2.should('contain', 'Buat Naskah Baru')
             .and('be.visible')
-
-        menuPage.goToKotakMasukReviewNaskah()
     }
 
     lanjutkanDrafting() {

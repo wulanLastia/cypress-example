@@ -70,7 +70,10 @@ export class ReviewVerifikasiSuratPage {
     lanjutkanReviewDrafting() {
         const btnKembali = cy.xpath(review_verifikasi.btnKembali).as('btnKembali')
         btnKembali.should('have.class', '-mt-1.5 cursor-pointer -ml-4')
+            .and('be.visible')
             .click()
+
+        cy.wait(3000)
 
         listSuratReviewNaskahPage.checkTitleReviewNaskah()
     }

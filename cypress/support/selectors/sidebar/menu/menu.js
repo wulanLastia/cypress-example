@@ -1,5 +1,8 @@
 module.exports = {
     // GET
+    menuKonsepNaskah: '[data-cy="sidebar-menu-konsep-naskah"]',
+    menuKotakMasuk: '[data-cy="sidebar-menu-kotak-masuk"]',
+    menuKotakMasukReviewNaskah: '[data-cy="sidebar-menu-kotak-masuk-review-naskah"]',
 
     // XPATH
     konsepNaskahMenu: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/div[1]/div[1]/div[1]/div[1]/a[1]/div[1]',

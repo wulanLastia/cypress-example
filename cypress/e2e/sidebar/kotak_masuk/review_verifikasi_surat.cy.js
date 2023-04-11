@@ -1,10 +1,8 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../support/pages/auth/login.cy"
 import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
-import { DraftingKonsepNaskahPage } from "../../../support/pages/sidebar/konsep_naskah/drafting_konsep_naskah.cy"
 import { ReviewVerifikasiSuratPage } from "../../../support/pages/sidebar/kotak_masuk/review_verifikasi_surat.cy"
 
-let draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()
 let reviewVerifikasiSuratPage = new ReviewVerifikasiSuratPage()
 let menuPage = new MenuPage()
 let loginPage = new LoginPage()
@@ -20,13 +18,14 @@ before(() => {
     loginPage.navigateLoginPage()
     loginPage.enterNip(user.nipPemeriksa)
     loginPage.clickBtnMasuk()
+    loginPage.closePopupLandingPage()
 })
 
-/*after(() => {
+after(() => {
     qase(411,
         loginPage.logout()
     )
-})*/
+})
 
 describe('Detail Review dan Verifikasi hasil Surat (Kotak Masuk) Skenario', () => {
     qase(97,
@@ -41,9 +40,10 @@ describe('Detail Review dan Verifikasi hasil Surat (Kotak Masuk) Skenario', () =
         })
     )
 
-    qase(77,
-        it('Melanjutkan drafting konsep naskah', () => {
+    qase(99,
+        it('Batal review naskah di kotak masuk', () => {
             reviewVerifikasiSuratPage.lanjutkanReviewDrafting()
+            menuPage.goToKotakKeluarReviewNaskah()
         })
     )
 })
