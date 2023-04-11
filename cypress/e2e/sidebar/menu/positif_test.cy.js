@@ -16,6 +16,7 @@ beforeEach(() => {
     loginPage.navigateLoginPage()
     loginPage.enterNip(user.nip)
     loginPage.clickBtnMasuk()
+    loginPage.closePopupLandingPage()
 })
 
 afterEach(() => {
@@ -46,12 +47,15 @@ describe('Menu Positif Skenario', () => {
     qase(4,
         it('Cek Detail Sidebar', () => {
             menuPage.checkMenu()
+            cy.wait(3000)
+            menuPage.goToKotakMasukReviewNaskah()
         })
     )
 
     qase(13,
         it('Akses halaman konsep naskah', () => {
             menuPage.goToKonsepNaskah()
+            menuPage.goToKotakMasukReviewNaskah()
         })
     )
 

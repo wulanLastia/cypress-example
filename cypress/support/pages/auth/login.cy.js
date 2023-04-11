@@ -68,4 +68,13 @@ export class LoginPage {
         cy.visit(Cypress.env('base_url'))
     }
 
+    navigateLoginPageV2() {
+        cy.visit(Cypress.env('base_url'))
+    }
+
+    closePopupLandingPage() {
+        const closePopup = cy.xpath(login.closePopupLandingPage).as('closePopupLandingPage')
+        closePopup.click()
+    }
+
 }

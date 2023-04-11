@@ -25,6 +25,7 @@ describe('Login Positif Skenario', () => {
         it('Login dengan NIP akun yang aktif', () => {
             loginPage.enterNip(user.nip)
             loginPage.clickBtnMasuk()
+            loginPage.closePopupLandingPage()
         })
     )
 })
