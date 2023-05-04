@@ -1,9 +1,11 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../support/pages/auth/login.cy"
-import { KonsepNaskahPage } from "../../../support/pages/sidebar/konsep_naskah/konsep_naskah.cy"
+import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
+import { DraftingKakiSuratPage } from "../../../support/pages/sidebar/konsep_naskah/6_drafting_kaki_surat.cy"
 
-let konsepNaskahPage = new KonsepNaskahPage()
+let draftingKakiSuratPage = new DraftingKakiSuratPage()
 let loginPage = new LoginPage()
+let menuPage = new MenuPage()
 let user
 
 before(() => {
@@ -12,23 +14,24 @@ before(() => {
     })
 })
 
-beforeEach(() => {
+before(() => {
     loginPage.navigateLoginPage()
     loginPage.enterNip(user.nip)
     loginPage.clickBtnMasuk()
     loginPage.closePopupLandingPage()
 })
 
-afterEach(() => {
+/*after(() => {
     qase(411,
         loginPage.logout()
     )
-})
+})*/
 
-describe('List Surat Skenario', () => {
-    qase(18,
-        it('Cek detail container Konsep Naskah', () => {
-            konsepNaskahPage.checkDetailContainerKonsepNaskah()
+describe('Drafting Kaki Surat Skenario', () => {
+    qase(150,
+        it('Access kaki surat editing form', () => {
+            menuPage.goToKonsepNaskah()
         })
     )
-})
+
+}) 

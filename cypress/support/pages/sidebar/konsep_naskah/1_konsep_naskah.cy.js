@@ -1,7 +1,5 @@
 import navbar from "../../../selectors/navbar"
-import menu from "../../../selectors/sidebar/menu/menu"
 import konsep_naskah from "../../../selectors/sidebar/konsep_naskah/konsep_naskah"
-
 import { MenuPage } from "../menu/menu.cy"
 
 const menuPage = new MenuPage()
@@ -9,16 +7,16 @@ const menuPage = new MenuPage()
 export class KonsepNaskahPage {
 
     checkContainer() {
-        const konsepNaskahMenu = cy.xpath(konsep_naskah.konsepNaskahMenu).as('konsepNaskahMenu')
+        const konsepNaskahMenu = cy.get(konsep_naskah.konsepNaskahMenu).as('konsepNaskahMenu')
 
         konsepNaskahMenu.should('contain', 'Konsep Naskah')
         konsepNaskahMenu.click()
 
-        const titleKonsepNaskah = cy.xpath(konsep_naskah.titleKonsepNaskah).as('titleKonsepNaskah')
+        const titleKonsepNaskah = cy.get(konsep_naskah.titleKonsepNaskah).as('titleKonsepNaskah')
         titleKonsepNaskah.should('contain', 'Buat Naskah Baru')
             .and('be.visible')
 
-        const subTitleKonsepNaskah = cy.xpath(konsep_naskah.subTitleKonsepNaskah).as('subTitleKonsepNaskah')
+        const subTitleKonsepNaskah = cy.get(konsep_naskah.subTitleKonsepNaskah).as('subTitleKonsepNaskah')
         subTitleKonsepNaskah.should('contain', 'TEMPLATE NASKAH')
             .and('be.visible')
 

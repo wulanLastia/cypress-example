@@ -1,7 +1,7 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../support/pages/auth/login.cy"
 import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
-import { DraftingKonsepNaskahPage } from "../../../support/pages/sidebar/konsep_naskah/drafting_konsep_naskah.cy"
+import { DraftingKonsepNaskahPage } from "../../../support/pages/sidebar/konsep_naskah/2_drafting_konsep_naskah.cy"
 
 let draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()
 let loginPage = new LoginPage()
