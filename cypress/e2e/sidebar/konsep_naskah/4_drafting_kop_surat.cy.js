@@ -1,7 +1,7 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../support/pages/auth/login.cy"
 import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
-import { DraftingKopSuratPage } from "../../../support/pages/sidebar/konsep_naskah/drafting_kop_surat.cy"
+import { DraftingKopSuratPage } from "../../../support/pages/sidebar/konsep_naskah/3_drafting_kop_surat.cy"
 
 let draftingKopSuratPage = new DraftingKopSuratPage()
 let loginPage = new LoginPage()
@@ -30,7 +30,8 @@ after(() => {
 describe('Drafting Kop Surat Skenario', () => {
     qase(81,
         it('Akses form editing kop surat (drafting)', () => {
-            draftingKopSuratPage.aksesFormKopSurat()
+            draftingKopSuratPage.aksesKonsepNaskahSuratBiasa()
+            draftingKopSuratPage.aksesFormEditingKopSurat()
         })
     )
 
@@ -67,6 +68,7 @@ describe('Drafting Kop Surat Skenario', () => {
     qase(72,
         it('Menutup form editing kop surat', () => {
             draftingKopSuratPage.closeKopSurat()
+            menuPage.goToKotakMasukReviewNaskah()
         })
     )
 })

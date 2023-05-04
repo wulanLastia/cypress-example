@@ -1,6 +1,6 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../support/pages/auth/login.cy"
-import { KonsepNaskahPage } from "../../../support/pages/sidebar/konsep_naskah/konsep_naskah.cy"
+import { KonsepNaskahPage } from "../../../support/pages/sidebar/konsep_naskah/1_konsep_naskah.cy"
 
 let konsepNaskahPage = new KonsepNaskahPage()
 let loginPage = new LoginPage()
@@ -25,10 +25,10 @@ afterEach(() => {
     )
 })
 
-describe('List Review Naskah Keluar', () => {
-    qase(46,
-        it('Cek detail container naskah keluar', () => {
-            konsepNaskahPage.checkDetailContainerNaskahKeluar()
+describe('List Surat Skenario', () => {
+    qase(18,
+        it('Cek detail container Konsep Naskah', () => {
+            konsepNaskahPage.checkDetailContainerKonsepNaskah()
         })
     )
 })
