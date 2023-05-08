@@ -138,4 +138,22 @@ export class DraftingKonsepNaskahPage {
             .and('be.visible')
     }
 
+    inputKakiSurat() {
+        const previewKaki = cy.xpath(konsep_naskah.previewKaki).as('previewKaki')
+        previewKaki.click(180, 600)
+
+        const titleKaki = cy.xpath(konsep_naskah.titleKaki).as('titleKaki')
+        titleKaki.should('contain', 'Kaki Surat')
+    }
+
+    kirimNaskah() {
+        const btnKirimNaskah = cy.get(konsep_naskah.btnKirimNaskah).as('btnKirimNaskah')
+        btnKirimNaskah.click()
+
+        const konfirmasiKirimNaskah = cy.xpath(konsep_naskah.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
+        konfirmasiKirimNaskah.should('contain', 'Kirim naskah')
+            .click()
+
+    }
+
 }
