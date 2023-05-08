@@ -28,9 +28,15 @@ after(() => {
 })
 
 describe('Drafting Badan Naskah Skenario', () => {
+    qase(709,
+        it('Akses form editing badan naskah', () => {
+            draftingBadanNaskahPage.aksesKonsepNaskahSuratBiasa()
+            draftingBadanNaskahPage.aksesFormEditingBadanNaskah()
+        })
+    )
+
     qase(146,
         it('Check on preview page if user entered bold text', () => {
-            draftingBadanNaskahPage.aksesBadanNaskah()
             draftingBadanNaskahPage.checkPreviewTextBold()
         })
     )

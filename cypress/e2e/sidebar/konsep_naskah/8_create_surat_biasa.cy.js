@@ -47,4 +47,21 @@ describe('Create Surat Biasa Skenario', () => {
         })
     )
 
+    qase(709,
+        it('Akses form editing badan naskah', () => {
+            createSuratBiasaPage.inputBadanNaskah()
+        })
+    )
+
+    qase(150,
+        it('Access kaki surat editing form', () => {
+            createSuratBiasaPage.inputKakiSurat()
+        })
+    )
+
+    qase(80,
+        it('Kirim drafting naskah surat biasa', () => {
+            createSuratBiasaPage.kirimSurat()
+        })
+    )
 }) 

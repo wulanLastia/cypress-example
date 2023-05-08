@@ -16,6 +16,10 @@ export class DraftingKakiSuratPage {
         draftingKonsepNaskahPage.aksesKakiSurat()
     }
 
+    inputKakiSurat() {
+        draftingKonsepNaskahPage.inputKakiSurat()
+    }
+
     checkDetail() {
         const titleKaki = cy.xpath(kaki_surat.titleKaki).as('titleKaki')
         titleKaki.should('contain', 'Kaki Surat')

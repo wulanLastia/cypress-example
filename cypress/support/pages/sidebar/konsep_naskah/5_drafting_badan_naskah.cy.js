@@ -7,13 +7,22 @@ const draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()
 
 export class DraftingBadanNaskahPage {
 
-    aksesBadanNaskah() {
+    aksesKonsepNaskahSuratBiasa() {
         draftingKonsepNaskahPage.goToKonsepNaskahSuratBiasa()
-
         cy.wait(3000)
+    }
 
+    aksesFormEditingBadanNaskah() {
         const previewBadan = cy.xpath(badan_naskah.previewBadan).as('previewBadan')
         previewBadan.click(180, 360)
+
+        const titleBadan = cy.get(badan_naskah.titleBadan).as('titleBadan')
+        titleBadan.should('contain', 'Badan Naskah')
+    }
+
+    inputBadanNaskah() {
+        const previewBadan = cy.xpath(badan_naskah.previewBadan).as('previewBadan')
+        previewBadan.click(180, 400)
 
         const titleBadan = cy.get(badan_naskah.titleBadan).as('titleBadan')
         titleBadan.should('contain', 'Badan Naskah')
@@ -71,7 +80,7 @@ export class DraftingBadanNaskahPage {
         iframeBadan1.its('0.contentDocument.body')
             .should('be.visible')
             .then(cy.wrap)
-            .type('{moveToStart}Memakai pakaian bebas dengan tema Around The World{enter}Membawa makanan dengan huruf awal sesuai abjad awal nama masing-masing{enter}')
+            .type('Memakai pakaian bebas dengan tema Around The World{enter}Membawa makanan dengan huruf awal sesuai abjad awal nama masing-masing{enter}')
             .find('ol')
             .should('contain', 'Memakai pakaian bebas dengan tema Around The World')
     }
