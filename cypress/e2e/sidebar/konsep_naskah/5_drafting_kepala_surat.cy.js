@@ -1,11 +1,9 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
 import { DraftingKepalaSuratPage } from "../../../support/pages/sidebar/konsep_naskah/4_drafting_kepala_surat.cy"
 
 let draftingKepalaSuratPage = new DraftingKepalaSuratPage()
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
 let user
 
 before(() => {
@@ -21,11 +19,11 @@ before(() => {
     loginPage.closePopupLandingPage()
 })
 
-/*after(() => {
+after(() => {
     qase(411,
         loginPage.logout()
     )
-})*/
+})
 
 describe('Drafting Kepala Surat Skenario', () => {
     qase(83,

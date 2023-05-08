@@ -1,5 +1,4 @@
 import badan_naskah from "../../../selectors/sidebar/konsep_naskah/drafting_badan_naskah"
-import konsep_naskah from "../../../selectors/sidebar/konsep_naskah/konsep_naskah"
 import { MenuPage } from "../menu/menu.cy"
 import { DraftingKonsepNaskahPage } from "./2_drafting_konsep_naskah.cy"
 
