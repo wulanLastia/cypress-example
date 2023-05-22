@@ -1,7 +1,7 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../support/pages/auth/login.cy"
 import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
-import { ListSuratReviewNaskahPage } from "../../../support/pages/sidebar/kotak_masuk/list_surat_review_naskah.cy"
+import { ListSuratReviewNaskahPage } from "../../../support/pages/sidebar/kotak_masuk/1_list_surat_review_naskah.cy"
 
 let listSuratReviewNaskahPage = new ListSuratReviewNaskahPage()
 let menuPage = new MenuPage()

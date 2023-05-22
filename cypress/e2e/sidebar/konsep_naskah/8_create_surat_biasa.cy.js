@@ -15,10 +15,11 @@ before(() => {
 })
 
 before(() => {
-    loginPage.navigateLoginPage()
+    loginPage.loginViaV1(user.nip, user.password)
+    /*loginPage.navigateLoginPage()
     loginPage.enterNip(user.nip)
     loginPage.clickBtnMasuk()
-    loginPage.closePopupLandingPage()
+    loginPage.closePopupLandingPage()*/
 })
 
 /*after(() => {

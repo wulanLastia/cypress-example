@@ -34,7 +34,7 @@ export class LoginPage {
         btnMasuk.click()
     }
 
-    logout() {
+    logoutV2() {
         const btnProfile = cy.xpath(navbar.btnProfile).as('btnProfile')
 
         btnProfile.should('be.visible')
@@ -74,7 +74,74 @@ export class LoginPage {
 
     closePopupLandingPage() {
         const closePopup = cy.xpath(login.closePopupLandingPage).as('closePopupLandingPage')
-        closePopup.click()
+        closePopup.then($popup => {
+            if ($popup.is(':visible')) {
+                closePopup.click()
+            }
+        })
+    }
+
+    loginViaV1(nip, passwordv1) {
+        this.navigateLoginPageV1()
+
+        const username = cy.xpath(login.username).as('username')
+        username.type(nip)
+
+        const password = cy.xpath(login.password).as('password')
+        password.type(passwordv1)
+
+        const hiddenCaptcha = cy.xpath(login.hiddenCaptcha).as('hiddenCaptcha')
+        hiddenCaptcha.invoke('val')
+            .then((val) => {
+                const captchaType = cy.xpath(login.captcha).as('captcha')
+                captchaType.type(val)
+            })
+
+        const btnLogin = cy.xpath(login.btnLogin).as('btnLogin')
+        btnLogin.should('contain', 'Login')
+            .click()
+
+        cy.wait(3000)
+
+        const closePopupLandingPageV1 = cy.xpath(login.closePopupLandingPageV1).as('closePopupLandingPageV1')
+        closePopupLandingPageV1.should('contain', 'Tutup')
+            .click()
+
+        const goToV2 = cy.xpath(login.goToV2).as('goToV2')
+        goToV2.should('contain', 'LOGIN TO V2')
+            .click()
+
+        cy.wait(3000)
+
+        this.closePopupLandingPage()
+    }
+
+    preserveAllCookiesOnce() {
+        Cypress.Cookies.defaults({
+            preserve: (cookie) => {
+                return true;
+            }
+        })
+    }
+
+    logout() {
+        const backToV1 = cy.xpath(login.backToV1).as('backToV1')
+        backToV1.should('contain', 'SIDEBAR V1')
+            .click()
+
+        cy.wait(3000)
+
+        const closePopupLandingPageV1 = cy.xpath(login.closePopupLandingPageV1).as('closePopupLandingPageV1')
+        closePopupLandingPageV1.should('contain', 'Tutup')
+            .click()
+
+        const profileUser = cy.xpath(login.profileUser).as('profileUser')
+        profileUser.should('be.visible')
+            .click()
+
+        const btnKeluar = cy.xpath(login.btnKeluar).as('btnKeluar')
+        btnKeluar.should('contain', 'Keluar')
+            .click()
     }
 
 }
