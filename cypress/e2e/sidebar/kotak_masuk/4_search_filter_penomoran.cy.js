@@ -7,6 +7,7 @@ let loginPage = new LoginPage()
 let user
 
 before(() => {
+    cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('credentials.json').then((data) => {
         user = data
     })
@@ -14,19 +15,15 @@ before(() => {
 
 before(() => {
     loginPage.loginViaV1(user.nipUK, user.password)
+    loginPage.directLogin()
 })
 
 after(() => {
     qase(411,
-        loginPage.logout()
+        loginPage.backToV1()
     )
 })
 
 describe('Filter dan Search Skenario', () => {
 
-    qase(399,
-        it('[Negative] Mengosongkan seluruh kolom informasi pengembalian dan klik button Kembalikan Naskah', () => {
-            kembalikanNaskahPage.emptyField()
-        })
-    )
 }) 

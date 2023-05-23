@@ -9,6 +9,7 @@ let menuPage = new MenuPage()
 let user
 
 before(() => {
+    cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('credentials.json').then((data) => {
         user = data
     })

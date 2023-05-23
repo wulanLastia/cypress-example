@@ -1,8 +1,6 @@
 import kop_surat, { checkradio3 } from "../../../selectors/sidebar/konsep_naskah/drafting_kop_surat"
-import { MenuPage } from "../menu/menu.cy"
-import { DraftingKonsepNaskahPage } from "./2_drafting_konsep_naskah.cy"
+import { DraftingKonsepNaskahPage } from "./2_drafting_surat_biasa.cy"
 
-const menuPage = new MenuPage()
 const draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()
 
 export class DraftingKopSuratPage {

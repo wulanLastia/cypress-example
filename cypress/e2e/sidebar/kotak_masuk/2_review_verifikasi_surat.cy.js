@@ -9,6 +9,7 @@ let loginPage = new LoginPage()
 let user
 
 before(() => {
+    cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('credentials.json').then((data) => {
         user = data
     })
@@ -16,19 +17,16 @@ before(() => {
 
 before(() => {
     loginPage.loginViaV1(user.nipPemeriksa2, user.password)
-    /*loginPage.navigateLoginPage()
-    loginPage.enterNip(user.nip)
-    loginPage.clickBtnMasuk()
-    loginPage.closePopupLandingPage()*/
+    loginPage.directLogin()
 })
 
 after(() => {
     qase(411,
-        loginPage.logout()
+        loginPage.backToV1()
     )
 })
 
-describe('Detail Review dan Verifikasi hasil Surat (Kotak Masuk) Skenario', () => {
+describe('Detail Review dan Verifikasi hasil Surat (Kotak Masuk) Skenario', { testIsolation: false }, () => {
     qase(97,
         it('Akses menu kotak masuk (Review naskah)', () => {
             menuPage.goToKotakMasukReviewNaskah()
