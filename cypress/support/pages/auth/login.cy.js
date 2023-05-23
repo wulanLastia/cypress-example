@@ -102,7 +102,9 @@ export class LoginPage {
             .click()
 
         cy.wait(3000)
+    }
 
+    directLogin() {
         const closePopupLandingPageV1 = cy.xpath(login.closePopupLandingPageV1).as('closePopupLandingPageV1')
         closePopupLandingPageV1.should('contain', 'Tutup')
             .click()
@@ -116,24 +118,12 @@ export class LoginPage {
         this.closePopupLandingPage()
     }
 
-    preserveAllCookiesOnce() {
-        Cypress.Cookies.defaults({
-            preserve: (cookie) => {
-                return true;
-            }
-        })
-    }
-
     logout() {
-        const backToV1 = cy.xpath(login.backToV1).as('backToV1')
-        backToV1.should('contain', 'SIDEBAR V1')
-            .click()
-
-        cy.wait(3000)
-
         const closePopupLandingPageV1 = cy.xpath(login.closePopupLandingPageV1).as('closePopupLandingPageV1')
         closePopupLandingPageV1.should('contain', 'Tutup')
             .click()
+
+        cy.wait(3000)
 
         const profileUser = cy.xpath(login.profileUser).as('profileUser')
         profileUser.should('be.visible')
@@ -142,6 +132,18 @@ export class LoginPage {
         const btnKeluar = cy.xpath(login.btnKeluar).as('btnKeluar')
         btnKeluar.should('contain', 'Keluar')
             .click()
+    }
+
+    backToV1() {
+        const backToV1 = cy.xpath(login.backToV1).as('backToV1')
+        backToV1.should('contain', 'SIDEBAR V1')
+            .click()
+    }
+
+    alertGagalLogin() {
+        const alertSalah = cy.xpath(login.alertSalah).as('alertSalah')
+        alertSalah.should('be.visible')
+            .should('contain', 'Username dan password salah !')
     }
 
 }

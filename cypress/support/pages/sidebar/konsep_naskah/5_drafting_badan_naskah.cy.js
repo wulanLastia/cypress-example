@@ -22,7 +22,7 @@ export class DraftingBadanNaskahPage {
 
     inputBadanNaskah() {
         const previewBadan = cy.xpath(badan_naskah.previewBadan).as('previewBadan')
-        previewBadan.click(180, 400)
+        previewBadan.click(180, 420)
 
         const titleBadan = cy.get(badan_naskah.titleBadan).as('titleBadan')
         titleBadan.should('contain', 'Badan Naskah')

@@ -12,7 +12,7 @@ module.exports = defineConfig({
       base_url_v1: "https://devsidebar.digitalservice.id/"
     },
 
-    testIsolation: false,
+    testIsolation: true,
 
   },
   "reporter": "cypress-qase-reporter",
