@@ -27,14 +27,19 @@ export class DraftingKonsepNaskahPage {
 
     checkPreviewNaskah() {
         this.aksesFormKopSurat()
+        cy.wait(2000)
 
         this.aksesFormKepalaSurat()
+        cy.wait(2000)
 
         this.aksesBadanNaskah()
+        cy.wait(2000)
 
         this.aksesKakiSurat()
+        cy.wait(2000)
 
         this.aksesLampiranSurat()
+        cy.wait(2000)
     }
 
     checkDetail() {

@@ -1,8 +1,6 @@
 import kepala_surat from "../../../selectors/sidebar/konsep_naskah/drafting_kepala_surat"
-import { MenuPage } from "../menu/menu.cy"
-import { DraftingKonsepNaskahPage } from "./2_drafting_konsep_naskah.cy"
+import { DraftingKonsepNaskahPage } from "./2_drafting_surat_biasa.cy"
 
-const menuPage = new MenuPage()
 const draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()
 
 export class DraftingKepalaSuratPage {

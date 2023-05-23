@@ -7,21 +7,20 @@ let loginPage = new LoginPage()
 let user
 
 before(() => {
+    cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('credentials.json').then((data) => {
         user = data
     })
 })
 
 beforeEach(() => {
-    loginPage.navigateLoginPage()
-    loginPage.enterNip(user.nip)
-    loginPage.clickBtnMasuk()
-    loginPage.closePopupLandingPage()
+    loginPage.loginViaV1(user.nip, user.password)
+    loginPage.directLogin()
 })
 
 afterEach(() => {
     qase(411,
-        loginPage.logout()
+        loginPage.backToV1()
     )
 })
 

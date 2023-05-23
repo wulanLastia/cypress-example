@@ -9,25 +9,24 @@ let menuPage = new MenuPage()
 let user
 
 before(() => {
+    cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('credentials.json').then((data) => {
         user = data
     })
 })
 
 before(() => {
-    loginPage.navigateLoginPage()
-    loginPage.enterNip(user.nip)
-    loginPage.clickBtnMasuk()
-    loginPage.closePopupLandingPage()
+    loginPage.loginViaV1(user.nip, user.password)
+    loginPage.directLogin()
 })
 
-/*after(() => {
+after(() => {
     qase(411,
-        loginPage.logout()
+        loginPage.backToV1()
     )
-})*/
+})
 
-describe('Drafting Kaki Surat Skenario', () => {
+describe('Drafting Kaki Surat Skenario', { testIsolation: false }, () => {
     qase(150,
         it('Access kaki surat editing form', () => {
             draftingKakiSuratPage.aksesKonsepNaskahSuratBiasa()

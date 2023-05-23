@@ -7,27 +7,26 @@ let loginPage = new LoginPage()
 let user
 
 before(() => {
+    cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('credentials.json').then((data) => {
         user = data
     })
 })
 
-beforeEach(() => {
-    loginPage.navigateLoginPage()
-    loginPage.enterNip(user.nip)
-    loginPage.clickBtnMasuk()
-    loginPage.closePopupLandingPage()
-})
-
-afterEach(() => {
+after(() => {
     qase(411,
-        loginPage.logout()
+        loginPage.backToV1()
     )
 })
 
 describe('List Surat Skenario', () => {
     qase(18,
         it('Cek detail container Konsep Naskah', () => {
+            // Login
+            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.directLogin()
+
+            // Cek Detail
             konsepNaskahPage.checkDetailContainerKonsepNaskah()
         })
     )

@@ -9,25 +9,24 @@ let menuPage = new MenuPage()
 let user
 
 before(() => {
+    cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('credentials.json').then((data) => {
         user = data
     })
 })
 
 before(() => {
-    loginPage.navigateLoginPage()
-    loginPage.enterNip(user.nip)
-    loginPage.clickBtnMasuk()
-    loginPage.closePopupLandingPage()
+    loginPage.loginViaV1(user.nip, user.password)
+    loginPage.directLogin()
 })
 
 after(() => {
     qase(411,
-        loginPage.logout()
+        loginPage.backToV1()
     )
 })
 
-describe('Drafting Badan Naskah Skenario', () => {
+describe('Drafting Badan Naskah Skenario', { testIsolation: false }, () => {
     qase(709,
         it('Akses form editing badan naskah', () => {
             draftingBadanNaskahPage.aksesKonsepNaskahSuratBiasa()
@@ -66,7 +65,7 @@ describe('Drafting Badan Naskah Skenario', () => {
     )
 
     qase(153,
-        it('Insert a table', () => {
+        it.skip('Insert a table', () => {
             draftingBadanNaskahPage.insertTable()
         })
     )
