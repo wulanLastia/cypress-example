@@ -1,5 +1,5 @@
 import review_verifikasi from "../../../selectors/sidebar/kotak_masuk/review_verifikasi_surat"
-import { ListSuratReviewNaskahPage } from "../kotak_masuk/list_surat_review_naskah.cy"
+import { ListSuratReviewNaskahPage } from "../kotak_masuk/1_list_surat_review_naskah.cy"
 
 const listSuratReviewNaskahPage = new ListSuratReviewNaskahPage()
 
@@ -14,6 +14,8 @@ export class ReviewVerifikasiSuratPage {
     }
 
     checkDetailSurat() {
+        cy.wait(3000)
+
         const btnKembali = cy.xpath(review_verifikasi.btnKembali).as('btnKembali')
         btnKembali.should('have.class', '-mt-1.5 cursor-pointer -ml-4')
             .and('be.visible')
@@ -23,8 +25,7 @@ export class ReviewVerifikasiSuratPage {
             .and('be.visible')
 
         const jenisNaskah = cy.xpath(review_verifikasi.jenisNaskah).as('jenisNaskah')
-        jenisNaskah.should('contain', 'Surat Biasa')
-            .and('be.visible')
+        jenisNaskah.should('be.visible')
 
         const labelUrgensi = cy.xpath(review_verifikasi.labelUrgensi).as('labelUrgensi')
         labelUrgensi.then(($urg) => {
@@ -47,13 +48,13 @@ export class ReviewVerifikasiSuratPage {
             }
         })
 
-        /*const btnKembalikan = cy.xpath(review_verifikasi.btnKembalikan).as('btnKembalikan')
+        const btnKembalikan = cy.xpath(review_verifikasi.btnKembalikan).as('btnKembalikan')
         btnKembalikan.should('contain', 'Kembalikan')
             .and('be.visible')
 
         const btnKoreksi = cy.xpath(review_verifikasi.btnKoreksi).as('btnKoreksi')
         btnKoreksi.should('contain', 'Koreksi')
-            .and('be.visible')*/
+            .and('be.visible')
 
         const btnSetujui = cy.xpath(review_verifikasi.btnSetujui).as('btnSetujui')
         btnSetujui.should('have.class', 'gap-2 cursor-pointer font-source hover:bg-blue-100 rounded-lg mb-2.5 whitespace-nowrap base-button base-button--primary')

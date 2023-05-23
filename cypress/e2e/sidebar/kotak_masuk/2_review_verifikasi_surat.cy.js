@@ -1,7 +1,7 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../support/pages/auth/login.cy"
 import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
-import { ReviewVerifikasiSuratPage } from "../../../support/pages/sidebar/kotak_masuk/review_verifikasi_surat.cy"
+import { ReviewVerifikasiSuratPage } from "../../../support/pages/sidebar/kotak_masuk/2_review_verifikasi_surat.cy"
 
 let reviewVerifikasiSuratPage = new ReviewVerifikasiSuratPage()
 let menuPage = new MenuPage()
@@ -15,10 +15,11 @@ before(() => {
 })
 
 before(() => {
-    loginPage.navigateLoginPage()
-    loginPage.enterNip(user.nipPemeriksa)
+    loginPage.loginViaV1(user.nipPemeriksa2, user.password)
+    /*loginPage.navigateLoginPage()
+    loginPage.enterNip(user.nip)
     loginPage.clickBtnMasuk()
-    loginPage.closePopupLandingPage()
+    loginPage.closePopupLandingPage()*/
 })
 
 after(() => {

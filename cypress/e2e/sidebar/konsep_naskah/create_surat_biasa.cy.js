@@ -15,19 +15,11 @@ before(() => {
 })
 
 before(() => {
-    loginPage.navigateLoginPage()
-    loginPage.enterNip(user.nip)
-    loginPage.clickBtnMasuk()
-    loginPage.closePopupLandingPage()
+    loginPage.loginViaV1(user.nip, user.password)
+    loginPage.directLogin()
 })
 
-/*after(() => {
-    qase(411,
-        loginPage.logout()
-    )
-})*/
-
-describe('Create Surat Biasa Skenario', () => {
+describe('Create Surat Biasa Skenario', { testIsolation: false }, () => {
     qase(13,
         it('Akses halaman konsep naskah', () => {
             menuPage.goToKonsepNaskah()

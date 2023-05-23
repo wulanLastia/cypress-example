@@ -55,4 +55,5 @@ export class CreateSuratBiasaPage {
     kirimSurat() {
         draftingKonsepNaskahPage.kirimNaskah()
     }
+
 }

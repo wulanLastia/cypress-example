@@ -10,22 +10,12 @@ before(() => {
     })
 })
 
-beforeEach(() => {
-    loginPage.navigateLoginPage()
-})
-
-afterEach(() => {
-    qase(411,
-        loginPage.logout()
-    )
-})
-
 describe('Login Positif Skenario', () => {
-    qase(251,
+    qase([251, 411],
         it('Login dengan NIP akun yang aktif', () => {
-            loginPage.enterNip(user.nip)
-            loginPage.clickBtnMasuk()
-            loginPage.closePopupLandingPage()
+            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.directLogin()
+            loginPage.backToV1()
         })
     )
 })
