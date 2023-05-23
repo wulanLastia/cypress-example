@@ -2,7 +2,9 @@ import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../support/pages/auth/login.cy"
 import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
 import { KembalikanNaskahPage } from "../../../support/pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
+import { CreateSuratBiasaPage } from "../../../support/pages/sidebar/konsep_naskah/7_create_surat_biasa.cy"
 
+let createSuratBiasaPage = new CreateSuratBiasaPage()
 let kembalikanNaskahPage = new KembalikanNaskahPage()
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
@@ -14,58 +16,41 @@ before(() => {
     })
 })
 
-before(() => {
-    loginPage.loginViaV1(user.nipPemeriksa2, user.password)
-    //cy.then(Cypress.session.clearCurrentSessionData)
-    /*loginPage.navigateLoginPage()
-    loginPage.enterNip(user.nip)
-    loginPage.clickBtnMasuk()
-    loginPage.closePopupLandingPage()*/
-})
-
-beforeEach(() => {
-    loginPage.preserveAllCookiesOnce()
-})
-
-after(() => {
-    qase(411,
-        loginPage.logout()
-    )
-})
-
 describe('Kembalikan Naskah Skenario', () => {
 
-    qase(399,
-        it('[Negative] Mengosongkan seluruh kolom informasi pengembalian dan klik button Kembalikan Naskah', () => {
+    qase([13, 81, 83, 709, 150, 80],
+        it('Create Naskah Surat Biasa', () => {
+            // Login 
+            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.directLogin()
+
+            // Create Naskah
+            menuPage.goToKonsepNaskah()
+            createSuratBiasaPage.checkDetail()
+            createSuratBiasaPage.inputKopSurat()
+            createSuratBiasaPage.inputKepalaSurat()
+            createSuratBiasaPage.inputBadanNaskah()
+            createSuratBiasaPage.inputKakiSurat()
+            createSuratBiasaPage.kirimSurat()
+        })
+    )
+
+    qase([399, 101, 377, 402, 100],
+        it('Kembalikan Naskah', () => {
+            // Login 
+            loginPage.loginViaV1(user.nipPemeriksa, user.password)
+            loginPage.directLogin()
+
+            // Create Naskah
             kembalikanNaskahPage.emptyField()
-        })
-    )
-
-    qase(101,
-        it('Batal mengembalikan naskah dari detail surat masuk belum direview', () => {
             kembalikanNaskahPage.batalKembalikanNaskah()
-        })
-    )
-
-    qase(377,
-        it('Cek tombol kembalikan', () => {
             kembalikanNaskahPage.checkHalamanInformasi()
-        })
-    )
-
-    qase(402,
-        it('Cek tombol periksa kembali', () => {
             kembalikanNaskahPage.checkBtnPeriksaKembali()
-        })
-    )
-
-    qase(100,
-        it('Mengembalikan naskah dari detail surat masuk belum direview', () => {
             kembalikanNaskahPage.kembalikanNaskah()
             cy.wait(3000)
             loginPage.closePopupLandingPage()
-            cy.wait(5000)
-            menuPage.clickBtnShowMenu()
         })
     )
+
+
 }) 
