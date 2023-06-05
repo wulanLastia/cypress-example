@@ -9,7 +9,8 @@ module.exports = defineConfig({
 
     env: {
       base_url: "https://sidebar-jabarprov.netlify.app",
-      base_url_v1: "https://devsidebar.digitalservice.id/"
+      base_url_v1: "https://devsidebar.digitalservice.id/",
+      base_url_prod_v2: "https://sidebar-v2.jabarprov.go.id/"
     },
 
     testIsolation: true,

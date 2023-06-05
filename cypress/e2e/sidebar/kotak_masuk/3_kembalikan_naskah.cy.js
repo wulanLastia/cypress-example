@@ -2,7 +2,7 @@ import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../support/pages/auth/login.cy"
 import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
 import { KembalikanNaskahPage } from "../../../support/pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
-import { CreateSuratBiasaPage } from "../../../support/pages/sidebar/konsep_naskah/7_create_surat_biasa.cy"
+import { CreateSuratBiasaPage } from "../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
 
 let createSuratBiasaPage = new CreateSuratBiasaPage()
 let kembalikanNaskahPage = new KembalikanNaskahPage()
@@ -11,7 +11,7 @@ let menuPage = new MenuPage()
 let user
 
 before(() => {
-    cy.fixture('credentials.json').then((data) => {
+    cy.fixture('credentials_dev.json').then((data) => {
         user = data
     })
 })

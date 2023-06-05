@@ -1,12 +1,13 @@
 module.exports = {
     // GET
+    titleKonsepNaskah: '[data-cy="template-naskah__title"]',
+    subTitleKonsepNaskah: '[data-cy="template-naskah__subtitle"]',
     menuKonsepNaskah: '[data-cy="sidebar-menu-konsep-naskah"]',
     menuKotakMasuk: '[data-cy="sidebar-menu-kotak-masuk"]',
     menuKotakMasukReviewNaskah: '[data-cy="sidebar-menu-kotak-masuk-review-naskah"]',
 
     // XPATH
     konsepNaskahMenu: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/div[1]/div[1]/div[1]/div[1]/a[1]/div[1]',
-    titleKonsepNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]',
     parentKotakMasuk: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/div[1]/div[1]/div[1]/div[2]/div[1]/button[1]',
     reviewNaskahKM: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]',
     tindakLanjutKM: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/a[1]/div[1]',

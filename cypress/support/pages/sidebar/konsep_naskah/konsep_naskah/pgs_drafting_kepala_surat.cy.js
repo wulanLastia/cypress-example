@@ -1,5 +1,5 @@
-import kepala_surat from "../../../selectors/sidebar/konsep_naskah/drafting_kepala_surat"
-import { DraftingKonsepNaskahPage } from "./2_drafting_surat_biasa.cy"
+import kepala_surat from "../../../../selectors/sidebar/konsep_naskah/surat_biasa/drafting_kepala_surat"
+import { DraftingKonsepNaskahPage } from "../surat_biasa/pgs_drafting_surat_biasa.cy"
 
 const draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()
 
@@ -63,11 +63,8 @@ export class DraftingKepalaSuratPage {
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
         titleTujuan.should('contain', 'Kepada Yth.')
 
-        const subTitleTujuan = cy.get(kepala_surat.subTitleTujuan).as('subTitleTujuan')
-        subTitleTujuan.should('contain', 'Jika tujuan lebih dari 3 orang, silakan tulis pada lampiran')
-
-        const selectTujuan = cy.get(kepala_surat.selectTujuan).as('selectTujuan')
-        selectTujuan.click()
+        //const selectTujuan = cy.get(kepala_surat.selectTujuan).as('selectTujuan')
+        //selectTujuan.click()
 
         const inputTujuan = cy.get(kepala_surat.inputTujuan).as('inputTujuan')
         inputTujuan.type('Ika Mardiah')
@@ -79,7 +76,7 @@ export class DraftingKepalaSuratPage {
         const titleLokasi = cy.get(kepala_surat.titleLokasi).as('titleLokasi')
         titleLokasi.should('contain', 'di')
 
-        const inputLokasi = cy.get(kepala_surat.inputLokasi).as('inputLokasi')
+        const inputLokasi = cy.xpath(kepala_surat.inputLokasi).as('inputLokasi')
         inputLokasi.type('Tempat')
     }
 

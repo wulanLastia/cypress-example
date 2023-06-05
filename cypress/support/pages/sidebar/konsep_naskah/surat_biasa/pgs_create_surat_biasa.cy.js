@@ -1,8 +1,8 @@
-import { DraftingKonsepNaskahPage } from "./2_drafting_surat_biasa.cy"
-import { DraftingKopSuratPage } from "./3_drafting_kop_surat.cy"
-import { DraftingKepalaSuratPage } from "./4_drafting_kepala_surat.cy"
-import { DraftingBadanNaskahPage } from "./5_drafting_badan_naskah.cy"
-import { DraftingKakiSuratPage } from "./6_drafting_kaki_surat.cy"
+import { DraftingKonsepNaskahPage } from "../surat_biasa/pgs_drafting_surat_biasa.cy"
+import { DraftingKopSuratPage } from "../konsep_naskah/pgs_drafting_kop_surat.cy"
+import { DraftingKepalaSuratPage } from "../konsep_naskah/pgs_drafting_kepala_surat.cy"
+import { DraftingBadanNaskahPage } from "../konsep_naskah/pgs_drafting_badan_naskah.cy"
+import { DraftingKakiSuratPage } from "../konsep_naskah/pgs_drafting_kaki_surat.cy"
 
 const draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()
 const draftingKopSuratPage = new DraftingKopSuratPage()
@@ -52,6 +52,18 @@ export class CreateSuratBiasaPage {
 
     kirimSurat() {
         draftingKonsepNaskahPage.kirimNaskah()
+    }
+
+    inputKakiSuratPDF() {
+        draftingKakiSuratPage.inputKakiSurat()
+        draftingKakiSuratPage.inputPenandatanganDiriSendiri()
+        draftingKakiSuratPage.closeKakiSurat()
+    }
+
+    inputBadanNaskahPDF() {
+        draftingBadanNaskahPage.inputBadanNaskah()
+        draftingBadanNaskahPage.insertDataPDF()
+        draftingBadanNaskahPage.closeBadanNaskah()
     }
 
 }

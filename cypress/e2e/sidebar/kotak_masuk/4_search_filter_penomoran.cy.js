@@ -8,22 +8,33 @@ let user
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
-    cy.fixture('credentials.json').then((data) => {
+    cy.fixture('credentials_dev.json').then((data) => {
         user = data
     })
 })
 
 before(() => {
     loginPage.loginViaV1(user.nipUK, user.password)
-    loginPage.directLogin()
+    loginPage.directLoginUK()
 })
 
-after(() => {
+/*after(() => {
     qase(411,
         loginPage.backToV1()
     )
-})
+})*/
 
-describe('Filter dan Search Skenario', () => {
+describe('Filter dan Search Skenario', { testIsolation: false }, () => {
 
+    qase(204,
+        it('Melakukan pencarian dengan kata kunci perihal yang tersedia pada data', () => {
+            filterDanSearchPenomoranPage.searchDokumen('Dinomori')
+        })
+    )
+
+    qase(203,
+        it('Cek aksi pencarian jika kata kunci kurang dari 3 karakter', () => {
+            filterDanSearchPenomoranPage.searchDokumen('Di')
+        })
+    )
 }) 

@@ -72,8 +72,12 @@ export class MenuPage {
         konsepNaskahMenu.should('contain', 'Konsep Naskah')
         konsepNaskahMenu.click()
 
-        const titleKonsepNaskah = cy.xpath(menu.titleKonsepNaskah).as('titleKonsepNaskah')
+        const titleKonsepNaskah = cy.get(menu.titleKonsepNaskah).as('titleKonsepNaskah')
         titleKonsepNaskah.should('contain', 'Buat Naskah Baru')
+
+        const subTitleKonsepNaskah = cy.get(menu.subTitleKonsepNaskah).as('subTitleKonsepNaskah')
+        subTitleKonsepNaskah.should('contain', 'TEMPLATE NASKAH')
+            .and('be.visible')
     }
 
     goToKotakMasukReviewNaskah() {

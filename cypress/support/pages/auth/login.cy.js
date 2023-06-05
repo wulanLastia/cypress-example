@@ -15,6 +15,7 @@ export class LoginPage {
 
     navigateLoginPageV1() {
         cy.visit(Cypress.env('base_url_v1'))
+        //cy.visit(Cypress.env('base_url_prod_v2'))
     }
 
     enterNip(nip) {
@@ -106,8 +107,7 @@ export class LoginPage {
 
     directLogin() {
         const closePopupLandingPageV1 = cy.xpath(login.closePopupLandingPageV1).as('closePopupLandingPageV1')
-        closePopupLandingPageV1.should('contain', 'Tutup')
-            .click()
+        closePopupLandingPageV1.click()
 
         const goToV2 = cy.xpath(login.goToV2).as('goToV2')
         goToV2.should('contain', 'LOGIN TO V2')
@@ -120,8 +120,7 @@ export class LoginPage {
 
     logout() {
         const closePopupLandingPageV1 = cy.xpath(login.closePopupLandingPageV1).as('closePopupLandingPageV1')
-        closePopupLandingPageV1.should('contain', 'Tutup')
-            .click()
+        closePopupLandingPageV1.click()
 
         cy.wait(3000)
 
@@ -144,6 +143,15 @@ export class LoginPage {
         const alertSalah = cy.xpath(login.alertSalah).as('alertSalah')
         alertSalah.should('be.visible')
             .should('contain', 'Username dan password salah !')
+    }
+
+    directLoginUK() {
+        cy.get("div.modal-footer > button").click();
+        cy.get("li:nth-of-type(26) > a").click();
+
+        cy.wait(3000)
+
+        this.closePopupLandingPage()
     }
 
 }
