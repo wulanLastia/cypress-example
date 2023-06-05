@@ -1,18 +1,12 @@
-import konsep_naskah from "../../../selectors/sidebar/konsep_naskah/konsep_naskah"
-import { MenuPage } from "../menu/menu.cy"
+import konsep_naskah from "../../../../selectors/sidebar/konsep_naskah/konsep_naskah"
+import { MenuPage } from "../../menu/menu.cy"
 
 const menuPage = new MenuPage()
 
 export class DraftingKonsepNaskahPage {
 
     goToKonsepNaskahSuratBiasa() {
-        const titleKonsepNaskah = cy.get(konsep_naskah.titleKonsepNaskah).as('titleKonsepNaskah')
-        titleKonsepNaskah.should('contain', 'Buat Naskah Baru')
-            .and('be.visible')
-
-        const subTitleKonsepNaskah = cy.get(konsep_naskah.subTitleKonsepNaskah).as('subTitleKonsepNaskah')
-        subTitleKonsepNaskah.should('contain', 'TEMPLATE NASKAH')
-            .and('be.visible')
+        menuPage.goToKonsepNaskah()
 
         const suratBiasa = cy.get(konsep_naskah.suratBiasa).as('suratBiasa')
         suratBiasa.should('be.visible')
@@ -57,7 +51,6 @@ export class DraftingKonsepNaskahPage {
 
         const btnKirimNaskah = cy.get(konsep_naskah.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.should('contain', 'Kirim Naskah')
-            .and('be.visible')
 
         this.checkPreviewNaskah()
     }

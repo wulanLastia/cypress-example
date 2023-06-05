@@ -7,6 +7,7 @@ module.exports = {
     btnKembali: '[data-cy="surat-biasa-left-arrow"]',
     titleMenu: '[data-cy="surat-biasa-title"]',
     selectedKonsep: '[data-cy="surat-biasa-dropdown__surat-biasa"]',
+    selectedNotaDinas: '[data-cy="surat-nota-dinas-dropdown__nota-dinas"]',
     btnKirimNaskah: '[data-cy="surat-biasa-submit"]',
     editFormDefault: '[data-cy="surat-biasa-click-to-edit"]',
     previewKop: '[data-cy="surat__kop-surat"]',

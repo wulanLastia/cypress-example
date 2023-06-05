@@ -78,4 +78,10 @@ export class ReviewVerifikasiSuratPage {
 
         listSuratReviewNaskahPage.checkTitleReviewNaskah()
     }
+
+    suratBelumDitandatangani() {
+        const tableReviewSurat = cy.xpath(review_verifikasi.tableReviewSurat).as('tableReviewSurat')
+        tableReviewSurat.contains('td', 'BELUM DITANDATANGANI')
+            .click()
+    }
 }

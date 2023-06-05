@@ -1,24 +1,13 @@
-import navbar from "../../../selectors/navbar"
-import konsep_naskah from "../../../selectors/sidebar/konsep_naskah/konsep_naskah"
-import { MenuPage } from "../menu/menu.cy"
+import navbar from "../../../../selectors/navbar"
+import konsep_naskah from "../../../../selectors/sidebar/konsep_naskah/konsep_naskah"
+import { MenuPage } from "../../menu/menu.cy"
 
 const menuPage = new MenuPage()
 
 export class KonsepNaskahPage {
 
     checkContainer() {
-        const konsepNaskahMenu = cy.get(konsep_naskah.konsepNaskahMenu).as('konsepNaskahMenu')
-
-        konsepNaskahMenu.should('contain', 'Konsep Naskah')
-        konsepNaskahMenu.click()
-
-        const titleKonsepNaskah = cy.get(konsep_naskah.titleKonsepNaskah).as('titleKonsepNaskah')
-        titleKonsepNaskah.should('contain', 'Buat Naskah Baru')
-            .and('be.visible')
-
-        const subTitleKonsepNaskah = cy.get(konsep_naskah.subTitleKonsepNaskah).as('subTitleKonsepNaskah')
-        subTitleKonsepNaskah.should('contain', 'TEMPLATE NASKAH')
-            .and('be.visible')
+        menuPage.goToKonsepNaskah()
 
         const titleNaskahKeluar = cy.xpath(konsep_naskah.titleNaskahKeluar).as('titleNaskahKeluar')
         titleNaskahKeluar.should('contain', 'Naskah Keluar')
@@ -59,6 +48,10 @@ export class KonsepNaskahPage {
             .and('be.visible')
 
         menuPage.goToKotakMasukReviewNaskah()
+    }
+
+    goToKonsepNaskahNotaDinas() {
+        menuPage.goToKonsepNaskah()
     }
 
 }

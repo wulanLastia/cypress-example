@@ -1,7 +1,7 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
-import { DraftingKonsepNaskahPage } from "../../../support/pages/sidebar/konsep_naskah/2_drafting_surat_biasa.cy"
+import { LoginPage } from "../../../../support/pages/auth/login.cy"
+import { MenuPage } from "../../../../support/pages/sidebar/menu/menu.cy"
+import { DraftingKonsepNaskahPage } from "../../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_drafting_surat_biasa.cy"
 
 let draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()
 let loginPage = new LoginPage()
@@ -10,7 +10,7 @@ let user
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
-    cy.fixture('credentials.json').then((data) => {
+    cy.fixture('credentials_dev.json').then((data) => {
         user = data
     })
 })

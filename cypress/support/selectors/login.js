@@ -11,7 +11,7 @@ module.exports = {
     hiddenCaptcha: '/html[1]/body[1]/div[1]/div[1]/form[1]/div[7]/div[1]/input[1]',
     captcha: '/html[1]/body[1]/div[1]/div[1]/form[1]/div[6]/input[1]',
     btnLogin: '/html[1]/body[1]/div[1]/div[1]/form[1]/div[8]/div[1]/input[1]',
-    closePopupLandingPageV1: '/html[1]/body[1]/div[1]/div[1]/section[2]/div[7]/div[1]/div[1]/div[3]/button[1]',
+    closePopupLandingPageV1: '/html[1]/body[1]/div[1]/div[1]/section[2]/div[7]/div[1]/div[1]/div[1]/button[1]',
     goToV2: '/html[1]/body[1]/div[1]/aside[1]/div[1]/section[1]/ul[1]/li[22]/a[1]',
     backToV1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/div[1]/div[1]/div[1]/div[4]/a[1]/div[1]/p[1]',
     profileUser: '/html[1]/body[1]/div[1]/header[1]/nav[1]/div[1]/ul[1]/li[2]/a[1]',

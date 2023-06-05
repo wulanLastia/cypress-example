@@ -1,5 +1,5 @@
-import kaki_surat from "../../../selectors/sidebar/konsep_naskah/drafting_kaki_surat"
-import { DraftingKonsepNaskahPage } from "./2_drafting_surat_biasa.cy"
+import kaki_surat from "../../../../selectors/sidebar/konsep_naskah/surat_biasa/drafting_kaki_surat"
+import { DraftingKonsepNaskahPage } from "../surat_biasa/pgs_drafting_surat_biasa.cy"
 
 const draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()
 
@@ -81,6 +81,7 @@ export class DraftingKakiSuratPage {
         selectPenandatangan.select(4).should('have.value', 'DIRI_SENDIRI')
 
         const selectedPenandatangan = cy.xpath(kaki_surat.selectedPenandatangan).as('selectedPenandatangan')
+        //selectedPenandatangan.should('contain', 'Smoke Test VITA PUTRI UTAMI, S.Sos., M.I.Kom')
         selectedPenandatangan.should('contain', 'VITA PUTRI UTAMI, S.Sos., M.I.Kom')
             .invoke('val')
             .then(text => {
@@ -95,14 +96,16 @@ export class DraftingKakiSuratPage {
         selectPenandatangan.select(1).should('have.value', 'ATASAN')
 
         const pilihPenandatangan = cy.xpath(kaki_surat.pilihPenandatangan).as('pilihPenandatangan')
-        pilihPenandatangan.type('Hening')
+        //pilihPenandatangan.type('SMOKE TEST Dr. HENING')
+        pilihPenandatangan.type('HENING')
             .wait(2000)
             .type('{enter}')
     }
 
     pilihPemeriksa() {
         const pilihPemeriksa = cy.xpath(kaki_surat.pilihPemeriksa).as('pilihPemeriksa')
-        pilihPemeriksa.type('Hening')
+        //pilihPemeriksa.type('SMOKE TEST Dr. HENING')
+        pilihPemeriksa.type('HENING')
             .wait(2000)
             .type('{enter}')
 
@@ -110,9 +113,15 @@ export class DraftingKakiSuratPage {
         btnTambahPemeriksa.click()
 
         const pilihPemeriksa2 = cy.xpath(kaki_surat.pilihPemeriksa2).as('pilihPemeriksa2')
-        pilihPemeriksa2.type('Fajar')
+        //pilihPemeriksa2.type('SMOKE TEST FAJAR')
+        pilihPemeriksa2.type('FAJAR')
             .wait(2000)
             .type('{enter}')
+    }
+
+    inputPenandatanganDiriSendiri() {
+        const selectPenandatangan = cy.xpath(kaki_surat.selectPenandatangan).as('selectPenandatangan')
+        selectPenandatangan.select(4).should('have.value', 'DIRI_SENDIRI')
     }
 
 }
