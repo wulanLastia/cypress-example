@@ -4,7 +4,7 @@ module.exports = {
     // XPATH
     search: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/input[1]',
     tablePenomoran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[2]/div[1]/div[1]/div[1]',
-    btnNomori: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/header[1]/div[1]/div[3]/a[5]',
+    btnNomori: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/header[1]/div[1]/div[3]/a[1]',
     popUpPenomoran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[10]/div[1]',
     titlePenomoran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[10]/div[1]/header[1]/h5[1]/h5[1]/strong[1]',
     subTitlePenomoran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[10]/div[1]/header[1]/h5[1]/span[1]',
