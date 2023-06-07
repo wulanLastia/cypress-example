@@ -21,7 +21,7 @@ before(() => {
     })
 })
 
-describe('Create Surat Biasa Skenario', () => {
+describe('Skenario Create Surat Biasa Tujuan Internal', () => {
 
     qase([13, 81, 83, 709, 150, 80],
         it('Create Naskah Surat Biasa', () => {
@@ -33,9 +33,48 @@ describe('Create Surat Biasa Skenario', () => {
             menuPage.goToKonsepNaskah()
             createSuratBiasaPage.checkDetail()
             createSuratBiasaPage.inputKopSurat()
-            createSuratBiasaPage.inputKepalaSurat()
+            createSuratBiasaPage.inputKepalaSuratInternal()
             createSuratBiasaPage.inputKakiSuratPDF()
-            createSuratBiasaPage.inputBadanNaskahPDF()
+            createSuratBiasaPage.inputBadanNaskah()
+            createSuratBiasaPage.kirimSurat()
+        })
+    )
+
+    it('Penomoran oleh UK', () => {
+        // Login UK untuk melakukan penomoran
+        loginPage.loginViaV1(user.nipUK, user.password)
+        loginPage.directLoginUK()
+
+        filterDanSearchPenomoranPage.suratBelumDinomori()
+        filterDanSearchPenomoranPage.nomoriDanTeruskan()
+    })
+
+    it('Tandatangani oleh Penandatangan (Diri Sendiri)', () => {
+        // Login UK untuk melakukan penomoran
+        loginPage.loginViaV1(user.nip, user.password)
+        loginPage.directLogin()
+
+        menuPage.goToKotakMasukReviewNaskah()
+        reviewVerifikasiSuratPage.suratBelumDitandatangani()
+        setujuiPage.tandaTangani(user.passphrase)
+    })
+})
+
+describe('Skenario Create Surat Biasa Tujuan Eksternal', () => {
+
+    qase([13, 81, 83, 709, 150, 80],
+        it('Create Naskah Surat Biasa', () => {
+            // Login 
+            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.directLogin()
+
+            // Create Naskah
+            menuPage.goToKonsepNaskah()
+            createSuratBiasaPage.checkDetail()
+            createSuratBiasaPage.inputKopSurat()
+            createSuratBiasaPage.inputKepalaSuratEksternal()
+            createSuratBiasaPage.inputKakiSuratPDF()
+            createSuratBiasaPage.inputBadanNaskah()
             createSuratBiasaPage.kirimSurat()
         })
     )

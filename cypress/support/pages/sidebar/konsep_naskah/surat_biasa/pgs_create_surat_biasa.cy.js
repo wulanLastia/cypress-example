@@ -66,4 +66,32 @@ export class CreateSuratBiasaPage {
         draftingBadanNaskahPage.closeBadanNaskah()
     }
 
+    inputKepalaSuratInternal() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratPage.validateTempat()
+        draftingKepalaSuratPage.validateTanggal()
+        draftingKepalaSuratPage.validateTujuanInternal()
+        draftingKepalaSuratPage.validateLokasi()
+        draftingKepalaSuratPage.validateKodeKlasifikasi()
+        draftingKepalaSuratPage.validateUnitPengolah()
+        draftingKepalaSuratPage.validateSifatSurat()
+        draftingKepalaSuratPage.validateUrgensiSurat()
+        draftingKepalaSuratPage.validatePerihal()
+        draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    inputKepalaSuratEksternal() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratPage.validateTempat()
+        draftingKepalaSuratPage.validateTanggal()
+        draftingKepalaSuratPage.validateTujuanEksternal()
+        draftingKepalaSuratPage.validateLokasi()
+        draftingKepalaSuratPage.validateKodeKlasifikasi()
+        draftingKepalaSuratPage.validateUnitPengolah()
+        draftingKepalaSuratPage.validateSifatSurat()
+        draftingKepalaSuratPage.validateUrgensiSurat()
+        draftingKepalaSuratPage.validatePerihal()
+        draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
 }

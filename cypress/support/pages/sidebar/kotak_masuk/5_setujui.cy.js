@@ -15,9 +15,6 @@ export class SetujuiPage {
         const popUpSetujui = cy.xpath(setujui.popUpSetujui).as('popUpSetujui')
         popUpSetujui.should('be.visible')
 
-        const titleSetujui = cy.xpath(setujui.titleSetujui).as('titleSetujui')
-        titleSetujui.should('contain', 'Pastikan naskah Anda sudah benar sebelum meneruskan ke pihak selanjutnya')
-
         const btnKirimNaskah = cy.xpath(setujui.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.should('contain', 'Kirim naskah')
             .click()

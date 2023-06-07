@@ -63,9 +63,6 @@ export class DraftingKepalaSuratPage {
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
         titleTujuan.should('contain', 'Kepada Yth.')
 
-        //const selectTujuan = cy.get(kepala_surat.selectTujuan).as('selectTujuan')
-        //selectTujuan.click()
-
         const inputTujuan = cy.get(kepala_surat.inputTujuan).as('inputTujuan')
         inputTujuan.type('Ika Mardiah')
             .wait(3000)
@@ -129,6 +126,30 @@ export class DraftingKepalaSuratPage {
         const perihal = `Automation Testing ${id}`
 
         inputPerihal.type(perihal)
+    }
+
+    validateTujuanInternal() {
+        const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
+        titleTujuan.should('contain', 'Kepada Yth.')
+
+        const inputTujuan = cy.get(kepala_surat.inputTujuan).as('inputTujuan')
+        inputTujuan.type('Ika Mardiah')
+            .wait(3000)
+            .type('{enter}')
+    }
+
+    validateTujuanEksternal() {
+        const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
+        titleTujuan.should('contain', 'Kepada Yth.')
+
+        const inputTujuan = cy.get(kepala_surat.inputTujuan).as('inputTujuan')
+        const uuid = () => Cypress._.random(0, 1e6)
+        const id = uuid()
+        const tujuanEks = `Test Tujuan Eksternal Automation ${id}`
+
+        inputTujuan.type(tujuanEks)
+            .wait(3000)
+            .type('{enter}')
     }
 
 }
