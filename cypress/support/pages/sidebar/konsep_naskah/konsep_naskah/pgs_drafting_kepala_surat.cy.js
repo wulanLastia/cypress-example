@@ -63,8 +63,9 @@ export class DraftingKepalaSuratPage {
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
         titleTujuan.should('contain', 'Kepada Yth.')
 
-        const inputTujuan = cy.get(kepala_surat.inputTujuan).as('inputTujuan')
-        inputTujuan.type('Ika Mardiah')
+        const inputTujuan = cy.get(kepala_surat.inputTujuan0).as('inputTujuan')
+        inputTujuan.wait(1000)
+            .type('Ika Mardiah')
             .wait(3000)
             .type('{enter}')
     }
@@ -73,18 +74,21 @@ export class DraftingKepalaSuratPage {
         const titleLokasi = cy.get(kepala_surat.titleLokasi).as('titleLokasi')
         titleLokasi.should('contain', 'di')
 
-        const inputLokasi = cy.xpath(kepala_surat.inputLokasi).as('inputLokasi')
+        const inputLokasi = cy.get(kepala_surat.inputLokasi).as('inputLokasi')
         inputLokasi.type('Tempat')
     }
 
     validateKodeKlasifikasi() {
+        cy.wait(6000)
+
         const titleKodeKlasifikasi = cy.get(kepala_surat.titleKodeKlasifikasi).as('titleKodeKlasifikasi')
         titleKodeKlasifikasi.should('contain', 'Kode Klasifikasi')
 
         const selectKodeKlasifikasi = cy.get(kepala_surat.selectKodeKlasifikasi).as('selectKodeKlasifikasi')
         selectKodeKlasifikasi.click()
-            .type('AR (Kearsipan)')
             .wait(3000)
+            .type('AR (Kearsipan)')
+            .wait(6000)
             .type('{enter}')
     }
 
@@ -132,8 +136,46 @@ export class DraftingKepalaSuratPage {
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
         titleTujuan.should('contain', 'Kepada Yth.')
 
-        const inputTujuan = cy.get(kepala_surat.inputTujuan).as('inputTujuan')
-        inputTujuan.type('Ika Mardiah')
+        for (let i = 1; i <= 4; i++) {
+            const addMoreTujuan = cy.get(kepala_surat.addMoreTujuan).as('addMoreTujuan')
+            addMoreTujuan.click()
+        }
+
+        const inputTujuan0 = cy.get(kepala_surat.inputTujuan0).as('inputTujuan0')
+        inputTujuan0.wait(1000)
+            .type('Ridwan Kamil')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuan1 = cy.get(kepala_surat.inputTujuan1).as('inputTujuan1')
+        inputTujuan1.wait(1000)
+            .type('UU Ruzhanul')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuan2 = cy.get(kepala_surat.inputTujuan2).as('inputTujuan2')
+        inputTujuan2.wait(1000)
+            .type('Setiawan Wangsaatmaja')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuan3 = cy.get(kepala_surat.inputTujuan3).as('inputTujuan3')
+        inputTujuan3.wait(1000)
+            .type('Rizki Hustiniasari')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuan4 = cy.get(kepala_surat.inputTujuan4).as('inputTujuan4')
+        inputTujuan4.wait(1000)
+            .type('Ika Mardiah')
             .wait(3000)
             .type('{enter}')
     }
@@ -142,12 +184,53 @@ export class DraftingKepalaSuratPage {
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
         titleTujuan.should('contain', 'Kepada Yth.')
 
-        const inputTujuan = cy.get(kepala_surat.inputTujuan).as('inputTujuan')
-        const uuid = () => Cypress._.random(0, 1e6)
-        const id = uuid()
-        const tujuanEks = `Test Tujuan Eksternal Automation ${id}`
+        for (let i = 1; i <= 4; i++) {
+            const addMoreTujuan = cy.get(kepala_surat.addMoreTujuan).as('addMoreTujuan')
+            addMoreTujuan.click()
+        }
 
-        inputTujuan.type(tujuanEks)
+        const inputTujuan0 = cy.get(kepala_surat.inputTujuan0).as('inputTujuan0')
+        const uuid0 = () => Cypress._.random(0, 1e6)
+        const id0 = uuid0()
+        const tujuanEks0 = `Test Tujuan Eksternal Automation ${id0}`
+
+        inputTujuan0.type(tujuanEks0)
+            .wait(3000)
+            .type('{enter}')
+
+        const inputTujuan1 = cy.get(kepala_surat.inputTujuan1).as('inputTujuan1')
+        const uuid1 = () => Cypress._.random(0, 1e6)
+        const id1 = uuid1()
+        const tujuanEks1 = `Test Tujuan Eksternal Automation ${id1}`
+
+        inputTujuan1.type(tujuanEks1)
+            .wait(3000)
+            .type('{enter}')
+
+        const inputTujuan2 = cy.get(kepala_surat.inputTujuan2).as('inputTujuan2')
+        const uuid2 = () => Cypress._.random(0, 1e6)
+        const id2 = uuid2()
+        const tujuanEks2 = `Test Tujuan Eksternal Automation ${id2}`
+
+        inputTujuan2.type(tujuanEks2)
+            .wait(3000)
+            .type('{enter}')
+
+        const inputTujuan3 = cy.get(kepala_surat.inputTujuan3).as('inputTujuan3')
+        const uuid3 = () => Cypress._.random(0, 1e6)
+        const id3 = uuid3()
+        const tujuanEks3 = `Test Tujuan Eksternal Automation ${id3}`
+
+        inputTujuan3.type(tujuanEks3)
+            .wait(3000)
+            .type('{enter}')
+
+        const inputTujuan4 = cy.get(kepala_surat.inputTujuan4).as('inputTujuan4')
+        const uuid4 = () => Cypress._.random(0, 1e6)
+        const id4 = uuid4()
+        const tujuanEks4 = `Test Tujuan Eksternal Automation ${id4}`
+
+        inputTujuan4.type(tujuanEks4)
             .wait(3000)
             .type('{enter}')
     }

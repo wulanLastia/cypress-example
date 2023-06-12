@@ -28,14 +28,15 @@ describe('Skenario Create Surat Biasa Tujuan Internal', () => {
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
+            loginPage.directDeployPreview()
 
             // Create Naskah
             menuPage.goToKonsepNaskah()
             createSuratBiasaPage.checkDetail()
             createSuratBiasaPage.inputKopSurat()
-            createSuratBiasaPage.inputKepalaSuratInternal()
             createSuratBiasaPage.inputKakiSuratPDF()
-            createSuratBiasaPage.inputBadanNaskah()
+            createSuratBiasaPage.inputKepalaSuratInternal()
+            createSuratBiasaPage.inputBadanNaskahInternalEksternal()
             createSuratBiasaPage.kirimSurat()
         })
     )
@@ -67,14 +68,15 @@ describe('Skenario Create Surat Biasa Tujuan Eksternal', () => {
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
+            loginPage.directDeployPreview()
 
             // Create Naskah
             menuPage.goToKonsepNaskah()
             createSuratBiasaPage.checkDetail()
             createSuratBiasaPage.inputKopSurat()
-            createSuratBiasaPage.inputKepalaSuratEksternal()
             createSuratBiasaPage.inputKakiSuratPDF()
-            createSuratBiasaPage.inputBadanNaskah()
+            createSuratBiasaPage.inputKepalaSuratEksternal()
+            createSuratBiasaPage.inputBadanNaskahInternalEksternal()
             createSuratBiasaPage.kirimSurat()
         })
     )
@@ -97,4 +99,4 @@ describe('Skenario Create Surat Biasa Tujuan Eksternal', () => {
         reviewVerifikasiSuratPage.suratBelumDitandatangani()
         setujuiPage.tandaTangani(user.passphrase)
     })
-}) 
+})
