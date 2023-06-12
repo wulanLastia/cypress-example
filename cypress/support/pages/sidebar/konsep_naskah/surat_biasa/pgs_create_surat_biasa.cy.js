@@ -38,8 +38,7 @@ export class CreateSuratBiasaPage {
 
     inputBadanNaskah() {
         draftingBadanNaskahPage.inputBadanNaskah()
-        draftingBadanNaskahPage.checkPreviewTextBold()
-        draftingBadanNaskahPage.checkPreviewTextItalic()
+        draftingBadanNaskahPage.insertData()
         draftingBadanNaskahPage.closeBadanNaskah()
     }
 
@@ -92,6 +91,12 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateUrgensiSurat()
         draftingKepalaSuratPage.validatePerihal()
         draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    inputBadanNaskahInternalEksternal() {
+        draftingBadanNaskahPage.inputBadanNaskahInternalEksternal()
+        draftingBadanNaskahPage.insertData()
+        draftingBadanNaskahPage.closeBadanNaskah()
     }
 
 }

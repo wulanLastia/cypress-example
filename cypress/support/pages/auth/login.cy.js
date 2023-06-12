@@ -154,4 +154,14 @@ export class LoginPage {
         this.closePopupLandingPage()
     }
 
+    directDeployPreview() {
+        cy.visit(Cypress.env('base_url_deploy_preview'))
+
+        cy.wait(3000)
+
+        this.closePopupLandingPage()
+
+        cy.wait(3000)
+    }
+
 }
