@@ -19,3 +19,5 @@ describe("Login Sidebar V1", () => {
         cy.get("div.modal-footer > button").click();
     });
 });
+
+

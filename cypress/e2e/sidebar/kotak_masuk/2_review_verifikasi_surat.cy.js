@@ -2,10 +2,12 @@ import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../support/pages/auth/login.cy"
 import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
 import { ReviewVerifikasiSuratPage } from "../../../support/pages/sidebar/kotak_masuk/2_review_verifikasi_surat.cy"
+import { CreateSuratBiasaPage } from "../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
 
 let reviewVerifikasiSuratPage = new ReviewVerifikasiSuratPage()
 let menuPage = new MenuPage()
 let loginPage = new LoginPage()
+let createSuratBiasaPage = new CreateSuratBiasaPage()
 let user
 
 before(() => {
@@ -15,32 +17,41 @@ before(() => {
     })
 })
 
-before(() => {
-    loginPage.loginViaV1(user.nipPemeriksa2, user.password)
-    loginPage.directLogin()
-})
-
 after(() => {
     qase(411,
         loginPage.backToV1()
     )
 })
 
-describe('Detail Review dan Verifikasi hasil Surat (Kotak Masuk) Skenario', { testIsolation: false }, () => {
-    qase(97,
-        it('Akses menu kotak masuk (Review naskah)', () => {
+describe('Detail Review dan Verifikasi hasil Surat (Kotak Masuk) Skenario', () => {
+
+    qase([13, 81, 83, 709, 150, 80],
+        it('Create Naskah Surat Biasa', () => {
+            // Login 
+            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.directLogin()
+
+            // Create Naskah
+            menuPage.goToKonsepNaskah()
+            createSuratBiasaPage.checkDetail()
+            createSuratBiasaPage.inputKopSurat()
+            createSuratBiasaPage.inputKepalaSurat()
+            createSuratBiasaPage.inputKakiSurat()
+            createSuratBiasaPage.inputBadanNaskah()
+            createSuratBiasaPage.kirimSurat()
+        })
+    )
+
+    qase([97, 358, 99],
+        it('Check Detail Review dan Verifikasi hasil Surat (Kotak Masuk)', () => {
+            //Login
+            loginPage.loginViaV1(user.nipPemeriksa, user.password)
+            loginPage.directLogin()
+
             menuPage.goToKotakMasukReviewNaskah()
-        })
-    )
 
-    qase(358,
-        it('Cek detail halaman detail kotak masuk review naskah dengan status belum direview', () => {
             reviewVerifikasiSuratPage.suratBelumDireview()
-        })
-    )
 
-    qase(99,
-        it('Batal review naskah di kotak masuk', () => {
             reviewVerifikasiSuratPage.lanjutkanReviewDrafting()
             menuPage.goToKotakKeluarReviewNaskah()
         })

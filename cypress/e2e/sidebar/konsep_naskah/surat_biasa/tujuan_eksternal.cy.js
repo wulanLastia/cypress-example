@@ -21,7 +21,7 @@ before(() => {
     })
 })
 
-describe('Skenario Create Surat Biasa Tujuan Internal Eksternal', () => {
+describe('Skenario Create Surat Biasa Tujuan Eksternal', () => {
 
     qase([13, 81, 83, 709, 150, 80],
         it('Create Naskah Surat Biasa', () => {
@@ -34,7 +34,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal', () => {
             createSuratBiasaPage.checkDetail()
             createSuratBiasaPage.inputKopSurat()
             createSuratBiasaPage.inputKakiSuratPDF()
-            createSuratBiasaPage.inputKepalaSuratInternalEksternal()
+            createSuratBiasaPage.inputKepalaSuratEksternal()
             createSuratBiasaPage.inputBadanNaskahInternalEksternal()
             createSuratBiasaPage.kirimSurat()
         })
