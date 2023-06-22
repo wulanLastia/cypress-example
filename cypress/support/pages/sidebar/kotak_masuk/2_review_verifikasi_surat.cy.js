@@ -6,6 +6,8 @@ const listSuratReviewNaskahPage = new ListSuratReviewNaskahPage()
 export class ReviewVerifikasiSuratPage {
 
     suratBelumDireview() {
+        cy.wait(6000)
+
         const tableReviewSurat = cy.xpath(review_verifikasi.tableReviewSurat).as('tableReviewSurat')
         tableReviewSurat.contains('td', 'BELUM DIREVIEW')
             .click()
@@ -80,7 +82,7 @@ export class ReviewVerifikasiSuratPage {
     }
 
     suratBelumDitandatangani() {
-        cy.wait(2000)
+        cy.wait(6000)
 
         const tableReviewSurat = cy.xpath(review_verifikasi.tableReviewSurat).as('tableReviewSurat')
         tableReviewSurat.contains('td', 'BELUM DITANDATANGANI')

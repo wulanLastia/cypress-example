@@ -1,11 +1,9 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../support/pages/sidebar/menu/menu.cy"
 import { DraftingBadanNaskahPage } from "../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_badan_naskah.cy"
 
 let draftingBadanNaskahPage = new DraftingBadanNaskahPage()
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
 let user
 
 before(() => {

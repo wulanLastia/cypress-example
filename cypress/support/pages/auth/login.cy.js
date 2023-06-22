@@ -15,7 +15,7 @@ export class LoginPage {
 
     navigateLoginPageV1() {
         cy.visit(Cypress.env('base_url_v1'))
-        //cy.visit(Cypress.env('base_url_prod_v2'))
+        //cy.visit(Cypress.env('base_url_prod_v1'))
     }
 
     enterNip(nip) {
@@ -48,7 +48,7 @@ export class LoginPage {
         btnKeluar.should('be.visible').and('contain', 'Log Out')
         btnKeluar.click()
 
-        cy.url().should('eq', Cypress.env('base_url') + '/login?logout=true')
+        cy.url().should('eq', Cypress.env('base_url_v1'))
     }
 
     alertFailedNipKurang() {
@@ -63,10 +63,6 @@ export class LoginPage {
 
         alert.should('be.visible')
             .and('contain', '{"nip":"Isian nip tidak boleh string kosong."}')
-    }
-
-    navigateLoginPageV2() {
-        cy.visit(Cypress.env('base_url'))
     }
 
     navigateLoginPageV2() {
@@ -116,6 +112,8 @@ export class LoginPage {
         cy.wait(3000)
 
         this.closePopupLandingPage()
+
+        this.directDeployPreview2()
     }
 
     logout() {
@@ -156,6 +154,16 @@ export class LoginPage {
 
     directDeployPreview() {
         cy.visit(Cypress.env('base_url_deploy_preview'))
+
+        cy.wait(3000)
+
+        this.closePopupLandingPage()
+
+        cy.wait(3000)
+    }
+
+    directDeployPreview2() {
+        cy.visit(Cypress.env('base_url_deploy_preview2'))
 
         cy.wait(3000)
 

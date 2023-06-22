@@ -21,19 +21,19 @@ export class DraftingKonsepNaskahPage {
 
     checkPreviewNaskah() {
         this.aksesFormKopSurat()
-        cy.wait(2000)
+        cy.wait(6000)
 
         this.aksesFormKepalaSurat()
-        cy.wait(2000)
+        cy.wait(6000)
 
         this.aksesBadanNaskah()
-        cy.wait(2000)
+        cy.wait(6000)
 
         this.aksesKakiSurat()
-        cy.wait(2000)
+        cy.wait(6000)
 
         this.aksesLampiranSurat()
-        cy.wait(2000)
+        cy.wait(6000)
     }
 
     checkDetail() {
@@ -97,7 +97,7 @@ export class DraftingKonsepNaskahPage {
         const previewKop = cy.get(konsep_naskah.previewKop).as('previewKop')
         previewKop.click(180, 60)
 
-        const titleKop = cy.xpath(konsep_naskah.titleKop).as('titleKop')
+        const titleKop = cy.get(konsep_naskah.titleKop).as('titleKop')
         titleKop.should('contain', 'Kop Surat')
     }
 
@@ -110,24 +110,24 @@ export class DraftingKonsepNaskahPage {
     }
 
     aksesBadanNaskah() {
-        const previewBadan = cy.xpath(konsep_naskah.previewBadan).as('previewBadan')
-        previewBadan.click(180, 360)
+        const previewBadan = cy.get(konsep_naskah.previewBadan).as('previewBadan')
+        previewBadan.click(180, 360, { force: true })
 
         const titleBadan = cy.get(konsep_naskah.titleBadan).as('titleBadan')
         titleBadan.should('contain', 'Badan Naskah')
     }
 
     aksesKakiSurat() {
-        const previewKaki = cy.xpath(konsep_naskah.previewKaki).as('previewKaki')
-        previewKaki.click(180, 560)
+        const previewKaki = cy.get(konsep_naskah.previewKaki).as('previewKaki')
+        previewKaki.click(180, 560, { force: true })
 
-        const titleKaki = cy.xpath(konsep_naskah.titleKaki).as('titleKaki')
+        const titleKaki = cy.get(konsep_naskah.titleKaki).as('titleKaki')
         titleKaki.should('contain', 'Kaki Surat')
     }
 
     aksesLampiranSurat() {
-        const titleLampiran = cy.xpath(konsep_naskah.titleLampiran).as('titleLampiran')
-        titleLampiran.should('contain', 'Klik tombol berikut untuk menambah lampiran')
+        const titlePreviewLampiran = cy.xpath(konsep_naskah.titlePreviewLampiran).as('titlePreviewLampiran')
+        titlePreviewLampiran.should('contain', 'Klik tombol berikut untuk menambah lampiran')
     }
 
     validateFormDefault() {
@@ -137,11 +137,27 @@ export class DraftingKonsepNaskahPage {
     }
 
     inputKakiSurat() {
-        const previewKaki = cy.xpath(konsep_naskah.previewKaki).as('previewKaki')
-        previewKaki.click(180, 600)
+        const previewKaki = cy.get(konsep_naskah.previewKaki).as('previewKaki')
+        previewKaki.click(180, 600, { force: true })
 
-        const titleKaki = cy.xpath(konsep_naskah.titleKaki).as('titleKaki')
+        const titleKaki = cy.get(konsep_naskah.titleKaki).as('titleKaki')
         titleKaki.should('contain', 'Kaki Surat')
+    }
+
+    inputLampiranSurat() {
+        const previewLampiran = cy.xpath(konsep_naskah.previewLampiran).as('previewLampiran')
+        previewLampiran.click(180, 200)
+
+        const titleLampiran = cy.xpath(konsep_naskah.titleLampiran).as('titleLampiran')
+        titleLampiran.should('contain', 'Lampiran')
+    }
+
+    inputLampiranSurat2() {
+        const previewLampiran2 = cy.xpath(konsep_naskah.previewLampiran2).as('previewLampiran')
+        previewLampiran2.click(180, 200)
+
+        const titleLampiran = cy.xpath(konsep_naskah.titleLampiran).as('titleLampiran')
+        titleLampiran.should('contain', 'Lampiran')
     }
 
     kirimNaskah() {
@@ -151,7 +167,11 @@ export class DraftingKonsepNaskahPage {
         const konfirmasiKirimNaskah = cy.xpath(konsep_naskah.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
         konfirmasiKirimNaskah.should('contain', 'Kirim naskah')
             .click()
+    }
 
+    scrollPreviewPage() {
+        const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
+        previewPage.scrollTo('top')
     }
 
 }

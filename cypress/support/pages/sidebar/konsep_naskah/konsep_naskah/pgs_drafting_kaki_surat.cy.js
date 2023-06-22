@@ -19,44 +19,44 @@ export class DraftingKakiSuratPage {
     }
 
     checkDetail() {
-        const titleKaki = cy.xpath(kaki_surat.titleKaki).as('titleKaki')
+        const titleKaki = cy.get(kaki_surat.titleKaki).as('titleKaki')
         titleKaki.should('contain', 'Kaki Surat')
 
-        const labelPenandatangan = cy.xpath(kaki_surat.labelPenandatangan).as('labelPenandatangan')
+        const labelPenandatangan = cy.get(kaki_surat.labelPenandatangan).as('labelPenandatangan')
         labelPenandatangan.should('contain', 'Penandatangan')
 
-        const selectPenandatangan = cy.xpath(kaki_surat.selectPenandatangan).as('selectPenandatangan')
+        const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
         selectPenandatangan.find('option:selected').should('have.text', 'Pilih Format Penandatangan')
 
-        const pilihPenandatangan = cy.xpath(kaki_surat.pilihPenandatangan).as('pilihPenandatangan')
+        const pilihPenandatangan = cy.get(kaki_surat.pilihPenandatangan).as('pilihPenandatangan')
         pilihPenandatangan.should('have.attr', 'placeholder', ' Pilih Penandatangan')
 
-        const labelPemeriksa = cy.xpath(kaki_surat.labelPemeriksa).as('labelPemeriksa')
+        const labelPemeriksa = cy.get(kaki_surat.labelPemeriksa).as('labelPemeriksa')
         labelPemeriksa.should('contain', 'Pemeriksa')
 
-        const pilihPemeriksa = cy.xpath(kaki_surat.pilihPemeriksa).as('pilihPemeriksa')
+        const pilihPemeriksa = cy.get(kaki_surat.pilihPemeriksa).as('pilihPemeriksa')
         pilihPemeriksa.should('have.attr', 'placeholder', ' Pilih/ketik nama pemeriksa naskah')
 
-        const btnTambahPemeriksa = cy.xpath(kaki_surat.btnTambahPemeriksa).as('btnTambahPemeriksa')
+        const btnTambahPemeriksa = cy.get(kaki_surat.btnTambahPemeriksa).as('btnTambahPemeriksa')
         btnTambahPemeriksa.should('be.visible')
             .should('contain', 'Tambahkan Pemeriksa')
 
-        const labelTembusan = cy.xpath(kaki_surat.labelTembusan).as('labelTembusan')
+        const labelTembusan = cy.get(kaki_surat.labelTembusan).as('labelTembusan')
         labelTembusan.should('contain', 'Tembusan')
 
-        const subLabelTembusan = cy.xpath(kaki_surat.subLabelTembusan).as('subLabelTembusan')
+        const subLabelTembusan = cy.get(kaki_surat.subLabelTembusan).as('subLabelTembusan')
         subLabelTembusan.should('contain', 'Tujuan tembusan maksimal 10 orang')
 
-        const pilihTembusan = cy.xpath(kaki_surat.pilihTembusan).as('pilihTembusan')
+        const pilihTembusan = cy.get(kaki_surat.pilihTembusan).as('pilihTembusan')
         pilihTembusan.should('have.attr', 'placeholder', ' Pilih/ketik tembusan naskah')
 
-        const btnTambahTembusan = cy.xpath(kaki_surat.btnTambahTembusan).as('btnTambahTembusan')
+        const btnTambahTembusan = cy.get(kaki_surat.btnTambahTembusan).as('btnTambahTembusan')
         btnTambahTembusan.should('be.visible')
             .should('contain', 'Tambahkan Tembusan')
     }
 
     closeKakiSurat() {
-        const closeKaki = cy.xpath(kaki_surat.closeKaki).as('closeKaki')
+        const closeKaki = cy.get(kaki_surat.closeKaki).as('closeKaki')
         closeKaki.should('be.visible')
             .click()
 
@@ -64,7 +64,7 @@ export class DraftingKakiSuratPage {
     }
 
     checkDropdownPenandatangan() {
-        const selectPenandatangan = cy.xpath(kaki_surat.selectPenandatangan).as('selectPenandatangan')
+        const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
         selectPenandatangan.select(0).should('have.text', 'Pilih Format Penandatangan Atasan Atas nama Untuk beliau Diri sendiri')
     }
 
@@ -77,11 +77,10 @@ export class DraftingKakiSuratPage {
     }
 
     pilihPenandatanganDiriSendiri() {
-        const selectPenandatangan = cy.xpath(kaki_surat.selectPenandatangan).as('selectPenandatangan')
+        const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
         selectPenandatangan.select(4).should('have.value', 'DIRI_SENDIRI')
 
         const selectedPenandatangan = cy.xpath(kaki_surat.selectedPenandatangan).as('selectedPenandatangan')
-        //selectedPenandatangan.should('contain', 'Smoke Test VITA PUTRI UTAMI, S.Sos., M.I.Kom')
         selectedPenandatangan.should('contain', 'VITA PUTRI UTAMI, S.Sos., M.I.Kom')
             .invoke('val')
             .then(text => {
@@ -92,36 +91,68 @@ export class DraftingKakiSuratPage {
     }
 
     pilihPenandatanganAtasan() {
-        const selectPenandatangan = cy.xpath(kaki_surat.selectPenandatangan).as('selectPenandatangan')
+        const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
         selectPenandatangan.select(1).should('have.value', 'ATASAN')
 
-        const pilihPenandatangan = cy.xpath(kaki_surat.pilihPenandatangan).as('pilihPenandatangan')
-        //pilihPenandatangan.type('SMOKE TEST Dr. HENING')
-        pilihPenandatangan.type('HENING')
+        const pilihPenandatangan = cy.get(kaki_surat.pilihPenandatangan).as('pilihPenandatangan')
+        pilihPenandatangan.type('HENING WIDIATMOKO')
             .wait(2000)
             .type('{enter}')
     }
 
     pilihPemeriksa() {
-        const pilihPemeriksa = cy.xpath(kaki_surat.pilihPemeriksa).as('pilihPemeriksa')
-        //pilihPemeriksa.type('SMOKE TEST Dr. HENING')
-        pilihPemeriksa.type('HENING')
+        const pilihPemeriksa = cy.get(kaki_surat.pilihPemeriksa).as('pilihPemeriksa2')
+        pilihPemeriksa.type('FAJAR LIBRIANTO')
             .wait(2000)
             .type('{enter}')
 
-        const btnTambahPemeriksa = cy.xpath(kaki_surat.btnTambahPemeriksa).as('btnTambahPemeriksa')
+        const btnTambahPemeriksa = cy.get(kaki_surat.btnTambahPemeriksa).as('btnTambahPemeriksa')
         btnTambahPemeriksa.click()
 
-        const pilihPemeriksa2 = cy.xpath(kaki_surat.pilihPemeriksa2).as('pilihPemeriksa2')
-        //pilihPemeriksa2.type('SMOKE TEST FAJAR')
-        pilihPemeriksa2.type('FAJAR')
+        const pilihPemeriksa2 = cy.get(kaki_surat.pilihPemeriksa2).as('pilihPemeriksa')
+        pilihPemeriksa2.type('HENING WIDIATMOKO')
+            .wait(2000)
+            .type('{enter}')
+    }
+
+    pilihTembusan() {
+        const pilihTembusan = cy.get(kaki_surat.pilihTembusan).as('pilihTembusan')
+        pilihTembusan.type('Tembusan 1')
+            .wait(2000)
+            .type('{enter}')
+
+        const btnTambahTembusan = cy.get(kaki_surat.btnTambahTembusan).as('btnTambahTembusan')
+        btnTambahTembusan.click()
+
+        const pilihTembusan2 = cy.get(kaki_surat.pilihTembusan2).as('pilihTembusan2')
+        pilihTembusan2.type('Tembusan 2')
             .wait(2000)
             .type('{enter}')
     }
 
     inputPenandatanganDiriSendiri() {
-        const selectPenandatangan = cy.xpath(kaki_surat.selectPenandatangan).as('selectPenandatangan')
+        const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
         selectPenandatangan.select(4).should('have.value', 'DIRI_SENDIRI')
+    }
+
+    inputTembusanKoreksiPemeriksa1() {
+        const btnTambahTembusan = cy.get(kaki_surat.btnTambahTembusan).as('btnTambahTembusan')
+        btnTambahTembusan.click()
+
+        const pilihTembusan3 = cy.get(kaki_surat.pilihTembusan3).as('pilihTembusan3')
+        pilihTembusan3.type('KOREKSI PEMERIKSA 1')
+            .wait(2000)
+            .type('{enter}')
+    }
+
+    inputTembusanPerbaikiPemeriksa2() {
+        const btnTambahTembusan = cy.get(kaki_surat.btnTambahTembusan).as('btnTambahTembusan')
+        btnTambahTembusan.click()
+
+        const pilihTembusan4 = cy.get(kaki_surat.pilihTembusan4).as('pilihTembusan4')
+        pilihTembusan4.type('PERBAIKI PEMERIKSA 2')
+            .wait(2000)
+            .type('{enter}')
     }
 
 }

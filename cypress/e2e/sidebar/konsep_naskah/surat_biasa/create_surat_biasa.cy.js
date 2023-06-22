@@ -29,6 +29,7 @@ describe('Create Surat Biasa Skenario', () => {
 
             // Create Naskah
             menuPage.goToKonsepNaskah()
+            cy.wait(5000)
             createSuratBiasaPage.checkDetail()
             createSuratBiasaPage.inputKopSurat()
             createSuratBiasaPage.inputKepalaSurat()
@@ -41,7 +42,7 @@ describe('Create Surat Biasa Skenario', () => {
     qase([102, 422, 424],
         it('Aksi setujui untuk penomoran pada detail naskah surat masuk belum di-review', () => {
             // Login Pemeriksa 1
-            loginPage.loginViaV1(user.nipPemeriksa, user.password)
+            loginPage.loginViaV1(user.nipPemeriksa2, user.password)
             loginPage.directLogin()
 
             menuPage.goToKotakMasukReviewNaskah()
@@ -53,7 +54,7 @@ describe('Create Surat Biasa Skenario', () => {
     qase([633, 585],
         it('Cek list kotak masuk review naskah pemeriksa selanjutnya setelah menyetujui naskah', () => {
             // Login Pemeriksa Terakhhir
-            loginPage.loginViaV1(user.nipPemeriksa2, user.password)
+            loginPage.loginViaV1(user.nipPemeriksa, user.password)
             loginPage.directLogin()
 
             menuPage.goToKotakMasukReviewNaskah()
