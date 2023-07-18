@@ -18,6 +18,11 @@ module.exports = defineConfig({
 
     testIsolation: true,
 
+    retries: {
+      runMode: 2,
+      openMode: 1,
+    },
+
   },
   "reporter": "cypress-qase-reporter",
   "reporterOptions": {
@@ -31,6 +36,6 @@ module.exports = defineConfig({
   },
   "chromeWebSecurity": false,
   // Width x Height preview in cypress GUI 
-  "viewportWidth": 1280,
-  "viewportHeight": 800,
+  "viewportWidth": 1440,
+  "viewportHeight": 900,
 })

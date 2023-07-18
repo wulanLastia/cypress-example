@@ -14,6 +14,7 @@ module.exports = {
     inputTujuan2: '[data-cy="kepala-surat__tujuan__select-option__custom-input2"]',
     inputTujuan3: '[data-cy="kepala-surat__tujuan__select-option__custom-input3"]',
     inputTujuan4: '[data-cy="kepala-surat__tujuan__select-option__custom-input4"]',
+    inputTujuan5: '[data-cy="kepala-surat__tujuan__select-option__custom-input5"]',
     inputTujuanLampiran: '[data-cy="kepala-surat__tujuan__lampiran__input"]',
     addMoreTujuanLampiran: '[data-cy="lampiran-tujuan-surat__add-button"]',
     addMoreTujuan: '[data-cy="kepala-surat__tujuan__add-button"]',
@@ -41,5 +42,6 @@ module.exports = {
     inputTujuanLampiran2: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[3]/div[1]/div[1]/div[1]/input[1]',
     inputTujuanLampiran3: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[4]/div[1]/div[1]/div[1]/input[1]',
     inputTujuanLampiran4: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[5]/div[1]/div[1]/div[1]/input[1]',
+    inputTujuanLampiran5: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[6]/div[1]/div[1]/div[1]/input[1]',
 
 }

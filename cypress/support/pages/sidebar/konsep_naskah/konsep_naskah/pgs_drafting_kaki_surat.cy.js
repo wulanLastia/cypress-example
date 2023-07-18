@@ -103,7 +103,7 @@ export class DraftingKakiSuratPage {
     pilihPemeriksa() {
         const pilihPemeriksa = cy.get(kaki_surat.pilihPemeriksa).as('pilihPemeriksa2')
         pilihPemeriksa.type('FAJAR LIBRIANTO')
-            .wait(2000)
+            .wait(5000)
             .type('{enter}')
 
         const btnTambahPemeriksa = cy.get(kaki_surat.btnTambahPemeriksa).as('btnTambahPemeriksa')
@@ -111,7 +111,7 @@ export class DraftingKakiSuratPage {
 
         const pilihPemeriksa2 = cy.get(kaki_surat.pilihPemeriksa2).as('pilihPemeriksa')
         pilihPemeriksa2.type('HENING WIDIATMOKO')
-            .wait(2000)
+            .wait(6000)
             .type('{enter}')
     }
 
@@ -127,6 +127,87 @@ export class DraftingKakiSuratPage {
         const pilihTembusan2 = cy.get(kaki_surat.pilihTembusan2).as('pilihTembusan2')
         pilihTembusan2.type('Tembusan 2')
             .wait(2000)
+            .type('{enter}')
+    }
+
+    pilihTembusanSkenario1() {
+        for (let i = 1; i <= 2; i++) {
+            const btnTambahTembusan = cy.get(kaki_surat.btnTambahTembusan).as('btnTambahTembusan')
+            btnTambahTembusan.click()
+        }
+
+        const pilihTembusan = cy.get(kaki_surat.pilihTembusan).as('pilihTembusan')
+        pilihTembusan.type('RIDWAN KAMIL')
+            .wait(3000)
+            .type('{enter}')
+
+        const pilihTembusan2 = cy.get(kaki_surat.pilihTembusan2).as('pilihTembusan2')
+        pilihTembusan2.type('UU RUZHANUL')
+            .wait(3000)
+            .type('{enter}')
+
+        const pilihTembusan3 = cy.get(kaki_surat.pilihTembusan3).as('pilihTembusan3')
+        pilihTembusan3.type('RIZKI HUSTINIASARI')
+            .wait(3000)
+            .type('{enter}')
+    }
+
+    pilihTembusanSkenario2() {
+        for (let i = 1; i <= 2; i++) {
+            const btnTambahTembusan = cy.get(kaki_surat.btnTambahTembusan).as('btnTambahTembusan')
+            btnTambahTembusan.click()
+        }
+
+        const pilihTembusan = cy.get(kaki_surat.pilihTembusan).as('pilihTembusan')
+        pilihTembusan.type('Tembusan Eksternal 1')
+            .wait(3000)
+            .type('{enter}')
+
+        const pilihTembusan2 = cy.get(kaki_surat.pilihTembusan2).as('pilihTembusan2')
+        pilihTembusan2.type('Tembusan Eksternal 2')
+            .wait(3000)
+            .type('{enter}')
+
+        const pilihTembusan3 = cy.get(kaki_surat.pilihTembusan3).as('pilihTembusan3')
+        pilihTembusan3.type('Tembusan Eksternal 3')
+            .wait(3000)
+            .type('{enter}')
+    }
+
+    pilihTembusanSkenario3() {
+        for (let i = 1; i <= 5; i++) {
+            const btnTambahTembusan = cy.get(kaki_surat.btnTambahTembusan).as('btnTambahTembusan')
+            btnTambahTembusan.click()
+        }
+
+        const pilihTembusan = cy.get(kaki_surat.pilihTembusan).as('pilihTembusan')
+        pilihTembusan.type('RIDWAN KAMIL')
+            .wait(3000)
+            .type('{enter}')
+
+        const pilihTembusan2 = cy.get(kaki_surat.pilihTembusan2).as('pilihTembusan2')
+        pilihTembusan2.type('UU RUZHANUL')
+            .wait(3000)
+            .type('{enter}')
+
+        const pilihTembusan3 = cy.get(kaki_surat.pilihTembusan3).as('pilihTembusan3')
+        pilihTembusan3.type('RIZKI HUSTINIASARI')
+            .wait(3000)
+            .type('{enter}')
+
+        const pilihTembusan4 = cy.get(kaki_surat.pilihTembusan4).as('pilihTembusan')
+        pilihTembusan4.type('Tembusan Eksternal 1')
+            .wait(3000)
+            .type('{enter}')
+
+        const pilihTembusan5 = cy.get(kaki_surat.pilihTembusan5).as('pilihTembusan2')
+        pilihTembusan5.type('Tembusan Eksternal 2')
+            .wait(3000)
+            .type('{enter}')
+
+        const pilihTembusan6 = cy.get(kaki_surat.pilihTembusan6).as('pilihTembusan3')
+        pilihTembusan6.type('Tembusan Eksternal 3')
+            .wait(3000)
             .type('{enter}')
     }
 

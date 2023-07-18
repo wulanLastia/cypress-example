@@ -22,7 +22,7 @@ before(() => {
 
 after(() => {
     qase(411,
-        loginPage.backToV1()
+        loginPage.logoutV2()
     )
 })
 
@@ -91,7 +91,7 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
 
     qase(144,
         it('Check on preview page after input perihal', () => {
-            draftingKepalaSuratPage.validatePerihal()
+            draftingKepalaSuratPage.validatePerihal(' Utama')
         })
     )
 

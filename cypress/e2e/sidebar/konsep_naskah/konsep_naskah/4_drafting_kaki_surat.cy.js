@@ -1,9 +1,11 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../../support/pages/auth/login.cy"
+import { MenuPage } from "../../../../support/pages/sidebar/menu/menu.cy"
 import { DraftingKakiSuratPage } from "../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_kaki_surat.cy"
 
 let draftingKakiSuratPage = new DraftingKakiSuratPage()
 let loginPage = new LoginPage()
+let menuPage = new MenuPage()
 let user
 
 before(() => {
@@ -20,7 +22,7 @@ before(() => {
 
 after(() => {
     qase(411,
-        loginPage.backToV1()
+        loginPage.logoutV2()
     )
 })
 
@@ -72,6 +74,7 @@ describe('Drafting Kaki Surat Skenario', { testIsolation: false }, () => {
     qase(201,
         it('Batal mengisi kaki surat', () => {
             draftingKakiSuratPage.closeKakiSurat()
+            menuPage.goToKotakMasukReviewNaskah()
         })
     )
 
