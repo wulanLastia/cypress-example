@@ -2,6 +2,8 @@ import kepala_surat from "../../../../selectors/sidebar/konsep_naskah/surat_bias
 import konsep_naskah from "../../../../selectors/sidebar/konsep_naskah/konsep_naskah"
 import { DraftingKonsepNaskahPage } from "../surat_biasa/pgs_drafting_surat_biasa.cy"
 
+const filename = "cypress/fixtures/kepala_surat/kepala_surat_temp_data.json"
+
 const draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()
 
 export class DraftingKepalaSuratPage {
@@ -88,7 +90,7 @@ export class DraftingKepalaSuratPage {
         const selectKodeKlasifikasi = cy.get(kepala_surat.selectKodeKlasifikasi).as('selectKodeKlasifikasi')
         selectKodeKlasifikasi.click()
             .wait(3000)
-            .type('AR (Kearsipan)')
+            .type('SK (Semua Klasifikasi)')
             .wait(6000)
             .type('{enter}')
     }
@@ -121,16 +123,18 @@ export class DraftingKepalaSuratPage {
             .click()
     }
 
-    validatePerihal() {
+    validatePerihal(hal) {
         const titlePerihal = cy.get(kepala_surat.titlePerihal).as('titlePerihal')
         titlePerihal.should('contain', 'Perihal')
 
         const inputPerihal = cy.get(kepala_surat.inputPerihal).as('inputPerihal')
         const uuid = () => Cypress._.random(0, 1e6)
         const id = uuid()
-        const perihal = `Automation Testing ${id}`
+        //const perihal = 'Lampiran - All Internal 3 + Tembusan'
+        const perihal = `Automation Testing ${id} ${hal}`
 
         inputPerihal.type(perihal)
+        cy.writeFile(filename, { titlePerihal: perihal })
     }
 
     validateTujuanInternal() {
@@ -309,7 +313,7 @@ export class DraftingKepalaSuratPage {
         previewPage.scrollTo(180, 1000, { force: true })
 
         const previewKepalaLampiran = cy.xpath(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
-        previewKepalaLampiran.click(180, 240)
+        previewKepalaLampiran.click(180, 260)
 
         for (let i = 1; i <= 4; i++) {
             const addMoreTujuanLampiran = cy.get(kepala_surat.addMoreTujuanLampiran).as('addMoreTujuanLampiran')
@@ -349,6 +353,320 @@ export class DraftingKepalaSuratPage {
         const inputTujuanLampiran4 = cy.xpath(kepala_surat.inputTujuanLampiran4).as('inputTujuanLampiran4')
         inputTujuanLampiran4.wait(1000)
             .type('Tujuan Eksternal 1')
+            .wait(3000)
+            .type('{enter}')
+
+        draftingKonsepNaskahPage.scrollPreviewPage()
+
+        this.aksesFormEditingKepalaSurat()
+    }
+
+    validateTujuanSkenario1() {
+        const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
+        titleTujuan.should('contain', 'Kepada Yth.')
+
+        for (let i = 1; i <= 2; i++) {
+            const addMoreTujuan = cy.get(kepala_surat.addMoreTujuan).as('addMoreTujuan')
+            addMoreTujuan.click()
+        }
+
+        const inputTujuan0 = cy.get(kepala_surat.inputTujuan0).as('inputTujuan0')
+        inputTujuan0.wait(1000)
+            .type('Ridwan Kamil')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuan1 = cy.get(kepala_surat.inputTujuan1).as('inputTujuan1')
+        inputTujuan1.wait(1000)
+            .type('UU Ruzhanul')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuan2 = cy.get(kepala_surat.inputTujuan2).as('inputTujuan2')
+        inputTujuan2.wait(1000)
+            .type('Setiawan Wangsaatmaja')
+            .wait(3000)
+            .type('{enter}')
+    }
+
+    validateTujuanSkenario2() {
+        const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
+        titleTujuan.should('contain', 'Kepada Yth.')
+
+        const radio2 = cy.xpath(kepala_surat.radio2).as('radio2')
+        radio2.should('be.visible')
+            .click()
+
+        const labelRadio2 = cy.xpath(kepala_surat.labelRadio2).as('labelRadio2')
+        labelRadio2.should('contain', 'Lampiran')
+
+        const inputTujuanLampiran = cy.get(kepala_surat.inputTujuanLampiran).as('inputTujuanLampiran')
+        inputTujuanLampiran.wait(1000)
+            .type('Tujuan lampiran regression')
+            .wait(3000)
+            .type('{enter}')
+
+        const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
+        previewPage.scrollTo(180, 1000, { force: true })
+
+        const previewKepalaLampiran = cy.xpath(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
+        previewKepalaLampiran.click(180, 260)
+
+        for (let i = 1; i <= 2; i++) {
+            const addMoreTujuanLampiran = cy.get(kepala_surat.addMoreTujuanLampiran).as('addMoreTujuanLampiran')
+            addMoreTujuanLampiran.click()
+        }
+
+        const inputTujuanLampiran0 = cy.xpath(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
+        inputTujuanLampiran0.wait(1000)
+            .type('Hening Widiatmoko')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuanLampiran1 = cy.xpath(kepala_surat.inputTujuanLampiran1).as('inputTujuanLampiran1')
+        inputTujuanLampiran1.wait(1000)
+            .type('Ridwan Kamil')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuanLampiran2 = cy.xpath(kepala_surat.inputTujuanLampiran2).as('inputTujuanLampiran2')
+        inputTujuanLampiran2.wait(1000)
+            .type('UU Ruzhanul')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        draftingKonsepNaskahPage.scrollPreviewPage()
+
+        this.aksesFormEditingKepalaSurat()
+    }
+
+    validateTujuanSkenario3() {
+        const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
+        titleTujuan.should('contain', 'Kepada Yth.')
+
+        for (let i = 1; i <= 2; i++) {
+            const addMoreTujuan = cy.get(kepala_surat.addMoreTujuan).as('addMoreTujuan')
+            addMoreTujuan.click()
+        }
+
+        const inputTujuan0 = cy.get(kepala_surat.inputTujuan0).as('inputTujuan0')
+        inputTujuan0.wait(1000)
+            .type('Tujuan Eksternal 1')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuan1 = cy.get(kepala_surat.inputTujuan1).as('inputTujuan1')
+        inputTujuan1.wait(1000)
+            .type('Tujuan Eksternal 2')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuan2 = cy.get(kepala_surat.inputTujuan2).as('inputTujuan2')
+        inputTujuan2.wait(1000)
+            .type('Tujuan Eksternal 3')
+            .wait(3000)
+            .type('{enter}')
+    }
+
+    validateTujuanSkenario4() {
+        const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
+        titleTujuan.should('contain', 'Kepada Yth.')
+
+        const radio2 = cy.xpath(kepala_surat.radio2).as('radio2')
+        radio2.should('be.visible')
+            .click()
+
+        const labelRadio2 = cy.xpath(kepala_surat.labelRadio2).as('labelRadio2')
+        labelRadio2.should('contain', 'Lampiran')
+
+        const inputTujuanLampiran = cy.get(kepala_surat.inputTujuanLampiran).as('inputTujuanLampiran')
+        inputTujuanLampiran.wait(1000)
+            .type('Tujuan lampiran eksternal regression')
+            .wait(3000)
+            .type('{enter}')
+
+        const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
+        previewPage.scrollTo(180, 1000, { force: true })
+
+        const previewKepalaLampiran = cy.xpath(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
+        previewKepalaLampiran.click(180, 260)
+
+        for (let i = 1; i <= 2; i++) {
+            const addMoreTujuanLampiran = cy.get(kepala_surat.addMoreTujuanLampiran).as('addMoreTujuanLampiran')
+            addMoreTujuanLampiran.click()
+        }
+
+        const inputTujuanLampiran0 = cy.xpath(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
+        inputTujuanLampiran0.wait(1000)
+            .type('Tujuan Lampiran 1')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuanLampiran1 = cy.xpath(kepala_surat.inputTujuanLampiran1).as('inputTujuanLampiran1')
+        inputTujuanLampiran1.wait(1000)
+            .type('Tujuan Lampiran 2')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuanLampiran2 = cy.xpath(kepala_surat.inputTujuanLampiran2).as('inputTujuanLampiran2')
+        inputTujuanLampiran2.wait(1000)
+            .type('Tujuan Lampiran 3')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        draftingKonsepNaskahPage.scrollPreviewPage()
+
+        this.aksesFormEditingKepalaSurat()
+    }
+
+    validateTujuanSkenario5() {
+        const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
+        titleTujuan.should('contain', 'Kepada Yth.')
+
+        for (let i = 1; i <= 5; i++) {
+            const addMoreTujuan = cy.get(kepala_surat.addMoreTujuan).as('addMoreTujuan')
+            addMoreTujuan.click()
+        }
+
+        const inputTujuan0 = cy.get(kepala_surat.inputTujuan0).as('inputTujuan0')
+        inputTujuan0.wait(1000)
+            .type('Ridwan Kamil')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuan1 = cy.get(kepala_surat.inputTujuan1).as('inputTujuan1')
+        inputTujuan1.wait(1000)
+            .type('UU Ruzhanul')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuan2 = cy.get(kepala_surat.inputTujuan2).as('inputTujuan2')
+        inputTujuan2.wait(1000)
+            .type('Setiawan Wangsaatmaja')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuan3 = cy.get(kepala_surat.inputTujuan3).as('inputTujuan3')
+        const uuid3 = () => Cypress._.random(0, 1e6)
+        const id3 = uuid3()
+        const tujuanEks3 = `Test Tujuan Eksternal Automation ${id3}`
+
+        inputTujuan3.type(tujuanEks3)
+            .wait(3000)
+            .type('{enter}')
+
+        const inputTujuan4 = cy.get(kepala_surat.inputTujuan4).as('inputTujuan4')
+        const uuid4 = () => Cypress._.random(0, 1e6)
+        const id4 = uuid4()
+        const tujuanEks4 = `Test Tujuan Eksternal Automation ${id4}`
+
+        inputTujuan4.type(tujuanEks4)
+            .wait(3000)
+            .type('{enter}')
+
+        const inputTujuan5 = cy.get(kepala_surat.inputTujuan5).as('inputTujuan5')
+        const uuid5 = () => Cypress._.random(0, 1e6)
+        const id5 = uuid5()
+        const tujuanEks5 = `Test Tujuan Eksternal Automation ${id5}`
+
+        inputTujuan5.type(tujuanEks5)
+            .wait(3000)
+            .type('{enter}')
+    }
+
+    validateTujuanSkenario6() {
+        const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
+        titleTujuan.should('contain', 'Kepada Yth.')
+
+        const radio2 = cy.xpath(kepala_surat.radio2).as('radio2')
+        radio2.should('be.visible')
+            .click()
+
+        const labelRadio2 = cy.xpath(kepala_surat.labelRadio2).as('labelRadio2')
+        labelRadio2.should('contain', 'Lampiran')
+
+        const inputTujuanLampiran = cy.get(kepala_surat.inputTujuanLampiran).as('inputTujuanLampiran')
+        inputTujuanLampiran.wait(1000)
+            .type('Tujuan lampiran internal eksternal regression')
+            .wait(3000)
+            .type('{enter}')
+
+        const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
+        previewPage.scrollTo(180, 1000, { force: true })
+
+        const previewKepalaLampiran = cy.xpath(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
+        previewKepalaLampiran.click(180, 260)
+
+        for (let i = 1; i <= 5; i++) {
+            const addMoreTujuanLampiran = cy.get(kepala_surat.addMoreTujuanLampiran).as('addMoreTujuanLampiran')
+            addMoreTujuanLampiran.click()
+        }
+
+        const inputTujuanLampiran0 = cy.xpath(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
+        inputTujuanLampiran0.wait(1000)
+            .type('Hening Widiatmoko')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuanLampiran1 = cy.xpath(kepala_surat.inputTujuanLampiran1).as('inputTujuanLampiran1')
+        inputTujuanLampiran1.wait(1000)
+            .type('Ridwan Kamil')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuanLampiran2 = cy.xpath(kepala_surat.inputTujuanLampiran2).as('inputTujuanLampiran2')
+        inputTujuanLampiran2.wait(1000)
+            .type('UU Ruzhanul')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuanLampiran3 = cy.xpath(kepala_surat.inputTujuanLampiran3).as('inputTujuanLampiran3')
+        inputTujuanLampiran3.wait(1000)
+            .type('Tujuan Eksternal 1')
+            .wait(3000)
+            .type('{enter}')
+
+        const inputTujuanLampiran4 = cy.xpath(kepala_surat.inputTujuanLampiran4).as('inputTujuanLampiran4')
+        inputTujuanLampiran4.wait(1000)
+            .type('Tujuan Eksternal 2')
+            .wait(3000)
+            .type('{enter}')
+
+        const inputTujuanLampiran5 = cy.xpath(kepala_surat.inputTujuanLampiran5).as('inputTujuanLampiran5')
+        inputTujuanLampiran5.wait(1000)
+            .type('Tujuan Eksternal 3')
             .wait(3000)
             .type('{enter}')
 

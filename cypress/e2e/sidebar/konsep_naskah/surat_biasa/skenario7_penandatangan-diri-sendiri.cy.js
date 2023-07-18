@@ -23,7 +23,7 @@ before(() => {
 
 describe('Create Surat Biasa Skenario', () => {
 
-    qase([13, 81, 83, 709, 150, 80],
+    qase([13, 81, 83, 709, 150, 80, 913],
         it('Create Naskah Surat Biasa', () => {
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
@@ -45,6 +45,7 @@ describe('Create Surat Biasa Skenario', () => {
         loginPage.loginViaV1(user.nipUK, user.password)
         loginPage.directLoginUK()
 
+        menuPage.goToKotakMasukPenomoranDanDistribusi()
         filterDanSearchPenomoranPage.suratBelumDinomori()
         filterDanSearchPenomoranPage.nomoriDanTeruskan()
     })

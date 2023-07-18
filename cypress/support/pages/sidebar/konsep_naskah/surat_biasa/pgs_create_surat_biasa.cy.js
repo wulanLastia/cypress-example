@@ -34,7 +34,7 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateUnitPengolah()
         draftingKepalaSuratPage.validateSifatSurat()
         draftingKepalaSuratPage.validateUrgensiSurat()
-        draftingKepalaSuratPage.validatePerihal()
+        draftingKepalaSuratPage.validatePerihal(' ')
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
@@ -147,6 +147,121 @@ export class CreateSuratBiasaPage {
         draftingLampiranSuratPage.inputLampiranSurat2()
         draftingLampiranSuratPage.closeLampiran()
         draftingLampiranSuratPage.scrollPreviewPage()
+    }
+
+    // Regression Skenario
+    inputKepalaSuratSkenario1() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratPage.validateTempat()
+        draftingKepalaSuratPage.validateTanggal()
+        draftingKepalaSuratPage.validateTujuanSkenario1()
+        draftingKepalaSuratPage.validateLokasi()
+        draftingKepalaSuratPage.validateKodeKlasifikasi()
+        draftingKepalaSuratPage.validateUnitPengolah()
+        draftingKepalaSuratPage.validateSifatSurat()
+        draftingKepalaSuratPage.validateUrgensiSurat()
+        draftingKepalaSuratPage.validatePerihal(' Tujuan Kepala Surat - Internal -  Lampiran')
+        draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    inputKepalaSuratSkenario2() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratPage.validateTempat()
+        draftingKepalaSuratPage.validateTanggal()
+        draftingKepalaSuratPage.validateTujuanSkenario2()
+        draftingKepalaSuratPage.validateLokasi()
+        draftingKepalaSuratPage.validateKodeKlasifikasi()
+        draftingKepalaSuratPage.validateUnitPengolah()
+        draftingKepalaSuratPage.validateSifatSurat()
+        draftingKepalaSuratPage.validateUrgensiSurat()
+        draftingKepalaSuratPage.validatePerihal(' Tujuan Lampiran - Internal -  Lampiran')
+        draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    inputKepalaSuratSkenario3() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratPage.validateTempat()
+        draftingKepalaSuratPage.validateTanggal()
+        draftingKepalaSuratPage.validateTujuanSkenario3()
+        draftingKepalaSuratPage.validateLokasi()
+        draftingKepalaSuratPage.validateKodeKlasifikasi()
+        draftingKepalaSuratPage.validateUnitPengolah()
+        draftingKepalaSuratPage.validateSifatSurat()
+        draftingKepalaSuratPage.validateUrgensiSurat()
+        draftingKepalaSuratPage.validatePerihal(' Tujuan Kepala Surat - Eksternal -  Lampiran')
+        draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    inputKepalaSuratSkenario4() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratPage.validateTempat()
+        draftingKepalaSuratPage.validateTanggal()
+        draftingKepalaSuratPage.validateTujuanSkenario4()
+        draftingKepalaSuratPage.validateLokasi()
+        draftingKepalaSuratPage.validateKodeKlasifikasi()
+        draftingKepalaSuratPage.validateUnitPengolah()
+        draftingKepalaSuratPage.validateSifatSurat()
+        draftingKepalaSuratPage.validateUrgensiSurat()
+        draftingKepalaSuratPage.validatePerihal(' Tujuan Lampiran - Eksternal -  Lampiran')
+        draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    inputKepalaSuratSkenario5() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratPage.validateTempat()
+        draftingKepalaSuratPage.validateTanggal()
+        draftingKepalaSuratPage.validateTujuanSkenario5()
+        draftingKepalaSuratPage.validateLokasi()
+        draftingKepalaSuratPage.validateKodeKlasifikasi()
+        draftingKepalaSuratPage.validateUnitPengolah()
+        draftingKepalaSuratPage.validateSifatSurat()
+        draftingKepalaSuratPage.validateUrgensiSurat()
+        draftingKepalaSuratPage.validatePerihal(' Tujuan Kepala Surat - Internal Eksternal -  Lampiran')
+        draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    inputKepalaSuratSkenario6() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratPage.validateTempat()
+        draftingKepalaSuratPage.validateTanggal()
+        draftingKepalaSuratPage.validateTujuanSkenario6()
+        draftingKepalaSuratPage.validateLokasi()
+        draftingKepalaSuratPage.validateKodeKlasifikasi()
+        draftingKepalaSuratPage.validateUnitPengolah()
+        draftingKepalaSuratPage.validateSifatSurat()
+        draftingKepalaSuratPage.validateUrgensiSurat()
+        draftingKepalaSuratPage.validatePerihal(' Tujuan Lampiran - Internal Eksternal -  Lampiran')
+        draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    inputKakiSuratSkenario1() {
+        draftingKakiSuratPage.inputKakiSurat()
+        draftingKakiSuratPage.pilihPenandatanganAtasan()
+        draftingKakiSuratPage.pilihPemeriksa()
+        draftingKakiSuratPage.pilihTembusanSkenario1()
+        draftingKakiSuratPage.closeKakiSurat()
+    }
+
+    inputKakiSuratSkenario2() {
+        draftingKakiSuratPage.inputKakiSurat()
+        draftingKakiSuratPage.pilihPenandatanganAtasan()
+        draftingKakiSuratPage.pilihPemeriksa()
+        draftingKakiSuratPage.pilihTembusanSkenario2()
+        draftingKakiSuratPage.closeKakiSurat()
+    }
+
+    inputKakiSuratSkenario3() {
+        draftingKakiSuratPage.inputKakiSurat()
+        draftingKakiSuratPage.pilihPenandatanganAtasan()
+        draftingKakiSuratPage.pilihPemeriksa()
+        draftingKakiSuratPage.pilihTembusanSkenario3()
+        draftingKakiSuratPage.closeKakiSurat()
+    }
+
+    inputBadanNaskahSkenarioRegression() {
+        draftingBadanNaskahPage.inputBadanNaskahProd()
+        draftingBadanNaskahPage.insertDataProd()
+        draftingBadanNaskahPage.closeBadanNaskah()
     }
 
     // PROD

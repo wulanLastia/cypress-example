@@ -16,6 +16,8 @@ module.exports = {
     pilihTembusan2: '[data-cy="kaki-surat__tembusan__select-option__custom-input1"]',
     pilihTembusan3: '[data-cy="kaki-surat__tembusan__select-option__custom-input2"]',
     pilihTembusan4: '[data-cy="kaki-surat__tembusan__select-option__custom-input3"]',
+    pilihTembusan5: '[data-cy="kaki-surat__tembusan__select-option__custom-input4"]',
+    pilihTembusan6: '[data-cy="kaki-surat__tembusan__select-option__custom-input5"]',
     btnTambahTembusan: '[data-cy="kaki-surat__tembusan__add-button"]',
 
     // XPATH

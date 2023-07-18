@@ -1,11 +1,9 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../support/pages/sidebar/menu/menu.cy"
-import { DraftingNotaDinasPage } from "../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_drafting_nota_dinas.cy"
-import { CreateSuratBiasaPage } from "../../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { LoginPage } from "../../../../../support/pages/auth/login.cy"
+import { MenuPage } from "../../../../../support/pages/sidebar/menu/menu.cy"
+import { DraftingNotaDinasPage } from "../../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_drafting_nota_dinas.cy"
 
 let draftingNotaDinasPage = new DraftingNotaDinasPage()
-let createSuratBiasaPage = new CreateSuratBiasaPage()
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user

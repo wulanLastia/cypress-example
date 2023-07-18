@@ -2,7 +2,7 @@ module.exports = {
     // GET
 
     // XPATH
-    btnSetujui: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/header[1]/div[1]/div[3]/button[1]',
+    btnSetujui: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/header[1]/div[1]/div[3]/button[1]/div[1]/span[1]',
     popUpSetujui: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[8]/div[1]',
     titleSetujui: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[8]/div[1]/header[1]/h5[1]/strong[1]',
     btnKirimNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[8]/div[1]/div[4]/div[1]/button[2]',

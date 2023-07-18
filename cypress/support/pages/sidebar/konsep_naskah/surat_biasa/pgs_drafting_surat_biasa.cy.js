@@ -102,7 +102,7 @@ export class DraftingKonsepNaskahPage {
     }
 
     aksesFormKepalaSurat() {
-        const previewKepala = cy.xpath(konsep_naskah.previewKepala).as('previewKepala')
+        const previewKepala = cy.get(konsep_naskah.previewKepala).as('previewKepala')
         previewKepala.click(180, 240)
 
         const titleKepala = cy.get(konsep_naskah.titleKepala).as('titleKepala')

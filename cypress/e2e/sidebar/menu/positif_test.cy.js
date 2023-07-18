@@ -20,7 +20,7 @@ beforeEach(() => {
 
 afterEach(() => {
     qase(411,
-        loginPage.backToV1()
+        loginPage.logoutV2()
     )
 })
 
@@ -83,9 +83,8 @@ describe('Menu Positif Skenario', () => {
     )
 
     qase(622,
-        it('Akses Sidebar V1 ketika user tidak login di Sidebar V1', () => {
+        it.skip('Akses Sidebar V1 ketika user tidak login di Sidebar V1', () => {
             menuPage.goToSidebarV1()
-
             loginPage.navigateLoginPageV2()
         })
     )

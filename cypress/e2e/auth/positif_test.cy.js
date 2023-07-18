@@ -1,5 +1,6 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../support/pages/auth/login.cy"
+import login from '../../support/selectors/login';
 
 let loginPage = new LoginPage()
 let user
@@ -15,7 +16,7 @@ describe('Login Positif Skenario', () => {
         it('Login dengan NIP akun yang aktif', () => {
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
-            loginPage.backToV1()
+            loginPage.logoutV2()
         })
     )
 })

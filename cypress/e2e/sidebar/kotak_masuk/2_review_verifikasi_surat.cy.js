@@ -19,7 +19,7 @@ before(() => {
 
 after(() => {
     qase(411,
-        loginPage.backToV1()
+        loginPage.logoutV2()
     )
 })
 
@@ -49,9 +49,7 @@ describe('Detail Review dan Verifikasi hasil Surat (Kotak Masuk) Skenario', () =
             loginPage.directLogin()
 
             menuPage.goToKotakMasukReviewNaskah()
-
             reviewVerifikasiSuratPage.suratBelumDireview()
-
             reviewVerifikasiSuratPage.lanjutkanReviewDrafting()
             menuPage.goToKotakKeluarReviewNaskah()
         })

@@ -20,7 +20,7 @@ before(() => {
 
 after(() => {
     qase(411,
-        loginPage.backToV1()
+        loginPage.logoutV2()
     )
 })
 

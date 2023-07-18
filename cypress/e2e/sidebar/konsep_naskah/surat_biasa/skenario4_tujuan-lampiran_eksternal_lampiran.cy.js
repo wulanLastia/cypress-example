@@ -21,7 +21,7 @@ before(() => {
     })
 })
 
-describe('Skenario Create Surat Biasa Tujuan Eksternal', () => {
+describe('Skenario Create Surat Biasa Tujuan Eksternal Skenario 4 (Tujuan Lampiran Surat)', () => {
 
     qase([13, 81, 83, 709, 150, 80],
         it('Create Naskah Surat Biasa', () => {
@@ -33,29 +33,12 @@ describe('Skenario Create Surat Biasa Tujuan Eksternal', () => {
             menuPage.goToKonsepNaskah()
             createSuratBiasaPage.checkDetail()
             createSuratBiasaPage.inputKopSurat()
-            createSuratBiasaPage.inputKakiSuratPDF()
-            createSuratBiasaPage.inputKepalaSuratEksternal()
-            createSuratBiasaPage.inputBadanNaskahInternalEksternal()
+            createSuratBiasaPage.inputLampiranSurat()
+            createSuratBiasaPage.inputLampiranSurat2()
+            createSuratBiasaPage.inputKakiSuratSkenario2()
+            createSuratBiasaPage.inputKepalaSuratSkenario4()
+            createSuratBiasaPage.inputBadanNaskahSkenarioRegression()
             createSuratBiasaPage.kirimSurat()
         })
     )
-
-    it('Penomoran oleh UK', () => {
-        // Login UK untuk melakukan penomoran
-        loginPage.loginViaV1(user.nipUK, user.password)
-        loginPage.directLoginUK()
-
-        filterDanSearchPenomoranPage.suratBelumDinomori()
-        filterDanSearchPenomoranPage.nomoriDanTeruskan()
-    })
-
-    it('Tandatangani oleh Penandatangan (Diri Sendiri)', () => {
-        // Login UK untuk melakukan penomoran
-        loginPage.loginViaV1(user.nip, user.password)
-        loginPage.directLogin()
-
-        menuPage.goToKotakMasukReviewNaskah()
-        reviewVerifikasiSuratPage.suratBelumDitandatangani()
-        setujuiPage.tandaTangani(user.passphrase)
-    })
 })
