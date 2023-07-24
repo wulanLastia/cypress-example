@@ -5,11 +5,6 @@ const draftingNotaDinasPage = new DraftingNotaDinasPage()
 
 export class DraftingKopSuratNotaDinasPage {
 
-    aksesKonsepNaskahSuratBiasa() {
-        draftingNotaDinasPage.goToKonsepNaskahNotaDinas()
-        cy.wait(3000)
-    }
-
     aksesFormEditingKopSurat() {
         draftingNotaDinasPage.aksesFormKopSurat()
     }

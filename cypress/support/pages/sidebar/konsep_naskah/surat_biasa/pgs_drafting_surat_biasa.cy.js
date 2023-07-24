@@ -103,7 +103,7 @@ export class DraftingKonsepNaskahPage {
 
     aksesFormKepalaSurat() {
         const previewKepala = cy.get(konsep_naskah.previewKepala).as('previewKepala')
-        previewKepala.click(180, 240)
+        previewKepala.click(180, 240, { force: true })
 
         const titleKepala = cy.get(konsep_naskah.titleKepala).as('titleKepala')
         titleKepala.should('contain', 'Kepala Surat')
