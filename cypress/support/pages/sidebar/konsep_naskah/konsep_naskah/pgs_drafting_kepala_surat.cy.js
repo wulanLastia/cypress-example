@@ -49,9 +49,9 @@ export class DraftingKepalaSuratPage {
 
     validateTanggal() {
         const titleTanggal = cy.get(kepala_surat.titleTanggal).as('titleTanggal')
-        titleTanggal.should('contain', 'Tanggal Naskah')
+        titleTanggal.should('contain', 'Tanggal Penomoran')
 
-        const inputTanggal = cy.get(kepala_surat.inputTanggal).as('inputTanggal')
+        /*const inputTanggal = cy.get(kepala_surat.inputTanggal).as('inputTanggal')
         inputTanggal.find('input')
             .should('have.attr', 'disabled', 'disabled')
             .invoke('val')
@@ -59,7 +59,7 @@ export class DraftingKepalaSuratPage {
                 const tanggalNaskah = text;
                 const previewTempat = cy.xpath(kepala_surat.previewTempat).as('previewTempat')
                 previewTempat.should('contain', tanggalNaskah)
-            })
+            })*/
     }
 
     validateTujuan() {

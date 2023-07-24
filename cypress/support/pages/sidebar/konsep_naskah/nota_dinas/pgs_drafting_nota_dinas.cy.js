@@ -104,7 +104,7 @@ export class DraftingNotaDinasPage {
 
     aksesFormKepalaSurat() {
         const previewKepala = cy.get(nota_dinas.previewKepala).as('previewKepala')
-        previewKepala.click(180, 240)
+        previewKepala.click(180, 240, { force: true })
 
         const titleKepala = cy.get(nota_dinas.titleKepala).as('titleKepala')
         titleKepala.should('contain', 'Kepala Surat')

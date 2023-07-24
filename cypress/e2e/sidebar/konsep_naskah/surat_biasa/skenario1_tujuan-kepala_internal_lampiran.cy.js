@@ -32,7 +32,7 @@ describe('Create Surat Biasa Tujuan Internal Skenario 1 (Tujuan Kepala Surat)', 
             createSuratBiasaPage.inputKakiSuratSkenario1()
             createSuratBiasaPage.inputKepalaSuratSkenario1()
             createSuratBiasaPage.inputBadanNaskahSkenarioRegression()
-            //createSuratBiasaPage.kirimSurat()
+            createSuratBiasaPage.kirimSurat()
         })
     )
 
