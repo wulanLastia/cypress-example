@@ -47,19 +47,36 @@ export class DraftingKepalaSuratPage {
             });
     }
 
-    validateTanggal() {
+    validateTanggal(val) {
         const titleTanggal = cy.get(kepala_surat.titleTanggal).as('titleTanggal')
         titleTanggal.should('contain', 'Tanggal Penomoran')
 
-        /*const inputTanggal = cy.get(kepala_surat.inputTanggal).as('inputTanggal')
-        inputTanggal.find('input')
-            .should('have.attr', 'disabled', 'disabled')
-            .invoke('val')
-            .then(text => {
-                const tanggalNaskah = text;
-                const previewTempat = cy.xpath(kepala_surat.previewTempat).as('previewTempat')
-                previewTempat.should('contain', tanggalNaskah)
-            })*/
+        if (val === 'Manual') {
+            const inputTanggal = cy.get(kepala_surat.inputTanggal).as('inputTanggal')
+            inputTanggal.click()
+
+            const getpopupPenomoran = cy.get(kepala_surat.getpopupPenomoran).as('getpopupPenomoran')
+            getpopupPenomoran.should('be.visible')
+
+            const gettitlePopupPenomoran = cy.get(kepala_surat.gettitlePopupPenomoran).as('gettitlePopupPenomoran')
+            gettitlePopupPenomoran.should('contain', 'Penomoran Manual')
+
+            const getsubtittlePopupPenomoran = cy.get(kepala_surat.getsubtittlePopupPenomoran).as('getsubtittlePopupPenomoran')
+            getsubtittlePopupPenomoran.should('contain', 'Ingat, penomoran manual hanya digunakan untuk kasus khusus. Apakah Anda telah mendiskusikan dengan atasan dan yakin akan melanjutkan?')
+
+            const btnkonfirmasiPopupPenomoran = cy.xpath(kepala_surat.btnkonfirmasiPopupPenomoran).as('btnkonfirmasiPopupPenomoran')
+            btnkonfirmasiPopupPenomoran.should('be.visible')
+                .click()
+
+            const xpathTabelPenomoran1 = cy.xpath(kepala_surat.xpathTabelPenomoran1).as('xpathTabelPenomoran1')
+            xpathTabelPenomoran1.invoke('val')
+                .then((val) => {
+                    cy.log(val)
+                    if (val > 0) {
+                        cy.log('masuk sini')
+                    }
+                });
+        }
     }
 
     validateTujuan() {
@@ -128,13 +145,28 @@ export class DraftingKepalaSuratPage {
         titlePerihal.should('contain', 'Perihal')
 
         const inputPerihal = cy.get(kepala_surat.inputPerihal).as('inputPerihal')
-        const uuid = () => Cypress._.random(0, 1e6)
-        const id = uuid()
-        //const perihal = 'Lampiran - All Internal 3 + Tembusan'
-        const perihal = `Automation Testing ${id} ${hal}`
+        inputPerihal.invoke('val')
+            .then((val) => {
+                if (val) {
+                    const inputPerihal = cy.get(kepala_surat.inputPerihal).as('inputPerihal')
+                    const perihal = `${hal}`
+                    inputPerihal.type(perihal)
 
-        inputPerihal.type(perihal)
-        cy.writeFile(filename, { titlePerihal: perihal })
+                    const inputPerihalUpdate = cy.get(kepala_surat.inputPerihal).as('inputPerihal')
+                    inputPerihalUpdate.invoke('val')
+                        .then((val) => {
+                            cy.writeFile(filename, { titlePerihal: val })
+                        })
+                } else {
+                    const uuid = () => Cypress._.random(0, 1e6)
+                    const id = uuid()
+                    const perihal = `Automation Testing ${id} ${hal}`
+
+                    const inputPerihal = cy.get(kepala_surat.inputPerihal).as('inputPerihal')
+                    inputPerihal.type(perihal)
+                    cy.writeFile(filename, { titlePerihal: perihal })
+                }
+            })
     }
 
     validateTujuanInternal() {
@@ -296,11 +328,11 @@ export class DraftingKepalaSuratPage {
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
         titleTujuan.should('contain', 'Kepada Yth.')
 
-        const radio2 = cy.xpath(kepala_surat.radio2).as('radio2')
+        const radio2 = cy.get(kepala_surat.radio2).as('radio2')
         radio2.should('be.visible')
             .click()
 
-        const labelRadio2 = cy.xpath(kepala_surat.labelRadio2).as('labelRadio2')
+        const labelRadio2 = cy.get(kepala_surat.labelRadio2).as('labelRadio2')
         labelRadio2.should('contain', 'Lampiran')
 
         const inputTujuanLampiran = cy.get(kepala_surat.inputTujuanLampiran).as('inputTujuanLampiran')
@@ -312,15 +344,15 @@ export class DraftingKepalaSuratPage {
         const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
         previewPage.scrollTo(180, 1000, { force: true })
 
-        const previewKepalaLampiran = cy.xpath(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
-        previewKepalaLampiran.click(180, 260)
+        const previewKepalaLampiran = cy.get(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
+        previewKepalaLampiran.click()
 
         for (let i = 1; i <= 4; i++) {
             const addMoreTujuanLampiran = cy.get(kepala_surat.addMoreTujuanLampiran).as('addMoreTujuanLampiran')
             addMoreTujuanLampiran.click()
         }
 
-        const inputTujuanLampiran0 = cy.xpath(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
+        const inputTujuanLampiran0 = cy.get(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
         inputTujuanLampiran0.wait(1000)
             .type('Hening Widiatmoko')
             .wait(3000)
@@ -328,7 +360,7 @@ export class DraftingKepalaSuratPage {
 
         cy.wait(3000)
 
-        const inputTujuanLampiran1 = cy.xpath(kepala_surat.inputTujuanLampiran1).as('inputTujuanLampiran1')
+        const inputTujuanLampiran1 = cy.get(kepala_surat.inputTujuanLampiran1).as('inputTujuanLampiran1')
         inputTujuanLampiran1.wait(1000)
             .type('Ridwan Kamil')
             .wait(3000)
@@ -336,7 +368,7 @@ export class DraftingKepalaSuratPage {
 
         cy.wait(3000)
 
-        const inputTujuanLampiran2 = cy.xpath(kepala_surat.inputTujuanLampiran2).as('inputTujuanLampiran2')
+        const inputTujuanLampiran2 = cy.get(kepala_surat.inputTujuanLampiran2).as('inputTujuanLampiran2')
         inputTujuanLampiran2.wait(1000)
             .type('UU Ruzhanul')
             .wait(3000)
@@ -344,13 +376,13 @@ export class DraftingKepalaSuratPage {
 
         cy.wait(3000)
 
-        const inputTujuanLampiran3 = cy.xpath(kepala_surat.inputTujuanLampiran3).as('inputTujuanLampiran3')
+        const inputTujuanLampiran3 = cy.get(kepala_surat.inputTujuanLampiran3).as('inputTujuanLampiran3')
         inputTujuanLampiran3.wait(1000)
             .type('Tujuan Eksternal')
             .wait(3000)
             .type('{enter}')
 
-        const inputTujuanLampiran4 = cy.xpath(kepala_surat.inputTujuanLampiran4).as('inputTujuanLampiran4')
+        const inputTujuanLampiran4 = cy.get(kepala_surat.inputTujuanLampiran4).as('inputTujuanLampiran4')
         inputTujuanLampiran4.wait(1000)
             .type('Tujuan Eksternal 1')
             .wait(3000)
@@ -397,11 +429,11 @@ export class DraftingKepalaSuratPage {
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
         titleTujuan.should('contain', 'Kepada Yth.')
 
-        const radio2 = cy.xpath(kepala_surat.radio2).as('radio2')
+        const radio2 = cy.get(kepala_surat.radio2).as('radio2')
         radio2.should('be.visible')
             .click()
 
-        const labelRadio2 = cy.xpath(kepala_surat.labelRadio2).as('labelRadio2')
+        const labelRadio2 = cy.get(kepala_surat.labelRadio2).as('labelRadio2')
         labelRadio2.should('contain', 'Lampiran')
 
         const inputTujuanLampiran = cy.get(kepala_surat.inputTujuanLampiran).as('inputTujuanLampiran')
@@ -413,15 +445,15 @@ export class DraftingKepalaSuratPage {
         const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
         previewPage.scrollTo(180, 1000, { force: true })
 
-        const previewKepalaLampiran = cy.xpath(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
-        previewKepalaLampiran.click(180, 260)
+        const previewKepalaLampiran = cy.get(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
+        previewKepalaLampiran.click()
 
         for (let i = 1; i <= 2; i++) {
             const addMoreTujuanLampiran = cy.get(kepala_surat.addMoreTujuanLampiran).as('addMoreTujuanLampiran')
             addMoreTujuanLampiran.click()
         }
 
-        const inputTujuanLampiran0 = cy.xpath(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
+        const inputTujuanLampiran0 = cy.get(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
         inputTujuanLampiran0.wait(1000)
             .type('Hening Widiatmoko')
             .wait(3000)
@@ -429,7 +461,7 @@ export class DraftingKepalaSuratPage {
 
         cy.wait(3000)
 
-        const inputTujuanLampiran1 = cy.xpath(kepala_surat.inputTujuanLampiran1).as('inputTujuanLampiran1')
+        const inputTujuanLampiran1 = cy.get(kepala_surat.inputTujuanLampiran1).as('inputTujuanLampiran1')
         inputTujuanLampiran1.wait(1000)
             .type('Ridwan Kamil')
             .wait(3000)
@@ -437,7 +469,7 @@ export class DraftingKepalaSuratPage {
 
         cy.wait(3000)
 
-        const inputTujuanLampiran2 = cy.xpath(kepala_surat.inputTujuanLampiran2).as('inputTujuanLampiran2')
+        const inputTujuanLampiran2 = cy.get(kepala_surat.inputTujuanLampiran2).as('inputTujuanLampiran2')
         inputTujuanLampiran2.wait(1000)
             .type('UU Ruzhanul')
             .wait(3000)
@@ -486,11 +518,11 @@ export class DraftingKepalaSuratPage {
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
         titleTujuan.should('contain', 'Kepada Yth.')
 
-        const radio2 = cy.xpath(kepala_surat.radio2).as('radio2')
+        const radio2 = cy.get(kepala_surat.radio2).as('radio2')
         radio2.should('be.visible')
             .click()
 
-        const labelRadio2 = cy.xpath(kepala_surat.labelRadio2).as('labelRadio2')
+        const labelRadio2 = cy.get(kepala_surat.labelRadio2).as('labelRadio2')
         labelRadio2.should('contain', 'Lampiran')
 
         const inputTujuanLampiran = cy.get(kepala_surat.inputTujuanLampiran).as('inputTujuanLampiran')
@@ -502,15 +534,15 @@ export class DraftingKepalaSuratPage {
         const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
         previewPage.scrollTo(180, 1000, { force: true })
 
-        const previewKepalaLampiran = cy.xpath(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
-        previewKepalaLampiran.click(180, 260)
+        const previewKepalaLampiran = cy.get(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
+        previewKepalaLampiran.click()
 
         for (let i = 1; i <= 2; i++) {
             const addMoreTujuanLampiran = cy.get(kepala_surat.addMoreTujuanLampiran).as('addMoreTujuanLampiran')
             addMoreTujuanLampiran.click()
         }
 
-        const inputTujuanLampiran0 = cy.xpath(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
+        const inputTujuanLampiran0 = cy.get(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
         inputTujuanLampiran0.wait(1000)
             .type('Tujuan Lampiran 1')
             .wait(3000)
@@ -518,7 +550,7 @@ export class DraftingKepalaSuratPage {
 
         cy.wait(3000)
 
-        const inputTujuanLampiran1 = cy.xpath(kepala_surat.inputTujuanLampiran1).as('inputTujuanLampiran1')
+        const inputTujuanLampiran1 = cy.get(kepala_surat.inputTujuanLampiran1).as('inputTujuanLampiran1')
         inputTujuanLampiran1.wait(1000)
             .type('Tujuan Lampiran 2')
             .wait(3000)
@@ -526,7 +558,7 @@ export class DraftingKepalaSuratPage {
 
         cy.wait(3000)
 
-        const inputTujuanLampiran2 = cy.xpath(kepala_surat.inputTujuanLampiran2).as('inputTujuanLampiran2')
+        const inputTujuanLampiran2 = cy.get(kepala_surat.inputTujuanLampiran2).as('inputTujuanLampiran2')
         inputTujuanLampiran2.wait(1000)
             .type('Tujuan Lampiran 3')
             .wait(3000)
@@ -604,11 +636,11 @@ export class DraftingKepalaSuratPage {
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
         titleTujuan.should('contain', 'Kepada Yth.')
 
-        const radio2 = cy.xpath(kepala_surat.radio2).as('radio2')
+        const radio2 = cy.get(kepala_surat.radio2).as('radio2')
         radio2.should('be.visible')
             .click()
 
-        const labelRadio2 = cy.xpath(kepala_surat.labelRadio2).as('labelRadio2')
+        const labelRadio2 = cy.get(kepala_surat.labelRadio2).as('labelRadio2')
         labelRadio2.should('contain', 'Lampiran')
 
         const inputTujuanLampiran = cy.get(kepala_surat.inputTujuanLampiran).as('inputTujuanLampiran')
@@ -620,15 +652,15 @@ export class DraftingKepalaSuratPage {
         const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
         previewPage.scrollTo(180, 1000, { force: true })
 
-        const previewKepalaLampiran = cy.xpath(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
-        previewKepalaLampiran.click(180, 260)
+        const previewKepalaLampiran = cy.get(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
+        previewKepalaLampiran.click()
 
         for (let i = 1; i <= 5; i++) {
             const addMoreTujuanLampiran = cy.get(kepala_surat.addMoreTujuanLampiran).as('addMoreTujuanLampiran')
             addMoreTujuanLampiran.click()
         }
 
-        const inputTujuanLampiran0 = cy.xpath(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
+        const inputTujuanLampiran0 = cy.get(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
         inputTujuanLampiran0.wait(1000)
             .type('Hening Widiatmoko')
             .wait(3000)
@@ -636,7 +668,7 @@ export class DraftingKepalaSuratPage {
 
         cy.wait(3000)
 
-        const inputTujuanLampiran1 = cy.xpath(kepala_surat.inputTujuanLampiran1).as('inputTujuanLampiran1')
+        const inputTujuanLampiran1 = cy.get(kepala_surat.inputTujuanLampiran1).as('inputTujuanLampiran1')
         inputTujuanLampiran1.wait(1000)
             .type('Ridwan Kamil')
             .wait(3000)
@@ -644,7 +676,7 @@ export class DraftingKepalaSuratPage {
 
         cy.wait(3000)
 
-        const inputTujuanLampiran2 = cy.xpath(kepala_surat.inputTujuanLampiran2).as('inputTujuanLampiran2')
+        const inputTujuanLampiran2 = cy.get(kepala_surat.inputTujuanLampiran2).as('inputTujuanLampiran2')
         inputTujuanLampiran2.wait(1000)
             .type('UU Ruzhanul')
             .wait(3000)
@@ -652,19 +684,19 @@ export class DraftingKepalaSuratPage {
 
         cy.wait(3000)
 
-        const inputTujuanLampiran3 = cy.xpath(kepala_surat.inputTujuanLampiran3).as('inputTujuanLampiran3')
+        const inputTujuanLampiran3 = cy.get(kepala_surat.inputTujuanLampiran3).as('inputTujuanLampiran3')
         inputTujuanLampiran3.wait(1000)
             .type('Tujuan Eksternal 1')
             .wait(3000)
             .type('{enter}')
 
-        const inputTujuanLampiran4 = cy.xpath(kepala_surat.inputTujuanLampiran4).as('inputTujuanLampiran4')
+        const inputTujuanLampiran4 = cy.get(kepala_surat.inputTujuanLampiran4).as('inputTujuanLampiran4')
         inputTujuanLampiran4.wait(1000)
             .type('Tujuan Eksternal 2')
             .wait(3000)
             .type('{enter}')
 
-        const inputTujuanLampiran5 = cy.xpath(kepala_surat.inputTujuanLampiran5).as('inputTujuanLampiran5')
+        const inputTujuanLampiran5 = cy.get(kepala_surat.inputTujuanLampiran5).as('inputTujuanLampiran5')
         inputTujuanLampiran5.wait(1000)
             .type('Tujuan Eksternal 3')
             .wait(3000)

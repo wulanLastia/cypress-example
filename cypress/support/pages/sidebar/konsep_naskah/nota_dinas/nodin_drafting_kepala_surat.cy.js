@@ -33,19 +33,19 @@ export class DraftingKepalaSuratNotaDinasPage {
         penempatanTujuanSurat.should('contain', 'Penempatan daftar tujuan surat')
             .and('be.visible')
 
-        const radio1 = cy.xpath(kepala_surat.radio1).as('radio1')
+        const radio1 = cy.get(kepala_surat.radio1).as('radio1')
         radio1.should('be.visible')
             .click()
 
-        const labelRadio1 = cy.xpath(kepala_surat.labelRadio1).as('labelRadio1')
+        const labelRadio1 = cy.get(kepala_surat.labelRadio1).as('labelRadio1')
         labelRadio1.should('contain', 'Kepala Surat')
             .and('be.visible')
 
-        const radio2 = cy.xpath(kepala_surat.radio2).as('radio2')
+        const radio2 = cy.get(kepala_surat.radio2).as('radio2')
         radio2.should('be.visible')
             .click()
 
-        const labelRadio2 = cy.xpath(kepala_surat.labelRadio2).as('labelRadio2')
+        const labelRadio2 = cy.get(kepala_surat.labelRadio2).as('labelRadio2')
         labelRadio2.should('contain', 'Lampiran')
             .and('be.visible')
 

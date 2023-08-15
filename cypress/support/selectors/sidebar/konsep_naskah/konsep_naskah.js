@@ -17,12 +17,12 @@ module.exports = {
     titleBadan: '[data-cy="badan-naskah__title"]',
     previewKaki: '[data-cy="surat__kaki-surat"]',
     titleKaki: '[data-cy="kaki-surat__title"]',
+    previewKepalaLampiran: '[data-cy="lampiran-tujuan-surat__title"]',
 
 
     // XPATH
     titleNaskahKeluar: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]',
     previewPage: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]',
-    previewKepalaLampiran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]',
     previewLampiran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]',
     previewLampiran2: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[3]',
     titlePreviewLampiran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/p[1]',

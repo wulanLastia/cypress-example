@@ -11,7 +11,7 @@ module.exports = defineConfig({
       base_url: "https://sidebar-jabarprov.netlify.app",
       base_url_v1: "https://devsidebar.digitalservice.id/",
       base_url_prod_v2: "https://sidebar-v2.jabarprov.go.id/",
-      base_url_deploy_preview: "https://deploy-preview-333--sidebar-jabarprov.netlify.app/",
+      base_url_deploy_preview: "https://deploy-preview-398--sidebar-jabarprov.netlify.app/",
       base_url_deploy_preview2: "https://deploy-preview-330--sidebar-jabarprov.netlify.app/",
       base_url_prod_v1: "https://sidebar.jabarprov.go.id/"
     },
@@ -29,10 +29,11 @@ module.exports = defineConfig({
     "apiToken": "c3d992720d9ef15f98784893f5c63ea8d10b0359",
     "projectCode": "SIDEBAR2",
     "logging": true,
-    "runComplete": true,
+    "runComplete": false,
     "sendScreenshot": false,
     "video": false,
-    "basePath": "https://api.qase.io/v1"
+    "basePath": "https://api.qase.io/v1",
+    "environmentId": 1,
   },
   "chromeWebSecurity": false,
   // Width x Height preview in cypress GUI 

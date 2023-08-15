@@ -34,7 +34,7 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateUnitPengolah()
         draftingKepalaSuratPage.validateSifatSurat()
         draftingKepalaSuratPage.validateUrgensiSurat()
-        draftingKepalaSuratPage.validatePerihal(' ')
+        draftingKepalaSuratPage.validatePerihal('')
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
@@ -160,7 +160,7 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateUnitPengolah()
         draftingKepalaSuratPage.validateSifatSurat()
         draftingKepalaSuratPage.validateUrgensiSurat()
-        draftingKepalaSuratPage.validatePerihal(' Tujuan Kepala Surat - Internal -  Lampiran')
+        draftingKepalaSuratPage.validatePerihal('Tujuan Kepala Surat - Internal - Lampiran')
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
@@ -174,7 +174,7 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateUnitPengolah()
         draftingKepalaSuratPage.validateSifatSurat()
         draftingKepalaSuratPage.validateUrgensiSurat()
-        draftingKepalaSuratPage.validatePerihal(' Tujuan Lampiran - Internal -  Lampiran')
+        draftingKepalaSuratPage.validatePerihal('Tujuan Lampiran - Internal - Lampiran')
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
@@ -188,7 +188,7 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateUnitPengolah()
         draftingKepalaSuratPage.validateSifatSurat()
         draftingKepalaSuratPage.validateUrgensiSurat()
-        draftingKepalaSuratPage.validatePerihal(' Tujuan Kepala Surat - Eksternal -  Lampiran')
+        draftingKepalaSuratPage.validatePerihal('Tujuan Kepala Surat - Eksternal - Lampiran')
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
@@ -202,7 +202,7 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateUnitPengolah()
         draftingKepalaSuratPage.validateSifatSurat()
         draftingKepalaSuratPage.validateUrgensiSurat()
-        draftingKepalaSuratPage.validatePerihal(' Tujuan Lampiran - Eksternal -  Lampiran')
+        draftingKepalaSuratPage.validatePerihal('Tujuan Lampiran - Eksternal - Lampiran')
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
@@ -216,8 +216,22 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateUnitPengolah()
         draftingKepalaSuratPage.validateSifatSurat()
         draftingKepalaSuratPage.validateUrgensiSurat()
-        draftingKepalaSuratPage.validatePerihal(' Tujuan Kepala Surat - Internal Eksternal -  Lampiran')
+        draftingKepalaSuratPage.validatePerihal('Tujuan Kepala Surat - Internal Eksternal - Lampiran')
         draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    inputKepalaSuratSkenario5Manual() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        //draftingKepalaSuratPage.validateTempat()
+        draftingKepalaSuratPage.validateTanggal('Manual')
+        /*draftingKepalaSuratPage.validateTujuanSkenario5()
+        draftingKepalaSuratPage.validateLokasi()
+        draftingKepalaSuratPage.validateKodeKlasifikasi()
+        draftingKepalaSuratPage.validateUnitPengolah()
+        draftingKepalaSuratPage.validateSifatSurat()
+        draftingKepalaSuratPage.validateUrgensiSurat()
+        draftingKepalaSuratPage.validatePerihal('Tujuan Kepala Surat - Internal Eksternal - Lampiran')
+        draftingKepalaSuratPage.closeKepalaSurat()*/
     }
 
     inputKepalaSuratSkenario6() {
@@ -230,7 +244,7 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateUnitPengolah()
         draftingKepalaSuratPage.validateSifatSurat()
         draftingKepalaSuratPage.validateUrgensiSurat()
-        draftingKepalaSuratPage.validatePerihal(' Tujuan Lampiran - Internal Eksternal -  Lampiran')
+        draftingKepalaSuratPage.validatePerihal('Tujuan Lampiran - Internal Eksternal - Lampiran')
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
@@ -269,6 +283,20 @@ export class CreateSuratBiasaPage {
         draftingKopSuratPage.aksesFormEditingKopSurat()
         draftingKopSuratPage.prodCheckPreviewDinas()
         draftingKopSuratPage.closeKopSurat()
+    }
+
+    // Perbaiki
+    inputPerbaikiKepalaSurat() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratPage.validatePerihal(' Perbaiki')
+        draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    // Koreksi
+    inputKoreksiKepalaSurat() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratPage.validatePerihal(' Koreksi')
+        draftingKepalaSuratPage.closeKepalaSurat()
     }
 
 }

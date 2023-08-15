@@ -8,6 +8,21 @@ export class ReviewVerifikasiSuratPage {
     suratBelumDireview() {
         cy.wait(6000)
 
+        const filterDokumen = cy.xpath(review_verifikasi.filterDokumen).as('filterDokumen')
+        filterDokumen.should('contain', 'Atur Filter')
+            .click()
+
+        const filterStatus = cy.xpath(review_verifikasi.filterStatus).as('filterStatus')
+        filterStatus.should('contain', 'Status')
+            .click()
+
+        const statusBelumDireview = cy.xpath(review_verifikasi.statusBelumDireview).as('statusBelumDireview')
+        statusBelumDireview.check()
+
+        const closeFilter = cy.xpath(review_verifikasi.closeFilter).as('closeFilter')
+        closeFilter.should('be.visible')
+            .click()
+
         const tableReviewSurat = cy.xpath(review_verifikasi.tableReviewSurat).as('tableReviewSurat')
         tableReviewSurat.contains('td', 'BELUM DIREVIEW')
             .click()
@@ -19,7 +34,7 @@ export class ReviewVerifikasiSuratPage {
         cy.wait(3000)
 
         const btnKembali = cy.xpath(review_verifikasi.btnKembali).as('btnKembali')
-        btnKembali.should('have.class', '-mt-1.5 cursor-pointer -ml-4')
+        btnKembali.should('have.class', 'flex')
             .and('be.visible')
 
         const titleSurat = cy.xpath(review_verifikasi.titleSurat).as('titleSurat')
@@ -50,16 +65,16 @@ export class ReviewVerifikasiSuratPage {
             }
         })
 
-        const btnKembalikan = cy.xpath(review_verifikasi.btnKembalikan).as('btnKembalikan')
-        btnKembalikan.should('contain', 'Kembalikan')
+        const getbtnKembalikan = cy.get(review_verifikasi.getbtnKembalikan).as('getbtnKembalikan')
+        getbtnKembalikan.should('contain', 'Kembalikan')
             .and('be.visible')
 
-        const btnKoreksi = cy.xpath(review_verifikasi.btnKoreksi).as('btnKoreksi')
-        btnKoreksi.should('contain', 'Koreksi')
+        const getbtnKoreksi = cy.get(review_verifikasi.getbtnKoreksi).as('getbtnKoreksi')
+        getbtnKoreksi.should('contain', 'Koreksi')
             .and('be.visible')
 
-        const btnSetujui = cy.xpath(review_verifikasi.btnSetujui).as('btnSetujui')
-        btnSetujui.should('have.class', 'gap-2 cursor-pointer font-source hover:bg-blue-100 rounded-lg mb-2.5 whitespace-nowrap base-button base-button--primary')
+        const getbtnSetujui = cy.get(review_verifikasi.getbtnSetujui).as('getbtnSetujui')
+        getbtnSetujui.should('contain', 'Setujui')
             .and('be.visible')
 
         const previewSurat = cy.xpath(review_verifikasi.previewSurat).as('previewSurat')
@@ -72,7 +87,7 @@ export class ReviewVerifikasiSuratPage {
 
     lanjutkanReviewDrafting() {
         const btnKembali = cy.xpath(review_verifikasi.btnKembali).as('btnKembali')
-        btnKembali.should('have.class', '-mt-1.5 cursor-pointer -ml-4')
+        btnKembali.should('have.class', 'flex')
             .and('be.visible')
             .click()
 

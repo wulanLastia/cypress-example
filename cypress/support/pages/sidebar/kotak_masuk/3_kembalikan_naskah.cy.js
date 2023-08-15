@@ -1,21 +1,27 @@
 import kembalikan_naskah from "../../../selectors/sidebar/kotak_masuk/kembalikan_naskah"
-import { ReviewVerifikasiSuratPage } from "./2_review_verifikasi_surat.cy"
+import review_verifikasi_surat from "../../../selectors/sidebar/kotak_masuk/review_verifikasi_surat"
 import { MenuPage } from "../menu/menu.cy"
 
 const menuPage = new MenuPage()
-const reviewVerifikasiSuratPage = new ReviewVerifikasiSuratPage()
+const perihalNaskah = "cypress/fixtures/kepala_surat/kepala_surat_temp_data.json"
 
 export class KembalikanNaskahPage {
 
     goToNaskahBelumDireview() {
         menuPage.goToKotakMasukReviewNaskah()
-        reviewVerifikasiSuratPage.suratBelumDireview()
+        cy.readFile(perihalNaskah).then((object) => {
+            const titlePerihalNaskah = object.titlePerihal
+
+            const tableReviewSurat = cy.xpath(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
+            tableReviewSurat.contains('td', titlePerihalNaskah)
+                .click()
+        })
     }
 
     emptyField() {
         this.goToNaskahBelumDireview()
 
-        const btnKembalikan = cy.xpath(kembalikan_naskah.btnKembalikan).as('btnKembalikan')
+        const btnKembalikan = cy.get(kembalikan_naskah.btnKembalikan).as('btnKembalikan')
         btnKembalikan.should('be.visible')
             .click()
 
@@ -41,7 +47,7 @@ export class KembalikanNaskahPage {
     checkHalamanInformasi() {
         cy.wait(3000)
 
-        const btnKembalikan = cy.xpath(kembalikan_naskah.btnKembalikan).as('btnKembalikan')
+        const btnKembalikan = cy.get(kembalikan_naskah.btnKembalikan).as('btnKembalikan')
         btnKembalikan.should('be.visible')
             .click()
 
@@ -55,7 +61,7 @@ export class KembalikanNaskahPage {
     }
 
     popUpKonfirmasiKembalikanNaskah() {
-        const popUpKonfirmasiKembalikanNaskah = cy.xpath(kembalikan_naskah.popUpKonfirmasiKembalikanNaskah).as('popUpKonfirmasiKembalikanNaskah')
+        const popUpKonfirmasiKembalikanNaskah = cy.get(kembalikan_naskah.popUpKonfirmasiKembalikanNaskah).as('popUpKonfirmasiKembalikanNaskah')
         popUpKonfirmasiKembalikanNaskah.should('be.visible')
 
         const titleKonfirmasiKembalikanNaskah = cy.xpath(kembalikan_naskah.titleKonfirmasiKembalikanNaskah).as('titleKonfirmasiKembalikanNaskah')
@@ -102,21 +108,18 @@ export class KembalikanNaskahPage {
         checkPerihal.check()
 
         const inputPerihal = cy.xpath(kembalikan_naskah.inputPerihal).as('inputPerihal')
-        inputPerihal.type('Perbaiki perihal surat')
+        inputPerihal.clear()
+            .type('Perbaiki perihal surat')
     }
 
     kembalikanNaskah() {
-        this.inputSifatNaskah()
-
-        this.inputTembusan()
+        this.inputPerihal()
 
         const btnKembalikanNaskah = cy.xpath(kembalikan_naskah.btnKembalikanNaskah).as('btnKembalikanNaskah')
         btnKembalikanNaskah.should('contain', 'Kembalikan naskah')
             .click()
 
         this.popUpKonfirmasiKembalikanNaskah()
-
-        Cypress.Cookies.debug(true, { verbose: false })
 
         const btnKirimNaskah = cy.xpath(kembalikan_naskah.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.should('contain', 'Kirim naskah')
