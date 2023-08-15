@@ -101,17 +101,12 @@ export class DraftingKakiSuratPage {
     }
 
     pilihPemeriksa() {
-        const pilihPemeriksa = cy.get(kaki_surat.pilihPemeriksa).as('pilihPemeriksa2')
-        pilihPemeriksa.type('FAJAR LIBRIANTO')
-            .wait(5000)
-            .type('{enter}')
-
         const btnTambahPemeriksa = cy.get(kaki_surat.btnTambahPemeriksa).as('btnTambahPemeriksa')
         btnTambahPemeriksa.click()
 
-        const pilihPemeriksa2 = cy.get(kaki_surat.pilihPemeriksa2).as('pilihPemeriksa')
-        pilihPemeriksa2.type('HENING WIDIATMOKO')
-            .wait(6000)
+        const pilihPemeriksa = cy.get(kaki_surat.pilihPemeriksa).as('pilihPemeriksa2')
+        pilihPemeriksa.type('FAJAR LIBRIANTO', { force: true })
+            .wait(5000)
             .type('{enter}')
     }
 

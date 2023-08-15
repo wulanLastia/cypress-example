@@ -44,15 +44,15 @@ module.exports = {
     titlePreviewKepalaSurat: '[data-cy="surat__title__nota-dinas"]',
 
     // XPATH
-    radio1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/label[1]/input[1]',
-    labelRadio1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/label[1]',
-    radio2: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/label[2]/input[1]',
-    labelRadio2: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/label[2]',
-    inputTujuanLampiran0: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/input[1]',
-    inputTujuanLampiran1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/input[1]',
-    inputTujuanLampiran2: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[3]/div[1]/div[1]/div[1]/input[1]',
-    inputTujuanLampiran3: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[4]/div[1]/div[1]/div[1]/input[1]',
-    inputTujuanLampiran4: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[5]/div[1]/div[1]/div[1]/input[1]',
-    inputTujuanLampiran5: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[6]/div[1]/div[1]/div[1]/input[1]',
+    radio1: '[data-cy="radio-button-0"]',
+    labelRadio1: '[data-cy="radio-label-0"]',
+    radio2: '[data-cy="radio-button-1"]',
+    labelRadio2: '[data-cy="radio-label-1"]',
+    inputTujuanLampiran0: '[data-cy="lampiran-tujuan-surat__select-option__custom-input__0"]',
+    inputTujuanLampiran1: '[data-cy="lampiran-tujuan-surat__select-option__custom-input__1"]',
+    inputTujuanLampiran2: '[data-cy="lampiran-tujuan-surat__select-option__custom-input__2"]',
+    inputTujuanLampiran3: '[data-cy="lampiran-tujuan-surat__select-option__custom-input__3"]',
+    inputTujuanLampiran4: '[data-cy="lampiran-tujuan-surat__select-option__custom-input__4"]',
+    inputTujuanLampiran5: '[data-cy="lampiran-tujuan-surat__select-option__custom-input__5"]',
 
 }

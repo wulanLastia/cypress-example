@@ -87,9 +87,30 @@ export class LoginPage {
         this.closePopupLandingPage()
     }
 
+    directLoginUnleash() {
+        const closePopupLandingPageV1Unleash = cy.xpath(login.closePopupLandingPageV1Unleash).as('closePopupLandingPageV1Unleash')
+        closePopupLandingPageV1Unleash.click()
+
+        const konsepNaskahMenu = cy.xpath(login.konsepNaskahMenu).as('konsepNaskahMenu')
+        konsepNaskahMenu.should('contain', 'KONSEP NASKAH')
+            .click()
+
+        const goToV2Unleash = cy.xpath(login.goToV2Unleash).as('goToV2Unleash')
+        goToV2Unleash.should('be.visible')
+            .click()
+
+        cy.wait(3000)
+
+        this.closePopupLandingPage()
+    }
+
     directLoginUK() {
-        cy.get("div.modal-footer > button").click();
-        cy.get("li:nth-of-type(26) > a").click();
+        const closePopupLandingPageV1UK = cy.xpath(login.closePopupLandingPageV1UK).as('closePopupLandingPageV1UK')
+        closePopupLandingPageV1UK.click()
+
+        const goToV2UK = cy.xpath(login.goToV2UK).as('goToV2UK')
+        goToV2UK.should('contain', 'LOGIN TO V2')
+            .click()
 
         cy.wait(3000)
 

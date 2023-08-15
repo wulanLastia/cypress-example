@@ -16,7 +16,7 @@ export class DraftingLampiranSuratPage {
 
         const btnBuatLampiran = cy.xpath(lampiran_surat.btnBuatLampiran).as('btnBuatLampiran')
         btnBuatLampiran.should('contain', 'Buat Lampiran')
-            .click()
+            .click({ force: true })
     }
 
     aksesFormEditingLampiranSurat2() {

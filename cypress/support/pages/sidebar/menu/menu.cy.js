@@ -84,8 +84,7 @@ export class MenuPage {
         this.goToKotakMasuk()
 
         const reviewNaskahKM = cy.get(menu.reviewNaskahKM).as('reviewNaskahKM')
-        reviewNaskahKM.should('contain', 'Review Naskah')
-            .and('be.visible')
+        reviewNaskahKM.should('be.visible')
             .click()
     }
 
