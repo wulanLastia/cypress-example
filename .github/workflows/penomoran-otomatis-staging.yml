@@ -1,0 +1,45 @@
+# more info see official docs: https://github.com/cypress-io/github-action
+name: End-to-end tests
+on:
+  # push:
+  #   branches:
+  #     - main
+  workflow_dispatch:
+  # opsional. bisa dipakai kalau sudah ada yg mau di-run daily. timezone dalam UTC
+  #schedule:
+  #  - cron: '0 20 * * *'
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # bisa disesuaikan kalau ada banyak fixture lain. jangan lupa tambahkan di setting env repo
+      - name: 'Create credential fixture'
+        run: |
+          echo "${{ secrets.CREDENTIALS_DEV_JSON_CONTENT }}" > cypress/fixtures/credentials_dev.json
+          echo "${{ secrets.CREDENTIALS_PROD_JSON_CONTENT }}" > cypress/fixtures/credentials_prod.json
+
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          # sesuaikan
+          browser: chrome
+          record: true
+          spec: cypress/e2e/daily_regression/sidebar/konsep_naskah/surat_biasa/penomoran_otomatis.cy.js
+        # sesuaikan kalau ada env lain
+        env:
+          # pass the Cypress Cloud record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # pass the project ID from the secrets through environment variable
+          # CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          # 1: staging
+          QASE_REPORT: 1
+          QASE_RUN_NAME: "${{ github.event.repository.updated_at}} - Run penomoran otomatis github action"
+          
