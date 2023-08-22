@@ -40,6 +40,8 @@ jobs:
           spec: ${{ inputs.spec_file }}
         # sesuaikan kalau ada env lain
         env:
+          # override cypress binary cache location. ref: https://docs.cypress.io/guides/references/advanced-installation#Binary-cache
+          CYPRESS_CACHE_FOLDER: "/jds/home/cypress_cache"
           # pass the Cypress Cloud record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # pass GitHub token to allow accurately detecting a build vs a re-run build
