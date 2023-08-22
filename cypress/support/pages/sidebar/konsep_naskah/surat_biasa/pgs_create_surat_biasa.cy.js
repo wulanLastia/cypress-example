@@ -285,6 +285,28 @@ export class CreateSuratBiasaPage {
         draftingKopSuratPage.closeKopSurat()
     }
 
+    inputKepalaSuratSkenario5Prod() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratPage.validateTempat()
+        //draftingKepalaSuratPage.validateTanggal()
+        draftingKepalaSuratPage.validateTujuanSkenario5Prod()
+        draftingKepalaSuratPage.validateLokasi()
+        draftingKepalaSuratPage.validateKodeKlasifikasi()
+        draftingKepalaSuratPage.validateUnitPengolah()
+        draftingKepalaSuratPage.validateSifatSurat()
+        draftingKepalaSuratPage.validateUrgensiSurat()
+        draftingKepalaSuratPage.validatePerihal('Tujuan Kepala Surat - Internal Eksternal - Lampiran')
+        draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    inputKakiSuratSkenario3Prod() {
+        draftingKakiSuratPage.inputKakiSurat()
+        draftingKakiSuratPage.pilihPenandatanganAtasanProd()
+        draftingKakiSuratPage.pilihPemeriksaProd()
+        draftingKakiSuratPage.pilihTembusanSkenario3Prod()
+        draftingKakiSuratPage.closeKakiSurat()
+    }
+
     // Perbaiki
     inputPerbaikiKepalaSurat() {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()

@@ -17,7 +17,7 @@ before(() => {
 
 before(() => {
     loginPage.loginViaV1(user.nip, user.password)
-    loginPage.directLogin()
+    loginPage.directLoginUnleash()
 })
 
 after(() => {
