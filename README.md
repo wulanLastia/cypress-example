@@ -1,1 +1,12 @@
 # cypress-sidebarv2
+
+## How to run using github action
+1. Open the repo
+2. Go to "Actions" tab
+3. Select "E2E Cypress Test Manual" from list sidebar
+4. Clik "run workflow", a popup would showed up. Fill the fields accordingly.
+![Github Action screenshot](docs/screenshot-manual-run-github-action.png?raw=true "Github Action manual run form input")
+Tips: To easily get the path to your desired spec file, you could use the github web repo interface to open the file and then copy the path by click copy symbol beside the filename
+![Github copy path screenshot](docs/screenshot-copy-path-github.png?raw=true "The copy symbol in github interface")
+5. Click "run" to start the test
+6. Monitor the process. If it finished you should be able to see via qase.io and cloud.cypress.io
