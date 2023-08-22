@@ -16,6 +16,8 @@ on:
 jobs:
   cypress-run:
     runs-on: self-hosted
+    container: 
+      image: cypress/included:11.2.0
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -26,10 +28,6 @@ jobs:
           mkdir cypress/fixtures
           echo "${{ secrets.CREDENTIALS_DEV_JSON_CONTENT }}" | base64 --decode > cypress/fixtures/credentials_dev.json
           echo "${{ secrets.CREDENTIALS_PROD_JSON_CONTENT }}" | base64 --decode > cypress/fixtures/credentials_prod.json
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
           
       # Install npm dependencies, cache them correctly
       # and run all Cypress tests
