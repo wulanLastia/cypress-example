@@ -65,7 +65,7 @@ export class DraftingKakiSuratPage {
 
     checkDropdownPenandatangan() {
         const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
-        selectPenandatangan.select(0).should('have.text', 'Pilih Format Penandatangan Atasan Atas nama Untuk beliau Diri sendiri')
+        selectPenandatangan.select(0).should('have.text', 'Pilih Format Penandatangan Atasan \n Atas nama\n \n Untuk beliau\n Diri sendiri')
     }
 
     leaveEmptyField() {
@@ -228,6 +228,63 @@ export class DraftingKakiSuratPage {
         const pilihTembusan4 = cy.get(kaki_surat.pilihTembusan4).as('pilihTembusan4')
         pilihTembusan4.type('PERBAIKI PEMERIKSA 2')
             .wait(2000)
+            .type('{enter}')
+    }
+
+    pilihPenandatanganAtasanProd() {
+        const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
+        selectPenandatangan.select(1).should('have.value', 'ATASAN')
+
+        const pilihPenandatangan = cy.get(kaki_surat.pilihPenandatangan).as('pilihPenandatangan')
+        pilihPenandatangan.type('SMOKE TEST DR. HENING')
+            .wait(2000)
+            .type('{enter}')
+    }
+
+    pilihPemeriksaProd() {
+        const btnTambahPemeriksa = cy.get(kaki_surat.btnTambahPemeriksa).as('btnTambahPemeriksa')
+        btnTambahPemeriksa.click()
+
+        const pilihPemeriksa = cy.get(kaki_surat.pilihPemeriksa).as('pilihPemeriksa2')
+        pilihPemeriksa.type('SMOKE TEST FAJAR LIBRIANTO', { force: true })
+            .wait(5000)
+            .type('{enter}')
+    }
+
+    pilihTembusanSkenario3Prod() {
+        for (let i = 1; i <= 5; i++) {
+            const btnTambahTembusan = cy.get(kaki_surat.btnTambahTembusan).as('btnTambahTembusan')
+            btnTambahTembusan.click()
+        }
+
+        const pilihTembusan = cy.get(kaki_surat.pilihTembusan).as('pilihTembusan')
+        pilihTembusan.type('SMOKE TEST DR. IKA MARDIAH')
+            .wait(3000)
+            .type('{enter}')
+
+        const pilihTembusan2 = cy.get(kaki_surat.pilihTembusan2).as('pilihTembusan2')
+        pilihTembusan2.type('SMOKE TEST RIZKI HUSTINIASARI')
+            .wait(3000)
+            .type('{enter}')
+
+        const pilihTembusan3 = cy.get(kaki_surat.pilihTembusan3).as('pilihTembusan3')
+        pilihTembusan3.type('SMOKE TEST ZUHARIN INSANA')
+            .wait(3000)
+            .type('{enter}')
+
+        const pilihTembusan4 = cy.get(kaki_surat.pilihTembusan4).as('pilihTembusan')
+        pilihTembusan4.type('Tembusan Eksternal 1')
+            .wait(3000)
+            .type('{enter}')
+
+        const pilihTembusan5 = cy.get(kaki_surat.pilihTembusan5).as('pilihTembusan2')
+        pilihTembusan5.type('Tembusan Eksternal 2')
+            .wait(3000)
+            .type('{enter}')
+
+        const pilihTembusan6 = cy.get(kaki_surat.pilihTembusan6).as('pilihTembusan3')
+        pilihTembusan6.type('Tembusan Eksternal 3')
+            .wait(3000)
             .type('{enter}')
     }
 

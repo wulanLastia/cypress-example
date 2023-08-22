@@ -7,6 +7,10 @@ export class LoginPage {
         cy.visit(Cypress.env('base_url_v1'))
     }
 
+    navigateLoginPageV1Prod() {
+        cy.visit(Cypress.env('base_url_prod_v1'))
+    }
+
     navigateLoginPageV2() {
         cy.visit(Cypress.env('base_url'))
 
@@ -47,6 +51,33 @@ export class LoginPage {
 
     loginViaV1(nip, passwordv1) {
         this.navigateLoginPageV1()
+
+        cy.get("#login > div").click()
+        cy.get("div.flex > div button").click()
+
+        const username = cy.get(login.username).as('username')
+        username.should('be.visible')
+        username.type(nip, { force: true })
+
+        const password = cy.get(login.password).as('password')
+        password.type(passwordv1, { force: true })
+
+        const hiddenCaptcha = cy.get(login.hiddenCaptcha).as('hiddenCaptcha')
+        hiddenCaptcha.invoke('val')
+            .then((val) => {
+                const captchaType = cy.get(login.captcha).as('captcha')
+                captchaType.type(val, { force: true })
+            })
+
+        const btnLogin = cy.get(login.btnLogin).as('btnLogin')
+        btnLogin.should('contain', 'Login')
+            .click({ force: true })
+
+        cy.wait(3000)
+    }
+
+    loginViaV1Prod(nip, passwordv1) {
+        this.navigateLoginPageV1Prod()
 
         cy.get("#login > div").click()
         cy.get("div.flex > div button").click()

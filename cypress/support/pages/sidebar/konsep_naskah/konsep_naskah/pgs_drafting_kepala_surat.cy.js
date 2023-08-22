@@ -707,4 +707,65 @@ export class DraftingKepalaSuratPage {
         this.aksesFormEditingKepalaSurat()
     }
 
+    validateTujuanSkenario5Prod() {
+        const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
+        titleTujuan.should('contain', 'Kepada Yth.')
+
+        for (let i = 1; i <= 5; i++) {
+            const addMoreTujuan = cy.get(kepala_surat.addMoreTujuan).as('addMoreTujuan')
+            addMoreTujuan.click()
+        }
+
+        const inputTujuan0 = cy.get(kepala_surat.inputTujuan0).as('inputTujuan0')
+        inputTujuan0.wait(1000)
+            .type('SMOKE TEST DR. IKA MARDIAH')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuan1 = cy.get(kepala_surat.inputTujuan1).as('inputTujuan1')
+        inputTujuan1.wait(1000)
+            .type('SMOKE TEST RIZKI HUSTINIASARI')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuan2 = cy.get(kepala_surat.inputTujuan2).as('inputTujuan2')
+        inputTujuan2.wait(1000)
+            .type('SMOKE TEST ZUHARIN INSANA')
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuan3 = cy.get(kepala_surat.inputTujuan3).as('inputTujuan3')
+        const uuid3 = () => Cypress._.random(0, 1e6)
+        const id3 = uuid3()
+        const tujuanEks3 = `Test Tujuan Eksternal Automation ${id3}`
+
+        inputTujuan3.type(tujuanEks3)
+            .wait(3000)
+            .type('{enter}')
+
+        const inputTujuan4 = cy.get(kepala_surat.inputTujuan4).as('inputTujuan4')
+        const uuid4 = () => Cypress._.random(0, 1e6)
+        const id4 = uuid4()
+        const tujuanEks4 = `Test Tujuan Eksternal Automation ${id4}`
+
+        inputTujuan4.type(tujuanEks4)
+            .wait(3000)
+            .type('{enter}')
+
+        const inputTujuan5 = cy.get(kepala_surat.inputTujuan5).as('inputTujuan5')
+        const uuid5 = () => Cypress._.random(0, 1e6)
+        const id5 = uuid5()
+        const tujuanEks5 = `Test Tujuan Eksternal Automation ${id5}`
+
+        inputTujuan5.type(tujuanEks5)
+            .wait(3000)
+            .type('{enter}')
+    }
+
 }
