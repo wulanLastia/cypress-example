@@ -12,5 +12,6 @@ module.exports = {
     // XPATH
     titleNaskahKeluar: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]',
     sidebarClass: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/div[1]',
-    sidebarv1Menu: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/div[1]/div[1]/div[1]/div[4]/a[1]'
+    sidebarv1Menu: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/div[1]/div[1]/div[1]/div[4]/a[1]',
+    check1stNaskahDisimpan: 'html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[4]/button[1]'
 }

@@ -706,6 +706,7 @@ export class DraftingKepalaSuratPage {
 
         this.aksesFormEditingKepalaSurat()
     }
+    
 
     validateTujuanSkenario5Prod() {
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
