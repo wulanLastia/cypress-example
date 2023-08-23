@@ -25,14 +25,9 @@ describe('Create Surat Biasa Skenario', () => {
 
     qase([13, 81, 83, 709, 150, 80, 913],
         it('Create Naskah Surat Biasa', () => {
-            Login 
             loginPage.loginViaV1(user.nip, user.password)
-            loginPage.directLoginUnleash()
+            loginPage.directLogin()
 
-            // loginPage.navigateLoginPageV2()
-            // loginPage.enterNip(user.nip)
-            // loginPage.clickBtnMasuk()
-            // loginPage.closePopupLandingPage()
 
             // Create Naskah
             menuPage.goToKonsepNaskah()
@@ -48,27 +43,7 @@ describe('Create Surat Biasa Skenario', () => {
 
 
 
-            // createSuratBiasaPage.kirimSurat()
         })
     )
 
-    // it.skip('Penomoran oleh UK', () => {
-    //     // Login UK untuk melakukan penomoran
-    //     loginPage.loginViaV1(user.nipUK, user.password)
-    //     loginPage.directLoginUK()
-
-    //     menuPage.goToKotakMasukPenomoranDanDistribusi()
-    //     filterDanSearchPenomoranPage.suratBelumDinomori()
-    //     filterDanSearchPenomoranPage.nomoriDanTeruskan()
-    // })
-
-    // it('Tandatangani oleh Penandatangan (Diri Sendiri)', () => {
-    //     // Login UK untuk melakukan penomoran
-    //     loginPage.loginViaV1(user.nip, user.password)
-    //     loginPage.directLogin()
-
-    //     menuPage.goToKotakMasukReviewNaskah()
-    //     reviewVerifikasiSuratPage.suratBelumDitandatangani()
-    //     setujuiPage.tandaTangani(user.passphrase)
-    // })
 }) 
