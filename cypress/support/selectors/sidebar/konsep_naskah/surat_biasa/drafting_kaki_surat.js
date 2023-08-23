@@ -19,6 +19,8 @@ module.exports = {
     pilihTembusan5: '[data-cy="kaki-surat__tembusan__select-option__custom-input4"]',
     pilihTembusan6: '[data-cy="kaki-surat__tembusan__select-option__custom-input5"]',
     btnTambahTembusan: '[data-cy="kaki-surat__tembusan__add-button"]',
+    // Nanti fungsi dibawah dipindah
+    btnSimpanSurat: '[data-cy="surat-biasa-save"]',
 
     // XPATH
     selectedPenandatangan: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/span[1]',

@@ -177,4 +177,12 @@ export class MenuPage {
             .click()
     }
 
+    checkDataPertamaNaskahDisimpan() {
+        cy.wait(10000)
+        const dataPertamaNaskahDisimpan = cy.xpath(menu.check1stNaskahDisimpan).as('dataPertamaNaskahDisimpan')
+        // dataPertamaNaskahDisimpan.should('contain', 'Automation Testing')
+        //     .and('be.visible')
+        dataPertamaNaskahDisimpan.click()
+    }
+
 }

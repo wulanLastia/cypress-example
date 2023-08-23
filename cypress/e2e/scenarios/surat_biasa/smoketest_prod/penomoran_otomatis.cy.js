@@ -26,7 +26,7 @@ before(() => {
 describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala Surat) Penomoran Otomatis', () => {
 
     qase([13, 81, 83, 709, 150, 80],
-        it.skip('Create Naskah Surat Biasa', () => {
+        it('Create Naskah Surat Biasa', () => {
             // Login 
             loginPage.loginViaV1Prod(user.nip, user.password)
             loginPage.directLogin()

@@ -272,6 +272,14 @@ export class CreateSuratBiasaPage {
         draftingKakiSuratPage.closeKakiSurat()
     }
 
+    inputKakiSuratSkenario4() {
+        draftingKakiSuratPage.inputKakiSurat()
+        draftingKakiSuratPage.pilihPenandatanganDiriSendiri()
+        draftingKakiSuratPage.pilihTembusanSkenario3()
+        draftingKakiSuratPage.closeKakiSurat()
+        draftingKakiSuratPage.clickSimpanSurat()
+    }
+
     inputBadanNaskahSkenarioRegression() {
         draftingBadanNaskahPage.inputBadanNaskahProd()
         draftingBadanNaskahPage.insertDataProd()
