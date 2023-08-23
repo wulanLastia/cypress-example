@@ -8,10 +8,11 @@ on:
         required: true
         default: 'cypress/e2e/daily_regression/sidebar/konsep_naskah/surat_biasa/penomoran_otomatis.cy.js'
         type: string
-      tester_name:
-        description: 'Name of the person who run this test'
+      run_name:
+        description: 'Name of the run to be appended with run time. Suggested to include tester name'
         required: true
         type: string
+        default: 'Run test github action Fulan'
 
 jobs:
   cypress-run:
@@ -19,7 +20,7 @@ jobs:
     container: 
       image: cypress/included:11.2.0
       # solution from https://github.com/cypress-io/cypress-docker-images/issues/560#issuecomment-1121774167
-      options: --user 1001
+      # options: --user 1001
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -30,7 +31,11 @@ jobs:
           mkdir cypress/fixtures
           echo "${{ secrets.CREDENTIALS_DEV_JSON_CONTENT }}" | base64 --decode > cypress/fixtures/credentials_dev.json
           echo "${{ secrets.CREDENTIALS_PROD_JSON_CONTENT }}" | base64 --decode > cypress/fixtures/credentials_prod.json
-          
+
+      # adapted from https://stackoverflow.com/a/76943682/2496217 & https://stackoverflow.com/a/61827163/2496217
+      - name: Get current datedate as env variable
+        run: echo "DATETIME=$(TZ='Asia/Jakarta' date +'%Y-%m-%d_%H:%M:%S')" >> $GITHUB_ENV
+        
       # Install npm dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
@@ -53,6 +58,6 @@ jobs:
           # CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
           # 1: staging
           QASE_REPORT: 1
-          QASE_RUN_NAME: "${{ github.event.repository.updated_at}} - Run test github action ${{ inputs.tester_name }}"
+          QASE_RUN_NAME: "${{ env.DATETIME }} - ${{ inputs.run_name }}"
           # QASE_API_KEY: ${{ secrets.QASE_API_KEY }}
           
