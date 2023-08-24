@@ -62,6 +62,6 @@ jobs:
           QASE_API_TOKEN: ${{ secrets.QASE_API_TOKEN }}
           # settings for cloud.cypress.io
           COMMIT_INFO_MESSAGE: "${{ env.DATETIME }} - ${{ inputs.run_name }}"
-          COMMIT_INFO_AUTHOR: "Github Action Runner"
+          COMMIT_INFO_AUTHOR: "${{ github.triggering_actor }}"
           COMMIT_INFO_EMAIL: "jds@example.com"
           
