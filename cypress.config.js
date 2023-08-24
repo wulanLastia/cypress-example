@@ -26,7 +26,6 @@ module.exports = defineConfig({
   },
   "reporter": "cypress-qase-reporter",
   "reporterOptions": {
-    "apiToken": "2956d4358b8d2e1f52118d4ae419a037cbe1b072924e0b21859100962ec54c7c",
     "projectCode": "SIDEBAR2",
     "logging": true,
     "runComplete": false,

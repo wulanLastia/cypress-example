@@ -1,5 +1,25 @@
 # cypress-sidebarv2
 
+## How to run locally
+1. clone and cd to folder
+2. `npm install`
+3. copy `.env.example` to `.env`
+4. Run locally using:
+
+  ```
+  # basic example
+  $ npm run cy_local_test -- --spec example.cy.js
+
+  # you could add any cypress CLI options after the '--', for example to enable recording to cypress cloud
+  $ npm run cy_local_test -- --record
+
+  # to customize QASE_RUN_NAME on each run
+  $ QASE_RUN_NAME="running test local fulan" npm run cy_local_test -- --record
+
+  # to set dynamic QASE_RUN_NAME on each run by datetime
+  $ QASE_RUN_NAME="$(date +'%Y-%m-%d_%H:%M:%S') - running test local fulan" npm run cy_local_test -- --record
+  ```
+
 ## How to run using github action
 1. Open the repo
 2. Go to "Actions" tab

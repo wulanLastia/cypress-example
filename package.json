@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "cy_local_test": "env $(grep -v '^#' .env | xargs) cypress run"
+  },
   "devDependencies": {
     "cypress": "^12.5.1",
     "cypress-file-upload": "^5.0.8",
