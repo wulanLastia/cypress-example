@@ -27,7 +27,7 @@ export class CreateSuratBiasaPage {
     inputKepalaSurat() {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.validateTempat()
-        draftingKepalaSuratPage.validateTanggal()
+        //draftingKepalaSuratPage.validateTanggal()
         draftingKepalaSuratPage.validateTujuan()
         draftingKepalaSuratPage.validateLokasi()
         draftingKepalaSuratPage.validateKodeKlasifikasi()

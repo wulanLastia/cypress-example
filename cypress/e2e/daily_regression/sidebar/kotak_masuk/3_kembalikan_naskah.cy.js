@@ -18,7 +18,7 @@ before(() => {
 
 describe('Kembalikan Naskah Skenario', () => {
 
-    /*qase([13, 81, 83, 709, 150, 80],
+    qase([13, 81, 83, 709, 150, 80],
         it('Create Naskah Surat Biasa', () => {
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
@@ -33,7 +33,7 @@ describe('Kembalikan Naskah Skenario', () => {
             createSuratBiasaPage.inputBadanNaskah()
             createSuratBiasaPage.kirimSurat()
         })
-    )*/
+    )
 
     qase([399, 101, 377, 402, 100],
         it('Kembalikan Naskah', () => {
@@ -51,6 +51,4 @@ describe('Kembalikan Naskah Skenario', () => {
             loginPage.closePopupLandingPage()
         })
     )
-
-
 }) 
