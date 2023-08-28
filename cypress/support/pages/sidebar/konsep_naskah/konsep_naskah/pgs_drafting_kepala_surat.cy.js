@@ -160,7 +160,7 @@ export class DraftingKepalaSuratPage {
                 } else {
                     const uuid = () => Cypress._.random(0, 1e6)
                     const id = uuid()
-                    const perihal = `Automation Testing ${id} ${hal}`
+                    const perihal = `Automation Testing ${id}${hal}`
 
                     const inputPerihal = cy.get(kepala_surat.inputPerihal).as('inputPerihal')
                     inputPerihal.type(perihal)
@@ -706,7 +706,7 @@ export class DraftingKepalaSuratPage {
 
         this.aksesFormEditingKepalaSurat()
     }
-    
+
 
     validateTujuanSkenario5Prod() {
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')

@@ -2,30 +2,20 @@ import review_verifikasi from "../../../selectors/sidebar/kotak_masuk/review_ver
 import { ListSuratReviewNaskahPage } from "../kotak_masuk/1_list_surat_review_naskah.cy"
 
 const listSuratReviewNaskahPage = new ListSuratReviewNaskahPage()
+const perihalNaskah = "cypress/fixtures/kepala_surat/kepala_surat_temp_data.json"
 
 export class ReviewVerifikasiSuratPage {
 
     suratBelumDireview() {
         cy.wait(6000)
 
-        const filterDokumen = cy.xpath(review_verifikasi.filterDokumen).as('filterDokumen')
-        filterDokumen.should('contain', 'Atur Filter')
-            .click()
+        cy.readFile(perihalNaskah).then((object) => {
+            const titlePerihalNaskah = object.titlePerihal
 
-        const filterStatus = cy.xpath(review_verifikasi.filterStatus).as('filterStatus')
-        filterStatus.should('contain', 'Status')
-            .click()
-
-        const statusBelumDireview = cy.xpath(review_verifikasi.statusBelumDireview).as('statusBelumDireview')
-        statusBelumDireview.check()
-
-        const closeFilter = cy.xpath(review_verifikasi.closeFilter).as('closeFilter')
-        closeFilter.should('be.visible')
-            .click()
-
-        const tableReviewSurat = cy.xpath(review_verifikasi.tableReviewSurat).as('tableReviewSurat')
-        tableReviewSurat.contains('td', 'BELUM DIREVIEW')
-            .click()
+            const tableReviewSurat = cy.xpath(review_verifikasi.tableReviewSurat).as('tableReviewSurat')
+            tableReviewSurat.contains('td', titlePerihalNaskah)
+                .click()
+        })
 
         this.checkDetailSurat()
     }
@@ -71,10 +61,6 @@ export class ReviewVerifikasiSuratPage {
 
         const getbtnKoreksi = cy.get(review_verifikasi.getbtnKoreksi).as('getbtnKoreksi')
         getbtnKoreksi.should('contain', 'Koreksi')
-            .and('be.visible')
-
-        const getbtnSetujui = cy.get(review_verifikasi.getbtnSetujui).as('getbtnSetujui')
-        getbtnSetujui.should('contain', 'Setujui')
             .and('be.visible')
 
         const previewSurat = cy.xpath(review_verifikasi.previewSurat).as('previewSurat')

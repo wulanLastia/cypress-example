@@ -66,8 +66,8 @@ export class DraftingKakiSuratPage {
     checkDropdownPenandatangan() {
         const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
         selectPenandatangan
-        .select(0)
-        .should('have.text', 'Pilih Format Penandatangan Atasan \n Atas nama\n \n Untuk beliau\n Diri sendiri')
+            .select(0)
+            .should('have.text', 'Pilih Format Penandatangan Atasan \n              Atas nama\n             \n              Untuk beliau\n             Diri sendiri')
     }
 
     leaveEmptyField() {
@@ -234,7 +234,7 @@ export class DraftingKakiSuratPage {
     }
 
 
-        // Nanti fungsi dibawah dipindah
+    // Nanti fungsi dibawah dipindah
     clickSimpanSurat() {
         const buttonSimpanSurat = cy.get(kaki_surat.btnSimpanSurat).as('buttonSimpanSurat')
         buttonSimpanSurat.click()

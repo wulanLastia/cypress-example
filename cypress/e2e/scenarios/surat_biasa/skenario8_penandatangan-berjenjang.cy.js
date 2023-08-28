@@ -1,9 +1,9 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../support/pages/sidebar/menu/menu.cy"
-import { CreateSuratBiasaPage } from "../../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
-import { ReviewVerifikasiSuratPage } from "../../../../support/pages/sidebar/kotak_masuk/2_review_verifikasi_surat.cy"
-import { SetujuiPage } from "../../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
+import { LoginPage } from "../../../support/pages/auth/login.cy"
+import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
+import { CreateSuratBiasaPage } from "../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { ReviewVerifikasiSuratPage } from "../../../support/pages/sidebar/kotak_masuk/2_review_verifikasi_surat.cy"
+import { SetujuiPage } from "../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
 
 let setujuiPage = new SetujuiPage()
 let reviewVerifikasiSuratPage = new ReviewVerifikasiSuratPage()
@@ -59,7 +59,7 @@ describe('Create Surat Biasa Skenario', () => {
 
             menuPage.goToKotakMasukReviewNaskah()
             reviewVerifikasiSuratPage.suratBelumDireview()
-            setujuiPage.setujuiDanPenomoran()
+            setujuiPage.doTandaTanganiSurat(user.passphrase)
         })
     )
 }) 

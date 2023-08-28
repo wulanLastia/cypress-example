@@ -1,7 +1,7 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../../support/pages/sidebar/menu/menu.cy"
-import { CreateSuratBiasaPage } from "../../../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { LoginPage } from "../../../support/pages/auth/login.cy"
+import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
+import { CreateSuratBiasaPage } from "../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
 
 let createSuratBiasaPage = new CreateSuratBiasaPage()
 let loginPage = new LoginPage()
