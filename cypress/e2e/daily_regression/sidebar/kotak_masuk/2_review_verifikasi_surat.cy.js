@@ -17,11 +17,11 @@ before(() => {
     })
 })
 
-/*after(() => {
+after(() => {
     qase(411,
         loginPage.logoutV2()
     )
-})*/
+})
 
 describe('Detail Review dan Verifikasi hasil Surat (Kotak Masuk) Skenario', () => {
 

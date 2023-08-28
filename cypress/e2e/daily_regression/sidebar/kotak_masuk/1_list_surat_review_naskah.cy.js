@@ -15,11 +15,11 @@ before(() => {
     })
 })
 
-/*after(() => {
+after(() => {
     qase(411,
         loginPage.logoutV2()
     )
-})*/
+})
 
 describe('List Surat Review Naskah Kotak Masuk Skenario', { testIsolation: false }, () => {
     qase(97,
