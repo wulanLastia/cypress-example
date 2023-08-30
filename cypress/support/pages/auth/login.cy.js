@@ -106,28 +106,11 @@ export class LoginPage {
     // REDIRECT LOGIN TO SIDEBAR V2
 
     directLogin() {
-        const closePopupLandingPageV1 = cy.xpath(login.closePopupLandingPageV1).as('closePopupLandingPageV1')
+        const closePopupLandingPageV1 = cy.get(login.closePopupLandingPageV1).as('closePopupLandingPageV1')
         closePopupLandingPageV1.click()
 
-        const goToV2 = cy.xpath(login.goToV2).as('goToV2')
+        const goToV2 = cy.get(login.goToV2).as('goToV2')
         goToV2.should('contain', 'LOGIN TO V2')
-            .click()
-
-        cy.wait(3000)
-
-        this.closePopupLandingPage()
-    }
-
-    directLoginUnleash() {
-        const closePopupLandingPageV1Unleash = cy.xpath(login.closePopupLandingPageV1Unleash).as('closePopupLandingPageV1Unleash')
-        closePopupLandingPageV1Unleash.click()
-
-        const konsepNaskahMenu = cy.xpath(login.konsepNaskahMenu).as('konsepNaskahMenu')
-        konsepNaskahMenu.should('contain', 'KONSEP NASKAH')
-            .click()
-
-        const goToV2Unleash = cy.xpath(login.goToV2Unleash).as('goToV2Unleash')
-        goToV2Unleash.should('be.visible')
             .click()
 
         cy.wait(3000)
@@ -161,7 +144,7 @@ export class LoginPage {
     // LOGOUT 
 
     backToV1() {
-        const backToV1 = cy.xpath(login.backToV1).as('backToV1')
+        const backToV1 = cy.get(login.backToV1).as('backToV1')
         backToV1.should('contain', 'SIDEBAR V1')
             .click()
     }
@@ -172,7 +155,7 @@ export class LoginPage {
 
         cy.wait(3000)
 
-        const profileUser = cy.xpath(login.profileUser).as('profileUser')
+        const profileUser = cy.get(login.profileUser).as('profileUser')
         profileUser.should('be.visible')
             .click()
 
@@ -182,15 +165,14 @@ export class LoginPage {
     }
 
     logoutV2() {
-        const btnProfile = cy.xpath(navbar.btnProfile).as('btnProfile')
-
+        const btnProfile = cy.get(navbar.btnProfile).as('btnProfile')
         btnProfile.should('be.visible')
         btnProfile.click()
 
-        const popupProfile = cy.xpath(navbar.popupProfile).as('popupProfile')
+        const popupProfile = cy.get(navbar.popupProfile).as('popupProfile')
         popupProfile.should('be.visible')
 
-        const btnKeluar = cy.xpath(navbar.btnKeluar).as('btnKeluar')
+        const btnKeluar = cy.get(navbar.btnKeluar).as('btnKeluar')
         btnKeluar.should('be.visible').and('contain', 'Log Out')
         btnKeluar.click()
 
