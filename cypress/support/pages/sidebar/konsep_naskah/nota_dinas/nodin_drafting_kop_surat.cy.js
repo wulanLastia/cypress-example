@@ -75,6 +75,33 @@ export class DraftingKopSuratNotaDinasPage {
         draftingNotaDinasPage.validateFormDefault()
     }
 
+
+    // ACTIONS
+    clickPreviewSekda() {
+        const checkRadio1 = cy.get(kop_surat.checkRadio1).as('checkRadio1')
+        checkRadio1.click()
+    }
+
+    clickPreviewDinas() {
+        const checkRadio2 = cy.get(kop_surat.checkRadio2).as('checkRadio2')
+        checkRadio2.click()
+    }
+
+    clickPreviewUPTD() {
+        const checkRadio3 = cy.get(kop_surat.checkRadio3).as('checkRadio3')
+        checkRadio3.click()
+    }
+
+    closeKopSurat() {
+        const closeKopSurat = cy.get(kop_surat.closeKopSurat).as('closeKopSurat')
+        closeKopSurat.should('be.visible')
+            .click()
+
+        draftingNotaDinasPage.validateFormDefault()
+    }
+
+
+
     // PROD
     prodCheckPreviewDinas() {
         const checkRadio2 = cy.get(kop_surat.checkRadio2).as('checkRadio2')

@@ -103,6 +103,10 @@ export class DraftingNotaDinasPage {
     }
 
     aksesFormKepalaSurat() {
+        const findKepalaSurat = cy.get(nota_dinas.previewKepala).as('findKepalaSurat')
+        findKepalaSurat.scrollTo('top', {ensureScrollable: false})
+        cy.wait(3000)
+
         const previewKepala = cy.get(nota_dinas.previewKepala).as('previewKepala')
         previewKepala.click(180, 240, { force: true })
 
