@@ -3,6 +3,7 @@ module.exports = {
     previewBadan: '[data-cy="surat__badan-surat"]',
     titleBadan: '[data-cy="badan-naskah__title"]',
     closeBadanNaskah: '[data-cy="badan-naskah__close-button"]',
+    closeBadanNaskahNotaDinas: '[data-cy="badan-naskah__close-icon"]',
     btnKirim: '[data-cy="surat-biasa-submit"]',
     htmlBadan: '[data-cy="badan-naskah__editor"]',
 
