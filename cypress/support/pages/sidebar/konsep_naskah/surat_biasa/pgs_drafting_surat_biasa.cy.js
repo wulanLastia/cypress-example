@@ -153,11 +153,41 @@ export class DraftingKonsepNaskahPage {
     }
 
     inputLampiranSurat2() {
-        const previewLampiran2 = cy.xpath(konsep_naskah.previewLampiran2).as('previewLampiran')
+        const previewLampiran2 = cy.xpath(konsep_naskah.previewLampiran2).as('previewLampiran2')
         previewLampiran2.click(180, 200)
 
         const titleLampiran = cy.xpath(konsep_naskah.titleLampiran).as('titleLampiran')
         titleLampiran.should('contain', 'Lampiran')
+    }
+
+    inputLampiranSuratNotaDinas() {
+        const findLampiranPage = cy.xpath(konsep_naskah.previewLampiran).as('findLampiranPage')
+        findLampiranPage.scrollIntoView()
+
+        const previewLampiran1NotaDinas = cy.xpath(konsep_naskah.previewLampiran1NotaDinas).as('previewLampiran1NotaDinas')
+        previewLampiran1NotaDinas.scrollIntoView()
+        .click({ force: true })
+        cy.wait(3000)
+
+
+        const titleLampiran = cy.xpath(konsep_naskah.titleLampiran).as('titleLampiran')
+        titleLampiran.should('contain', 'Lampiran')
+
+    }
+
+    inputLampiran2SuratNotaDinas() {
+        const findLampiranPage = cy.xpath(konsep_naskah.previewLampiran2).as('findLampiranPage')
+        findLampiranPage.scrollIntoView()
+
+        const previewLampiran2NotaDinas = cy.xpath(konsep_naskah.previewLampiran2NotaDinas).as('previewLampiran2NotaDinas')
+        previewLampiran2NotaDinas.scrollIntoView()
+        .click({ force: true })
+        cy.wait(3000)
+
+
+        const titleLampiran = cy.xpath(konsep_naskah.titleLampiran).as('titleLampiran')
+        titleLampiran.should('contain', 'Lampiran')
+
     }
 
     kirimNaskah() {
