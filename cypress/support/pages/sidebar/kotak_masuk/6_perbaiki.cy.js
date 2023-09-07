@@ -50,7 +50,7 @@ export class PerbaikiNaskahPage {
         const popupKonfirmasiKirimNaskah = cy.get(perbaiki.popupKonfirmasiKirimNaskah).as('popupKonfirmasiKirimNaskah')
         popupKonfirmasiKirimNaskah.should('be.visible')
 
-        const btnKonfirmasiKirimNaskah = cy.xpath(perbaiki.btnKonfirmasiKirimNaskah).as('btnKonfirmasiKirimNaskah')
+        const btnKonfirmasiKirimNaskah = cy.get(perbaiki.btnKonfirmasiKirimNaskah).as('btnKonfirmasiKirimNaskah')
         btnKonfirmasiKirimNaskah.should('contain', 'Kirim naskah')
             .click()
     }

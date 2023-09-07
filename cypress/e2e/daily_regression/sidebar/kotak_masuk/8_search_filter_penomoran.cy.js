@@ -17,7 +17,7 @@ before(() => {
 
 before(() => {
     loginPage.loginViaV1(user.nipUK, user.password)
-    loginPage.directLoginUK()
+    loginPage.directLogin()
 })
 
 describe('Filter dan Search Skenario', { testIsolation: false }, () => {

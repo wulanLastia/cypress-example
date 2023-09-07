@@ -2,18 +2,20 @@ module.exports = {
     // GET
     getbtnKoreksi: '[data-cy="button--correction"]',
     popupKonfirmasiKirimNaskah: '[data-cy="confirmation-submit"]',
-    getpopupKonfirmasiTandatanganiNaskah: '[data-cy="signing-naskah"]',
+    getpopupKonfirmasiTandatanganiNaskah: '[data-cy="dialog__signing-naskah"]',
     btnTandaTanganiDraftSurat: '[data-cy="button--signing"]',
-    inputPassphrase: '[data-cy="input_passphrase"]',
-    btnTandatanganiNaskah: '[data-cy="submit_signing"]',
+    inputPassphrase: '[data-cy="dialog__signing-naskah__input--passphrase"]',
+    btnTandatanganiNaskah: '[data-cy="dialog__signing-naskah__button--submit"]',
+    btnKembali: '[data-cy="button--back"]',
+    titleKoreksi: '[data-cy="button__text"]',
+    btnKembaliKoreksi: '[data-cy="koreksi-naskah__header__button--back"]',
+    titleDetailKoreksi: '[data-cy="koreksi-naskah__header__label"]',
+    previewNaskah: '[data-cy="drafting__preview__surat-biasa"]',
+    tabEditNaskah: '[data-cy="koreksi-naskah__button--edit-naskah"]',
+    tabRiwayatNaskah: '[data-cy="koreksi-naskah__button--riwayat-naskah"]',
+    btnKoreksiTandatangani: '[data-cy="koreksi-naskah__header__button--signing"]',
+    btnKirimNaskah: '[data-cy="koreksi-naskah__header__button--approve"]',
+    btnKonfirmasiKirimNaskah: '[data-cy="dialog__confirmation-submit__button--kirim-naskah"]'
 
     // XPATH
-    btnKembali: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/header[1]/div[1]/div[1]/button[1]/*[name()="svg"][1]/*[name()="path"][1]',
-    titleKoreksi: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]',
-    btnKirimNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/header[1]/div[1]/div[3]/a[1]',
-    previewNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]',
-    tabEditNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/button[1]',
-    tabRiwayatNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/button[2]',
-    btnKonfirmasiKirimNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[6]/div[1]/div[4]/div[1]/button[2]',
-    btnKoreksiTandatangani: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/header[1]/div[1]/div[3]/button[1]'
 }

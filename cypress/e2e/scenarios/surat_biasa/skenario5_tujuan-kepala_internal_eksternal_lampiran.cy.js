@@ -17,7 +17,7 @@ before(() => {
 
 describe('Skenario Create Surat Biasa Tujuan Internal Eksternal Skenario 5 (Tujuan Kepala Surat)', () => {
 
-    qase([13, 81, 83, 709, 150, 80],
+    qase([13, 81, 83, 709, 150, 80, 176],
         it('Create Naskah Surat Biasa', () => {
             // Login 
             loginPage.loginViaV1(user.nip, user.password)

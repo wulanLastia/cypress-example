@@ -354,7 +354,7 @@ export class DraftingKepalaSuratPage {
 
         const inputTujuanLampiran0 = cy.get(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
         inputTujuanLampiran0.wait(1000)
-            .type('Hening Widiatmoko')
+            .type('Dra. Hj. I GUSTI AGUNG')
             .wait(3000)
             .type('{enter}')
 
@@ -455,7 +455,7 @@ export class DraftingKepalaSuratPage {
 
         const inputTujuanLampiran0 = cy.get(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
         inputTujuanLampiran0.wait(1000)
-            .type('Hening Widiatmoko')
+            .type('Dra. Hj. I GUSTI AGUNG')
             .wait(3000)
             .type('{enter}')
 
@@ -662,7 +662,7 @@ export class DraftingKepalaSuratPage {
 
         const inputTujuanLampiran0 = cy.get(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
         inputTujuanLampiran0.wait(1000)
-            .type('Hening Widiatmoko')
+            .type('Dra. Hj. I GUSTI AGUNG')
             .wait(3000)
             .type('{enter}')
 

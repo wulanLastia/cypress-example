@@ -17,13 +17,11 @@ before(() => {
 
 describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)', () => {
 
-    qase([13, 81, 83, 709, 150, 80],
+    qase([13, 81, 83, 709, 150, 80, 849, 176],
         it('Create Naskah Surat Biasa', () => {
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
-
-            loginPage.directDeployPreview()
 
             // Create Naskah
             menuPage.goToKonsepNaskah()

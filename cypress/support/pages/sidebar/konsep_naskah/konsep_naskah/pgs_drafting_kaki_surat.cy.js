@@ -97,7 +97,7 @@ export class DraftingKakiSuratPage {
         selectPenandatangan.select(1).should('have.value', 'ATASAN')
 
         const pilihPenandatangan = cy.get(kaki_surat.pilihPenandatangan).as('pilihPenandatangan')
-        pilihPenandatangan.type('HENING WIDIATMOKO')
+        pilihPenandatangan.type('Dra. Hj. I GUSTI AGUNG')
             .wait(2000)
             .type('{enter}')
     }
