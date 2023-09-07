@@ -1,4 +1,5 @@
 import konsep_naskah from "../../../../selectors/sidebar/konsep_naskah/konsep_naskah"
+import lampiran_surat from "../../../../selectors/sidebar/konsep_naskah/surat_biasa/drafting_lampiran_surat"
 import { MenuPage } from "../../menu/menu.cy"
 
 const menuPage = new MenuPage()
@@ -138,7 +139,7 @@ export class DraftingKonsepNaskahPage {
 
     inputKakiSurat() {
         const previewKaki = cy.get(konsep_naskah.previewKaki).as('previewKaki')
-        previewKaki.click(180, 600, { force: true })
+        previewKaki.click({ multiple: true })
 
         const titleKaki = cy.get(konsep_naskah.titleKaki).as('titleKaki')
         titleKaki.should('contain', 'Kaki Surat')
@@ -172,6 +173,15 @@ export class DraftingKonsepNaskahPage {
     scrollPreviewPage() {
         const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
         previewPage.scrollTo('top')
+    }
+
+    scrollPreviewDownPage() {
+        //const previewPageDown = cy.xpath(konsep_naskah.previewPageDown).as('previewPageDown')
+        //previewPageDown.scrollTo('bottom')
+
+        const scrollPreview = cy.xpath(lampiran_surat.scrollPreview).as('scrollPreview')
+        scrollPreview.click()
+            .scrollTo('bottom')
     }
 
 }

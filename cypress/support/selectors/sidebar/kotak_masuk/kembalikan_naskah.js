@@ -1,21 +1,22 @@
 module.exports = {
     // GET
-    popUpKonfirmasiKembalikanNaskah: '[data-cy="konfirmasi-kembalikan-naskah"]',
+    popUpKonfirmasiKembalikanNaskah: '[data-cy="dialog__konfirmasi-kembalikan-naskah"]',
     btnKembalikan: '[data-cy="button--send-back"]',
+    popUpKembalikanNaskah: '[data-cy="dialog__kembalikan-naskah__component"]',
+    titleKembalikanNaskah: '[data-cy="dialog__kembalikan-naskah__title"]',
+    btnKembalikanNaskah: '[data-cy="dialog__kembalikan-naskah__button--kembalikan-naskah"]',
+    btnBatalKembalikanNaskah: '[data-cy="dialog__kembalikan-naskah__button--batal"]',
+    checkSifatNaskah: '[dialog__kembalikan-naskah__checkbox__sifat-naskah]',
+    inputSifatNaskah: '[data-cy="dialog__kembalikan-naskah__input__sifat-naskah"]',
+    checkTembusan: '[data-cy="dialog__kembalikan-naskah__checkbox__tembusan"]',
+    inputTembusan: '[data-cy="dialog__kembalikan-naskah__input__tembusan"]',
+    checkPerihal: '[data-cy="dialog__kembalikan-naskah__checkbox__perihal-naskah"]',
+    inputPerihal: '[data-cy="dialog__kembalikan-naskah__input__perihal-naskah"]',
+    btnPeriksaKembali: '[data-cy="dialog__konfirmasi-kembalikan-naskah__button--cancel"]',
+    titleKonfirmasiKembalikanNaskah: '[data-cy="dialog__konfirmasi-kembalikan-naskah__title"]',
+    subTitleKonfirmasiKembalikanNaskah: '[data-cy="dialog__konfirmasi-kembalikan-naskah__subtitle"]',
+    btnKirimNaskah: '[data-cy="dialog__konfirmasi-kembalikan-naskah__button--kirim-naskah"]'
 
     // XPATH
-    popUpKembalikanNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[1]',
-    titleKembalikanNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[1]/header[1]/h5[1]/strong[1]',
-    btnKembalikanNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[1]/div[2]/div[1]/button[2]',
-    btnBatalKembalikanNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[1]/div[2]/div[1]/button[1]',
-    checkSifatNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[1]/div[1]/div[1]/input[1]',
-    inputSifatNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[1]/div[1]/div[1]/input[1]',
-    checkTembusan: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[1]/div[1]/div[2]/input[1]',
-    inputTembusan: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[1]/div[1]/input[2]',
-    checkPerihal: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[1]/div[1]/div[3]/input[1]',
-    inputPerihal: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[1]/div[1]/input[3]',
-    btnPeriksaKembali: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[10]/div[1]/div[4]/div[1]/button[1]',
-    titleKonfirmasiKembalikanNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[10]/div[1]/header[1]/h5[1]/strong[1]',
-    subTitleKonfirmasiKembalikanNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[10]/div[1]/header[1]/span[1]',
-    btnKirimNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[10]/div[1]/div[4]/div[1]/button[2]'
+
 }

@@ -29,26 +29,25 @@ export class KoreksiSuratPage {
 
         cy.wait(3000)
 
-        const btnKembali = cy.xpath(koreksi.btnKembali).as('btnKembali')
-        btnKembali.should('be.visible')
+        const btnKembaliKoreksi = cy.get(koreksi.btnKembaliKoreksi).as('btnKembaliKoreksi')
+        btnKembaliKoreksi.should('be.visible')
 
-        const titleKoreksi = cy.xpath(koreksi.titleKoreksi).as('titleKoreksi')
-        titleKoreksi.should('contain', 'Konsep Naskah')
+        const titleDetailKoreksi = cy.get(koreksi.titleDetailKoreksi).as('titleDetailKoreksi')
+        titleDetailKoreksi.should('contain', 'Konsep Naskah')
             .and('be.visible')
 
-        const btnKoreksiTandatangani = cy.xpath(koreksi.btnKoreksiTandatangani).as('btnKoreksiTandatangani')
+        const btnKoreksiTandatangani = cy.get(koreksi.btnKoreksiTandatangani).as('btnKoreksiTandatangani')
         btnKoreksiTandatangani.should('contain', 'Tandatangani')
             .and('be.visible')
 
-        const previewNaskah = cy.xpath(koreksi.previewNaskah).as('previewNaskah')
-        previewNaskah.should('have.class', 'box-frame space-y-4 p-5 pb-0')
-            .and('be.visible')
+        const previewNaskah = cy.get(koreksi.previewNaskah).as('previewNaskah')
+        previewNaskah.should('be.visible')
 
-        const tabEditNaskah = cy.xpath(koreksi.tabEditNaskah).as('tabEditNaskah')
+        const tabEditNaskah = cy.get(koreksi.tabEditNaskah).as('tabEditNaskah')
         tabEditNaskah.should('contain', 'Edit Naskah')
             .and('be.visible')
 
-        const tabRiwayatNaskah = cy.xpath(koreksi.tabRiwayatNaskah).as('tabRiwayatNaskah')
+        const tabRiwayatNaskah = cy.get(koreksi.tabRiwayatNaskah).as('tabRiwayatNaskah')
         tabRiwayatNaskah.should('contain', 'Riwayat Naskah')
             .and('be.visible')
     }
@@ -60,26 +59,25 @@ export class KoreksiSuratPage {
 
         cy.wait(3000)
 
-        const btnKembali = cy.xpath(koreksi.btnKembali).as('btnKembali')
+        const btnKembali = cy.get(koreksi.btnKembali).as('btnKembali')
         btnKembali.should('be.visible')
 
-        const titleKoreksi = cy.xpath(koreksi.titleKoreksi).as('titleKoreksi')
-        titleKoreksi.should('contain', 'Konsep Naskah')
+        const titleKoreksi = cy.get(koreksi.titleKoreksi).as('titleKoreksi')
+        titleKoreksi.should('contain', 'Review Naskah')
             .and('be.visible')
 
-        const btnKirimNaskah = cy.xpath(koreksi.btnKirimNaskah).as('btnKirimNaskah')
+        const btnKirimNaskah = cy.get(koreksi.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.should('contain', 'Kirim Naskah')
             .and('be.visible')
 
-        const previewNaskah = cy.xpath(koreksi.previewNaskah).as('previewNaskah')
-        previewNaskah.should('have.class', 'box-frame space-y-4 p-5 pb-0')
-            .and('be.visible')
+        const previewNaskah = cy.get(koreksi.previewNaskah).as('previewNaskah')
+        previewNaskah.should('be.visible')
 
-        const tabEditNaskah = cy.xpath(koreksi.tabEditNaskah).as('tabEditNaskah')
+        const tabEditNaskah = cy.get(koreksi.tabEditNaskah).as('tabEditNaskah')
         tabEditNaskah.should('contain', 'Edit Naskah')
             .and('be.visible')
 
-        const tabRiwayatNaskah = cy.xpath(koreksi.tabRiwayatNaskah).as('tabRiwayatNaskah')
+        const tabRiwayatNaskah = cy.get(koreksi.tabRiwayatNaskah).as('tabRiwayatNaskah')
         tabRiwayatNaskah.should('contain', 'Riwayat Naskah')
             .and('be.visible')
     }
@@ -87,18 +85,18 @@ export class KoreksiSuratPage {
     koreksiTandatanganiNaskah(passphrase) {
         createSuratBiasaPage.inputKoreksiKepalaSurat()
 
-        const btnKoreksiTandatangani = cy.xpath(koreksi.btnKoreksiTandatangani).as('btnKoreksiTandatangani')
+        const btnKoreksiTandatangani = cy.get(koreksi.btnKoreksiTandatangani).as('btnKoreksiTandatangani')
         btnKoreksiTandatangani.click()
 
         const getpopupKonfirmasiTandatanganiNaskah = cy.get(koreksi.getpopupKonfirmasiTandatanganiNaskah).as('getpopupKonfirmasiTandatanganiNaskah')
         getpopupKonfirmasiTandatanganiNaskah.should('be.visible')
 
-        const inputPassphrase = cy.xpath(koreksi.inputPassphrase).as('inputPassphrase')
+        const inputPassphrase = cy.get(koreksi.inputPassphrase).as('inputPassphrase')
         inputPassphrase.type(passphrase)
 
         cy.wait(2000)
 
-        const btnTandatanganiNaskah = cy.xpath(koreksi.btnTandatanganiNaskah).as('btnTandatanganiNaskah')
+        const btnTandatanganiNaskah = cy.get(koreksi.btnTandatanganiNaskah).as('btnTandatanganiNaskah')
         btnTandatanganiNaskah.should('contain', 'Tandatangani')
             .click()
     }
@@ -106,13 +104,13 @@ export class KoreksiSuratPage {
     koreksiNaskah() {
         createSuratBiasaPage.inputKoreksiKepalaSurat()
 
-        const btnKoreksiTandatangani = cy.xpath(koreksi.btnKoreksiTandatangani).as('btnKoreksiTandatangani')
+        const btnKoreksiTandatangani = cy.get(koreksi.btnKoreksiTandatangani).as('btnKoreksiTandatangani')
         btnKoreksiTandatangani.click()
 
         const popupKonfirmasiKirimNaskah = cy.get(koreksi.popupKonfirmasiKirimNaskah).as('popupKonfirmasiKirimNaskah')
         popupKonfirmasiKirimNaskah.should('be.visible')
 
-        const btnKonfirmasiKirimNaskah = cy.xpath(koreksi.btnKonfirmasiKirimNaskah).as('btnKonfirmasiKirimNaskah')
+        const btnKonfirmasiKirimNaskah = cy.get(koreksi.btnKonfirmasiKirimNaskah).as('btnKonfirmasiKirimNaskah')
         btnKonfirmasiKirimNaskah.should('contain', 'Kirim naskah')
             .click()
     }

@@ -12,7 +12,7 @@ export class SetujuiPage {
         cy.readFile(perihalNaskah).then((object) => {
             const titlePerihalNaskah = object.titlePerihal
 
-            const tableReviewSurat = cy.xpath(setujui.tableReviewSurat).as('tableReviewSurat')
+            const tableReviewSurat = cy.get(setujui.tableReviewSurat).as('tableReviewSurat')
             tableReviewSurat.contains('td', titlePerihalNaskah)
                 .click()
         })
@@ -26,7 +26,10 @@ export class SetujuiPage {
         const popUpSetujui = cy.get(setujui.popUpSetujui).as('popUpSetujui')
         popUpSetujui.should('be.visible')
 
-        const btnKirimNaskah = cy.xpath(setujui.btnKirimNaskah).as('btnKirimNaskah')
+        const titleSetujui = cy.get(setujui.titleSetujui).as('titleSetujui')
+        titleSetujui.should('contain', 'Pastikan naskah Anda sudah benar sebelum meneruskan ke pihak selanjutnya')
+
+        const btnKirimNaskah = cy.get(setujui.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.should('contain', 'Kirim naskah')
             .click()
     }

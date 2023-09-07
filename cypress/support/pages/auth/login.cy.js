@@ -41,7 +41,7 @@ export class LoginPage {
     closePopupLandingPage() {
         cy.wait(6000)
 
-        const closePopup = cy.xpath(login.closePopupLandingPage).as('closePopupLandingPage')
+        const closePopup = cy.get(login.closePopupLandingPage).as('closePopupLandingPage')
         closePopup.then($popup => {
             if ($popup.is(':visible')) {
                 closePopup.click()
@@ -111,19 +111,6 @@ export class LoginPage {
 
         const goToV2 = cy.get(login.goToV2).as('goToV2')
         goToV2.should('contain', 'LOGIN TO V2')
-            .click()
-
-        cy.wait(3000)
-
-        this.closePopupLandingPage()
-    }
-
-    directLoginUK() {
-        const closePopupLandingPageV1UK = cy.xpath(login.closePopupLandingPageV1UK).as('closePopupLandingPageV1UK')
-        closePopupLandingPageV1UK.click()
-
-        const goToV2UK = cy.xpath(login.goToV2UK).as('goToV2UK')
-        goToV2UK.should('contain', 'LOGIN TO V2')
             .click()
 
         cy.wait(3000)

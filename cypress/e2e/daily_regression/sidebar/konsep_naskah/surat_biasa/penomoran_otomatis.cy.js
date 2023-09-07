@@ -30,6 +30,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
+            loginPage.directDeployPreview()
 
             // Create Naskah
             menuPage.goToKonsepNaskah()
@@ -49,6 +50,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa, user.password)
             loginPage.directLogin()
+            loginPage.directDeployPreview()
 
             // Create Naskah
             kembalikanNaskahPage.emptyField()
@@ -66,6 +68,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
+            loginPage.directDeployPreview()
 
             perbaikiNaskahPage.goToNaskahBelumDireview()
             perbaikiNaskahPage.perbaikiNaskah()
@@ -77,6 +80,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa, user.password)
             loginPage.directLogin()
+            loginPage.directDeployPreview()
 
             setujuiPage.suratBelumDireview()
             setujuiPage.setujui()
@@ -88,6 +92,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa2, user.password)
             loginPage.directLogin()
+            loginPage.directDeployPreview()
 
             koreksiSuratPage.goToNaskahBelumDireview()
             koreksiSuratPage.checkDetailKoreksiTandatangani()
