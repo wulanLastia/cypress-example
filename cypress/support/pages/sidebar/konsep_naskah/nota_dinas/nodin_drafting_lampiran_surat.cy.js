@@ -186,6 +186,15 @@ export class DraftingLampiranSuratPage {
             .click()
     }
 
+    closeLampiranNotaDinas() {
+        const scrollLampiran = cy.xpath(lampiran_surat.scrollLampiran).as('scrollLampiran')
+        scrollLampiran.scrollTo('top')
+
+        const btnCloseLampiran = cy.get(lampiran_surat.btnCloseLampiranNotaDinas).as('btnCloseLampiran')
+        btnCloseLampiran.should('be.visible')
+            .click()
+    }
+
     scrollPreviewPage() {
         draftingKonsepNaskahPage.scrollPreviewPage()
     }
