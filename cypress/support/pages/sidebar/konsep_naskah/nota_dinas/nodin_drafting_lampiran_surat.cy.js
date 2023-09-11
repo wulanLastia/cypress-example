@@ -1,7 +1,8 @@
 import lampiran_surat from "../../../../selectors/sidebar/konsep_naskah/surat_biasa/drafting_lampiran_surat"
-import { DraftingKonsepNaskahPage } from "../surat_biasa/pgs_drafting_surat_biasa.cy"
+import { DraftingNotaDinasPage } from "../nota_dinas/pgs_drafting_nota_dinas.cy"
 
-const draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()
+
+const draftingNotaDinasPage = new DraftingNotaDinasPage()
 
 const getJSONRequestFileCreateNotaDinas = "cypress/fixtures/JSON/1_internal/create/untuk-create-data-nota_dinas.json"
 
@@ -26,7 +27,7 @@ export class DraftingLampiranSuratPage {
     }
 
     checkDetail() {
-        draftingKonsepNaskahPage.inputLampiranSuratNotaDinas()
+        draftingNotaDinasPage.inputLampiranSuratNotaDinas()
         cy.wait(3000)
 
         const subtitleLampiran = cy.get(lampiran_surat.subtitleLampiranNotaDinas).as('subtitleLampiran')
@@ -49,7 +50,7 @@ export class DraftingLampiranSuratPage {
     }
 
     checkDetail2() {
-        draftingKonsepNaskahPage.inputLampiran2SuratNotaDinas()
+        draftingNotaDinasPage.inputLampiran2SuratNotaDinas()
         cy.wait(3000)
 
         const subtitleLampiran = cy.xpath(lampiran_surat.subtitleLampiran).as('subtitleLampiran')
@@ -80,7 +81,7 @@ export class DraftingLampiranSuratPage {
     // LAMPIRAN SURAT
     // Input Lampiran Surat
     inputLampiranSurat() {
-        draftingKonsepNaskahPage.inputLampiranSuratNotaDinas()
+        draftingNotaDinasPage.inputLampiranSuratNotaDinas()
 
         const iframeLampiran = cy.get(lampiran_surat.htmlLampiranNotaDinas).as('htmlLampiran')
         iframeLampiran.find('iframe')
@@ -124,7 +125,7 @@ export class DraftingLampiranSuratPage {
 
     
     inputLampiranSurat2() {
-        draftingKonsepNaskahPage.inputLampiranSurat2()
+        draftingNotaDinasPage.inputLampiran2SuratNotaDinas()
 
         const iframeLampiran = cy.get(lampiran_surat.htmlLampiranNotaDinas).as('htmlLampiran')
         iframeLampiran.find('iframe')
@@ -174,7 +175,7 @@ export class DraftingLampiranSuratPage {
         btnHapusLampiran.should('be.visible')
             .click()
 
-        draftingKonsepNaskahPage.validateFormDefault()
+        draftingNotaDinasPage.validateFormDefault()
     }
 
     closeLampiran() {
@@ -196,7 +197,7 @@ export class DraftingLampiranSuratPage {
     }
 
     scrollPreviewPage() {
-        draftingKonsepNaskahPage.scrollPreviewPage()
+        draftingNotaDinasPage.scrollPreviewPage()
     }
 
 
