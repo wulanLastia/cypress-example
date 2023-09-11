@@ -32,8 +32,6 @@ export class CreateNotaDinasPage {
 
     createKepalaSurat() {
         draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
-        // draftingKepalaSuratNotaDinasPage.checkDetailPreview()
-        // draftingKepalaSuratNotaDinasPage.checkDetail()
 
         // Pilih Penempatan Daftar Tujuan Surat
         draftingKepalaSuratNotaDinasPage.clickRButton1KepalaSurat()
@@ -66,7 +64,6 @@ export class CreateNotaDinasPage {
         cy.wait(3000)
         draftingLampiranSuratPage.aksesFormEditingLampiranSurat()
         cy.wait(3000)
-        // draftingLampiranSuratPage.checkDetail()
         // Input Lampiran Surat 1
         draftingLampiranSuratPage.inputLampiranSurat()
         draftingLampiranSuratPage.closeLampiranNotaDinas()
@@ -93,7 +90,6 @@ export class CreateNotaDinasPage {
     createKakiSurat() {
         draftingKakiSuratPage.aksesFormEditingKakiSurat()
         draftingKakiSuratPage.inputKakiSurat()
-        // draftingKakiSuratPage.checkDetail()
         draftingKakiSuratPage.pilihPenandatanganAtasan()
         draftingKakiSuratPage.pilihPemeriksa()
         draftingKakiSuratPage.closeKakiSurat()
