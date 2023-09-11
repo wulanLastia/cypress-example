@@ -29,9 +29,6 @@ before(() => {
     loginPage.loginViaV1(user.nip, user.password)
     loginPage.directLogin()
 
-    // Jika LogIn skenario default tidak bisa lakukan skenario LogIn via Unleash
-    // loginPage.directLoginUnleash()
-
 })
 
 
@@ -93,7 +90,6 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
-            // loginPage.directDeployPreview()
 
 
             perbaikiNaskahPage.goToNaskahBelumDireview()
