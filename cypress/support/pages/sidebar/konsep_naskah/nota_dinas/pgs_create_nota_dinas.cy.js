@@ -52,7 +52,7 @@ export class CreateNotaDinasPage {
         // Field Unit Pengolah
         draftingKepalaSuratNotaDinasPage.inputUnitPengolah("PAD")
         // Field Tanggal Penomoran
-        draftingKepalaSuratNotaDinasPage.validateTanggal()
+        // draftingKepalaSuratNotaDinasPage.validateTanggal() // Bila di shutdown di unleash bisa dimatikan dulu assertion ini
         // Dropdown Sifat Surat
         draftingKepalaSuratNotaDinasPage.validateSifatSurat("Penting")
         // Dropdown Urgensi
@@ -69,7 +69,7 @@ export class CreateNotaDinasPage {
         // draftingLampiranSuratPage.checkDetail()
         // Input Lampiran Surat 1
         draftingLampiranSuratPage.inputLampiranSurat()
-        draftingLampiranSuratPage.closeLampiran()
+        draftingLampiranSuratPage.closeLampiranNotaDinas()
         cy.wait(5000)
     }
 
@@ -79,7 +79,7 @@ export class CreateNotaDinasPage {
         cy.wait(3000)
         // Input Lampiran Surat 2
         draftingLampiranSuratPage.inputLampiranSurat2()
-        draftingLampiranSuratPage.closeLampiran()
+        draftingLampiranSuratPage.closeLampiranNotaDinas()
         cy.wait(5000)
     }
 
