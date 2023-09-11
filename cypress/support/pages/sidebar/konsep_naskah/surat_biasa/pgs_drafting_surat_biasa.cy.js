@@ -164,7 +164,7 @@ export class DraftingKonsepNaskahPage {
         const findLampiranPage = cy.xpath(konsep_naskah.previewLampiran).as('findLampiranPage')
         findLampiranPage.scrollIntoView()
 
-        const previewLampiran1NotaDinas = cy.xpath(konsep_naskah.previewLampiran1NotaDinas).as('previewLampiran1NotaDinas')
+        const previewLampiran1NotaDinas = cy.get(konsep_naskah.previewLampiranNotaDinas).as('previewLampiran1NotaDinas')
         previewLampiran1NotaDinas.scrollIntoView()
         .click({ force: true })
         cy.wait(3000)
@@ -179,7 +179,7 @@ export class DraftingKonsepNaskahPage {
         const findLampiranPage = cy.xpath(konsep_naskah.previewLampiran2).as('findLampiranPage')
         findLampiranPage.scrollIntoView()
 
-        const previewLampiran2NotaDinas = cy.xpath(konsep_naskah.previewLampiran2NotaDinas).as('previewLampiran2NotaDinas')
+        const previewLampiran2NotaDinas = cy.get(konsep_naskah.previewLampiranNotaDinas).as('previewLampiran2NotaDinas')
         previewLampiran2NotaDinas.scrollIntoView()
         .click({ force: true })
         cy.wait(3000)
