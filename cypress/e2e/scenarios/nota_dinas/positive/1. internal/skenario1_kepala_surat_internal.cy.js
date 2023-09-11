@@ -35,12 +35,6 @@ before(() => {
 })
 
 
-after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
-})
-
 
 
 describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {        
