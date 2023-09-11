@@ -1,5 +1,4 @@
 import konsep_naskah from "../../../../selectors/sidebar/konsep_naskah/konsep_naskah"
-import lampiran_surat from "../../../../selectors/sidebar/konsep_naskah/surat_biasa/drafting_lampiran_surat"
 import { MenuPage } from "../../menu/menu.cy"
 
 const menuPage = new MenuPage()
@@ -176,12 +175,10 @@ export class DraftingKonsepNaskahPage {
     }
 
     scrollPreviewDownPage() {
-        //const previewPageDown = cy.xpath(konsep_naskah.previewPageDown).as('previewPageDown')
-        //previewPageDown.scrollTo('bottom')
+        cy.wait(3000)
 
-        const scrollPreview = cy.xpath(lampiran_surat.scrollPreview).as('scrollPreview')
-        scrollPreview.click()
-            .scrollTo('bottom')
+        const previewPageDown = cy.xpath(konsep_naskah.previewPageDown).as('previewPageDown')
+        previewPageDown.scrollTo('bottom')
     }
 
 }
