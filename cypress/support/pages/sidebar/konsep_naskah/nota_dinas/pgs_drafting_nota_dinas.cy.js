@@ -159,4 +159,38 @@ export class DraftingNotaDinasPage {
 
     }
 
+    inputLampiranSuratNotaDinas() {
+        const findLampiranPage = cy.xpath(konsep_naskah.previewLampiran).first().as('findLampiranPage');
+        findLampiranPage.scrollIntoView();
+    
+        const previewLampiran1NotaDinas = cy.get(konsep_naskah.previewLampiranNotaDinas).first().as('previewLampiran1NotaDinas');
+        previewLampiran1NotaDinas.scrollIntoView()
+        .click({ force: true });
+        cy.wait(3000);
+    
+        const titleLampiran = cy.xpath(konsep_naskah.titleLampiran).as('titleLampiran');
+        titleLampiran.should('contain', 'Lampiran');
+    }
+    
+    inputLampiran2SuratNotaDinas() {
+        cy.wait(3000);
+    
+        const findLampiranPage = cy.xpath(konsep_naskah.previewLampiran2).last().as('findLampiranPage');
+        findLampiranPage.scrollIntoView();
+    
+        const previewLampiran2NotaDinas = cy.get(konsep_naskah.previewLampiranNotaDinas).last().as('previewLampiran2NotaDinas');
+        previewLampiran2NotaDinas.scrollIntoView()
+        .click({ force: true });
+        cy.wait(3000);
+    
+        const titleLampiran = cy.xpath(konsep_naskah.titleLampiran).as('titleLampiran');
+        titleLampiran.should('contain', 'Lampiran');
+    }
+    
+    scrollPreviewPage() {
+        const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
+        previewPage.scrollTo('top')
+    }
+
+
 }
