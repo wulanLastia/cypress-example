@@ -18,15 +18,14 @@ module.exports = {
     previewKaki: '[data-cy="surat__kaki-surat"]',
     titleKaki: '[data-cy="kaki-surat__title"]',
     previewKepalaLampiran: '[data-cy="lampiran-tujuan-surat__title"]',
+    previewLampiranNotaDinas: '[data-cy="drafting__lampiran__badan"]',
 
 
     // XPATH
     titleNaskahKeluar: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]',
     previewPage: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]',
     previewLampiran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]',
-    previewLampiran1NotaDinas: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/p[1]',
     previewLampiran2: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[3]',
-    previewLampiran2NotaDinas: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[3]/div[1]/div[1]',
     titlePreviewLampiran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/p[1]',
     btnBuatLampiran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[2]/button[1]',
     btnUploadFile: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[2]/button[2]',
