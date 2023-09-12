@@ -18,6 +18,7 @@ module.exports = {
     previewKaki: '[data-cy="surat__kaki-surat"]',
     titleKaki: '[data-cy="kaki-surat__title"]',
     previewKepalaLampiran: '[data-cy="lampiran-tujuan-surat__title"]',
+    previewLampiranNotaDinas: '[data-cy="drafting__lampiran__badan"]',
 
 
     // XPATH

@@ -154,7 +154,7 @@ export class DraftingKonsepNaskahPage {
     }
 
     inputLampiranSurat2() {
-        const previewLampiran2 = cy.xpath(konsep_naskah.previewLampiran2).as('previewLampiran')
+        const previewLampiran2 = cy.xpath(konsep_naskah.previewLampiran2).as('previewLampiran2')
         previewLampiran2.click(180, 200)
 
         const titleLampiran = cy.xpath(konsep_naskah.titleLampiran).as('titleLampiran')
