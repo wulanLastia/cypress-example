@@ -1,9 +1,11 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../../../support/pages/auth/login.cy"
+import { MenuPage } from "../../../../../support/pages/sidebar/menu/menu.cy"
 import { DraftingKonsepNaskahPage } from "../../../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_drafting_surat_biasa.cy"
 
 let draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()
 let loginPage = new LoginPage()
+let menuPage = new MenuPage()
 let user
 
 before(() => {
@@ -24,12 +26,19 @@ after(() => {
     )
 })
 
-describe('Preview Surat Biasa', () => {
+describe('Preview Surat Biasa', { testIsolation: false }, () => {
+
     qase(278,
         it('Scroll preview ke bawah', () => {
-            // Login
             draftingKonsepNaskahPage.goToKonsepNaskahSuratBiasa()
             draftingKonsepNaskahPage.scrollPreviewDownPage()
+        })
+    )
+
+    qase(277,
+        it('Scroll preview ke atas', () => {
+            draftingKonsepNaskahPage.scrollPreviewPage()
+            menuPage.goToKotakMasukReviewNaskah()
         })
     )
 })
