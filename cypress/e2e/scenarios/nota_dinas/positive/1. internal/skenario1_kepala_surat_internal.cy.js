@@ -34,10 +34,10 @@ before(() => {
 
 
 
-describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {        
-        
-        qase([1, 1069, 1064, 1065, 1067, 1066, 1062, 1063, 1061, 721, 723, 724, 725, 1123, 1118, 1146, 1147, 1148, 1151, 1159],
-            it('Nota Dinas Tujuan Kepala Internal', () => {
+describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
+
+    qase([1, 1069, 1064, 1065, 1067, 1066, 1062, 1063, 1061, 721, 723, 724, 725, 1123, 1118, 1146, 1147, 1148, 1151, 1159],
+        it('Nota Dinas Tujuan Kepala Internal', () => {
             createNotaDinasPage.gotoNotaDinas() // Cek detail halaman drafting konsep naskah surat biasa
             createNotaDinasPage.createKopSurat()
             cy.wait(3000)
@@ -92,7 +92,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             loginPage.directLogin()
 
 
-            perbaikiNaskahPage.goToNaskahBelumDireview()
+            perbaikiNaskahPage.goToPerbaikiNaskah()
             cy.wait(3000)
             perbaikiNaskahPage.perbaikiNaskahNotaDinas()
             cy.wait(10000)
