@@ -1,6 +1,6 @@
 module.exports = {
     // GET
-    btnCloseLampiran: '[data-cy="lampiran__close-button"]',
+    btnCloseLampiran: '[data-cy="drafting__lampiran__input-area__button--close"]',
     btnCloseLampiranNotaDinas: '[data-cy="drafting__lampiran__input-area__button--close"]',
     scrappingWordsLampiran1: '.words > :nth-child(3)',
     btnEditLampiran: '[data-cy="drafting__lampiran__badan"]',
@@ -21,5 +21,6 @@ module.exports = {
     htmlLampiran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/iframe[1]',
     scrollLampiran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]',
     btnHapusLampiran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/span[1]',
+    btnCloseLampiranXpath:"/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/button[1]"
 
 }
