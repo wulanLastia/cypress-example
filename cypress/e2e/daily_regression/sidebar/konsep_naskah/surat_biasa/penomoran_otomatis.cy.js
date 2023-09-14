@@ -67,7 +67,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
 
-            perbaikiNaskahPage.goToNaskahBelumDireview()
+            perbaikiNaskahPage.goToPerbaikiNaskah()
             perbaikiNaskahPage.perbaikiNaskah()
         })
     )

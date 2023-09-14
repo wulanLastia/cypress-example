@@ -48,10 +48,10 @@ export class DraftingKepalaSuratPage {
     }
 
     validateTanggal(val) {
-        const titleTanggal = cy.get(kepala_surat.titleTanggal).as('titleTanggal')
-        titleTanggal.should('contain', 'Tanggal Penomoran')
-
         if (val === 'Manual') {
+            const titleTanggal = cy.get(kepala_surat.titleTanggal).as('titleTanggal')
+            titleTanggal.should('contain', 'Tanggal Penomoran')
+
             const inputTanggal = cy.get(kepala_surat.inputTanggal).as('inputTanggal')
             inputTanggal.click()
 
