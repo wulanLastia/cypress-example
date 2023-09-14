@@ -21,8 +21,11 @@ jobs:
           mkdir cypress/fixtures
           echo "${{ secrets.CREDENTIALS_DEV_JSON_CONTENT }}" | base64 --decode > cypress/fixtures/credentials_dev.json
           echo "${{ secrets.CREDENTIALS_PROD_JSON_CONTENT }}" | base64 --decode > cypress/fixtures/credentials_prod.json
+      - name: 'Create kepala surat fixture'
+        run: |
+          mkdir cypress/fixtures/kepala_surat
           echo "${{ secrets.KEPALA_SURAT_JSON }}" | base64 --decode > cypress/fixtures/kepala_surat/kepala_surat_temp_data.json
-
+           
       # adapted from https://stackoverflow.com/a/76943682/2496217 & https://stackoverflow.com/a/61827163/2496217
       - name: Get current datedate as env variable
         run: echo "DATETIME=$(TZ='Asia/Jakarta' date +'%Y-%m-%d_%H:%M:%S')" >> $GITHUB_ENV
