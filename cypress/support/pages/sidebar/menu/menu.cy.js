@@ -4,16 +4,16 @@ import menu from "../../../selectors/sidebar/menu/menu"
 
 export class MenuPage {
 
-    checkProfile() {
-        const profileName = cy.xpath(navbar.profileName).as('profileName')
-        profileName.should('contain', 'Vita Putri Utami, S.Sos., M.I.Kom')
+    checkProfile(namaKonseptor, jabatan) {
+        const profileName = cy.get(navbar.profileName).as('profileName')
+        profileName.should('contain', namaKonseptor)
 
-        const profilePosition = cy.xpath(navbar.profilePosition).as('profilePosition')
-        profilePosition.should('contain', 'ARSIPARIS AHLI MUDA')
+        const profilePosition = cy.get(navbar.profilePosition).as('profilePosition')
+        profilePosition.should('contain', jabatan)
     }
 
     clickBtnHideMenu() {
-        const hideMenu = cy.xpath(navbar.hideShowMenu).as('hideMenu')
+        const hideMenu = cy.get(navbar.hideShowMenu).as('hideMenu')
         hideMenu.click()
 
         const sidebar = cy.xpath(menu.sidebarClass).as('sidebarClass')
@@ -21,10 +21,10 @@ export class MenuPage {
     }
 
     clickBtnShowMenu() {
-        const hideMenu = cy.xpath(navbar.hideShowMenu).as('hideMenu')
+        const hideMenu = cy.get(navbar.hideShowMenu).as('hideMenu')
         hideMenu.click()
 
-        const showMenu = cy.xpath(navbar.hideShowMenu).as('showMenu')
+        const showMenu = cy.get(navbar.hideShowMenu).as('showMenu')
         showMenu.click()
 
         const sidebar = cy.xpath(menu.sidebarClass).as('sidebarClass')
@@ -40,20 +40,11 @@ export class MenuPage {
         reviewNaskahKM.should('contain', 'Review Naskah')
             .and('be.visible')
 
-        //const tindakLanjutKM = cy.xpath(menu.tindakLanjutKM).as('tindakLanjutKM')
-        //tindakLanjutKM.should('contain','Tindak Lanjut')
-        //    .and('be.visible')
-
         this.goToKotakKeluar()
 
         const reviewNaskahKK = cy.get(menu.reviewNaskahKK).as('reviewNaskahKK')
         reviewNaskahKK.should('contain', 'Review Naskah')
             .and('be.visible')
-
-        //const tindakLanjutKK = cy.xpath(menu.tindakLanjutKK).as('tindakLanjutKK')
-        //tindakLanjutKK.should('contain','Tindak Lanjut')
-        //    .and('be.visible')
-        //    .click()
     }
 
     goToKotakMasuk() {

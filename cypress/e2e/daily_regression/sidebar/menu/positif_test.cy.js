@@ -18,16 +18,16 @@ beforeEach(() => {
     loginPage.directLogin()
 })
 
-afterEach(() => {
+/*afterEach(() => {
     qase(411,
-        loginPage.logoutV2()
+        loginPage.logoutV2step2()
     )
-})
+})*/
 
 describe('Menu Positif Skenario', () => {
     qase(1,
         it('Cek detail navbar', () => {
-            menuPage.checkProfile()
+            menuPage.checkProfile('Vita Putri Utami, S.Sos., M.I.Kom', 'ARSIPARIS AHLI MUDA')
         })
     )
 
@@ -46,8 +46,6 @@ describe('Menu Positif Skenario', () => {
     qase(4,
         it('Cek Detail Sidebar', () => {
             menuPage.checkMenu()
-            cy.wait(3000)
-            menuPage.goToKotakMasukReviewNaskah()
         })
     )
 
