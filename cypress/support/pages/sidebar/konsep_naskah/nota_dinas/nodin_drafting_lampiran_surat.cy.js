@@ -83,6 +83,8 @@ export class DraftingLampiranSuratPage {
     inputLampiranSurat() {
         draftingNotaDinasPage.inputLampiranSuratNotaDinas()
 
+        cy.wait(6000)
+
         const iframeLampiran = cy.get(lampiran_surat.htmlLampiranNotaDinas).as('htmlLampiran')
         iframeLampiran.find('iframe')
             .its('0.contentDocument.body')
@@ -126,6 +128,8 @@ export class DraftingLampiranSuratPage {
     
     inputLampiranSurat2() {
         draftingNotaDinasPage.inputLampiran2SuratNotaDinas()
+
+        cy.wait(6000)
 
         const iframeLampiran = cy.get(lampiran_surat.htmlLampiranNotaDinas).as('htmlLampiran')
         iframeLampiran.find('iframe')
