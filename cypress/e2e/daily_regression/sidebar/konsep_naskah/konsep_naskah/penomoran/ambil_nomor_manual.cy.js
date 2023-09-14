@@ -32,7 +32,7 @@ describe('Ambil Nomor Manual Skenario', { testIsolation: false }, () => {
             ambilNomorManualPage.aksesKonsepNaskahSuratBiasa()
             ambilNomorManualPage.aksesFormEditingKakiSurat()
             ambilNomorManualPage.aksesFormEditingKepalaSurat()
-            ambilNomorManualPage.checkPopUpPenomoranManual()
+            //ambilNomorManualPage.checkPopUpPenomoranManual() disable sementara karena fitur penomoran di unleash
         })
     )
 
