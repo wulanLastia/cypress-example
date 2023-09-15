@@ -92,7 +92,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             loginPage.directLogin()
 
 
-            perbaikiNaskahPage.goToPerbaikiNaskah()
+            perbaikiNaskahPage.goToPerbaikiNaskahNotaDinas()
             cy.wait(3000)
             perbaikiNaskahPage.perbaikiNaskahNotaDinas()
             cy.wait(10000)

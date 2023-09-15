@@ -30,6 +30,25 @@ export class PerbaikiNaskahPage {
         })
     }
 
+    goToPerbaikiNaskahNotaDinas() {
+        menuPage.goToKotakMasukReviewNaskah()
+        cy.readFile(perihalNaskah).then((object) => {
+            const titlePerihalNaskah = object.titlePerihal
+
+            const tableReviewSurat = cy.get(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
+            tableReviewSurat.contains('td', titlePerihalNaskah)
+                .click()
+
+            cy.wait(6000)
+
+            const getbtnPerbaiki = cy.get(perbaiki.getbtnPerbaiki).as('getbtnPerbaiki')
+            getbtnPerbaiki.should('contain', 'Perbaiki')
+                .click({ force: true })
+
+            this.checkDetailNotaDinas()
+        })
+    }
+
     checkDetail() {
         const btnKembali = cy.get(perbaiki.btnKembali).as('btnKembali')
         btnKembali.should('be.visible')
@@ -40,6 +59,27 @@ export class PerbaikiNaskahPage {
 
         const titleHeaderJenisNaskah = cy.get(perbaiki.titleHeaderJenisNaskah).as('titleHeaderJenisNaskah')
         titleHeaderJenisNaskah.should('contain', 'Surat Biasa')
+            .and('be.visible')
+
+        const btnEditPerbaikiNaskah = cy.get(perbaiki.btnEditPerbaikiNaskah).as('btnEditPerbaikiNaskah')
+        btnEditPerbaikiNaskah.should('contain', 'Edit Naskah')
+            .and('be.visible')
+
+        const btnRiwayatPerbaikiNaskah = cy.get(perbaiki.btnRiwayatPerbaikiNaskah).as('btnRiwayatPerbaikiNaskah')
+        btnRiwayatPerbaikiNaskah.should('contain', 'Riwayat Naskah')
+            .and('be.visible')
+    }
+
+    checkDetailNotaDinas() {
+        const btnKembali = cy.get(perbaiki.btnKembali).as('btnKembali')
+        btnKembali.should('be.visible')
+
+        const titleHeaderPerbaikiNaskah = cy.get(perbaiki.titleHeaderPerbaikiNaskah).as('titleHeaderPerbaikiNaskah')
+        titleHeaderPerbaikiNaskah.should('contain', 'Perbaikan Naskah')
+            .and('be.visible')
+
+        const titleHeaderJenisNaskah = cy.get(perbaiki.titleHeaderJenisNaskah).as('titleHeaderJenisNaskah')
+        titleHeaderJenisNaskah.should('contain', 'Nota Dinas')
             .and('be.visible')
 
         const btnEditPerbaikiNaskah = cy.get(perbaiki.btnEditPerbaikiNaskah).as('btnEditPerbaikiNaskah')
