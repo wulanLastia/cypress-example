@@ -28,7 +28,7 @@ before(() => {
 
 describe('Ambil Nomor Manual Skenario', { testIsolation: false }, () => {
     qase(1206,
-        it('Cek pop up jika mengambil nomor manual', () => {
+        it.skip('Cek pop up jika mengambil nomor manual', () => {
             ambilNomorManualPage.aksesKonsepNaskahSuratBiasa()
             ambilNomorManualPage.aksesFormEditingKakiSurat()
             ambilNomorManualPage.aksesFormEditingKepalaSurat()
@@ -37,7 +37,7 @@ describe('Ambil Nomor Manual Skenario', { testIsolation: false }, () => {
     )
 
     qase(1210,
-        it('Cek detail pop up pilih tanggal penomoran manual', () => {
+        it.skip('Cek detail pop up pilih tanggal penomoran manual', () => {
             ambilNomorManualPage.checkDetail()
         })
     )

@@ -49,6 +49,8 @@ export class AmbilNomorManualPage {
     }
 
     checkDetail() {
+        cy.wait(7000)
+
         const btnKonfirmasi = cy.xpath(ambil_nomor.btnKonfirmasi).as('btnKonfirmasi')
         btnKonfirmasi.should('contain', 'Ya, lanjutkan')
             .and('be.visible')
