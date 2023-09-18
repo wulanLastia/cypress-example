@@ -34,9 +34,6 @@ export class CreateNotaDinasPage {
         draftingKopSuratNotaDinasPage.aksesFormEditingKopSurat()
         draftingKopSuratNotaDinasPage.checkDetail()
         draftingKopSuratNotaDinasPage.checkPreviewDefaultPROD()
-        // draftingKopSuratNotaDinasPage.checkPreviewSekda()
-        // draftingKopSuratNotaDinasPage.checkPreviewDinas()
-        // draftingKopSuratNotaDinasPage.checkPreviewUPTD()
         draftingKopSuratNotaDinasPage.clickPreviewDinas()
         draftingKopSuratNotaDinasPage.closeKopSurat()
     }
@@ -78,10 +75,6 @@ export class CreateNotaDinasPage {
         draftingKepalaSuratNotaDinasPage.clickRButton1KepalaSurat()
         // Input Tujuan Surat INTERNAL            
         draftingKepalaSuratNotaDinasPage.inputTujuan("SMOKE TEST 1 Dra. Hj. I GUSTI AGUNG")
-        // draftingKepalaSuratNotaDinasPage.addTujuan()
-        // draftingKepalaSuratNotaDinasPage.inputTujuanField2("Ludia Rosema")
-        // draftingKepalaSuratNotaDinasPage.addTujuan()
-        // draftingKepalaSuratNotaDinasPage.inputTujuanField3("Zenal Mustopa")
         // Input Tembusan Surat INTERNAL
         draftingKepalaSuratNotaDinasPage.inputTembusan("Raden Andhika")
         draftingKepalaSuratNotaDinasPage.addTembusan()
