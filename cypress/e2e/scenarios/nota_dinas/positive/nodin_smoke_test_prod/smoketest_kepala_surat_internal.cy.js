@@ -54,15 +54,15 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             createNotaDinasPage.doKirimNaskah()
             cy.wait(10000)
 
-            loginPage.logoutV2step2() // for Trace Element Issue Only
+            loginPage.logoutV2step2PROD() // for Trace Element Issue Only
         })
     )
 
 
     qase([399, 101, 377, 402, 100],
-        it.skip('Kembalikan Naskah', () => {
+        it('Kembalikan Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.nipPemeriksa, user.password)
+            loginPage.loginViaV1Prod(user.nipPemeriksa, user.password)
             loginPage.directLogin()
 
 
@@ -80,7 +80,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             loginPage.closePopupLandingPage()
             cy.wait(10000)
 
-            loginPage.logoutV2step2() // for Trace Element Issue Only
+            loginPage.logoutV2step2PROD() // for Trace Element Issue Only
         })
     )
 
