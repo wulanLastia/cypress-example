@@ -35,6 +35,7 @@ jobs:
         run: |
           mkdir cypress/fixtures/kepala_surat
           echo "${{ secrets.KEPALA_SURAT_JSON }}" | base64 --decode > cypress/fixtures/kepala_surat/kepala_surat_temp_data.json
+          echo "NULL" > cypress/fixtures/kepala_surat/untuk-create-data-nota_dinas.json
 
       # adapted from https://stackoverflow.com/a/76943682/2496217 & https://stackoverflow.com/a/61827163/2496217
       - name: Get current datedate as env variable
