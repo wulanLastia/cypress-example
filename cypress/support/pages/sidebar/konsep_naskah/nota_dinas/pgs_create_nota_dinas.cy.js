@@ -30,6 +30,17 @@ export class CreateNotaDinasPage {
         draftingKopSuratNotaDinasPage.closeKopSurat()
     }
 
+    createKopSuratPROD() {
+        draftingKopSuratNotaDinasPage.aksesFormEditingKopSurat()
+        draftingKopSuratNotaDinasPage.checkDetail()
+        draftingKopSuratNotaDinasPage.checkPreviewDefaultPROD()
+        // draftingKopSuratNotaDinasPage.checkPreviewSekda()
+        // draftingKopSuratNotaDinasPage.checkPreviewDinas()
+        // draftingKopSuratNotaDinasPage.checkPreviewUPTD()
+        draftingKopSuratNotaDinasPage.clickPreviewDinas()
+        draftingKopSuratNotaDinasPage.closeKopSurat()
+    }
+
     createKepalaSurat() {
         draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
 
@@ -41,6 +52,36 @@ export class CreateNotaDinasPage {
         draftingKepalaSuratNotaDinasPage.inputTujuanField2("Ludia Rosema")
         draftingKepalaSuratNotaDinasPage.addTujuan()
         draftingKepalaSuratNotaDinasPage.inputTujuanField3("Zenal Mustopa")
+        // Input Tembusan Surat INTERNAL
+        draftingKepalaSuratNotaDinasPage.inputTembusan("Raden Andhika")
+        draftingKepalaSuratNotaDinasPage.addTembusan()
+        draftingKepalaSuratNotaDinasPage.inputTembusan2("Upar Suparno")
+        // Field Kode Klasifikasi
+        draftingKepalaSuratNotaDinasPage.inputKodeKlasifikasi("SK (Semua Klasifikasi)")
+        // Field Unit Pengolah
+        draftingKepalaSuratNotaDinasPage.inputUnitPengolah("PAD")
+        // Field Tanggal Penomoran
+        // draftingKepalaSuratNotaDinasPage.validateTanggal() // Bila di shutdown di unleash bisa dimatikan dulu assertion ini
+        // Dropdown Sifat Surat
+        draftingKepalaSuratNotaDinasPage.validateSifatSurat("Penting")
+        // Dropdown Urgensi
+        draftingKepalaSuratNotaDinasPage.validateUrgensi("Amat Segera")
+        // Field Perihal
+        draftingKepalaSuratNotaDinasPage.inputPerihal("Tujuan Kepala Surat - Internal Eksternal - Lampiran")
+        draftingKepalaSuratNotaDinasPage.closeKepalaSurat()
+    }
+
+    createKepalaSuratPROD() {
+        draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
+
+        // Pilih Penempatan Daftar Tujuan Surat
+        draftingKepalaSuratNotaDinasPage.clickRButton1KepalaSurat()
+        // Input Tujuan Surat INTERNAL            
+        draftingKepalaSuratNotaDinasPage.inputTujuan("SMOKE TEST 1 Dra. Hj. I GUSTI AGUNG")
+        // draftingKepalaSuratNotaDinasPage.addTujuan()
+        // draftingKepalaSuratNotaDinasPage.inputTujuanField2("Ludia Rosema")
+        // draftingKepalaSuratNotaDinasPage.addTujuan()
+        // draftingKepalaSuratNotaDinasPage.inputTujuanField3("Zenal Mustopa")
         // Input Tembusan Surat INTERNAL
         draftingKepalaSuratNotaDinasPage.inputTembusan("Raden Andhika")
         draftingKepalaSuratNotaDinasPage.addTembusan()
@@ -92,6 +133,14 @@ export class CreateNotaDinasPage {
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.pilihPenandatanganAtasan()
         draftingKakiSuratPage.pilihPemeriksa()
+        draftingKakiSuratPage.closeKakiSurat()
+    }
+
+    createKakiSuratPROD() {
+        draftingKakiSuratPage.aksesFormEditingKakiSurat()
+        draftingKakiSuratPage.inputKakiSurat()
+        draftingKakiSuratPage.pilihPenandatanganAtasanPROD()
+        draftingKakiSuratPage.pilihPemeriksaPROD()
         draftingKakiSuratPage.closeKakiSurat()
     }
 
