@@ -188,8 +188,36 @@ export class LoginPage {
         btnKeluar.scrollIntoView()
                  .should('be.visible').and('contain', 'Log Out')
                  .click();
+        
+        cy.wait(5000)
 
         cy.url().should('eq', Cypress.env('base_url_v1'));
+    }
+
+    logoutV2step2PROD() {
+        // Show header if hidden
+        cy.xpath(login.showHeaderNav).invoke('css', 'display', 'block');
+
+        // Use the simpler selector
+        const btnProfile = cy.get(login.getJQueryProfileV2).as('btnProfile');
+        
+        // Wait for element to be visible or force click if not
+        btnProfile.scrollIntoView()
+                  .should('be.visible', { force: true })
+                  .click({ force: true });
+
+        // I'm assuming the following popupProfile code remains unchanged 
+        // as you didn't provide the selector.
+        const popupProfile = cy.get(navbar.btnProfile).as('popupProfile');
+        popupProfile.scrollIntoView()
+                    .should('be.visible', { force: true });
+
+        const btnKeluar = cy.get(navbar.btnKeluar).as('btnKeluar');
+        btnKeluar.scrollIntoView()
+                 .should('be.visible').and('contain', 'Log Out')
+                 .click();
+
+        cy.url().should('eq', Cypress.env('base_url_prod_v1'));
     }
 
 

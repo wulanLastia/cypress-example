@@ -88,12 +88,32 @@ export class DraftingKakiSuratPage {
             .type('{enter}')
     }
 
+    pilihPenandatanganAtasanPROD() {
+        const selectPenandatangan = cy.get(kaki_surat.selectPenandatanganNotaDinas).as('selectPenandatangan')
+        selectPenandatangan.select(1).should('have.value', 'ATASAN')
+
+        const pilihPenandatangan = cy.get(kaki_surat.pilihPenandatanganNotaDinas).as('pilihPenandatangan')
+        pilihPenandatangan.type('SMOKE TEST 1 Dra. Hj. I GUSTI AGUNG')
+            .wait(2000)
+            .type('{enter}')
+    }
+
     pilihPemeriksa() {
         const btnTambahPemeriksa = cy.get(kaki_surat.btnTambahPemeriksaNotaDinas).as('btnTambahPemeriksa')
         btnTambahPemeriksa.click()
 
         const pilihPemeriksa = cy.get(kaki_surat.pilihPemeriksaNotaDinas).as('pilihPemeriksa2')
         pilihPemeriksa.type('FAJAR LIBRIANTO', { force: true })
+            .wait(5000)
+            .type('{enter}')
+    }
+
+    pilihPemeriksaPROD() {
+        const btnTambahPemeriksa = cy.get(kaki_surat.btnTambahPemeriksaNotaDinas).as('btnTambahPemeriksa')
+        btnTambahPemeriksa.click()
+
+        const pilihPemeriksa = cy.get(kaki_surat.pilihPemeriksaNotaDinas).as('pilihPemeriksa2')
+        pilihPemeriksa.type('SMOKE TEST FAJAR LIBRIANTO', { force: true })
             .wait(5000)
             .type('{enter}')
     }
