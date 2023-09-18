@@ -41,6 +41,9 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             createSuratBiasaPage.inputKepalaSuratSkenario5()
             createSuratBiasaPage.inputBadanNaskahSkenarioRegression()
             createSuratBiasaPage.kirimSurat()
+            cy.wait(10000)
+
+            loginPage.logoutV2step2()
         })
     )
 
@@ -58,6 +61,10 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             kembalikanNaskahPage.kembalikanNaskah()
             cy.wait(3000)
             loginPage.closePopupLandingPage()
+            cy.wait(10000)
+
+            loginPage.logoutV2step2()
+
         })
     )
 
@@ -67,8 +74,12 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
 
-            perbaikiNaskahPage.goToNaskahBelumDireview()
+            perbaikiNaskahPage.goToPerbaikiNaskah()
             perbaikiNaskahPage.perbaikiNaskah()
+            cy.wait(10000)
+
+            loginPage.logoutV2step2()
+
         })
     )
 
@@ -80,6 +91,9 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
 
             setujuiPage.suratBelumDireview()
             setujuiPage.setujui()
+            cy.wait(10000)
+
+            loginPage.logoutV2step2()
         })
     )
 
@@ -92,6 +106,9 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             koreksiSuratPage.goToNaskahBelumDireview()
             koreksiSuratPage.checkDetailKoreksiTandatangani()
             koreksiSuratPage.koreksiTandatanganiNaskah(user.passphrase)
+            cy.wait(10000)
+
+            loginPage.logoutV2step2()
         })
     )
 })
