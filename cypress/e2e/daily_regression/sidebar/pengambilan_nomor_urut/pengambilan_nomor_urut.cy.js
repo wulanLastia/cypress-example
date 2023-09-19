@@ -17,11 +17,11 @@ before(() => {
         user = data
     })
 
-    cy.fixture('penomoran/jenis_naskah.json').then((data) => {
+    cy.fixture('non_cred/penomoran/jenis_naskah.json').then((data) => {
         jenis_naskah = data
     })
 
-    cy.fixture('penomoran/uk_up.json').then((data) => {
+    cy.fixture('non_cred/penomoran/uk_up.json').then((data) => {
         uk_up = data
     })
 })
