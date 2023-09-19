@@ -39,6 +39,8 @@ describe('Detail Review dan Verifikasi hasil Surat (Kotak Masuk) Skenario', () =
             createSuratBiasaPage.inputKakiSurat()
             createSuratBiasaPage.inputBadanNaskah()
             createSuratBiasaPage.kirimSurat()
+
+            cy.wait(5000)
         })
     )
 
@@ -52,6 +54,8 @@ describe('Detail Review dan Verifikasi hasil Surat (Kotak Masuk) Skenario', () =
             reviewVerifikasiSuratPage.suratBelumDireview()
             reviewVerifikasiSuratPage.lanjutkanReviewDrafting()
             menuPage.goToKotakKeluarReviewNaskah()
+
+            cy.wait(5000)
         })
     )
 })

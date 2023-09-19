@@ -581,7 +581,7 @@ export class DraftingKepalaSuratPage {
         }
 
         const inputTujuan0 = cy.get(kepala_surat.inputTujuan0).as('inputTujuan0')
-        inputTujuan0.wait(1000)
+        inputTujuan0.wait(5000)
             .type('Ridwan Kamil')
             .wait(3000)
             .type('{enter}')
@@ -589,7 +589,7 @@ export class DraftingKepalaSuratPage {
         cy.wait(3000)
 
         const inputTujuan1 = cy.get(kepala_surat.inputTujuan1).as('inputTujuan1')
-        inputTujuan1.wait(1000)
+        inputTujuan1.wait(5000)
             .type('UU Ruzhanul')
             .wait(3000)
             .type('{enter}')
@@ -597,7 +597,7 @@ export class DraftingKepalaSuratPage {
         cy.wait(3000)
 
         const inputTujuan2 = cy.get(kepala_surat.inputTujuan2).as('inputTujuan2')
-        inputTujuan2.wait(1000)
+        inputTujuan2.wait(5000)
             .type('Setiawan Wangsaatmaja')
             .wait(3000)
             .type('{enter}')
@@ -608,8 +608,9 @@ export class DraftingKepalaSuratPage {
         const uuid3 = () => Cypress._.random(0, 1e6)
         const id3 = uuid3()
         const tujuanEks3 = `Test Tujuan Eksternal Automation ${id3}`
-
-        inputTujuan3.type(tujuanEks3)
+        
+        inputTujuan3.wait(5000)
+            .type(tujuanEks3)
             .wait(3000)
             .type('{enter}')
 
@@ -617,8 +618,9 @@ export class DraftingKepalaSuratPage {
         const uuid4 = () => Cypress._.random(0, 1e6)
         const id4 = uuid4()
         const tujuanEks4 = `Test Tujuan Eksternal Automation ${id4}`
-
-        inputTujuan4.type(tujuanEks4)
+        
+        inputTujuan4.wait(5000)
+            .type(tujuanEks4)
             .wait(3000)
             .type('{enter}')
 
@@ -627,7 +629,8 @@ export class DraftingKepalaSuratPage {
         const id5 = uuid5()
         const tujuanEks5 = `Test Tujuan Eksternal Automation ${id5}`
 
-        inputTujuan5.type(tujuanEks5)
+        inputTujuan5.wait(5000)
+            .type(tujuanEks5)
             .wait(3000)
             .type('{enter}')
     }
