@@ -4,7 +4,7 @@ import { DraftingNotaDinasPage } from "../nota_dinas/pgs_drafting_nota_dinas.cy"
 
 const draftingNotaDinasPage = new DraftingNotaDinasPage()
 
-const getJSONRequestFileCreateNotaDinas = "cypress/fixtures/JSON/1_internal/create/untuk-create-data-nota_dinas.json"
+const getJSONRequestFileCreateNotaDinas = "cypress/fixtures/non_cred/kepala_surat/untuk-create-data-nota_dinas.json"
 
 export class DraftingLampiranSuratPage {
 
