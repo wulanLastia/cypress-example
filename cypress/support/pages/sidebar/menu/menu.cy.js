@@ -176,4 +176,11 @@ export class MenuPage {
         dataPertamaNaskahDisimpan.click()
     }
 
+    goToPengambilanNomor() {
+        const menuPengambilanNomor = cy.get(menu.menuPengambilanNomor).as('menuPengambilanNomor')
+        menuPengambilanNomor.should('contain', 'Pengambilan Nomor')
+            .and('be.visible')
+            .click()
+    }
+
 }
