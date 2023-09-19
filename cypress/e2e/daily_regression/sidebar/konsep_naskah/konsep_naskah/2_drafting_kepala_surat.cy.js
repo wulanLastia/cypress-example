@@ -22,7 +22,7 @@ before(() => {
 
 after(() => {
     qase(411,
-        loginPage.logoutV2()
+        loginPage.logoutV2step2()
     )
 })
 
@@ -49,7 +49,7 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
 
     qase(347,
         it('Cek isian tanggal surat default', () => {
-            draftingKepalaSuratPage.validateTanggal()
+            draftingKepalaSuratPage.validateTanggal('otomatis')
         })
     )
 
@@ -99,7 +99,6 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
     qase(199,
         it('Batal mengisi kepala naskah', () => {
             draftingKepalaSuratPage.closeKepalaSurat()
-            menuPage.goToKotakMasukReviewNaskah()
         })
     )
 

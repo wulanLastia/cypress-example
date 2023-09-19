@@ -19,7 +19,7 @@ export class KoreksiSuratPage {
         cy.readFile(perihalNaskah).then((object) => {
             const titlePerihalNaskah = object.titlePerihal
 
-            const tableReviewSurat = cy.xpath(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
+            const tableReviewSurat = cy.get(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
             tableReviewSurat.contains('td', titlePerihalNaskah)
                 .click()
         })

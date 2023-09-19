@@ -40,6 +40,15 @@ export class DraftingKopSuratNotaDinasPage {
             .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/659b50e7a894063e5d4f2699ee0bd788.png')
     }
 
+    checkPreviewDefaultPROD() {
+        const defaultSelectedRadio = cy.get(kop_surat.defaultSelectedRadio).as('defaultSelectedRadio')
+        defaultSelectedRadio.should('be.checked')
+
+        const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
+        previewSelectedKop.find('img')
+        .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/38a80733a1c6437c596c4568e1d263d4.PNG')
+    }
+
     checkPreviewSekda() {
         const checkRadio1 = cy.get(kop_surat.checkRadio1).as('checkRadio1')
         checkRadio1.click()

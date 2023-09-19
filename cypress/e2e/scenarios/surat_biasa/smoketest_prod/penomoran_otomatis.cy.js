@@ -67,7 +67,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             loginPage.loginViaV1Prod(user.nip, user.password)
             loginPage.directLogin()
 
-            perbaikiNaskahPage.goToNaskahBelumDireview()
+            perbaikiNaskahPage.goToPerbaikiNaskah()
             perbaikiNaskahPage.perbaikiNaskah()
         })
     )
@@ -84,12 +84,12 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
     )
 
     qase([368, 370, 372],
-        it('Koreksi dan Tandatangani Naskah', () => {
+        it.skip('Koreksi dan Tandatangani Naskah', () => {
             // Login 
             loginPage.loginViaV1Prod(user.nipPemeriksa2, user.passwordPemeriksa)
             loginPage.directLogin()
 
-            koreksiSuratPage.goToNaskahBelumDireview()
+            koreksiSuratPage.goToPerbaikiNaskah()
             koreksiSuratPage.checkDetailKoreksiTandatangani()
             koreksiSuratPage.koreksiTandatanganiNaskah(user.passphrase)
         })

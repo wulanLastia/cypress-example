@@ -8,6 +8,7 @@ module.exports = {
     parentKotakKeluar: '[data-cy="sidebar-menu-kotak-keluar"]',
     reviewNaskahKK: '[data-cy="sidebar-menu-kotak-keluar-review-naskah"]',
     penomoranDistribusi: '[data-cy="sidebar-menu-penomoran-dan-distribusi"]',
+    menuPengambilanNomor: '[data-cy="sidebar-menu-pengambilan-nomor"]',
 
     // XPATH
     titleNaskahKeluar: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]',

@@ -6,6 +6,7 @@ const draftingNotaDinasPage = new DraftingNotaDinasPage()
 
 const getJSONRequestFileCreateNotaDinas = "cypress/fixtures/non_cred/kepala_surat/untuk-create-data-nota_dinas.json"
 
+
 export class DraftingLampiranSuratPage {
 
     aksesFormEditingLampiranSurat() {
@@ -83,6 +84,8 @@ export class DraftingLampiranSuratPage {
     inputLampiranSurat() {
         draftingNotaDinasPage.inputLampiranSuratNotaDinas()
 
+        cy.wait(6000)
+
         const iframeLampiran = cy.get(lampiran_surat.htmlLampiranNotaDinas).as('htmlLampiran')
         iframeLampiran.find('iframe')
             .its('0.contentDocument.body')
@@ -126,6 +129,8 @@ export class DraftingLampiranSuratPage {
     
     inputLampiranSurat2() {
         draftingNotaDinasPage.inputLampiran2SuratNotaDinas()
+
+        cy.wait(6000)
 
         const iframeLampiran = cy.get(lampiran_surat.htmlLampiranNotaDinas).as('htmlLampiran')
         iframeLampiran.find('iframe')

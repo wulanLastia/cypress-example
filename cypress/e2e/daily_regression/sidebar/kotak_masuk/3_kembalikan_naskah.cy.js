@@ -16,6 +16,14 @@ before(() => {
     })
 })
 
+
+after(() => {
+    qase(411,
+        loginPage.logoutV2step2()
+    )
+})
+
+
 describe('Kembalikan Naskah Skenario', () => {
 
     qase([13, 81, 83, 709, 150, 80],
@@ -32,6 +40,8 @@ describe('Kembalikan Naskah Skenario', () => {
             createSuratBiasaPage.inputKakiSurat()
             createSuratBiasaPage.inputBadanNaskah()
             createSuratBiasaPage.kirimSurat()
+
+            cy.wait(5000)
         })
     )
 
@@ -49,6 +59,7 @@ describe('Kembalikan Naskah Skenario', () => {
             kembalikanNaskahPage.kembalikanNaskah()
             cy.wait(3000)
             loginPage.closePopupLandingPage()
+            cy.wait(5000)
         })
     )
 }) 

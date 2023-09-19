@@ -3,9 +3,9 @@ module.exports = {
     getbtnKembalikan: '[data-cy="button--send-back"]',
     getbtnKoreksi: '[data-cy="button--correction"]',
     getbtnSetujui: '[data-cy="button--approve"]',
+    tableReviewSurat: '[data-cy="review-naskah__table"]',
 
     // XPATH
-    tableReviewSurat: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[2]/div[1]/div[1]/div[1]',
     btnKembali: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/header[1]/div[1]/div[1]/button[1]',
     titleSurat: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]',
     jenisNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/header[1]/div[1]/div[2]/div[2]/p[1]',

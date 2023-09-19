@@ -11,34 +11,112 @@ const perihalNaskah = "cypress/fixtures/kepala_surat/kepala_surat_temp_data.json
 
 export class PerbaikiNaskahPage {
 
-    goToNaskahBelumDireview() {
+    goToPerbaikiNaskah() {
         menuPage.goToKotakMasukReviewNaskah()
         cy.readFile(perihalNaskah).then((object) => {
             const titlePerihalNaskah = object.titlePerihal
 
-            const tableReviewSurat = cy.xpath(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
+            const tableReviewSurat = cy.get(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
             tableReviewSurat.contains('td', titlePerihalNaskah)
                 .click()
 
             cy.wait(6000)
+
+            const getbtnPerbaiki = cy.get(perbaiki.getbtnPerbaiki).as('getbtnPerbaiki')
+            getbtnPerbaiki.should('contain', 'Perbaiki')
+                .click({ force: true })
+
+            this.checkDetail()
         })
     }
 
+    goToPerbaikiNaskahNotaDinas() {
+        menuPage.goToKotakMasukReviewNaskah()
+        cy.readFile(perihalNaskah).then((object) => {
+            const titlePerihalNaskah = object.titlePerihal
+
+            const tableReviewSurat = cy.get(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
+            tableReviewSurat.contains('td', titlePerihalNaskah)
+                .click()
+
+            cy.wait(6000)
+
+            const getbtnPerbaiki = cy.get(perbaiki.getbtnPerbaiki).as('getbtnPerbaiki')
+            getbtnPerbaiki.should('contain', 'Perbaiki')
+                .click({ force: true })
+
+            this.checkDetailNotaDinas()
+        })
+    }
+
+    checkDetail() {
+        const btnKembali = cy.get(perbaiki.btnKembali).as('btnKembali')
+        btnKembali.should('be.visible')
+
+        const titleHeaderPerbaikiNaskah = cy.get(perbaiki.titleHeaderPerbaikiNaskah).as('titleHeaderPerbaikiNaskah')
+        titleHeaderPerbaikiNaskah.should('contain', 'Perbaikan Naskah')
+            .and('be.visible')
+
+        const titleHeaderJenisNaskah = cy.get(perbaiki.titleHeaderJenisNaskah).as('titleHeaderJenisNaskah')
+        titleHeaderJenisNaskah.should('contain', 'Surat Biasa')
+            .and('be.visible')
+
+        const btnEditPerbaikiNaskah = cy.get(perbaiki.btnEditPerbaikiNaskah).as('btnEditPerbaikiNaskah')
+        btnEditPerbaikiNaskah.should('contain', 'Edit Naskah')
+            .and('be.visible')
+
+        const btnRiwayatPerbaikiNaskah = cy.get(perbaiki.btnRiwayatPerbaikiNaskah).as('btnRiwayatPerbaikiNaskah')
+        btnRiwayatPerbaikiNaskah.should('contain', 'Riwayat Naskah')
+            .and('be.visible')
+    }
+
+    checkDetailNotaDinas() {
+        const btnKembali = cy.get(perbaiki.btnKembali).as('btnKembali')
+        btnKembali.should('be.visible')
+
+        const titleHeaderPerbaikiNaskah = cy.get(perbaiki.titleHeaderPerbaikiNaskah).as('titleHeaderPerbaikiNaskah')
+        titleHeaderPerbaikiNaskah.should('contain', 'Perbaikan Naskah')
+            .and('be.visible')
+
+        const titleHeaderJenisNaskah = cy.get(perbaiki.titleHeaderJenisNaskah).as('titleHeaderJenisNaskah')
+        titleHeaderJenisNaskah.should('contain', 'Nota Dinas')
+            .and('be.visible')
+
+        const btnEditPerbaikiNaskah = cy.get(perbaiki.btnEditPerbaikiNaskah).as('btnEditPerbaikiNaskah')
+        btnEditPerbaikiNaskah.should('contain', 'Edit Naskah')
+            .and('be.visible')
+
+        const btnRiwayatPerbaikiNaskah = cy.get(perbaiki.btnRiwayatPerbaikiNaskah).as('btnRiwayatPerbaikiNaskah')
+        btnRiwayatPerbaikiNaskah.should('contain', 'Riwayat Naskah')
+            .and('be.visible')
+    }
+
     batalPerbaikiNaskah() {
-        const btnKembali = cy.xpath(perbaiki.btnKembali).as('btnKembali')
+        const btnKembali = cy.get(perbaiki.btnKembali).as('btnKembali')
         btnKembali.should('be.visible')
             .click()
 
-        const titleKotakMasuk = cy.xpath(perbaiki.titleKotakMasuk).as('titleKotakMasuk')
-        titleKotakMasuk.should('contain', 'Kotak Masuk')
+        const popupBatalPerbaikiNaskah = cy.get(perbaiki.popupBatalPerbaikiNaskah).as('popupBatalPerbaikiNaskah')
+        popupBatalPerbaikiNaskah.should('be.visible')
+
+        const titleBatalPerbaikiNaskah = cy.get(perbaiki.titleBatalPerbaikiNaskah).as('titleBatalPerbaikiNaskah')
+        titleBatalPerbaikiNaskah.should('contain', 'Batalkan Konsep Naskah?')
+            .and('be.visible')
+
+        const subTitleBatalPerbaikiNaskah = cy.get(perbaiki.subTitleBatalPerbaikiNaskah).as('subTitleBatalPerbaikiNaskah')
+        subTitleBatalPerbaikiNaskah.should('contain', 'Naskah ini tidak akan bisa dipulihkan kembali setelah keluar dari halaman ini. Gunakan fitur simpan untuk melanjutkan konsep di lain waktu')
+            .and('be.visible')
+
+        const btnKonfirmasiBatalPerbaikiNaskah = cy.get(perbaiki.btnKonfirmasiBatalPerbaikiNaskah).as('btnKonfirmasiBatalPerbaikiNaskah')
+        btnKonfirmasiBatalPerbaikiNaskah.should('be.visible')
+            .click()
+
+        const titleKonsepNaskah = cy.get(perbaiki.titleKonsepNaskah).as('titleKonsepNaskah')
+        titleKonsepNaskah.should('contain', 'Buat Naskah Baru')
             .and('be.visible')
     }
 
     perbaikiNaskah() {
-        const getbtnPerbaiki = cy.get(perbaiki.getbtnPerbaiki).as('getbtnPerbaiki')
-        getbtnPerbaiki.should('contain', 'Perbaiki')
-            .click()
-
         cy.wait(6000)
 
         const getpreviewKepala = cy.get(perbaiki.getpreviewKepala).as('getpreviewKepala')
@@ -46,8 +124,8 @@ export class PerbaikiNaskahPage {
 
         createSuratBiasaPage.inputPerbaikiKepalaSurat()
 
-        const btnKirimNaskah = cy.xpath(perbaiki.btnKirimNaskah).as('btnKirimNaskah')
-        btnKirimNaskah.click()
+        const btnKirimPerbaikiNaskah = cy.get(perbaiki.btnKirimPerbaikiNaskah).as('btnKirimPerbaikiNaskah')
+        btnKirimPerbaikiNaskah.click()
 
         const popupKonfirmasiKirimNaskah = cy.get(perbaiki.popupKonfirmasiKirimNaskah).as('popupKonfirmasiKirimNaskah')
         popupKonfirmasiKirimNaskah.should('be.visible')
@@ -57,12 +135,7 @@ export class PerbaikiNaskahPage {
             .click()
     }
 
-        perbaikiNaskahNotaDinas() {
-        const getbtnPerbaiki = cy.get(perbaiki.getbtnPerbaiki).as('getbtnPerbaiki')
-        getbtnPerbaiki.should('contain', 'Perbaiki')
-            .click({ force: true })
-        cy.debug()
-
+    perbaikiNaskahNotaDinas() {
         cy.wait(20000)
 
         const getpreviewKepala = cy.get(perbaiki.getpreviewKepala).as('getpreviewKepala')
@@ -72,8 +145,8 @@ export class PerbaikiNaskahPage {
 
         cy.wait(6000)
 
-        const btnKirimNaskah = cy.xpath(perbaiki.btnKirimNaskah).as('btnKirimNaskah')
-        btnKirimNaskah.click()
+        const btnKirimPerbaikiNaskah = cy.get(perbaiki.btnKirimPerbaikiNaskah).as('btnKirimPerbaikiNaskah')
+        btnKirimPerbaikiNaskah.click()
 
         cy.wait(3000)
 

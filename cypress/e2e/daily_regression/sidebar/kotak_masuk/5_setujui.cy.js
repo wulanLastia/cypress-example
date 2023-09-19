@@ -18,12 +18,6 @@ before(() => {
     loginPage.directLogin()
 })
 
-/*after(() => {
-    qase(411,
-        loginPage.backToV1()
-    )
-})*/
-
 describe('Setujui Naskah Skenario', { testIsolation: false }, () => {
     qase(358,
         it('Cek detail halaman detail kotak masuk review naskah dengan status belum direview', () => {

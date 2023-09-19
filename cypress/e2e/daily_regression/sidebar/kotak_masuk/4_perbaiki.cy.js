@@ -23,19 +23,24 @@ before(() => {
 describe('Perbaiki Naskah Skenario', { testIsolation: false }, () => {
     qase(367,
         it('Akses halaman perbaikan naskah', () => {
-            perbaikiNaskahPage.goToNaskahBelumDireview()
+            perbaikiNaskahPage.goToPerbaikiNaskah()
+            cy.wait(5000)
         })
     )
 
     qase(717,
-        it.skip('Cek tombol batal kirim naskah', () => {
+        it('Cek tombol batal kirim naskah', () => {
             perbaikiNaskahPage.batalPerbaikiNaskah()
+            cy.wait(5000)
         })
     )
 
     qase([712, 713, 714, 715],
         it('Memperbaiki isi naskah', () => {
+            perbaikiNaskahPage.goToPerbaikiNaskah()
+            cy.wait(5000)
             perbaikiNaskahPage.perbaikiNaskah()
+            cy.wait(5000)
         })
     )
 
