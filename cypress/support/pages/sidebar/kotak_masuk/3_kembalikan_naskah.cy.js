@@ -3,7 +3,7 @@ import review_verifikasi_surat from "../../../selectors/sidebar/kotak_masuk/revi
 import { MenuPage } from "../menu/menu.cy"
 
 const menuPage = new MenuPage()
-const perihalNaskah = "cypress/fixtures/kepala_surat/kepala_surat_temp_data.json"
+const perihalNaskah = "cypress/fixtures/non_cred/kepala_surat/kepala_surat_temp_data.json"
 
 export class KembalikanNaskahPage {
 

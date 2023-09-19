@@ -2,7 +2,7 @@ import kepala_surat from "../../../../selectors/sidebar/konsep_naskah/surat_bias
 import konsep_naskah from "../../../../selectors/sidebar/konsep_naskah/konsep_naskah"
 import { DraftingKonsepNaskahPage } from "../surat_biasa/pgs_drafting_surat_biasa.cy"
 
-const filename = "cypress/fixtures/kepala_surat/kepala_surat_temp_data.json"
+const filename = "cypress/fixtures/non_cred/kepala_surat/kepala_surat_temp_data.json"
 
 const draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()
 
