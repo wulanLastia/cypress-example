@@ -23,6 +23,12 @@ before(() => {
     })
 })
 
+afterEach(() => {
+        cy.wait(10000)
+        loginPage.logoutV2step2()
+})
+
+
 describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala Surat) Penomoran Otomatis', () => {
 
     qase([13, 81, 83, 709, 150, 80],
@@ -41,9 +47,6 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             createSuratBiasaPage.inputKepalaSuratSkenario5()
             createSuratBiasaPage.inputBadanNaskahSkenarioRegression()
             createSuratBiasaPage.kirimSurat()
-            cy.wait(10000)
-
-            loginPage.logoutV2step2()
         })
     )
 
@@ -61,10 +64,6 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             kembalikanNaskahPage.kembalikanNaskah()
             cy.wait(3000)
             loginPage.closePopupLandingPage()
-            cy.wait(10000)
-
-            loginPage.logoutV2step2()
-
         })
     )
 
@@ -76,10 +75,6 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
 
             perbaikiNaskahPage.goToPerbaikiNaskah()
             perbaikiNaskahPage.perbaikiNaskah()
-            cy.wait(10000)
-
-            loginPage.logoutV2step2()
-
         })
     )
 
@@ -91,9 +86,6 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
 
             setujuiPage.suratBelumDireview()
             setujuiPage.setujui()
-            cy.wait(10000)
-
-            loginPage.logoutV2step2()
         })
     )
 
@@ -107,8 +99,6 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             koreksiSuratPage.checkDetailKoreksiTandatangani()
             koreksiSuratPage.koreksiTandatanganiNaskah(user.passphrase)
             cy.wait(10000)
-
-            loginPage.logoutV2step2()
         })
     )
 })
