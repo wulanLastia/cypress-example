@@ -1,7 +1,6 @@
 node_modules
 cypress/screenshots
 cypress/videos
-cypress/fixtures/credentials_dev.json
-cypress/fixtures/credentials_prod.json
+cypress/fixtures/cred
 
 .env

@@ -4,6 +4,8 @@ import { MenuPage } from "../../../../../support/pages/sidebar/menu/menu.cy"
 import { CreateNotaDinasPage } from "../../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_create_nota_dinas.cy"
 import { KembalikanNaskahPage } from "../../../../../support/pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
 import { PerbaikiNaskahPage } from "../../../../../support/pages/sidebar/kotak_masuk/6_perbaiki.cy"
+import { SetujuiPage } from "../../../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
+import { KoreksiSuratPage } from "../../../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
 
 
 
@@ -14,12 +16,14 @@ let user
 let createNotaDinasPage = new CreateNotaDinasPage()
 let kembalikanNaskahPage = new KembalikanNaskahPage()
 let perbaikiNaskahPage = new PerbaikiNaskahPage()
+let setujuiPage = new SetujuiPage()
+let koreksiSuratPage = new KoreksiSuratPage()
 
 
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
-    cy.fixture('credentials_dev.json').then((data) => {
+    cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
 })
@@ -31,6 +35,10 @@ before(() => {
 
 })
 
+afterEach(() => {
+    cy.wait(10000)
+    loginPage.logoutV2step2()
+})
 
 
 
@@ -52,9 +60,6 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             createNotaDinasPage.createBadanSurat()
             cy.wait(3000)
             createNotaDinasPage.doKirimNaskah()
-            cy.wait(10000)
-
-            loginPage.logoutV2step2() // for Trace Element Issue Only
         })
     )
 
@@ -78,9 +83,6 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             kembalikanNaskahPage.kembalikanNaskah()
             cy.wait(3000)
             loginPage.closePopupLandingPage()
-            cy.wait(10000)
-
-            loginPage.logoutV2step2() // for Trace Element Issue Only
         })
     )
 
@@ -95,6 +97,30 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             perbaikiNaskahPage.goToPerbaikiNaskahNotaDinas()
             cy.wait(3000)
             perbaikiNaskahPage.perbaikiNaskahNotaDinas()
+            cy.wait(10000)
+        })
+    )
+
+    qase([358, 102],
+        it('Setujui Naskah', () => {
+            // Login 
+            loginPage.loginViaV1(user.nipPemeriksa, user.password)
+            loginPage.directLogin()
+
+            setujuiPage.suratBelumDireview()
+            setujuiPage.setujui()
+        })
+    )
+
+    qase([368, 370, 372],
+        it('Koreksi dan Tandatangani Naskah', () => {
+            // Login 
+            loginPage.loginViaV1(user.nipPemeriksa2, user.password)
+            loginPage.directLogin()
+
+            koreksiSuratPage.goToNaskahBelumDireview()
+            koreksiSuratPage.checkDetailKoreksiTandatanganiNotaDinas()
+            koreksiSuratPage.koreksiTandatanganiNaskahNotaDinas(user.passphrase)
             cy.wait(10000)
         })
     )

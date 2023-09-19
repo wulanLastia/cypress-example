@@ -3,10 +3,13 @@ import koreksi from "../../../selectors/sidebar/kotak_masuk/koreksi"
 import { DraftingKonsepNaskahPage } from "../konsep_naskah/surat_biasa/pgs_drafting_surat_biasa.cy"
 import { CreateSuratBiasaPage } from "../konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
 import { MenuPage } from "../menu/menu.cy"
+import { UpdateNotaDinasPage } from "../konsep_naskah/nota_dinas/pgs_update_nota_dinas.cy.js"
 
 const menuPage = new MenuPage()
 const draftingSuratBiasaPage = new DraftingKonsepNaskahPage()
 const createSuratBiasaPage = new CreateSuratBiasaPage()
+const updateNotaDinasPage = new UpdateNotaDinasPage()
+
 const perihalNaskah = "cypress/fixtures/kepala_surat/kepala_surat_temp_data.json"
 
 export class KoreksiSuratPage {
@@ -42,6 +45,36 @@ export class KoreksiSuratPage {
 
         const previewNaskah = cy.get(koreksi.previewNaskah).as('previewNaskah')
         previewNaskah.should('be.visible')
+
+        const tabEditNaskah = cy.get(koreksi.tabEditNaskah).as('tabEditNaskah')
+        tabEditNaskah.should('contain', 'Edit Naskah')
+            .and('be.visible')
+
+        const tabRiwayatNaskah = cy.get(koreksi.tabRiwayatNaskah).as('tabRiwayatNaskah')
+        tabRiwayatNaskah.should('contain', 'Riwayat Naskah')
+            .and('be.visible')
+    }
+
+    checkDetailKoreksiTandatanganiNotaDinas() {
+        const getbtnKoreksi = cy.get(koreksi.getbtnKoreksi).as('getbtnKoreksi')
+        getbtnKoreksi.should('contain', 'Koreksi')
+            .click()
+
+        cy.wait(3000)
+
+        const btnKembaliKoreksi = cy.get(koreksi.btnKembaliKoreksi).as('btnKembaliKoreksi')
+        btnKembaliKoreksi.should('be.visible')
+
+        const titleDetailKoreksi = cy.get(koreksi.titleDetailKoreksi).as('titleDetailKoreksi')
+        titleDetailKoreksi.should('contain', 'Konsep Naskah')
+            .and('be.visible')
+
+        const btnKoreksiTandatangani = cy.get(koreksi.btnKoreksiTandatangani).as('btnKoreksiTandatangani')
+        btnKoreksiTandatangani.should('contain', 'Tandatangani')
+            .and('be.visible')
+
+        const previewNaskahNotaDinas = cy.get(koreksi.previewNaskahNotaDinas).as('previewNaskahNotaDinas')
+        previewNaskahNotaDinas.should('be.visible')
 
         const tabEditNaskah = cy.get(koreksi.tabEditNaskah).as('tabEditNaskah')
         tabEditNaskah.should('contain', 'Edit Naskah')
@@ -100,6 +133,26 @@ export class KoreksiSuratPage {
         btnTandatanganiNaskah.should('contain', 'Tandatangani')
             .click()
     }
+
+        koreksiTandatanganiNaskahNotaDinas(passphrase) {
+        updateNotaDinasPage.inputKoreksiKepalaSurat()
+
+        const btnKoreksiTandatangani = cy.get(koreksi.btnKoreksiTandatangani).as('btnKoreksiTandatangani')
+        btnKoreksiTandatangani.click()
+
+        const getpopupKonfirmasiTandatanganiNaskah = cy.get(koreksi.getpopupKonfirmasiTandatanganiNaskah).as('getpopupKonfirmasiTandatanganiNaskah')
+        getpopupKonfirmasiTandatanganiNaskah.should('be.visible')
+
+        const inputPassphrase = cy.get(koreksi.inputPassphrase).as('inputPassphrase')
+        inputPassphrase.type(passphrase)
+
+        cy.wait(2000)
+
+        const btnTandatanganiNaskah = cy.get(koreksi.btnTandatanganiNaskah).as('btnTandatanganiNaskah')
+        btnTandatanganiNaskah.should('contain', 'Tandatangani')
+            .click()
+    }
+
 
     koreksiNaskah() {
         createSuratBiasaPage.inputKoreksiKepalaSurat()

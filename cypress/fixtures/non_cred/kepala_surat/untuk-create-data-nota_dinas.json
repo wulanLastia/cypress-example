@@ -1,0 +1,28 @@
+{
+  "Kepala_Surat": [
+    {
+      "Tujuan1": "I Gusti Agung Kim Fajar",
+      "Tujuan2": "Ludia Rosema",
+      "Tujuan3": "Zenal Mustopa"
+    },
+    {
+      "Tembusan1": "Raden Andhika",
+      "Tembusan2": "Upar Suparno"
+    },
+    {
+      "Kode_Klasifikasi": "SK (Semua Klasifikasi)"
+    },
+    {
+      "Unit_Pengolah": "PAD"
+    },
+    {
+      "Sifat_Surat": "Penting"
+    },
+    {
+      "Urgensi_Nota_Dinas": "Amat Segera"
+    },
+    {
+      "Perihal": "Automation Testing 598990 Tujuan Kepala Surat - Internal Eksternal - Lampiran Perbaiki Koreksi"
+    }
+  ]
+}

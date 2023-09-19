@@ -11,6 +11,7 @@ module.exports = {
     btnKembaliKoreksi: '[data-cy="koreksi-naskah__header__button--back"]',
     titleDetailKoreksi: '[data-cy="koreksi-naskah__header__label"]',
     previewNaskah: '[data-cy="drafting__preview__surat-biasa"]',
+    previewNaskahNotaDinas: '[data-cy="koreksi-naskah__header__label__letter-type"]',
     tabEditNaskah: '[data-cy="koreksi-naskah__button--edit-naskah"]',
     tabRiwayatNaskah: '[data-cy="koreksi-naskah__button--riwayat-naskah"]',
     btnKoreksiTandatangani: '[data-cy="koreksi-naskah__header__button--signing"]',
