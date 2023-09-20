@@ -28,7 +28,7 @@ jobs:
       # bisa disesuaikan kalau ada banyak fixture lain. jangan lupa tambahkan di setting env repo
       - name: 'Create credential fixture dir'
         run: |
-          mkdir cypress/fixtures
+          mkdir cypress/fixtures/cred
           echo "${{ secrets.CREDENTIALS_DEV_JSON_CONTENT }}" | base64 --decode > cypress/fixtures/cred/credentials_dev.json
           echo "${{ secrets.CREDENTIALS_PROD_JSON_CONTENT }}" | base64 --decode > cypress/fixtures/cred/credentials_prod.json
 
