@@ -19,7 +19,7 @@ let perbaikiNaskahPage = new PerbaikiNaskahPage()
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
-    cy.fixture('credentials_prod.json').then((data) => {
+    cy.fixture('cred/credentials_prod.json').then((data) => {
         user = data
     })
 })
