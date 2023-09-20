@@ -11,7 +11,7 @@ let menuPage = new MenuPage()
 let user
 
 before(() => {
-    cy.fixture('credentials_dev.json').then((data) => {
+    cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
 })
