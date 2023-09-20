@@ -12,7 +12,7 @@ let user
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
-    cy.fixture('credentials_dev.json').then((data) => {
+    cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
 })
