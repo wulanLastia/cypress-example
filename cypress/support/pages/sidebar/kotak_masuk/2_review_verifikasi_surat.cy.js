@@ -2,7 +2,7 @@ import review_verifikasi from "../../../selectors/sidebar/kotak_masuk/review_ver
 import { ListSuratReviewNaskahPage } from "../kotak_masuk/1_list_surat_review_naskah.cy"
 
 const listSuratReviewNaskahPage = new ListSuratReviewNaskahPage()
-const perihalNaskah = "cypress/fixtures/kepala_surat/kepala_surat_temp_data.json"
+const perihalNaskah = "cypress/fixtures/non_cred/kepala_surat/kepala_surat_temp_data.json"
 
 export class ReviewVerifikasiSuratPage {
 

@@ -10,7 +10,7 @@ const draftingSuratBiasaPage = new DraftingKonsepNaskahPage()
 const createSuratBiasaPage = new CreateSuratBiasaPage()
 const updateNotaDinasPage = new UpdateNotaDinasPage()
 
-const perihalNaskah = "cypress/fixtures/kepala_surat/kepala_surat_temp_data.json"
+const perihalNaskah = "cypress/fixtures/non_cred/kepala_surat/kepala_surat_temp_data.json"
 
 export class KoreksiSuratPage {
 
