@@ -3,12 +3,13 @@
     "cy_local_test": "env $(grep -v '^#' .env | xargs) cypress run"
   },
   "devDependencies": {
-    "cypress": "^12.5.1",
+    "cypress": "^12.17.4",
     "cypress-file-upload": "^5.0.8",
     "cypress-xpath": "^2.0.1"
   },
   "dependencies": {
     "cypress-qase-reporter": "^1.4.2-alpha.2",
-    "cypress-real-events": "^1.7.6"
+    "cypress-real-events": "^1.7.6",
+    "dayjs": "^1.11.10"
   }
 }
