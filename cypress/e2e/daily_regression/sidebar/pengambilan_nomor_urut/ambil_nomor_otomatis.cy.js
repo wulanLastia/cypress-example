@@ -26,6 +26,8 @@ before(() => {
     cy.fixture('non_cred/penomoran/uk_up.json').then((data) => {
         uk_up = data
     })
+
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
 before(() => {
