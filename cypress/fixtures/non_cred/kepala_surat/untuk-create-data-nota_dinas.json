@@ -1,9 +1,11 @@
 {
   "Kepala_Surat": [
     {
-      "Tujuan1": "I Gusti Agung Kim Fajar",
-      "Tujuan2": "Ludia Rosema",
-      "Tujuan3": "Zenal Mustopa"
+      "Tujuan1": "Kepala Dinas Perpustakaan dan Kearsipan Daerah Provinsi Jawa Barat",
+      "Tujuan2": "Pranata Komputer Ahli Pertama",
+      "Tujuan3": "Pengadministrasi Perencanaan dan Program",
+      "Tujuan_Lampiran1": "Staff Internal",
+      "Tambahan_Tujuan_Kepala_Lampiran1": "Ridwan Kamil"
     },
     {
       "Tembusan1": "Raden Andhika",
@@ -22,7 +24,7 @@
       "Urgensi_Nota_Dinas": "Amat Segera"
     },
     {
-      "Perihal": "Automation Testing 598990 Tujuan Kepala Surat - Internal Eksternal - Lampiran Perbaiki Koreksi"
+      "Perihal": "Automation Testing 440346 Tujuan Kepala Surat - Internal - Lampiran"
     }
   ]
 }
