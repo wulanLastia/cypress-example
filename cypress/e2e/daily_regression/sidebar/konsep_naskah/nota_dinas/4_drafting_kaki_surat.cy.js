@@ -95,7 +95,7 @@ describe('Kaki Naskah', { testIsolation: false }, () => {
 })
 
 
-describe('Kaki Naskah', { testIsolation: false }, () => {
+describe('Penandatangan', { testIsolation: false }, () => {
     before(() => {
         cy.then(Cypress.session.clearCurrentSessionData)
         loginPage.loginViaV1(user.nip, user.password)
