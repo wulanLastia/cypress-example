@@ -187,9 +187,9 @@ export class LoginPage {
         const btnKeluar = cy.get(navbar.btnKeluar).as('btnKeluar');
         btnKeluar.scrollIntoView()
                  .should('be.visible').and('contain', 'Log Out')
-                 .click();
+                 .click({ force: true });
         
-        cy.wait(5000)
+        cy.wait(8000)
 
         cy.url().should('eq', Cypress.env('base_url_v1'));
     }

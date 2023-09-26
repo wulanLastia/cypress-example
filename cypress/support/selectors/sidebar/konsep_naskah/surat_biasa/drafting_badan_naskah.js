@@ -6,6 +6,7 @@ module.exports = {
     closeBadanNaskahNotaDinas: '[data-cy="badan-naskah__close-icon"]',
     btnKirim: '[data-cy="surat-biasa-submit"]',
     htmlBadan: '[data-cy="badan-naskah__editor"]',
+    getTableTinyMCE: 'div[title="Table"]',
 
     // XPATH
     pilihTable: '/html[1]/body[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]',

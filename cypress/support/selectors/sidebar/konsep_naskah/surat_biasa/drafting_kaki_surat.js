@@ -10,6 +10,7 @@ module.exports = {
     selectPenandatanganNotaDinas: '[data-cy="kaki-surat__penandatangan-select-format"]',
     pilihPenandatangan: '[data-cy="kaki-surat__penandatangan__select-option__custom-input0"]',
     pilihPenandatanganNotaDinas: '[data-cy="kaki-surat__penandatangan__v-select"]',
+    labelPemeriksaNotaDinas: '[data-cy="kaki-surat__pemeriksa__subtitle"]',
     labelPemeriksa: '[data-cy="kaki-surat__pemeriksa__label"]',
     pilihPemeriksa: '[data-cy="kaki-surat__pemeriksa__select-option__custom-input0"]',
     pilihPemeriksa2: '[data-cy="kaki-surat__pemeriksa__select-option__custom-input1"]',

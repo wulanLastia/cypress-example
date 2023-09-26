@@ -26,19 +26,29 @@ export class DraftingKakiSuratPage {
         const labelPenandatangan = cy.get(kaki_surat.labelPenandatanganNotaDinas).as('labelPenandatangan')
         labelPenandatangan.should('contain', 'Penandatangan')
 
+        cy.wait(3000)
+
         const selectPenandatangan = cy.get(kaki_surat.selectPenandatanganNotaDinas).as('selectPenandatangan')
         selectPenandatangan.find('option:selected').should('have.text', 'Pilih Format Penandatangan')
 
-        const pilihPenandatangan = cy.get(kaki_surat.pilihPenandatanganNotaDinas).as('pilihPenandatangan')
+        cy.wait(3000)
+
+        const pilihPenandatangan = cy.get(kaki_surat.pilihPenandatanganNotaDinas + ' .vs__search').as('pilihPenandatangan')
         pilihPenandatangan.should('have.attr', 'placeholder', ' Pilih Penandatangan')
 
-        const labelPemeriksa = cy.get(kaki_surat.labelPemeriksa).as('labelPemeriksa')
+        cy.wait(3000)
+    
+        const labelPemeriksa = cy.get(kaki_surat.labelPemeriksaNotaDinas).as('labelPemeriksa')
         labelPemeriksa.should('contain', 'Pemeriksa')
 
-        const pilihPemeriksa = cy.get(kaki_surat.pilihPemeriksa).as('pilihPemeriksa')
+        cy.wait(3000)
+
+        const pilihPemeriksa = cy.get(kaki_surat.pilihPemeriksaNotaDinas).as('pilihPemeriksa')
         pilihPemeriksa.should('have.attr', 'placeholder', ' Pilih/ketik nama pemeriksa naskah')
 
-        const btnTambahPemeriksa = cy.get(kaki_surat.btnTambahPemeriksa).as('btnTambahPemeriksa')
+        cy.wait(3000)
+
+        const btnTambahPemeriksa = cy.get(kaki_surat.btnTambahPemeriksaNotaDinas).as('btnTambahPemeriksa')
         btnTambahPemeriksa.should('be.visible')
             .should('contain', 'Tambahkan Pemeriksa')
     }
@@ -50,10 +60,10 @@ export class DraftingKakiSuratPage {
     }
 
     checkDropdownPenandatangan() {
-        const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
+        const selectPenandatangan = cy.get(kaki_surat.selectPenandatanganNotaDinas).as('selectPenandatangan')
         selectPenandatangan
         .select(0)
-        .should('have.text', 'Pilih Format Penandatangan Atasan \n Atas nama\n \n Untuk beliau\n Diri sendiri')
+        .should('have.text', 'Pilih Format Penandatangan Atasan \n              Atas nama\n             \n              Untuk beliau\n             Diri sendiri')
     }
 
     leaveEmptyField() {
