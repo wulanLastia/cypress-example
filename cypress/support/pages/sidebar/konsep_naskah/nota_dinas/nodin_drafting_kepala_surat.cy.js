@@ -123,12 +123,6 @@ export class DraftingKepalaSuratNotaDinasPage {
         clickRadio1.should('be.visible')
         .click()
     }
-    clickRButton2LampiranSurat() {
-        const clickRadio2 = cy.xpath(kepala_surat.radio2).as('clickRadio2')
-        clickRadio2.should('be.visible')
-        .click()
-    }
-
 
     // Field Tujuan Surat
     inputTujuan(Nama_Tujuan1) {            
@@ -254,7 +248,7 @@ export class DraftingKepalaSuratNotaDinasPage {
     
         const pilihTembusan = cy.get(kepala_surat.inputTembusan0).as('pilihTembusan')
         pilihTembusan.wait(3000)
-            .type('{enter}')
+            .type('{enter}')        
     }    
 
     addTembusan() {
@@ -536,7 +530,6 @@ export class DraftingKepalaSuratNotaDinasPage {
 
 
 
-            
         cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
             // If there's no Kepala_Surat entry, initialize one
             if (!data.Kepala_Surat) {
@@ -566,7 +559,185 @@ export class DraftingKepalaSuratNotaDinasPage {
         });
     }    
 
+    scrappingNamaJabatan() {
+        // Scrapping Nama Jabatan 1
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+            // If there's no Kepala_Surat entry, initialize one
+            if (!data.Kepala_Surat) {
+                data.Kepala_Surat = [];
+            }
+            
+            // Scrap Tanggal Penomoran Data
+            cy.xpath(kepala_surat.scrapNamaJabatan1)
+                .invoke('text')
+                .then((scrapNamaJabatan1) => { 
+                    let namajabatanExists = data.Kepala_Surat.some(item => 'Tujuan1' in item);
+                    
+                    if (namajabatanExists) {
+                        data.Kepala_Surat.find(item => 'Tujuan1' in item).Tujuan1 = scrapNamaJabatan1.trim();
+                    } else {
+                        const addNamaJabatan = { Tujuan1: scrapNamaJabatan1.trim() };
+                        data.Kepala_Surat.push(addNamaJabatan);
+                    }
+                    
+                    cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
+                })
+        });
 
+
+        // Scrapping Nama Jabatan 2
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+            // If there's no Kepala_Surat entry, initialize one
+            if (!data.Kepala_Surat) {
+                data.Kepala_Surat = [];
+            }
+            
+            // Scrap Tanggal Penomoran Data
+            cy.xpath(kepala_surat.scrapNamaJabatan2)
+                .invoke('text')
+                .then((scrapNamaJabatan2) => { 
+                    let namajabatanExists = data.Kepala_Surat.some(item => 'Tujuan2' in item);
+                    
+                    if (namajabatanExists) {
+                        data.Kepala_Surat.find(item => 'Tujuan2' in item).Tujuan2 = scrapNamaJabatan2.trim();
+                    } else {
+                        const addNamaJabatan = { Tujuan2: scrapNamaJabatan2.trim() };
+                        data.Kepala_Surat.push(addNamaJabatan);
+                    }
+                    
+                    cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
+                })
+        });
+
+        
+        // Scrapping Nama Jabatan 3
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+            // If there's no Kepala_Surat entry, initialize one
+            if (!data.Kepala_Surat) {
+                data.Kepala_Surat = [];
+            }
+            
+            // Scrap Tanggal Penomoran Data
+            cy.xpath(kepala_surat.scrapNamaJabatan3)
+                .invoke('text')
+                .then((scrapNamaJabatan3) => { 
+                    let namajabatanExists = data.Kepala_Surat.some(item => 'Tujuan3' in item);
+                    
+                    if (namajabatanExists) {
+                        data.Kepala_Surat.find(item => 'Tujuan3' in item).Tujuan3 = scrapNamaJabatan3.trim();
+                    } else {
+                        const addNamaJabatan = { Tujuan3: scrapNamaJabatan3.trim() };
+                        data.Kepala_Surat.push(addNamaJabatan);
+                    }
+                    
+                    cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
+                })
+        });
+
+        
+    }
+    
+
+
+    // LAMPIRAN SURAT
+
+    // Radio Button Penempatan daftar tujuan surat
+    clickRButton2LampiranSurat() {
+        const clickRadio2 = cy.get(kepala_surat.radio2).as('clickRadio2')
+        clickRadio2.scrollIntoView()
+        .should('be.visible')
+        .click({ force: true })
+    }
+
+
+    // Field Tujuan Lampiran
+    inputTujuanLampiran1(Nama_Tujuan_Lampiran1) {
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+            // If there's no Kepala_Surat entry, initialize one
+            if (!data.Kepala_Surat) {
+                data.Kepala_Surat = [{}];
+            }
+            
+            // Input data into fields
+            const scrappingTujuanLampiran1 = cy.get(kepala_surat.inputTujuanLampiran).as('scrappingTujuanLampiran1')
+            scrappingTujuanLampiran1.wait(1000)
+                .type(Nama_Tujuan_Lampiran1)
+                .invoke('val')  // Extract the value of the input
+                .then((inputValueLampiranTujuan1) => { 
+                    // Assign the inputValue2 to Tujuan2
+                    data.Kepala_Surat[0].Tujuan_Lampiran1 = inputValueLampiranTujuan1;
+                    
+                    // Write data back to the JSON file
+                    cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
+                })
+        });
+    
+        const fieldTujuanLampiranKepala = cy.get(kepala_surat.inputTujuanLampiran).as('fieldTujuanLampiranKepala')
+        fieldTujuanLampiranKepala.wait(3000)
+            .type('{enter}')
+    }
+
+
+    // Button "Buat tujuan surat di lampiran"
+    buttonBuatTujuanSuratDiLampiran() {
+        const clickBuatTujuanSuratDiLampiran = cy.get(kepala_surat.btnBuatTujuanSuratDiLampiran).as('clickBuatTujuanSuratDiLampiran')
+        clickBuatTujuanSuratDiLampiran.should('be.visible')
+        .click({ force: true })
+        .wait(5000)
+    }
+
+    // Validasi Nama Jabatan di Lampiran
+    validateNamaJabatanLampiran() {
+        // Read JSON file for Validate Tujuan that moved into Lampiran
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+            const validateTujuan1 = data.Kepala_Surat[0].Tujuan1;
+            const validateTujuan2 = data.Kepala_Surat[0].Tujuan2;
+            const validateTujuan3 = data.Kepala_Surat[0].Tujuan3;
+    
+            cy.xpath(kepala_surat.titleNamaTujuanLampiran1).should('contain', validateTujuan1);
+            cy.xpath(kepala_surat.titleNamaTujuanLampiran2).should('contain', validateTujuan2);
+            cy.xpath(kepala_surat.titleNamaTujuanLampiran3).should('contain', validateTujuan3);
+    
+        });    
+    }
+
+    addmoreTujuanLampiran1(Tambahan_Tujuan_Lampiran1) {
+        const btnEditLampiranKepala = cy.get(kepala_surat.btnUbahPenerimaSuratLampiran).as('btnEditLampiranKepala')
+        btnEditLampiranKepala.click({ force: true })
+            .wait(3000)
+
+        const btnTambahTujuanSurat = cy.get(kepala_surat.addMoreTujuanLampiran).as('btnTambahTujuanSurat')
+        btnTambahTujuanSurat.click({ force: true })
+            .wait(3000)
+        
+
+            
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+            // If there's no Kepala_Surat entry, initialize one
+            if (!data.Kepala_Surat) {
+                data.Kepala_Surat = [{}];
+            }
+            
+            // Input data into fields
+            const scrappingMoreTujuanLampiran1 = cy.get(kepala_surat.inputTujuanLampiran3).as('scrappingMoreTujuanLampiran1')
+            scrappingMoreTujuanLampiran1.wait(1000)
+                .type(Tambahan_Tujuan_Lampiran1)
+                .invoke('val')  // Extract the value of the input
+                .then((inputValueMoreLampiranTujuan1) => { 
+                    // Assign the inputValue2 to Tujuan2
+                    data.Kepala_Surat[0].Tambahan_Tujuan_Kepala_Lampiran1 = inputValueMoreLampiranTujuan1;
+                    
+                    // Write data back to the JSON file
+                    cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
+                })
+        });
+    
+        const addmoreTujuanLampiran1 = cy.get(kepala_surat.inputTujuanLampiran3).as('addmoreTujuanLampiran1')
+        addmoreTujuanLampiran1.wait(3000)
+            .type('{enter}')
+    }
+
+    
 
 
     // for After Functions
@@ -580,5 +751,15 @@ export class DraftingKepalaSuratNotaDinasPage {
 
     draftingNotaDinasPage.validateFormDefault()
     }
+
+    closeLampiranKepalaSurat() {
+        const btnLampiranKepalaSurat = cy.get(kepala_surat.closeLampiranKepalaSurat).as('btnLampiranKepalaSurat')
+        btnLampiranKepalaSurat.scrollIntoView()
+            .should('be.visible')
+            .click()
+
+    draftingNotaDinasPage.validateFormDefault()
+    }
+
 
 }

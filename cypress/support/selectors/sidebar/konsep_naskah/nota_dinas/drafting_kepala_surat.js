@@ -17,7 +17,13 @@ module.exports = {
     inputTujuan5: '[data-cy="kepala-surat__tujuan__select-option__custom-input5"]',
     addMoreTujuan: '[data-cy="kepala-surat__tujuan__add-button"]',
     inputTujuanLampiran: '[data-cy="kepala-surat__tujuan__lampiran__input"]',
+    btnBuatTujuanSuratDiLampiran: '[data-cy="kepala-surat__tujuan__lampiran__add-button"]',
+    btnUbahPenerimaSuratLampiran: '[data-cy="lampiran__tujuan-surat__title"]',
     addMoreTujuanLampiran: '[data-cy="lampiran-tujuan-surat__add-button"]',
+    titleNamaTujuanLampiran1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/p[2]/span[2]',
+    titleNamaTujuanLampiran2: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/p[3]/span[2]',
+    titleNamaTujuanLampiran3: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/p[4]/span[2]',
+    closeLampiranKepalaSurat: '[data-cy="lampiran-tujuan-surat__close-button"]',
 
     labelTembusan: '[data-cy="kepala-surat__nota-dinas__tembusan__title"]',
     inputTembusan0: '[data-cy="kepala-surat__nota-dinas__tembusan__select-option__custom-input0"]',
@@ -51,6 +57,10 @@ module.exports = {
     scrollForm: '[data-cy="nota-dinas__frame__input-kepala-surat"]',
     previewKepalaLampiran: '[data-cy="surat__kepala-surat"]',
     titlePreviewKepalaSurat: '[data-cy="surat__title__nota-dinas"]',
+
+    scrapNamaJabatan1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/span[1]/div[1]/p[2]',
+    scrapNamaJabatan2: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/span[1]/div[2]/p[2]',
+    scrapNamaJabatan3: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/span[1]/div[3]/p[2]',
     
     // XPATH
     radio1: '[data-cy="radio-button-0"]',
