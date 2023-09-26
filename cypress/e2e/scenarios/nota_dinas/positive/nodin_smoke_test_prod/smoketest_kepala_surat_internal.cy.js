@@ -4,6 +4,9 @@ import { MenuPage } from "../../../../../support/pages/sidebar/menu/menu.cy"
 import { CreateNotaDinasPage } from "../../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_create_nota_dinas.cy"
 import { KembalikanNaskahPage } from "../../../../../support/pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
 import { PerbaikiNaskahPage } from "../../../../../support/pages/sidebar/kotak_masuk/6_perbaiki.cy"
+import { SetujuiPage } from "../../../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
+import { KoreksiSuratPage } from "../../../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
+
 
 
 
@@ -14,6 +17,8 @@ let user
 let createNotaDinasPage = new CreateNotaDinasPage()
 let kembalikanNaskahPage = new KembalikanNaskahPage()
 let perbaikiNaskahPage = new PerbaikiNaskahPage()
+let setujuiPage = new SetujuiPage()
+let koreksiSuratPage = new KoreksiSuratPage()
 
 
 
@@ -62,7 +67,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
     qase([399, 101, 377, 402, 100],
         it('Kembalikan Naskah', () => {
             // Login 
-            loginPage.loginViaV1Prod(user.nipPemeriksa, user.password)
+            loginPage.loginViaV1Prod(user.nipPemeriksa, user.passwordPemeriksa)
             loginPage.directLogin()
 
 
@@ -80,24 +85,59 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             loginPage.closePopupLandingPage()
             cy.wait(10000)
 
-            loginPage.logoutV2step2PROD() // for Trace Element Issue Only
+            loginPage.logoutV2step2PROD()
         })
     )
 
 
     qase([367, 712, 713, 714, 715],
-        it.skip('Perbaiki Naskah', () => {
+        it('Perbaiki Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1Prod(user.nip, user.password)
             loginPage.directLogin()
-
+        
 
             perbaikiNaskahPage.goToPerbaikiNaskahNotaDinas()
             cy.wait(3000)
             perbaikiNaskahPage.perbaikiNaskahNotaDinas()
             cy.wait(10000)
+
+            loginPage.logoutV2step2PROD()
         })
     )
+
+
+    qase([358, 102],
+        it('Setujui Naskah', () => {
+            // Login 
+            loginPage.loginViaV1Prod(user.nipPemeriksa, user.passwordPemeriksa)
+            loginPage.directLogin()
+
+            setujuiPage.suratBelumDireview()
+            cy.wait(3000)
+            setujuiPage.setujui()
+            cy.wait(10000)
+
+            loginPage.logoutV2step2PROD()
+        })
+    )
+
+
+    qase([368, 370, 372],
+        it.skip('Koreksi dan Tandatangani Naskah', () => {
+            // Login 
+            loginPage.loginViaV1Prod(user.nipPemeriksa2, user.passwordPemeriksa)
+            loginPage.directLogin()
+
+            koreksiSuratPage.goToNaskahBelumDireview()
+            cy.wait(3000)
+            koreksiSuratPage.checkDetailKoreksiTandatanganiNotaDinas()
+            cy.wait(3000)
+            koreksiSuratPage.koreksiTandatanganiNaskahNotaDinas(user.passphrase)
+            cy.wait(10000)
+        })
+    )
+
 
 
 })
