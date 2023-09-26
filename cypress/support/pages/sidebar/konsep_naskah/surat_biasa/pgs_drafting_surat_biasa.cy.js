@@ -58,11 +58,11 @@ export class DraftingKonsepNaskahPage {
     batalDrafting() {
         this.clickbtnKembali()
 
-        const titleBatalDrafting = cy.xpath(konsep_naskah.titleBatalDrafting).as('titleBatalDrafting')
+        const titleBatalDrafting = cy.get(konsep_naskah.titleBatalDrafting).as('titleBatalDrafting')
         titleBatalDrafting.should('contain', 'Batalkan Konsep Naskah?')
             .and('be.visible')
 
-        const btnBatalDrafting = cy.xpath(konsep_naskah.btnBatalDrafting).as('btnBatalDrafting')
+        const btnBatalDrafting = cy.get(konsep_naskah.btnBatalDrafting).as('btnBatalDrafting')
         btnBatalDrafting.should('contain', 'Ya, batalkan')
             .and('be.visible')
             .click()
@@ -77,11 +77,11 @@ export class DraftingKonsepNaskahPage {
 
         this.clickbtnKembali()
 
-        const titleBatalDrafting = cy.xpath(konsep_naskah.titleBatalDrafting).as('titleBatalDrafting')
+        const titleBatalDrafting = cy.get(konsep_naskah.titleBatalDrafting).as('titleBatalDrafting')
         titleBatalDrafting.should('contain', 'Batalkan Konsep Naskah?')
             .and('be.visible')
 
-        const btnLanjutkanDrafting = cy.xpath(konsep_naskah.btnLanjutkanDrafting).as('btnLanjutkanDrafting')
+        const btnLanjutkanDrafting = cy.get(konsep_naskah.btnLanjutkanDrafting).as('btnLanjutkanDrafting')
         btnLanjutkanDrafting.should('contain', 'Tidak')
             .and('be.visible')
             .click()
@@ -126,8 +126,20 @@ export class DraftingKonsepNaskahPage {
     }
 
     aksesLampiranSurat() {
-        const titlePreviewLampiran = cy.xpath(konsep_naskah.titlePreviewLampiran).as('titlePreviewLampiran')
+        const titlePreviewLampiran = cy.get(konsep_naskah.titlePreviewLampiran).as('titlePreviewLampiran')
         titlePreviewLampiran.should('contain', 'Klik tombol berikut untuk menambah lampiran')
+
+        const subTitlePreviewLampiran = cy.get(konsep_naskah.subTitlePreviewLampiran).as('subTitlePreviewLampiran')
+        subTitlePreviewLampiran.should('contain', '(Batas maksimal ukuran berkas unggahan adalah 10 GB dengan file pdf)')
+
+        const btnBuatLampiran = cy.get(konsep_naskah.btnBuatLampiran).as('btnBuatLampiran')
+        btnBuatLampiran.should('contain', 'Buat Lampiran')
+            .and('be.enabled')
+
+        const btnUploadFile = cy.get(konsep_naskah.btnUploadFile).as('btnUploadFile')
+        btnUploadFile.should('contain', 'Upload File')
+            .and('be.enabled')
+
     }
 
     validateFormDefault() {
@@ -145,18 +157,18 @@ export class DraftingKonsepNaskahPage {
     }
 
     inputLampiranSurat() {
-        const previewLampiran = cy.xpath(konsep_naskah.previewLampiran).as('previewLampiran')
-        previewLampiran.click(180, 200)
+        const previewLampiran = cy.get(konsep_naskah.previewLampiran).as('previewLampiran')
+        previewLampiran.click()
 
-        const titleLampiran = cy.xpath(konsep_naskah.titleLampiran).as('titleLampiran')
+        const titleLampiran = cy.get(konsep_naskah.titleLampiran).as('titleLampiran')
         titleLampiran.should('contain', 'Lampiran')
     }
 
     inputLampiranSurat2() {
-        const previewLampiran2 = cy.xpath(konsep_naskah.previewLampiran2).as('previewLampiran2')
-        previewLampiran2.click(180, 200)
+        const previewLampiran = cy.get(konsep_naskah.previewLampiran).last().as('previewLampiran')
+        previewLampiran.click()
 
-        const titleLampiran = cy.xpath(konsep_naskah.titleLampiran).as('titleLampiran')
+        const titleLampiran = cy.get(konsep_naskah.titleLampiran).as('titleLampiran')
         titleLampiran.should('contain', 'Lampiran')
     }
 
@@ -164,7 +176,7 @@ export class DraftingKonsepNaskahPage {
         const btnKirimNaskah = cy.get(konsep_naskah.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.click()
 
-        const konfirmasiKirimNaskah = cy.xpath(konsep_naskah.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
+        const konfirmasiKirimNaskah = cy.get(konsep_naskah.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
         konfirmasiKirimNaskah.should('contain', 'Kirim naskah')
             .click()
     }
