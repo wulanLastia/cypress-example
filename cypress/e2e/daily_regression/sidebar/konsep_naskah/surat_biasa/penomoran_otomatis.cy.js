@@ -16,16 +16,18 @@ let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
 
-before(() => {
+beforeEach(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
+
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
 afterEach(() => {
-        cy.wait(10000)
-        loginPage.logoutV2step2()
+    cy.wait(10000)
+    loginPage.logoutV2step2()
 })
 
 

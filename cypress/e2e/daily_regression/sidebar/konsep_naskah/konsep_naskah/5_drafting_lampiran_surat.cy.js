@@ -13,6 +13,8 @@ before(() => {
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
+
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
 before(() => {
@@ -22,7 +24,7 @@ before(() => {
 
 after(() => {
     qase(411,
-        loginPage.logoutV2()
+        loginPage.logoutV2step2()
     )
 })
 
@@ -39,7 +41,6 @@ describe('Drafting Lampiran Surat Skenario', { testIsolation: false }, () => {
     qase(105,
         it('Hapus lampiran drafting surat biasa', () => {
             draftingLampiranSuratPage.hapusLampiranSurat()
-            menuPage.goToKotakMasukReviewNaskah()
         })
     )
 }) 
