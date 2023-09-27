@@ -4,6 +4,7 @@ module.exports = {
     getbtnKoreksi: '[data-cy="button--correction"]',
     getbtnSetujui: '[data-cy="button--approve"]',
     tableReviewSurat: '[data-cy="review-naskah__table"]',
+    bsreErrorSign: '[data-cy="dialog__error-signing"]',
 
     // XPATH
     btnKembali: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/header[1]/div[1]/div[1]/button[1]',
@@ -18,4 +19,5 @@ module.exports = {
     filterStatus: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/button[1]',
     statusBelumDireview: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[2]/div[1]/label[2]/input[1]',
     closeFilter: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[3]/div[1]/div[1]/button[1]/span[1]',
+    btnLanjutkanReviewNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[3]/div[1]/div[3]/div[1]/a[1]'
 }

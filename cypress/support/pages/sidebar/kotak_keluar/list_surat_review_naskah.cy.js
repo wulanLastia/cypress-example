@@ -6,21 +6,21 @@ export class ListSuratReviewNaskahKeluarPage {
         this.checkTitleReviewNaskah()
 
         const buttonFilterReviewNaskahKeluar = cy.xpath(review_naskah.buttonFilterReviewNaskahKeluar).as('buttonFilterReviewNaskahKeluar')
-        buttonFilterReviewNaskahKeluar.should('contain','Atur Filter')
+        buttonFilterReviewNaskahKeluar.should('contain', 'Atur Filter')
 
         const searchReviewNaskahKeluar = cy.xpath(review_naskah.searchReviewNaskahKeluar).as('searchReviewNaskahKeluar')
-        searchReviewNaskahKeluar.should('have.attr', 'placeholder', 'Cari berdasarkan perihal')
+        searchReviewNaskahKeluar.should('have.attr', 'placeholder', 'Cari berdasarkan perihal atau tujuan naskah')
 
         const tableReviewNaskahKeluar = cy.xpath(review_naskah.tableReviewNaskahKeluar).as('tableReviewNaskahKeluar')
         tableReviewNaskahKeluar.should('have.class', 'table row-clickable')
     }
 
-    checkTitleReviewNaskah(){
+    checkTitleReviewNaskah() {
         const titleReviewNaskahKeluar = cy.xpath(review_naskah.titleReviewNaskahKeluar).as('titleReviewNaskahKeluar')
-        titleReviewNaskahKeluar.should('contain','Kotak Keluar')
+        titleReviewNaskahKeluar.should('contain', 'Kotak Keluar')
 
         const subTitleReviewNaskahKeluar = cy.xpath(review_naskah.subTitleReviewNaskahKeluar).as('subTitleReviewNaskahKeluar')
-        subTitleReviewNaskahKeluar.should('contain','Review Naskah')
+        subTitleReviewNaskahKeluar.should('contain', 'Review Naskah')
     }
 
 }

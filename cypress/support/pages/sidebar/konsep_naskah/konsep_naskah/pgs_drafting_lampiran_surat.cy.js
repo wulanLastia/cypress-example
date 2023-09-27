@@ -11,10 +11,12 @@ export class DraftingLampiranSuratPage {
     }
 
     aksesFormEditingLampiranSurat() {
+        cy.wait(3000)
+
         const scrollPreview = cy.xpath(lampiran_surat.scrollPreview).as('scrollPreview')
         scrollPreview.scrollTo('bottom')
 
-        const btnBuatLampiran = cy.xpath(lampiran_surat.btnBuatLampiran).as('btnBuatLampiran')
+        const btnBuatLampiran = cy.get(lampiran_surat.btnBuatLampiran).as('btnBuatLampiran')
         btnBuatLampiran.should('contain', 'Buat Lampiran')
             .click({ force: true })
     }
@@ -23,28 +25,32 @@ export class DraftingLampiranSuratPage {
         const scrollPreview = cy.xpath(lampiran_surat.scrollPreview).as('scrollPreview')
         scrollPreview.scrollTo('bottom')
 
-        const btnBuatLampiran2 = cy.xpath(lampiran_surat.btnBuatLampiran2).as('btnBuatLampiran2')
-        btnBuatLampiran2.should('contain', 'Buat Lampiran')
-            .click()
+        const btnBuatLampiran = cy.get(lampiran_surat.btnBuatLampiran).as('btnBuatLampiran')
+        btnBuatLampiran.should('contain', 'Buat Lampiran')
+            .click({ force: true })
     }
 
     checkDetail() {
         draftingKonsepNaskahPage.inputLampiranSurat()
 
-        const subtitleLampiran = cy.xpath(lampiran_surat.subtitleLampiran).as('subtitleLampiran')
+        const titleLampiran = cy.get(lampiran_surat.titleLampiran).as('titleLampiran')
+        titleLampiran.should('contain', 'Lampiran')
+
+        const subtitleLampiran = cy.get(lampiran_surat.subtitleLampiran).as('subtitleLampiran')
         subtitleLampiran.should('contain', 'Format Lampiran Halaman')
 
-        const radio1 = cy.xpath(lampiran_surat.radio1).as('radio1')
-        radio1.should('be.checked')
+        const radio1 = cy.get(lampiran_surat.radio1).as('radio1')
+        radio1.find('input').should('be.checked')
 
-        const labelRadio1 = cy.xpath(lampiran_surat.labelRadio1).as('labelRadio1')
+        const labelRadio1 = cy.get(lampiran_surat.labelRadio1).as('labelRadio1')
         labelRadio1.should('contain', 'Portrait')
 
-        const titleIsi = cy.xpath(lampiran_surat.titleIsi).as('titleIsi')
+        const titleIsi = cy.get(lampiran_surat.titleIsi).as('titleIsi')
         titleIsi.should('contain', 'Isi Lampiran')
 
-        const iframeLampiran = cy.xpath(lampiran_surat.htmlLampiran).as('htmlLampiran')
-        iframeLampiran.its('0.contentDocument.body')
+        const iframeLampiran = cy.get(lampiran_surat.htmlLampiran).as('htmlLampiran')
+        iframeLampiran.find('iframe')
+            .its('0.contentDocument.body')
             .should('be.visible')
 
         this.closeLampiran()
@@ -53,8 +59,9 @@ export class DraftingLampiranSuratPage {
     inputLampiranSurat() {
         draftingKonsepNaskahPage.inputLampiranSurat()
 
-        const iframeLampiran = cy.xpath(lampiran_surat.htmlLampiran).as('htmlLampiran')
-        iframeLampiran.its('0.contentDocument.body')
+        const iframeLampiran = cy.get(lampiran_surat.htmlLampiran).as('htmlLampiran')
+        iframeLampiran.find('iframe')
+            .its('0.contentDocument.body')
             .should('be.visible')
             .then(cy.wrap)
             .type('Lampiran 1{enter}{enter}')
@@ -64,8 +71,9 @@ export class DraftingLampiranSuratPage {
     inputLampiranSurat2() {
         draftingKonsepNaskahPage.inputLampiranSurat2()
 
-        const iframeLampiran = cy.xpath(lampiran_surat.htmlLampiran).as('htmlLampiran')
-        iframeLampiran.its('0.contentDocument.body')
+        const iframeLampiran = cy.get(lampiran_surat.htmlLampiran).as('htmlLampiran')
+        iframeLampiran.find('iframe')
+            .its('0.contentDocument.body')
             .should('be.visible')
             .then(cy.wrap)
             .type('Lampiran 2{enter}{enter}')

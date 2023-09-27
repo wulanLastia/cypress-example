@@ -22,6 +22,16 @@ export class KoreksiSuratPage {
             const tableReviewSurat = cy.get(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
             tableReviewSurat.contains('td', titlePerihalNaskah)
                 .click()
+                .then((data) => {
+                    const bsreErrorSign = cy.get(review_verifikasi_surat.bsreErrorSign).as('bsreErrorSign')
+                    bsreErrorSign.then($popup => {
+                        if ($popup.is(':visible')) {
+                            const btnLanjutkanReviewNaskah = cy.xpath(review_verifikasi_surat.btnLanjutkanReviewNaskah).as('btnLanjutkanReviewNaskah')
+                            btnLanjutkanReviewNaskah.should('contain', 'Ya, lanjut ke aksi selain TTE')
+                                .click()
+                        }
+                    })
+                })
         })
     }
 
@@ -134,7 +144,7 @@ export class KoreksiSuratPage {
             .click()
     }
 
-        koreksiTandatanganiNaskahNotaDinas(passphrase) {
+    koreksiTandatanganiNaskahNotaDinas(passphrase) {
         updateNotaDinasPage.inputKoreksiKepalaSurat()
 
         const btnKoreksiTandatangani = cy.get(koreksi.btnKoreksiTandatangani).as('btnKoreksiTandatangani')

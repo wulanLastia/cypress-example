@@ -17,14 +17,12 @@ let menuPage = new MenuPage()
 let user
 
 beforeEach(() => {
-    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
-})
-
-before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
+
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
 afterEach(() => {

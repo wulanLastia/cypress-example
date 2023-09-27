@@ -6,21 +6,21 @@ export class ListSuratReviewNaskahPage {
         this.checkTitleReviewNaskah()
 
         const filterReviewNaskah = cy.xpath(review_naskah.buttonFilterReviewNaskah).as('filterReviewNaskah')
-        filterReviewNaskah.should('contain','Atur Filter')
+        filterReviewNaskah.should('contain', 'Atur Filter')
 
         const searchReviewNaskah = cy.xpath(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
-        searchReviewNaskah.should('have.attr', 'placeholder', 'Cari berdasarkan perihal')
+        searchReviewNaskah.should('have.attr', 'placeholder', 'Cari berdasarkan perihal atau tujuan naskah')
 
         const tableReviewNaskah = cy.xpath(review_naskah.tableReviewNaskah).as('tableReviewNaskah')
         tableReviewNaskah.should('have.class', 'w-full mx-auto bg-white rounded-lg mb-24')
     }
 
-    checkTitleReviewNaskah(){
+    checkTitleReviewNaskah() {
         const titleReviewNaskah = cy.xpath(review_naskah.titleReviewNaskah).as('titleReviewNaskah')
-        titleReviewNaskah.should('contain','Kotak Masuk')
+        titleReviewNaskah.should('contain', 'Kotak Masuk')
 
         const subTitleReviewNaskah = cy.xpath(review_naskah.subTitleReviewNaskah).as('subTitleReviewNaskah')
-        subTitleReviewNaskah.should('contain','Review Naskah')
+        subTitleReviewNaskah.should('contain', 'Review Naskah')
     }
 
 }
