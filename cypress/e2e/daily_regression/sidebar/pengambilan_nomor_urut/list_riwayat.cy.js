@@ -3,9 +3,11 @@ import { LoginPage } from "../../../../support/pages/auth/login.cy"
 import { MenuPage } from "../../../../support/pages/sidebar/menu/menu.cy"
 import { PengambilanNomorUrutPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/pengambilan_nomor_urut.cy"
 import { AmbilNomorOtomatisPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/ambil_nomor_otomatis.cy"
+import { ListRiwayatPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/list_riwayat.cy"
 
 let pengambilanNomorUrutPage = new PengambilanNomorUrutPage()
 let ambilNomorOtomatisPage = new AmbilNomorOtomatisPage()
+let listRiwayatPage = new ListRiwayatPage()
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
@@ -39,30 +41,20 @@ after(() => {
     loginPage.logoutV2step2()
 })
 
-describe('Ambil Nomor Otomatis', { testIsolation: false }, () => {
+describe('List riwayat pengambilan nomor urut', { testIsolation: false }, () => {
 
-    qase([1006, 1109, 1012],
-        it('Cek pop up jika mengambil nomor hari ini', () => {
+    qase([1006, 1035],
+        it('Cek detail list riwayat pengambilan nomor', () => {
             // Akses menu pengambilan nomor
             menuPage.goToPengambilanNomor()
 
-            // Isi seluruh field form
-            pengambilanNomorUrutPage.inputJenisNaskah(jenis_naskah.jenis_naskah1)
-            pengambilanNomorUrutPage.inputUKUP(uk_up.uk_kadispusipda)
-
-            // Cek popup
-            ambilNomorOtomatisPage.checkPopupPengambilanNomor(jenis_naskah.jenis_naskah1, uk_up.uk_kadispusipda)
+            // Cek detail list riwayat
+            listRiwayatPage.checkDetail()
         })
     )
 
-    qase(1016,
-        it('Cek fungsi tombol Batal', () => {
-            ambilNomorOtomatisPage.batalMengambilNomorUrut()
-        })
-    )
-
-    qase(1013,
-        it('Cek detail pop up konfirmasi penomoran naskah otomatis', () => {
+    qase([1109, 1012, 1014, 1015, 1054],
+        it('Cek tombol aksi jika status belum registrasi', () => {
             // Isi seluruh field form
             pengambilanNomorUrutPage.inputJenisNaskah(jenis_naskah.jenis_naskah1)
             pengambilanNomorUrutPage.inputUKUP(uk_up.uk_kadispusipda)
@@ -72,24 +64,21 @@ describe('Ambil Nomor Otomatis', { testIsolation: false }, () => {
 
             // Cek detail
             ambilNomorOtomatisPage.checkDetailPopupPengambilanNomor()
-        })
-    )
 
-    qase(1014,
-        it('Cek fungsi tombol Dapatkan nomor urut', () => {
+            // Dapatkan nomor urut
             ambilNomorOtomatisPage.checkPopupDapatkanNomorUrut()
-        })
-    )
 
-    qase(1015,
-        it('Cek fungsi tombol Selesai', () => {
+            // Selesai mendapatkan nomor
             ambilNomorOtomatisPage.checkBtnSelesaiMendapatkanNomor()
+
+            // Cek tombol aksi
+            listRiwayatPage.checkBtnAksi()
         })
     )
 
-    qase(1017,
-        it('Cek nomor urut', () => {
-            ambilNomorOtomatisPage.checkNomorUrut()
+    qase(1045,
+        it('Cek tampilan jika status belum registrasi', () => {
+            listRiwayatPage.checkTampilanStatusBelumRegistrasi()
         })
     )
 

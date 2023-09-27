@@ -4,10 +4,12 @@ import { LoginPage } from "../../../support/pages/auth/login.cy"
 let loginPage = new LoginPage()
 let user
 
-before(() => {
+beforeEach(() => {
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
+
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
 describe('Login Negatif Skenario', () => {
