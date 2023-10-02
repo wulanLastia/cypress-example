@@ -153,14 +153,14 @@ export class DraftingNotaDinasPage {
         const btnKirimNaskah = cy.get(nota_dinas.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.click()
 
-        const konfirmasiKirimNaskah = cy.xpath(nota_dinas.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
+        const konfirmasiKirimNaskah = cy.get(nota_dinas.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
         konfirmasiKirimNaskah.should('contain', 'Kirim naskah')
             .click()
 
     }
 
     inputLampiranSuratNotaDinas() {
-        const findLampiranPage = cy.xpath(konsep_naskah.previewLampiran).first().as('findLampiranPage');
+        const findLampiranPage = cy.get(konsep_naskah.previewLampiran).first().as('findLampiranPage');
         findLampiranPage.scrollIntoView();
     
         const previewLampiran1NotaDinas = cy.get(konsep_naskah.previewLampiranNotaDinas).first().as('previewLampiran1NotaDinas');
@@ -168,14 +168,14 @@ export class DraftingNotaDinasPage {
         .click({ force: true });
         cy.wait(3000);
     
-        const titleLampiran = cy.xpath(konsep_naskah.titleLampiran).as('titleLampiran');
+        const titleLampiran = cy.get(konsep_naskah.titleLampiran).as('titleLampiran');
         titleLampiran.should('contain', 'Lampiran');
     }
     
     inputLampiran2SuratNotaDinas() {
         cy.wait(3000);
     
-        const findLampiranPage = cy.xpath(konsep_naskah.previewLampiran2).last().as('findLampiranPage');
+        const findLampiranPage = cy.get(konsep_naskah.previewLampiran).last().as('findLampiranPage');
         findLampiranPage.scrollIntoView();
     
         const previewLampiran2NotaDinas = cy.get(konsep_naskah.previewLampiranNotaDinas).last().as('previewLampiran2NotaDinas');
@@ -183,7 +183,7 @@ export class DraftingNotaDinasPage {
         .click({ force: true });
         cy.wait(3000);
     
-        const titleLampiran = cy.xpath(konsep_naskah.titleLampiran).as('titleLampiran');
+        const titleLampiran = cy.get(konsep_naskah.titleLampiran).as('titleLampiran');
         titleLampiran.should('contain', 'Lampiran');
     }
     

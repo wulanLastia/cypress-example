@@ -136,6 +136,7 @@ export class DraftingKepalaSuratPage {
 
         const selectUrgensiSurat = cy.get(kepala_surat.selectUrgensiSurat).as('selectUrgensiSurat')
         selectUrgensiSurat.click()
+            .wait(10000)
             .contains('Amat Segera')
             .click()
     }
