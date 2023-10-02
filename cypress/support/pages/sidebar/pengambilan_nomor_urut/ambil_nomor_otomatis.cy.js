@@ -77,6 +77,8 @@ export class AmbilNomorOtomatisPage {
             .and('be.visible')
             .click()
 
+        cy.wait(5000)
+
         const popupBerhasilMendapatkanNomor = cy.get(ambil_nomor_otomatis.popupBerhasilMendapatkanNomor).as('popupBerhasilMendapatkanNomor')
         popupBerhasilMendapatkanNomor.should('be.visible')
 
@@ -93,10 +95,17 @@ export class AmbilNomorOtomatisPage {
                 const dayjs = require("dayjs")
                 const arrDay = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
                 const day = arrDay[dayjs().format("d")]
-                const date = dayjs().format("D MMMM YYYY")
+
+                const arrMonth = ["Desember", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November"]
+                const month = arrMonth[dayjs().format("M")]
+
+                const date = dayjs().format("DD")
+
+                const dateYear = dayjs().format("YYYY")
+
 
                 cy.readFile(filename).then((data) => {
-                    data.tanggal = day + ", " + date
+                    data.tanggal = day + ", " + date + " " + month + " " + dateYear
                     cy.writeFile(filename, data)
                 })
             })

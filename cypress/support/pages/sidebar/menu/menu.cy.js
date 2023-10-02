@@ -17,7 +17,7 @@ export class MenuPage {
         hideMenu.click()
 
         const sidebar = cy.xpath(menu.sidebarClass).as('sidebarClass')
-        sidebar.should('have.class', 'flex h-full bg-white transition-[width] duration-500 w-[64px]')
+        sidebar.should('have.class', 'flex h-[calc(100%-72px)] bg-white transition-[width] duration-500 w-[64px]')
     }
 
     clickBtnShowMenu() {
@@ -28,7 +28,7 @@ export class MenuPage {
         showMenu.click()
 
         const sidebar = cy.xpath(menu.sidebarClass).as('sidebarClass')
-        sidebar.should('have.class', 'flex h-full bg-white transition-[width] duration-500 w-[240px]')
+        sidebar.should('have.class', 'flex h-[calc(100%-72px)] bg-white transition-[width] duration-500 w-[240px]')
     }
 
     checkMenu() {
