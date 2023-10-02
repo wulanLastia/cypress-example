@@ -15,6 +15,7 @@ before(() => {
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
 before(() => {
@@ -34,30 +35,37 @@ after(() => {
 describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
     qase(721,
         it('Akses form editing kepala surat', () => {
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
         })
     )
 
-    qase(723,
-        it('Cek detail preview kepala naskah', () => {
+    qase([723, 725],
+        it('Cek detail preview & form kepala naskah', () => {
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.checkDetailPreview()
         })
     )
 
-    qase(725,
+    qase([722, 726],
         it('Cek radio button Kepala Surat', () => {
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.clickRButton1KepalaSurat()
         })
     )
 
-    qase(725,
+
+    qase([745, 746, 742, 735, 738],
         it('Cek tujuan kepala surat INTERNAL', () => {
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputTujuan("I Gusti Agung Kim Fajar")
             
             draftingKepalaSuratNotaDinasPage.addTujuan()
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputTujuanField2("Ludia Rosema")
             
             draftingKepalaSuratNotaDinasPage.addTujuan()
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputTujuanField3("Zenal Mustopa")
             })
     )
@@ -67,30 +75,35 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
             draftingKepalaSuratNotaDinasPage.inputTembusan("Raden Andhika")
             
             draftingKepalaSuratNotaDinasPage.addTembusan()
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputTembusan2("Upar Suparno")
             })
     )
 
     qase(725,
         it('Cek Field Kode Klasifikasi', () => {
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputKodeKlasifikasi("SK (Semua Klasifikasi)")
         })
     )
 
     qase(725,
         it('Cek Field Unit Pengolah', () => {
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputUnitPengolah("PAD")
         })
     )
 
     qase(725,
         it('Cek Dropdown Sifat Surat', () => {
+            cy.wait(10000)
             draftingKepalaSuratNotaDinasPage.validateSifatSurat("Penting")
         })
     )
 
     qase(725,
         it('Cek Dropdown Urgensi', () => {
+            cy.wait(10000)
             draftingKepalaSuratNotaDinasPage.validateUrgensi("Amat Segera")
         })
     )
@@ -98,6 +111,7 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
     qase(725,
         it('Cek Perihal Surat', () => {
             draftingKepalaSuratNotaDinasPage.inputPerihal("Tujuan Kepala Surat - Internal - Lampiran")
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.scrappingNamaJabatan()
             })
     )
@@ -109,18 +123,21 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
 describe('Drafting Lampiran Kepala Surat Skenario', { testIsolation: false }, () => {
     qase(721,
         it('Akses form editing kepala surat', () => {
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
         })
     )
 
     qase(723,
         it('Cek detail preview kepala naskah', () => {
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.checkDetailPreview()
         })
     )
 
     qase(725,
         it('Cek radio button Lampiran Kepala Surat', () => {
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.clickRButton2LampiranSurat()
         })
     )
@@ -128,6 +145,7 @@ describe('Drafting Lampiran Kepala Surat Skenario', { testIsolation: false }, ()
     
     qase(725,
         it('Cek tujuan lampiran surat INTERNAL', () => {
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputTujuanLampiran1("Staff Internal")
 
             cy.wait(3000)
@@ -136,26 +154,30 @@ describe('Drafting Lampiran Kepala Surat Skenario', { testIsolation: false }, ()
 
     qase(725,
         it('Cek button Buat tujuan surat di lampiran', () => {
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.buttonBuatTujuanSuratDiLampiran()            
         })
     )
 
     qase(725,
         it('Cek tujuan pada Lampiran Kepala Surat', () => {
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.validateNamaJabatanLampiran()            
         })
     )
 
     qase(725,
         it('Cek tambah tujuan surat pada Lampiran Kepala Surat', () => {
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.addmoreTujuanLampiran1("Ridwan Kamil")            
         })
     )
 
     qase(724,
         it('Menutup form kepala naskah', () => {
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.closeLampiranKepalaSurat()
-            
+            cy.wait(3000)
             menuPage.goToKotakMasukReviewNaskah()
         })
     )
