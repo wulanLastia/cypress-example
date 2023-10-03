@@ -67,13 +67,31 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
         })
     )
 
+// Start Tujuan Surat Negative Case
     qase(744,
         it('Check on preview if tujuan text is too long', () => {
             draftingKepalaSuratNotaDinasPage.inputTujuanLongText("But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or.")
         })
-    )    
+    )
     
+    qase(740,
+        it('Select same tujuan', () => {
+            cy.wait(3000)
+            draftingKepalaSuratNotaDinasPage.inputTujuan("I Gusti Agung Kim Fajar")
+            
+            draftingKepalaSuratNotaDinasPage.addTujuan()
+            cy.wait(3000)
+            draftingKepalaSuratNotaDinasPage.inputTujuanField2("I Gusti Agung Kim Fajar")
 
+            draftingKepalaSuratNotaDinasPage.validateTujuanTidakBolehSama()
+            cy.wait(3000)
+
+            draftingKepalaSuratNotaDinasPage.deleteField1TujuanSurat()
+        })
+    )
+// End of Tujuan Surat Negative Case
+
+    
     qase([745, 746, 742, 735, 738],
         it('Cek tujuan kepala surat INTERNAL', () => {
             cy.wait(3000)

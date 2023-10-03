@@ -64,6 +64,10 @@ module.exports = {
     scrapNamaJabatan1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/span[1]/div[1]/p[2]',
     scrapNamaJabatan2: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/span[1]/div[2]/p[2]',
     scrapNamaJabatan3: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/span[1]/div[3]/p[2]',
+
+    scrapNamaJabatanTembusan1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[3]/div[2]/span[1]/div[1]/p[2]',
+
+    labelErrorMessageTujuan: '[data-cy="kepala-surat__tujuan__error-message"]',
     
     // XPATH
     radio1: '[data-cy="radio-button-0"]',
