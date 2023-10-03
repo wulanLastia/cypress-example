@@ -214,6 +214,61 @@ export class DraftingKepalaSuratNotaDinasPage {
             .type('{enter}')
     }
 
+    // Tujuan Negative Scenario
+    inputTujuanLongText(Nama_Tujuan1) {            
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((object) => {
+            const createDataToWrite = {
+                Kepala_Surat: []
+            }
+            
+            // Input data into fields
+            const inputTujuan = cy.get(kepala_surat.inputTujuan0).as('inputTujuan')
+            inputTujuan.wait(1000)
+                .type(Nama_Tujuan1)
+                .invoke('val')  // Extract the value of the input
+                .then((inputValue1) => { // Use the actual value from the input
+                    // Construct the sub-object
+                    const createTujuan1 = {
+                        Tujuan1: inputValue1
+                    }
+                        
+                    // Push the sub-object to the array
+                    createDataToWrite.Kepala_Surat.push(createTujuan1)
+                    
+                    // Write data to the JSON file
+                    cy.writeFile(getJSONRequestFileCreateNotaDinas, createDataToWrite)
+                })
+            })
+
+        const pilihTujuan = cy.get(kepala_surat.inputTujuan0).as('pilihTujuan')
+        pilihTujuan.wait(3000)
+            .type('{enter}')
+            .wait(3000)
+
+        const validateTujuanMax150Char = cy.xpath(kepala_surat.scrapNamaJabatanOnKepalaSingle).as('validateTujuanMax150Char')
+        validateTujuanMax150Char.wait(1000)
+            .invoke('text')
+            .then(text => text.trim())
+            .should('have.length', 170); 
+    }
+
+
+        // Delete Tujuan Surat
+        deleteField1TujuanSurat(Nama_Tujuan1, Nama_Tujuan2) {
+            const deleteTujuan1 = cy.get(kepala_surat.deleteTujuanLampiran0).as('deleteTujuan1')
+            deleteTujuan1.wait(1000)
+                .click({ force: true })
+                .wait(3000)
+
+
+            cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+                const dataTujuan1 = data.Kepala_Surat[0].Tujuan1;
+        
+            cy.get(kepala_surat.previewKepalaLampiran).should('not.contain', dataTujuan1);        
+            });    
+                
+        }    
+
 
     // Field Tembusan Surat
     inputTembusan(Nama_Tembusan1) {
