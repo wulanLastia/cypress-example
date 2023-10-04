@@ -142,7 +142,7 @@ export class MenuPage {
     }
 
     goToSidebarV1() {
-        const sidebarv1Menu = cy.xpath(menu.sidebarv1Menu).as('sidebarv1Menu')
+        const sidebarv1Menu = cy.get(menu.sidebarv1Menu).as('sidebarv1Menu')
         sidebarv1Menu.should('contain', 'SIDEBAR V1')
             .click()
 
@@ -155,7 +155,7 @@ export class MenuPage {
         konsepNaskahMenu.should('contain', 'Konsep Naskah')
         konsepNaskahMenu.click()
 
-        const titleNaskahKeluar = cy.xpath(menu.titleNaskahKeluar).as('titleNaskahKeluar')
+        const titleNaskahKeluar = cy.get(menu.titleNaskahKeluar).as('titleNaskahKeluar')
         titleNaskahKeluar.should('contain', 'Naskah Keluar')
     }
 
@@ -166,14 +166,6 @@ export class MenuPage {
         penomoranDistribusi.should('contain', 'Penomoran & Distribusi')
             .and('be.visible')
             .click()
-    }
-
-    checkDataPertamaNaskahDisimpan() {
-        cy.wait(10000)
-        const dataPertamaNaskahDisimpan = cy.xpath(menu.check1stNaskahDisimpan).as('dataPertamaNaskahDisimpan')
-        // dataPertamaNaskahDisimpan.should('contain', 'Automation Testing')
-        //     .and('be.visible')
-        dataPertamaNaskahDisimpan.click()
     }
 
     goToPengambilanNomor() {

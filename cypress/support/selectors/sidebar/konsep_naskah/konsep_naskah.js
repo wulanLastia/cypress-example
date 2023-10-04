@@ -29,14 +29,15 @@ module.exports = {
     btnBatalDrafting: '[data-cy="dialog__exit__button--confirm"]',
     btnLanjutkanDrafting: '[data-cy="dialog__exit__button--cancel"]',
     konfirmasiKirimNaskah: '[data-cy="dialog__confirmation-submit__button--kirim-naskah"]',
+    btnSimpanSurat: '[data-cy="surat-biasa-save"]',
+    titleNaskahKeluar: '[data-cy="naskah-keluar__title"]',
+    kolomStatus: '[data-cy="table__header-0"]',
+    kolomJenis: '[data-cy="table__header-1"]',
+    kolomTujuan: '[data-cy="table__header-2"]',
+    kolomUpdate: '[data-cy="table__header-3"]',
+    tableNaskahKeluar: '[data-cy="konsep-naskah__table"]',
 
     // XPATH
-    titleNaskahKeluar: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]',
     previewPage: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]',
-    tableNaskahKeluar: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[1]/table[1]',
-    kolomStatus: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[1]/table[1]/thead[1]/tr[1]/th[1]',
-    kolomJenis: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[1]/table[1]/thead[1]/tr[1]/th[2]',
-    kolomTujuan: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[1]/table[1]/thead[1]/tr[1]/th[3]',
-    kolomUpdate: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[1]/table[1]/thead[1]/tr[1]/th[4]',
     previewPageDown: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]'
 }
