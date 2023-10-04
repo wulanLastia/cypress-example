@@ -24,7 +24,7 @@ before(() => {
 
 after(() => {
     qase(411,
-        loginPage.logoutV2()
+        loginPage.logoutV2step2()
     )
 })
 
