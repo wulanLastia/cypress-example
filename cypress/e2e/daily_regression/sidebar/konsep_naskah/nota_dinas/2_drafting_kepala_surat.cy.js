@@ -206,7 +206,7 @@ describe('Drafting Lampiran Kepala Surat Skenario', { testIsolation: false }, ()
     qase(725,
         it('Cek tambah tujuan surat pada Lampiran Kepala Surat', () => {
             cy.wait(3000)
-            draftingKepalaSuratNotaDinasPage.addmoreTujuanLampiran1("Ridwan Kamil")            
+            draftingKepalaSuratNotaDinasPage.addTujuanLampiranRegression("Ridwan Kamil")            
         })
     )
 

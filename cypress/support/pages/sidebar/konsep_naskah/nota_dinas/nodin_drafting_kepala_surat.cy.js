@@ -803,7 +803,7 @@ export class DraftingKepalaSuratNotaDinasPage {
         });    
     }
 
-    addmoreTujuanLampiran1(Tambahan_Tujuan_Lampiran1) {
+    addTujuanLampiranRegression(Tambahan_Tujuan_Lampiran1) {
         const btnEditLampiranKepala = cy.get(kepala_surat.btnUbahPenerimaSuratLampiran).as('btnEditLampiranKepala')
         btnEditLampiranKepala.click({ force: true })
             .wait(3000)
@@ -838,6 +838,8 @@ export class DraftingKepalaSuratNotaDinasPage {
         addmoreTujuanLampiran1.wait(3000)
             .type('{enter}')
     }
+
+    
 
     
 
