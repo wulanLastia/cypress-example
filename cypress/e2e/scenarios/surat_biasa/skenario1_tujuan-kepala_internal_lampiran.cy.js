@@ -13,6 +13,8 @@ before(() => {
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
+
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
 describe('Create Surat Biasa Tujuan Internal Skenario 1 (Tujuan Kepala Surat)', () => {

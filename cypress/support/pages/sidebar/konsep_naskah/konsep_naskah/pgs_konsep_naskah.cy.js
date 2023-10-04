@@ -9,7 +9,7 @@ export class KonsepNaskahPage {
     checkContainer() {
         menuPage.goToKonsepNaskah()
 
-        const titleNaskahKeluar = cy.xpath(konsep_naskah.titleNaskahKeluar).as('titleNaskahKeluar')
+        const titleNaskahKeluar = cy.get(konsep_naskah.titleNaskahKeluar).as('titleNaskahKeluar')
         titleNaskahKeluar.should('contain', 'Naskah Keluar')
             .and('be.visible')
 
@@ -28,22 +28,22 @@ export class KonsepNaskahPage {
 
         this.checkContainer()
 
-        const tableNaskahKeluar = cy.xpath(konsep_naskah.tableNaskahKeluar).as('tableNaskahKeluar')
+        const tableNaskahKeluar = cy.get(konsep_naskah.tableNaskahKeluar).as('tableNaskahKeluar')
         tableNaskahKeluar.should('be.visible')
 
-        const kolomStatus = cy.xpath(konsep_naskah.kolomStatus).as('kolomStatus')
+        const kolomStatus = cy.get(konsep_naskah.kolomStatus).as('kolomStatus')
         kolomStatus.should('contain', 'Status')
             .and('be.visible')
 
-        const kolomJenis = cy.xpath(konsep_naskah.kolomJenis).as('kolomJenis')
+        const kolomJenis = cy.get(konsep_naskah.kolomJenis).as('kolomJenis')
         kolomJenis.should('contain', 'Jenis')
             .and('be.visible')
 
-        const kolomTujuan = cy.xpath(konsep_naskah.kolomTujuan).as('kolomTujuan')
+        const kolomTujuan = cy.get(konsep_naskah.kolomTujuan).as('kolomTujuan')
         kolomTujuan.should('contain', 'Tujuan & Hal')
             .and('be.visible')
 
-        const kolomUpdate = cy.xpath(konsep_naskah.kolomUpdate).as('kolomUpdate')
+        const kolomUpdate = cy.get(konsep_naskah.kolomUpdate).as('kolomUpdate')
         kolomUpdate.should('contain', 'Update')
             .and('be.visible')
 

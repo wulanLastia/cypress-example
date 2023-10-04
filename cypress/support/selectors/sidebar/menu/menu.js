@@ -9,10 +9,9 @@ module.exports = {
     reviewNaskahKK: '[data-cy="sidebar-menu-kotak-keluar-review-naskah"]',
     penomoranDistribusi: '[data-cy="sidebar-menu-penomoran-dan-distribusi"]',
     menuPengambilanNomor: '[data-cy="sidebar-menu-pengambilan-nomor"]',
+    titleNaskahKeluar: '[data-cy="naskah-keluar__title"]',
+    sidebarv1Menu: '[data-cy="sidebar__v1__dashboard"]',
 
     // XPATH
-    titleNaskahKeluar: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]',
-    sidebarClass: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/div[1]',
-    sidebarv1Menu: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/div[1]/div[1]/div[1]/div[4]/a[1]',
-    check1stNaskahDisimpan: 'html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[4]/button[1]'
+    sidebarClass: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/div[1]'
 }

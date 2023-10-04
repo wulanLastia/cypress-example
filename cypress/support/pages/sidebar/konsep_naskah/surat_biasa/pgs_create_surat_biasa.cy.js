@@ -277,7 +277,6 @@ export class CreateSuratBiasaPage {
         draftingKakiSuratPage.pilihPenandatanganDiriSendiri()
         draftingKakiSuratPage.pilihTembusanSkenario3()
         draftingKakiSuratPage.closeKakiSurat()
-        draftingKakiSuratPage.clickSimpanSurat()
     }
 
     inputBadanNaskahSkenarioRegression() {
@@ -327,6 +326,10 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.validatePerihal(' Koreksi')
         draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    simpanSurat() {
+        draftingKonsepNaskahPage.clickSimpanSurat()
     }
 
 }
