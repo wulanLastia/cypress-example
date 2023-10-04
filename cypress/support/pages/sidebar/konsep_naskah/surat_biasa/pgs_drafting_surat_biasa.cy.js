@@ -193,4 +193,10 @@ export class DraftingKonsepNaskahPage {
         previewPageDown.scrollTo('bottom')
     }
 
+    clickSimpanSurat() {
+        const buttonSimpanSurat = cy.get(konsep_naskah.btnSimpanSurat).as('buttonSimpanSurat')
+        buttonSimpanSurat.should('contain', 'Simpan')
+            .click()
+    }
+
 }
