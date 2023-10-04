@@ -64,7 +64,7 @@ export class CreateNotaDinasPage {
         // Dropdown Urgensi
         draftingKepalaSuratNotaDinasPage.validateUrgensi("Amat Segera")
         // Field Perihal
-        draftingKepalaSuratNotaDinasPage.inputPerihal("Tujuan Kepala Surat - Internal Eksternal - Lampiran")
+        draftingKepalaSuratNotaDinasPage.inputPerihal("Tujuan Kepala Surat - Internal - Lampiran")
         draftingKepalaSuratNotaDinasPage.closeKepalaSurat()
     }
 
@@ -90,7 +90,7 @@ export class CreateNotaDinasPage {
         // Dropdown Urgensi
         draftingKepalaSuratNotaDinasPage.validateUrgensi("Amat Segera")
         // Field Perihal
-        draftingKepalaSuratNotaDinasPage.inputPerihal("Tujuan Kepala Surat - Internal Eksternal - Lampiran")
+        draftingKepalaSuratNotaDinasPage.inputPerihal("Tujuan Kepala Surat - Internal - Lampiran")
         draftingKepalaSuratNotaDinasPage.closeKepalaSurat()
     }
 
