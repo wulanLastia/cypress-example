@@ -20,6 +20,7 @@ module.exports = {
     btnBuatTujuanSuratDiLampiran: '[data-cy="kepala-surat__tujuan__lampiran__add-button"]',
     btnUbahPenerimaSuratLampiran: '[data-cy="lampiran__tujuan-surat__title"]',
     addMoreTujuanLampiran: '[data-cy="lampiran-tujuan-surat__add-button"]',
+    deleteTujuanLampiran0: '[data-cy="kepala-surat__tujuan__select-option__delete-icon0"]',
     titleNamaTujuanLampiran1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/p[2]/span[2]',
     titleNamaTujuanLampiran2: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/p[3]/span[2]',
     titleNamaTujuanLampiran3: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/p[4]/span[2]',
@@ -58,9 +59,15 @@ module.exports = {
     previewKepalaLampiran: '[data-cy="surat__kepala-surat"]',
     titlePreviewKepalaSurat: '[data-cy="surat__title__nota-dinas"]',
 
+    scrapNamaJabatanOnKepalaSingle: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/span[1]',
+
     scrapNamaJabatan1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/span[1]/div[1]/p[2]',
     scrapNamaJabatan2: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/span[1]/div[2]/p[2]',
     scrapNamaJabatan3: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/span[1]/div[3]/p[2]',
+
+    scrapNamaJabatanTembusan1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[3]/div[2]/span[1]/div[1]/p[2]',
+
+    labelErrorMessageTujuan: '[data-cy="kepala-surat__tujuan__error-message"]',
     
     // XPATH
     radio1: '[data-cy="radio-button-0"]',

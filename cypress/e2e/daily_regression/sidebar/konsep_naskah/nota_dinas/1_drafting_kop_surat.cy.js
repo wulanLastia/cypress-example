@@ -13,13 +13,13 @@ let createNotaDinasPage = new CreateNotaDinasPage()
 const draftingKopSuratNotaDinasPage = new DraftingKopSuratNotaDinasPage()
 
 
+    
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
-
-    // cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+        cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
 before(() => {
@@ -38,6 +38,7 @@ describe('Drafting Kop Surat Nota Dinas Skenario', { testIsolation: false }, () 
     qase(1064,
         it('Akses form editing kop surat (drafting)', () => {
             draftingKopSuratNotaDinasPage.aksesFormEditingKopSurat()
+            cy.wait(6000)
         })
     )
 

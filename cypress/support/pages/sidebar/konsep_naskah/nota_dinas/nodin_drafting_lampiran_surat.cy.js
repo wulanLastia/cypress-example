@@ -13,7 +13,7 @@ export class DraftingLampiranSuratPage {
         const scrollPreview = cy.xpath(lampiran_surat.scrollPreview).as('scrollPreview')
         scrollPreview.scrollTo('bottom')
 
-        const btnBuatLampiran = cy.xpath(lampiran_surat.btnBuatLampiran).as('btnBuatLampiran')
+        const btnBuatLampiran = cy.get(lampiran_surat.btnBuatLampiran).as('btnBuatLampiran')
         btnBuatLampiran.should('contain', 'Buat Lampiran')
             .click({ force: true })
     }

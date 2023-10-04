@@ -214,6 +214,108 @@ export class DraftingKepalaSuratNotaDinasPage {
             .type('{enter}')
     }
 
+    // Tujuan Negative Scenario
+    inputTujuanLongText(Nama_Tujuan1) {            
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((object) => {
+            const createDataToWrite = {
+                Kepala_Surat: []
+            }
+            
+            // Input data into fields
+            const inputTujuan = cy.get(kepala_surat.inputTujuan0).as('inputTujuan')
+            inputTujuan.wait(1000)
+                .type(Nama_Tujuan1)
+                .invoke('val')  // Extract the value of the input
+                .then((inputValue1) => { // Use the actual value from the input
+                    // Construct the sub-object
+                    const createTujuan1 = {
+                        Tujuan1: inputValue1
+                    }
+                        
+                    // Push the sub-object to the array
+                    createDataToWrite.Kepala_Surat.push(createTujuan1)
+                    
+                    // Write data to the JSON file
+                    cy.writeFile(getJSONRequestFileCreateNotaDinas, createDataToWrite)
+                })
+            })
+
+        const pilihTujuan = cy.get(kepala_surat.inputTujuan0).as('pilihTujuan')
+        pilihTujuan.wait(3000)
+            .type('{enter}')
+            .wait(3000)
+
+        const validateTujuanMax150Char = cy.xpath(kepala_surat.scrapNamaJabatanOnKepalaSingle).as('validateTujuanMax150Char')
+        validateTujuanMax150Char.wait(1000)
+            .invoke('text')
+            .then(text => text.trim())
+            .should('have.length', 170); 
+    }
+
+    validateTujuanTidakBolehSama() {
+        const errorDoubleDataTujuan = cy.get(kepala_surat.labelErrorMessageTujuan).as('errorDoubleDataTujuan')
+        errorDoubleDataTujuan.wait(1000)
+        .should('be.visible')
+    }
+
+    validateTembusanTidakBolehSama() {
+        cy.wait(3000)
+
+        // Read Data on JSON
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+            // If there's no Kepala_Surat entry, initialize one
+            if (!data.Kepala_Surat) {
+                data.Kepala_Surat = [];
+            }
+            
+            // Scrapping Nama Jabatan on Tujuan
+            cy.xpath(kepala_surat.scrapNamaJabatan1)
+                .invoke('text')
+                .then((scrapNamaJabatan1) => { 
+                    let namajabatanExists = data.Kepala_Surat.some(item => 'Tujuan1' in item);
+                    
+                    if (namajabatanExists) {
+                        data.Kepala_Surat.find(item => 'Tujuan1' in item).Tujuan1 = scrapNamaJabatan1.trim();
+                    } else {
+                        const addNamaJabatan = { Tujuan1: scrapNamaJabatan1.trim() };
+                        data.Kepala_Surat.push(addNamaJabatan);
+                    }
+                    
+                    cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
+                })
+        });
+
+
+
+        // Check Tembusan
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+            const dataTujuanKepala1 = data.Kepala_Surat[0].Tujuan1;
+        
+        cy.xpath(kepala_surat.scrapNamaJabatanTembusan1).invoke('text')
+            .then(text => text.trim())
+            .should('not.contain', dataTujuanKepala1)
+        
+
+        });    
+    }
+
+
+    // Delete Tujuan Surat
+    deleteField1TujuanSurat() {
+        const deleteTujuan1 = cy.get(kepala_surat.deleteTujuanLampiran0).as('deleteTujuan1')
+        deleteTujuan1.wait(1000)
+            .click({ force: true })
+            .wait(3000)
+
+
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+            const dataTujuan1 = data.Kepala_Surat[0].Tujuan1;
+        
+        cy.get(kepala_surat.previewKepalaLampiran).should('not.contain', dataTujuan1);        
+        });    
+                
+    }    
+
 
     // Field Tembusan Surat
     inputTembusan(Nama_Tembusan1) {
