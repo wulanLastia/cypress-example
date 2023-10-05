@@ -3,9 +3,11 @@ import { LoginPage } from "../../../support/pages/auth/login.cy"
 import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
 import { CreateSuratBiasaPage } from "../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
 import { SetujuiPage } from "../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
+import { DraftPage } from "../../../support/pages/sidebar/konsep_naskah/konsep_naskah/draft.cy"
 
 let setujuiPage = new SetujuiPage()
 let createSuratBiasaPage = new CreateSuratBiasaPage()
+let draftPage = new DraftPage()
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
@@ -32,8 +34,9 @@ describe('Create Surat Biasa Skenario', () => {
             createSuratBiasaPage.inputKakiSuratPDF()
             createSuratBiasaPage.inputBadanNaskahSkenarioRegression()
             createSuratBiasaPage.inputKakiSuratSkenario4()
+            createSuratBiasaPage.simpanSurat()
             cy.wait(6000)
-            menuPage.checkDataPertamaNaskahDisimpan()
+            draftPage.checkDataPertamaNaskahDisimpan()
             setujuiPage.doTandaTanganiSurat(user.passphrase)
         })
     )

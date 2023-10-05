@@ -233,14 +233,6 @@ export class DraftingKakiSuratPage {
             .type('{enter}')
     }
 
-
-    // Nanti fungsi dibawah dipindah
-    clickSimpanSurat() {
-        const buttonSimpanSurat = cy.get(kaki_surat.btnSimpanSurat).as('buttonSimpanSurat')
-        buttonSimpanSurat.click()
-    }
-
-
     pilihPenandatanganAtasanProd() {
         const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
         selectPenandatangan.select(1).should('have.value', 'ATASAN')
