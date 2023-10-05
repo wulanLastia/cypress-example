@@ -68,6 +68,49 @@ export class CreateNotaDinasPage {
         draftingKepalaSuratNotaDinasPage.closeKepalaSurat()
     }
 
+    createLampiranKepalaSurat() {
+        draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
+
+        // Pilih Penempatan Daftar Tujuan Surat
+        draftingKepalaSuratNotaDinasPage.clickRButton2LampiranSurat()
+        // Input Tujuan Lampiran Surat INTERNAL            
+        cy.wait(3000)
+        draftingKepalaSuratNotaDinasPage.inputTujuanLampiran1("Staff Internal DISPUSIPDA")
+        // Input Tembusan Surat INTERNAL
+        cy.wait(3000)
+        draftingKepalaSuratNotaDinasPage.inputTembusan("Raden Andhika")
+        draftingKepalaSuratNotaDinasPage.addTembusan()
+        draftingKepalaSuratNotaDinasPage.inputTembusan2("Upar Suparno")
+        // Field Kode Klasifikasi
+        draftingKepalaSuratNotaDinasPage.inputKodeKlasifikasi("SK (Semua Klasifikasi)")
+        // Field Unit Pengolah
+        draftingKepalaSuratNotaDinasPage.inputUnitPengolah("PAD")
+        // Field Tanggal Penomoran
+        // draftingKepalaSuratNotaDinasPage.validateTanggal() // Bila di shutdown di unleash bisa dimatikan dulu assertion ini
+        // Dropdown Sifat Surat
+        draftingKepalaSuratNotaDinasPage.validateSifatSurat("Penting")
+        // Dropdown Urgensi
+        draftingKepalaSuratNotaDinasPage.validateUrgensi("Amat Segera")
+        // Field Perihal
+        draftingKepalaSuratNotaDinasPage.inputPerihal("Tujuan Kepala Surat Lampiran - Internal - Lampiran")
+        // Direct to Lampiran Kepala Internal Page
+        cy.wait(3000)
+        draftingKepalaSuratNotaDinasPage.buttonBuatTujuanSuratDiLampiran()
+        // Input Tujuan Surat INTERNAL in Lampiran
+        cy.wait(3000)
+        draftingKepalaSuratNotaDinasPage.checkDetailPreviewLampiran()
+        cy.wait(3000)
+        draftingKepalaSuratNotaDinasPage.inputNamaLampiran1("I Gusti Agung Kim Fajar")
+        draftingKepalaSuratNotaDinasPage.addLampiranKepala()
+        cy.wait(3000)
+        draftingKepalaSuratNotaDinasPage.inputNamaLampiran2("Ludia Rosema")
+        draftingKepalaSuratNotaDinasPage.addLampiranKepala()
+        cy.wait(3000)
+        draftingKepalaSuratNotaDinasPage.inputNamaLampiran3("Zenal Mustopa")
+        cy.wait(3000)
+        draftingKepalaSuratNotaDinasPage.closeLampiranKepalaSurat()
+    }
+
     createKepalaSuratPROD() {
         draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
 
