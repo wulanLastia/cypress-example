@@ -189,7 +189,7 @@ export class DraftingBadanNaskahPage {
 
         cy.wait(3000)
 
-        const sizeTable = cy.xpath(badan_naskah.sizeTable).as('sizeTable')
+        const sizeTable = cy.get(badan_naskah.sizeTable).as('sizeTable')
         sizeTable.should('be.visible')
             .click()
     }
