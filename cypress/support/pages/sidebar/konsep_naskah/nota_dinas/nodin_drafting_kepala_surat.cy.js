@@ -916,6 +916,7 @@ export class DraftingKepalaSuratNotaDinasPage {
             const scrappingNamaTujuanLampiran3 = cy.get(kepala_surat.inputTujuanLampiran2).as('scrappingNamaTujuanLampiran3')
             scrappingNamaTujuanLampiran3.wait(1000)
                 .type(Nama_Lampiran3)
+                .wait(3000)
                 .invoke('val')  // Extract the value of the input
                 .then((inputValueLampiranTujuan3) => { 
                     // Assign the inputValue2 to Tujuan2

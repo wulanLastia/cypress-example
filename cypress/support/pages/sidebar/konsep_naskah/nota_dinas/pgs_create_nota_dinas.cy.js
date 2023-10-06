@@ -60,10 +60,13 @@ export class CreateNotaDinasPage {
         // Field Tanggal Penomoran
         // draftingKepalaSuratNotaDinasPage.validateTanggal() // Bila di shutdown di unleash bisa dimatikan dulu assertion ini
         // Dropdown Sifat Surat
+        cy.wait(10000)
         draftingKepalaSuratNotaDinasPage.validateSifatSurat("Penting")
         // Dropdown Urgensi
+        cy.wait(10000)
         draftingKepalaSuratNotaDinasPage.validateUrgensi("Amat Segera")
         // Field Perihal
+        cy.wait(10000)
         draftingKepalaSuratNotaDinasPage.inputPerihal("Tujuan Kepala Surat - Internal - Lampiran")
         draftingKepalaSuratNotaDinasPage.closeKepalaSurat()
     }
