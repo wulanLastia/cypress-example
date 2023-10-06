@@ -803,7 +803,7 @@ export class DraftingKepalaSuratNotaDinasPage {
         });    
     }
 
-    addmoreTujuanLampiran1(Tambahan_Tujuan_Lampiran1) {
+    addTujuanLampiranRegression(Tambahan_Tujuan_Lampiran1) {
         const btnEditLampiranKepala = cy.get(kepala_surat.btnUbahPenerimaSuratLampiran).as('btnEditLampiranKepala')
         btnEditLampiranKepala.click({ force: true })
             .wait(3000)
@@ -838,6 +838,103 @@ export class DraftingKepalaSuratNotaDinasPage {
         addmoreTujuanLampiran1.wait(3000)
             .type('{enter}')
     }
+
+    checkDetailPreviewLampiran() {
+        cy.wait(3000)
+
+        const btnEditLampiranKepala = cy.get(kepala_surat.btnUbahPenerimaSuratLampiran).as('btnEditLampiranKepala')
+        btnEditLampiranKepala.click({ force: true })
+    }
+
+    addLampiranKepala() {
+        cy.wait(3000)
+
+        const btnTambahTujuanSurat = cy.get(kepala_surat.addMoreTujuanLampiran).as('btnTambahTujuanSurat')
+        btnTambahTujuanSurat.click({ force: true })
+    }
+
+    inputNamaLampiran1(Nama_Lampiran1) {
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+            // If there's no Kepala_Surat entry, initialize one
+            if (!data.Kepala_Surat) {
+                data.Kepala_Surat = [{}];
+            }
+            
+            // Input data into fields
+            const scrappingNamaTujuanLampiran1 = cy.get(kepala_surat.inputTujuanLampiran0).as('scrappingNamaTujuanLampiran1')
+            scrappingNamaTujuanLampiran1.wait(1000)
+                .type(Nama_Lampiran1)
+                .invoke('val')  // Extract the value of the input
+                .then((inputValueLampiranTujuan1) => { 
+                    // Assign the inputValue2 to Tujuan2
+                    data.Kepala_Surat[0].Nama_Tujuan_Kepala_Lampiran1 = inputValueLampiranTujuan1;
+                    
+                    // Write data back to the JSON file
+                    cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
+                })
+        });
+    
+        const addTujuanLampiran1 = cy.get(kepala_surat.inputTujuanLampiran0).as('addTujuanLampiran1')
+        addTujuanLampiran1.wait(3000)
+            .type('{enter}')
+    }
+
+    inputNamaLampiran2(Nama_Lampiran2) {
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+            // If there's no Kepala_Surat entry, initialize one
+            if (!data.Kepala_Surat) {
+                data.Kepala_Surat = [{}];
+            }
+            
+            // Input data into fields
+            const scrappingNamaTujuanLampiran2 = cy.get(kepala_surat.inputTujuanLampiran1).as('scrappingNamaTujuanLampiran2')
+            scrappingNamaTujuanLampiran2.wait(1000)
+                .type(Nama_Lampiran2)
+                .invoke('val')  // Extract the value of the input
+                .then((inputValueLampiranTujuan2) => { 
+                    // Assign the inputValue2 to Tujuan2
+                    data.Kepala_Surat[0].Nama_Tujuan_Kepala_Lampiran2 = inputValueLampiranTujuan2;
+                    
+                    // Write data back to the JSON file
+                    cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
+                })
+        });
+    
+        const addTujuanLampiran2 = cy.get(kepala_surat.inputTujuanLampiran1).as('addTujuanLampiran2')
+        addTujuanLampiran2.wait(3000)
+            .type('{enter}')
+    }
+
+    inputNamaLampiran3(Nama_Lampiran3) {
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+            // If there's no Kepala_Surat entry, initialize one
+            if (!data.Kepala_Surat) {
+                data.Kepala_Surat = [{}];
+            }
+            
+            // Input data into fields
+            const scrappingNamaTujuanLampiran3 = cy.get(kepala_surat.inputTujuanLampiran2).as('scrappingNamaTujuanLampiran3')
+            scrappingNamaTujuanLampiran3.wait(1000)
+                .type(Nama_Lampiran3)
+                .wait(3000)
+                .invoke('val')  // Extract the value of the input
+                .then((inputValueLampiranTujuan3) => { 
+                    // Assign the inputValue2 to Tujuan2
+                    data.Kepala_Surat[0].Nama_Tujuan_Kepala_Lampiran3 = inputValueLampiranTujuan3;
+                    
+                    // Write data back to the JSON file
+                    cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
+                })
+        });
+    
+        const addTujuanLampiran3 = cy.get(kepala_surat.inputTujuanLampiran2).as('addTujuanLampiran3')
+        addTujuanLampiran3.wait(3000)
+            .type('{enter}')
+    }
+    
+
+
+    
 
     
 

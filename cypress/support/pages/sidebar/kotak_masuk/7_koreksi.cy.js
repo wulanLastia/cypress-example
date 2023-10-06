@@ -68,7 +68,8 @@ export class KoreksiSuratPage {
     checkDetailKoreksiTandatanganiNotaDinas() {
         const getbtnKoreksi = cy.get(koreksi.getbtnKoreksi).as('getbtnKoreksi')
         getbtnKoreksi.should('contain', 'Koreksi')
-            .click()
+            .click({ force: true })
+            .wait(8000)
 
         cy.wait(3000)
 

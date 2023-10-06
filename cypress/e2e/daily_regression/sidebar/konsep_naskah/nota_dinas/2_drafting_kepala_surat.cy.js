@@ -153,6 +153,14 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
             })
     )
 
+    qase(724,
+        it('Menutup form kepala naskah', () => {
+            cy.wait(3000)
+            draftingKepalaSuratNotaDinasPage.closeKepalaSurat()
+            cy.wait(3000)
+        })
+    )
+
     
 })
 
@@ -206,16 +214,17 @@ describe('Drafting Lampiran Kepala Surat Skenario', { testIsolation: false }, ()
     qase(725,
         it('Cek tambah tujuan surat pada Lampiran Kepala Surat', () => {
             cy.wait(3000)
-            draftingKepalaSuratNotaDinasPage.addmoreTujuanLampiran1("Ridwan Kamil")            
+            draftingKepalaSuratNotaDinasPage.addTujuanLampiranRegression("Ridwan Kamil")            
         })
     )
 
     qase(724,
-        it('Menutup form kepala naskah', () => {
+        it('Menutup form lampiran kepala naskah', () => {
             cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.closeLampiranKepalaSurat()
             cy.wait(3000)
             menuPage.goToKotakMasukReviewNaskah()
+            cy.wait(3000)
         })
     )
 
