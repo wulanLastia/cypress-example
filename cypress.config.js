@@ -11,17 +11,17 @@ module.exports = defineConfig({
       base_url: "https://sidebar-jabarprov.netlify.app",
       base_url_v1: "https://devsidebar.digitalservice.id/",
       base_url_prod_v2: "https://sidebar-v2.jabarprov.go.id/",
-      base_url_deploy_preview: "https://deploy-preview-447--sidebar-jabarprov.netlify.app/",
+      base_url_deploy_preview: "https://deploy-preview-402--sidebar-jabarprov.netlify.app/",
       base_url_deploy_preview2: "https://deploy-preview-330--sidebar-jabarprov.netlify.app/",
       base_url_prod_v1: "https://sidebar.jabarprov.go.id/"
     },
 
     testIsolation: true,
 
-    /*retries: {
+    retries: {
       runMode: 2,
       openMode: 1,
-    },*/
+    },
 
   },
   "reporter": "cypress-qase-reporter",
