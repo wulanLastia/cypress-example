@@ -1,10 +1,14 @@
 module.exports = {
     // GET
+    titleReviewNaskah: '[data-cy="review-naskah__title"]',
+    subTitleReviewNaskah: '[data-cy="review-naskah__subtitle"]',
+    buttonFilterReviewNaskah: '[data-cy="review-naskah__button--filter"]',
+    searchReviewNaskah: '[data-cy="review-naskah__filter-box"]',
+    tableReviewNaskah: '[data-cy="review-naskah__table"]',
+    btnPreviousPage: '[data-cy="pagination__previous-page"]',
+    tagUrgensi: '[data-cy="review-naskah__table--urgency-tag-0"]',
+    tableDataPerihal: '[data-cy="review-naskah__table--perihal-0"]',
+    tableEmptyState: '[data-cy="table__empty-state"]'
 
     // XPATH
-    titleReviewNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/h1[1]',
-    subTitleReviewNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/span[1]',
-    buttonFilterReviewNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/button[1]',
-    searchReviewNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/input[1]',
-    tableReviewNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[2]'
 }
