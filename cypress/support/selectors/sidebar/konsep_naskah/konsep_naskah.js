@@ -30,6 +30,7 @@ module.exports = {
     btnLanjutkanDrafting: '[data-cy="dialog__exit__button--cancel"]',
     konfirmasiKirimNaskah: '[data-cy="dialog__confirmation-submit__button--kirim-naskah"]',
     btnSimpanSurat: '[data-cy="surat-biasa-save"]',
+    btnSimpanSuratNotaDinas: '[data-cy="surat-nota-dinas-save"]',
     titleNaskahKeluar: '[data-cy="naskah-keluar__title"]',
     kolomStatus: '[data-cy="table__header-0"]',
     kolomJenis: '[data-cy="table__header-1"]',

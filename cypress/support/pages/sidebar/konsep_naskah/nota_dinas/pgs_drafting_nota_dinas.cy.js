@@ -192,5 +192,13 @@ export class DraftingNotaDinasPage {
         previewPage.scrollTo('top')
     }
 
+    clickSimpanSurat() {
+        cy.wait(3000)
+
+        const buttonSimpanSurat = cy.get(konsep_naskah.btnSimpanSuratNotaDinas).as('buttonSimpanSurat')
+        buttonSimpanSurat.should('contain', 'Simpan')
+            .click({ force: true })
+    }
+
 
 }

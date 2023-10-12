@@ -104,7 +104,7 @@ export class DraftPage {
 
         const draftNaskahListData = cy.get(draft.draftNaskahListData).as('draftNaskahListData')
         draftNaskahListData.should('be.visible')
-            .click()
+            .click({ force: true })
     }
 
 }

@@ -10,6 +10,7 @@ module.exports = {
     backToV1: '[data-cy="sidebar__v1__dashboard"]',
     closePopupLandingPage: '[data-cy="dialog__welcoming__button--close"]',
     getJQueryProfileV2: "button[tabindex='0']",
+    showHeaderNav: 'header[data-v-c3aea69a]',
 
 
     // XPATH
@@ -23,5 +24,4 @@ module.exports = {
     profileUser: '/html[1]/body[1]/div[1]/header[1]/nav[1]/div[1]/ul[1]/li[2]/a[1]',
     btnKeluar: '/html[1]/body[1]/div[1]/header[1]/nav[1]/div[1]/ul[1]/li[2]/ul[1]/li[2]/div[2]/a[1]',
     konsepNaskahMenu: '/html[1]/body[1]/div[1]/aside[1]/div[1]/section[1]/ul[1]/li[3]/a[1]/span[1]',
-    showHeaderNav: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]'
 }
