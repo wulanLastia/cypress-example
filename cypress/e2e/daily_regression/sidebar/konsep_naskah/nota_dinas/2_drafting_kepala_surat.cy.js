@@ -89,6 +89,30 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
             draftingKepalaSuratNotaDinasPage.deleteField1TujuanSurat()
         })
     )
+
+    qase(743,
+        it.skip('Memilih tujuan yang sama dengan tembusan', () => { // Issue ini belum di solve dari sisi product
+            cy.wait(3000)
+            draftingKepalaSuratNotaDinasPage.inputTujuan("I Gusti Agung Kim Fajar")
+
+            draftingKepalaSuratNotaDinasPage.addTujuan()
+
+            cy.wait(3000)
+            draftingKepalaSuratNotaDinasPage.inputTujuanField2("Ludia Rosema")
+
+            cy.wait(3000)
+            draftingKepalaSuratNotaDinasPage.inputTembusan("I Gusti Agung Kim Fajar")
+
+            draftingKepalaSuratNotaDinasPage.addTembusan()
+            
+            cy.wait(3000)
+            draftingKepalaSuratNotaDinasPage.inputTembusan2("Ludia Rosema")
+
+
+            draftingKepalaSuratNotaDinasPage.validateTembusanTidakBolehSama()
+        })
+    )
+
 // End of Tujuan Surat Negative Case
 
     

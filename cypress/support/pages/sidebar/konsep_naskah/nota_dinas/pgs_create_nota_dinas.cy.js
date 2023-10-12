@@ -175,6 +175,13 @@ export class CreateNotaDinasPage {
         draftingKakiSuratPage.closeKakiSurat()
     }
 
+    createKakiSuratPenandatanganDiriSendiri() {
+        draftingKakiSuratPage.aksesFormEditingKakiSurat()
+        draftingKakiSuratPage.inputKakiSurat()
+        draftingKakiSuratPage.pilihPenandatanganDiriSendiri()
+        draftingKakiSuratPage.closeKakiSurat()
+    }
+
     createKakiSuratPROD() {
         draftingKakiSuratPage.aksesFormEditingKakiSurat()
         draftingKakiSuratPage.inputKakiSurat()
