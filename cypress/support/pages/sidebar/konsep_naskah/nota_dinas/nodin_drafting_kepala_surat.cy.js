@@ -593,6 +593,7 @@ export class DraftingKepalaSuratNotaDinasPage {
             // Input data into dropdown
             const inputUrgensiSurat = cy.get(kepala_surat.selectUrgensiSurat).as('inputUrgensiSurat')
             inputUrgensiSurat.click()
+            .wait(5000)
             .contains(Urgensi_Nota_Dinas)
             .click()
         });        
