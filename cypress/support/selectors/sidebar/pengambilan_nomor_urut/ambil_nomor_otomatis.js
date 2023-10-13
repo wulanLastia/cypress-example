@@ -15,11 +15,11 @@ module.exports = {
     validateDataTanggalPesanNomorUrut: '[data-cy="table__pengambilan-nomor__item-tanggal-dipesan"]',
     validateStatusNomorUrut: '[data-cy="table__pengambilan-nomor__item-status"]',
     validateAksi: '[data-cy="table__pengambilan-nomor__item-action"]',
+    popupLabelTanggalPenomoran: '[data-cy="dialog__ambil-nomor-urut__label--tanggal-penomoran"]',
+    popupLabelJenisNaskah: '[data-cy="dialog__ambil-nomor-urut__label--ketegori-jenis-naskah"]',
+    popupLabelUKUP: '[data-cy="dialog__ambil-nomor-urut__label--uk-up"]',
 
     // XPATH
-    xpathLabelTanggalPenomoran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[5]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/th[1]',
-    xpathLabelJenisNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[5]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[2]/th[1]',
-    xpathLabelUKUP: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[5]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[3]/th[1]',
     xpathNomorUrut: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div[15]/div[1]/div[1]/span[1]',
     xpathTablePengambilanNomor: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[3]/div[2]/div[1]'
 }

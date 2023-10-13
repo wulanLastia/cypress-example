@@ -57,8 +57,8 @@ export class ListRiwayatPage {
 
     validasiNomorUrutDiluarOrg() {
         cy.readFile(filename).then((object) => {
-            const xpathNomorNaskah = cy.xpath(list_riwayat.xpathNomorNaskah).first().as('xpathNomorNaskah')
-            xpathNomorNaskah.should('contain', object.nomor_urut)
+            const tableNomorNaskah = cy.xpath(list_riwayat.tableNomorNaskah).first().as('tableNomorNaskah')
+            tableNomorNaskah.should('contain', object.nomor_urut)
 
             const tableBankNomorStatus = cy.get(list_riwayat.tableBankNomorStatus).first().as('tableBankNomorStatus')
             tableBankNomorStatus.should('contain', 'Telah Dipesan')

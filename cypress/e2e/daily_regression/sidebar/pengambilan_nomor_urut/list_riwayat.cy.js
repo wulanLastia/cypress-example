@@ -4,6 +4,7 @@ import { MenuPage } from "../../../../support/pages/sidebar/menu/menu.cy"
 import { PengambilanNomorUrutPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/pengambilan_nomor_urut.cy"
 import { AmbilNomorOtomatisPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/ambil_nomor_otomatis.cy"
 import { ListRiwayatPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/list_riwayat.cy"
+import login from '../../../../support/selectors/login';
 
 let pengambilanNomorUrutPage = new PengambilanNomorUrutPage()
 let ambilNomorOtomatisPage = new AmbilNomorOtomatisPage()
@@ -29,7 +30,7 @@ before(() => {
         uk_up = data
     })
 
-    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+    cy.intercept({ resourceType: /xhr/ }, { log: false })
 })
 
 before(() => {

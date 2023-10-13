@@ -46,20 +46,20 @@ export class AmbilNomorOtomatisPage {
         labelKonfirmasiPengambilanNomor.should('contain', 'KEBUTUHAN PENOMORAN')
             .and('be.visible')
 
-        const xpathLabelTanggalPenomoran = cy.xpath(ambil_nomor_otomatis.xpathLabelTanggalPenomoran).as('xpathLabelTanggalPenomoran')
-        xpathLabelTanggalPenomoran.should('contain', 'Tanggal penomoran')
+        const popupLabelTanggalPenomoran = cy.get(ambil_nomor_otomatis.popupLabelTanggalPenomoran).as('popupLabelTanggalPenomoran')
+        popupLabelTanggalPenomoran.should('contain', 'Tanggal penomoran')
             .and('be.visible')
 
-        const xpathLabelJenisNaskah = cy.xpath(ambil_nomor_otomatis.xpathLabelJenisNaskah).as('xpathLabelJenisNaskah')
-        xpathLabelJenisNaskah.should('contain', 'Kategori Jenis Naskah')
+        const popupLabelJenisNaskah = cy.get(ambil_nomor_otomatis.popupLabelJenisNaskah).as('popupLabelJenisNaskah')
+        popupLabelJenisNaskah.should('contain', 'Kategori Jenis Naskah')
             .and('be.visible')
 
         const popupPengambilanNomor2 = cy.get(ambil_nomor_otomatis.popupPengambilanNomor).as('popupPengambilanNomor2')
         popupPengambilanNomor2.should('be.visible')
             .scrollTo('bottom')
 
-        const xpathLabelUKUP = cy.xpath(ambil_nomor_otomatis.xpathLabelUKUP).as('xpathLabelUKUP')
-        xpathLabelUKUP.should('contain', 'UK/UP')
+        const popupLabelUKUP = cy.get(ambil_nomor_otomatis.popupLabelUKUP).as('popupLabelUKUP')
+        popupLabelUKUP.should('contain', 'UK/UP')
             .and('be.visible')
 
         const btnCancelPengambilanNomor = cy.get(ambil_nomor_otomatis.btnCancelPengambilanNomor).last().as('btnCancelPengambilanNomor')
@@ -102,7 +102,6 @@ export class AmbilNomorOtomatisPage {
                 const date = dayjs().format("DD")
 
                 const dateYear = dayjs().format("YYYY")
-
 
                 cy.readFile(filename).then((data) => {
                     data.tanggal = day + ", " + date + " " + month + " " + dateYear
