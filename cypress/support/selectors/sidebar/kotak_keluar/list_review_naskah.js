@@ -1,10 +1,10 @@
 module.exports = {
     // GET
+    buttonFilterReviewNaskahKeluar: '[data-cy="review-naskah__button--filter"]',
+    searchReviewNaskahKeluar: '[data-cy="review-naskah__filter-box"] > input',
+    titleReviewNaskahKeluar: '[data-cy="sidebar-menu-kotak-keluar"]',
+    subTitleReviewNaskahKeluar: '[data-cy="sidebar-menu-kotak-keluar-review-naskah"]',
+    tableReviewNaskahKeluar: '[data-cy="review-naskah__table"] .table.row-clickable'
 
     // XPATH
-    titleReviewNaskahKeluar: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/h1[1]',
-    subTitleReviewNaskahKeluar: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/span[1]',
-    buttonFilterReviewNaskahKeluar: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/button[1]',
-    searchReviewNaskahKeluar: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/input[1]',
-    tableReviewNaskahKeluar: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[2]/div[1]/div[1]/div[1]/table[1]'
 }
