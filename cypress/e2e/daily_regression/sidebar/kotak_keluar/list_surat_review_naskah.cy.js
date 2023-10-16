@@ -37,4 +37,23 @@ describe('List Review Naskah Kotak Keluar Skenario', { testIsolation: false }, (
             listSuratReviewNaskahKeluarPage.checkDetailHalaman()
         })
     )
+
+    qase(324,
+        it('Cek hasil pencarian Tujuan pada kotak keluar review naskah', () => {
+            listSuratReviewNaskahKeluarPage.checkSearchResultsTujuanKotakKeluar()
+        })
+    )
+
+    qase(324,
+        it('Cek hasil pencarian Perihal pada kotak keluar review naskah', () => {
+            listSuratReviewNaskahKeluarPage.checkSearchResultsPerihalKotakKeluar()
+        })
+    )
+
+    qase([332, 725, 515, 546],
+        it('Cek preview PDF Surat pada Kotak Keluar', () => {
+            listSuratReviewNaskahKeluarPage.checkPreviewPDFSurat()
+            cy.wait(6000)
+        })
+    )
 })

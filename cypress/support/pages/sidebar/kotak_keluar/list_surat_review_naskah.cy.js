@@ -23,4 +23,75 @@ export class ListSuratReviewNaskahKeluarPage {
         subTitleReviewNaskahKeluar.should('contain', 'Review Naskah')
     }
 
+    checkSearchResultsTujuanKotakKeluar() {
+        const searchReviewNaskahKeluar = cy.get(review_naskah.searchReviewNaskahKeluar).as('searchReviewNaskahKeluar')
+        searchReviewNaskahKeluar.click()
+        .wait(3000)
+        .type('Kepala Dinas Komunikasi dan Informatika')
+        .wait(3000)
+
+        const resultSearchReviewNaskah = cy.get(review_naskah.dataTujuanRowTable0).as('resultSearchReviewNaskah')
+        resultSearchReviewNaskah.should('contain', 'Kepala Dinas Komunikasi dan Informatika')
+
+    }
+
+    checkSearchResultsPerihalKotakKeluar() {
+        const searchReviewNaskahKeluar = cy.get(review_naskah.searchReviewNaskahKeluar).as('searchReviewNaskahKeluar')
+        searchReviewNaskahKeluar.click()
+        .wait(3000)
+        .clear()
+        .wait(3000)
+        .type('Cancel')
+        .wait(3000)
+
+        const resultSearchReviewNaskah = cy.get(review_naskah.dataPerihalRowTable0).as('resultSearchReviewNaskah')
+        resultSearchReviewNaskah.invoke('text').then(text => {
+            expect(text).to.include('Cancel');
+        });
+
+    }
+
+    checkPreviewPDFSurat() {
+        const searchReviewNaskahKeluar = cy.get(review_naskah.searchReviewNaskahKeluar).as('searchReviewNaskahKeluar')
+        searchReviewNaskahKeluar.click()
+        .wait(3000)
+        .clear()
+        .wait(3000)
+
+        const btnAturFilter = cy.get(review_naskah.buttonFilterReviewNaskahKeluar).as('btnAturFilter')
+        btnAturFilter.click()
+
+        cy.wait(1500)
+
+        const btnStatusFilter = cy.get(review_naskah.buttonFilterStatus).as('btnStatusFilter')
+        btnStatusFilter.click()
+
+        cy.wait(1500)
+
+        const checkboxStatusTelahDisetujui = cy.get(review_naskah.checkboxTelahDisetujui).as('checkboxStatusTelahDisetujui')
+        checkboxStatusTelahDisetujui.click()
+
+        cy.wait(3000)
+
+        const kotakkeluarDataRow1 = cy.get(review_naskah.dataKotakKeluarRow1).as('kotakkeluarDataRow1')
+        kotakkeluarDataRow1.click()
+
+        cy.wait(3000)
+
+        const btnPreviewPDF = cy.get(review_naskah.buttonPreviewPDF).as('btnPreviewPDF')
+        btnPreviewPDF.invoke('removeAttr', 'target').click({force: true})
+
+        cy.wait(6000)
+
+        // Cek URL setelah di klik
+        cy.url().should('include', 'https://office-service-v2.staging.digitalservice.id/files/')
+    
+        // Cek pada akhiran URL mengandung .pdf
+        cy.url().should('match', /.*\.pdf$/)
+
+        cy.wait(3000)
+
+        cy.go('back')
+    }
+
 }
