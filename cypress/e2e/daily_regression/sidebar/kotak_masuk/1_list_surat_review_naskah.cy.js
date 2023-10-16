@@ -30,7 +30,6 @@ describe('List Surat Review Naskah Kotak Masuk Skenario', { testIsolation: false
         it('Akses menu kotak masuk (Review naskah)', () => {
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
-            loginPage.directDeployPreview()
             menuPage.goToKotakMasukReviewNaskah()
         })
     )
