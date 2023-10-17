@@ -18,8 +18,9 @@ module.exports = {
     popupLabelTanggalPenomoran: '[data-cy="dialog__ambil-nomor-urut__label--tanggal-penomoran"]',
     popupLabelJenisNaskah: '[data-cy="dialog__ambil-nomor-urut__label--ketegori-jenis-naskah"]',
     popupLabelUKUP: '[data-cy="dialog__ambil-nomor-urut__label--uk-up"]',
+    tablePengambilanNomor: '[data-cy="table__pengambilan-nomor"]',
+    xpathNomorUrut: '[data-cy="dialog__pengambilan-nomor__value—nomor-urut"]',
 
     // XPATH
-    xpathNomorUrut: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div[15]/div[1]/div[1]/span[1]',
-    xpathTablePengambilanNomor: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[3]/div[2]/div[1]'
+
 }

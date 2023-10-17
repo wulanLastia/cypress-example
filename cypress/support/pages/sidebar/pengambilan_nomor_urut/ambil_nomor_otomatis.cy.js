@@ -82,7 +82,7 @@ export class AmbilNomorOtomatisPage {
         const popupBerhasilMendapatkanNomor = cy.get(ambil_nomor_otomatis.popupBerhasilMendapatkanNomor).as('popupBerhasilMendapatkanNomor')
         popupBerhasilMendapatkanNomor.should('be.visible')
 
-        const xpathNomorUrut = cy.xpath(ambil_nomor_otomatis.xpathNomorUrut).as('xpathNomorUrut')
+        const xpathNomorUrut = cy.get(ambil_nomor_otomatis.xpathNomorUrut).as('xpathNomorUrut')
         xpathNomorUrut.should('not.be.empty')
             .then($value => {
                 const textValue = $value.text()

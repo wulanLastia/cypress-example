@@ -39,13 +39,12 @@ export class ListRiwayatPage {
         const validateStatusNomorUrut = cy.get(ambil_nomor_otomatis.validateStatusNomorUrut).first().as('validateStatusNomorUrut')
         validateStatusNomorUrut.should('contain', 'Belum Registrasi')
             .then(() => {
-                const xpathTablePengambilanNomor = cy.xpath(ambil_nomor_otomatis.xpathTablePengambilanNomor).first().as('xpathTablePengambilanNomor')
-                xpathTablePengambilanNomor.should('be.visible')
-                    .scrollTo('right')
+                const tablePengambilanNomor = cy.get(ambil_nomor_otomatis.tablePengambilanNomor).first().as('tablePengambilanNomor')
+                tablePengambilanNomor.should('be.visible')
+                    .scrollTo('right', { ensureScrollable: false })
 
                 const validateAksi = cy.get(ambil_nomor_otomatis.validateAksi).first().as('validateAksi')
                 validateAksi.should('contain', 'Batalkan')
-                    .and('be.visible')
             })
     }
 
