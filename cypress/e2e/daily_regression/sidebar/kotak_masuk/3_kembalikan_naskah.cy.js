@@ -53,7 +53,7 @@ describe('Kembalikan Naskah Skenario', () => {
             loginPage.loginViaV1(user.nipPemeriksa, user.password)
             loginPage.directLogin()
 
-            // Create Naskah
+            // Kembalikan Naskah
             kembalikanNaskahPage.emptyField()
             kembalikanNaskahPage.batalKembalikanNaskah()
             kembalikanNaskahPage.checkHalamanInformasi()
