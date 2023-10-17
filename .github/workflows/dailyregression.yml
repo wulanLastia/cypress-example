@@ -40,6 +40,7 @@ jobs:
           browser: chrome
           record: true
           spec: 'cypress/e2e/daily_regression/**/*'
+          tag: 'automated_trigger'
 
         # sesuaikan kalau ada env lain
         env:
