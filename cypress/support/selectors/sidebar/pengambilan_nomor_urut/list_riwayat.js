@@ -9,8 +9,8 @@ module.exports = {
     headKolomStatus: '[data-cy="table__header-5"]',
     tableBankNomorStatus: '[data-cy="table__bank-surat__item-status"]',
     tableBankNomorTanggalDipesan: '[data-cy="table__bank-surat__item-registrasi-nomor"]',
+    tableNomorNaskah: '[data-cy="table__bank-surat__item-nomor-naskah-0"]',
 
     // XPATH
-    xpathNomorNaskah: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/p[1]',
 
 }

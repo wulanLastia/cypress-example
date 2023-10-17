@@ -8,18 +8,24 @@ let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
 
+beforeEach(() => {
+    cy.intercept({ resourceType: /xhr/ }, { log: false })
+})
+
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
 
-    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+    //cy.intercept({ resourceType: /xhr/ }, { log: false })
 })
 
 before(() => {
     loginPage.loginViaV1(user.nip, user.password)
     loginPage.directLogin()
+
+    //cy.intercept({ resourceType: /xhr/ }, { log: false })
 })
 
 after(() => {

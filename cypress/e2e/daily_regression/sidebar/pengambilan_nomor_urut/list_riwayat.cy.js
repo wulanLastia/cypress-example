@@ -29,7 +29,7 @@ before(() => {
         uk_up = data
     })
 
-    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+    cy.intercept({ resourceType: /xhr/ }, { log: false })
 })
 
 before(() => {
