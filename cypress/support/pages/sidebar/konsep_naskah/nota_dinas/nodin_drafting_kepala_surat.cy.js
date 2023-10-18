@@ -245,7 +245,7 @@ export class DraftingKepalaSuratNotaDinasPage {
             .type('{enter}')
             .wait(3000)
 
-        const validateTujuanMax150Char = cy.xpath(kepala_surat.scrapNamaJabatanOnKepalaSingle).as('validateTujuanMax150Char')
+        const validateTujuanMax150Char = cy.get(kepala_surat.scrapNamaJabatanOnKepalaSingle).as('validateTujuanMax150Char')
         validateTujuanMax150Char.wait(1000)
             .invoke('text')
             .then(text => text.trim())
@@ -269,7 +269,7 @@ export class DraftingKepalaSuratNotaDinasPage {
             }
             
             // Scrapping Nama Jabatan on Tujuan
-            cy.xpath(kepala_surat.scrapNamaJabatan1)
+            cy.get(kepala_surat.scrapNamaJabatan1)
                 .invoke('text')
                 .then((scrapNamaJabatan1) => { 
                     let namajabatanExists = data.Kepala_Surat.some(item => 'Tujuan1' in item);
@@ -291,7 +291,7 @@ export class DraftingKepalaSuratNotaDinasPage {
         cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
             const dataTujuanKepala1 = data.Kepala_Surat[0].Tujuan1;
         
-        cy.xpath(kepala_surat.scrapNamaJabatanTembusan1).invoke('text')
+        cy.get(kepala_surat.scrapNamaJabatanTembusan1).invoke('text')
             .then(text => text.trim())
             .should('not.contain', dataTujuanKepala1)
         
@@ -671,7 +671,7 @@ export class DraftingKepalaSuratNotaDinasPage {
             }
             
             // Scrap Tanggal Penomoran Data
-            cy.xpath(kepala_surat.scrapNamaJabatan1)
+            cy.get(kepala_surat.scrapNamaJabatan1)
                 .invoke('text')
                 .then((scrapNamaJabatan1) => { 
                     let namajabatanExists = data.Kepala_Surat.some(item => 'Tujuan1' in item);
@@ -696,7 +696,7 @@ export class DraftingKepalaSuratNotaDinasPage {
             }
             
             // Scrap Tanggal Penomoran Data
-            cy.xpath(kepala_surat.scrapNamaJabatan2)
+            cy.get(kepala_surat.scrapNamaJabatan2)
                 .invoke('text')
                 .then((scrapNamaJabatan2) => { 
                     let namajabatanExists = data.Kepala_Surat.some(item => 'Tujuan2' in item);
@@ -721,7 +721,7 @@ export class DraftingKepalaSuratNotaDinasPage {
             }
             
             // Scrap Tanggal Penomoran Data
-            cy.xpath(kepala_surat.scrapNamaJabatan3)
+            cy.get(kepala_surat.scrapNamaJabatan3)
                 .invoke('text')
                 .then((scrapNamaJabatan3) => { 
                     let namajabatanExists = data.Kepala_Surat.some(item => 'Tujuan3' in item);
@@ -797,9 +797,9 @@ export class DraftingKepalaSuratNotaDinasPage {
             const validateTujuan2 = data.Kepala_Surat[0].Tujuan2;
             const validateTujuan3 = data.Kepala_Surat[0].Tujuan3;
     
-            cy.xpath(kepala_surat.titleNamaTujuanLampiran1).should('contain', validateTujuan1);
-            cy.xpath(kepala_surat.titleNamaTujuanLampiran2).should('contain', validateTujuan2);
-            cy.xpath(kepala_surat.titleNamaTujuanLampiran3).should('contain', validateTujuan3);
+            cy.get(kepala_surat.titleNamaTujuanLampiran1).should('contain', validateTujuan1);
+            cy.get(kepala_surat.titleNamaTujuanLampiran2).should('contain', validateTujuan2);
+            cy.get(kepala_surat.titleNamaTujuanLampiran3).should('contain', validateTujuan3);
     
         });    
     }
