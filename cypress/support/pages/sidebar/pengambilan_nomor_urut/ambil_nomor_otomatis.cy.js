@@ -34,6 +34,10 @@ export class AmbilNomorOtomatisPage {
     }
 
     checkDetailPopupPengambilanNomor() {
+        const popupPengambilanNomor = cy.get(ambil_nomor_otomatis.popupPengambilanNomor).as('popupPengambilanNomor')
+        popupPengambilanNomor.should('be.visible')
+            .scrollTo('top')
+
         const titlePopupPengambilanNomor = cy.get(ambil_nomor_otomatis.titlePopupPengambilanNomor).as('titlePopupPengambilanNomor')
         titlePopupPengambilanNomor.should('contain', 'Apakah Anda ingin memesan nomor urut tersebut?')
             .and('be.visible')

@@ -20,13 +20,15 @@ let setujuiPage = new SetujuiPage()
 let koreksiSuratPage = new KoreksiSuratPage()
 
 
+beforeEach(() => {
+    cy.intercept({ resourceType: /xhr/ }, { log: false })
+})
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
-    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
 before(() => {
