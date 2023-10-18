@@ -46,6 +46,7 @@ jobs:
           browser: chrome
           record: true
           spec: ${{ inputs.spec_file }}
+          tag: 'manual_trigger'
 
         # sesuaikan kalau ada env lain
         env:

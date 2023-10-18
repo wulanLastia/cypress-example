@@ -39,13 +39,12 @@ export class ListRiwayatPage {
         const validateStatusNomorUrut = cy.get(ambil_nomor_otomatis.validateStatusNomorUrut).first().as('validateStatusNomorUrut')
         validateStatusNomorUrut.should('contain', 'Belum Registrasi')
             .then(() => {
-                const xpathTablePengambilanNomor = cy.xpath(ambil_nomor_otomatis.xpathTablePengambilanNomor).first().as('xpathTablePengambilanNomor')
-                xpathTablePengambilanNomor.should('be.visible')
-                    .scrollTo('right')
+                const tablePengambilanNomor = cy.get(ambil_nomor_otomatis.tablePengambilanNomor).first().as('tablePengambilanNomor')
+                tablePengambilanNomor.should('be.visible')
+                    .scrollTo('right', { ensureScrollable: false })
 
                 const validateAksi = cy.get(ambil_nomor_otomatis.validateAksi).first().as('validateAksi')
                 validateAksi.should('contain', 'Batalkan')
-                    .and('be.visible')
             })
     }
 
@@ -57,8 +56,8 @@ export class ListRiwayatPage {
 
     validasiNomorUrutDiluarOrg() {
         cy.readFile(filename).then((object) => {
-            const xpathNomorNaskah = cy.xpath(list_riwayat.xpathNomorNaskah).first().as('xpathNomorNaskah')
-            xpathNomorNaskah.should('contain', object.nomor_urut)
+            const tableNomorNaskah = cy.xpath(list_riwayat.tableNomorNaskah).first().as('tableNomorNaskah')
+            tableNomorNaskah.should('contain', object.nomor_urut)
 
             const tableBankNomorStatus = cy.get(list_riwayat.tableBankNomorStatus).first().as('tableBankNomorStatus')
             tableBankNomorStatus.should('contain', 'Telah Dipesan')

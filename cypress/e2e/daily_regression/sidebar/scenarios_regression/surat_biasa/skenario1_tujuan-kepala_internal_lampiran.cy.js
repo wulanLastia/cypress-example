@@ -30,10 +30,9 @@ afterEach(() => {
     loginPage.logoutV2step2()
 })
 
+describe('Create Surat Biasa Tujuan Internal Skenario 1 (Tujuan Kepala Surat)', () => {
 
-describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala Surat) Penomoran Otomatis', () => {
-
-    qase([13, 81, 83, 709, 150, 80],
+    qase([13, 81, 83, 709, 150, 80, 176],
         it('Create Naskah Surat Biasa', () => {
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
@@ -45,8 +44,8 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             createSuratBiasaPage.inputKopSurat()
             createSuratBiasaPage.inputLampiranSurat()
             createSuratBiasaPage.inputLampiranSurat2()
-            createSuratBiasaPage.inputKakiSuratSkenario3()
-            createSuratBiasaPage.inputKepalaSuratSkenario5()
+            createSuratBiasaPage.inputKakiSuratSkenario1()
+            createSuratBiasaPage.inputKepalaSuratSkenario1()
             createSuratBiasaPage.inputBadanNaskahSkenarioRegression()
             createSuratBiasaPage.kirimSurat()
         })
@@ -103,4 +102,5 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             cy.wait(10000)
         })
     )
-})
+
+}) 
