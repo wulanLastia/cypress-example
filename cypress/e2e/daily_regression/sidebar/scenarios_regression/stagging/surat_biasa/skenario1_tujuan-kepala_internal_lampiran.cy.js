@@ -1,11 +1,11 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../../support/pages/sidebar/menu/menu.cy"
-import { CreateSuratBiasaPage } from "../../../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
-import { KembalikanNaskahPage } from "../../../../../support/pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
-import { PerbaikiNaskahPage } from "../../../../../support/pages/sidebar/kotak_masuk/6_perbaiki.cy"
-import { SetujuiPage } from "../../../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
-import { KoreksiSuratPage } from "../../../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
+import { LoginPage } from "../../../../../../support/pages/auth/login.cy"
+import { MenuPage } from "../../../../../../support/pages/sidebar/menu/menu.cy"
+import { CreateSuratBiasaPage } from "../../../../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { KembalikanNaskahPage } from "../../../../../../support/pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
+import { PerbaikiNaskahPage } from "../../../../../../support/pages/sidebar/kotak_masuk/6_perbaiki.cy"
+import { SetujuiPage } from "../../../../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
+import { KoreksiSuratPage } from "../../../../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
 
 let createSuratBiasaPage = new CreateSuratBiasaPage()
 let kembalikanNaskahPage = new KembalikanNaskahPage()
@@ -24,15 +24,15 @@ beforeEach(() => {
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
-/*
+
 afterEach(() => {
     cy.wait(10000)
     loginPage.logoutV2step2()
-})*/
+})
 
-describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)', () => {
+describe('Create Surat Biasa Tujuan Internal Skenario 1 (Tujuan Kepala Surat)', () => {
 
-    qase([13, 81, 83, 709, 150, 80, 849, 176],
+    qase([13, 81, 83, 709, 150, 80, 176],
         it('Create Naskah Surat Biasa', () => {
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
@@ -45,7 +45,7 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
             createSuratBiasaPage.inputLampiranSurat()
             createSuratBiasaPage.inputLampiranSurat2()
             createSuratBiasaPage.inputKakiSuratSkenario1()
-            createSuratBiasaPage.inputKepalaSuratSkenario2()
+            createSuratBiasaPage.inputKepalaSuratSkenario1()
             createSuratBiasaPage.inputBadanNaskahSkenarioRegression()
             createSuratBiasaPage.kirimSurat()
         })
