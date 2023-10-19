@@ -43,7 +43,7 @@ before(() => {
 
 afterEach(() => {
     cy.wait(10000)
-    loginPage.logoutV2step2()
+    loginPage.logoutV2step2PROD()
 })
 
 
@@ -61,7 +61,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario Penandatangan Diri Sendiri'
             cy.wait(3000)
             createNotaDinasPage.createKakiSuratPenandatanganDiriSendiriPROD()
             cy.wait(3000)
-            createNotaDinasPage.createKepalaSuratPROD()
+            createNotaDinasPage.createLampiranKepalaSuratPROD()
             cy.wait(3000)
             createNotaDinasPage.createBadanSurat()
             cy.wait(3000)
