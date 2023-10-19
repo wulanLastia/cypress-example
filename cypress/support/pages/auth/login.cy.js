@@ -196,7 +196,7 @@ export class LoginPage {
 
     logoutV2step2PROD() {
         // Show header if hidden
-        cy.xpath(login.showHeaderNav).invoke('css', 'display', 'block');
+        cy.get(login.showHeaderNav).invoke('css', 'display', 'block');
 
         // Use the simpler selector
         const btnProfile = cy.get(login.getJQueryProfileV2).as('btnProfile');
