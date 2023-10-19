@@ -88,6 +88,20 @@ export class DraftingKakiSuratPage {
             })
     }
 
+    pilihPenandatanganDiriSendiriPROD() {
+        const selectPenandatangan = cy.get(kaki_surat.selectPenandatanganNotaDinas).as('selectPenandatangan')
+        selectPenandatangan.select(2).should('have.value', 'DIRI_SENDIRI')
+
+        const selectedPenandatangan = cy.xpath(kaki_surat.selectedPenandatangan).as('selectedPenandatangan')
+        selectedPenandatangan.should('contain', 'SMOKE TEST VITA PUTRI UTAMI, S.Sos., M.I.Kom')
+            .invoke('val')
+            .then(text => {
+                const Penandatangan = text;
+                const profileName = cy.xpath(kaki_surat.profileName).as('profileName')
+                profileName.should('contain', Penandatangan)
+            })
+    }
+
     pilihPenandatanganAtasan() {
         const selectPenandatangan = cy.get(kaki_surat.selectPenandatanganNotaDinas).as('selectPenandatangan')
         selectPenandatangan.select(1).should('have.value', 'ATASAN')

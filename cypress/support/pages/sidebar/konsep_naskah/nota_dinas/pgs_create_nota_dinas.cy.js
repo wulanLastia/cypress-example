@@ -122,9 +122,9 @@ export class CreateNotaDinasPage {
         // Input Tujuan Surat INTERNAL            
         draftingKepalaSuratNotaDinasPage.inputTujuan("SMOKE TEST 1 Dra. Hj. I GUSTI AGUNG")
         // Input Tembusan Surat INTERNAL
-        draftingKepalaSuratNotaDinasPage.inputTembusan("Raden Andhika")
+        draftingKepalaSuratNotaDinasPage.inputTembusan("SMOKE TEST Raden Andhika")
         draftingKepalaSuratNotaDinasPage.addTembusan()
-        draftingKepalaSuratNotaDinasPage.inputTembusan2("Upar Suparno")
+        draftingKepalaSuratNotaDinasPage.inputTembusan2("SMOKE TEST Upar Suparno")
         // Field Kode Klasifikasi
         draftingKepalaSuratNotaDinasPage.inputKodeKlasifikasi("SK (Semua Klasifikasi)")
         // Field Unit Pengolah
@@ -179,6 +179,13 @@ export class CreateNotaDinasPage {
         draftingKakiSuratPage.aksesFormEditingKakiSurat()
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.pilihPenandatanganDiriSendiri()
+        draftingKakiSuratPage.closeKakiSurat()
+    }
+
+    createKakiSuratPenandatanganDiriSendiriPROD() {
+        draftingKakiSuratPage.aksesFormEditingKakiSurat()
+        draftingKakiSuratPage.inputKakiSurat()
+        draftingKakiSuratPage.pilihPenandatanganDiriSendiriPROD()
         draftingKakiSuratPage.closeKakiSurat()
     }
 
