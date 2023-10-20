@@ -7,7 +7,15 @@ import { PerbaikiNaskahPage } from "../../../../../../support/pages/sidebar/kota
 import { SetujuiPage } from "../../../../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
 import { KoreksiSuratPage } from "../../../../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
 
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // Jika terdapat error 'uncaught:exception' pada Headless Mode
+    if (err.message.includes('postMessage')) {
+        return false; // return false digunakan untuk skip error pada Headless Mode
+    }
 
+    // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
+    throw err;
+});
 
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
