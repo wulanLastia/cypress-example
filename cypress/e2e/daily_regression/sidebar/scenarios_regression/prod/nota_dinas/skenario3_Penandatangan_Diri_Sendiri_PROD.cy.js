@@ -69,7 +69,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario Penandatangan Diri Sendiri'
             cy.wait(3000)
             draftPage.checkDataPertamaNaskahDisimpan()
             cy.wait(3000)
-            setujuiPage.doTandaTanganiSurat(user.passphrase)
+        // setujuiPage.doTandaTanganiSurat(user.passphrase) <-- Only turned on when the passphrase want to be inputted into the DevOps Credentials
         })
     )
 })
