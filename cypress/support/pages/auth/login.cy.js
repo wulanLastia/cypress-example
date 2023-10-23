@@ -198,6 +198,8 @@ export class LoginPage {
         // Show header if hidden
         cy.get(login.showHeaderNav).invoke('css', 'display', 'block');
 
+        cy.wait(3000)
+
         // Use the simpler selector
         const btnProfile = cy.get(login.getJQueryProfileV2).as('btnProfile');
         
