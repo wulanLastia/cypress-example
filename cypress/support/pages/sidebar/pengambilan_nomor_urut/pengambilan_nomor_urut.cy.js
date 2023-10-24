@@ -111,10 +111,75 @@ export class PengambilanNomorUrutPage {
             .click()
     }
 
-    checkBtnAmbilNomor() {
-        const filterBtnAmbilNomor = cy.get(pengambilan_nomor_urut.filterBtnAmbilNomor).as('filterBtnAmbilNomor')
-        filterBtnAmbilNomor.should('contain', 'Ambil Nomor')
-            .and('be.enabled')
+    inputJumlahPengambilan(jumlah_pengambilan) {
+        const filterJumlahPengambilanComponent = cy.get(pengambilan_nomor_urut.filterJumlahPengambilanComponent).as('filterJumlahPengambilanComponent')
+        filterJumlahPengambilanComponent.click()
+            .invoke('val', '')
+            .clear()
+            .type(jumlah_pengambilan)
+    }
+
+    checkBtnAmbilNomor(status) {
+        if (status == 'enable') {
+            const filterBtnAmbilNomor = cy.get(pengambilan_nomor_urut.filterBtnAmbilNomor).as('filterBtnAmbilNomor')
+            filterBtnAmbilNomor.should('contain', 'Ambil Nomor')
+                .and('be.enabled')
+        } else {
+            const filterBtnAmbilNomor = cy.get(pengambilan_nomor_urut.filterBtnAmbilNomor).as('filterBtnAmbilNomor')
+            filterBtnAmbilNomor.should('contain', 'Ambil Nomor')
+                .and('be.disabled')
+        }
+    }
+
+    checkFieldJumlahPengambilan() {
+        const filterJumlahPengambilanLabel = cy.get(pengambilan_nomor_urut.filterJumlahPengambilanLabel).as('filterJumlahPengambilanLabel')
+        filterJumlahPengambilanLabel.parent()
+            .should('exist') // Cek apakah label exist
+            .then(($el) => {
+                const filterJumlahPengambilanLabel2 = cy.get(pengambilan_nomor_urut.filterJumlahPengambilanLabel).as('filterJumlahPengambilanLabel')
+                filterJumlahPengambilanLabel2.should('contain', 'Jumlah Pengambilan')
+
+                if (Cypress.dom.isVisible($el) == true) {
+                    const filterJumlahPengambilanComponent = cy.get(pengambilan_nomor_urut.filterJumlahPengambilanComponent).as('filterJumlahPengambilanComponent')
+                    filterJumlahPengambilanComponent.should('be.enabled')
+                } else if (Cypress.dom.isVisible($el) == false) {
+                    const filterJumlahPengambilanLabel = cy.get(pengambilan_nomor_urut.filterJumlahPengambilanLabel).as('filterJumlahPengambilanLabel')
+                    filterJumlahPengambilanLabel.parent().invoke('attr', 'style')
+                        .then(($style1) => {
+                            const style1 = $style1
+                            if (style1 == null) {
+                                const filterJumlahPengambilanComponent = cy.get(pengambilan_nomor_urut.filterJumlahPengambilanComponent).as('filterJumlahPengambilanComponent')
+                                filterJumlahPengambilanComponent.should('be.disabled')
+                            }
+                        })
+                }
+            })
+    }
+
+    validateJumlahPengambilan(jumlah_pengambilan) {
+        const filterJumlahPengambilanLabel = cy.get(pengambilan_nomor_urut.filterJumlahPengambilanLabel).as('filterJumlahPengambilanLabel')
+        filterJumlahPengambilanLabel.parent()
+            .should('exist') // Cek apakah label exist
+            .then(($el) => {
+                if (Cypress.dom.isVisible($el) == true) {
+                    const filterJumlahPengambilanComponent = cy.get(pengambilan_nomor_urut.filterJumlahPengambilanComponent).as('filterJumlahPengambilanComponent')
+                    filterJumlahPengambilanComponent.should('be.enabled')
+                        .clear()
+                        .type(jumlah_pengambilan)
+
+                    // Validate error message
+                    this.errorMessagePengambilan()
+
+                    // Validate button ambil nomor disable
+                    this.checkBtnAmbilNomor('disabled')
+                }
+            })
+    }
+
+    errorMessagePengambilan() {
+        const errorMessagePengambilan = cy.get(pengambilan_nomor_urut.errorMessagePengambilan).as('errorMessagePengambilan')
+        errorMessagePengambilan.should('contain', 'Jumlah pengambilan harus berisi angka 1 - 50')
+            .and('be.visible')
     }
 
 }
