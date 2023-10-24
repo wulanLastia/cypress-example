@@ -16,10 +16,15 @@ module.exports = {
     validateStatusNomorUrut: '[data-cy="table__pengambilan-nomor__item-status"]',
     validateAksi: '[data-cy="table__pengambilan-nomor__item-action"]',
     popupLabelTanggalPenomoran: '[data-cy="dialog__ambil-nomor-urut__label--tanggal-penomoran"]',
+    popupValueTanggalPenomoran: '[data-cy="dialog__ambil-nomor-urut__value--tanggal-penomoran"]',
     popupLabelJenisNaskah: '[data-cy="dialog__ambil-nomor-urut__label--ketegori-jenis-naskah"]',
+    popupValueJenisNaskah: '[data-cy="dialog__ambil-nomor-urut__value--ketegori-jenis-naskah"]',
     popupLabelUKUP: '[data-cy="dialog__ambil-nomor-urut__label--uk-up"]',
+    popupValueUKUP: '[data-cy="dialog__ambil-nomor-urut__value--uk-up"]',
+    popupLabelJumlahPengambilan: '[data-cy="dialog__ambil-nomor-urut__label--jumlah-ambil"]',
+    popupValueJumlahPengambilan: '[data-cy="dialog__ambil-nomor-urut__value--jumlah-ambil"]',
     tablePengambilanNomor: '[data-cy="table__pengambilan-nomor"]',
-    xpathNomorUrut: '[data-cy="dialog__pengambilan-nomor__value—nomor-urut"]',
+    valueNomorUrut: '[data-cy="dialog__pengambilan-nomor__value—nomor-urut"]',
 
     // XPATH
 

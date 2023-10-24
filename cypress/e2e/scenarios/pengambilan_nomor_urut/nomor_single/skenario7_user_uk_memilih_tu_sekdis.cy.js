@@ -1,9 +1,9 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
-import { PengambilanNomorUrutPage } from "../../../support/pages/sidebar/pengambilan_nomor_urut/pengambilan_nomor_urut.cy"
-import { AmbilNomorOtomatisPage } from "../../../support/pages/sidebar/pengambilan_nomor_urut/ambil_nomor_otomatis.cy"
-import { ListRiwayatPage } from "../../../support/pages/sidebar/pengambilan_nomor_urut/list_riwayat.cy"
+import { LoginPage } from "../../../../support/pages/auth/login.cy"
+import { MenuPage } from "../../../../support/pages/sidebar/menu/menu.cy"
+import { PengambilanNomorUrutPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/pengambilan_nomor_urut.cy"
+import { AmbilNomorOtomatisPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/ambil_nomor_otomatis.cy"
+import { ListRiwayatPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/list_riwayat.cy"
 
 let pengambilanNomorUrutPage = new PengambilanNomorUrutPage()
 let ambilNomorOtomatisPage = new AmbilNomorOtomatisPage()
@@ -38,12 +38,12 @@ afterEach(() => {
     loginPage.logoutV2step2()
 })
 
-describe('Pengambilan nomor urut oleh user TU memilih TU diri sendiri', () => {
+describe('Pengambilan nomor urut oleh user UK memilih TU Sekdis', () => {
 
-    qase([1006, 1109, 1012, 1014, 1015, 1054, 1045, 1017, 1601],
-        it('Cek data pada list ketika memilih TU diri sendiri', () => {
+    qase([1006, 1109, 1012, 1014, 1015, 1054, 1045, 1017],
+        it('Cek detail list riwayat pengambilan nomor', () => {
             // Login
-            loginPage.loginViaV1(user.nipTUUPTD, user.password)
+            loginPage.loginViaV1(user.nipUK, user.password)
             loginPage.directLogin()
 
             // Akses menu pengambilan nomor
@@ -51,10 +51,10 @@ describe('Pengambilan nomor urut oleh user TU memilih TU diri sendiri', () => {
 
             // Isi seluruh field form
             pengambilanNomorUrutPage.inputJenisNaskah(jenis_naskah.jenis_naskah2)
-            pengambilanNomorUrutPage.inputUKUP(uk_up.tu_uptd)
+            pengambilanNomorUrutPage.inputUKUP(uk_up.tu_sekdis)
 
             // Cek popup
-            ambilNomorOtomatisPage.checkPopupPengambilanNomor(jenis_naskah.jenis_naskah2, uk_up.tu_uptd)
+            ambilNomorOtomatisPage.checkPopupPengambilanNomor(jenis_naskah.jenis_naskah2, uk_up.tu_sekdis)
 
             // Cek detail
             ambilNomorOtomatisPage.checkDetailPopupPengambilanNomor()
@@ -71,8 +71,19 @@ describe('Pengambilan nomor urut oleh user TU memilih TU diri sendiri', () => {
             // Check tampilan badge status
             listRiwayatPage.checkTampilanStatusBelumRegistrasi()
 
-            // Validasi pada list UK yang bersangkutan
+            // Validasi pada list TU yang bersangkutan
             ambilNomorOtomatisPage.checkNomorUrut()
+        })
+    )
+
+    qase(1614,
+        it('Cek data pada list ketika UK memilih nota dinas TU sekdis', () => {
+            // Login
+            loginPage.loginViaV1(user.nipTUSekdis, user.password)
+            loginPage.directLogin()
+
+            // Validasi data pada list TU yang mengambil diluar organisasinya
+            listRiwayatPage.validasiNomorUrutDiluarOrg()
         })
     )
 

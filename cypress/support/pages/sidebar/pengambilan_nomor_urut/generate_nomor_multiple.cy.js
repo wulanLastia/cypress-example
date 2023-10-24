@@ -3,9 +3,9 @@ import pengambilan_nomor_urut from "../../../selectors/sidebar/pengambilan_nomor
 
 const filename = "cypress/fixtures/non_cred/penomoran/ambil_nomor_otomatis.json"
 
-export class AmbilNomorOtomatisPage {
+export class GenerateNomorMultiplePage {
 
-    checkPopupPengambilanNomor(jenisSurat, ukUp) {
+    checkPopupPengambilanNomorMultiple(jenisSurat, ukUp, jumlahPengambilan) {
         const filterBtnAmbilNomor = cy.get(pengambilan_nomor_urut.filterBtnAmbilNomor).as('filterBtnAmbilNomor')
         filterBtnAmbilNomor.should('contain', 'Ambil Nomor')
             .click()
@@ -15,25 +15,14 @@ export class AmbilNomorOtomatisPage {
 
         cy.writeFile(filename, {
             jenis_surat: jenisSurat,
-            uk_up: ukUp
+            uk_up: ukUp,
+            jumlah_pengambilan: jumlahPengambilan
         })
+
+        this.checkDetailPopupPengambilanNomor(jenisSurat, ukUp, jumlahPengambilan)
     }
 
-    batalMengambilNomorUrut() {
-        const popupPengambilanNomor = cy.get(ambil_nomor_otomatis.popupPengambilanNomor).as('popupPengambilanNomor')
-        popupPengambilanNomor.should('be.visible')
-            .scrollTo('bottom')
-
-        const btnCancelPengambilanNomor = cy.get(ambil_nomor_otomatis.btnCancelPengambilanNomor).last().as('btnCancelPengambilanNomor')
-        btnCancelPengambilanNomor.should('contain', 'Batal')
-            .and('be.visible')
-            .click()
-
-        const popupPengambilanNomor2 = cy.get(ambil_nomor_otomatis.popupPengambilanNomor).as('popupPengambilanNomor2')
-        popupPengambilanNomor2.should('not.be.visible')
-    }
-
-    checkDetailPopupPengambilanNomor() {
+    checkDetailPopupPengambilanNomor(jenisSurat, ukUp, jumlahPengambilan) {
         const popupPengambilanNomor = cy.get(ambil_nomor_otomatis.popupPengambilanNomor).as('popupPengambilanNomor')
         popupPengambilanNomor.should('be.visible')
             .scrollTo('top')
@@ -50,20 +39,57 @@ export class AmbilNomorOtomatisPage {
         labelKonfirmasiPengambilanNomor.should('contain', 'KEBUTUHAN PENOMORAN')
             .and('be.visible')
 
+        // Validate Tanggal
         const popupLabelTanggalPenomoran = cy.get(ambil_nomor_otomatis.popupLabelTanggalPenomoran).as('popupLabelTanggalPenomoran')
         popupLabelTanggalPenomoran.should('contain', 'Tanggal penomoran')
             .and('be.visible')
 
+        const dayjs = require("dayjs")
+        const arrDay = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
+        const day = arrDay[dayjs().format("d")]
+
+        const arrMonth = ["Desember", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November"]
+        const month = arrMonth[dayjs().format("M")]
+
+        const date = dayjs().format("DD")
+
+        const dateYear = dayjs().format("YYYY")
+
+        const datePenomoran = day + ", " + date + " " + month + " " + dateYear
+
+        const popupValueTanggalPenomoran = cy.get(ambil_nomor_otomatis.popupValueTanggalPenomoran).as('popupValueTanggalPenomoran')
+        popupValueTanggalPenomoran.should('contain', datePenomoran)
+
+        // Validate Jenis Naskah
         const popupLabelJenisNaskah = cy.get(ambil_nomor_otomatis.popupLabelJenisNaskah).as('popupLabelJenisNaskah')
         popupLabelJenisNaskah.should('contain', 'Kategori Jenis Naskah')
             .and('be.visible')
 
+        const popupValueJenisNaskah = cy.get(ambil_nomor_otomatis.popupValueJenisNaskah).as('popupValueJenisNaskah')
+        popupValueJenisNaskah.should('contain', jenisSurat)
+            .and('be.visible')
+
+        // Scroll to bottom of popup dialog
         const popupPengambilanNomor2 = cy.get(ambil_nomor_otomatis.popupPengambilanNomor).as('popupPengambilanNomor2')
         popupPengambilanNomor2.should('be.visible')
             .scrollTo('bottom')
 
+        // Validate Jumlah Pengambilan
+        const popupLabelJumlahPengambilan = cy.get(ambil_nomor_otomatis.popupLabelJumlahPengambilan).as('popupLabelJumlahPengambilan')
+        popupLabelJumlahPengambilan.should('contain', 'Jumlah pengambilan')
+            .and('be.visible')
+
+        const popupValueJumlahPengambilan = cy.get(ambil_nomor_otomatis.popupValueJumlahPengambilan).as('popupValueJumlahPengambilan')
+        popupValueJumlahPengambilan.should('contain', jumlahPengambilan)
+            .and('be.visible')
+
+        // Validate UK/UP
         const popupLabelUKUP = cy.get(ambil_nomor_otomatis.popupLabelUKUP).as('popupLabelUKUP')
         popupLabelUKUP.should('contain', 'UK/UP')
+            .and('be.visible')
+
+        const popupValueUKUP = cy.get(ambil_nomor_otomatis.popupValueUKUP).as('popupValueUKUP')
+        popupValueUKUP.should('contain', ukUp)
             .and('be.visible')
 
         const btnCancelPengambilanNomor = cy.get(ambil_nomor_otomatis.btnCancelPengambilanNomor).last().as('btnCancelPengambilanNomor')
@@ -75,7 +101,21 @@ export class AmbilNomorOtomatisPage {
             .and('be.visible')
     }
 
-    checkPopupDapatkanNomorUrut() {
+    batalMengambilNomorUrut() {
+        const popupPengambilanNomor = cy.get(ambil_nomor_otomatis.popupPengambilanNomor).as('popupPengambilanNomor')
+        popupPengambilanNomor.should('be.visible')
+            .scrollTo('bottom')
+
+        const btnCancelPengambilanNomor = cy.get(ambil_nomor_otomatis.btnCancelPengambilanNomor).last().as('btnCancelPengambilanNomor')
+        btnCancelPengambilanNomor.should('contain', 'Batal')
+            .and('be.visible')
+            .click()
+
+        const popupPengambilanNomor2 = cy.get(ambil_nomor_otomatis.popupPengambilanNomor).as('popupPengambilanNomor2')
+        popupPengambilanNomor2.should('not.be.visible')
+    }
+
+    checkPopupDapatkanNomorUrutMultiple() {
         const btnKonfirmasiAmbilNomor = cy.get(ambil_nomor_otomatis.btnKonfirmasiAmbilNomor).as('btnKonfirmasiAmbilNomor')
         btnKonfirmasiAmbilNomor.should('contain', 'Dapatkan nomor urut')
             .and('be.visible')
@@ -90,9 +130,15 @@ export class AmbilNomorOtomatisPage {
         valueNomorUrut.should('not.be.empty')
             .then($value => {
                 const textValue = $value.text()
+                const nomorAwal = textValue.split(' - ')[0]
+                const nomorAkhir = textValue.split(' - ')[1]
+
+                cy.log(nomorAwal)
+                cy.log(nomorAkhir)
 
                 cy.readFile(filename).then((data) => {
-                    data.nomor_urut = textValue
+                    data.nomor_urut_awal = nomorAwal
+                    data.nomor_urut_akhir = nomorAkhir
                     cy.writeFile(filename, data)
                 })
 
@@ -126,7 +172,7 @@ export class AmbilNomorOtomatisPage {
             .and('be.visible')
     }
 
-    checkBtnSelesaiMendapatkanNomor() {
+    checkBtnSelesaiMendapatkanNomorMultiple() {
         const btnSelesaiMendapatkanNomor = cy.get(ambil_nomor_otomatis.btnSelesaiMendapatkanNomor).as('btnSelesaiMendapatkanNomor')
         btnSelesaiMendapatkanNomor.should('contain', 'Selesai')
             .and('be.visible')
@@ -136,7 +182,7 @@ export class AmbilNomorOtomatisPage {
         popupBerhasilMendapatkanNomor.should('not.be.visible')
     }
 
-    checkNomorUrut() {
+    checkNomorUrutMultiple() {
         cy.readFile(filename).then((object) => {
             const validateDataTanggalPesanNomorUrut = cy.get(ambil_nomor_otomatis.validateDataTanggalPesanNomorUrut).first().as('validateDataTanggalPesanNomorUrut')
             validateDataTanggalPesanNomorUrut.should('contain', object.tanggal)
@@ -145,7 +191,7 @@ export class AmbilNomorOtomatisPage {
             validateDataTanggalNomorUrut.should('contain', object.tanggal)
 
             const validateDataNomorUrut = cy.get(ambil_nomor_otomatis.validateDataNomorUrut).first().as('validateDataNomorUrut')
-            validateDataNomorUrut.should('contain', object.nomor_urut)
+            validateDataNomorUrut.should('contain', object.nomor_urut_akhir)
 
             const validateStatusNomorUrut = cy.get(ambil_nomor_otomatis.validateStatusNomorUrut).first().as('validateStatusNomorUrut')
             validateStatusNomorUrut.should('contain', 'Belum Registrasi')

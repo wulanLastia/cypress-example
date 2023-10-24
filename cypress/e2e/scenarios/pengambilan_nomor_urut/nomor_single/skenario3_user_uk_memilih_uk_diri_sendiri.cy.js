@@ -1,9 +1,9 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
-import { PengambilanNomorUrutPage } from "../../../support/pages/sidebar/pengambilan_nomor_urut/pengambilan_nomor_urut.cy"
-import { AmbilNomorOtomatisPage } from "../../../support/pages/sidebar/pengambilan_nomor_urut/ambil_nomor_otomatis.cy"
-import { ListRiwayatPage } from "../../../support/pages/sidebar/pengambilan_nomor_urut/list_riwayat.cy"
+import { LoginPage } from "../../../../support/pages/auth/login.cy"
+import { MenuPage } from "../../../../support/pages/sidebar/menu/menu.cy"
+import { PengambilanNomorUrutPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/pengambilan_nomor_urut.cy"
+import { AmbilNomorOtomatisPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/ambil_nomor_otomatis.cy"
+import { ListRiwayatPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/list_riwayat.cy"
 
 let pengambilanNomorUrutPage = new PengambilanNomorUrutPage()
 let ambilNomorOtomatisPage = new AmbilNomorOtomatisPage()

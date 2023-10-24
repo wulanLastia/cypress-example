@@ -2,7 +2,6 @@ import list_riwayat from "../../../selectors/sidebar/pengambilan_nomor_urut/list
 import ambil_nomor_otomatis from "../../../selectors/sidebar/pengambilan_nomor_urut/ambil_nomor_otomatis"
 
 const filename = "cypress/fixtures/non_cred/penomoran/ambil_nomor_otomatis.json"
-
 export class ListRiwayatPage {
 
     checkDetail() {
@@ -56,7 +55,7 @@ export class ListRiwayatPage {
 
     validasiNomorUrutDiluarOrg() {
         cy.readFile(filename).then((object) => {
-            const tableNomorNaskah = cy.xpath(list_riwayat.tableNomorNaskah).first().as('tableNomorNaskah')
+            const tableNomorNaskah = cy.get(list_riwayat.tableNomorNaskah).as('tableNomorNaskah')
             tableNomorNaskah.should('contain', object.nomor_urut)
 
             const tableBankNomorStatus = cy.get(list_riwayat.tableBankNomorStatus).first().as('tableBankNomorStatus')
@@ -66,6 +65,52 @@ export class ListRiwayatPage {
             const tableBankNomorTanggalDipesan = cy.get(list_riwayat.tableBankNomorTanggalDipesan).first().as('tableBankNomorTanggalDipesan')
             tableBankNomorTanggalDipesan.should('contain', object.tanggal)
         })
+    }
+
+    validasiNomorUrutDiluarOrgMultiple() {
+        cy.readFile(filename).then((object) => {
+            const tableNomorNaskah = cy.get(list_riwayat.tableNomorNaskah).as('tableNomorNaskah')
+            tableNomorNaskah.should('contain', object.nomor_urut_akhir)
+
+            const tableBankNomorStatus = cy.get(list_riwayat.tableBankNomorStatus).first().as('tableBankNomorStatus')
+            tableBankNomorStatus.should('contain', 'Telah Dipesan')
+                .and('have.class', 'inline-block px-2 py-1 text-white font-sans font-semibold text-xs rounded-lg bg-[#2196F3]')
+
+            const tableBankNomorTanggalDipesan = cy.get(list_riwayat.tableBankNomorTanggalDipesan).first().as('tableBankNomorTanggalDipesan')
+            tableBankNomorTanggalDipesan.should('contain', object.tanggal)
+        })
+    }
+
+    batalkanNomorTerakhirMultiple() {
+        const xpathTableBankNomor = cy.xpath(list_riwayat.xpathTableBankNomor).as('xpathTableBankNomor')
+        xpathTableBankNomor.should('be.visible')
+            .scrollTo('right')
+
+        const xpathBtnBatalkanNomor = cy.xpath(list_riwayat.xpathBtnBatalkanNomor).as('xpathBtnBatalkanNomor')
+        xpathBtnBatalkanNomor.should('contain', 'Batalkan')
+            .click()
+            .then(() => {
+                const popupBatalkanNomor = cy.get(list_riwayat.popupBatalkanNomor).as('popupBatalkanNomor')
+                popupBatalkanNomor.should('be.visible')
+
+                const popupTitleBatalkanNomor = cy.get(list_riwayat.popupTitleBatalkanNomor).as('popupTitleBatalkanNomor')
+                popupTitleBatalkanNomor.should('contain', 'Apakah Anda ingin membatalkan pemberian nomor?')
+
+                const popupDescBatalkanNomor = cy.get(list_riwayat.popupDescBatalkanNomor).as('popupDescBatalkanNomor')
+                popupDescBatalkanNomor.should('contain', 'Orang berikut TIDAK akan dapat meregistrasi naskah menggunakan nomor yang diberikan pada aplikasi Sidebar v1.')
+
+                const popupTitleNomor = cy.get(list_riwayat.popupTitleNomor).as('popupTitleNomor')
+                popupTitleNomor.should('contain', 'Nomor surat yang akan diberikan:')
+
+                cy.readFile(filename).then((object) => {
+                    const popupNomor = cy.get(list_riwayat.popupNomor).as('popupNomor')
+                    popupNomor.should('contain', object.nomor_urut_akhir)
+                })
+
+                const btnKonfirmasiBatalkanNomor = cy.get(list_riwayat.btnKonfirmasiBatalkanNomor).as('btnKonfirmasiBatalkanNomor')
+                btnKonfirmasiBatalkanNomor.should('contain', 'Ya')
+                    .click()
+            })
     }
 
 }

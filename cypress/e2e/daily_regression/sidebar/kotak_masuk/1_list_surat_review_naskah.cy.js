@@ -9,7 +9,7 @@ let loginPage = new LoginPage()
 let user
 
 beforeEach(() => {
-    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+    cy.intercept({ resourceType: /xhr/ }, { log: false })
 })
 
 before(() => {

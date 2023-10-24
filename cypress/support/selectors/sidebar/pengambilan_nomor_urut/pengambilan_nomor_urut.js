@@ -7,5 +7,8 @@ module.exports = {
     filterPemilikNomorLabel: '[data-cy="filter__pemilik-nomor__label"]',
     filterPemilikNomorComponent: '[data-cy="filter__pemilik-nomor__component"]',
     filterTanggalLabel: '[data-cy="filter__tanggal-penomoran__label"]',
-    filterBtnAmbilNomor: '[data-cy="filter__button-ambil-nomor"]'
+    filterBtnAmbilNomor: '[data-cy="filter__button-ambil-nomor"]',
+    filterJumlahPengambilanLabel: '[data-cy="filter__jumlah-pengambilan__label"]',
+    filterJumlahPengambilanComponent: '[data-cy="filter__jumlah-pengambilan__component"]',
+    errorMessagePengambilan: '[data-cy="filter__jumlah-pengambilan__error-message"]'
 }

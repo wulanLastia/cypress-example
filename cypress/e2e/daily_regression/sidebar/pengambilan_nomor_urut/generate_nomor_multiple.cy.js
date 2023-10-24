@@ -2,15 +2,16 @@ import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../../support/pages/auth/login.cy"
 import { MenuPage } from "../../../../support/pages/sidebar/menu/menu.cy"
 import { PengambilanNomorUrutPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/pengambilan_nomor_urut.cy"
-import { AmbilNomorOtomatisPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/ambil_nomor_otomatis.cy"
+import { GenerateNomorMultiplePage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/generate_nomor_multiple.cy"
 
 let pengambilanNomorUrutPage = new PengambilanNomorUrutPage()
-let ambilNomorOtomatisPage = new AmbilNomorOtomatisPage()
+let generateNomorMultiple = new GenerateNomorMultiplePage()
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
 let jenis_naskah
 let uk_up
+let jumlah_pengambilan
 
 beforeEach(() => {
     cy.intercept({ resourceType: /xhr/ }, { log: false })
@@ -30,6 +31,10 @@ before(() => {
     cy.fixture('non_cred/penomoran/uk_up.json').then((data) => {
         uk_up = data
     })
+
+    cy.fixture('non_cred/penomoran/jumlah_pengambilan.json').then((data) => {
+        jumlah_pengambilan = data
+    })
 })
 
 before(() => {
@@ -41,57 +46,53 @@ after(() => {
     loginPage.logoutV2step2()
 })
 
-describe('Ambil Nomor Otomatis', { testIsolation: false }, () => {
+describe('Generate Nomor Multiple', { testIsolation: false }, () => {
 
-    qase([1006, 1009, 1012],
-        it('Cek pop up jika mengambil nomor hari ini', () => {
+    qase([1006, 1009, 1684],
+        it('Cek pop up detail konfirmasi pemesanan nomor urut multiple', () => {
             // Akses menu pengambilan nomor
             menuPage.goToPengambilanNomor()
 
             // Isi seluruh field form
             pengambilanNomorUrutPage.inputJenisNaskah(jenis_naskah.jenis_naskah1)
             pengambilanNomorUrutPage.inputUKUP(uk_up.uk_kadispusipda)
+            pengambilanNomorUrutPage.inputJumlahPengambilan(jumlah_pengambilan.multiple_2)
 
             // Cek popup
-            ambilNomorOtomatisPage.checkPopupPengambilanNomor(jenis_naskah.jenis_naskah1, uk_up.uk_kadispusipda)
+            generateNomorMultiple.checkPopupPengambilanNomorMultiple(jenis_naskah.jenis_naskah1, uk_up.uk_kadispusipda, jumlah_pengambilan.multiple_2)
         })
     )
 
-    qase(1016,
+    qase(1688,
         it('Cek fungsi tombol Batal', () => {
-            ambilNomorOtomatisPage.batalMengambilNomorUrut()
+            generateNomorMultiple.batalMengambilNomorUrut()
         })
     )
 
-    qase(1013,
-        it('Cek detail pop up konfirmasi penomoran naskah otomatis', () => {
+    qase(1686,
+        it('Cek fungsi tombol Dapatkan nomor urut', () => {
             // Isi seluruh field form
             pengambilanNomorUrutPage.inputJenisNaskah(jenis_naskah.jenis_naskah1)
             pengambilanNomorUrutPage.inputUKUP(uk_up.uk_kadispusipda)
+            pengambilanNomorUrutPage.inputJumlahPengambilan(jumlah_pengambilan.multiple_2)
 
             // Cek popup
-            ambilNomorOtomatisPage.checkPopupPengambilanNomor(jenis_naskah.jenis_naskah1, uk_up.uk_kadispusipda)
+            generateNomorMultiple.checkPopupPengambilanNomorMultiple(jenis_naskah.jenis_naskah1, uk_up.uk_kadispusipda, jumlah_pengambilan.multiple_2)
 
-            // Cek detail
-            ambilNomorOtomatisPage.checkDetailPopupPengambilanNomor()
+            // Cek popup berhasil dapatkan nomor urut multiple
+            generateNomorMultiple.checkPopupDapatkanNomorUrutMultiple()
         })
     )
 
-    qase(1014,
-        it('Cek fungsi tombol Dapatkan nomor urut', () => {
-            ambilNomorOtomatisPage.checkPopupDapatkanNomorUrut()
-        })
-    )
-
-    qase(1015,
+    qase(1687,
         it('Cek fungsi tombol Selesai', () => {
-            ambilNomorOtomatisPage.checkBtnSelesaiMendapatkanNomor()
+            generateNomorMultiple.checkBtnSelesaiMendapatkanNomorMultiple()
         })
     )
 
-    qase(1017,
-        it('Cek nomor urut', () => {
-            ambilNomorOtomatisPage.checkNomorUrut()
+    qase(1689,
+        it('Cek kesesuaian nomor urut', () => {
+            generateNomorMultiple.checkNomorUrutMultiple()
         })
     )
 
