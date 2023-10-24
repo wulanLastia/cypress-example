@@ -12,6 +12,10 @@ let user
 let jenis_naskah
 let uk_up
 
+beforeEach(() => {
+    cy.intercept({ resourceType: /xhr/ }, { log: false })
+})
+
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
 
@@ -26,8 +30,6 @@ before(() => {
     cy.fixture('non_cred/penomoran/uk_up.json').then((data) => {
         uk_up = data
     })
-
-    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
 before(() => {
@@ -41,7 +43,7 @@ after(() => {
 
 describe('Ambil Nomor Otomatis', { testIsolation: false }, () => {
 
-    qase([1006, 1109, 1012],
+    qase([1006, 1009, 1012],
         it('Cek pop up jika mengambil nomor hari ini', () => {
             // Akses menu pengambilan nomor
             menuPage.goToPengambilanNomor()
