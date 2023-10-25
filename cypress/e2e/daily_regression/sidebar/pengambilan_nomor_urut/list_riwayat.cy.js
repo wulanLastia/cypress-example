@@ -14,6 +14,10 @@ let user
 let jenis_naskah
 let uk_up
 
+beforeEach(() => {
+    cy.intercept({ resourceType: /xhr/ }, { log: false })
+})
+
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
 
@@ -32,11 +36,6 @@ before(() => {
     cy.intercept({ resourceType: /xhr/ }, { log: false })
 })
 
-before(() => {
-    loginPage.loginViaV1(user.nip, user.password)
-    loginPage.directLogin()
-})
-
 after(() => {
     loginPage.logoutV2step2()
 })
@@ -45,6 +44,10 @@ describe('List riwayat pengambilan nomor urut', { testIsolation: false }, () => 
 
     qase([1006, 1035],
         it('Cek detail list riwayat pengambilan nomor', () => {
+            // Login
+            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.directLogin()
+
             // Akses menu pengambilan nomor
             menuPage.goToPengambilanNomor()
 
