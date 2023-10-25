@@ -18,8 +18,8 @@ module.exports = {
     popupNomor: '[data-cy="dialog-confirm-cancel-number__nomor-surat"]',
     btnCancelBatalkanNomor: '[data-cy="dialog-confirm-cancel-number__button-batal"]',
     btnKonfirmasiBatalkanNomor: '[data-cy="dialog-confirm-cancel-number__button-submit"]',
+    tableBankNomor: '[data-cy="table__bank-nomor"]',
+    btnBatalkanNomor: '[data-cy="table__bank-nomor__button--batalkan-0"]'
 
     // XPATH
-    xpathTableBankNomor: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[2]/div[1]',
-    xpathBtnBatalkanNomor: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[7]/div[2]/button[1]'
 }

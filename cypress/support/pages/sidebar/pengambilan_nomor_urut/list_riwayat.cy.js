@@ -82,12 +82,13 @@ export class ListRiwayatPage {
     }
 
     batalkanNomorTerakhirMultiple() {
-        const xpathTableBankNomor = cy.xpath(list_riwayat.xpathTableBankNomor).as('xpathTableBankNomor')
-        xpathTableBankNomor.should('be.visible')
+        const tableBankNomor = cy.get(list_riwayat.tableBankNomor).as('tableBankNomor')
+        tableBankNomor.children()
+            .should('be.visible')
             .scrollTo('right')
 
-        const xpathBtnBatalkanNomor = cy.xpath(list_riwayat.xpathBtnBatalkanNomor).as('xpathBtnBatalkanNomor')
-        xpathBtnBatalkanNomor.should('contain', 'Batalkan')
+        const btnBatalkanNomor = cy.get(list_riwayat.btnBatalkanNomor).as('btnBatalkanNomor')
+        btnBatalkanNomor.should('contain', 'Batalkan')
             .click()
             .then(() => {
                 const popupBatalkanNomor = cy.get(list_riwayat.popupBatalkanNomor).as('popupBatalkanNomor')
