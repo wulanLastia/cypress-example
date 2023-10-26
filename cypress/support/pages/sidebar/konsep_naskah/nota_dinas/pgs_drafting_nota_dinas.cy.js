@@ -159,6 +159,12 @@ export class DraftingNotaDinasPage {
 
     }
 
+    negativeKirimNaskah() {
+        const btnKirimNaskah = cy.get(nota_dinas.btnKirimNaskah).as('btnKirimNaskah')
+        btnKirimNaskah.should('be.visible')
+        .should('be.disabled')
+    }
+
     inputLampiranSuratNotaDinas() {
         const findLampiranPage = cy.get(konsep_naskah.previewLampiran).first().as('findLampiranPage');
         findLampiranPage.scrollIntoView();
