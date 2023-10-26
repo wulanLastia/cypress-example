@@ -10,6 +10,7 @@
   "dependencies": {
     "cypress-qase-reporter": "^1.4.2-alpha.2",
     "cypress-real-events": "^1.7.6",
-    "dayjs": "^1.11.10"
+    "dayjs": "^1.11.10",
+    "jose": "^5.0.1"
   }
 }
