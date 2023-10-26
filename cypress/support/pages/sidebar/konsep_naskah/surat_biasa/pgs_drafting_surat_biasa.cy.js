@@ -181,6 +181,12 @@ export class DraftingKonsepNaskahPage {
             .click()
     }
 
+    kirimNaskahNegatif() {
+        const btnKirimNaskah = cy.get(konsep_naskah.btnKirimNaskah).as('btnKirimNaskah')
+        btnKirimNaskah.should('be.visible')
+        .should('be.disabled')
+    }
+
     scrollPreviewPage() {
         const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
         previewPage.scrollTo('top')
