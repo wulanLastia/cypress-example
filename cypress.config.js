@@ -1,10 +1,18 @@
 const { defineConfig } = require('cypress')
+const { generateFeatureToggleOverrideJWT } = require('./helpers/feature_toggle_helper')
 
 module.exports = defineConfig({
   projectId: 'rbzy6f',
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
+      on('task', {
+        generateFeatureToggleOverrideJWT(args) {
+          const toggles = args?.toggles
+          const expirationTime = args?.expirationTime
+          return generateFeatureToggleOverrideJWT(toggles, expirationTime)
+        }
+      })
     },
 
     env: {
@@ -35,7 +43,7 @@ module.exports = defineConfig({
     "environmentId": 1,
   },
   "chromeWebSecurity": false,
-  // Width x Height preview in cypress GUI 
+  // Width x Height preview in cypress GUI
   "viewportWidth": 1440,
   "viewportHeight": 900,
 })
