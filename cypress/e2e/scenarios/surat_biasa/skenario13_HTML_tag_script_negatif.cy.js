@@ -17,7 +17,7 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-describe('[Negatif] Input HTML Script Create Surat Biasa Tujuan Internal Eksternal Skenario 7 (Tujuan Lampiran Surat)', () => {
+describe('[Negatif] Input HTML Script Create Surat Biasa Tujuan Internal Eksternal Skenario 8 (Tujuan Kepala Lampiran Surat)', () => {
 
     qase([13, 81, 83, 709, 150, 80, 849, 176, 306, 92, 840, 110, 123, 138],
         it('Create Naskah Surat Biasa', () => {

@@ -17,9 +17,9 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-describe('[Negatif] Input tag Script Create Surat Biasa Tujuan Internal Eksternal Skenario 7 (Tujuan Kepala Lampiran Surat)', () => {
+describe('[Negatif] Leave the field empty when submitting the Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala Lampiran Surat)', () => {
 
-    qase([13, 81, 83, 709, 150, 80, 849, 176, 305, 91, 839, 109, 122, 137],
+    qase([13, 81, 83, 709, 150, 80, 849, 176, 308, 94, 842, 112, 125, 140],
         it('Create Naskah Surat Biasa', () => {
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
@@ -32,7 +32,6 @@ describe('[Negatif] Input tag Script Create Surat Biasa Tujuan Internal Eksterna
             createSuratBiasaPage.inputLampiranSurat()
             createSuratBiasaPage.inputLampiranSurat2()
             createSuratBiasaPage.inputKakiSuratSkenario3()
-            createSuratBiasaPage.inputKepalaSuratSkenario7Negatif()
             createSuratBiasaPage.inputBadanNaskahSkenarioRegression()
             createSuratBiasaPage.kirimSuratNegatif()
         })

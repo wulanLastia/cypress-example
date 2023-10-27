@@ -114,6 +114,25 @@ export class DraftingKepalaSuratPage {
         inputLokasi.type("<blink>Hello World</blink>")
     }
 
+    validateLokasiNegatifXSSScript() {
+        const titleLokasi = cy.get(kepala_surat.titleLokasi).as('titleLokasi')
+        titleLokasi.should('contain', 'di')
+
+        const inputLokasi = cy.get(kepala_surat.inputLokasi).as('inputLokasi')
+        inputLokasi.type("'-prompt()-'")
+    }
+
+    validateLokasiNegatifWhitespace() {
+        const titleLokasi = cy.get(kepala_surat.titleLokasi).as('titleLokasi')
+        titleLokasi.should('contain', 'di')
+
+        const inputLokasi = cy.get(kepala_surat.inputLokasi).as('inputLokasi')
+        inputLokasi.type("{shift}{enter}")
+        .wait(3000)
+        .blur()
+
+    }
+
     validateKodeKlasifikasi() {
         cy.wait(6000)
 
@@ -126,6 +145,20 @@ export class DraftingKepalaSuratPage {
             .type('SK (Semua Klasifikasi)')
             .wait(6000)
             .type('{enter}')
+    }
+
+    validateKodeKlasifikasiNegatifWhitespace() {
+        cy.wait(6000)
+
+        const titleKodeKlasifikasi = cy.get(kepala_surat.titleKodeKlasifikasi).as('titleKodeKlasifikasi')
+        titleKodeKlasifikasi.should('contain', 'Kode Klasifikasi')
+
+        const selectKodeKlasifikasi = cy.get(kepala_surat.selectKodeKlasifikasi).as('selectKodeKlasifikasi')
+        selectKodeKlasifikasi.click()
+            .wait(3000)
+            .type("{shift}{enter}")
+            .wait(3000)
+            .trigger('blur')
     }
     
     validateUnitPengolah() {
@@ -152,6 +185,24 @@ export class DraftingKepalaSuratPage {
         inputUnitPengolah.type("<blink>Hello World</blink>")
     }
 
+    validateUnitPengolahNegatifXSSScript() {
+        const titleUnitPengolah = cy.get(kepala_surat.titleUnitPengolah).as('titleUnitPengolah')
+        titleUnitPengolah.should('contain', 'Unit Pengolah')
+
+        const inputUnitPengolah = cy.get(kepala_surat.inputUnitPengolah).as('inputUnitPengolah')
+        inputUnitPengolah.type("'-prompt()-'")
+    }
+
+    validateUnitPengolahNegatifWhitespace() {
+        const titleUnitPengolah = cy.get(kepala_surat.titleUnitPengolah).as('titleUnitPengolah')
+        titleUnitPengolah.should('contain', 'Unit Pengolah')
+
+        const inputUnitPengolah = cy.get(kepala_surat.inputUnitPengolah).as('inputUnitPengolah')
+        inputUnitPengolah.type("{shift}{enter}")
+        .wait(3000)
+        .blur()
+    }
+
     validateSifatSurat() {
         const titleSifatSurat = cy.get(kepala_surat.titleSifatSurat).as('titleSifatSurat')
         titleSifatSurat.should('contain', 'Sifat Surat')
@@ -160,6 +211,24 @@ export class DraftingKepalaSuratPage {
         selectSifatSurat.click()
             .contains('Penting')
             .click()
+    }
+
+    deleteSifatSurat() {
+        const titleSifatSurat = cy.get(kepala_surat.titleSifatSurat).as('titleSifatSurat')
+        titleSifatSurat.should('contain', 'Sifat Surat')
+
+        const selectSifatSurat = cy.get(kepala_surat.selectSifatSurat).as('selectSifatSurat')
+        selectSifatSurat.click()
+    }
+
+    whitespaceSifatSurat() {
+        const titleSifatSurat = cy.get(kepala_surat.titleSifatSurat).as('titleSifatSurat')
+        titleSifatSurat.should('contain', 'Sifat Surat')
+
+        const whitespaceSifatSurat = cy.get(kepala_surat.selectSifatSurat).as('whitespaceSifatSurat')
+        whitespaceSifatSurat.type("{shift}{enter}")
+        .wait(3000)
+        .trigger('blur')
     }
 
     validateUrgensiSurat() {
@@ -171,6 +240,16 @@ export class DraftingKepalaSuratPage {
             .wait(10000)
             .contains('Amat Segera')
             .click()
+    }
+
+    whitespaceUrgensiSurat() {
+        const titleUrgensiSurat = cy.get(kepala_surat.titleUrgensiSurat).as('titleUrgensiSurat')
+        titleUrgensiSurat.should('contain', 'Urgensi')
+
+        const whitespaceUrgensiSurat = cy.get(kepala_surat.selectUrgensiSurat).as('whitespaceUrgensiSurat')
+        whitespaceUrgensiSurat.type("{shift}{enter}")
+        .wait(3000)
+        .trigger('blur')
     }
 
     validatePerihal(hal) {
@@ -893,6 +972,156 @@ export class DraftingKepalaSuratPage {
         this.aksesFormEditingKepalaSurat()
     }
 
+    validateTujuanSkenario9NegatifXSSScript() {
+        const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
+        titleTujuan.should('contain', 'Kepada Yth.')
+
+        const radio2 = cy.get(kepala_surat.radio2).as('radio2')
+        radio2.should('be.visible')
+            .click()
+
+        const labelRadio2 = cy.get(kepala_surat.labelRadio2).as('labelRadio2')
+        labelRadio2.should('contain', 'Lampiran')
+
+        const inputTujuanLampiran = cy.get(kepala_surat.inputTujuanLampiran).as('inputTujuanLampiran')
+        inputTujuanLampiran.wait(1000)
+            .type("'-prompt()-'")
+            .wait(3000)
+            .type('{enter}')
+
+        const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
+        previewPage.scrollTo(180, 1000, { force: true })
+
+        const previewKepalaLampiran = cy.get(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
+        previewKepalaLampiran.click()
+
+        for (let i = 1; i <= 5; i++) {
+            const addMoreTujuanLampiran = cy.get(kepala_surat.addMoreTujuanLampiran).as('addMoreTujuanLampiran')
+            addMoreTujuanLampiran.click()
+        }
+
+        const inputTujuanLampiran0 = cy.get(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
+        inputTujuanLampiran0.wait(1000)
+            .type("'-prompt()-'")
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuanLampiran1 = cy.get(kepala_surat.inputTujuanLampiran1).as('inputTujuanLampiran1')
+        inputTujuanLampiran1.wait(1000)
+            .type("'-prompt()-'")
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuanLampiran2 = cy.get(kepala_surat.inputTujuanLampiran2).as('inputTujuanLampiran2')
+        inputTujuanLampiran2.wait(1000)
+            .type("'-prompt()-'")
+            .wait(3000)
+            .type('{enter}')
+
+        cy.wait(3000)
+
+        const inputTujuanLampiran3 = cy.get(kepala_surat.inputTujuanLampiran3).as('inputTujuanLampiran3')
+        inputTujuanLampiran3.wait(1000)
+            .type("'-prompt()-'")
+            .wait(3000)
+            .type('{enter}')
+
+        const inputTujuanLampiran4 = cy.get(kepala_surat.inputTujuanLampiran4).as('inputTujuanLampiran4')
+        inputTujuanLampiran4.wait(1000)
+            .type("'-prompt()-'")
+            .wait(3000)
+            .type('{enter}')
+
+        const inputTujuanLampiran5 = cy.get(kepala_surat.inputTujuanLampiran5).as('inputTujuanLampiran5')
+        inputTujuanLampiran5.wait(1000)
+            .type("'-prompt()-'")
+            .wait(3000)
+            .type('{enter}')
+
+        draftingKonsepNaskahPage.scrollPreviewPage()
+
+        this.aksesFormEditingKepalaSurat()
+    }
+
+    validateTujuanSkenario10NegatifWhitespace() {
+        const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
+        titleTujuan.should('contain', 'Kepada Yth.')
+
+        const radio2 = cy.get(kepala_surat.radio2).as('radio2')
+        radio2.should('be.visible')
+            .click()
+
+        const labelRadio2 = cy.get(kepala_surat.labelRadio2).as('labelRadio2')
+        labelRadio2.should('contain', 'Lampiran')
+
+        const inputTujuanLampiran = cy.get(kepala_surat.inputTujuanLampiran).as('inputTujuanLampiran')
+        inputTujuanLampiran.wait(1000)
+            .type("{shift}{enter}")
+            .wait(3000)
+            .blur()
+
+        const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
+        previewPage.scrollTo(180, 1000, { force: true })
+
+        const previewKepalaLampiran = cy.get(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
+        previewKepalaLampiran.click()
+
+        for (let i = 1; i <= 5; i++) {
+            const addMoreTujuanLampiran = cy.get(kepala_surat.addMoreTujuanLampiran).as('addMoreTujuanLampiran')
+            addMoreTujuanLampiran.click()
+        }
+
+        const inputTujuanLampiran0 = cy.get(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
+        inputTujuanLampiran0.wait(1000)
+            .type("{shift}{enter}")
+            .wait(3000)
+            .blur()
+
+
+        cy.wait(3000)
+
+        const inputTujuanLampiran1 = cy.get(kepala_surat.inputTujuanLampiran1).as('inputTujuanLampiran1')
+        inputTujuanLampiran1.wait(1000)
+            .type("{shift}{enter}")
+            .wait(3000)
+            .blur()
+
+        cy.wait(3000)
+
+        const inputTujuanLampiran2 = cy.get(kepala_surat.inputTujuanLampiran2).as('inputTujuanLampiran2')
+        inputTujuanLampiran2.wait(1000)
+            .type("{shift}{enter}")
+            .wait(3000)
+            .blur()
+
+        cy.wait(3000)
+
+        const inputTujuanLampiran3 = cy.get(kepala_surat.inputTujuanLampiran3).as('inputTujuanLampiran3')
+        inputTujuanLampiran3.wait(1000)
+            .type("{shift}{enter}")
+            .wait(3000)
+            .blur()
+
+        const inputTujuanLampiran4 = cy.get(kepala_surat.inputTujuanLampiran4).as('inputTujuanLampiran4')
+        inputTujuanLampiran4.wait(1000)
+            .type("{shift}{enter}")
+            .wait(3000)
+            .blur()
+
+        const inputTujuanLampiran5 = cy.get(kepala_surat.inputTujuanLampiran5).as('inputTujuanLampiran5')
+        inputTujuanLampiran5.wait(1000)
+            .type("{shift}{enter}")
+            .wait(3000)
+            .blur()
+
+        draftingKonsepNaskahPage.scrollPreviewPage()
+
+        this.aksesFormEditingKepalaSurat()
+    }
 
     validateTujuanSkenario5Prod() {
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')

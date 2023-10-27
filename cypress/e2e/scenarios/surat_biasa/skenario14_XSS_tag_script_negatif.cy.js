@@ -17,7 +17,7 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-describe('[Negatif] Input tag Script Create Surat Biasa Tujuan Internal Eksternal Skenario 7 (Tujuan Kepala Lampiran Surat)', () => {
+describe('[Negatif] Input XSS Script Create Surat Biasa Tujuan Internal Eksternal Skenario 9 (Tujuan Kepala Lampiran Surat)', () => {
 
     qase([13, 81, 83, 709, 150, 80, 849, 176, 305, 91, 839, 109, 122, 137],
         it('Create Naskah Surat Biasa', () => {
@@ -32,7 +32,7 @@ describe('[Negatif] Input tag Script Create Surat Biasa Tujuan Internal Eksterna
             createSuratBiasaPage.inputLampiranSurat()
             createSuratBiasaPage.inputLampiranSurat2()
             createSuratBiasaPage.inputKakiSuratSkenario3()
-            createSuratBiasaPage.inputKepalaSuratSkenario7Negatif()
+            createSuratBiasaPage.inputKepalaSuratSkenario9Negatif()
             createSuratBiasaPage.inputBadanNaskahSkenarioRegression()
             createSuratBiasaPage.kirimSuratNegatif()
         })
