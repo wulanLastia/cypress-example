@@ -30,8 +30,8 @@ import 'cypress-file-upload';
  * Example:
  *
  *    ```
- *    // /cypress/e2e/test_aja.cy.js
- *    // run with npm run cy_local_test -- --spec cypress/e2e/test_aja.cy.js --browser chrome
+ *    // file: /cypress/e2e/test_aja.cy.js
+ *    // run with `npm run cy_local_test -- --spec cypress/e2e/test_aja.cy.js --browser chrome`
  *
  *    beforeEach(() => {
  *      // default call to set all feature toggle beside the defaults into FALSE
