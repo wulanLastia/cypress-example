@@ -47,9 +47,11 @@ module.exports = {
 
     titleSifatSurat: '[data-cy="kepala-surat__nota-dinas__sifat-surat__title"]',
     selectSifatSurat: '[data-cy="kepala-surat__nota-dinas__sifat-surat__select-option"]',
+    btnDeleteSifatSurat: "div[id='vs4__combobox'] button[title='Clear Selected']",
 
     titleUrgensiSurat: '[data-cy="kepala-surat__nota-dinas__urgensi__title"]',
     selectUrgensiSurat: '[data-cy="kepala-surat__nota-dinas__urgensi__select-option"]',
+    btnDeleteUrgensiSurat: "div[id='vs5__combobox'] button[title='Clear Selected']",
 
     titlePerihal: '[data-cy="kepala-surat__nota-dinas__perihal__title"]',
     inputPerihal: '[data-cy="kepala-surat__nota-dinas__perihal__input"]',

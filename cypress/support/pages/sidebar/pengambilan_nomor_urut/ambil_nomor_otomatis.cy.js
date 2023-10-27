@@ -89,8 +89,8 @@ export class AmbilNomorOtomatisPage {
         const valueNomorUrut = cy.get(ambil_nomor_otomatis.valueNomorUrut).as('valueNomorUrut')
         valueNomorUrut.should('not.be.empty')
             .then($value => {
-                const textValue = $value.text()
-
+                const textValue = $value.text().trim(); // trim the value to remove any whitespace
+    
                 cy.readFile(filename).then((data) => {
                     data.nomor_urut = textValue
                     cy.writeFile(filename, data)
@@ -145,7 +145,7 @@ export class AmbilNomorOtomatisPage {
             validateDataTanggalNomorUrut.should('contain', object.tanggal)
 
             const validateDataNomorUrut = cy.get(ambil_nomor_otomatis.validateDataNomorUrut).first().as('validateDataNomorUrut')
-            validateDataNomorUrut.should('contain', object.nomor_urut)
+            validateDataNomorUrut.should('contain', object.nomor_urut.trim())
 
             const validateStatusNomorUrut = cy.get(ambil_nomor_otomatis.validateStatusNomorUrut).first().as('validateStatusNomorUrut')
             validateStatusNomorUrut.should('contain', 'Belum Registrasi')

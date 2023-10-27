@@ -56,6 +56,10 @@ export class CreateSuratBiasaPage {
         draftingKonsepNaskahPage.kirimNaskah()
     }
 
+    kirimSuratNegatif() {
+        draftingKonsepNaskahPage.kirimNaskahNegatif()
+    }
+
     inputKakiSuratPDF() {
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.inputPenandatanganDiriSendiri()
@@ -245,6 +249,63 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateSifatSurat()
         draftingKepalaSuratPage.validateUrgensiSurat()
         draftingKepalaSuratPage.validatePerihal(' Tujuan Lampiran - Internal Eksternal - Lampiran')
+        draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    inputKepalaSuratSkenario7Negatif() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratPage.validateTempat()
+        //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
+        draftingKepalaSuratPage.validateTujuanSkenario7NegatifTagScript()
+        draftingKepalaSuratPage.validateLokasiNegatifTagScript()
+        draftingKepalaSuratPage.validateKodeKlasifikasi()
+        draftingKepalaSuratPage.validateUnitPengolahNegatifTagScript()
+        draftingKepalaSuratPage.validateSifatSurat()
+        draftingKepalaSuratPage.validateUrgensiSurat()
+        draftingKepalaSuratPage.validatePerihal(" Test JS Script <script>alert('Executing JS')</script>")
+        draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    inputKepalaSuratSkenario8Negatif() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratPage.validateTempat()
+        //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
+        draftingKepalaSuratPage.validateTujuanSkenario8NegatifHTMLScript()
+        draftingKepalaSuratPage.validateLokasiNegatifHTMLScript()
+        draftingKepalaSuratPage.validateKodeKlasifikasi()
+        draftingKepalaSuratPage.validateUnitPengolahNegatifHTMLScript()
+        draftingKepalaSuratPage.validateSifatSurat()
+        draftingKepalaSuratPage.validateUrgensiSurat()
+        draftingKepalaSuratPage.validatePerihal(" <blink>Hello World</blink>")
+        draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    inputKepalaSuratSkenario9Negatif() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratPage.validateTempat()
+        //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
+        draftingKepalaSuratPage.validateTujuanSkenario9NegatifXSSScript()
+        draftingKepalaSuratPage.validateLokasiNegatifXSSScript()
+        draftingKepalaSuratPage.validateKodeKlasifikasi()
+        draftingKepalaSuratPage.validateUnitPengolahNegatifXSSScript()
+        draftingKepalaSuratPage.validateSifatSurat()
+        draftingKepalaSuratPage.validateUrgensiSurat()
+        draftingKepalaSuratPage.validatePerihal(" '-prompt()-'")
+        draftingKepalaSuratPage.closeKepalaSurat()
+    }
+
+    inputKepalaSuratSkenario10Negatif() {
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratPage.validateTempat()
+        //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
+        draftingKepalaSuratPage.validateTujuanSkenario10NegatifWhitespace()
+        draftingKepalaSuratPage.validateLokasiNegatifWhitespace()
+        draftingKepalaSuratPage.validateKodeKlasifikasiNegatifWhitespace()
+        draftingKepalaSuratPage.validateUnitPengolahNegatifWhitespace()
+        draftingKepalaSuratPage.whitespaceSifatSurat()
+        draftingKepalaSuratPage.whitespaceUrgensiSurat()
+        draftingKepalaSuratPage.validatePerihal(" {shift}{enter}")
+        draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 

@@ -42,7 +42,7 @@ describe('Drafting Kop Surat Nota Dinas Skenario', { testIsolation: false }, () 
         })
     )
 
-    qase(1065,
+    qase([1065,71],
         it('Cek detail form editing kop surat', () => {
             draftingKopSuratNotaDinasPage.checkDetail()
         })
@@ -54,19 +54,19 @@ describe('Drafting Kop Surat Nota Dinas Skenario', { testIsolation: false }, () 
         })
     )
 
-    qase(1066,
+    qase([1066,71],
         it('Cek preview setelah memilih kop Sekretariat Daerah', () => {
             draftingKopSuratNotaDinasPage.checkPreviewSekda()
         })
     )
 
-    qase(1062,
+    qase([1062,71],
         it('Cek preview setelah memilih kop Dinas/Badan', () => {
             draftingKopSuratNotaDinasPage.checkPreviewDinas()
         })
     )
 
-    qase(1063,
+    qase([1063,71],
         it('Cek preview setelah memilih kop UPTD/cabang dinas', () => {
             draftingKopSuratNotaDinasPage.checkPreviewUPTD()
         })

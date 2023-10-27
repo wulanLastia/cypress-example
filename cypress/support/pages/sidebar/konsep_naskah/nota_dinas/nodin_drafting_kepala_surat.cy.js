@@ -560,6 +560,14 @@ export class DraftingKepalaSuratNotaDinasPage {
         });        
     }
 
+    deleteSifatSurat() {
+        cy.wait(3000)
+
+        const deleteSifatSurat = cy.get(kepala_surat.btnDeleteSifatSurat).as('deleteSifatSurat')
+        deleteSifatSurat.click({force: true})
+    }
+
+
 
     // Dropdown Urgensi
     validateUrgensi(Urgensi_Nota_Dinas) {
@@ -597,6 +605,13 @@ export class DraftingKepalaSuratNotaDinasPage {
             .contains(Urgensi_Nota_Dinas)
             .click()
         });        
+    }
+
+    deleteUrgensi() {
+        cy.wait(3000)
+
+        const deleteUrgensiSurat = cy.get(kepala_surat.btnDeleteUrgensiSurat).as('deleteUrgensiSurat')
+        deleteUrgensiSurat.click({force: true})
     }
 
 
@@ -660,7 +675,14 @@ export class DraftingKepalaSuratNotaDinasPage {
                     cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
                 })
         });
-    }    
+    }
+    
+    deletePerihal() {
+        cy.wait(2000)
+
+        const deletePerihal = cy.get(kepala_surat.inputPerihal).as('deletePerihal')
+        deletePerihal.type("{selectall}{backspace}{esc}")
+    }
 
     scrappingNamaJabatan() {
         // Scrapping Nama Jabatan 1
