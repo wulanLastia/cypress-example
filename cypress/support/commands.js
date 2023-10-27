@@ -24,3 +24,11 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import 'cypress-file-upload';
+
+/* command to set Unleash override cookie
+ */
+Cypress.Commands.add('overrideFeatureToggle', (toggles = {}, expirationTime = '2h') => {
+  cy.task('generateFeatureToggleOverrideJWT')
+    .then(jwt => cy.setCookie('OVERRIDE_FEATURE_TOGGLE', jwt))
+})
+

@@ -7,6 +7,11 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
       on('task', {
+        /* because the jwt generation feature is asynchronous, we need to
+         * create it as a custom task instead of a custom command. we can
+         * wrap this task later inside a custom command to automatically
+         * set the cookie
+         */
         generateFeatureToggleOverrideJWT(args) {
           const toggles = args?.toggles
           const expirationTime = args?.expirationTime
