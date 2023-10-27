@@ -8,7 +8,7 @@ const defaultToggles = {
   'EXAMPLE_TOGGLE': true,
 }
 
-/* helper method to set Unleash override cookie
+/* Generate JWT token for overriding Unleash Feature Toggle
  */
 const generateFeatureToggleOverrideJWT = async function(toggles = {}, expirationTime = '2h') {
   const privateKey = await jose.importPKCS8(atob(privateKeyString), privateKeyAlgorithm)
@@ -26,9 +26,4 @@ const generateFeatureToggleOverrideJWT = async function(toggles = {}, expiration
     .sign(privateKey)
 }
 
-const overrideFeatureToggle = async function(toggles = {}, expirationTime = '2h') {
-  const jwt = await generateFeatureToggleOverrideJWT(toggles, expirationTime)
-  cy.setCookie('OVERRIDE_FEATURE_TOGGLE', jwt)
-}
-
-module.exports = { generateFeatureToggleOverrideJWT, overrideFeatureToggle }
+module.exports = { generateFeatureToggleOverrideJWT }

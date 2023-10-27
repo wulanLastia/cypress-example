@@ -7,10 +7,20 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
       on('task', {
-        /* because the jwt generation feature is asynchronous, we need to
-         * create it as a custom task instead of a custom command. we can
-         * wrap this task later inside a custom command to automatically
-         * set the cookie
+        /* A custom task to generate JWT token for overriding Unleash toggles.
+         *
+         * We decided to separate this function from `overrideFeatureToggle`
+         * command because when we put the below code there it keeps failing.
+         * It seems this is because the jwt generation feature is asynchronous,
+         * so it conflicting with Cypress's async system. So to work around
+         * the issue, we wrap this function into a custom task that could be
+         * called from inside the `overrideFeatureToggle` custom command.
+         *
+         * More References:
+         * - https://docs.cypress.io/guides/core-concepts/introduction-to-cypress#Commands-Are-Asynchronous : official documentation about how cypress asynchronous command worked
+         * - https://stackoverflow.com/q/65736979 : Here the asker also use custom
+         *   task to work around async code issue
+         * - https://stackoverflow.com/questions/58680757/in-cypress-when-to-use-custom-command-vs-task : explanation regarding custom task vs custom command, and use cases for each of them
          */
         generateFeatureToggleOverrideJWT(args) {
           const toggles = args?.toggles
