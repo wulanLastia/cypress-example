@@ -2,11 +2,11 @@ import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../../support/pages/auth/login.cy"
 import { MenuPage } from "../../../../support/pages/sidebar/menu/menu.cy"
 import { PengambilanNomorUrutPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/pengambilan_nomor_urut.cy"
-import { GenerateNomorMultiplePage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/generate_nomor_multiple.cy"
+import { AmbilNomorOtomatisPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/ambil_nomor_otomatis.cy"
 import { ListRiwayatPage } from "../../../../support/pages/sidebar/pengambilan_nomor_urut/list_riwayat.cy"
 
 let pengambilanNomorUrutPage = new PengambilanNomorUrutPage()
-let generateNomorMultiplePage = new GenerateNomorMultiplePage()
+let ambilNomorOtomatisPage = new AmbilNomorOtomatisPage()
 let listRiwayatPage = new ListRiwayatPage()
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
@@ -45,8 +45,8 @@ afterEach(() => {
 
 describe('Pengambilan nomor urut oleh user UK Dispusida memilih UK Setda', () => {
 
-    qase([1006, 1109, 1009, 1684, 1686, 1687, 1688, 1689],
-        it('Generate Nomor Multiple', () => {
+    qase([1006, 1109, 1012, 1014, 1015, 1054, 1045, 1017],
+        it('Cek detail list riwayat pengambilan nomor', () => {
             // Login
             loginPage.loginViaV1(user.nipUK, user.password)
             loginPage.directLogin()
@@ -57,16 +57,19 @@ describe('Pengambilan nomor urut oleh user UK Dispusida memilih UK Setda', () =>
             // Isi seluruh field form
             pengambilanNomorUrutPage.inputJenisNaskah(jenis_naskah.jenis_naskah1)
             pengambilanNomorUrutPage.inputUKUP(uk_up.uk_setda)
-            pengambilanNomorUrutPage.inputJumlahPengambilan(jumlah_pengambilan.multiple_5)
+            pengambilanNomorUrutPage.inputJumlahPengambilan(jumlah_pengambilan.single)
 
-            // Cek detail popup
-            generateNomorMultiplePage.checkPopupPengambilanNomorMultiple(jenis_naskah.jenis_naskah1, uk_up.uk_setda, jumlah_pengambilan.multiple_5)
+            // Cek popup
+            ambilNomorOtomatisPage.checkPopupPengambilanNomor(jenis_naskah.jenis_naskah1, uk_up.uk_setda, jumlah_pengambilan.single)
+
+            // Cek detail
+            ambilNomorOtomatisPage.checkDetailPopupPengambilanNomor()
 
             // Dapatkan nomor urut
-            generateNomorMultiplePage.checkPopupDapatkanNomorUrutMultiple()
+            ambilNomorOtomatisPage.checkPopupDapatkanNomorUrut()
 
             // Selesai mendapatkan nomor
-            generateNomorMultiplePage.checkBtnSelesaiMendapatkanNomorMultiple()
+            ambilNomorOtomatisPage.checkBtnSelesaiMendapatkanNomor()
 
             // Cek tombol aksi
             listRiwayatPage.checkBtnAksi()
@@ -75,7 +78,7 @@ describe('Pengambilan nomor urut oleh user UK Dispusida memilih UK Setda', () =>
             listRiwayatPage.checkTampilanStatusBelumRegistrasi()
 
             // Validasi pada list UK yang bersangkutan
-            generateNomorMultiplePage.checkNomorUrutMultiple()
+            ambilNomorOtomatisPage.checkNomorUrut()
         })
     )
 
@@ -86,15 +89,15 @@ describe('Pengambilan nomor urut oleh user UK Dispusida memilih UK Setda', () =>
             loginPage.directLogin()
 
             // Validasi data pada list UK yang mengambil diluar organisasinya
-            listRiwayatPage.validasiNomorUrutDiluarOrgMultiple()
+            listRiwayatPage.validasiNomorUrutDiluarOrg()
 
             // Batalkan nomor
             listRiwayatPage.batalkanNomorTerakhir()
         })
     )
 
-    qase([1006, 1109, 1009, 1684, 1686, 1687, 1688, 1689],
-        it('Generate Ulang Nomor Multiple', () => {
+    qase([1006, 1109, 1012, 1014, 1015, 1054, 1045, 1017],
+        it('Generate ulang nomor', () => {
             // Login
             loginPage.loginViaV1(user.nipUK, user.password)
             loginPage.directLogin()
@@ -105,16 +108,19 @@ describe('Pengambilan nomor urut oleh user UK Dispusida memilih UK Setda', () =>
             // Isi seluruh field form
             pengambilanNomorUrutPage.inputJenisNaskah(jenis_naskah.jenis_naskah1)
             pengambilanNomorUrutPage.inputUKUP(uk_up.uk_setda)
-            pengambilanNomorUrutPage.inputJumlahPengambilan(jumlah_pengambilan.multiple_2)
+            pengambilanNomorUrutPage.inputJumlahPengambilan(jumlah_pengambilan.single)
 
-            // Cek detail popup
-            generateNomorMultiplePage.checkPopupPengambilanNomorMultiple(jenis_naskah.jenis_naskah1, uk_up.uk_setda, jumlah_pengambilan.multiple_2)
+            // Cek popup
+            ambilNomorOtomatisPage.checkPopupPengambilanNomor(jenis_naskah.jenis_naskah1, uk_up.uk_setda, jumlah_pengambilan.single)
+
+            // Cek detail
+            ambilNomorOtomatisPage.checkDetailPopupPengambilanNomor()
 
             // Dapatkan nomor urut
-            generateNomorMultiplePage.checkPopupDapatkanNomorUrutMultiple()
+            ambilNomorOtomatisPage.checkPopupDapatkanNomorUrut()
 
             // Selesai mendapatkan nomor
-            generateNomorMultiplePage.checkBtnSelesaiMendapatkanNomorMultiple()
+            ambilNomorOtomatisPage.checkBtnSelesaiMendapatkanNomor()
 
             // Cek tombol aksi
             listRiwayatPage.checkBtnAksi()
@@ -123,7 +129,7 @@ describe('Pengambilan nomor urut oleh user UK Dispusida memilih UK Setda', () =>
             listRiwayatPage.checkTampilanStatusBelumRegistrasi()
 
             // Validasi pada list UK yang bersangkutan
-            generateNomorMultiplePage.checkNomorUrutMultiple()
+            ambilNomorOtomatisPage.checkNomorUrut()
         })
     )
 
@@ -134,7 +140,7 @@ describe('Pengambilan nomor urut oleh user UK Dispusida memilih UK Setda', () =>
             loginPage.directLogin()
 
             // Validasi data pada list UK yang mengambil diluar organisasinya
-            listRiwayatPage.validasiNomorUrutDiluarOrgMultiple()
+            listRiwayatPage.validasiNomorUrutDiluarOrg()
         })
     )
 
