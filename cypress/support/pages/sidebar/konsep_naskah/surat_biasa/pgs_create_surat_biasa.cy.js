@@ -140,15 +140,15 @@ export class CreateSuratBiasaPage {
         draftingBadanNaskahPage.closeBadanNaskah()
     }
 
-    inputLampiranSurat() {
+    inputLampiranSurat(textToPaste) {
         draftingLampiranSuratPage.aksesFormEditingLampiranSurat()
-        draftingLampiranSuratPage.inputLampiranSurat()
+        draftingLampiranSuratPage.inputLampiranSurat(textToPaste)
         draftingLampiranSuratPage.closeLampiran()
     }
 
-    inputLampiranSurat2() {
+    inputLampiranSurat2(textToPaste) {
         draftingLampiranSuratPage.aksesFormEditingLampiranSurat2()
-        draftingLampiranSuratPage.inputLampiranSurat2()
+        draftingLampiranSuratPage.inputLampiranSurat2(textToPaste)
         draftingLampiranSuratPage.closeLampiran()
         draftingLampiranSuratPage.scrollPreviewPage()
     }
@@ -340,9 +340,9 @@ export class CreateSuratBiasaPage {
         draftingKakiSuratPage.closeKakiSurat()
     }
 
-    inputBadanNaskahSkenarioRegression() {
+    inputBadanNaskahSkenarioRegression(textToPaste) {
         draftingBadanNaskahPage.inputBadanNaskahProd()
-        draftingBadanNaskahPage.insertDataProd()
+        draftingBadanNaskahPage.insertDataProd(textToPaste)
         draftingBadanNaskahPage.closeBadanNaskah()
     }
 

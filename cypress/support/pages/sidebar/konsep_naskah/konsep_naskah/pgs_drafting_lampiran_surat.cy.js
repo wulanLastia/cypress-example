@@ -56,28 +56,28 @@ export class DraftingLampiranSuratPage {
         this.closeLampiran()
     }
 
-    inputLampiranSurat() {
+    inputLampiranSurat(textToPaste) {
         draftingKonsepNaskahPage.inputLampiranSurat()
 
         const iframeLampiran = cy.get(lampiran_surat.htmlLampiran).as('htmlLampiran')
         iframeLampiran.find('iframe')
             .its('0.contentDocument.body')
             .should('be.visible')
-            .then(cy.wrap)
-            .type('Lampiran 1{enter}{enter}')
-            .type('Cras non odio diam. Nulla ex urna, scelerisque sed pretium in, facilisis ut sapien. Donec et orci nisl. Integer egestas finibus est eu pellentesque. Sed nisi eros, consectetur at est sed, posuere consequat velit. Curabitur ac rhoncus quam. In porttitor aliquam porttitor. Phasellus ultrices vehicula magna, nec faucibus ex rutrum et. Nam eget orci sed neque mollis tempor. Mauris vitae pellentesque eros. Nullam nec felis lobortis risus ornare sagittis.Nullam egestas in nibh sit amet sodales.Maecenas ut mauris ut massa sodales pretium.Integer nulla arcu, feugiat ut ante id, dictum sodales nunc.Etiam vitae lorem laoreet, tincidunt arcu euismod, auctor justo.In commodo nec ipsum in aliquam.Praesent porttitor nunc sit amet sapien eleifend, vel imperdiet ligula facilisis.Donec eget viverra lorem.Maecenas suscipit dolor elit, in volutpat purus luctus non.Aenean elit libero, dapibus non velit id, molestie ultrices eros.Etiam tempus metus urna, ut condimentum purus lobortis vel.')
+            .then($el => {
+                $el.innerHTML = textToPaste  // better than `.type()` because you can add formatting
+            })
     }
 
-    inputLampiranSurat2() {
+    inputLampiranSurat2(textToPaste) {
         draftingKonsepNaskahPage.inputLampiranSurat2()
 
         const iframeLampiran = cy.get(lampiran_surat.htmlLampiran).as('htmlLampiran')
         iframeLampiran.find('iframe')
             .its('0.contentDocument.body')
             .should('be.visible')
-            .then(cy.wrap)
-            .type('Lampiran 2{enter}{enter}')
-            .type('Cras non odio diam. Nulla ex urna, scelerisque sed pretium in, facilisis ut sapien. Donec et orci nisl. Integer egestas finibus est eu pellentesque. Sed nisi eros, consectetur at est sed, posuere consequat velit. Curabitur ac rhoncus quam. In porttitor aliquam porttitor. Phasellus ultrices vehicula magna, nec faucibus ex rutrum et. Nam eget orci sed neque mollis tempor. Mauris vitae pellentesque eros. Nullam nec felis lobortis risus ornare sagittis.Nullam egestas in nibh sit amet sodales.Maecenas ut mauris ut massa sodales pretium.Integer nulla arcu, feugiat ut ante id, dictum sodales nunc.Etiam vitae lorem laoreet, tincidunt arcu euismod, auctor justo.In commodo nec ipsum in aliquam.Praesent porttitor nunc sit amet sapien eleifend, vel imperdiet ligula facilisis.Donec eget viverra lorem.Maecenas suscipit dolor elit, in volutpat purus luctus non.Aenean elit libero, dapibus non velit id, molestie ultrices eros.Etiam tempus metus urna, ut condimentum purus lobortis vel.')
+            .then($el => {
+                $el.innerHTML = textToPaste  // better than `.type()` because you can add formatting
+            })
     }
 
     hapusLampiranSurat() {

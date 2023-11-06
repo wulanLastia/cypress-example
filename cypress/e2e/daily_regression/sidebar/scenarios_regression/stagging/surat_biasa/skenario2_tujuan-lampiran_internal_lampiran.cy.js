@@ -7,6 +7,7 @@ import { PerbaikiNaskahPage } from "../../../../../../support/pages/sidebar/kota
 import { SetujuiPage } from "../../../../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
 import { KoreksiSuratPage } from "../../../../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
 
+const { faker } = require('@faker-js/faker')
 let createSuratBiasaPage = new CreateSuratBiasaPage()
 let kembalikanNaskahPage = new KembalikanNaskahPage()
 let perbaikiNaskahPage = new PerbaikiNaskahPage()
@@ -16,6 +17,16 @@ let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
 
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // Jika terdapat error 'uncaught:exception' pada Headless Mode
+    if (err.message.includes('postMessage')) {
+        return false; // return false digunakan untuk skip error pada Headless Mode
+    }
+
+    // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
+    throw err;
+});
+
 beforeEach(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
@@ -24,11 +35,10 @@ beforeEach(() => {
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
-/*
+
 afterEach(() => {
-    cy.wait(10000)
     loginPage.logoutV2step2()
-})*/
+})
 
 describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)', () => {
 
@@ -42,12 +52,14 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
             menuPage.goToKonsepNaskah()
             createSuratBiasaPage.checkDetail()
             createSuratBiasaPage.inputKopSurat()
-            createSuratBiasaPage.inputLampiranSurat()
-            createSuratBiasaPage.inputLampiranSurat2()
+            createSuratBiasaPage.inputLampiranSurat(faker.lorem.paragraphs(6, '<br/>\n'))
+            createSuratBiasaPage.inputLampiranSurat2(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputKakiSuratSkenario1()
             createSuratBiasaPage.inputKepalaSuratSkenario2()
-            createSuratBiasaPage.inputBadanNaskahSkenarioRegression()
+            createSuratBiasaPage.inputBadanNaskahSkenarioRegression(faker.lorem.paragraphs(13, '<br/>\n'))
             createSuratBiasaPage.kirimSurat()
+
+            cy.wait(10000)
         })
     )
 
@@ -76,6 +88,8 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
 
             perbaikiNaskahPage.goToPerbaikiNaskah()
             perbaikiNaskahPage.perbaikiNaskah()
+
+            cy.wait(10000)
         })
     )
 
@@ -87,6 +101,8 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
 
             setujuiPage.suratBelumDireview()
             setujuiPage.setujui()
+
+            cy.wait(10000)
         })
     )
 
