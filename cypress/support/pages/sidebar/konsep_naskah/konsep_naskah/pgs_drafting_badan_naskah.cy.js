@@ -264,8 +264,9 @@ export class DraftingBadanNaskahPage {
             .should('be.visible')
             .then($el => {
                 $el.innerHTML = textToPaste  // better than `.type()` because you can add formatting
-                cy.wait(3000)
             })
+
+        cy.wait(6000)
     }
 
 
