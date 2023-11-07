@@ -369,6 +369,8 @@ export class DraftingKepalaSuratPerintahPage {
         const scrollForm = cy.get(kepala_surat.scrollForm).as('scrollForm')
         scrollForm.scrollTo('top')
 
+        cy.wait(2000)
+
         const closeKepalaSurat = cy.get(kepala_surat.closeKepalaSurat).as('closeKepalaSurat')
         closeKepalaSurat.should('be.visible')
             .click()

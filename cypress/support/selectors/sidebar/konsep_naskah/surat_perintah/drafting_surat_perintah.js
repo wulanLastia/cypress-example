@@ -13,7 +13,7 @@ module.exports = {
     titleBadan: '[data-cy="badan-naskah__title"]',
     previewKaki: '[data-cy="surat__kaki-surat"]',
     titleKaki: '[data-cy="kaki-surat__title"]',
-    editFormDefault: '[data-cy="surat-perintah-click-to-edit"]',
+    editFormDefault: '[data-cy="surat-perintah__kepala-surat-preview__dasar--null-state"]',
     konfirmasiKirimNaskah: '[data-cy="dialog__confirmation-submit__button--kirim-naskah"]',
 
     // XPATH

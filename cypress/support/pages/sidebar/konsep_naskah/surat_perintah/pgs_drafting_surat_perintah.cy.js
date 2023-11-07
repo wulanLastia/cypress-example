@@ -140,7 +140,7 @@ export class DraftingSuratPerintahPage {
 
     validateFormDefault() {
         const editFormDefault = cy.get(surat_perintah.editFormDefault).as('editFormDefault')
-        editFormDefault.should('contain', 'Klik bagian surat di samping untuk mengisi dan mengubah isi naskah')
+        editFormDefault.should('contain', 'Sorot dan klik bagian ini untuk menampilkan teks editor')
             .and('be.visible')
     }
 
