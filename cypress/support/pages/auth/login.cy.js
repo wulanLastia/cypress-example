@@ -82,13 +82,12 @@ export class LoginPage {
         .then((interception) => {
             if (interception.response) {
                 const status = interception.response.statusCode;
-                const clientErrorStatusCodes = [303, 400, 401, 403, 404, 405, 406, 408, 409, 410, 411, 412];
+                const clientErrorStatusCodes = [400, 401, 403, 404, 405, 406, 408, 409, 410, 411, 412];
                 const serverErrorStatusCodes = [500, 501, 502, 503, 504];
                 const errorStatusCodes = [...clientErrorStatusCodes, ...serverErrorStatusCodes];
     
                 // Assert berupa message di Cypress E2E pada status code ketika gagal, bila status code tidak sesuai maka status dibawah akan memberhentikan untuk masuk ke skenario selanjutnya
                 if (errorStatusCodes.includes(status)) {
-                    cy.log(`Request failed with status code ${status}.`);
                     expect(errorStatusCodes, `Request failed with status code: ${status}`).to.include(status);
                 }
     
