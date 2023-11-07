@@ -150,14 +150,28 @@ export class DraftingNotaDinasPage {
     }
 
     kirimNaskah() {
+        // Intercept all POST network requests
+        cy.intercept('POST', '**/*').as('postRequest')
+        
         const btnKirimNaskah = cy.get(nota_dinas.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.click()
-
+    
         const konfirmasiKirimNaskah = cy.get(nota_dinas.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
         konfirmasiKirimNaskah.should('contain', 'Kirim naskah')
             .click()
-
+    
+        // Wait and assert that the response status is 200
+        cy.wait('@postRequest').its('response.statusCode').should('be.oneOf', [200, 201, 202, 203, 204, 205, 206, 207, 208, 226])
+    
+        // Wait for up for the success dialog to appear only 0.5 seconds
+        const successKirimNaskah = cy.get(nota_dinas.popupSuccessKirimNaskah, { timeout: 500 }).as('successKirimNaskah')
+        successKirimNaskah.should('be.visible')
+        
+        successKirimNaskah.should('exist')
+            .find(nota_dinas.popupTitleSuccessKirimNaskah)
+            .should('contain', 'Naskah berhasil dikirim ke pihak selanjutnya')
     }
+    
 
     negativeKirimNaskah() {
         const btnKirimNaskah = cy.get(nota_dinas.btnKirimNaskah).as('btnKirimNaskah')
