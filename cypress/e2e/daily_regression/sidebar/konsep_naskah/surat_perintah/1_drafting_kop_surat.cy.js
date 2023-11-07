@@ -13,6 +13,15 @@ let draftingSuratPerintahPage = new DraftingSuratPerintahPage()
 
 let draftingKopSuratPerintahPage = new DraftingKopSuratPerintahPage()
 
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // Jika terdapat error 'uncaught:exception' pada Headless Mode
+    if (err.message.includes('postMessage')) {
+        return false; // return false digunakan untuk skip error pada Headless Mode
+    }
+
+    // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
+    throw err;
+});
 
     
 before(() => {
@@ -26,7 +35,10 @@ before(() => {
 before(() => {
     loginPage.loginViaV1(user.nip, user.password)
     loginPage.directLogin()
+    cy.wait(1000)
     draftingSuratPerintahPage.gotoKonsepNaskahSuratPerintah()
+
+    cy.wait(3999)
 })
 
 after(() => {
@@ -36,7 +48,7 @@ after(() => {
 })
 
 describe('Drafting Kop Surat Surat Perintah Skenario', { testIsolation: false }, () => {
-    qase(1419,
+    qase([1395, 1419],
         it('Akses form editing kop surat (drafting)', () => {
             draftingKopSuratPerintahPage.aksesFormEditingKopSurat()
             cy.wait(6000)
