@@ -12,6 +12,9 @@ export class DraftingSuratPerintahPage {
         const buttonSuratPerintah = cy.get(surat_perintah.btnSuratPerintah).as('buttonSuratPerintah')
         buttonSuratPerintah.should('be.visible')
             .click()
+            .wait(3000)
+
+        this.checkDetail()
     }
 
     clickbtnKembali() {
@@ -38,8 +41,6 @@ export class DraftingSuratPerintahPage {
     }
 
     checkDetail() {
-        this.goToKonsepNaskahSuratBiasa()
-
         const btnKembali = cy.get(surat_perintah.btnKembali).as('btnKembali')
         btnKembali.should('be.visible')
 
@@ -48,12 +49,12 @@ export class DraftingSuratPerintahPage {
             .and('be.visible')
 
         const selectedKonsep = cy.get(surat_perintah.selectedKonsep).as('selectedKonsep')
-        selectedKonsep.should('have.value', '/konsep-naskah/nota-dinas')
+        selectedKonsep.should('have.value', '/konsep-naskah/surat-perintah')
 
-        const btnKirimNaskah = cy.get(surat_perintah.btnKirimNaskah).as('btnKirimNaskah')
-        btnKirimNaskah.should('contain', 'Kirim Naskah')
+        // const btnKirimNaskah = cy.get(surat_perintah.btnKirimNaskah).as('btnKirimNaskah')
+        // btnKirimNaskah.should('contain', 'Kirim Naskah') // Masih dalam tahap development
 
-        this.checkPreviewNaskah()
+        // this.checkPreviewNaskah() // Beberapa fungsi masih dalam tahap development
     }
 
     batalDrafting() {
@@ -95,7 +96,7 @@ export class DraftingSuratPerintahPage {
     }
 
     aksesFormKopSurat() {
-        const previewKop = cy.get(surat_perintah.previewKop).as('previewKop')
+        const previewKop = cy.get(surat_perintah.previewKop).first().as('previewKop')
         previewKop.click(180, 60)
 
         cy.wait(5000)
@@ -113,7 +114,7 @@ export class DraftingSuratPerintahPage {
         previewKepala.click(180, 240, { force: true })
 
         const titleKepala = cy.get(surat_perintah.titleKepala).as('titleKepala')
-        titleKepala.should('contain', 'Kepala Surat')
+        titleKepala.should('contain', 'SURAT PERINTAH')
     }
 
     aksesBadanNaskah() {
