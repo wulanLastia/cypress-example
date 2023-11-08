@@ -24,3 +24,6 @@ require('cypress-xpath');
 
 // Cypress real events
 import 'cypress-real-events/support'
+
+// Using faker command
+require('@faker-js/faker')

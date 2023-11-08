@@ -128,8 +128,8 @@ export class DraftingKepalaSuratPage {
 
         const inputLokasi = cy.get(kepala_surat.inputLokasi).as('inputLokasi')
         inputLokasi.type("{shift}{enter}")
-        .wait(3000)
-        .blur()
+            .wait(3000)
+            .blur()
 
     }
 
@@ -160,7 +160,7 @@ export class DraftingKepalaSuratPage {
             .wait(3000)
             .trigger('blur')
     }
-    
+
     validateUnitPengolah() {
         const titleUnitPengolah = cy.get(kepala_surat.titleUnitPengolah).as('titleUnitPengolah')
         titleUnitPengolah.should('contain', 'Unit Pengolah')
@@ -199,8 +199,8 @@ export class DraftingKepalaSuratPage {
 
         const inputUnitPengolah = cy.get(kepala_surat.inputUnitPengolah).as('inputUnitPengolah')
         inputUnitPengolah.type("{shift}{enter}")
-        .wait(3000)
-        .blur()
+            .wait(3000)
+            .blur()
     }
 
     validateSifatSurat() {
@@ -227,8 +227,8 @@ export class DraftingKepalaSuratPage {
 
         const whitespaceSifatSurat = cy.get(kepala_surat.selectSifatSurat).as('whitespaceSifatSurat')
         whitespaceSifatSurat.type("{shift}{enter}")
-        .wait(3000)
-        .trigger('blur')
+            .wait(3000)
+            .trigger('blur')
     }
 
     validateUrgensiSurat() {
@@ -248,8 +248,8 @@ export class DraftingKepalaSuratPage {
 
         const whitespaceUrgensiSurat = cy.get(kepala_surat.selectUrgensiSurat).as('whitespaceUrgensiSurat')
         whitespaceUrgensiSurat.type("{shift}{enter}")
-        .wait(3000)
-        .trigger('blur')
+            .wait(3000)
+            .trigger('blur')
     }
 
     validatePerihal(hal) {
@@ -720,7 +720,7 @@ export class DraftingKepalaSuratPage {
         const uuid3 = () => Cypress._.random(0, 1e6)
         const id3 = uuid3()
         const tujuanEks3 = `Test Tujuan Eksternal Automation ${id3}`
-        
+
         inputTujuan3.wait(5000)
             .type(tujuanEks3)
             .wait(3000)
@@ -730,7 +730,7 @@ export class DraftingKepalaSuratPage {
         const uuid4 = () => Cypress._.random(0, 1e6)
         const id4 = uuid4()
         const tujuanEks4 = `Test Tujuan Eksternal Automation ${id4}`
-        
+
         inputTujuan4.wait(5000)
             .type(tujuanEks4)
             .wait(3000)

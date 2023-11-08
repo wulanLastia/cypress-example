@@ -12,12 +12,25 @@ let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
 
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // Jika terdapat error 'uncaught:exception' pada Headless Mode
+    if (err.message.includes('postMessage')) {
+        return false; // return false digunakan untuk skip error pada Headless Mode
+    }
+
+    // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
+    throw err;
+});
+
+beforeEach(() => {
+    cy.intercept({ resourceType: /xhr/ }, { log: false })
+})
+
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
-    cy.intercept({ resourceType: /xhr/ }, { log: false })
 })
 
 before(() => {
@@ -31,8 +44,6 @@ after(() => {
         loginPage.logoutV2step2()
     )
 })
-
-
 
 describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
     qase(721,
@@ -60,7 +71,7 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
         it('Delete Tujuan', () => {
             cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputTujuan("I Gusti Agung Kim Fajar")
-            
+
             draftingKepalaSuratNotaDinasPage.addTujuan()
             cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputTujuanField2("Ludia Rosema")
@@ -68,30 +79,30 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
             draftingKepalaSuratNotaDinasPage.deleteField1TujuanSurat()
         })
     )
-    
+
     qase([745, 746, 742, 735, 738],
         it('Cek tujuan kepala surat INTERNAL', () => {
             cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputTujuan("I Gusti Agung Kim Fajar")
-            
+
             draftingKepalaSuratNotaDinasPage.addTujuan()
             cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputTujuanField2("Ludia Rosema")
-            
+
             draftingKepalaSuratNotaDinasPage.addTujuan()
             cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputTujuanField3("Zenal Mustopa")
-            })
+        })
     )
 
     qase(725,
         it('Cek Tembusan Surat INTERNAL', () => {
             draftingKepalaSuratNotaDinasPage.inputTembusan("Raden Andhika")
-            
+
             draftingKepalaSuratNotaDinasPage.addTembusan()
             cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputTembusan2("Upar Suparno")
-            })
+        })
     )
 
     qase(725,
@@ -127,7 +138,7 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
             draftingKepalaSuratNotaDinasPage.inputPerihal("Tujuan Kepala Surat - Internal - Lampiran")
             cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.scrappingNamaJabatan()
-            })
+        })
     )
 
     qase(724,
@@ -138,7 +149,7 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
         })
     )
 
-    
+
 })
 
 
@@ -163,8 +174,8 @@ describe('Drafting Lampiran Kepala Surat Skenario', { testIsolation: false }, ()
             draftingKepalaSuratNotaDinasPage.clickRButton2LampiranSurat()
         })
     )
-    
-    
+
+
     qase(725,
         it('Cek tujuan lampiran surat INTERNAL', () => {
             cy.wait(3000)
@@ -177,21 +188,21 @@ describe('Drafting Lampiran Kepala Surat Skenario', { testIsolation: false }, ()
     qase(725,
         it('Cek button Buat tujuan surat di lampiran', () => {
             cy.wait(3000)
-            draftingKepalaSuratNotaDinasPage.buttonBuatTujuanSuratDiLampiran()            
+            draftingKepalaSuratNotaDinasPage.buttonBuatTujuanSuratDiLampiran()
         })
     )
 
     qase(725,
         it('Cek tujuan pada Lampiran Kepala Surat', () => {
             cy.wait(3000)
-            draftingKepalaSuratNotaDinasPage.validateNamaJabatanLampiran()            
+            draftingKepalaSuratNotaDinasPage.validateNamaJabatanLampiran()
         })
     )
 
     qase(725,
         it('Cek tambah tujuan surat pada Lampiran Kepala Surat', () => {
             cy.wait(3000)
-            draftingKepalaSuratNotaDinasPage.addTujuanLampiranRegression("Ridwan Kamil")            
+            draftingKepalaSuratNotaDinasPage.addTujuanLampiranRegression("Ridwan Kamil")
         })
     )
 
@@ -221,7 +232,7 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
             createNotaDinasPage.gotoNotaDinas()
-        
+
 
             cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
@@ -301,7 +312,7 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
             draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat() // for Trigerring Only and Remove Focused Element on Many Dropdown Data
 
             cy.wait(3000)
-            draftingNotaDinasPage.negativeKirimNaskah()            
+            draftingNotaDinasPage.negativeKirimNaskah()
         })
     )
     // End Tujuan Kepala Surat Negative Case (Whitespace)
@@ -324,7 +335,7 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
     )
     // End of Tujuan Kepala Surat Negative Case (XSS Scirpt)
 
-    
+
     // Start Tujuan Kepala Surat Negative Case (BLANK FIELD)
     qase([308, 94, 842, 112, 125, 140],
         it('Blank Field Kepala Surat', () => {
@@ -355,14 +366,11 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
             draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat() // for Trigerring Only and Remove Focused Element on Many Dropdown Data
 
             cy.wait(3000)
-            draftingNotaDinasPage.negativeKirimNaskah()            
+            draftingNotaDinasPage.negativeKirimNaskah()
         })
     )
 
     // End Tujuan Kepala Surat Negative Case (BLANK FIELD)
-
-
-
 
 
     // Start Tujuan Kepala Surat Negative Case (Long Text, Same Tujuan, Same Tembusan)
@@ -371,12 +379,13 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
             draftingKepalaSuratNotaDinasPage.inputTujuanLongText("But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or.")
         })
     )
-    
+
     qase(740,
         it('Select same tujuan', () => {
             cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputTujuan("I Gusti Agung Kim Fajar")
-            
+
+            cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.addTujuan()
             cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputTujuanField2("I Gusti Agung Kim Fajar")
@@ -402,7 +411,7 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
             draftingKepalaSuratNotaDinasPage.inputTembusan("I Gusti Agung Kim Fajar")
 
             draftingKepalaSuratNotaDinasPage.addTembusan()
-            
+
             cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.inputTembusan2("Ludia Rosema")
 
@@ -410,7 +419,6 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
             draftingKepalaSuratNotaDinasPage.validateTembusanTidakBolehSama()
         })
     )
-
-// End of Tujuan Kepala Surat Negative Case (Long Text, Same Tujuan, Same Tembusan)
+    // End of Tujuan Kepala Surat Negative Case (Long Text, Same Tujuan, Same Tembusan)
 
 })
