@@ -258,16 +258,12 @@ export class DraftingBadanNaskahPage {
     }
 
     insertDataProd(textToPaste) {
-        const iframeBadan = cy.get(badan_naskah.htmlBadan).as('htmlBadan')
-        iframeBadan.find('iframe')
-            .its('0.contentDocument.body')
-            .should('be.visible')
-            .then($el => {
-                $el.innerHTML = textToPaste  // better than `.type()` because you can add formatting
-            })
-
         cy.wait(6000)
-    }
 
+        cy.window().then(win => {
+            win.tinyMCE.activeEditor.setContent(textToPaste)
+            win.tinyMCE.activeEditor.save()
+        })
+    }
 
 }

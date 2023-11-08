@@ -183,22 +183,22 @@ export class DraftingKonsepNaskahPage {
 
     kirimNaskahNegatif() {
         cy.get(konsep_naskah.btnKirimNaskah).as('btnKirimNaskah')
-          .should('be.visible')
-          .then(($btnKirimNaskah) => {
-              if ($btnKirimNaskah.is(':disabled')) {
-                  // If button is Disabled
-                  cy.get('@btnKirimNaskah').should('be.disabled');
-              } else {
-                  // If button is Enabled
-                  cy.get('@btnKirimNaskah').click();
-    
-                  cy.get(konsep_naskah.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
-                    .should('contain', 'Kirim naskah')
-                    .click();
-              }
-          });
+            .should('be.visible')
+            .then(($btnKirimNaskah) => {
+                if ($btnKirimNaskah.is(':disabled')) {
+                    // If button is Disabled
+                    cy.get('@btnKirimNaskah').should('be.disabled');
+                } else {
+                    // If button is Enabled
+                    cy.get('@btnKirimNaskah').click();
+
+                    cy.get(konsep_naskah.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
+                        .should('contain', 'Kirim naskah')
+                        .click();
+                }
+            });
     }
-    
+
     scrollPreviewPage() {
         const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
         previewPage.scrollTo('top')

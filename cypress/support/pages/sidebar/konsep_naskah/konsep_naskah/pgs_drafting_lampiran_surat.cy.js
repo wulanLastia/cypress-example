@@ -59,25 +59,23 @@ export class DraftingLampiranSuratPage {
     inputLampiranSurat(textToPaste) {
         draftingKonsepNaskahPage.inputLampiranSurat()
 
-        const iframeLampiran = cy.get(lampiran_surat.htmlLampiran).as('htmlLampiran')
-        iframeLampiran.find('iframe')
-            .its('0.contentDocument.body')
-            .should('be.visible')
-            .then($el => {
-                $el.innerHTML = textToPaste  // better than `.type()` because you can add formatting
-            })
+        cy.wait(6000)
+
+        cy.window().then(win => {
+            win.tinyMCE.activeEditor.setContent(textToPaste)
+            win.tinyMCE.activeEditor.save()
+        })
     }
 
     inputLampiranSurat2(textToPaste) {
         draftingKonsepNaskahPage.inputLampiranSurat2()
 
-        const iframeLampiran = cy.get(lampiran_surat.htmlLampiran).as('htmlLampiran')
-        iframeLampiran.find('iframe')
-            .its('0.contentDocument.body')
-            .should('be.visible')
-            .then($el => {
-                $el.innerHTML = textToPaste  // better than `.type()` because you can add formatting
-            })
+        cy.wait(6000)
+
+        cy.window().then(win => {
+            win.tinyMCE.activeEditor.setContent(textToPaste)
+            win.tinyMCE.activeEditor.save()
+        })
     }
 
     hapusLampiranSurat() {
