@@ -4,7 +4,7 @@ import { DraftingSuratPerintahPage } from "../surat_perintah/pgs_drafting_surat_
 const draftingSuratPerintahPage = new DraftingSuratPerintahPage()
 
 const filename = "cypress/fixtures/non_cred/kepala_surat/kepala_surat_temp_data.json"
-const getJSONRequestFileCreateNotaDinas = "cypress/fixtures/non_cred/kepala_surat/untuk-create-data-nota_dinas.json"
+const getJSONRequestFileCreateSuratPerintah = "cypress/fixtures/non_cred/surat_perintah/preview_results_super.json"
 
 
 
@@ -79,7 +79,7 @@ export class DraftingKepalaSuratPerintahPage {
         titleKodeKlasifikasi.should('contain', 'Kode Klasifikasi')
 
         // Cara dibawah KHUSUS UNTUK FIELD DROPDOWN
-        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
             // If there's no Kepala_Surat entry, initialize one
             if (!data.Kepala_Surat) {
                 data.Kepala_Surat = [];
@@ -98,7 +98,7 @@ export class DraftingKepalaSuratPerintahPage {
             }
             
             // Write data back to the JSON file
-            cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
+            cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
     
             // Input data into fields
             const inputKodeKlasifikasi = cy.get(kepala_surat.selectKodeKlasifikasi).as('inputKodeKlasifikasi')
@@ -124,7 +124,7 @@ export class DraftingKepalaSuratPerintahPage {
         const titleUnitPengolah = cy.get(kepala_surat.titleUnitPengolah).as('titleUnitPengolah')
         titleUnitPengolah.should('contain', 'Unit Pengolah')
 
-        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
             // If there's no Kepala_Surat entry, initialize one
             if (!data.Kepala_Surat) {
                 data.Kepala_Surat = [];
@@ -149,13 +149,13 @@ export class DraftingKepalaSuratPerintahPage {
                     }
                     
                     // Write data back to the JSON file
-                    cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
+                    cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
                 })
         });
     }
     
     inputUnitPengolahLongText(dataUnitPengolahLongText) {            
-        cy.readFile(getJSONRequestFileCreateNotaDinas).then((object) => {
+        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((object) => {
             const createDataToWrite = {
                 Kepala_Surat: []
             }
@@ -175,7 +175,7 @@ export class DraftingKepalaSuratPerintahPage {
                     createDataToWrite.Kepala_Surat.push(createTujuan1)
                     
                     // Write data to the JSON file
-                    cy.writeFile(getJSONRequestFileCreateNotaDinas, createDataToWrite)
+                    cy.writeFile(getJSONRequestFileCreateSuratPerintah, createDataToWrite)
                 })
             })
         
@@ -188,7 +188,7 @@ export class DraftingKepalaSuratPerintahPage {
     }
 
     pasteUnitPengolahLongText(dataUnitPengolahLongText) {            
-        cy.readFile(getJSONRequestFileCreateNotaDinas).then((object) => {
+        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((object) => {
             const createDataToWrite = {
                 Kepala_Surat: []
             }
@@ -210,7 +210,7 @@ export class DraftingKepalaSuratPerintahPage {
                     createDataToWrite.Kepala_Surat.push(createTujuan1)
                     
                     // Write data to the JSON file
-                    cy.writeFile(getJSONRequestFileCreateNotaDinas, createDataToWrite)
+                    cy.writeFile(getJSONRequestFileCreateSuratPerintah, createDataToWrite)
                 })
             })
         
@@ -232,7 +232,7 @@ export class DraftingKepalaSuratPerintahPage {
         titleUrgensiSurat.should('contain', 'Urgensi')
 
         // Cara dibawah KHUSUS UNTUK FIELD DROPDOWN TANPA FIELD TYPE
-        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
             // If there's no Kepala_Surat entry, initialize one
             if (!data.Kepala_Surat) {
                 data.Kepala_Surat = [];
@@ -251,7 +251,7 @@ export class DraftingKepalaSuratPerintahPage {
             }
             
             // Write data back to the JSON file
-            cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
+            cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
     
             // Input data into dropdown
             const inputUrgensiSurat = cy.get(kepala_surat.selectUrgensiSurat).as('inputUrgensiSurat')
@@ -319,8 +319,8 @@ export class DraftingKepalaSuratPerintahPage {
         setTextBulletList.find('button[title="Bullet list"]')
             .click({ force: true })
 
-        const iframeBadan = cy.get(kepala_surat.inputDasar).as('inputDasar')
-        iframeBadan.find('iframe')
+        const iframeDasar = cy.get(kepala_surat.inputDasar).as('inputDasar')
+        iframeDasar.find('iframe')
             .its('0.contentDocument.body')
             .should('be.visible')
             .then(cy.wrap)
@@ -358,6 +358,208 @@ export class DraftingKepalaSuratPerintahPage {
         .type('{ctrl}a{del}', { delay: 100 });    
     }
 
+
+    inputBoldTextOnDasar(dataBoldText) {
+        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
+          // 'Dasar' is a property on JSON data object
+          if (!data.Dasar) {
+            data.Dasar = [{}];
+          }
+      
+          // Find and click the 'Bold' button
+          const btnBoldFormat = cy.get(kepala_surat.inputDasar).find('button[title="Bold"]').as('btnBoldFormat')
+          btnBoldFormat.click();
+      
+          cy.wait(1000);
+      
+          // Find the iframe for input and switch context to it
+          const iframeDasar = cy.get(kepala_surat.inputDasar).find('iframe').as('iframeDasar')
+
+          iframeDasar.then($iframe => {
+              const doc = $iframe[0].contentDocument;
+              const body = doc.body;
+              cy.wrap(body).as('iframeBody')
+                .clear()
+                .type(dataBoldText)
+                .invoke('text')
+                .then((boldText) => {
+                  // Assign the boldText to the JSON data
+                  data.Dasar[0].Dasar_Bold = boldText;
+      
+                  // Write the updated data object back to the file
+                  cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
+                });
+            });
+        });
+      
+        // check the preview
+        cy.wait(5000); // Wait for any asynchronous processes to complete
+      
+        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
+            // Check the iframe for preview
+  
+            const checkPreviewDasar = cy.get(kepala_surat.previewDasar).as('checkPreviewDasar')
+            .should('be.visible');
+
+            // Assert that the strong tag within the preview contains the correct bold text
+            checkPreviewDasar.find('strong')
+            .should('have.text', data.Dasar[0].Dasar_Bold)
+        })
+    }
+
+
+    inputItalicTextOnDasar(dataItalicText) {
+        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
+          // 'Dasar' is a property on JSON data object
+          if (!data.Dasar) {
+            data.Dasar = [];
+          }
+      
+          // Find and click the 'Italic' button
+          const btnItalicFormat = cy.get(kepala_surat.inputDasar).find('button[title="Italic"]').as('btnItalicFormat')
+          btnItalicFormat.click();
+      
+          cy.wait(1000);
+      
+          // Find the iframe for input and switch context to it
+          const iframeDasar = cy.get(kepala_surat.inputDasar).find('iframe').as('iframeDasar')
+
+          iframeDasar.then($iframe => {
+              const doc = $iframe[0].contentDocument;
+              const body = doc.body;
+              cy.wrap(body).as('iframeBody')
+                .clear()
+                .type(dataItalicText)
+                .invoke('text')
+                .then((italicText) => {
+                // Ensure that the second item of 'Dasar' array is an object
+                data.Dasar[1] = data.Dasar[1] || {}; // <-- This line ensures that data.Dasar[1] is an object
+                // Assign the italicText to the JSON data
+                data.Dasar[1].Dasar_Italic = italicText;
+      
+                  // Write the updated data object back to the file
+                  cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
+                });
+            });
+        });
+      
+        // check the preview
+        cy.wait(5000); // Wait for any asynchronous processes to complete
+      
+        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
+            // Check the iframe for preview
+  
+            const checkPreviewDasar = cy.get(kepala_surat.previewDasar).as('checkPreviewDasar')
+            .should('be.visible');
+
+            // Assert that the italic tag within the preview contains the correct italic text
+            checkPreviewDasar.find('em')
+            .should('have.text', data.Dasar[1].Dasar_Italic)
+        })
+    }
+     
+    
+    inputFreeTextOnDasar(dataFreeText) {
+        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
+          // 'Dasar' is a property on JSON data object
+          if (!data.Dasar) {
+            data.Dasar = [];
+          }
+      
+          cy.wait(1000);
+      
+          // Find the iframe for input and switch context to it
+          const iframeDasar = cy.get(kepala_surat.inputDasar).find('iframe').as('iframeDasar')
+
+          iframeDasar.then($iframe => {
+              const doc = $iframe[0].contentDocument;
+              const body = doc.body;
+              cy.wrap(body).as('iframeBody')
+                .clear()
+                .type(dataFreeText)
+                .invoke('text')
+                .then((freeText) => {
+                // Ensure that the second item of 'Dasar' array is an object
+                data.Dasar[2] = data.Dasar[2] || {}; // <-- This line ensures that data.Dasar[1] is an object
+                // Assign the freeText to the JSON data
+                data.Dasar[2].Dasar_Free_Text = freeText;
+      
+                  // Write the updated data object back to the file
+                  cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
+                });
+            });
+        });
+      
+        // check the preview
+        cy.wait(5000); // Wait for any asynchronous processes to complete
+      
+        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
+            // Check the iframe for preview
+  
+            const checkPreviewDasar = cy.get(kepala_surat.previewDasar).as('checkPreviewDasar')
+            .should('be.visible');
+
+            // Assert that the text within the preview contains the correct Free text
+            checkPreviewDasar.invoke('text')
+            .then((text) => {
+              // Use trim to remove whitespace from the start and end of the text content
+              const trimmedText = text.trim()
+              // Now use the include assertion to check if the trimmed text includes the expected text
+              expect(trimmedText).to.include(data.Dasar[2].Dasar_Free_Text.trim())
+            })
+        })
+    }
+        
+
+    inputWhitespaceOnTextInDasar(dataWhitespaceText) {
+        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
+          // 'Dasar' is a property on JSON data object
+          if (!data.Dasar) {
+            data.Dasar = [];
+          }
+      
+          cy.wait(1000);
+      
+          // Find the iframe for input and switch context to it
+          const iframeDasar = cy.get(kepala_surat.inputDasar).find('iframe').as('iframeDasar')
+
+          iframeDasar.then($iframe => {
+              const doc = $iframe[0].contentDocument;
+              const body = doc.body;
+              cy.wrap(body).as('iframeBody')
+                .clear()
+                .type(dataWhitespaceText)
+                .invoke('text')
+                .then((whitespaceText) => {
+                // Ensure that the second item of 'Dasar' array is an object
+                data.Dasar[3] = data.Dasar[3] || {}; // <-- This line ensures that data.Dasar[1] is an object
+                // Assign the whitespaceText to the JSON data
+                data.Dasar[3].Dasar_Whitespace_Text = whitespaceText;
+      
+                  // Write the updated data object back to the file
+                  cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
+                });
+            });
+        });
+      
+        // check the preview
+        cy.wait(5000); // Wait for any asynchronous processes to complete
+      
+        // Load the updated data and perform assertions
+        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
+            const previewDasarSelector = kepala_surat.previewDasar; // Replace with actual selector for the preview container
+            cy.get(previewDasarSelector).should('be.visible').then(($preview) => {
+                const previewText = $preview.text().trim();
+                expect(previewText).to.include(data.Dasar[3].Dasar_Whitespace_Text.trim());
+
+                // Check if the first <br> tag is present within the preview element
+                const firstBr = $preview.find('br:first');
+                if (firstBr.length) {
+                    throw new Error('Unexpected first whitespace <br> tag found');
+                }
+            });
+        });
+    }
 
     
 

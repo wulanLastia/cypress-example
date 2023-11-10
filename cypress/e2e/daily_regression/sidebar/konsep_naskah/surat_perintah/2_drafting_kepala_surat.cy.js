@@ -9,7 +9,19 @@ let draftingSuratPerintahPage = new DraftingSuratPerintahPage()
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
+let testKepalaPositive
 let testKepalaNegative
+
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // Jika terdapat error 'uncaught:exception' pada Headless Mode
+    if (err.message.includes('postMessage')) {
+        return false; // return false digunakan untuk skip error pada Headless Mode
+    }
+
+    // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
+    throw err;
+});
 
 
 before(() => {
@@ -22,7 +34,13 @@ before(() => {
 
 before(() => {
     cy.fixture('non_cred/surat_perintah/kepala_surat/negative/kepala_surat_super_negative.json').then((data) => {
-        testKepalaNegative = data;
+        testKepalaNegative = data
+    })
+})
+
+before(() => {
+    cy.fixture('non_cred/surat_perintah/kepala_surat/positive/kepala_surat_super_positive.json').then((data) => {
+        testKepalaPositive = data
     })
 })
 
@@ -63,7 +81,7 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
     qase([1457, 1459],
         it('Cek Field Kode Klasifikasi', () => {
             cy.wait(3000)
-            draftingKepalaSuratPerintahPage.inputKodeKlasifikasi("SK (Semua Klasifikasi)")
+            draftingKepalaSuratPerintahPage.inputKodeKlasifikasi(testKepalaPositive.Kepala_Surat[0].Kode_Klasifikasi)
         })
     )
 
@@ -77,34 +95,34 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
     qase(1737,
         it('Cek Field Unit Pengolah', () => {
             cy.wait(3000)
-            draftingKepalaSuratPerintahPage.inputUnitPengolah("PAD")
+            draftingKepalaSuratPerintahPage.inputUnitPengolah(testKepalaPositive.Kepala_Surat[1].Unit_Pengolah)
         })
     )
 
     qase(1469,
         it('Check on preview page if unit pengolah text is too long (typing method)', () => {
             cy.wait(3000)
-            draftingKepalaSuratPerintahPage.inputUnitPengolahLongText("{selectall}{backspace}" + testKepalaNegative.Kepala_Surat[1].Unit_Pengolah)
+            draftingKepalaSuratPerintahPage.inputUnitPengolahLongText("{selectall}{backspace}" + testKepalaNegative.TextTooLong[0].Unit_Pengolah)
         })
     )
 
     qase(1469,
         it.skip('Check on preview page if unit pengolah text is too long (copy-paste method)', () => {
             cy.wait(3000)
-            draftingKepalaSuratPerintahPage.pasteUnitPengolahLongText(testKepalaNegative.Kepala_Surat[1].Unit_Pengolah)
+            draftingKepalaSuratPerintahPage.pasteUnitPengolahLongText(testKepalaNegative.TextTooLong[0].Unit_Pengolah)
         })
     ) // Remove skip when it's already fixed
 
     qase(1739,
         it('Cek Dropdown Urgensi', () => {
             cy.wait(10000)
-            draftingKepalaSuratPerintahPage.validateUrgensi("Amat Segera")
+            draftingKepalaSuratPerintahPage.validateUrgensi(testKepalaPositive.Kepala_Surat[2].Urgensi_Nota_Dinas)
         })
     )
 
     qase([144, 735, 742],
         it('Cek Perihal Surat', () => {
-            draftingKepalaSuratPerintahPage.inputPerihal("Tujuan Kepala Surat - Internal - Lampiran")
+            draftingKepalaSuratPerintahPage.inputPerihal(testKepalaPositive.Kepala_Surat[3].Perihal)
             cy.wait(3000)
             })
     )
@@ -123,9 +141,25 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
 
 describe('Free Text on Dasar Field', { testIsolation: false }, () => {
     qase(721,
-        it('Akses field Dasar', () => {
+        it('Input table on Dasar Field', () => {
             cy.wait(3000)
             draftingKepalaSuratPerintahPage.inputTableOnDasar()
+            draftingKepalaSuratPerintahPage.clearDasarField()
+        })
+    )
+
+    qase(721,
+        it('Input Text Bold on Dasar Field', () => {
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputBoldTextOnDasar(testKepalaPositive.Dasar[0].Dasar_Bold)
+            draftingKepalaSuratPerintahPage.clearDasarField()
+        })
+    )
+
+    qase(721,
+        it('Input Text Italic on Dasar Field', () => {
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputItalicTextOnDasar(testKepalaPositive.Dasar[1].Dasar_Italic)
             draftingKepalaSuratPerintahPage.clearDasarField()
         })
     )
@@ -134,7 +168,7 @@ describe('Free Text on Dasar Field', { testIsolation: false }, () => {
 
 
 describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
-    qase(721,
+    qase(1423,
         it('Akses form editing kepala surat', () => {
             // Clear Cache & Login
             cy.then(Cypress.session.clearCurrentSessionData)
@@ -149,40 +183,59 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
         })
     )
 
+    // Start Kepala Surat Negative Case (Input Long Text)
+    qase(1466,
+        it('Input more than 50 characters', () => {
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputKodeKlasifikasi(testKepalaPositive.Kepala_Surat[0].Kode_Klasifikasi)
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputUnitPengolah(testKepalaNegative.TextTooLong[0].Unit_Pengolah)
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.validateUrgensi(testKepalaPositive.Kepala_Surat[2].Urgensi_Nota_Dinas)
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputPerihal(testKepalaNegative.TextTooLong[1].Perihal)
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputFreeTextOnDasar(testKepalaNegative.TextTooLong[2].Dasar_Free_Text)
+            cy.wait(3000)
+            // draftingSuratPerintahPage.negativeKirimNaskah() // Kirim Naskah Sedang di Develop
+        })
+    )
+    // End of Kepala Surat Negative Case (Input Long Text)
 
-    // Start Tujuan Kepala Surat Negative Case (JS Scirpt)
+
+    // Start Kepala Surat Negative Case (JS Scirpt)
     qase(1461,
         it('Input Tag Script', () => {
             cy.wait(3000)
-            draftingKepalaSuratPerintahPage.inputKodeKlasifikasi("SK (Semua Klasifikasi)")
+            draftingKepalaSuratPerintahPage.inputUnitPengolah("{selectall}{backspace}" + testKepalaNegative.TagScript[0].Unit_Pengolah)
             cy.wait(3000)
-            draftingKepalaSuratPerintahPage.inputUnitPengolah("Test JS Script <script>alert('Executing JS')</script>")
+            draftingKepalaSuratPerintahPage.inputPerihal("{selectall}{backspace}" + testKepalaNegative.TagScript[1].Perihal)
             cy.wait(3000)
-            draftingKepalaSuratPerintahPage.validateUrgensi("Amat Segera")
-            cy.wait(3000)
-            draftingKepalaSuratPerintahPage.inputPerihal("Test JS Script <script>alert('Executing JS')</script>")
+            draftingKepalaSuratPerintahPage.inputFreeTextOnDasar("{selectall}{backspace}" + testKepalaNegative.TagScript[2].Dasar_Free_Text)
             cy.wait(3000)
             // draftingSuratPerintahPage.negativeKirimNaskah() // Kirim Naskah Sedang di Develop
         })
     )
-    // End of Tujuan Kepala Surat Negative Case (JS Scirpt)
+    // End of Kepala Surat Negative Case (JS Scirpt)
 
 
-    // Start Tujuan Kepala Surat Negative Case (HTML Scirpt)
+    // Start Kepala Surat Negative Case (HTML Scirpt)
     qase(1462,
         it('Input tag HTML', () => {
             cy.wait(3000)
-            draftingKepalaSuratPerintahPage.inputUnitPengolah("{selectall}{backspace}<blink>Hello World</blink>")
+            draftingKepalaSuratPerintahPage.inputUnitPengolah("{selectall}{backspace}" + testKepalaNegative.TagHTML[0].Unit_Pengolah)
             cy.wait(3000)
-            draftingKepalaSuratPerintahPage.inputPerihal("{selectall}{backspace}<blink>Hello World</blink>")
+            draftingKepalaSuratPerintahPage.inputPerihal("{selectall}{backspace}" + testKepalaNegative.TagHTML[1].Perihal)
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputFreeTextOnDasar("{selectall}{backspace}" + testKepalaNegative.TagHTML[2].Dasar_Free_Text)
             cy.wait(3000)
             // draftingSuratPerintahPage.negativeKirimNaskah() // Kirim Naskah Sedang di Develop
         })
     )
-    // End of Tujuan Kepala Surat Negative Case (HTML Scirpt)
+    // End of Kepala Surat Negative Case (HTML Scirpt)
 
 
-    // Start Tujuan Kepala Surat Negative Case (Whitespace)
+    // Start Kepala Surat Negative Case (Whitespace)
     qase(1467,
         it('Input only whitespace', () => {
             cy.wait(3000)
@@ -197,31 +250,94 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
             draftingKepalaSuratPerintahPage.deleteUrgensi()
 
             cy.wait(3000)
-            draftingKepalaSuratPerintahPage.inputPerihal("{shift}{enter}")
+            draftingKepalaSuratPerintahPage.inputPerihal("{selectall}{backspace}{shift}{enter}")
             draftingKepalaSuratPerintahPage.aksesFormEditingKepalaSurat() // for Trigerring Only and Remove Focused Element on Many Dropdown Data
 
             cy.wait(3000)
             // draftingSuratPerintahPage.negativeKirimNaskah() // Kirim Naskah Sedang di Develop           
         })
     )
-    // End Tujuan Kepala Surat Negative Case (Whitespace)
+    // End Kepala Surat Negative Case (Whitespace)
 
 
-    // Start Tujuan Kepala Surat Negative Case (XSS Scirpt)
-    qase([305, 91, 839, 109, 122, 137],
+    // Start Kepala Surat Negative Case (XSS Scirpt)
+    qase(1461,
         it('Input XSS Injection Script', () => {
             cy.wait(3000)
-            draftingKepalaSuratPerintahPage.inputUnitPengolah("{selectall}{backspace}'-prompt()-'")
+            draftingKepalaSuratPerintahPage.inputUnitPengolah("{selectall}{backspace}" + testKepalaNegative.XSSInjection[0].Unit_Pengolah)
             cy.wait(3000)
-            draftingKepalaSuratPerintahPage.inputPerihal("{selectall}{backspace}'-prompt()-'")
+            draftingKepalaSuratPerintahPage.inputPerihal("{selectall}{backspace}" + testKepalaNegative.XSSInjection[1].Perihal)
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputFreeTextOnDasar("{selectall}{backspace}" + testKepalaNegative.XSSInjection[2].Dasar_Free_Text)
             cy.wait(3000)
             // draftingSuratPerintahPage.negativeKirimNaskah() // Kirim Naskah Sedang di Develop
         })
     )
-    // End of Tujuan Kepala Surat Negative Case (XSS Scirpt)
+    // End of Kepala Surat Negative Case (XSS Scirpt)
+
+
+    // Start Kepala Surat Negative Case (URL)
+    qase(1463,
+        it('Input URL', () => {
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputUnitPengolah("{selectall}{backspace}" + testKepalaNegative.URLFormat[0].Unit_Pengolah)
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputPerihal("{selectall}{backspace}" + testKepalaNegative.URLFormat[1].Perihal)
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputFreeTextOnDasar("{selectall}{backspace}" + testKepalaNegative.URLFormat[2].Dasar_Free_Text)
+            cy.wait(3000)
+            // draftingSuratPerintahPage.negativeKirimNaskah() // Kirim Naskah Sedang di Develop
+        })
+    )
+    // End of Kepala Surat Negative Case (URL)
+
+
+     // Start Kepala Surat Negative Case (Emoji)
+    qase(1460,
+        it('Input Emoji', () => {
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputUnitPengolah("{selectall}{backspace}" + testKepalaNegative.EmojiFormat[0].Unit_Pengolah)
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputPerihal("{selectall}{backspace}" + testKepalaNegative.EmojiFormat[1].Perihal)
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputFreeTextOnDasar("{selectall}{backspace}" + testKepalaNegative.EmojiFormat[2].Dasar_Free_Text)
+            cy.wait(3000)
+            // draftingSuratPerintahPage.negativeKirimNaskah() // Kirim Naskah Sedang di Develop
+        })
+    )
+    // End of Kepala Surat Negative Case (Emoji)
+
+
+    // Start Kepala Surat Negative Case (whitespace at the beginning and at the end of the input)
+    qase(1465,
+        it('Input whitespace at the beginning and at the end of the input', () => {
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputKodeKlasifikasi("{selectall}{backspace}{shift}{enter}" + testKepalaPositive.Kepala_Surat[0].Kode_Klasifikasi + "{shift}{enter}")
+            draftingKepalaSuratPerintahPage.aksesFormEditingKepalaSurat() // for Trigerring Only and Remove Focused Element on Many Dropdown Data
+
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputUnitPengolah("{selectall}{backspace}{shift}{enter}" + testKepalaNegative.XSSInjection[0].Unit_Pengolah + "{shift}{enter}")
+            draftingKepalaSuratPerintahPage.aksesFormEditingKepalaSurat() // for Trigerring Only and Remove Focused Element on Many Dropdown Data
+
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.deleteUrgensi()
+
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputPerihal("{selectall}{backspace}{shift}{enter}" + testKepalaNegative.XSSInjection[1].Perihal + "{shift}{enter}")
+            draftingKepalaSuratPerintahPage.aksesFormEditingKepalaSurat() // for Trigerring Only and Remove Focused Element on Many Dropdown Data
+
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputWhitespaceOnTextInDasar("{selectall}{backspace}{shift}{enter}" + testKepalaNegative.XSSInjection[1].Perihal + "{enter}{enter}" + testKepalaNegative.TextTooLong[2].Dasar_Free_Text + "{shift}{enter}")
+            draftingKepalaSuratPerintahPage.aksesFormEditingKepalaSurat() // for Trigerring Only and Remove Focused Element on Many Dropdown Data
+            cy.wait(3000)
+            // draftingSuratPerintahPage.negativeKirimNaskah() // Kirim Naskah Sedang di Develop           
+        })
+    )
+
+    // End Kepala Surat Negative Case (whitespace at the beginning and at the end of the input)
 
     
-    // Start Tujuan Kepala Surat Negative Case (BLANK FIELD)
+    // Start Kepala Surat Negative Case (BLANK FIELD)
     qase(1464,
         it('Blank Field Kepala Surat', () => {
             cy.wait(3000)
@@ -243,7 +359,9 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
             // draftingSuratPerintahPage.negativeKirimNaskah() // Kirim Naskah Sedang di Develop           
         })
     )
+    // End Kepala Surat Negative Case (BLANK FIELD)
 
-    // End Tujuan Kepala Surat Negative Case (BLANK FIELD)
+
+
 
 })

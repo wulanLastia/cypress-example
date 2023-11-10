@@ -25,6 +25,7 @@ module.exports = {
     titlePreviewKepalaSurat: '[data-cy="surat__title__surat-perintah"]',
 
     inputDasar: '[data-cy="surat-perintah__kepala-surat-input__dasar--input"]',
+    previewDasar: '[data-cy="surat-perintah__kepala-surat-preview__dasar--value"]',
     getTableTinyMCE: 'div[title="Table"]',
     sizeTable: 'div.tox-insert-table-picker div[role="button"]:nth-of-type(12)',
 
