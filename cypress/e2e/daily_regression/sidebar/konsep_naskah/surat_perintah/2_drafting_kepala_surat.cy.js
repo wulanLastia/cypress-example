@@ -37,9 +37,7 @@ before(() => {
     cy.fixture('non_cred/surat_perintah/kepala_surat/negative/kepala_surat_super_negative.json').then((data) => {
         testKepalaNegative = data
     })
-})
 
-before(() => {
     cy.fixture('non_cred/surat_perintah/kepala_surat/positive/kepala_surat_super_positive.json').then((data) => {
         testKepalaPositive = data
     })

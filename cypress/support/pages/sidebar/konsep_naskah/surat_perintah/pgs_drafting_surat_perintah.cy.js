@@ -10,7 +10,7 @@ export class DraftingSuratPerintahPage {
         menuPage.goToKonsepNaskah()
 
         const buttonSuratPerintah = cy.get(surat_perintah.btnSuratPerintah).as('buttonSuratPerintah')
-        buttonSuratPerintah.should('be.visible')
+        buttonSuratPerintah.should('be.visible').and('contain', 'Surat Perintah')
             .click()
             .wait(3000)
 

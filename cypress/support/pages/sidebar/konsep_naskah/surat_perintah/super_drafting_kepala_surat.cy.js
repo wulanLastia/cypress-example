@@ -332,7 +332,7 @@ export class DraftingKepalaSuratPerintahPage {
 
         const btnTable = cy.get(kepala_surat.inputDasar).as('htmlBtnTable')
         btnTable.find('button[title="Table"]')
-            .click()
+            .click({ force: true })
 
         cy.wait(3000)
 
@@ -369,7 +369,7 @@ export class DraftingKepalaSuratPerintahPage {
           // Find and click the 'Bold' button
           const btnBoldFormat = cy.get(kepala_surat.inputDasar).scrollIntoView()
           .find('button[title="Bold"]').as('btnBoldFormat')
-          btnBoldFormat.click();
+          btnBoldFormat.click({ force: true });
       
           cy.wait(3000);
       
@@ -419,7 +419,7 @@ export class DraftingKepalaSuratPerintahPage {
           // Find and click the 'Italic' button
           const btnItalicFormat = cy.get(kepala_surat.inputDasar).scrollIntoView()
           .find('button[title="Italic"]').as('btnItalicFormat')
-          btnItalicFormat.click();
+          btnItalicFormat.click({ force: true });
       
           cy.wait(3000);
       
