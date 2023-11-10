@@ -1,0 +1,71 @@
+{
+    "TextTooLong": [
+      {
+        "Unit_Pengolah": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or."
+      },
+      {
+        "Perihal": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or."
+      },
+      {
+        "Dasar_Free_Text": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or."
+      }
+    ],
+    "TagScript": [
+      {
+        "Unit_Pengolah": "Test JS Script <script>alert('Executing JS')</script>"
+      },
+      {
+        "Perihal": "Test JS Script <script>alert('Executing JS')</script>"
+      },
+      {
+        "Dasar_Free_Text": "Test JS Script <script>alert('Executing JS')</script>"
+      }
+    ],
+    "TagHTML": [
+      {
+        "Unit_Pengolah": "<blink>Hello World</blink>"
+      },
+      {
+        "Perihal": "<blink>Hello World</blink>"
+      },
+      {
+        "Dasar_Free_Text": "<blink>Hello World</blink>"
+      }    
+    ],
+    "XSSInjection": [
+      {
+        "Unit_Pengolah": "'-prompt()-'"
+      },
+      {
+        "Perihal": "'-prompt()-'"
+      },
+      {
+        "Dasar_Free_Text": "'-prompt()-'"
+      }  
+    ],
+    "URLFormat": [
+      {
+        "Unit_Pengolah": "foo://www.sidebar.com"
+      },
+      {
+        "Perihal": "foo://www.sidebar.com"
+      },
+      {
+        "Dasar_Free_Text": "foo://www.sidebar.com"
+      }  
+    ],
+    "EmojiFormat": [
+      {
+        "Unit_Pengolah": "👩🏿‍🍳"
+      },
+      {
+        "Perihal": "👩🏿‍🍳"
+      },
+      {
+        "Dasar_Free_Text": "👩🏿‍🍳"
+      }  
+    ]
+
+
+
+}

@@ -1,0 +1,25 @@
+{
+    "UPTD_Cabang_Dinas": [
+        {
+          "Option1": "SEKRETARIAT"
+        },
+        {
+          "Option2": "BIDANG PERPUSTAKAAN DEPOSIT DAN PENGEMBANGAN BAHAN PERPUSTAKAAN"
+        },
+        {
+          "Option3": "BIDANG BINA PERPUSTAKAAN DAN BUDAYA GEMAR MEMBACA"
+        },
+        {
+          "Option4": "BIDANG PELAYANAN PERPUSTAKAAN DAN KEARSIPAN"
+        },
+        {
+          "Option5": "BIDANG PENGELOLAAN ARSIP DINAMIS"
+        },
+        {
+          "Option6": "BIDANG PENGELOLAAN ARSIP STATIS"
+        },
+        {
+          "Option7": "KELOMPOK JABATAN FUNGSIONAL (MADYA & UTAMA)"
+        }
+      ]
+}

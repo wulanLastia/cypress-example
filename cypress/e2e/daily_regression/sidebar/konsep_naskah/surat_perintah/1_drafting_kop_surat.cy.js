@@ -85,6 +85,12 @@ describe('Drafting Kop Surat Surat Perintah Skenario', { testIsolation: false },
         })
     )
 
+    qase([1415,1732],
+        it('Cek list pilihan dropdown UPTD/Cabang Dinas', () => {
+            draftingKopSuratPerintahPage.checkDropdownUPTD()
+        })
+    )
+
     qase(1416,
         it('Menutup form editing kop surat', () => {
             draftingKopSuratPerintahPage.closeKopSurat()

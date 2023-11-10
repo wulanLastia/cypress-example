@@ -1,6 +1,8 @@
 import kop_surat from "../../../../selectors/sidebar/konsep_naskah/surat_perintah/drafting_surat_perintah_kop_surat"
 import { DraftingSuratPerintahPage } from "../surat_perintah/pgs_drafting_surat_perintah.cy"
 
+const getJSONRequestFileKopSuratPerintah = "cypress/fixtures/non_cred/surat_perintah/kop_surat/kop_super_list_dropdown_UPTD.json"
+
 const draftingSuratPerintahPage = new DraftingSuratPerintahPage()
 
 export class DraftingKopSuratPerintahPage {
@@ -74,6 +76,39 @@ export class DraftingKopSuratPerintahPage {
         const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
         previewSelectedKop.find('img')
             .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/659b50e7a894063e5d4f2699ee0bd788.png')
+    }
+
+    checkDropdownUPTD() {
+        cy.readFile(getJSONRequestFileKopSuratPerintah).then((jsonData) => {
+
+        const checkDropDownUPTDCabangDinas = cy.get(kop_surat.dropdownUPTDCabangDinas).as('checkDropDownUPTDCabangDinas')
+        checkDropDownUPTDCabangDinas.click()
+
+        cy.wait(1000)
+
+        // Assert the existence of the options
+        // Add a more specific selector if needed instead of just 'li'
+        cy.get(kop_surat.findDropDownMenuUPTDCabangDinas).should('be.visible').within(() => {
+            cy.contains('li', jsonData.UPTD_Cabang_Dinas[0].Option1).should('be.visible');
+            cy.wait(1000)
+            cy.contains('li', jsonData.UPTD_Cabang_Dinas[1].Option2).should('be.visible');
+            cy.wait(1000)
+            cy.contains('li', jsonData.UPTD_Cabang_Dinas[2].Option3).should('be.visible');
+            cy.wait(1000)
+            cy.contains('li', jsonData.UPTD_Cabang_Dinas[3].Option4).should('be.visible');
+            cy.wait(1000)
+            cy.contains('li', jsonData.UPTD_Cabang_Dinas[4].Option5).should('be.visible');
+            cy.wait(1000)
+            cy.contains('li', jsonData.UPTD_Cabang_Dinas[5].Option6).should('be.visible');
+            cy.wait(1000)
+            cy.contains('li', jsonData.UPTD_Cabang_Dinas[6].Option7).should('be.visible');
+            cy.wait(1000)
+        })
+    })
+
+
+        // Close the dropdown
+        cy.get(kop_surat.dropdownUPTDCabangDinas).click();
     }
 
     
