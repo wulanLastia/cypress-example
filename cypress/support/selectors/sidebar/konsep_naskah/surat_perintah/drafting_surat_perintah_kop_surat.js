@@ -12,6 +12,8 @@ module.exports = {
     radioKop1: '[data-cy="kop-surat-radio__label__sekretaris-daerah"]',
     radioKop2: '[data-cy="kop-surat-radio__label__dinas/badan"]',
     radioKop3: '[data-cy="kop-surat-radio__label__uptd/cabang-dinas"]',
+    dropdownUPTDCabangDinas: '[data-cy="kop-surat__select-option"]',
+    findDropDownMenuUPTDCabangDinas: '.vs__dropdown-menu'
 
     // XPATH
 
