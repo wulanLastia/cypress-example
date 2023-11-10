@@ -367,10 +367,11 @@ export class DraftingKepalaSuratPerintahPage {
           }
       
           // Find and click the 'Bold' button
-          const btnBoldFormat = cy.get(kepala_surat.inputDasar).find('button[title="Bold"]').as('btnBoldFormat')
+          const btnBoldFormat = cy.get(kepala_surat.inputDasar).scrollIntoView()
+          .find('button[title="Bold"]').as('btnBoldFormat')
           btnBoldFormat.click();
       
-          cy.wait(1000);
+          cy.wait(3000);
       
           // Find the iframe for input and switch context to it
           const iframeDasar = cy.get(kepala_surat.inputDasar).find('iframe').as('iframeDasar')
@@ -416,10 +417,11 @@ export class DraftingKepalaSuratPerintahPage {
           }
       
           // Find and click the 'Italic' button
-          const btnItalicFormat = cy.get(kepala_surat.inputDasar).find('button[title="Italic"]').as('btnItalicFormat')
+          const btnItalicFormat = cy.get(kepala_surat.inputDasar).scrollIntoView()
+          .find('button[title="Italic"]').as('btnItalicFormat')
           btnItalicFormat.click();
       
-          cy.wait(1000);
+          cy.wait(3000);
       
           // Find the iframe for input and switch context to it
           const iframeDasar = cy.get(kepala_surat.inputDasar).find('iframe').as('iframeDasar')
