@@ -116,13 +116,13 @@ export class PerbaikiNaskahPage {
             .and('be.visible')
     }
 
-    perbaikiNaskah() {
+    perbaikiNaskah(inputanPerbaiki) {
         cy.wait(6000)
 
         const getpreviewKepala = cy.get(perbaiki.getpreviewKepala).as('getpreviewKepala')
         getpreviewKepala.click(180, 240, { force: true })
 
-        createSuratBiasaPage.inputPerbaikiKepalaSurat()
+        createSuratBiasaPage.inputPerbaikiKepalaSurat(inputanPerbaiki)
 
         const btnKirimPerbaikiNaskah = cy.get(perbaiki.btnKirimPerbaikiNaskah).as('btnKirimPerbaikiNaskah')
         btnKirimPerbaikiNaskah.click()

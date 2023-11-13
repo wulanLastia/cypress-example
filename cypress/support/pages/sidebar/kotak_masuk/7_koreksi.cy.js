@@ -128,8 +128,8 @@ export class KoreksiSuratPage {
             .and('be.visible')
     }
 
-    koreksiTandatanganiNaskah(passphrase) {
-        createSuratBiasaPage.inputKoreksiKepalaSurat()
+    koreksiTandatanganiNaskah(passphrase, inputanKoreksi) {
+        createSuratBiasaPage.inputKoreksiKepalaSurat(inputanKoreksi)
 
         const btnKoreksiTandatangani = cy.get(koreksi.btnKoreksiTandatangani).as('btnKoreksiTandatangani')
         btnKoreksiTandatangani.click()

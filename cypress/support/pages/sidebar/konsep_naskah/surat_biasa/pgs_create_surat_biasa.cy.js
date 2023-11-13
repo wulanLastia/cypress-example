@@ -154,31 +154,31 @@ export class CreateSuratBiasaPage {
     }
 
     // Regression Skenario
-    inputKepalaSuratSkenario1() {
+    inputKepalaSuratSkenario1(inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.validateTempat()
         //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
-        draftingKepalaSuratPage.validateTujuanSkenario1()
-        draftingKepalaSuratPage.validateLokasi()
-        draftingKepalaSuratPage.validateKodeKlasifikasi()
-        draftingKepalaSuratPage.validateUnitPengolah()
-        draftingKepalaSuratPage.validateSifatSurat()
-        draftingKepalaSuratPage.validateUrgensiSurat()
-        draftingKepalaSuratPage.validatePerihal(' Tujuan Kepala Surat - Internal - Lampiran')
+        draftingKepalaSuratPage.validateTujuanSkenario1(inputanTujuan1, inputanTujuan2, inputanTujuan3)
+        draftingKepalaSuratPage.validateLokasi(inputanLokasi)
+        draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
+        draftingKepalaSuratPage.validateUnitPengolah(inputanUnitPengolah)
+        draftingKepalaSuratPage.validateSifatSurat(inputanSifatSurat)
+        draftingKepalaSuratPage.validateUrgensiSurat(inputanUrgensiSurat)
+        draftingKepalaSuratPage.validatePerihal(inputanPerihalSurat)
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
-    inputKepalaSuratSkenario2() {
+    inputKepalaSuratSkenario2(inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.validateTempat()
         //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
-        draftingKepalaSuratPage.validateTujuanSkenario2()
-        draftingKepalaSuratPage.validateLokasi()
-        draftingKepalaSuratPage.validateKodeKlasifikasi()
-        draftingKepalaSuratPage.validateUnitPengolah()
-        draftingKepalaSuratPage.validateSifatSurat()
-        draftingKepalaSuratPage.validateUrgensiSurat()
-        draftingKepalaSuratPage.validatePerihal(' Tujuan Lampiran - Internal - Lampiran')
+        draftingKepalaSuratPage.validateTujuanSkenario2(inputanTujuan1, inputanTujuan2, inputanTujuan3)
+        draftingKepalaSuratPage.validateLokasi(inputanLokasi)
+        draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
+        draftingKepalaSuratPage.validateUnitPengolah(inputanUnitPengolah)
+        draftingKepalaSuratPage.validateSifatSurat(inputanSifatSurat)
+        draftingKepalaSuratPage.validateUrgensiSurat(inputanUrgensiSurat)
+        draftingKepalaSuratPage.validatePerihal(inputanPerihalSurat)
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
@@ -376,16 +376,16 @@ export class CreateSuratBiasaPage {
     }
 
     // Perbaiki
-    inputPerbaikiKepalaSurat() {
+    inputPerbaikiKepalaSurat(inputanPerbaiki) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
-        draftingKepalaSuratPage.validatePerihal(' Perbaiki')
+        draftingKepalaSuratPage.validatePerihal(inputanPerbaiki)
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
     // Koreksi
-    inputKoreksiKepalaSurat() {
+    inputKoreksiKepalaSurat(inputanKoreksi) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
-        draftingKepalaSuratPage.validatePerihal(' Koreksi')
+        draftingKepalaSuratPage.validatePerihal(inputanKoreksi)
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
