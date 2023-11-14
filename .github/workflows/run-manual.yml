@@ -68,3 +68,8 @@ jobs:
           COMMIT_INFO_AUTHOR: "${{ github.triggering_actor }}"
           COMMIT_INFO_EMAIL: "jds@example.com"
           
+          BASE_URL: ${{ secrets.BASE_URL }},
+          BASE_URL_V1: ${{ secrets.BASE_URL_V1 }},
+          BASE_URL_PROD_V1: ${{ secrets.BASE_URL_PROD_V1 }},
+          BASE_URL_PROD_V2=: ${{ secrets.BASE_URL_PROD_V2 }},
+          BASE_URL_API: ${{ secrets.BASE_URL_API }}
