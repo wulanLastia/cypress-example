@@ -80,7 +80,7 @@ export class DraftingKepalaSuratPage {
     }
 
     validateTujuan(inputanTujuan1) {
-        cy.intercept('POST', 'https://office-service-v2.staging.digitalservice.id/graphql').as('checkResponse')
+        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
 
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
         titleTujuan.should('contain', 'Kepada Yth.')
@@ -1174,11 +1174,13 @@ export class DraftingKepalaSuratPage {
     }
 
     inputTujuanSurat1(inputanTujuan1) {
-        cy.intercept('POST', 'https://office-service-v2.staging.digitalservice.id/graphql').as('checkResponse')
+        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
 
         const inputTujuan = cy.get(kepala_surat.inputTujuan0).as('inputTujuan')
         inputTujuan.wait(1000)
             .type(inputanTujuan1)
+
+        cy.log(Cypress.env('base_url_api'))
 
         cy.wait('@checkResponse', { timeout: 5000 })
             .then((interception) => {
@@ -1192,7 +1194,7 @@ export class DraftingKepalaSuratPage {
     }
 
     inputTujuanSurat2(inputanTujuan2) {
-        cy.intercept('POST', 'https://office-service-v2.staging.digitalservice.id/graphql').as('checkResponse')
+        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
 
         const inputTujuan2 = cy.get(kepala_surat.inputTujuan1).as('inputTujuan2')
         inputTujuan2.wait(1000)
@@ -1210,7 +1212,7 @@ export class DraftingKepalaSuratPage {
     }
 
     inputTujuanSurat3(inputanTujuan3) {
-        cy.intercept('POST', 'https://office-service-v2.staging.digitalservice.id/graphql').as('checkResponse')
+        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
 
         const inputTujuan3 = cy.get(kepala_surat.inputTujuan2).as('inputTujuan3')
         inputTujuan3.wait(1000)
@@ -1233,11 +1235,12 @@ export class DraftingKepalaSuratPage {
     }
 
     inputTujuanLampiranSurat1(inputanTujuan1) {
-        cy.intercept('POST', 'https://office-service-v2.staging.digitalservice.id/graphql').as('checkResponse')
+        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
 
         const inputTujuanLampiran0 = cy.get(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
         inputTujuanLampiran0.wait(1000)
             .type(inputanTujuan1)
+
 
         cy.wait('@checkResponse', { timeout: 5000 })
             .then((interception) => {
@@ -1251,7 +1254,7 @@ export class DraftingKepalaSuratPage {
     }
 
     inputTujuanLampiranSurat2(inputanTujuan2) {
-        cy.intercept('POST', 'https://office-service-v2.staging.digitalservice.id/graphql').as('checkResponse')
+        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
 
         const inputTujuanLampiran1 = cy.get(kepala_surat.inputTujuanLampiran1).as('inputTujuanLampiran1')
         inputTujuanLampiran1.wait(1000)
@@ -1269,7 +1272,7 @@ export class DraftingKepalaSuratPage {
     }
 
     inputTujuanLampiranSurat3(inputanTujuan3) {
-        cy.intercept('POST', 'https://office-service-v2.staging.digitalservice.id/graphql').as('checkResponse')
+        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
 
         const inputTujuanLampiran2 = cy.get(kepala_surat.inputTujuanLampiran2).as('inputTujuanLampiran2')
         inputTujuanLampiran2.wait(1000)
