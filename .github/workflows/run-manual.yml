@@ -73,3 +73,4 @@ jobs:
           BASE_URL_PROD_V1: ${{ secrets.BASE_URL_PROD_V1 }},
           BASE_URL_PROD_V2=: ${{ secrets.BASE_URL_PROD_V2 }},
           BASE_URL_API: ${{ secrets.BASE_URL_API }}
+          BASE_URL_API_V1: ${{ secrets.BASE_URL_API_V1 }}
