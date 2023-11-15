@@ -7,6 +7,7 @@ let draftingKepalaSuratPage = new DraftingKepalaSuratPage()
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
+let data_temp
 
 beforeEach(() => {
     cy.intercept({ resourceType: /xhr/ }, { log: false })
@@ -18,14 +19,14 @@ before(() => {
         user = data
     })
 
-    //cy.intercept({ resourceType: /xhr/ }, { log: false })
+    cy.fixture('non_cred/kepala_surat/create_data_surat_biasa.json').then((data) => {
+        data_temp = data
+    })
 })
 
 before(() => {
     loginPage.loginViaV1(user.nip, user.password)
     loginPage.directLogin()
-
-    //cy.intercept({ resourceType: /xhr/ }, { log: false })
 })
 
 after(() => {
@@ -63,51 +64,49 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
 
     qase(262,
         it('Add tujuan', () => {
-            draftingKepalaSuratPage.validateTujuan()
+            draftingKepalaSuratPage.validateTujuan(data_temp.kepala_surat[0].tujuan1)
         })
     )
 
     qase(116,
         it('Check on preview page after input di', () => {
-            draftingKepalaSuratPage.validateLokasi()
+            draftingKepalaSuratPage.validateLokasi(data_temp.kepala_surat[1].lokasi)
         })
     )
 
     qase(120,
         it('Cek preview setelah memilih kode klasifikasi', () => {
-            draftingKepalaSuratPage.validateKodeKlasifikasi()
+            draftingKepalaSuratPage.validateKodeKlasifikasi(data_temp.kepala_surat[2].kode_klasifikasi)
         })
     )
 
     qase(129,
         it('Check on preview page after input unit pengolah', () => {
-            draftingKepalaSuratPage.validateUnitPengolah()
+            draftingKepalaSuratPage.validateUnitPengolah(data_temp.kepala_surat[3].unit_pengolah)
         })
     )
 
     qase(132,
         it('Cek preview setelah memilih sifat', () => {
-            draftingKepalaSuratPage.validateSifatSurat()
+            draftingKepalaSuratPage.validateSifatSurat(data_temp.kepala_surat[4].sifat_surat)
         })
     )
 
     qase(133,
         it('Cek dropdown urgensi', () => {
-            draftingKepalaSuratPage.validateUrgensiSurat()
+            draftingKepalaSuratPage.validateUrgensiSurat(data_temp.kepala_surat[5].urgensi_surat)
         })
     )
 
     qase(144,
         it('Check on preview page after input perihal', () => {
-            draftingKepalaSuratPage.validatePerihal(' Utama')
+            draftingKepalaSuratPage.validatePerihal(data_temp.kepala_surat[6].perihal1)
         })
     )
-
 
     qase(199,
         it('Batal mengisi kepala naskah', () => {
             draftingKepalaSuratPage.closeKepalaSurat()
         })
     )
-
 })
