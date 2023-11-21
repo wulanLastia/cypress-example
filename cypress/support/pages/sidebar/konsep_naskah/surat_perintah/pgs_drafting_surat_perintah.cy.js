@@ -41,6 +41,8 @@ export class DraftingSuratPerintahPage {
     }
 
     checkDetail() {
+        cy.wait(2000)
+
         const btnKembali = cy.get(surat_perintah.btnKembali).as('btnKembali')
         btnKembali.should('be.visible')
 
@@ -126,10 +128,13 @@ export class DraftingSuratPerintahPage {
     }
 
     aksesKakiSurat() {
-        const previewKaki = cy.xpath(surat_perintah.previewKaki).as('previewKaki')
-        previewKaki.click(180, 560)
+        const previewKaki = cy.get(surat_perintah.previewKaki).as('previewKaki')
+        previewKaki.scrollIntoView({ensureScrollable: false})
+        .click(180, 560, { force: true })
 
-        const titleKaki = cy.xpath(surat_perintah.titleKaki).as('titleKaki')
+        cy.wait(1500)
+
+        const titleKaki = cy.get(surat_perintah.titleKaki).as('titleKaki')
         titleKaki.should('contain', 'Kaki Surat')
     }
 
