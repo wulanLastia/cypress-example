@@ -42,6 +42,7 @@ beforeEach(() => {
 })
 
 afterEach(() => {
+    cy.wait(10000)
     loginPage.logoutV2step2()
 })
 
@@ -59,7 +60,12 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
             createSuratBiasaPage.inputKopSurat()
             createSuratBiasaPage.inputLampiranSurat(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputLampiranSurat2(faker.lorem.paragraphs(6, '<br/>\n'))
-            createSuratBiasaPage.inputKakiSuratSkenario1()
+            createSuratBiasaPage.inputKakiSuratSkenario1(
+                data_temp.kaki_surat[0].penandatangan_atasan1,
+                data_temp.kaki_surat[1].pemeriksa1,
+                data_temp.kaki_surat[2].tembusan_internal1,
+                data_temp.kaki_surat[2].tembusan_internal2,
+                data_temp.kaki_surat[2].tembusan_internal3)
             createSuratBiasaPage.inputKepalaSuratSkenario2(
                 data_temp.kepala_surat[0].tujuan1,
                 data_temp.kepala_surat[0].tujuan2,
