@@ -37,7 +37,7 @@ export class DraftingKakiSuratPage {
         pilihPenandatangan.should('have.attr', 'placeholder', ' Pilih Penandatangan')
 
         cy.wait(3000)
-    
+
         const labelPemeriksa = cy.get(kaki_surat.labelPemeriksaNotaDinas).as('labelPemeriksa')
         labelPemeriksa.should('contain', 'Pemeriksa')
 
@@ -62,8 +62,8 @@ export class DraftingKakiSuratPage {
     checkDropdownPenandatangan() {
         const selectPenandatangan = cy.get(kaki_surat.selectPenandatanganNotaDinas).as('selectPenandatangan')
         selectPenandatangan
-        .select(0)
-        .should('have.text', 'Pilih Format Penandatangan Atasan \n              Atas nama\n             \n              Untuk beliau\n             Diri sendiri')
+            .select(0)
+            .should('have.text', 'Pilih Format Penandatangan Atasan \n              Atas nama\n             \n              Untuk beliau\n             Diri sendiri')
     }
 
     leaveEmptyField() {
@@ -83,7 +83,7 @@ export class DraftingKakiSuratPage {
             .invoke('val')
             .then(text => {
                 const Penandatangan = text;
-                const profileName = cy.xpath(kaki_surat.profileName).as('profileName')
+                const profileName = cy.get(kaki_surat.profileName).as('profileName')
                 profileName.should('contain', Penandatangan)
             })
     }
@@ -97,7 +97,7 @@ export class DraftingKakiSuratPage {
             .invoke('val')
             .then(text => {
                 const Penandatangan = text;
-                const profileName = cy.xpath(kaki_surat.profileName).as('profileName')
+                const profileName = cy.get(kaki_surat.profileName).as('profileName')
                 profileName.should('contain', Penandatangan)
             })
     }

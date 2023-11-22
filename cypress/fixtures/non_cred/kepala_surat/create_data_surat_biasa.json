@@ -4,7 +4,19 @@
       "tujuan1": "Bey Triadi Machmudin, S.E., M.T.",
       "tujuan2": "Dr. IKA MARDIAH",
       "tujuan3": "RIZKI HUSTINIASARI",
-      "tujuan4": "Dra. Hj. I GUSTI AGUNG"
+      "tujuan4": "Dra. Hj. I GUSTI AGUNG",
+      "tujuan_eksternal1": "Tujuan Eksternal 1",
+      "tujuan_eksternal2": "Tujuan Eksternal 2",
+      "tujuan_eksternal3": "Tujuan Eksternal 3",
+      "tujuan_eksternal4": "Tujuan Eksternal 4",
+      "tujuan_eksternal5": "Tujuan Eksternal 5",
+      "tujuan_eksternal6": "Tujuan Eksternal 6",
+      "tujuan_lampiran_eksternal1": "Tujuan Lampiran 1",
+      "tujuan_lampiran_eksternal2": "Tujuan Lampiran 2",
+      "tujuan_lampiran_eksternal3": "Tujuan Lampiran 3",
+      "tujuan_lampiran_eksternal4": "Tujuan Lampiran 4",
+      "tujuan_lampiran_eksternal5": "Tujuan Lampiran 5",
+      "tujuan_lampiran_eksternal6": "Tujuan Lampiran 6"
     },
     {
       "lokasi": "Tempat"
@@ -24,7 +36,11 @@
     {
       "perihal1": " Utama",
       "perihal2": " Tujuan Kepala Surat - Internal - Lampiran",
-      "perihal3": " Tujuan Lampiran Surat - Internal - Lampiran"
+      "perihal3": " Tujuan Lampiran Surat - Internal - Lampiran",
+      "perihal4": " Tujuan Kepala Surat - Eksternal - Lampiran",
+      "perihal5": " Tujuan Lampiran - Eksternal - Lampiran",
+      "perihal6": " Tujuan Kepala Surat - Internal Eksternal - Lampiran",
+      "perihal7": " Tujuan Lampiran - Internal Eksternal - Lampiran"
     }
   ],
   "kembalikan": [
@@ -40,6 +56,26 @@
   "koreksi": [
     {
       "koreksi_perihal": " Koreksi"
+    }
+  ],
+  "kaki_surat": [
+    {
+      "penandatangan_diri_sendiri": "VITA PUTRI UTAMI, S.Sos., M.I.Kom",
+      "penandatangan_atasan1": "Dra. Hj. I GUSTI AGUNG"
+    },
+    {
+      "pemeriksa1": "FAJAR LIBRIANTO"
+    },
+    {
+      "tembusan_eksternal1": "Tembusan Eksternal 1",
+      "tembusan_eksternal2": "Tembusan Eksternal 2",
+      "tembusan_eksternal3": "Tembusan Eksternal 3",
+      "tembusan_eksternal4": "Tembusan Eksternal 4",
+      "tembusan_eksternal5": "Tembusan Eksternal 5",
+      "tembusan_eksternal6": "Tembusan Eksternal 6",
+      "tembusan_internal1": "Bey Triadi Machmudin, S.E., M.T.",
+      "tembusan_internal2": "Dr. IKA MARDIAH",
+      "tembusan_internal3": "RIZKI HUSTINIASARI"
     }
   ]
 }

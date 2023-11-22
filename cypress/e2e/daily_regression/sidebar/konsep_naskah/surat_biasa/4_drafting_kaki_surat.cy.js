@@ -7,11 +7,16 @@ let draftingKakiSuratPage = new DraftingKakiSuratPage()
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
+let data_temp
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
+    })
+
+    cy.fixture('non_cred/kepala_surat/create_data_surat_biasa.json').then((data) => {
+        data_temp = data
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
@@ -57,19 +62,25 @@ describe('Drafting Kaki Surat Skenario', { testIsolation: false }, () => {
     qase(164,
         it('Check dropdown list if user select diri sendiri', () => {
             draftingKakiSuratPage.aksesFormEditingKakiSurat()
-            draftingKakiSuratPage.pilihPenandatanganDiriSendiri()
+            draftingKakiSuratPage.pilihPenandatanganDiriSendiri(data_temp.kaki_surat[0].penandatangan_diri_sendiri)
         })
     )
 
     qase(161,
         it('Check dropdown list if user select atasan', () => {
-            draftingKakiSuratPage.pilihPenandatanganAtasan()
+            draftingKakiSuratPage.pilihPenandatanganAtasan(data_temp.kaki_surat[0].penandatangan_atasan1)
         })
     )
 
-    qase(171,
+    qase(176,
         it('Check field if user select pemeriksa', () => {
-            draftingKakiSuratPage.pilihPemeriksa()
+            draftingKakiSuratPage.pilihPemeriksa(data_temp.kaki_surat[1].pemeriksa1)
+        })
+    )
+
+    qase(287,
+        it('Check on preview page after input tembusan', () => {
+            draftingKakiSuratPage.pilihTembusan(data_temp.kaki_surat[2].tembusan_eksternal1, data_temp.kaki_surat[2].tembusan_eksternal2)
         })
     )
 
