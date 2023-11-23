@@ -3,7 +3,7 @@
     "cy_local_test": "env $(grep -v '^#' .env | xargs) cypress run"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.2.0",
+    "@faker-js/faker": "^8.3.1",
     "cypress": "^12.17.4",
     "cypress-dotenv": "^2.0.0",
     "cypress-file-upload": "^5.0.8",
