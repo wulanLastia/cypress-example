@@ -20,6 +20,8 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
+let dataNotaDinas
+
 
 let createNotaDinasPage = new CreateNotaDinasPage()
 let kembalikanNaskahPage = new KembalikanNaskahPage()
@@ -43,6 +45,10 @@ before(() => {
     // LogIn Skenario Default
     loginPage.loginViaV1(user.nip, user.password)
     loginPage.directLogin()
+
+    cy.fixture('non_cred/kepala_surat/create_data_nota_dinas.json').then((jsonData) => {
+        dataNotaDinas = jsonData  // Assign data from jsonData
+    })
 
 })
 
@@ -89,9 +95,9 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             cy.wait(3000)
             kembalikanNaskahPage.checkHalamanInformasi()
             cy.wait(3000)
-            kembalikanNaskahPage.checkBtnPeriksaKembali()
+            kembalikanNaskahPage.checkBtnPeriksaKembali(dataNotaDinas.kembalikan[0].kembalikan_perihal)
             cy.wait(3000)
-            kembalikanNaskahPage.kembalikanNaskah()
+            kembalikanNaskahPage.kembalikanNaskah(dataNotaDinas.kembalikan[0].kembalikan_perihal)
             cy.wait(3000)
             loginPage.closePopupLandingPage()
         })
