@@ -1,0 +1,45 @@
+{
+  "kepala_surat": [
+    {
+      "tujuan1": "Bey Triadi Machmudin, S.E., M.T.",
+      "tujuan2": "Dr. IKA MARDIAH",
+      "tujuan3": "RIZKI HUSTINIASARI",
+      "tujuan4": "Dra. Hj. I GUSTI AGUNG"
+    },
+    {
+      "lokasi": "Tempat"
+    },
+    {
+      "kode_klasifikasi": "SK (Semua Klasifikasi)"
+    },
+    {
+      "unit_pengolah": "PAD"
+    },
+    {
+      "sifat_surat": "Penting"
+    },
+    {
+      "urgensi_surat": "Amat Segera"
+    },
+    {
+      "perihal1": " Utama",
+      "perihal2": " Tujuan Kepala Surat - Internal - Lampiran",
+      "perihal3": " Tujuan Lampiran Surat - Internal - Lampiran"
+    }
+  ],
+  "kembalikan": [
+    {
+      "kembalikan_perihal": "Perbaiki perihal surat"
+    }
+  ],
+  "perbaiki": [
+    {
+      "perbaiki_perihal": " Perbaiki"
+    }
+  ],
+  "koreksi": [
+    {
+      "koreksi_perihal": " Koreksi"
+    }
+  ]
+}

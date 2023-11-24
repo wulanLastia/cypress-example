@@ -1,5 +1,6 @@
 const { defineConfig } = require('cypress')
 const { generateFeatureToggleOverrideJWT } = require('./cypress/support/util')
+require('dotenv').config()
 
 module.exports = defineConfig({
   projectId: 'rbzy6f',
@@ -31,12 +32,12 @@ module.exports = defineConfig({
     },
 
     env: {
-      base_url: "https://sidebar-jabarprov.netlify.app",
-      base_url_v1: "https://devsidebar.digitalservice.id/",
-      base_url_prod_v2: "https://sidebar-v2.jabarprov.go.id/",
-      base_url_deploy_preview: "https://deploy-preview-402--sidebar-jabarprov.netlify.app/",
-      base_url_deploy_preview2: "https://deploy-preview-330--sidebar-jabarprov.netlify.app/",
-      base_url_prod_v1: "https://sidebar.jabarprov.go.id/"
+      base_url: process.env.BASE_URL,
+      base_url_v1: process.env.BASE_URL_V1,
+      base_url_prod_v2: process.env.BASE_URL_PROD_V2,
+      base_url_prod_v1: process.env.BASE_URL_PROD_V1,
+      base_url_api_v1: process.env.BASE_URL_API_V1,
+      base_url_api_v2: process.env.BASE_URL_API_V2
     },
 
     testIsolation: true,

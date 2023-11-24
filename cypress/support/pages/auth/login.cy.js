@@ -41,7 +41,7 @@ export class LoginPage {
     closePopupLandingPage() {
         cy.wait(6000)
 
-        const closePopup = cy.get(login.closePopupLandingPage).as('closePopupLandingPage')
+        const closePopup = cy.get(login.closePopupLandingPage, { timeout: 10000 }).as('closePopupLandingPage')
         closePopup.then($popup => {
             if ($popup.is(':visible')) {
                 closePopup.click()
@@ -50,31 +50,61 @@ export class LoginPage {
     }
 
     loginViaV1(nip, passwordv1) {
+        cy.intercept('POST', Cypress.env('base_url_api_v1')).as('checkResponse')
+
+
         this.navigateLoginPageV1()
 
         cy.get("#login > div").click()
         cy.get("div.flex > div button").click()
-
+    
         const username = cy.get(login.username).as('username')
         username.should('be.visible')
         username.type(nip, { force: true })
-
+    
         const password = cy.get(login.password).as('password')
         password.type(passwordv1, { force: true })
-
+    
         const hiddenCaptcha = cy.get(login.hiddenCaptcha).as('hiddenCaptcha')
         hiddenCaptcha.invoke('val')
             .then((val) => {
                 const captchaType = cy.get(login.captcha).as('captcha')
                 captchaType.type(val, { force: true })
             })
-
+    
         const btnLogin = cy.get(login.btnLogin).as('btnLogin')
         btnLogin.should('contain', 'Login')
             .click({ force: true })
-
+    
         cy.wait(3000)
+    
+        cy.wait('@checkResponse', { timeout: 5000 })
+        .then((interception) => {
+            if (interception.response) {
+                const status = interception.response.statusCode;
+                const clientErrorStatusCodes = [400, 401, 403, 404, 405, 406, 408, 409, 410, 411, 412];
+                const serverErrorStatusCodes = [500, 501, 502, 503, 504];
+                const errorStatusCodes = [...clientErrorStatusCodes, ...serverErrorStatusCodes];
+    
+                // Assert berupa message di Cypress E2E pada status code ketika gagal, bila status code tidak sesuai maka status dibawah akan memberhentikan untuk masuk ke skenario selanjutnya
+                if (errorStatusCodes.includes(status)) {
+                    expect(errorStatusCodes, `Request failed with status code: ${status}`).to.include(status);
+                }
+    
+                const successStatusCodes = [200, 201, 202, 203, 204, 205, 206, 207, 208, 226];
+                const redirectStatusCodes = [300, 301, 302, 303, 307];
+                const acceptableStatusCodes = [...successStatusCodes, ...redirectStatusCodes];
+    
+                // Assert berupa message di Cypress E2E pada status code ketika sukses
+                expect(acceptableStatusCodes, `Result of status code: ${status}`).to.include(status);
+            } else {
+                // Jika response tidak sesuai dengan status code diatas, makan akan throw error dengan assert message seperti dibawah
+                cy.log('No response received.');
+                throw new Error('No response received.');
+            }
+        });
     }
+      
 
     loginViaV1Prod(nip, passwordv1) {
         this.navigateLoginPageV1Prod()
@@ -197,6 +227,8 @@ export class LoginPage {
     logoutV2step2PROD() {
         // Show header if hidden
         cy.get(login.showHeaderNav).invoke('css', 'display', 'block');
+
+        cy.wait(3000)
 
         // Use the simpler selector
         const btnProfile = cy.get(login.getJQueryProfileV2).as('btnProfile');

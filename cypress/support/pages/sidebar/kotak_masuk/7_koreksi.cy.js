@@ -20,7 +20,7 @@ export class KoreksiSuratPage {
             const titlePerihalNaskah = object.titlePerihal
 
             const tableReviewSurat = cy.get(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
-            tableReviewSurat.contains('td', titlePerihalNaskah)
+            tableReviewSurat.contains('td', titlePerihalNaskah, { timeout: 10000 })
                 .click()
                 .then((data) => {
                     const bsreErrorSign = cy.get(review_verifikasi_surat.bsreErrorSign).as('bsreErrorSign')
@@ -128,8 +128,8 @@ export class KoreksiSuratPage {
             .and('be.visible')
     }
 
-    koreksiTandatanganiNaskah(passphrase) {
-        createSuratBiasaPage.inputKoreksiKepalaSurat()
+    koreksiTandatanganiNaskah(passphrase, inputanKoreksi) {
+        createSuratBiasaPage.inputKoreksiKepalaSurat(inputanKoreksi)
 
         const btnKoreksiTandatangani = cy.get(koreksi.btnKoreksiTandatangani).as('btnKoreksiTandatangani')
         btnKoreksiTandatangani.click()

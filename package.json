@@ -3,14 +3,17 @@
     "cy_local_test": "env $(grep -v '^#' .env | xargs) cypress run"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.3.1",
     "cypress": "^12.17.4",
+    "cypress-dotenv": "^2.0.0",
     "cypress-file-upload": "^5.0.8",
-    "cypress-xpath": "^2.0.1"
+    "cypress-xpath": "^2.0.1",
+    "dotenv": "^16.3.1"
   },
   "dependencies": {
     "cypress-qase-reporter": "^1.4.2-alpha.2",
     "cypress-real-events": "^1.7.6",
     "dayjs": "^1.11.10",
-    "jose": "^5.0.1"
+    "jose": "^5.1.1"
   }
 }

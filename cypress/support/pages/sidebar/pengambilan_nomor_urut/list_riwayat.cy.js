@@ -56,7 +56,7 @@ export class ListRiwayatPage {
     validasiNomorUrutDiluarOrg() {
         cy.readFile(filename).then((object) => {
             const tableNomorNaskah = cy.get(list_riwayat.tableNomorNaskah).as('tableNomorNaskah')
-            tableNomorNaskah.should('contain', object.nomor_urut)
+            tableNomorNaskah.should('contain', object.nomor_urut_akhir)
 
             const tableBankNomorStatus = cy.get(list_riwayat.tableBankNomorStatus).first().as('tableBankNomorStatus')
             tableBankNomorStatus.should('contain', 'Telah Dipesan')
@@ -81,7 +81,7 @@ export class ListRiwayatPage {
         })
     }
 
-    batalkanNomorTerakhirMultiple() {
+    batalkanNomorTerakhir() {
         const tableBankNomor = cy.get(list_riwayat.tableBankNomor).as('tableBankNomor')
         tableBankNomor.children()
             .should('be.visible')

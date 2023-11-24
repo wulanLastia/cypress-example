@@ -89,7 +89,7 @@ describe('Pengambilan nomor urut oleh user UK Dispusida memilih UK Setda', () =>
             listRiwayatPage.validasiNomorUrutDiluarOrgMultiple()
 
             // Batalkan nomor
-            listRiwayatPage.batalkanNomorTerakhirMultiple()
+            listRiwayatPage.batalkanNomorTerakhir()
         })
     )
 
