@@ -20,7 +20,7 @@ export class KoreksiSuratPage {
             const titlePerihalNaskah = object.titlePerihal
 
             const tableReviewSurat = cy.get(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
-            tableReviewSurat.contains('td', titlePerihalNaskah)
+            tableReviewSurat.contains('td', titlePerihalNaskah, { timeout: 10000 })
                 .click()
                 .then((data) => {
                     const bsreErrorSign = cy.get(review_verifikasi_surat.bsreErrorSign).as('bsreErrorSign')
