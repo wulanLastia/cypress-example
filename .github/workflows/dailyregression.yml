@@ -7,7 +7,7 @@ on:
 jobs:
   cypress-run:
     runs-on: self-hosted
-    container: 
+    container:
       image: cypress/included:12.17.4
       # solution from https://github.com/cypress-io/cypress-docker-images/issues/560#issuecomment-1121774167
       # options: --user 1001
@@ -21,7 +21,7 @@ jobs:
           mkdir cypress/fixtures/cred
           echo "${{ secrets.CREDENTIALS_DEV_JSON_CONTENT }}" | base64 --decode > cypress/fixtures/cred/credentials_dev.json
           echo "${{ secrets.CREDENTIALS_PROD_JSON_CONTENT }}" | base64 --decode > cypress/fixtures/cred/credentials_prod.json
-           
+
       # adapted from https://stackoverflow.com/a/76943682/2496217 & https://stackoverflow.com/a/61827163/2496217
       - name: Get current datedate as env variable
         run: echo "DATETIME=$(TZ='Asia/Jakarta' date +'%Y-%m-%d_%H:%M:%S')" >> $GITHUB_ENV
@@ -61,4 +61,9 @@ jobs:
           COMMIT_INFO_MESSAGE: "${{ env.DATETIME }} - Run github action automation"
           COMMIT_INFO_AUTHOR: "${{ github.triggering_actor }}"
           COMMIT_INFO_EMAIL: "jds@example.com"
-          
+          # Unleash override env vars:
+          # in base64 format
+          CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY: ${{ secrets.CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY }}
+          # used algo name: RS256, EdDSA, HS256, etc
+          CYPRESS_UNLEASH_OVERRIDE_KEY_ALGORITHM: ${{ secrets.CYPRESS_UNLEASH_OVERRIDE_KEY_ALGORITHM }}
+
