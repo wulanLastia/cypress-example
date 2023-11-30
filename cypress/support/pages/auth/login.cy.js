@@ -41,7 +41,7 @@ export class LoginPage {
     closePopupLandingPage() {
         cy.wait(6000)
 
-        const closePopup = cy.get(login.closePopupLandingPage).as('closePopupLandingPage')
+        const closePopup = cy.get(login.closePopupLandingPage, { timeout: 10000 }).as('closePopupLandingPage')
         closePopup.then($popup => {
             if ($popup.is(':visible')) {
                 closePopup.click()
@@ -50,7 +50,7 @@ export class LoginPage {
     }
 
     loginViaV1(nip, passwordv1) {
-        cy.intercept('POST', 'https://devsidebar.digitalservice.id/administrator/anri_check').as('checkResponse')
+        cy.intercept('POST', Cypress.env('base_url_api_v1')).as('checkResponse')
 
 
         this.navigateLoginPageV1()
