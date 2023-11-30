@@ -5,18 +5,26 @@ import { CreateSuratBiasaPage } from "../../../support/pages/sidebar/konsep_nask
 import { SetujuiPage } from "../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
 import { DraftPage } from "../../../support/pages/sidebar/konsep_naskah/konsep_naskah/draft.cy"
 
-let setujuiPage = new SetujuiPage()
+const { faker } = require('@faker-js/faker')
 let createSuratBiasaPage = new CreateSuratBiasaPage()
-let draftPage = new DraftPage()
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
+let setujuiPage = new SetujuiPage()
+let draftPage = new DraftPage()
 let user
+let data_temp
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
+
+    cy.fixture('non_cred/kepala_surat/create_data_surat_biasa.json').then((data) => {
+        data_temp = data
+    })
+
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
 describe('Create Surat Biasa Skenario', () => {
@@ -30,10 +38,17 @@ describe('Create Surat Biasa Skenario', () => {
             menuPage.goToKonsepNaskah()
             createSuratBiasaPage.checkDetail()
             createSuratBiasaPage.inputKopSurat()
-            createSuratBiasaPage.inputKepalaSurat()
-            createSuratBiasaPage.inputKakiSuratPDF()
-            createSuratBiasaPage.inputBadanNaskahSkenarioRegression()
-            createSuratBiasaPage.inputKakiSuratSkenario4()
+            createSuratBiasaPage.inputKakiSuratPenandatanganDiriSendiri(
+                data_temp.kaki_surat[0].penandatangan_diri_sendiri)
+            createSuratBiasaPage.inputKepalaSurat(
+                data_temp.kepala_surat[0].tujuan1,
+                data_temp.kepala_surat[1].lokasi,
+                data_temp.kepala_surat[2].kode_klasifikasi,
+                data_temp.kepala_surat[3].unit_pengolah,
+                data_temp.kepala_surat[4].sifat_surat,
+                data_temp.kepala_surat[5].urgensi_surat,
+                data_temp.kepala_surat[6].perihal1)
+            createSuratBiasaPage.inputBadanNaskahSkenarioRegression(faker.lorem.paragraphs(13, '<br/>\n'))
             createSuratBiasaPage.simpanSurat()
             cy.wait(6000)
             draftPage.checkDataPertamaNaskahDisimpan()
