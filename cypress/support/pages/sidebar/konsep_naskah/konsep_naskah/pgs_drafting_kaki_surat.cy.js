@@ -96,7 +96,7 @@ export class DraftingKakiSuratPage {
         const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
         selectPenandatangan.select(1).should('have.value', 'ATASAN')
 
-        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
+        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
 
         const pilihPenandatangan = cy.get(kaki_surat.pilihPenandatangan).as('pilihPenandatangan')
         pilihPenandatangan.wait(1000)
@@ -116,7 +116,7 @@ export class DraftingKakiSuratPage {
         const btnTambahPemeriksa = cy.get(kaki_surat.btnTambahPemeriksa).as('btnTambahPemeriksa')
         btnTambahPemeriksa.click()
 
-        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
+        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
 
         const pilihPemeriksa = cy.get(kaki_surat.pilihPemeriksa).as('pilihPemeriksa2')
         pilihPemeriksa.wait(1000)
@@ -188,31 +188,6 @@ export class DraftingKakiSuratPage {
         this.inputTembusanEksternal6(inputanTembusanEksternal6)
     }
 
-    inputPenandatanganDiriSendiri() {
-        const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
-        selectPenandatangan.select(4).should('have.value', 'DIRI_SENDIRI')
-    }
-
-    inputTembusanKoreksiPemeriksa1() {
-        const btnTambahTembusan = cy.get(kaki_surat.btnTambahTembusan).as('btnTambahTembusan')
-        btnTambahTembusan.click()
-
-        const pilihTembusan3 = cy.get(kaki_surat.pilihTembusan3).as('pilihTembusan3')
-        pilihTembusan3.type('KOREKSI PEMERIKSA 1')
-            .wait(2000)
-            .type('{enter}')
-    }
-
-    inputTembusanPerbaikiPemeriksa2() {
-        const btnTambahTembusan = cy.get(kaki_surat.btnTambahTembusan).as('btnTambahTembusan')
-        btnTambahTembusan.click()
-
-        const pilihTembusan4 = cy.get(kaki_surat.pilihTembusan4).as('pilihTembusan4')
-        pilihTembusan4.type('PERBAIKI PEMERIKSA 2')
-            .wait(2000)
-            .type('{enter}')
-    }
-
     pilihPenandatanganAtasanProd() {
         const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
         selectPenandatangan.select(1).should('have.value', 'ATASAN')
@@ -275,116 +250,9 @@ export class DraftingKakiSuratPage {
         btnTambahTembusan.click()
     }
 
-    inputTembusanEksternal1(inputanTembusan1) {
-        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
-
-        const pilihTembusan = cy.get(kaki_surat.pilihTembusan).as('pilihTembusan')
-        pilihTembusan.wait(1000)
-            .type(inputanTembusan1)
-
-        cy.wait('@checkResponse', { timeout: 5000 })
-            .then((interception) => {
-                if (interception.response.statusCode === 200) {
-                    const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
-                    suggestTembusanEksternal.contains(inputanTembusan1, { timeout: 10000 }).should('be.visible')
-
-                    pilihTembusan.type('{enter}')
-                }
-            })
-    }
-
-    inputTembusanEksternal2(inputanTembusan2) {
-        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
-
-        const pilihTembusan2 = cy.get(kaki_surat.pilihTembusan2).as('pilihTembusan2')
-        pilihTembusan2.wait(1000)
-            .type(inputanTembusan2)
-
-        cy.wait('@checkResponse', { timeout: 5000 })
-            .then((interception) => {
-                if (interception.response.statusCode === 200) {
-                    const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
-                    suggestTembusanEksternal.contains(inputanTembusan2, { timeout: 10000 }).should('be.visible')
-
-                    pilihTembusan2.type('{enter}')
-                }
-            })
-    }
-
-    inputTembusanEksternal3(inputanTembusan3) {
-        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
-
-        const pilihTembusan3 = cy.get(kaki_surat.pilihTembusan3).as('pilihTembusan3')
-        pilihTembusan3.wait(1000)
-            .type(inputanTembusan3)
-
-        cy.wait('@checkResponse', { timeout: 5000 })
-            .then((interception) => {
-                if (interception.response.statusCode === 200) {
-                    const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
-                    suggestTembusanEksternal.contains(inputanTembusan3, { timeout: 10000 }).should('be.visible')
-
-                    pilihTembusan3.type('{enter}')
-                }
-            })
-    }
-
-    inputTembusanEksternal4(inputanTembusan4) {
-        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
-
-        const pilihTembusan4 = cy.get(kaki_surat.pilihTembusan4).as('pilihTembusan4')
-        pilihTembusan4.wait(1000)
-            .type(inputanTembusan4)
-
-        cy.wait('@checkResponse', { timeout: 5000 })
-            .then((interception) => {
-                if (interception.response.statusCode === 200) {
-                    const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
-                    suggestTembusanEksternal.contains(inputanTembusan4, { timeout: 10000 }).should('be.visible')
-
-                    pilihTembusan4.type('{enter}')
-                }
-            })
-    }
-
-    inputTembusanEksternal5(inputanTembusan5) {
-        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
-
-        const pilihTembusan5 = cy.get(kaki_surat.pilihTembusan5).as('pilihTembusan5')
-        pilihTembusan5.wait(1000)
-            .type(inputanTembusan5)
-
-        cy.wait('@checkResponse', { timeout: 5000 })
-            .then((interception) => {
-                if (interception.response.statusCode === 200) {
-                    const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
-                    suggestTembusanEksternal.contains(inputanTembusan5, { timeout: 10000 }).should('be.visible')
-
-                    pilihTembusan5.type('{enter}')
-                }
-            })
-    }
-
-    inputTembusanEksternal6(inputanTembusan6) {
-        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
-
-        const pilihTembusan6 = cy.get(kaki_surat.pilihTembusan6).as('pilihTembusan6')
-        pilihTembusan6.wait(1000)
-            .type(inputanTembusan6)
-
-        cy.wait('@checkResponse', { timeout: 5000 })
-            .then((interception) => {
-                if (interception.response.statusCode === 200) {
-                    const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
-                    suggestTembusanEksternal.contains(inputanTembusan6, { timeout: 10000 }).should('be.visible')
-
-                    pilihTembusan6.type('{enter}')
-                }
-            })
-    }
-
+    // Tembusan Internal
     inputTembusanInternal1(inputanTembusanInternal1) {
-        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
+        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
 
         const pilihTembusan = cy.get(kaki_surat.pilihTembusan).as('pilihTembusan')
         pilihTembusan.wait(1000)
@@ -394,7 +262,7 @@ export class DraftingKakiSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusan = cy.get(kaki_surat.suggestTembusan, { timeout: 5000 }).as('suggestTembusan')
-                    suggestTembusan.contains(inputanTembusanInternal1, { timeout: 10000 }).should('be.visible')
+                    suggestTembusan.contains(inputanTembusanInternal1, { timeout: 15000 }).should('be.visible')
 
                     pilihTembusan.type('{enter}')
                 }
@@ -402,7 +270,7 @@ export class DraftingKakiSuratPage {
     }
 
     inputTembusanInternal2(inputanTembusanInternal2) {
-        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
+        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
 
         const pilihTembusan2 = cy.get(kaki_surat.pilihTembusan2).as('pilihTembusan2')
         pilihTembusan2.wait(1000)
@@ -420,7 +288,7 @@ export class DraftingKakiSuratPage {
     }
 
     inputTembusanInternal3(inputanTembusanInternal3) {
-        cy.intercept('POST', Cypress.env('base_url_api')).as('checkResponse')
+        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
 
         const pilihTembusan3 = cy.get(kaki_surat.pilihTembusan3).as('pilihTembusan3')
         pilihTembusan3.wait(1000)
@@ -437,4 +305,112 @@ export class DraftingKakiSuratPage {
             })
     }
 
+    // Tembusan Eksternal
+    inputTembusanEksternal1(inputanTembusan1) {
+        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
+        const pilihTembusan = cy.get(kaki_surat.pilihTembusan).as('pilihTembusan')
+        pilihTembusan.wait(1000)
+            .type(inputanTembusan1)
+
+        cy.wait('@checkResponse', { timeout: 5000 })
+            .then((interception) => {
+                if (interception.response.statusCode === 200) {
+                    const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
+                    suggestTembusanEksternal.contains(inputanTembusan1, { timeout: 10000 }).should('be.visible')
+
+                    pilihTembusan.type('{enter}')
+                }
+            })
+    }
+
+    inputTembusanEksternal2(inputanTembusan2) {
+        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
+        const pilihTembusan2 = cy.get(kaki_surat.pilihTembusan2).as('pilihTembusan2')
+        pilihTembusan2.wait(1000)
+            .type(inputanTembusan2)
+
+        cy.wait('@checkResponse', { timeout: 5000 })
+            .then((interception) => {
+                if (interception.response.statusCode === 200) {
+                    const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
+                    suggestTembusanEksternal.contains(inputanTembusan2, { timeout: 10000 }).should('be.visible')
+
+                    pilihTembusan2.type('{enter}')
+                }
+            })
+    }
+
+    inputTembusanEksternal3(inputanTembusan3) {
+        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
+        const pilihTembusan3 = cy.get(kaki_surat.pilihTembusan3).as('pilihTembusan3')
+        pilihTembusan3.wait(1000)
+            .type(inputanTembusan3)
+
+        cy.wait('@checkResponse', { timeout: 5000 })
+            .then((interception) => {
+                if (interception.response.statusCode === 200) {
+                    const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
+                    suggestTembusanEksternal.contains(inputanTembusan3, { timeout: 10000 }).should('be.visible')
+
+                    pilihTembusan3.type('{enter}')
+                }
+            })
+    }
+
+    inputTembusanEksternal4(inputanTembusan4) {
+        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
+        const pilihTembusan4 = cy.get(kaki_surat.pilihTembusan4).as('pilihTembusan4')
+        pilihTembusan4.wait(1000)
+            .type(inputanTembusan4)
+
+        cy.wait('@checkResponse', { timeout: 5000 })
+            .then((interception) => {
+                if (interception.response.statusCode === 200) {
+                    const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
+                    suggestTembusanEksternal.contains(inputanTembusan4, { timeout: 10000 }).should('be.visible')
+
+                    pilihTembusan4.type('{enter}')
+                }
+            })
+    }
+
+    inputTembusanEksternal5(inputanTembusan5) {
+        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
+        const pilihTembusan5 = cy.get(kaki_surat.pilihTembusan5).as('pilihTembusan5')
+        pilihTembusan5.wait(1000)
+            .type(inputanTembusan5)
+
+        cy.wait('@checkResponse', { timeout: 5000 })
+            .then((interception) => {
+                if (interception.response.statusCode === 200) {
+                    const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
+                    suggestTembusanEksternal.contains(inputanTembusan5, { timeout: 10000 }).should('be.visible')
+
+                    pilihTembusan5.type('{enter}')
+                }
+            })
+    }
+
+    inputTembusanEksternal6(inputanTembusan6) {
+        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
+        const pilihTembusan6 = cy.get(kaki_surat.pilihTembusan6).as('pilihTembusan6')
+        pilihTembusan6.wait(1000)
+            .type(inputanTembusan6)
+
+        cy.wait('@checkResponse', { timeout: 5000 })
+            .then((interception) => {
+                if (interception.response.statusCode === 200) {
+                    const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
+                    suggestTembusanEksternal.contains(inputanTembusan6, { timeout: 10000 }).should('be.visible')
+
+                    pilihTembusan6.type('{enter}')
+                }
+            })
+    }
 }

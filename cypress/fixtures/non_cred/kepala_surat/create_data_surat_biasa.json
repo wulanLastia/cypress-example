@@ -16,16 +16,52 @@
       "tujuan_lampiran_eksternal3": "Tujuan Lampiran 3",
       "tujuan_lampiran_eksternal4": "Tujuan Lampiran 4",
       "tujuan_lampiran_eksternal5": "Tujuan Lampiran 5",
-      "tujuan_lampiran_eksternal6": "Tujuan Lampiran 6"
+      "tujuan_lampiran_eksternal6": "Tujuan Lampiran 6",
+      "tujuan_lampiran_script1": "2 Test JS Script <script>alert('Executing JS')</script>",
+      "tujuan_lampiran_script2": "3 Test JS Script <script>alert('Executing JS')</script>",
+      "tujuan_lampiran_script3": "4 Test JS Script <script>alert('Executing JS')</script>",
+      "tujuan_lampiran_script4": "5 Test JS Script <script>alert('Executing JS')</script>",
+      "tujuan_lampiran_script5": "6 Test JS Script <script>alert('Executing JS')</script>",
+      "tujuan_lampiran_script6": "7 Test JS Script <script>alert('Executing JS')</script>",
+      "assert_tujuan_lampiran_script1": "2 Test JS Script scriptalert(Executing JS)script",
+      "assert_tujuan_lampiran_script2": "3 Test JS Script scriptalert(Executing JS)script",
+      "assert_tujuan_lampiran_script3": "4 Test JS Script scriptalert(Executing JS)script",
+      "assert_tujuan_lampiran_script4": "5 Test JS Script scriptalert(Executing JS)script",
+      "assert_tujuan_lampiran_script5": "6 Test JS Script scriptalert(Executing JS)script",
+      "assert_tujuan_lampiran_script6": "7 Test JS Script scriptalert(Executing JS)script",
+      "tujuan_lampiran_html1": "<blink>Hello World 2</blink>",
+      "tujuan_lampiran_html2": "<blink>Hello World 3</blink>",
+      "tujuan_lampiran_html3": "<blink>Hello World 4</blink>",
+      "tujuan_lampiran_html4": "<blink>Hello World 5</blink>",
+      "tujuan_lampiran_html5": "<blink>Hello World 6</blink>",
+      "tujuan_lampiran_html6": "<blink>Hello World 7</blink>",
+      "assert_tujuan_lampiran_html1": "blinkHello World 2blink",
+      "assert_tujuan_lampiran_html2": "blinkHello World 3blink",
+      "assert_tujuan_lampiran_html3": "blinkHello World 4blink",
+      "assert_tujuan_lampiran_html4": "blinkHello World 5blink",
+      "assert_tujuan_lampiran_html5": "blinkHello World 6blink",
+      "assert_tujuan_lampiran_html6": "blinkHello World 7blink",
+      "tujuan_lampiran_xss": "'-prompt()-'",
+      "assert_tujuan_lampiran_xss": "prompt()",
+      "tujuan_lampiran_whitespace": "{shift}{enter}"
     },
     {
-      "lokasi": "Tempat"
+      "lokasi": "Tempat",
+      "lokasi_negatif_script": "Test JS Script <script>alert('Executing JS')</script>",
+      "lokasi_negatif_html": "<blink>Hello World</blink>",
+      "lokasi_negatif_xss": "'-prompt()-'",
+      "lokasi_negatif_whitespace": "{shift}{enter}"
     },
     {
-      "kode_klasifikasi": "SK (Semua Klasifikasi)"
+      "kode_klasifikasi": "SK (Semua Klasifikasi)",
+      "kode_klasifikasi_negatif_whitespace": "{shift}{enter}"
     },
     {
-      "unit_pengolah": "PAD"
+      "unit_pengolah": "PAD",
+      "unit_pengolah_script": "Test JS Script <script>alert('Executing JS')</script>",
+      "unit_pengolah_html": "<blink>Hello World</blink>",
+      "unit_pengolah_xss": "'-prompt()-'",
+      "unit_pengolah_whitespace": "{shift}{enter}"
     },
     {
       "sifat_surat": "Penting"
@@ -40,7 +76,11 @@
       "perihal4": " Tujuan Kepala Surat - Eksternal - Lampiran",
       "perihal5": " Tujuan Lampiran - Eksternal - Lampiran",
       "perihal6": " Tujuan Kepala Surat - Internal Eksternal - Lampiran",
-      "perihal7": " Tujuan Lampiran - Internal Eksternal - Lampiran"
+      "perihal7": " Tujuan Lampiran - Internal Eksternal - Lampiran",
+      "perihal_negatif_script": " Test JS Script <script>alert('Executing JS')</script>",
+      "perihal_negatif_html": " <blink>Hello World</blink>",
+      "perihal_negatif_xss": " '-prompt()-'",
+      "perihal_negatif_whitespace": " {shift}{enter}"
     }
   ],
   "kembalikan": [
@@ -64,7 +104,7 @@
       "penandatangan_atasan1": "Dra. Hj. I GUSTI AGUNG"
     },
     {
-      "pemeriksa1": "FAJAR LIBRIANTO"
+      "pemeriksa1": "FAJAR LIBRIANTO, S.Si., M.M."
     },
     {
       "tembusan_eksternal1": "Tembusan Eksternal 1",

@@ -32,16 +32,6 @@ export class DraftingBadanNaskahPage {
         titleBadan.should('contain', 'Badan Naskah')
     }
 
-    inputBadanNaskahInternalEksternal() {
-        const previewBadan = cy.get(badan_naskah.previewBadan).as('previewBadan')
-        previewBadan.click(180, 650, { force: true })
-
-        cy.wait(6000)
-
-        const titleBadan = cy.get(badan_naskah.titleBadan).as('titleBadan')
-        titleBadan.should('contain', 'Badan Naskah')
-    }
-
     inputBadanNaskahProd() {
         const previewBadan = cy.get(badan_naskah.previewBadan).as('previewBadan')
         previewBadan.click(180, 320, { force: true })
@@ -238,23 +228,13 @@ export class DraftingBadanNaskahPage {
         menuPage.goToKotakMasukReviewNaskah()
     }
 
-    insertDataPDF() {
-        const iframeBadan = cy.get(badan_naskah.htmlBadan).as('htmlBadan')
-        iframeBadan.find('iframe')
-            .its('0.contentDocument.body')
-            .should('be.visible')
-            .then(cy.wrap)
-            .type('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc magna risus, auctor id fermentum nec, tristique sed nulla. Aliquam quis risus turpis. Nam aliquet eros erat, eget ornare mi gravida vel. Nunc id fermentum mauris. Vivamus ornare turpis vel luctus lobortis. Ut et tellus pellentesque, faucibus erat in, semper mauris. Quisque id purus non dolor pharetra pellentesque. Aliquam a est ultricies, pretium ante at, faucibus quam. Sed lorem nulla, gravida quis convallis eget, fermentum ac augue. Nulla fermentum laoreet urna vitae venenatis. Morbi pellentesque gravida lectus nec fringilla.{enter}Nunc et turpis vel quam volutpat gravida eget non erat.Cras lacinia nec mauris et interdum.Mauris ut finibus mauris.Duis blandit nibh sit amet sapien malesuada, sit amet fermentum neque vulputate.Mauris eu tristique odio, tincidunt eleifend libero.Morbi porta nulla ex, ut pretium lectus sollicitudin nec.Nulla ultrices a arcu eu porta.In a diam suscipit, volutpat ante a, consequat augue.Integer ornare massa eu nunc fringilla, non feugiat neque euismod.Ut quis neque at diam pretium fringilla.Quisque mi ante, lacinia pulvinar mi in, laoreet elementum massa.Aenean eget massa id nulla vestibulum porttitor.Mauris mollis tincidunt metus, et luctus sapien eleifend id.Nullam volutpat ut dui at fringilla.{enter}Maecenas lacinia et nibh et suscipit.Integer eget nulla eget ex commodo fringilla ut tristique lacus.Fusce auctor lectus ut augue imperdiet, ut bibendum orci pellentesque.Nulla sollicitudin elit pharetra ex convallis, sed aliquam ipsum iaculis.Pellentesque scelerisque ipsum eget nibh ornare, at rutrum erat aliquet.Nunc tempus, nulla at volutpat elementum, libero diam fermentum velit, dignissim ornare velit elit nec justo.Donec nec est laoreet, tincidunt est vitae, scelerisque nibh.Curabitur gravida ac mauris sed porta.Proin a velit vel elit dignissim tincidunt vel ut tortor.Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.Suspendisse suscipit vestibulum purus, ut mollis magna pellentesque non.{enter}')
-            .type('{enter}{enter}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc magna risus, auctor id fermentum nec, tristique sed nulla. Aliquam quis risus turpis. Nam aliquet eros erat, eget ornare mi gravida vel. Nunc id fermentum mauris. Vivamus ornare turpis vel luctus lobortis. Ut et tellus pellentesque, faucibus erat in, semper mauris. Quisque id purus non dolor pharetra pellentesque. Aliquam a est ultricies, pretium ante at, faucibus quam. Sed lorem nulla, gravida quis convallis eget, fermentum ac augue. Nulla fermentum laoreet urna vitae venenatis. Morbi pellentesque gravida lectus nec fringilla.{enter}Nunc et turpis vel quam volutpat gravida eget non erat.Cras lacinia nec mauris et interdum.Mauris ut finibus mauris.Duis blandit nibh sit amet sapien malesuada, sit amet fermentum neque vulputate.Mauris eu tristique odio, tincidunt eleifend libero.Morbi porta nulla ex, ut pretium lectus sollicitudin nec.Nulla ultrices a arcu eu porta.In a diam suscipit, volutpat ante a, consequat augue.Integer ornare massa eu nunc fringilla, non feugiat neque euismod.Ut quis neque at diam pretium fringilla.Quisque mi ante, lacinia pulvinar mi in, laoreet elementum massa.Aenean eget massa id nulla vestibulum porttitor.Mauris mollis tincidunt metus, et luctus sapien eleifend id.Nullam volutpat ut dui at fringilla.{enter}Maecenas lacinia et nibh et suscipit.Integer eget nulla eget ex commodo fringilla ut tristique lacus.Fusce auctor lectus ut augue imperdiet, ut bibendum orci pellentesque.Nulla sollicitudin elit pharetra ex convallis, sed aliquam ipsum iaculis.Pellentesque scelerisque ipsum eget nibh ornare, at rutrum erat aliquet.Nunc tempus, nulla at volutpat elementum, libero diam fermentum velit, dignissim ornare velit elit nec justo.Donec nec est laoreet, tincidunt est vitae, scelerisque nibh.Curabitur gravida ac mauris sed porta.Proin a velit vel elit dignissim tincidunt vel ut tortor.Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.Suspendisse suscipit vestibulum purus, ut mollis magna pellentesque non.{enter}')
-    }
+    insertData(textToPaste) {
+        cy.wait(6000)
 
-    insertData() {
-        const iframeBadan = cy.get(badan_naskah.htmlBadan).as('htmlBadan')
-        iframeBadan.find('iframe')
-            .its('0.contentDocument.body')
-            .should('be.visible')
-            .then(cy.wrap)
-            .type('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc magna risus, auctor id fermentum nec, tristique sed nulla. Aliquam quis risus turpis. Nam aliquet eros erat, eget ornare mi gravida vel. Nunc id fermentum mauris. Vivamus ornare turpis vel luctus lobortis. Ut et tellus pellentesque, faucibus erat in, semper mauris. Quisque id purus non dolor pharetra pellentesque. Aliquam a est ultricies, pretium ante at, faucibus quam. Sed lorem nulla, gravida quis convallis eget, fermentum ac augue. Nulla fermentum laoreet urna vitae venenatis. Morbi pellentesque gravida lectus nec fringilla.{enter}Nunc et turpis vel quam volutpat gravida eget non erat.Cras lacinia nec mauris et interdum.Mauris ut finibus mauris.Duis blandit nibh sit amet sapien malesuada, sit amet fermentum neque vulputate.Mauris eu tristique odio, tincidunt eleifend libero.Morbi porta nulla ex, ut pretium lectus sollicitudin nec.Nulla ultrices a arcu eu porta.In a diam suscipit, volutpat ante a, consequat augue.Integer ornare massa eu nunc fringilla, non feugiat neque euismod.Ut quis neque at diam pretium fringilla.Quisque mi ante, lacinia pulvinar mi in, laoreet elementum massa.Aenean eget massa id nulla vestibulum porttitor.Mauris mollis tincidunt metus, et luctus sapien eleifend id.Nullam volutpat ut dui at fringilla.{enter}')
+        cy.window().then(win => {
+            win.tinyMCE.activeEditor.setContent(textToPaste)
+            win.tinyMCE.activeEditor.save()
+        })
     }
 
     insertDataProd(textToPaste) {
