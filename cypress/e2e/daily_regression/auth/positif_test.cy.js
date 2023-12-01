@@ -15,7 +15,12 @@ before(() => {
 describe('Login Positif Skenario', () => {
     qase([251, 411],
         it('Login dengan NIP akun yang aktif', () => {
-            loginPage.loginViaV1(user.nip, user.password)
+
+            cy.overrideFeatureToggle({
+                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': true,
+            })
+
+            loginPage.loginViaV1(user.nip, 'xxxxxxx')
             loginPage.directLogin()
             loginPage.logoutV2()
         })
