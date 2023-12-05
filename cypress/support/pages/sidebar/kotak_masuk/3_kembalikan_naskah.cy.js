@@ -71,8 +71,8 @@ export class KembalikanNaskahPage {
         subTitleKonfirmasiKembalikanNaskah.should('contain', 'Naskah ini akan diteruskan ke pihak berikut untuk dilakukan Perbaikan')
     }
 
-    checkBtnPeriksaKembali() {
-        this.inputPerihal()
+    checkBtnPeriksaKembali(inputanKembalikan) {
+        this.inputPerihal(inputanKembalikan)
 
         const btnKembalikanNaskah = cy.get(kembalikan_naskah.btnKembalikanNaskah).as('btnKembalikanNaskah')
         btnKembalikanNaskah.should('contain', 'Kembalikan naskah')
@@ -103,17 +103,17 @@ export class KembalikanNaskahPage {
         inputTembusan.type('Tambahkan tembusan kepada kepala dinas terkait')
     }
 
-    inputPerihal() {
+    inputPerihal(inputanKembalikan) {
         const checkPerihal = cy.get(kembalikan_naskah.checkPerihal).as('checkPerihal')
         checkPerihal.check()
 
         const inputPerihal = cy.get(kembalikan_naskah.inputPerihal).as('inputPerihal')
         inputPerihal.clear()
-            .type('Perbaiki perihal surat')
+            .type(inputanKembalikan)
     }
 
-    kembalikanNaskah() {
-        this.inputPerihal()
+    kembalikanNaskah(inputanKembalikan) {
+        this.inputPerihal(inputanKembalikan)
 
         const btnKembalikanNaskah = cy.get(kembalikan_naskah.btnKembalikanNaskah).as('btnKembalikanNaskah')
         btnKembalikanNaskah.should('contain', 'Kembalikan naskah')

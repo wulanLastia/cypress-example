@@ -12,7 +12,7 @@ module.exports = {
     previewBadan: '[data-cy="surat__badan-surat"]',
     titleBadan: '[data-cy="badan-naskah__title"]',
     previewKaki: '[data-cy="surat__kaki-surat"]',
-    titleKaki: '[data-cy="kaki-surat__title"]',
+    titleKaki: '[data-cy="input-kaki-surat__title"]',
     editFormDefault: '[data-cy="surat-perintah__kepala-surat-preview__dasar--null-state"]',
     konfirmasiKirimNaskah: '[data-cy="dialog__confirmation-submit__button--kirim-naskah"]',
 

@@ -1,0 +1,68 @@
+{
+  "Penandatangan": {
+    "Penandatangan_Atasan": [
+      {
+        "Daftar_Atasan": [
+          {
+            "nama1": "Bey Triadi Machmudin, S.E., M.T.",
+            "nama2": "Dra. Hj. I Gusti Agung Kim Fajar Wiyati Oka, M.Si.",
+            "nama3": "FAJAR LIBRIANTO, S.Si., M.M.",
+            "nama4": "LUDIA ROSEMA DEWI, S.Kom.",
+            "nama5": "ZENAL MUSTOPA, S.Pd.",
+            "nama6": "RADEN ANDHIKA MUHARMANSYAH, ST"
+          }
+        ]
+      }
+    ],
+    "Penandatangan_Atas_Nama": [
+      {
+        "Daftar_Atasan": [
+          {
+            "nama1": "Bey Triadi Machmudin, S.E., M.T.",
+            "nama2": "H. UU RUZHANUL ULUM, SE",
+            "nama3": "Dra. Hj. I Gusti Agung Kim Fajar Wiyati Oka, M.Si.",
+            "nama4": "FAJAR LIBRIANTO, S.Si., M.M.",
+            "nama5": "LUDIA ROSEMA DEWI, S.Kom.",
+            "nama6": "RADEN ANDHIKA MUHARMANSYAH, ST"
+          }
+        ]
+      }
+    ],
+    "Penandatangan_Untuk_Beliau": [
+      {
+        "Daftar_Atasan": [
+          {
+            "nama1": "Dra. Hj. I Gusti Agung Kim Fajar Wiyati Oka, M.Si.",
+            "nama2": "FAJAR LIBRIANTO, S.Si., M.M.",
+            "nama3": "LUDIA ROSEMA DEWI, S.Kom.",
+            "nama4": "ZENAL MUSTOPA, S.Pd.",
+            "nama5": "RADEN ANDHIKA MUHARMANSYAH, ST",
+            "nama6": "Bey Triadi Machmudin, S.E., M.T."
+          }
+        ]
+      }
+    ],
+    "Penandatangan_Untuk_Diri_Sendiri": [
+      {
+        "Data_Penandatangan": [
+          {
+            "nama1": "VITA PUTRI UTAMI, S.Sos., M.I.Kom"
+          }
+        ]
+      }
+    ]
+  },
+
+  "Pemeriksa": {
+    "Daftar_Pemeriksa_Naskah": [
+      {
+        "nama1": "Bey Triadi Machmudin, S.E., M.T.",
+        "nama2": "Dra. Hj. I GUSTI AGUNG KIM FAJAR WIYATI OKA, M.Si.",
+        "nama3": "FAJAR LIBRIANTO, S.Si., M.M.",
+        "nama4": "LUDIA ROSEMA DEWI, S.Kom.",
+        "nama5": "ZENAL MUSTOPA, S.Pd.",
+        "nama6": "RADEN ANDHIKA MUHARMANSYAH, ST"
+      }
+    ]
+  }
+}
