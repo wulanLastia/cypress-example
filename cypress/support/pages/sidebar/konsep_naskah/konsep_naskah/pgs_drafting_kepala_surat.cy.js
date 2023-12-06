@@ -714,65 +714,31 @@ export class DraftingKepalaSuratPage {
         this.aksesFormEditingKepalaSurat()
     }
 
-    validateTujuanSkenario5Prod() {
+    validateTujuanSkenario5Prod(inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6) {
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
         titleTujuan.should('contain', 'Kepada Yth.')
 
-        for (let i = 1; i <= 5; i++) {
-            const addMoreTujuan = cy.get(kepala_surat.addMoreTujuan).as('addMoreTujuan')
-            addMoreTujuan.click()
-        }
+        this.inputTujuanSuratProd1(inputanTujuan1)
 
-        const inputTujuan0 = cy.get(kepala_surat.inputTujuan0).as('inputTujuan0')
-        inputTujuan0.wait(1000)
-            .type('SMOKE TEST DR. IKA MARDIAH')
-            .wait(3000)
-            .type('{enter}')
+        this.clickTambahTujuan()
 
-        cy.wait(3000)
+        this.inputTujuanSuratProd2(inputanTujuan2)
 
-        const inputTujuan1 = cy.get(kepala_surat.inputTujuan1).as('inputTujuan1')
-        inputTujuan1.wait(1000)
-            .type('SMOKE TEST RIZKI HUSTINIASARI')
-            .wait(3000)
-            .type('{enter}')
+        this.clickTambahTujuan()
 
-        cy.wait(3000)
+        this.inputTujuanSuratProd3(inputanTujuan3)
 
-        const inputTujuan2 = cy.get(kepala_surat.inputTujuan2).as('inputTujuan2')
-        inputTujuan2.wait(1000)
-            .type('SMOKE TEST ZUHARIN INSANA')
-            .wait(3000)
-            .type('{enter}')
+        this.clickTambahTujuan()
 
-        cy.wait(3000)
+        this.inputTujuanSuratEksternalProd4(inputanTujuanEksternal4)
 
-        const inputTujuan3 = cy.get(kepala_surat.inputTujuan3).as('inputTujuan3')
-        const uuid3 = () => Cypress._.random(0, 1e6)
-        const id3 = uuid3()
-        const tujuanEks3 = `Test Tujuan Eksternal Automation ${id3}`
+        this.clickTambahTujuan()
 
-        inputTujuan3.type(tujuanEks3)
-            .wait(3000)
-            .type('{enter}')
+        this.inputTujuanSuratEksternalProd5(inputanTujuanEksternal5)
 
-        const inputTujuan4 = cy.get(kepala_surat.inputTujuan4).as('inputTujuan4')
-        const uuid4 = () => Cypress._.random(0, 1e6)
-        const id4 = uuid4()
-        const tujuanEks4 = `Test Tujuan Eksternal Automation ${id4}`
+        this.clickTambahTujuan()
 
-        inputTujuan4.type(tujuanEks4)
-            .wait(3000)
-            .type('{enter}')
-
-        const inputTujuan5 = cy.get(kepala_surat.inputTujuan5).as('inputTujuan5')
-        const uuid5 = () => Cypress._.random(0, 1e6)
-        const id5 = uuid5()
-        const tujuanEks5 = `Test Tujuan Eksternal Automation ${id5}`
-
-        inputTujuan5.type(tujuanEks5)
-            .wait(3000)
-            .type('{enter}')
+        this.inputTujuanSuratEksternalProd6(inputanTujuanEksternal6)
     }
 
     clickTambahTujuan() {
@@ -1223,6 +1189,115 @@ export class DraftingKepalaSuratPage {
                     suggestTujuanLampiranEksternal.contains(assertTujuanLampiranNegatif6, { timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran5.type('{enter}')
+                }
+            })
+    }
+
+    // Tujuan Kepala Surat Internal Eksternal Prod
+    inputTujuanSuratProd1(inputanTujuan1) {
+        cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('checkResponse')
+
+        const inputTujuan = cy.get(kepala_surat.inputTujuan0).as('inputTujuan')
+        inputTujuan.wait(1000)
+            .type(inputanTujuan1)
+
+        cy.wait('@checkResponse', { timeout: 5000 })
+            .then((interception) => {
+                if (interception.response.statusCode === 200) {
+                    const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
+                    suggestInputTujuan.contains(inputanTujuan1, { timeout: 10000 }).should('be.visible')
+
+                    inputTujuan.type('{enter}')
+                }
+            })
+    }
+
+    inputTujuanSuratProd2(inputanTujuan2) {
+        cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('checkResponse')
+
+        const inputTujuan2 = cy.get(kepala_surat.inputTujuan1).as('inputTujuan2')
+        inputTujuan2.wait(1000)
+            .type(inputanTujuan2)
+
+        cy.wait('@checkResponse', { timeout: 5000 })
+            .then((interception) => {
+                if (interception.response.statusCode === 200) {
+                    const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
+                    suggestInputTujuan.contains(inputanTujuan2, { timeout: 10000 }).should('be.visible')
+
+                    inputTujuan2.type('{enter}')
+                }
+            })
+    }
+
+    inputTujuanSuratProd3(inputanTujuan3) {
+        cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('checkResponse')
+
+        const inputTujuan3 = cy.get(kepala_surat.inputTujuan2).as('inputTujuan3')
+        inputTujuan3.wait(1000)
+            .type(inputanTujuan3)
+
+        cy.wait('@checkResponse', { timeout: 5000 })
+            .then((interception) => {
+                if (interception.response.statusCode === 200) {
+                    const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
+                    suggestInputTujuan.contains(inputanTujuan3, { timeout: 10000 }).should('be.visible')
+
+                    inputTujuan3.type('{enter}')
+                }
+            })
+    }
+
+    inputTujuanSuratEksternalProd4(inputanTujuanEksternal4) {
+        cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('checkResponse')
+
+        const inputTujuan3 = cy.get(kepala_surat.inputTujuan3).as('inputTujuan3')
+        inputTujuan3.wait(1000)
+            .type(inputanTujuanEksternal4)
+
+        cy.wait('@checkResponse', { timeout: 5000 })
+            .then((interception) => {
+                if (interception.response.statusCode === 200) {
+                    const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal, { timeout: 5000 }).as('suggestInputTujuanEksternal')
+                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal4, { timeout: 10000 }).should('be.visible')
+
+                    inputTujuan3.type('{enter}')
+                }
+            })
+    }
+
+    inputTujuanSuratEksternalProd5(inputanTujuanEksternal5) {
+        cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('checkResponse')
+
+        const inputTujuan4 = cy.get(kepala_surat.inputTujuan4).as('inputTujuan4')
+        inputTujuan4.wait(1000)
+            .type(inputanTujuanEksternal5)
+
+        cy.wait('@checkResponse', { timeout: 5000 })
+            .then((interception) => {
+                if (interception.response.statusCode === 200) {
+                    const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal, { timeout: 5000 }).as('suggestInputTujuanEksternal')
+                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal5, { timeout: 10000 }).should('be.visible')
+
+                    inputTujuan4.type('{enter}')
+                }
+            })
+    }
+
+    inputTujuanSuratEksternalProd6(inputanTujuanEksternal6) {
+        cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('checkResponse')
+
+        const inputTujuan5 = cy.get(kepala_surat.inputTujuan5).as('inputTujuan5')
+        inputTujuan5.wait(1000)
+            .type(inputanTujuanEksternal6)
+
+        cy.wait('@checkResponse', { timeout: 5000 })
+            .then((interception) => {
+                if (interception.response.statusCode === 200) {
+                    const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal, { timeout: 5000 }).as('suggestInputTujuanEksternal')
+                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal6, { timeout: 10000 }).should('be.visible')
+
+                    inputTujuan5.type('{enter}')
                 }
             })
     }

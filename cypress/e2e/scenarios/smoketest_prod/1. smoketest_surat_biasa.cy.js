@@ -7,6 +7,7 @@ import { PerbaikiNaskahPage } from "../../../support/pages/sidebar/kotak_masuk/6
 import { SetujuiPage } from "../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
 import { KoreksiSuratPage } from "../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
 
+const { faker } = require('@faker-js/faker')
 let createSuratBiasaPage = new CreateSuratBiasaPage()
 let kembalikanNaskahPage = new KembalikanNaskahPage()
 let perbaikiNaskahPage = new PerbaikiNaskahPage()
@@ -15,11 +16,16 @@ let koreksiSuratPage = new KoreksiSuratPage()
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
+let data_temp
 
 beforeEach(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_prod.json').then((data) => {
         user = data
+    })
+
+    cy.fixture('non_cred/kepala_surat/create_data_surat_biasa.json').then((data) => {
+        data_temp = data
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
@@ -37,11 +43,31 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             menuPage.goToKonsepNaskah()
             createSuratBiasaPage.checkDetail()
             createSuratBiasaPage.inputKopSuratProd()
-            createSuratBiasaPage.inputLampiranSurat()
-            createSuratBiasaPage.inputLampiranSurat2()
-            createSuratBiasaPage.inputKakiSuratSkenario3Prod()
-            createSuratBiasaPage.inputKepalaSuratSkenario5Prod()
-            createSuratBiasaPage.inputBadanNaskahSkenarioRegression()
+            createSuratBiasaPage.inputLampiranSurat(faker.lorem.paragraphs(6, '<br/>\n'))
+            createSuratBiasaPage.inputLampiranSurat2(faker.lorem.paragraphs(6, '<br/>\n'))
+            createSuratBiasaPage.inputKakiSuratSkenario3Prod(
+                data_temp.kaki_surat[0].penandatangan_atasan_prod,
+                data_temp.kaki_surat[1].pemeriksa_prod,
+                data_temp.kaki_surat[2].tembusan_internal_prod1,
+                data_temp.kaki_surat[2].tembusan_internal_prod2,
+                data_temp.kaki_surat[2].tembusan_internal_prod3,
+                data_temp.kaki_surat[2].tembusan_eksternal4,
+                data_temp.kaki_surat[2].tembusan_eksternal5,
+                data_temp.kaki_surat[2].tembusan_eksternal6)
+            createSuratBiasaPage.inputKepalaSuratSkenario5Prod(
+                data_temp.kepala_surat[0].tujuan_internal_prod1,
+                data_temp.kepala_surat[0].tujuan_internal_prod2,
+                data_temp.kepala_surat[0].tujuan_internal_prod3,
+                data_temp.kepala_surat[0].tujuan_eksternal4,
+                data_temp.kepala_surat[0].tujuan_eksternal5,
+                data_temp.kepala_surat[0].tujuan_eksternal6,
+                data_temp.kepala_surat[1].lokasi,
+                data_temp.kepala_surat[2].kode_klasifikasi,
+                data_temp.kepala_surat[3].unit_pengolah,
+                data_temp.kepala_surat[4].sifat_surat,
+                data_temp.kepala_surat[5].urgensi_surat,
+                data_temp.kepala_surat[6].perihal6)
+            createSuratBiasaPage.inputBadanNaskahSkenarioRegression(faker.lorem.paragraphs(15, '<br/>\n'))
             createSuratBiasaPage.kirimSurat()
         })
     )
@@ -56,8 +82,8 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             kembalikanNaskahPage.emptyField()
             kembalikanNaskahPage.batalKembalikanNaskah()
             kembalikanNaskahPage.checkHalamanInformasi()
-            kembalikanNaskahPage.checkBtnPeriksaKembali()
-            kembalikanNaskahPage.kembalikanNaskah()
+            kembalikanNaskahPage.checkBtnPeriksaKembali(data_temp.kembalikan[0].kembalikan_perihal)
+            kembalikanNaskahPage.kembalikanNaskah(data_temp.kembalikan[0].kembalikan_perihal)
             cy.wait(3000)
             loginPage.closePopupLandingPage()
         })
@@ -70,7 +96,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             loginPage.directLogin()
 
             perbaikiNaskahPage.goToPerbaikiNaskah()
-            perbaikiNaskahPage.perbaikiNaskah()
+            perbaikiNaskahPage.perbaikiNaskah(data_temp.perbaiki[0].perbaiki_perihal)
         })
     )
 
