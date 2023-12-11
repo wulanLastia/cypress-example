@@ -1,6 +1,7 @@
 const { defineConfig } = require('cypress')
-const { generateFeatureToggleOverrideJWT } = require('./cypress/support/util')
 require('dotenv').config()
+
+const { generateFeatureToggleOverrideJWT } = require('./cypress/support/util')
 
 module.exports = defineConfig({
   projectId: 'rbzy6f',
