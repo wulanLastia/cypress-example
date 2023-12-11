@@ -147,8 +147,8 @@ describe('Drafting Badan Surat Skenario', { testIsolation: false }, () => {
         })
     )
 
-    qase(1743,
-        it('Input Text Numeric List on Untuk Field', () => {
+    qase([1743, 1751],
+        it('Input Text Numeric List on Untuk Field, Check on preview page if user create more than one page', () => {
             cy.wait(3000);
             draftingBadanSuratPerintahPage.inputNumericListTextOnUntuk(
                 testBadanPositive.Untuk[2].Untuk_Numeric_List1, 
