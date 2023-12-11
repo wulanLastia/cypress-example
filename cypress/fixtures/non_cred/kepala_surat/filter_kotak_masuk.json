@@ -1,0 +1,33 @@
+{
+  "filter_sifat": [
+    {
+      "sifat1": "Biasa",
+      "sifat2": "Konfidensial",
+      "sifat3": "Penting",
+      "sifat4": "Rahasia",
+      "sifat5": "Sangat Rahasia"
+    }
+  ],
+  "filter_urgensi": [
+    {
+      "urgensi1": "Biasa",
+      "urgensi2": "Penting",
+      "urgensi3": "Segera",
+      "urgensi4": "Amat Segera"
+    }
+  ],
+  "filter_status": [
+    {
+      "status1": "Belum Direview",
+      "status2": "Belum Ditandatangani",
+      "status3": "Dikembalikan"
+    }
+  ],
+  "filter_jenis_naskah": [
+    {
+      "jenis_naskah1": "Nota Dinas",
+      "jenis_naskah2": "Surat Biasa",
+      "jenis_naskah3": "Surat Perintah"
+    }
+  ]
+}
