@@ -230,33 +230,9 @@ describe('Drafting Badan Surat Skenario', { testIsolation: false }, () => {
 
     qase([1758, 1760],
         it('Cek preview tujuan jika penerima Non ASN, Cek perubahan urutan tujuan penerima Non ASN', () => {
-            const nonASNData1 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[0].nama1[0];
-            const nonASNData2 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[1].nama2[0];
-            const nonASNData3 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[2].nama3[0];
             const nonASNData4 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[3].nama4[0];
             const nonASNData5 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[4].nama5[0];
-            const nonASNData6 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[5].nama6[0];
 
-            // cy.wait(3000)
-            // draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
-            // cy.wait(3000)
-            // draftingBadanSuratPerintahPage.toggleASNandNonASN1()
-            // cy.wait(3000)
-            // draftingBadanSuratPerintahPage.inputandcheckFieldNonASN1st(nonASNData1.Nama, nonASNData1.Pangkat_or_Golongan, nonASNData1.Nomor_Induk_Pegawai, nonASNData1.Jabatan);
-            
-            // cy.wait(3000)
-            // draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
-            // cy.wait(3000)
-            // draftingBadanSuratPerintahPage.toggleASNandNonASN2()
-            // cy.wait(3000)
-            // draftingBadanSuratPerintahPage.inputandcheckFieldNonASN2nd(nonASNData2.Nama, nonASNData2.Pangkat_or_Golongan, nonASNData2.Nomor_Induk_Pegawai, nonASNData2.Jabatan);
-            
-            // cy.wait(3000)
-            // draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
-            // cy.wait(3000)
-            // draftingBadanSuratPerintahPage.toggleASNandNonASN3()
-            // cy.wait(3000)
-            // draftingBadanSuratPerintahPage.inputandcheckFieldNonASN3rd(nonASNData3.Nama, nonASNData3.Pangkat_or_Golongan, nonASNData3.Nomor_Induk_Pegawai, nonASNData3.Jabatan);
             
             cy.wait(3000)
             draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
@@ -272,20 +248,12 @@ describe('Drafting Badan Surat Skenario', { testIsolation: false }, () => {
             cy.wait(3000)
             draftingBadanSuratPerintahPage.inputandcheckFieldNonASN5th(nonASNData5.Nama, nonASNData5.Pangkat_or_Golongan, nonASNData5.Nomor_Induk_Pegawai, nonASNData5.Jabatan);
            
-            // cy.wait(3000)
-            // draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
-            // cy.wait(3000)
-            // draftingBadanSuratPerintahPage.toggleASNandNonASN6()
-            // cy.wait(3000)
-            // draftingBadanSuratPerintahPage.inputandcheckFieldNonASN6th(nonASNData6.Nama, nonASNData6.Pangkat_or_Golongan, nonASNData6.Nomor_Induk_Pegawai, nonASNData6.Jabatan);
-            // cy.wait(3000)
-
             draftingBadanSuratPerintahPage.dragAndDropLastDataToFirstDataASNandNonASN()
         })
     )
 
-    qase(1743,
-        it('Input Text Numeric List on Untuk Field', () => {
+    qase([1743, 1751],
+        it('Input Text Numeric List on Untuk Field, Check on preview page if user create more than one page', () => {
             cy.wait(3000);
             draftingBadanSuratPerintahPage.inputNumericListTextOnUntuk(
                 testBadanPositive.Untuk[2].Untuk_Numeric_List1, 
@@ -305,7 +273,7 @@ describe('Drafting Badan Surat Skenario', { testIsolation: false }, () => {
 
 
 describe('Simpan Surat Perintah', { testIsolation: false }, () => {
-    qase(1762,
+    qase(1860,
         it('Validasi Simpan Surat Perintah', () => {
             cy.wait(3000)
             draftingSuratPerintahPage.simpanNaskah()
