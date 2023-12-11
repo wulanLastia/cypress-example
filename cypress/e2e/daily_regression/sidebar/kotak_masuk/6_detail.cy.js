@@ -26,9 +26,7 @@ beforeEach(() => {
 })
 
 afterEach(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
+    loginPage.logoutV2step2()
 })
 
 describe('Detail Review dan Verifikasi hasil Surat (Kotak Masuk) Skenario', () => {

@@ -24,6 +24,10 @@ before(() => {
     })
 })
 
+after(() => {
+    loginPage.logoutV2step2()
+})
+
 describe('Filter Naskah Kotak Masuk Skenario', { testIsolation: false }, () => {
     qase(97,
         it('Akses menu kotak masuk (Review naskah)', () => {

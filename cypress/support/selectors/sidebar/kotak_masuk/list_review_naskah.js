@@ -7,6 +7,7 @@ module.exports = {
     searchReviewNaskah: '[data-cy="review-naskah__filter-box"]',
     tableReviewNaskah: '[data-cy="review-naskah__table"]',
     btnPreviousPage: '[data-cy="pagination__previous-page"]',
+    tagStatus: '[data-cy="review-naskah__table--status-tag-0"]',
     tagUrgensi: '[data-cy="review-naskah__table--urgency-tag-0"]',
     tagJenisSurat: '[data-cy="review-naskah__table--jenis-surat-0"]',
     tableDataPerihal: '[data-cy="review-naskah__table--perihal-0"]',

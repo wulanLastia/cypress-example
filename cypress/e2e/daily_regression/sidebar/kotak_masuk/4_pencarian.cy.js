@@ -20,12 +20,6 @@ before(() => {
 })
 
 after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
-})
-
-after(() => {
     loginPage.logoutV2step2()
 })
 
