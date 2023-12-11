@@ -9,6 +9,8 @@ export class DraftingSuratPerintahPage {
     gotoKonsepNaskahSuratPerintah() {
         menuPage.goToKonsepNaskah()
 
+        cy.wait(3000)
+
         const buttonSuratPerintah = cy.get(surat_perintah.btnSuratPerintah).as('buttonSuratPerintah')
         buttonSuratPerintah.should('be.visible').and('contain', 'Surat Perintah')
             .click()
@@ -120,11 +122,12 @@ export class DraftingSuratPerintahPage {
     }
 
     aksesBadanNaskah() {
-        const previewBadan = cy.xpath(surat_perintah.previewBadan).as('previewBadan')
-        previewBadan.click(180, 360)
+        const previewBadan = cy.get(surat_perintah.previewBadan).as('previewBadan')
+        previewBadan.scrollIntoView({ensureScrollable: false})
+        previewBadan.click(180, 360, { force: true })
 
         const titleBadan = cy.get(surat_perintah.titleBadan).as('titleBadan')
-        titleBadan.should('contain', 'Badan Naskah')
+        titleBadan.should('contain', 'Badan Surat')
     }
 
     aksesKakiSurat() {
@@ -155,6 +158,11 @@ export class DraftingSuratPerintahPage {
 
         const titleKaki = cy.xpath(surat_perintah.titleKaki).as('titleKaki')
         titleKaki.should('contain', 'Kaki Surat')
+    }
+
+    simpanNaskah() {
+        const btnSimpanNaskah = cy.get(surat_perintah.btnSimpanNaskah).as('btnSimpanNaskah')
+        btnSimpanNaskah.click()
     }
 
     kirimNaskah() {
