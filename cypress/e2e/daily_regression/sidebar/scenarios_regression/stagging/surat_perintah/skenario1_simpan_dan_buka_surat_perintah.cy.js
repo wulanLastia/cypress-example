@@ -1,0 +1,315 @@
+import { qase } from 'cypress-qase-reporter/dist/mocha';
+import { LoginPage } from "../../../../../../support/pages/auth/login.cy"
+import { MenuPage } from "../../../../../../support/pages/sidebar/menu/menu.cy"
+import { DraftingSuratPerintahPage } from "../../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_surat_perintah.cy"
+import { DraftingKopSuratPerintahPage } from "../../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_kop_surat_perintah.cy"
+import { DraftingKepalaSuratPerintahPage } from "../../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/super_drafting_kepala_surat.cy"
+import { DraftingBadanSuratPerintahPage } from "../../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/super_drafting_badan_surat.cy"
+import { DraftingKakiSuratPerintahPage } from "../../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/super_drafting_kaki_surat.cy"
+import { DraftPage } from "../../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/draft.cy"
+
+
+
+let loginPage = new LoginPage()
+let menuPage = new MenuPage()
+let user
+
+let draftingSuratPerintahPage = new DraftingSuratPerintahPage()
+
+let draftingKopSuratPerintahPage = new DraftingKopSuratPerintahPage()
+let draftingKepalaSuratPerintahPage = new DraftingKepalaSuratPerintahPage()
+let draftingBadanSuratPerintahPage = new DraftingBadanSuratPerintahPage()
+let draftingKakiSuratPerintahPage = new DraftingKakiSuratPerintahPage()
+
+let draftPage = new DraftPage()
+
+
+let testKepalaPositive
+let testKepalaNegative
+
+let testBadanPositive
+let testBadanNegative
+
+let testKakiPositive
+
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // Jika terdapat error 'uncaught:exception' pada Headless Mode
+    if (err.message.includes('postMessage')) {
+        return false; // return false digunakan untuk skip error pada Headless Mode
+    }
+
+    // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
+    throw err;
+});
+
+    
+before(() => {
+    cy.then(Cypress.session.clearCurrentSessionData)
+    cy.fixture('cred/credentials_dev.json').then((data) => {
+        user = data
+    })
+        cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+})
+
+
+before(() => {
+    loginPage.loginViaV1(user.nip, user.password)
+    loginPage.directLogin()
+    cy.wait(1000)
+    draftingSuratPerintahPage.gotoKonsepNaskahSuratPerintah()
+
+    cy.wait(3999)
+})
+
+
+before(() => {
+    cy.fixture('non_cred/surat_perintah/kepala_surat/negative/kepala_surat_super_negative.json').then((data) => {
+        testKepalaNegative = data
+    })
+
+    cy.fixture('non_cred/surat_perintah/kepala_surat/positive/kepala_surat_super_positive.json').then((data) => {
+        testKepalaPositive = data
+    })
+
+    cy.fixture('cred/surat_perintah/badan_surat/negative/badan_surat_super_negative.json').then((data) => {
+        testBadanNegative = data
+    })
+
+    cy.fixture('cred/surat_perintah/badan_surat/positive/badan_surat_super_positive.json').then((data) => {
+        testBadanPositive = data
+    })
+
+    cy.fixture('non_cred/surat_perintah/kaki_surat/positive/kaki_surat_super_positive.json').then((data) => {
+        testKakiPositive = data
+    })
+})
+
+
+after(() => {
+    qase(411,
+        loginPage.logoutV2step2()
+    )
+})
+
+
+
+describe('Drafting Kaki Surat Skenario', { testIsolation: false }, () => {
+    qase(1762,
+        it('Akses form editing kaki surat', () => {
+            cy.wait(3000)
+            draftingKakiSuratPerintahPage.aksesFormEditingKakiSurat()
+        })
+    )
+
+    qase([1763, 1909],
+        it('Detail check kaki surat editing form', () => {
+            cy.wait(3000)
+            draftingKakiSuratPerintahPage.checkDetail()
+        })
+    )
+
+    qase([1785, 1769, 1788, 1780],
+        it('Check on preview page after select penandatangan Atasan', () => {
+            cy.wait(3000)
+            draftingKakiSuratPerintahPage.pilihPenandatanganAtasan(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama1)
+            cy.wait(5000)
+            draftingKakiSuratPerintahPage.checkPemeriksaAtasan(testKakiPositive.Pemeriksa.Daftar_Pemeriksa_Naskah[0].nama1)
+            cy.wait(3000)
+        })
+    )
+})
+
+
+describe('Drafting Kop Surat Surat Perintah Skenario', { testIsolation: false }, () => {
+    qase([1395, 1419],
+        it('Akses form editing kop surat (drafting)', () => {
+            draftingKopSuratPerintahPage.aksesFormEditingKopSurat()
+            cy.wait(6000)
+        })
+    )
+
+    qase([1417,1732],
+        it('Cek preview setelah memilih kop Dinas/Badan', () => {
+            draftingKopSuratPerintahPage.checkPreviewDinas()
+        })
+    )
+
+    qase(1416,
+        it('Menutup form editing kop surat', () => {
+            draftingKopSuratPerintahPage.closeKopSurat()
+        })
+    )
+})
+
+
+describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
+    qase(1423,
+        it('Akses form editing kepala surat', () => {
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.aksesFormEditingKepalaSurat()
+        })
+    )
+
+    qase([1457, 1459],
+        it('Cek Field Kode Klasifikasi', () => {
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputKodeKlasifikasi(testKepalaPositive.Kepala_Surat[0].Kode_Klasifikasi)
+        })
+    )
+
+    qase(1737,
+        it('Cek Field Unit Pengolah', () => {
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputUnitPengolah(testKepalaPositive.Kepala_Surat[1].Unit_Pengolah)
+        })
+    )
+
+    qase(1739,
+        it('Cek Dropdown Urgensi', () => {
+            cy.wait(10000)
+            draftingKepalaSuratPerintahPage.validateUrgensi(testKepalaPositive.Kepala_Surat[2].Urgensi_Nota_Dinas)
+        })
+    )
+
+    qase([144, 735, 742],
+        it('Cek Perihal Surat', () => {
+            draftingKepalaSuratPerintahPage.inputPerihal(testKepalaPositive.Kepala_Surat[3].Perihal)
+            cy.wait(3000)
+        })
+    )
+
+    qase(721,
+        it('Input Text Bold on Dasar Field', () => {
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.inputBoldTextOnDasar("{selectall}{backspace}" + testKepalaPositive.Dasar[0].Dasar_Bold)
+        })
+    )
+
+    qase(1425,
+        it('Menutup form kepala naskah', () => {
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.closeKepalaSurat()
+            cy.wait(3000)
+        })
+    )
+})
+
+
+describe('Drafting Badan Surat Skenario', { testIsolation: false }, () => {
+    qase(1755,
+        it('Akses form editing badan surat', () => {
+            cy.wait(3000)
+            draftingBadanSuratPerintahPage.aksesFormEditingBadanSurat()
+        })
+    )
+
+    qase([1757, 1760],
+        it('Cek preview tujuan jika penerima ASN, Cek perubahan urutan tujuan penerima ASN', () => {
+            const ASNData1 = testBadanPositive.Penerima_ASN.Daftar_ASN[3].nama4[0];
+            const ASNData2 = testBadanPositive.Penerima_ASN.Daftar_ASN[4].nama5[0];
+            const ASNData3 = testBadanPositive.Penerima_ASN.Daftar_ASN[5].nama6[0];
+
+            cy.wait(3000)
+            draftingBadanSuratPerintahPage.inputandcheckFieldASN1st(ASNData1.Nama)
+
+            cy.wait(3000)
+            draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
+            cy.wait(3000)
+            draftingBadanSuratPerintahPage.inputandcheckFieldASN2nd(ASNData2.Nama)
+
+            cy.wait(3000)
+            draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
+            cy.wait(3000)
+            draftingBadanSuratPerintahPage.inputandcheckFieldASN3rd(ASNData3.Nama)
+            cy.wait(3000)
+            
+            draftingBadanSuratPerintahPage.dragAndDropFirstToSecondASNandNonASN()
+        })
+    )
+
+    qase([1758, 1760],
+        it('Cek preview tujuan jika penerima Non ASN, Cek perubahan urutan tujuan penerima Non ASN', () => {
+            const nonASNData1 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[0].nama1[0];
+            const nonASNData2 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[1].nama2[0];
+            const nonASNData3 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[2].nama3[0];
+            const nonASNData4 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[3].nama4[0];
+            const nonASNData5 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[4].nama5[0];
+            const nonASNData6 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[5].nama6[0];
+
+            // cy.wait(3000)
+            // draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
+            // cy.wait(3000)
+            // draftingBadanSuratPerintahPage.toggleASNandNonASN1()
+            // cy.wait(3000)
+            // draftingBadanSuratPerintahPage.inputandcheckFieldNonASN1st(nonASNData1.Nama, nonASNData1.Pangkat_or_Golongan, nonASNData1.Nomor_Induk_Pegawai, nonASNData1.Jabatan);
+            
+            // cy.wait(3000)
+            // draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
+            // cy.wait(3000)
+            // draftingBadanSuratPerintahPage.toggleASNandNonASN2()
+            // cy.wait(3000)
+            // draftingBadanSuratPerintahPage.inputandcheckFieldNonASN2nd(nonASNData2.Nama, nonASNData2.Pangkat_or_Golongan, nonASNData2.Nomor_Induk_Pegawai, nonASNData2.Jabatan);
+            
+            // cy.wait(3000)
+            // draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
+            // cy.wait(3000)
+            // draftingBadanSuratPerintahPage.toggleASNandNonASN3()
+            // cy.wait(3000)
+            // draftingBadanSuratPerintahPage.inputandcheckFieldNonASN3rd(nonASNData3.Nama, nonASNData3.Pangkat_or_Golongan, nonASNData3.Nomor_Induk_Pegawai, nonASNData3.Jabatan);
+            
+            cy.wait(3000)
+            draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
+            cy.wait(3000)
+            draftingBadanSuratPerintahPage.toggleASNandNonASN4()
+            cy.wait(3000)
+            draftingBadanSuratPerintahPage.inputandcheckFieldNonASN4th(nonASNData4.Nama, nonASNData4.Pangkat_or_Golongan, nonASNData4.Nomor_Induk_Pegawai, nonASNData4.Jabatan);
+           
+            cy.wait(3000)
+            draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
+            cy.wait(3000)
+            draftingBadanSuratPerintahPage.toggleASNandNonASN5()
+            cy.wait(3000)
+            draftingBadanSuratPerintahPage.inputandcheckFieldNonASN5th(nonASNData5.Nama, nonASNData5.Pangkat_or_Golongan, nonASNData5.Nomor_Induk_Pegawai, nonASNData5.Jabatan);
+           
+            // cy.wait(3000)
+            // draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
+            // cy.wait(3000)
+            // draftingBadanSuratPerintahPage.toggleASNandNonASN6()
+            // cy.wait(3000)
+            // draftingBadanSuratPerintahPage.inputandcheckFieldNonASN6th(nonASNData6.Nama, nonASNData6.Pangkat_or_Golongan, nonASNData6.Nomor_Induk_Pegawai, nonASNData6.Jabatan);
+            // cy.wait(3000)
+
+            draftingBadanSuratPerintahPage.dragAndDropLastDataToFirstDataASNandNonASN()
+        })
+    )
+
+    qase(1743,
+        it('Input Text Numeric List on Untuk Field', () => {
+            cy.wait(3000);
+            draftingBadanSuratPerintahPage.inputNumericListTextOnUntuk(
+                testBadanPositive.Untuk[2].Untuk_Numeric_List1, 
+                testBadanPositive.Untuk[2].Untuk_Numeric_List2, 
+                testBadanPositive.Untuk[2].Untuk_Numeric_List3
+            );
+        })
+    )
+
+    qase(1750,
+        it('Menutup form editing badan naskah', () => {
+            cy.wait(3000)
+            draftingBadanSuratPerintahPage.closeBadanSurat()
+        })
+    )
+})
+
+
+describe('Simpan Surat Perintah', { testIsolation: false }, () => {
+    qase(1762,
+        it('Validasi Simpan Surat Perintah', () => {
+            cy.wait(3000)
+            draftingSuratPerintahPage.simpanNaskah()
+            draftPage.checkDataPertamaNaskahDisimpan()
+        })
+    )
+})
