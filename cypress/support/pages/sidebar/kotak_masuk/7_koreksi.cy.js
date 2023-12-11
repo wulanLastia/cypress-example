@@ -65,6 +65,36 @@ export class KoreksiSuratPage {
             .and('be.visible')
     }
 
+    checkDetailKoreksiSetujui() {
+        const getbtnKoreksi = cy.get(koreksi.getbtnKoreksi).as('getbtnKoreksi')
+        getbtnKoreksi.should('contain', 'Koreksi')
+            .click()
+
+        cy.wait(3000)
+
+        const btnKembaliKoreksi = cy.get(koreksi.btnKembaliKoreksi).as('btnKembaliKoreksi')
+        btnKembaliKoreksi.should('be.visible')
+
+        const titleDetailKoreksi = cy.get(koreksi.titleDetailKoreksi).as('titleDetailKoreksi')
+        titleDetailKoreksi.should('contain', 'Konsep Naskah')
+            .and('be.visible')
+
+        const btnKirimNaskah = cy.get(koreksi.btnKirimNaskah).as('btnKirimNaskah')
+        btnKirimNaskah.should('contain', 'Kirim Naskah')
+            .and('be.visible')
+
+        const previewNaskah = cy.get(koreksi.previewNaskah).as('previewNaskah')
+        previewNaskah.should('be.visible')
+
+        const tabEditNaskah = cy.get(koreksi.tabEditNaskah).as('tabEditNaskah')
+        tabEditNaskah.should('contain', 'Edit Naskah')
+            .and('be.visible')
+
+        const tabRiwayatNaskah = cy.get(koreksi.tabRiwayatNaskah).as('tabRiwayatNaskah')
+        tabRiwayatNaskah.should('contain', 'Riwayat Naskah')
+            .and('be.visible')
+    }
+
     checkDetailKoreksiTandatanganiNotaDinas() {
         cy.wait(5000)
 
@@ -167,11 +197,11 @@ export class KoreksiSuratPage {
     }
 
 
-    koreksiNaskah() {
-        createSuratBiasaPage.inputKoreksiKepalaSurat()
+    koreksiNaskah(inputanKoreksi) {
+        createSuratBiasaPage.inputKoreksiKepalaSurat(inputanKoreksi)
 
-        const btnKoreksiTandatangani = cy.get(koreksi.btnKoreksiTandatangani).as('btnKoreksiTandatangani')
-        btnKoreksiTandatangani.click()
+        const btnKirimNaskah = cy.get(koreksi.btnKirimNaskah).as('btnKirimNaskah')
+        btnKirimNaskah.click()
 
         const popupKonfirmasiKirimNaskah = cy.get(koreksi.popupKonfirmasiKirimNaskah).as('popupKonfirmasiKirimNaskah')
         popupKonfirmasiKirimNaskah.should('be.visible')
