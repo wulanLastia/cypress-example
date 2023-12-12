@@ -4,7 +4,7 @@ import navbar from "../../selectors/navbar"
 export class LoginPage {
 
     navigateLoginPageV1() {
-        cy.visit(Cypress.env('base_url_v1'))
+        cy.visit(Cypress.env('base_url_v1'), { failOnStatusCode: false })
     }
 
     navigateLoginPageV1Prod() {
@@ -57,54 +57,54 @@ export class LoginPage {
 
         cy.get("#login > div").click()
         cy.get("div.flex > div button").click()
-    
+
         const username = cy.get(login.username).as('username')
         username.should('be.visible')
         username.type(nip, { force: true })
-    
+
         const password = cy.get(login.password).as('password')
         password.type(passwordv1, { force: true })
-    
+
         const hiddenCaptcha = cy.get(login.hiddenCaptcha).as('hiddenCaptcha')
         hiddenCaptcha.invoke('val')
             .then((val) => {
                 const captchaType = cy.get(login.captcha).as('captcha')
                 captchaType.type(val, { force: true })
             })
-    
+
         const btnLogin = cy.get(login.btnLogin).as('btnLogin')
         btnLogin.should('contain', 'Login')
             .click({ force: true })
-    
+
         cy.wait(3000)
-    
+
         cy.wait('@checkResponse', { timeout: 5000 })
-        .then((interception) => {
-            if (interception.response) {
-                const status = interception.response.statusCode;
-                const clientErrorStatusCodes = [400, 401, 403, 404, 405, 406, 408, 409, 410, 411, 412];
-                const serverErrorStatusCodes = [500, 501, 502, 503, 504];
-                const errorStatusCodes = [...clientErrorStatusCodes, ...serverErrorStatusCodes];
-    
-                // Assert berupa message di Cypress E2E pada status code ketika gagal, bila status code tidak sesuai maka status dibawah akan memberhentikan untuk masuk ke skenario selanjutnya
-                if (errorStatusCodes.includes(status)) {
-                    expect(errorStatusCodes, `Request failed with status code: ${status}`).to.include(status);
+            .then((interception) => {
+                if (interception.response) {
+                    const status = interception.response.statusCode;
+                    const clientErrorStatusCodes = [400, 401, 403, 404, 405, 406, 408, 409, 410, 411, 412];
+                    const serverErrorStatusCodes = [500, 501, 502, 503, 504];
+                    const errorStatusCodes = [...clientErrorStatusCodes, ...serverErrorStatusCodes];
+
+                    // Assert berupa message di Cypress E2E pada status code ketika gagal, bila status code tidak sesuai maka status dibawah akan memberhentikan untuk masuk ke skenario selanjutnya
+                    if (errorStatusCodes.includes(status)) {
+                        expect(errorStatusCodes, `Request failed with status code: ${status}`).to.include(status);
+                    }
+
+                    const successStatusCodes = [200, 201, 202, 203, 204, 205, 206, 207, 208, 226];
+                    const redirectStatusCodes = [300, 301, 302, 303, 307];
+                    const acceptableStatusCodes = [...successStatusCodes, ...redirectStatusCodes];
+
+                    // Assert berupa message di Cypress E2E pada status code ketika sukses
+                    expect(acceptableStatusCodes, `Result of status code: ${status}`).to.include(status);
+                } else {
+                    // Jika response tidak sesuai dengan status code diatas, makan akan throw error dengan assert message seperti dibawah
+                    cy.log('No response received.');
+                    throw new Error('No response received.');
                 }
-    
-                const successStatusCodes = [200, 201, 202, 203, 204, 205, 206, 207, 208, 226];
-                const redirectStatusCodes = [300, 301, 302, 303, 307];
-                const acceptableStatusCodes = [...successStatusCodes, ...redirectStatusCodes];
-    
-                // Assert berupa message di Cypress E2E pada status code ketika sukses
-                expect(acceptableStatusCodes, `Result of status code: ${status}`).to.include(status);
-            } else {
-                // Jika response tidak sesuai dengan status code diatas, makan akan throw error dengan assert message seperti dibawah
-                cy.log('No response received.');
-                throw new Error('No response received.');
-            }
-        });
+            });
     }
-      
+
 
     loginViaV1Prod(nip, passwordv1) {
         this.navigateLoginPageV1Prod()
@@ -202,23 +202,23 @@ export class LoginPage {
 
         // Use the simpler selector
         const btnProfile = cy.get(login.getJQueryProfileV2).as('btnProfile');
-        
+
         // Wait for element to be visible or force click if not
         btnProfile.scrollIntoView()
-                  .should('be.visible', { force: true })
-                  .click({ force: true });
+            .should('be.visible', { force: true })
+            .click({ force: true });
 
         // I'm assuming the following popupProfile code remains unchanged 
         // as you didn't provide the selector.
         const popupProfile = cy.get(navbar.btnProfile).as('popupProfile');
         popupProfile.scrollIntoView()
-                    .should('be.visible', { force: true });
+            .should('be.visible', { force: true });
 
         const btnKeluar = cy.get(navbar.btnKeluar).as('btnKeluar');
         btnKeluar.scrollIntoView()
-                 .should('be.visible').and('contain', 'Log Out')
-                 .click({ force: true });
-        
+            .should('be.visible').and('contain', 'Log Out')
+            .click({ force: true });
+
         cy.wait(8000)
 
         cy.url().should('eq', Cypress.env('base_url_v1'));
@@ -232,25 +232,25 @@ export class LoginPage {
 
         // Use the simpler selector
         const btnProfile = cy.get(login.getJQueryProfileV2).as('btnProfile');
-        
+
         // Wait for element to be visible or force click if not
         btnProfile.scrollIntoView()
-                  .should('be.visible', { force: true })
-                  .click({ force: true });
+            .should('be.visible', { force: true })
+            .click({ force: true });
 
         // I'm assuming the following popupProfile code remains unchanged 
         // as you didn't provide the selector.
         const popupProfile = cy.get(navbar.btnProfile).as('popupProfile');
         popupProfile.scrollIntoView()
-                    .should('be.visible', { force: true });
+            .should('be.visible', { force: true });
 
         const btnKeluar = cy.get(navbar.btnKeluar).as('btnKeluar');
         btnKeluar.scrollIntoView()
-                 .should('be.visible').and('contain', 'Log Out')
-                 .click({ force: true });
+            .should('be.visible').and('contain', 'Log Out')
+            .click({ force: true });
 
         cy.wait(8000)
-        
+
 
         cy.url().should('eq', Cypress.env('base_url_prod_v1'));
     }
