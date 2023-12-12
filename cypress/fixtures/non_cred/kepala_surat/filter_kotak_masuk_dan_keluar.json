@@ -20,7 +20,8 @@
     {
       "status1": "Belum Direview",
       "status2": "Belum Ditandatangani",
-      "status3": "Dikembalikan"
+      "status3": "Dikembalikan",
+      "status4": "Disetujui"
     }
   ],
   "filter_jenis_naskah": [

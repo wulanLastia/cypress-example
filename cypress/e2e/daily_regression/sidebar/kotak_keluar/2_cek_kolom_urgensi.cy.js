@@ -8,33 +8,31 @@ let menuPage = new MenuPage()
 let loginPage = new LoginPage()
 let user
 
-beforeEach(() => {
-    cy.intercept({ resourceType: /xhr/ }, { log: false })
-})
-
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
+
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
 after(() => {
     loginPage.logoutV2step2()
 })
 
-describe('Pengecekan Kolom Status', { testIsolation: false }, () => {
-    qase(97,
-        it('Akses menu kotak masuk (Review naskah)', () => {
-            loginPage.loginViaV1(user.nipPemeriksa, user.password)
+describe('List Review Naskah Kotak Keluar Skenario', { testIsolation: false }, () => {
+    qase(513,
+        it('Akses halaman kotak keluar review naskah', () => {
+            loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
-            menuPage.goToKotakMasukReviewNaskah()
+            menuPage.goToKotakKeluarReviewNaskah()
         })
     )
 
-    qase([221, 222],
-        it('Cek warna label status', () => {
-            listSuratReviewNaskahPage.checkWarnaLabelStatus()
+    qase([524, 525, 526, 527],
+        it('Pengecekan Kolom Urgensi', () => {
+            listSuratReviewNaskahPage.checkWarnaLabelUrgensi()
         })
     )
 })

@@ -18,14 +18,12 @@ before(() => {
 })
 
 after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
+    loginPage.logoutV2step2()
 })
 
 describe('List Review Naskah Kotak Keluar Skenario', { testIsolation: false }, () => {
-    qase(313,
-        it('Akses menu kotak keluar (Review naskah)', () => {
+    qase(513,
+        it('Akses halaman kotak keluar review naskah', () => {
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
             menuPage.goToKotakKeluarReviewNaskah()
