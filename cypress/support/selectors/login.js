@@ -10,7 +10,7 @@ module.exports = {
     backToV1: '[data-cy="sidebar__v1__dashboard"]',
     closePopupLandingPage: '[data-cy="dialog__welcoming__button--close"]',
     getJQueryProfileV2: "button[tabindex='0']",
-    showHeaderNav: 'header[data-v-c3aea69a]',
+    showHeaderNav: 'header[data-v-dd2902de]',
 
 
     // XPATH
