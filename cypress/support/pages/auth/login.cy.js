@@ -4,7 +4,7 @@ import navbar from "../../selectors/navbar"
 export class LoginPage {
 
     navigateLoginPageV1() {
-        cy.visit('https://devsidebar.digitalservice.id/')
+        cy.visit(Cypress.env('base_url_v1'))
     }
 
     navigateLoginPageV1Prod() {
