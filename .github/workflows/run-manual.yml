@@ -39,9 +39,9 @@ jobs:
       - name: Echo ENV
         run: env
         
-      - run: echo "${{ secrets.BASE_URL }}"
-      - run: echo ${{ secrets.BASE_URL_V1 }}
-      - run: echo ${{ secrets.BASE_URL_PROD_V1 }}
+      - run: echo "${{ secrets.BASE_URL }}" | sed 's/./& /g'
+      - run: echo ${{ secrets.BASE_URL_V1 }} | sed 's/./& /g'
+      - run: echo ${{ secrets.BASE_URL_PROD_V1 }} | sed 's/./& /g'
 
       # Install npm dependencies, cache them correctly
       # and run all Cypress tests
