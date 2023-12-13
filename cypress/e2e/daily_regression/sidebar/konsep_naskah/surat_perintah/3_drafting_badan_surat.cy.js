@@ -29,19 +29,21 @@ before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
+
+
+    cy.fixture('cred/surat_perintah/badan_surat/negative/badan_surat_super_negative.json').then((data) => {
+        testBadanNegative = data
+        })
+
+
+    cy.fixture('cred/surat_perintah/badan_surat/positive/badan_surat_super_positive.json').then((data) => {
+        testBadanPositive = data
+        })
+
     })
     cy.intercept({ resourceType: /xhr/ }, { log: false })
 })
 
-before(() => {
-    cy.fixture('cred/surat_perintah/badan_surat/negative/badan_surat_super_negative.json').then((data) => {
-        testBadanNegative = data
-    })
-
-    cy.fixture('cred/surat_perintah/badan_surat/positive/badan_surat_super_positive.json').then((data) => {
-        testBadanPositive = data
-    })
-})
 
 before(() => {
     loginPage.loginViaV1(user.nip, user.password)
@@ -53,6 +55,7 @@ before(() => {
 
     cy.wait(3999)
 })
+
 
 after(() => {
     qase(411,
@@ -72,12 +75,14 @@ describe('Drafting Badan Surat Skenario', { testIsolation: false }, () => {
 
     qase([1757, 1760],
         it('Cek preview tujuan jika penerima ASN, Cek perubahan urutan tujuan penerima ASN', () => {
+            const ASNData = testBadanPositive.Penerima_ASN.Daftar_ASN[0];
+
             cy.wait(3000)
-            draftingBadanSuratPerintahPage.inputandcheckFieldASN1st(testBadanPositive.Penerima_ASN.Daftar_ASN[0].nama1[0].Nama)
+            draftingBadanSuratPerintahPage.inputandcheckFieldASN1st(ASNData.nama1)
             cy.wait(3000)
             draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
             cy.wait(3000)
-            draftingBadanSuratPerintahPage.inputandcheckFieldASN2nd(testBadanPositive.Penerima_ASN.Daftar_ASN[1].nama2[0].Nama)
+            draftingBadanSuratPerintahPage.inputandcheckFieldASN2nd(ASNData.nama2)
             cy.wait(3000)
             draftingBadanSuratPerintahPage.dragAndDropFirstToSecondASNandNonASN()
         })
