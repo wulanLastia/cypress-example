@@ -60,44 +60,12 @@
       "Untuk_Whitespace_Text": "Contains Tab And NewlinesLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla placerat augue magna, nec pretium ipsum vestibulum posuere. Integer velit odio, suscipit a aliquam ac, tincidunt sed tellus. Donec at tortor dui. Pellentesque sed cursus tortor. Cras tincidunt purus venenatis velit blandit, sed luctus mauris ullamcorper. Nulla elementum neque eu bibendum condimentum."
     }
   ],
-  "Penerima_ASN": [
-    {
-      "nama1": [
-        {
-          "Nama": "Agi Agung Galuh Purwa, S.STP., M.Sc., MPA",
-          "Pangkat_or_Golongan": "Pembina Tingkat I / IV/b",
-          "Nomor_Induk_Pegawai": "198206282001121002",
-          "Jabatan": "Sekretaris"
-        }
-      ]
-    },
-    {
-      "nama2": [
-        {
-          "Nama": "Rizki Hustiniasari, S.T., M.T.",
-          "Pangkat_or_Golongan": "Penata / III/c",
-          "Nomor_Induk_Pegawai": "198402132015032003",
-          "Jabatan": "Kepala UPTD Pusat Layanan Digital Data dan Informasi Geospasial"
-        }
-      ]
-    },
-    {
-      "nama3": [
-        {
-          "Nama": "Dra. Hj. I Gusti Agung Kim Fajar Wiyati Oka, M.Si.",
-          "Pangkat_or_Golongan": "Pembina Utama Muda / IV/c",
-          "Nomor_Induk_Pegawai": "196804041988032014",
-          "Jabatan": "Kepala Dinas Perpustakaan dan Kearsipan Daerah Provinsi Jawa Barat"
-        }
-      ]
-    }
-  ],
   "Penerima_Non_ASN": [
     {
       "nama1": [
         {
           "Nama": "John Doe, S.Kom.",
-          "Pangkat_or_Golongan": "Diamond 1 / Diamond 1",
+          "Pangkat_or_Golongan": "Diamond 1",
           "Nomor_Induk_Pegawai": "081224327394",
           "Jabatan": "Junior QA Engineer"
         }
@@ -107,7 +75,7 @@
       "nama2": [
         {
           "Nama": "Yayan Jatnika, M. Ber.",
-          "Pangkat_or_Golongan": "- / -",
+          "Pangkat_or_Golongan": "-",
           "Nomor_Induk_Pegawai": "14045",
           "Jabatan": "Junior QA Engineer"
         }
@@ -127,7 +95,7 @@
       "nama4": [
         {
           "Nama": "Khidir Karawitah",
-          "Pangkat_or_Golongan": "- / -",
+          "Pangkat_or_Golongan": "-",
           "Nomor_Induk_Pegawai": "14045",
           "Jabatan": "Senior QA Engineer"
         }
@@ -137,7 +105,7 @@
       "nama5": [
         {
           "Nama": "Ismail Ahmad Khan Nabawi",
-          "Pangkat_or_Golongan": "- / -",
+          "Pangkat_or_Golongan": "-",
           "Nomor_Induk_Pegawai": "14045",
           "Jabatan": "Senior QA Engineer"
         }
