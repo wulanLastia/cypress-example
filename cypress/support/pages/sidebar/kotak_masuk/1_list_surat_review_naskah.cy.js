@@ -400,6 +400,28 @@ export class ListSuratReviewNaskahPage {
                                     const tagStatus = cy.get(review_naskah.tagStatus).as('tagStatus')
                                     tagStatus.contains(inputanStatus, { matchCase: false })
                                 })
+                        } else if (inputanStatus === 'Disetujui') {
+                            filterStatus.click()
+
+                            const filterStatusBelumDireview = cy.get(review_naskah.filterStatusBelumDireview).as('filterStatusBelumDireview')
+                            filterStatusBelumDireview.uncheck()
+
+                            const filterStatusBelumDitandatangani = cy.get(review_naskah.filterStatusBelumDitandatangani).as('filterStatusBelumDitandatangani')
+                            filterStatusBelumDitandatangani.uncheck()
+
+                            const filterStatusDisetujui = cy.get(review_naskah.filterStatusDisetujui).as('filterStatusDisetujui')
+                            filterStatusDisetujui.check()
+                                .then(() => {
+                                    const filterStatusDisetujuiLabel = cy.get(review_naskah.filterStatusDisetujuiLabel).as('filterStatusDisetujuiLabel')
+                                    filterStatusDisetujuiLabel.should('be.visible')
+                                        .should('contain', inputanStatus)
+
+                                    const tagStatus = cy.get(review_naskah.tagStatus).as('tagStatus')
+                                    tagStatus.contains(inputanStatus, { matchCase: false })
+                                })
+
+                            const filterStatusDisetujui2 = cy.get(review_naskah.filterStatusDisetujui).as('filterStatusDisetujui')
+                            filterStatusDisetujui2.uncheck()
                         } else {
                             filterStatus.click()
 

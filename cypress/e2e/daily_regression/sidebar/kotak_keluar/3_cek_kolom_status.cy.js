@@ -24,15 +24,15 @@ after(() => {
 })
 
 describe('Pengecekan Kolom Status', { testIsolation: false }, () => {
-    qase(97,
-        it('Akses menu kotak masuk (Review naskah)', () => {
+    qase(513,
+        it('Akses halaman kotak keluar review naskah', () => {
             loginPage.loginViaV1(user.nipPemeriksa, user.password)
             loginPage.directLogin()
-            menuPage.goToKotakMasukReviewNaskah()
+            menuPage.goToKotakKeluarReviewNaskah()
         })
     )
 
-    qase([221, 222],
+    qase([517, 518],
         it('Cek warna label status', () => {
             listSuratReviewNaskahPage.checkWarnaLabelStatus()
         })

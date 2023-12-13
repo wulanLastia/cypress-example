@@ -89,4 +89,51 @@ export class ReviewVerifikasiSuratPage {
         tableReviewSurat.contains('td', 'BELUM DITANDATANGANI')
             .click()
     }
+
+    checkDetailSuratKeluar() {
+        cy.wait(6000)
+
+        cy.readFile(perihalNaskah).then((object) => {
+            const titlePerihalNaskah = object.titlePerihal
+
+            const tableReviewSurat = cy.get(review_verifikasi.tableReviewSurat).as('tableReviewSurat')
+            tableReviewSurat.contains('td', titlePerihalNaskah)
+                .click()
+        })
+
+        const btnKembali = cy.xpath(review_verifikasi.btnKembali).as('btnKembali')
+        btnKembali.should('have.class', 'flex')
+            .and('be.visible')
+
+        const titleSurat = cy.xpath(review_verifikasi.titleSurat).as('titleSurat')
+        titleSurat.should('contain', 'Review Naskah')
+            .and('be.visible')
+
+        const jenisNaskah = cy.xpath(review_verifikasi.jenisNaskah).as('jenisNaskah')
+        jenisNaskah.should('be.visible')
+
+        const labelUrgensi = cy.xpath(review_verifikasi.labelUrgensi).as('labelUrgensi')
+        labelUrgensi.then(($urg) => {
+            if ($urg.attr('style').includes('background-color: rgb(244, 67, 54)')) {
+                const textUrgensi = cy.xpath(review_verifikasi.textUrgensi).as('textUrgensi')
+                textUrgensi.should('contain', 'Amat Segera')
+                    .and('be.visible')
+            } else if ($urg.attr('style').includes('background-color: rgb(255, 208, 38)')) {
+                const textUrgensi = cy.xpath(review_verifikasi.textUrgensi).as('textUrgensi')
+                textUrgensi.should('contain', 'Segera')
+                    .and('be.visible')
+            } else if ($urg.attr('style').includes('background-color: rgb(22, 167, 92)')) {
+                const textUrgensi = cy.xpath(review_verifikasi.textUrgensi).as('textUrgensi')
+                textUrgensi.should('contain', 'Biasa')
+                    .and('be.visible')
+            } else {
+                const textUrgensi = cy.xpath(review_verifikasi.textUrgensi).as('textUrgensi')
+                textUrgensi.should('contain', 'Penting')
+                    .and('be.visible')
+            }
+        })
+
+        const previewSurat = cy.xpath(review_verifikasi.previewSurat).as('previewSurat')
+        previewSurat.should('not.to.be.empty')
+    }
 }
