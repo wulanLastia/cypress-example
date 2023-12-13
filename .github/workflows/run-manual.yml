@@ -35,55 +35,48 @@ jobs:
       # adapted from https://stackoverflow.com/a/76943682/2496217 & https://stackoverflow.com/a/61827163/2496217
       - name: Get current datedate as env variable
         run: echo "DATETIME=$(TZ='Asia/Jakarta' date +'%Y-%m-%d_%H:%M:%S')" >> $GITHUB_ENV
-      
-      - name: Echo ENV
-        run: env
-        
-      - run: echo "${{ secrets.BASE_URL }}" | sed 's/./& /g'
-      - run: echo ${{ secrets.BASE_URL_V1 }} | sed 's/./& /g'
-      - run: echo ${{ secrets.BASE_URL_PROD_V1 }} | sed 's/./& /g'
 
       # Install npm dependencies, cache them correctly
       # and run all Cypress tests
-      # - name: Cypress run
-      #   uses: cypress-io/github-action@v5
-      #   continue-on-error: true
-      #   with:
-      #     # sesuaikan
-      #     browser: chrome
-      #     record: true
-      #     spec: ${{ inputs.spec_file }}
-      #     tag: 'manual_trigger'
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        continue-on-error: true
+        with:
+          # sesuaikan
+          browser: chrome
+          record: true
+          spec: ${{ inputs.spec_file }}
+          tag: 'manual_trigger'
 
-      #   # sesuaikan kalau ada env lain
-      #   env:
-      #     # override cypress binary cache location. ref: https://docs.cypress.io/guides/references/advanced-installation#Binary-cache
-      #     # latest solution from https://github.com/cypress-io/cypress-docker-images/issues/560#issuecomment-1121774167
-      #     CYPRESS_CACHE_FOLDER: "${GITHUB_WORKSPACE}/.cypress-cache"
-      #     # pass the Cypress Cloud record key as an environment variable
-      #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-      #     # pass GitHub token to allow accurately detecting a build vs a re-run build
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     # pass the project ID from the secrets through environment variable
-      #     # CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
-      #     # 1: staging
-      #     QASE_REPORT: 1
-      #     QASE_RUN_NAME: "${{ env.DATETIME }} - ${{ inputs.run_name }}"
-      #     QASE_API_TOKEN: ${{ secrets.QASE_API_TOKEN }}
-      #     # settings for cloud.cypress.io
-      #     COMMIT_INFO_MESSAGE: "${{ env.DATETIME }} - ${{ inputs.run_name }}"
-      #     COMMIT_INFO_AUTHOR: "${{ github.triggering_actor }}"
-      #     COMMIT_INFO_EMAIL: "jds@example.com"
+        # sesuaikan kalau ada env lain
+        env:
+          # override cypress binary cache location. ref: https://docs.cypress.io/guides/references/advanced-installation#Binary-cache
+          # latest solution from https://github.com/cypress-io/cypress-docker-images/issues/560#issuecomment-1121774167
+          CYPRESS_CACHE_FOLDER: "${GITHUB_WORKSPACE}/.cypress-cache"
+          # pass the Cypress Cloud record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # pass the project ID from the secrets through environment variable
+          # CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          # 1: staging
+          QASE_REPORT: 1
+          QASE_RUN_NAME: "${{ env.DATETIME }} - ${{ inputs.run_name }}"
+          QASE_API_TOKEN: ${{ secrets.QASE_API_TOKEN }}
+          # settings for cloud.cypress.io
+          COMMIT_INFO_MESSAGE: "${{ env.DATETIME }} - ${{ inputs.run_name }}"
+          COMMIT_INFO_AUTHOR: "${{ github.triggering_actor }}"
+          COMMIT_INFO_EMAIL: "jds@example.com"
           
-      #     BASE_URL: ${{ secrets.BASE_URL }}
-      #     BASE_URL_V1: ${{ secrets.BASE_URL_V1 }}
-      #     BASE_URL_PROD_V1: ${{ secrets.BASE_URL_PROD_V1 }}
-      #     BASE_URL_PROD_V2: ${{ secrets.BASE_URL_PROD_V2 }}
-      #     BASE_URL_API_V1: ${{ secrets.BASE_URL_API_V1 }}
-      #     BASE_URL_API_V2: ${{ secrets.BASE_URL_API_V2 }}
+          BASE_URL: ${{ secrets.BASE_URL }}
+          BASE_URL_V1: ${{ secrets.BASE_URL_V1 }}
+          BASE_URL_PROD_V1: ${{ secrets.BASE_URL_PROD_V1 }}
+          BASE_URL_PROD_V2: ${{ secrets.BASE_URL_PROD_V2 }}
+          BASE_URL_API_V1: ${{ secrets.BASE_URL_API_V1 }}
+          BASE_URL_API_V2: ${{ secrets.BASE_URL_API_V2 }}
           
-      #     # Unleash override env vars:
-      #     # in base64 format
-      #     CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY: ${{ secrets.CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY }}
-      #     # used algo name: RS256, EdDSA, HS256, etc
-      #     CYPRESS_UNLEASH_OVERRIDE_KEY_ALGORITHM: ${{ secrets.CYPRESS_UNLEASH_OVERRIDE_KEY_ALGORITHM }}
+          # Unleash override env vars:
+          # in base64 format
+          CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY: ${{ secrets.CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY }}
+          # used algo name: RS256, EdDSA, HS256, etc
+          CYPRESS_UNLEASH_OVERRIDE_KEY_ALGORITHM: ${{ secrets.CYPRESS_UNLEASH_OVERRIDE_KEY_ALGORITHM }}
