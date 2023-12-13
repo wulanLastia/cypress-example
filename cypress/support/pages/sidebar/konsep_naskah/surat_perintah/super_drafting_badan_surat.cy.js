@@ -5,6 +5,8 @@ const draftingSuratPerintahPage = new DraftingSuratPerintahPage()
 
 const filename = "cypress/fixtures/non_cred/badan_surat/badan_surat_temp_data.json"
 const getJSONRequestFileCreateSuratPerintah = "cypress/fixtures/non_cred/surat_perintah/preview_results_super.json"
+const CREDFileCreateSuratPerintah = "cypress/fixtures/cred/surat_perintah/badan_surat/positive/badan_surat_super_positive.json"
+
 
 
 
@@ -480,66 +482,69 @@ export class DraftingBadanSuratPerintahPage {
      inputandcheckFieldASN1st(dataASN1) {
         const titleFieldASN = cy.get(badan_surat.titlePenerima1).as('titleFieldASN');
         titleFieldASN.should('contain', 'Penerima 1');
-    
-        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
+            
+        cy.readFile(CREDFileCreateSuratPerintah).then((data) => {
             if (!data.Penerima_ASN) {
-                data.Penerima_ASN = [{}];
+                data.Penerima_ASN = { Daftar_ASN: [], Preview_ASN: [] }; // Initialize the structure correctly
             }
     
-            const inputPenerimaASN1 = cy.get(badan_surat.fieldPenerimaASN1).as('inputPenerimaASN1');
-            inputPenerimaASN1
-                .focus()  // Ensure the field is focused
-                .type(dataASN1) // Add a delay to ensure the application registers each keystroke
-                .wait(3000)
-                .type('{enter}')
-                .wait(6000) // Separate enter keystroke
-                .then(() => {
-                    // Scraping preview data
-                    cy.get(badan_surat.namaASN1).invoke('text').then((nama) => {
-                        cy.get(badan_surat.pangkatgolonganASN1).invoke('text').then((golongan) => {
-                            cy.get(badan_surat.nipASN1).invoke('text').then((nip) => {
-                                cy.get(badan_surat.jabatanASN1).invoke('text').then((jabatan) => {
-                                    const asnData = {
-                                        "Nama": nama.trim(),
-                                        "Pangkat_or_Golongan": golongan.trim(),
-                                        "Nomor_Induk_Pegawai": nip.trim(),
-                                        "Jabatan": jabatan.trim()
-                                    };
-    
-                                    // Check if 'nama1' exists and update or add new data
-                                    const nama1Index = data.Penerima_ASN.findIndex(asn => asn.hasOwnProperty('nama1'));
-                                    if (nama1Index !== -1) {
-                                        data.Penerima_ASN[nama1Index].nama1 = [asnData];
-                                    } else {
-                                        data.Penerima_ASN.push({ "nama1": [asnData] });
-                                    }
-    
-                                    // Write the updated data object back to the JSON file
-                                    cy.writeFile(getJSONRequestFileCreateSuratPerintah, data); 
-                                });
+        const inputPenerimaASN1 = cy.get(badan_surat.fieldPenerimaASN1).as('inputPenerimaASN1');
+        inputPenerimaASN1
+            .focus()  // Ensure the field is focused
+            .type(dataASN1) // Add a delay to ensure the application registers each keystroke
+            .wait(3000)
+            .type('{enter}')
+            .wait(6000) // Separate enter keystroke
+            .then(() => {
+                // Scraping preview data
+                cy.get(badan_surat.namaASN1).invoke('text').then((nama) => {
+                    cy.get(badan_surat.pangkatgolonganASN1).invoke('text').then((golongan) => {
+                        cy.get(badan_surat.nipASN1).invoke('text').then((nip) => {
+                            cy.get(badan_surat.jabatanASN1).invoke('text').then((jabatan) => {
+                                const asnData = {
+                                    "Nama": nama.trim(),
+                                    "Pangkat_or_Golongan": golongan.trim(),
+                                    "Nomor_Induk_Pegawai": nip.trim(),
+                                    "Jabatan": jabatan.trim()
+                                };
+
+                                // Check if 'nama1' exists and update or add new data
+                                const nama1Index = data.Penerima_ASN.Preview_ASN.findIndex(asn => asn.hasOwnProperty('nama1'));
+                                if (nama1Index !== -1) {
+                                    data.Penerima_ASN.Preview_ASN[nama1Index].nama1 = [asnData];
+                                } else {
+                                    data.Penerima_ASN.Preview_ASN.push({ "nama1": [asnData] });
+                                }
+
+                                // Write the updated data object back to the JSON file
+                                cy.writeFile(CREDFileCreateSuratPerintah, data); 
                             });
                         });
                     });
                 });
-        });        
+            });
+    });        
+
         
         // Check the preview
         cy.wait(5000);
     
         // Read from the JSON file for preview check
-        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((previewData) => {
+        cy.readFile(CREDFileCreateSuratPerintah).then((previewData) => {
+            const ASNData1 = previewData.Penerima_ASN.Preview_ASN[0].nama1[0];
+        
             // Assertions for preview content based on JSON data
             const namaASN1Preview = cy.get(badan_surat.namaASN1).as('namaASN1Preview');
-            namaASN1Preview.should('contain', previewData.Penerima_ASN[0].nama1[0].Nama);
+            namaASN1Preview.should('contain', ASNData1.Nama);
     
             const pangkatgolonganASN1Preview = cy.get(badan_surat.pangkatgolonganASN1).as('pangkatgolonganASN1Preview');
-            pangkatgolonganASN1Preview.should('contain', previewData.Penerima_ASN[0].nama1[0].Pangkat_or_Golongan);
+            pangkatgolonganASN1Preview.should('contain', ASNData1.Pangkat_or_Golongan);
     
             const nipASN1Preview = cy.get(badan_surat.nipASN1).as('nipASN1Preview');
-            nipASN1Preview.should('contain', previewData.Penerima_ASN[0].nama1[0].Nomor_Induk_Pegawai);
+            nipASN1Preview.should('contain', ASNData1.Nomor_Induk_Pegawai);
     
             const jabatanASN1Preview = cy.get(badan_surat.jabatanASN1).as('jabatanASN1Preview');
-            jabatanASN1Preview.should('contain', previewData.Penerima_ASN[0].nama1[0].Jabatan);
+            jabatanASN1Preview.should('contain', ASNData1.Jabatan);
         });
     }
 
@@ -553,66 +558,69 @@ export class DraftingBadanSuratPerintahPage {
     inputandcheckFieldASN2nd(dataASN2) {
         const titleFieldASN = cy.get(badan_surat.titlePenerima2).as('titleFieldASN');
         titleFieldASN.should('contain', 'Penerima 2');
-    
-        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
+
+        cy.readFile(CREDFileCreateSuratPerintah).then((data) => {
             if (!data.Penerima_ASN) {
-                data.Penerima_ASN = [];
+                data.Penerima_ASN = { Daftar_ASN: [], Preview_ASN: [] }; // Initialize the structure correctly
             }
     
-            const inputPenerimaASN2 = cy.get(badan_surat.fieldPenerimaASN2).as('inputPenerimaASN2');
-            inputPenerimaASN2
-                .focus()  // Ensure the field is focused
-                .type(dataASN2) // Add a delay to ensure the application registers each keystroke
-                .wait(3000)
-                .type('{enter}')
-                .wait(6000) // Separate enter keystroke
-                .then(() => {
-                    // Scraping preview data
-                    cy.get(badan_surat.namaASN2).invoke('text').then((nama) => {
-                        cy.get(badan_surat.pangkatgolonganASN2).invoke('text').then((golongan) => {
-                            cy.get(badan_surat.nipASN2).invoke('text').then((nip) => {
-                                cy.get(badan_surat.jabatanASN2).invoke('text').then((jabatan) => {
-                                    const asnData = {
-                                        "Nama": nama.trim(),
-                                        "Pangkat_or_Golongan": golongan.trim(),
-                                        "Nomor_Induk_Pegawai": nip.trim(),
-                                        "Jabatan": jabatan.trim()
-                                    };
-    
-                                    // Check if 'nama2' exists and update or add new data
-                                    const nama2Index = data.Penerima_ASN.findIndex(asn => asn.hasOwnProperty('nama2'));
-                                    if (nama2Index !== -1) {
-                                        data.Penerima_ASN[nama2Index].nama2 = [asnData];
-                                    } else {
-                                        data.Penerima_ASN.push({ "nama2": [asnData] });
-                                    }
-    
-                                    // Write the updated data object back to the JSON file
-                                    cy.writeFile(getJSONRequestFileCreateSuratPerintah, data); 
-                                });
+        const inputPenerimaASN2 = cy.get(badan_surat.fieldPenerimaASN2).as('inputPenerimaASN2');
+        inputPenerimaASN2
+            .focus()  // Ensure the field is focused
+            .type(dataASN2) // Add a delay to ensure the application registers each keystroke
+            .wait(3000)
+            .type('{enter}')
+            .wait(6000) // Separate enter keystroke
+            .then(() => {
+                // Scraping preview data
+                cy.get(badan_surat.namaASN2).invoke('text').then((nama) => {
+                    cy.get(badan_surat.pangkatgolonganASN2).invoke('text').then((golongan) => {
+                        cy.get(badan_surat.nipASN2).invoke('text').then((nip) => {
+                            cy.get(badan_surat.jabatanASN2).invoke('text').then((jabatan) => {
+                                const asnData = {
+                                    "Nama": nama.trim(),
+                                    "Pangkat_or_Golongan": golongan.trim(),
+                                    "Nomor_Induk_Pegawai": nip.trim(),
+                                    "Jabatan": jabatan.trim()
+                                };
+
+                                // Check if 'nama2' exists and update or add new data
+                                const nama2Index = data.Penerima_ASN.Preview_ASN.findIndex(asn => asn.hasOwnProperty('nama2'));
+                                if (nama2Index !== -1) {
+                                    data.Penerima_ASN.Preview_ASN[nama2Index].nama2 = [asnData];
+                                } else {
+                                    data.Penerima_ASN.Preview_ASN.push({ "nama2": [asnData] });
+                                }
+
+                                // Write the updated data object back to the JSON file
+                                cy.writeFile(CREDFileCreateSuratPerintah, data); 
                             });
                         });
                     });
                 });
-        });   
-             
-        // Check the preview
-        cy.wait(5000);
+            });
+    });        
+
     
-        // Read from the JSON file for preview check
-        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((previewData) => {
-            // Assertions for preview content based on JSON data
-            const namaASN2Preview = cy.get(badan_surat.namaASN2).as('namaASN2Preview');
-            namaASN2Preview.should('contain', previewData.Penerima_ASN[1].nama2[0].Nama);
+    // Check the preview
+    cy.wait(5000);
+
+    // Read from the JSON file for preview check
+    cy.readFile(CREDFileCreateSuratPerintah).then((previewData) => {
+        const ASNData2 = previewData.Penerima_ASN.Preview_ASN[1].nama2[0];
     
-            const pangkatgolonganASN2Preview = cy.get(badan_surat.pangkatgolonganASN2).as('pangkatgolonganASN2Preview');
-            pangkatgolonganASN2Preview.should('contain', previewData.Penerima_ASN[1].nama2[0].Pangkat_or_Golongan);
-    
-            const nipASN2Preview = cy.get(badan_surat.nipASN2).as('nipASN2Preview');
-            nipASN2Preview.should('contain', previewData.Penerima_ASN[1].nama2[0].Nomor_Induk_Pegawai);
-    
-            const jabatanASN2Preview = cy.get(badan_surat.jabatanASN2).as('jabatanASN2Preview');
-            jabatanASN2Preview.should('contain', previewData.Penerima_ASN[1].nama2[0].Jabatan);
+        // Assertions for preview content based on JSON data
+        const namaASN2Preview = cy.get(badan_surat.namaASN2).as('namaASN2Preview');
+        namaASN2Preview.should('contain', ASNData2.Nama);
+
+        const pangkatgolonganASN2Preview = cy.get(badan_surat.pangkatgolonganASN2).as('pangkatgolonganASN2Preview');
+        pangkatgolonganASN2Preview.should('contain', ASNData2.Pangkat_or_Golongan);
+
+        const nipASN2Preview = cy.get(badan_surat.nipASN2).as('nipASN2Preview');
+        nipASN2Preview.should('contain', ASNData2.Nomor_Induk_Pegawai);
+
+        const jabatanASN2Preview = cy.get(badan_surat.jabatanASN2).as('jabatanASN2Preview');
+        jabatanASN2Preview.should('contain', ASNData2.Jabatan);
         });
     }
 
@@ -620,66 +628,69 @@ export class DraftingBadanSuratPerintahPage {
     inputandcheckFieldASN3rd(dataASN3) {
         const titleFieldASN = cy.get(badan_surat.titlePenerima3).as('titleFieldASN');
         titleFieldASN.should('contain', 'Penerima 3');
-    
-        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
+
+        cy.readFile(CREDFileCreateSuratPerintah).then((data) => {
             if (!data.Penerima_ASN) {
-                data.Penerima_ASN = [];
+                data.Penerima_ASN = { Daftar_ASN: [], Preview_ASN: [] }; // Initialize the structure correctly
             }
     
-            const inputPenerimaASN3 = cy.get(badan_surat.fieldPenerimaASN3).as('inputPenerimaASN3');
-            inputPenerimaASN3
-                .focus()  // Ensure the field is focused
-                .type(dataASN3) // Add a delay to ensure the application registers each keystroke
-                .wait(3000)
-                .type('{enter}')
-                .wait(6000) // Separate enter keystroke
-                .then(() => {
-                    // Scraping preview data
-                    cy.get(badan_surat.namaASN3).invoke('text').then((nama) => {
-                        cy.get(badan_surat.pangkatgolonganASN3).invoke('text').then((golongan) => {
-                            cy.get(badan_surat.nipASN3).invoke('text').then((nip) => {
-                                cy.get(badan_surat.jabatanASN3).invoke('text').then((jabatan) => {
-                                    const asnData = {
-                                        "Nama": nama.trim(),
-                                        "Pangkat_or_Golongan": golongan.trim(),
-                                        "Nomor_Induk_Pegawai": nip.trim(),
-                                        "Jabatan": jabatan.trim()
-                                    };
-    
-                                    // Check if 'nama3' exists and update or add new data
-                                    const nama3Index = data.Penerima_ASN.findIndex(asn => asn.hasOwnProperty('nama3'));
-                                    if (nama3Index !== -1) {
-                                        data.Penerima_ASN[nama3Index].nama3 = [asnData];
-                                    } else {
-                                        data.Penerima_ASN.push({ "nama3": [asnData] });
-                                    }
-    
-                                    // Write the updated data object back to the JSON file
-                                    cy.writeFile(getJSONRequestFileCreateSuratPerintah, data); 
-                                });
+        const inputPenerimaASN3 = cy.get(badan_surat.fieldPenerimaASN3).as('inputPenerimaASN3');
+        inputPenerimaASN3
+            .focus()  // Ensure the field is focused
+            .type(dataASN3) // Add a delay to ensure the application registers each keystroke
+            .wait(3000)
+            .type('{enter}')
+            .wait(6000) // Separate enter keystroke
+            .then(() => {
+                // Scraping preview data
+                cy.get(badan_surat.namaASN3).invoke('text').then((nama) => {
+                    cy.get(badan_surat.pangkatgolonganASN3).invoke('text').then((golongan) => {
+                        cy.get(badan_surat.nipASN3).invoke('text').then((nip) => {
+                            cy.get(badan_surat.jabatanASN3).invoke('text').then((jabatan) => {
+                                const asnData = {
+                                    "Nama": nama.trim(),
+                                    "Pangkat_or_Golongan": golongan.trim(),
+                                    "Nomor_Induk_Pegawai": nip.trim(),
+                                    "Jabatan": jabatan.trim()
+                                };
+
+                                // Check if 'nama3' exists and update or add new data
+                                const nama3Index = data.Penerima_ASN.Preview_ASN.findIndex(asn => asn.hasOwnProperty('nama3'));
+                                if (nama3Index !== -1) {
+                                    data.Penerima_ASN.Preview_ASN[nama3Index].nama3 = [asnData];
+                                } else {
+                                    data.Penerima_ASN.Preview_ASN.push({ "nama3": [asnData] });
+                                }
+
+                                // Write the updated data object back to the JSON file
+                                cy.writeFile(CREDFileCreateSuratPerintah, data); 
                             });
                         });
                     });
                 });
-        });   
-             
-        // Check the preview
-        cy.wait(5000);
+            });
+    });        
+
     
-        // Read from the JSON file for preview check
-        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((previewData) => {
-            // Assertions for preview content based on JSON data
-            const namaASN3Preview = cy.get(badan_surat.namaASN3).as('namaASN3Preview');
-            namaASN3Preview.should('contain', previewData.Penerima_ASN[2].nama3[0].Nama);
+    // Check the preview
+    cy.wait(5000);
+
+    // Read from the JSON file for preview check
+    cy.readFile(CREDFileCreateSuratPerintah).then((previewData) => {
+        const ASNData3 = previewData.Penerima_ASN.Preview_ASN[2].nama3[0];
     
-            const pangkatgolonganASN3Preview = cy.get(badan_surat.pangkatgolonganASN3).as('pangkatgolonganASN3Preview');
-            pangkatgolonganASN3Preview.should('contain', previewData.Penerima_ASN[2].nama3[0].Pangkat_or_Golongan);
-    
-            const nipASN3Preview = cy.get(badan_surat.nipASN3).as('nipASN3Preview');
-            nipASN3Preview.should('contain', previewData.Penerima_ASN[2].nama3[0].Nomor_Induk_Pegawai);
-    
-            const jabatanASN3Preview = cy.get(badan_surat.jabatanASN3).as('jabatanASN3Preview');
-            jabatanASN3Preview.should('contain', previewData.Penerima_ASN[2].nama3[0].Jabatan);
+        // Assertions for preview content based on JSON data
+        const namaASN3Preview = cy.get(badan_surat.namaASN3).as('namaASN3Preview');
+        namaASN3Preview.should('contain', ASNData3.Nama);
+
+        const pangkatgolonganASN3Preview = cy.get(badan_surat.pangkatgolonganASN3).as('pangkatgolonganASN3Preview');
+        pangkatgolonganASN3Preview.should('contain', ASNData3.Pangkat_or_Golongan);
+
+        const nipASN3Preview = cy.get(badan_surat.nipASN3).as('nipASN3Preview');
+        nipASN3Preview.should('contain', ASNData3.Nomor_Induk_Pegawai);
+
+        const jabatanASN3Preview = cy.get(badan_surat.jabatanASN3).as('jabatanASN3Preview');
+        jabatanASN3Preview.should('contain', ASNData3.Jabatan);
         });
     }
 
