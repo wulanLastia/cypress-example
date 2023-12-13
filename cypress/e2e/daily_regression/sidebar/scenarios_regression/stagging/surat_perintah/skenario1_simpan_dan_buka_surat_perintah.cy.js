@@ -25,10 +25,8 @@ let draftPage = new DraftPage()
 
 
 let testKepalaPositive
-let testKepalaNegative
 
 let testBadanPositive
-let testBadanNegative
 
 let testKakiPositive
 
@@ -64,16 +62,8 @@ before(() => {
 
 
 before(() => {
-    cy.fixture('non_cred/surat_perintah/kepala_surat/negative/kepala_surat_super_negative.json').then((data) => {
-        testKepalaNegative = data
-    })
-
     cy.fixture('non_cred/surat_perintah/kepala_surat/positive/kepala_surat_super_positive.json').then((data) => {
         testKepalaPositive = data
-    })
-
-    cy.fixture('cred/surat_perintah/badan_surat/negative/badan_surat_super_negative.json').then((data) => {
-        testBadanNegative = data
     })
 
     cy.fixture('cred/surat_perintah/badan_surat/positive/badan_surat_super_positive.json').then((data) => {
@@ -206,22 +196,20 @@ describe('Drafting Badan Surat Skenario', { testIsolation: false }, () => {
 
     qase([1757, 1760],
         it('Cek preview tujuan jika penerima ASN, Cek perubahan urutan tujuan penerima ASN', () => {
-            const ASNData1 = testBadanPositive.Penerima_ASN.Daftar_ASN[3].nama4[0];
-            const ASNData2 = testBadanPositive.Penerima_ASN.Daftar_ASN[4].nama5[0];
-            const ASNData3 = testBadanPositive.Penerima_ASN.Daftar_ASN[5].nama6[0];
+            const ASNData = testBadanPositive.Penerima_ASN.Daftar_ASN[0];
 
             cy.wait(3000)
-            draftingBadanSuratPerintahPage.inputandcheckFieldASN1st(ASNData1.Nama)
-
-            cy.wait(3000)
-            draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
-            cy.wait(3000)
-            draftingBadanSuratPerintahPage.inputandcheckFieldASN2nd(ASNData2.Nama)
+            draftingBadanSuratPerintahPage.inputandcheckFieldASN1st(ASNData.nama1)
 
             cy.wait(3000)
             draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
             cy.wait(3000)
-            draftingBadanSuratPerintahPage.inputandcheckFieldASN3rd(ASNData3.Nama)
+            draftingBadanSuratPerintahPage.inputandcheckFieldASN2nd(ASNData.nama2)
+
+            cy.wait(3000)
+            draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
+            cy.wait(3000)
+            draftingBadanSuratPerintahPage.inputandcheckFieldASN3rd(ASNData.nama3)
             cy.wait(3000)
             
             draftingBadanSuratPerintahPage.dragAndDropFirstToSecondASNandNonASN()
