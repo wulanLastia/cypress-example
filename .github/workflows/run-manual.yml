@@ -35,6 +35,10 @@ jobs:
       # adapted from https://stackoverflow.com/a/76943682/2496217 & https://stackoverflow.com/a/61827163/2496217
       - name: Get current datedate as env variable
         run: echo "DATETIME=$(TZ='Asia/Jakarta' date +'%Y-%m-%d_%H:%M:%S')" >> $GITHUB_ENV
+      
+      - name: Echo ENV
+        - run: env
+        - run: echo $BASE_URL_V1
 
       # Install npm dependencies, cache them correctly
       # and run all Cypress tests
