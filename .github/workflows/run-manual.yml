@@ -6,7 +6,7 @@ on:
       spec_file:
         description: 'Path to spec file'
         required: true
-        default: 'cypress/e2e/daily_regression/sidebar/konsep_naskah/surat_biasa/penomoran_otomatis.cy.js'
+        default: 'cypress/e2e/daily_regression/auth/positif_test.cy.js'
         type: string
       run_name:
         description: 'Name of the run to be appended with run time. Suggested to include tester name'
