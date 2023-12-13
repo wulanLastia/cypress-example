@@ -37,8 +37,10 @@ jobs:
         run: echo "DATETIME=$(TZ='Asia/Jakarta' date +'%Y-%m-%d_%H:%M:%S')" >> $GITHUB_ENV
       
       - name: Echo ENV
-        - run: env
-        - run: echo $BASE_URL_V1
+        run: env
+        
+      - name: Echo Base URL
+        run: echo $BASE_URL_V1
 
       # Install npm dependencies, cache them correctly
       # and run all Cypress tests
