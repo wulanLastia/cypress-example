@@ -1,6 +1,6 @@
 module.exports = {
     // GET
-    titleKepalaSurat: '[data-cy="kepala-surat__title"]',
+    titleKepalaSurat: '[data-cy="input-kepala-surat__title"]',
     closeKepalaSurat: '[data-cy="input-kepala-surat__close-button"]',
     titleTempatPenulisan: '[data-cy="input-kepala-surat__tempat-penulisan__title"]',
     inputTempatPenulisan: '[data-cy="input-kepala-surat__tempat-penulisan__input"]',

@@ -19,16 +19,16 @@ module.exports = {
     inputTujuanLampiran: '[data-cy="kepala-surat__tujuan__lampiran__input"]',
     btnBuatTujuanSuratDiLampiran: '[data-cy="kepala-surat__tujuan__lampiran__add-button"]',
     btnUbahPenerimaSuratLampiran: '[data-cy="lampiran__tujuan-surat__title"]',
-    addMoreTujuanLampiran: '[data-cy="lampiran-tujuan-surat__add-button"]',
+    addMoreTujuanLampiran: '[data-cy="input-lampiran-tujuan-surat__tujuan__button--add"]',
     deleteTujuanLampiran0: '[data-cy="kepala-surat__tujuan__select-option__delete-icon0"]',
     titleNamaTujuanLampiran1: '[data-cy="lampiran__tujuan-surat__label--0"]',
     titleNamaTujuanLampiran2: '[data-cy="lampiran__tujuan-surat__label--1"]',
     titleNamaTujuanLampiran3: '[data-cy="lampiran__tujuan-surat__label--2"]',
-    closeLampiranKepalaSurat: '[data-cy="lampiran-tujuan-surat__close-button"]',
+    closeLampiranKepalaSurat: '[data-cy="input-lampiran-tujuan__button--close"]',
 
     labelTembusan: '[data-cy="kepala-surat__nota-dinas__tembusan__title"]',
     inputTembusan0: '[data-cy="kepala-surat__nota-dinas__tembusan__select-option__custom-input0"]',
-    inputTembusan1:'[data-cy="kepala-surat__nota-dinas__tembusan__select-option__custom-input1"]',
+    inputTembusan1: '[data-cy="kepala-surat__nota-dinas__tembusan__select-option__custom-input1"]',
     addMoreTembusan: '[data-cy="kepala-surat__nota-dinas__tembusan__add-button"]',
 
     titleKodeKlasifikasi: '[data-cy="kepala-surat__nota-dinas__kode-klasifikasi__title"]',
@@ -70,18 +70,18 @@ module.exports = {
     scrapNamaJabatanTembusan1: '[data-cy="surat__kepala-surat__tembusan--item-0"]',
 
     labelErrorMessageTujuan: '[data-cy="kepala-surat__tujuan__error-message"]',
-    
+
     // XPATH
     radio1: '[data-cy="radio-button-0"]',
     labelRadio1: '[data-cy="radio-label-0"]',
     radio2: '[data-cy="radio-button-1"]',
     labelRadio2: '[data-cy="radio-label-1"]',
-    inputTujuanLampiran0: '[data-cy="lampiran-tujuan-surat__select-option__custom-input__0"]',
-    inputTujuanLampiran1: '[data-cy="lampiran-tujuan-surat__select-option__custom-input__1"]',
-    inputTujuanLampiran2: '[data-cy="lampiran-tujuan-surat__select-option__custom-input__2"]',
-    inputTujuanLampiran3: '[data-cy="lampiran-tujuan-surat__select-option__custom-input__3"]',
-    inputTujuanLampiran4: '[data-cy="lampiran-tujuan-surat__select-option__custom-input__4"]',
-    inputTujuanLampiran5: '[data-cy="lampiran-tujuan-surat__select-option__custom-input__5"]',
+    inputTujuanLampiran0: '[data-cy="input-lampiran-tujuan__tujuan__select-option__custom-input-0"]',
+    inputTujuanLampiran1: '[data-cy="input-lampiran-tujuan__tujuan__select-option__custom-input-1"]',
+    inputTujuanLampiran2: '[data-cy="input-lampiran-tujuan__tujuan__select-option__custom-input-2"]',
+    inputTujuanLampiran3: '[data-cy="input-lampiran-tujuan__tujuan__select-option__custom-input-3"]',
+    inputTujuanLampiran4: '[data-cy="input-lampiran-tujuan__tujuan__select-option__custom-input-4"]',
+    inputTujuanLampiran5: '[data-cy="input-lampiran-tujuan__tujuan__select-option__custom-input-5"]',
 
     btnkonfirmasiPopupPenomoran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[2]/div[1]/div[1]/div[2]/button[2]',
     xpathTabelPenomoran1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[1]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[2]',
