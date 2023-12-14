@@ -111,5 +111,33 @@
         }
       ]
     }
-  ]
+  ],
+  "Penerima_ASN": {
+    "Preview_ASN": [
+      {
+        "nama1": [
+          {
+            "Nama": "Bey Triadi Machmudin, S.E., M.T.",
+            "Jabatan": "Gubernur Jawa Barat"
+          }
+        ]
+      },
+      {
+        "nama2": [
+          {
+            "Nama": "H. Uu Ruzhanul Ulum, SE",
+            "Jabatan": "Wakil Gubernur Jawa Barat"
+          }
+        ]
+      },
+      {
+        "nama3": [
+          {
+            "Nama": "Dr. Eni Rohyani, S.H., M.Hum",
+            "Jabatan": "Sekretaris Daerah Provinsi Jawa Barat"
+          }
+        ]
+      }
+    ]
+  }
 }
