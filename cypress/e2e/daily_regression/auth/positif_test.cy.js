@@ -10,17 +10,16 @@ before(() => {
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': true,
+    })
 })
 
 describe('Login Positif Skenario', () => {
     qase([251, 411],
         it('Login dengan NIP akun yang aktif', () => {
-
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': true,
-            })
-
-            loginPage.loginViaV1(user.nip, 'xxxxxxx')
+            loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
             loginPage.logoutV2()
         })

@@ -10,11 +10,8 @@ module.exports = {
     backToV1: '[data-cy="sidebar__v1__dashboard"]',
     closePopupLandingPage: '[data-cy="dialog__welcoming__button--close"]',
     getJQueryProfileV2: "button[tabindex='0']",
-    showHeaderNav: 'header[data-v-c3aea69a]',
-
-
-    // XPATH
-    alertSalah: '/html[1]/body[1]/section[1]/div[1]/div[2]/form[1]/div[1]/div[1]',
+    showHeaderNav: 'header[data-v-dd2902de]',
+    alertSalah: '[data-cy="login__alert-failed"]',
 
     // SIMULATE V2 STAGING
     btnLoginSso: '/html[1]/body[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/form[1]/div[1]/button[1]',
