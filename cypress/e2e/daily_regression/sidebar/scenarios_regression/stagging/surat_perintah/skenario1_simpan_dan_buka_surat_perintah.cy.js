@@ -66,7 +66,7 @@ before(() => {
         testKepalaPositive = data
     })
 
-    cy.fixture('cred/surat_perintah/badan_surat/positive/badan_surat_super_positive.json').then((data) => {
+    cy.fixture('non_cred/surat_perintah/badan_surat/positive/badan_surat_super_positive.json').then((data) => {
         testBadanPositive = data
     })
 

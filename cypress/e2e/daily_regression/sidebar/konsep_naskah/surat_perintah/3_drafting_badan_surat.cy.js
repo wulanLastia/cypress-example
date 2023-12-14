@@ -31,12 +31,12 @@ before(() => {
         user = data
 
 
-    cy.fixture('cred/surat_perintah/badan_surat/negative/badan_surat_super_negative.json').then((data) => {
+    cy.fixture('non_cred/surat_perintah/badan_surat/negative/badan_surat_super_negative.json').then((data) => {
         testBadanNegative = data
         })
 
 
-    cy.fixture('cred/surat_perintah/badan_surat/positive/badan_surat_super_positive.json').then((data) => {
+    cy.fixture('non_cred/surat_perintah/badan_surat/positive/badan_surat_super_positive.json').then((data) => {
         testBadanPositive = data
         })
 
