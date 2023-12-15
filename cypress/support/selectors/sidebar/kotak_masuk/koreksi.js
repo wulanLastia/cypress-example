@@ -1,7 +1,7 @@
 module.exports = {
     // GET
     getbtnKoreksi: '[data-cy="button--correction"]',
-    popupKonfirmasiKirimNaskah: '[data-cy="confirmation-submit"]',
+    popupKonfirmasiKirimNaskah: '[data-cy="dialog__confirmation-submit"]',
     getpopupKonfirmasiTandatanganiNaskah: '[data-cy="dialog__signing-naskah"]',
     btnTandaTanganiDraftSurat: '[data-cy="button--signing"]',
     inputPassphrase: '[data-cy="dialog__signing-naskah__input--passphrase"]',

@@ -6,7 +6,7 @@ on:
       spec_file:
         description: 'Path to spec file'
         required: true
-        default: 'cypress/e2e/daily_regression/sidebar/konsep_naskah/surat_biasa/penomoran_otomatis.cy.js'
+        default: 'cypress/e2e/daily_regression/auth/positif_test.cy.js'
         type: string
       run_name:
         description: 'Name of the run to be appended with run time. Suggested to include tester name'
@@ -67,9 +67,16 @@ jobs:
           COMMIT_INFO_MESSAGE: "${{ env.DATETIME }} - ${{ inputs.run_name }}"
           COMMIT_INFO_AUTHOR: "${{ github.triggering_actor }}"
           COMMIT_INFO_EMAIL: "jds@example.com"
+          
+          BASE_URL: ${{ secrets.BASE_URL }}
+          BASE_URL_V1: ${{ secrets.BASE_URL_V1 }}
+          BASE_URL_PROD_V1: ${{ secrets.BASE_URL_PROD_V1 }}
+          BASE_URL_PROD_V2: ${{ secrets.BASE_URL_PROD_V2 }}
+          BASE_URL_API_V1: ${{ secrets.BASE_URL_API_V1 }}
+          BASE_URL_API_V2: ${{ secrets.BASE_URL_API_V2 }}
+          
           # Unleash override env vars:
           # in base64 format
           CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY: ${{ secrets.CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY }}
           # used algo name: RS256, EdDSA, HS256, etc
           CYPRESS_UNLEASH_OVERRIDE_KEY_ALGORITHM: ${{ secrets.CYPRESS_UNLEASH_OVERRIDE_KEY_ALGORITHM }}
-

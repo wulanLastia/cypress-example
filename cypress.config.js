@@ -1,6 +1,7 @@
 const { defineConfig } = require('cypress')
-const { generateFeatureToggleOverrideJWT } = require('./cypress/support/util')
 require('dotenv').config()
+
+const { generateFeatureToggleOverrideJWT } = require('./cypress/support/util')
 
 module.exports = defineConfig({
   projectId: 'rbzy6f',
@@ -37,7 +38,8 @@ module.exports = defineConfig({
       base_url_prod_v2: process.env.BASE_URL_PROD_V2,
       base_url_prod_v1: process.env.BASE_URL_PROD_V1,
       base_url_api_v1: process.env.BASE_URL_API_V1,
-      base_url_api_v2: process.env.BASE_URL_API_V2
+      base_url_api_v2: process.env.BASE_URL_API_V2,
+      base_url_api_prod_v2: process.env.BASE_URL_API_PROD_V2
     },
 
     testIsolation: true,

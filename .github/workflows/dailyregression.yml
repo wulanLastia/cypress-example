@@ -61,9 +61,16 @@ jobs:
           COMMIT_INFO_MESSAGE: "${{ env.DATETIME }} - Run github action automation"
           COMMIT_INFO_AUTHOR: "${{ github.triggering_actor }}"
           COMMIT_INFO_EMAIL: "jds@example.com"
+
+          BASE_URL: ${{ secrets.BASE_URL }}
+          BASE_URL_V1: ${{ secrets.BASE_URL_V1 }}
+          BASE_URL_PROD_V1: ${{ secrets.BASE_URL_PROD_V1 }}
+          BASE_URL_PROD_V2: ${{ secrets.BASE_URL_PROD_V2 }}
+          BASE_URL_API_V1: ${{ secrets.BASE_URL_API_V1 }}
+          BASE_URL_API_V2: ${{ secrets.BASE_URL_API_V2 }}
+
           # Unleash override env vars:
           # in base64 format
           CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY: ${{ secrets.CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY }}
           # used algo name: RS256, EdDSA, HS256, etc
           CYPRESS_UNLEASH_OVERRIDE_KEY_ALGORITHM: ${{ secrets.CYPRESS_UNLEASH_OVERRIDE_KEY_ALGORITHM }}
-

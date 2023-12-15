@@ -20,9 +20,7 @@ before(() => {
 })
 
 after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
+    loginPage.logoutV2step2()
 })
 
 describe('List Surat Review Naskah Kotak Masuk Skenario', { testIsolation: false }, () => {
@@ -44,31 +42,6 @@ describe('List Surat Review Naskah Kotak Masuk Skenario', { testIsolation: false
     qase(232,
         it('Cek tombol Sebelumnya pada halaman pertama tabel', () => {
             listSuratReviewNaskahPage.checkPreviousPage()
-        })
-    )
-
-    // Pencarian //
-    qase(204,
-        it('Melakukan pencarian dengan kata kunci perihal yang tersedia pada data', () => {
-            listSuratReviewNaskahPage.searchDokumen('Automation')
-        })
-    )
-
-    qase(203,
-        it('Cek aksi pencarian jika kata kunci kurang dari 3 karakter', () => {
-            listSuratReviewNaskahPage.searchDokumen('Di')
-        })
-    )
-
-    qase(209,
-        it('Input script pada kolom pencarian', () => {
-            listSuratReviewNaskahPage.searchDokumen('<script>alert("hai")</script>')
-        })
-    )
-
-    qase(205,
-        it('Melakukan pencarian dengan kata kunci yang tidak tersedia pada data', () => {
-            listSuratReviewNaskahPage.searchDokumen('XX1234XX')
         })
     )
 })

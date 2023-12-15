@@ -43,7 +43,10 @@
       "assert_tujuan_lampiran_html6": "blinkHello World 7blink",
       "tujuan_lampiran_xss": "'-prompt()-'",
       "assert_tujuan_lampiran_xss": "prompt()",
-      "tujuan_lampiran_whitespace": "{shift}{enter}"
+      "tujuan_lampiran_whitespace": "{shift}{enter}",
+      "tujuan_internal_prod1": "SMOKE TEST DR. IKA MARDIAH",
+      "tujuan_internal_prod2": "SMOKE TEST RIZKI HUSTINIASARI",
+      "tujuan_internal_prod3": "SMOKE TEST ZUHARIN INSANA"
     },
     {
       "lokasi": "Tempat",
@@ -101,10 +104,12 @@
   "kaki_surat": [
     {
       "penandatangan_diri_sendiri": "VITA PUTRI UTAMI, S.Sos., M.I.Kom",
-      "penandatangan_atasan1": "Dra. Hj. I GUSTI AGUNG"
+      "penandatangan_atasan1": "Dra. Hj. I GUSTI AGUNG",
+      "penandatangan_atasan_prod": "SMOKE TEST 1 Dra. Hj. I GUSTI AGUNG"
     },
     {
-      "pemeriksa1": "FAJAR LIBRIANTO, S.Si., M.M."
+      "pemeriksa1": "FAJAR LIBRIANTO, S.Si., M.M.",
+      "pemeriksa_prod": "SMOKE TEST FAJAR LIBRIANTO"
     },
     {
       "tembusan_eksternal1": "Tembusan Eksternal 1",
@@ -115,7 +120,10 @@
       "tembusan_eksternal6": "Tembusan Eksternal 6",
       "tembusan_internal1": "Bey Triadi Machmudin, S.E., M.T.",
       "tembusan_internal2": "Dr. IKA MARDIAH",
-      "tembusan_internal3": "RIZKI HUSTINIASARI"
+      "tembusan_internal3": "RIZKI HUSTINIASARI",
+      "tembusan_internal_prod1": "SMOKE TEST DR. IKA MARDIAH",
+      "tembusan_internal_prod2": "SMOKE TEST RIZKI HUSTINIASARI",
+      "tembusan_internal_prod3": "SMOKE TEST ZUHARIN INSANA"
     }
   ]
 }
