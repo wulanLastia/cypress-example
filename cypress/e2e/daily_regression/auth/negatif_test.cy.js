@@ -10,6 +10,10 @@ beforeEach(() => {
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+    })
 })
 
 describe('Login Negatif Skenario', () => {

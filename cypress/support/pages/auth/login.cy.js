@@ -53,7 +53,6 @@ export class LoginPage {
     loginViaV1(nip, passwordv1) {
         cy.intercept('POST', Cypress.env('base_url_api_v1')).as('checkResponse')
 
-
         this.navigateLoginPageV1()
 
         cy.get("#login > div").click()
@@ -260,9 +259,9 @@ export class LoginPage {
     // ALERT
 
     alertGagalLogin() {
-        const alertSalah = cy.xpath(login.alertSalah).as('alertSalah')
+        const alertSalah = cy.get(login.alertSalah).as('alertSalah')
         alertSalah.should('be.visible')
-            .should('contain', 'Username atau password Anda salah.')
+            .should('contain', 'Username atau password Anda salah')
     }
 
     alertFailedNipKurang() {
