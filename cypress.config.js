@@ -1,4 +1,6 @@
 const { defineConfig } = require('cypress')
+const webpackPreprocessor = require('@cypress/webpack-preprocessor');
+const cypressWebpackConfig = require('./cypressWebpackConfig');
 require('dotenv').config()
 
 const { generateFeatureToggleOverrideJWT } = require('./cypress/support/util')
@@ -30,6 +32,10 @@ module.exports = defineConfig({
           return generateFeatureToggleOverrideJWT(toggles, expirationTime)
         }
       })
+      on('file:preprocessor', webpackPreprocessor({
+        webpackOptions: cypressWebpackConfig,
+        watchOptions: {},
+      }));
     },
 
     env: {
