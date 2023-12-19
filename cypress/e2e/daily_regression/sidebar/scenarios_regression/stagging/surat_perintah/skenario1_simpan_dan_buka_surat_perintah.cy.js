@@ -1,12 +1,12 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../../../support/pages/sidebar/menu/menu.cy"
-import { DraftingSuratPerintahPage } from "../../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_surat_perintah.cy"
-import { DraftingKopSuratPerintahPage } from "../../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_kop_surat_perintah.cy"
-import { DraftingKepalaSuratPerintahPage } from "../../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/super_drafting_kepala_surat.cy"
-import { DraftingBadanSuratPerintahPage } from "../../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/super_drafting_badan_surat.cy"
-import { DraftingKakiSuratPerintahPage } from "../../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/super_drafting_kaki_surat.cy"
-import { DraftPage } from "../../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/draft.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { MenuPage } from "@pages/sidebar/menu/menu.cy"
+import { DraftingSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_surat_perintah.cy"
+import { DraftingKopSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_kop_surat_perintah.cy"
+import { DraftingKepalaSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat_perintah/super_drafting_kepala_surat.cy"
+import { DraftingBadanSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat_perintah/super_drafting_badan_surat.cy"
+import { DraftingKakiSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat_perintah/super_drafting_kaki_surat.cy"
+import { DraftPage } from "@pages/sidebar/konsep_naskah/konsep_naskah/draft.cy"
 
 
 

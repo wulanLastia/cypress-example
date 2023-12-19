@@ -1,5 +1,5 @@
-import konsep_naskah from "../../../../selectors/sidebar/konsep_naskah/konsep_naskah"
-import surat_perintah from "../../../../selectors/sidebar/konsep_naskah/surat_perintah/drafting_surat_perintah"
+import konsep_naskah from "@selectors/sidebar/konsep_naskah/konsep_naskah"
+import surat_perintah from "@selectors/sidebar/konsep_naskah/surat_perintah/drafting_surat_perintah"
 import { MenuPage } from "../../menu/menu.cy"
 
 const menuPage = new MenuPage()
