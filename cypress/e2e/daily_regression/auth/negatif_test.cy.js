@@ -10,15 +10,15 @@ beforeEach(() => {
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+    })
 })
 
 describe('Login Negatif Skenario', () => {
     qase(252,
         it('Input NIP selain angka', () => {
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-            })
-
             loginPage.loginViaV1(user.nipAbjad, user.password)
             loginPage.alertGagalLogin()
         })
@@ -26,10 +26,6 @@ describe('Login Negatif Skenario', () => {
 
     qase(249,
         it('Login dengan NIP kurang dari 18 karakter', () => {
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-            })
-
             loginPage.loginViaV1(user.nipKurang, user.password)
             loginPage.alertGagalLogin()
         })
