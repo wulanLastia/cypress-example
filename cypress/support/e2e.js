@@ -27,3 +27,6 @@ import 'cypress-real-events/support'
 
 // Using faker command
 require('@faker-js/faker')
+
+// Using cypress-drag-drop
+import '@4tw/cypress-drag-drop'
