@@ -3,5 +3,10 @@
     {
       "kembalikan_perihal": "Perbaiki perihal surat"
     }
+  ],
+  "perbaiki": [
+    {
+      "perbaiki_perihal": " Perbaiki"
+    }
   ]
 }
