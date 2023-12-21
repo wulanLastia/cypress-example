@@ -2,11 +2,13 @@ import review_verifikasi_surat from "../../../selectors/sidebar/kotak_masuk/revi
 import perbaiki from "../../../selectors/sidebar/kotak_masuk/perbaiki"
 import { CreateSuratBiasaPage } from "../konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
 import { UpdateNotaDinasPage } from "../konsep_naskah/nota_dinas/pgs_update_nota_dinas.cy.js"
+import { DraftingKepalaSuratPerintahPage } from "../konsep_naskah/surat_perintah/super_drafting_kepala_surat.cy"
 import { MenuPage } from "../menu/menu.cy"
 
 const menuPage = new MenuPage()
 const createSuratBiasaPage = new CreateSuratBiasaPage()
 const updateNotaDinasPage = new UpdateNotaDinasPage()
+const draftingKepalaSuratPerintahPage = new DraftingKepalaSuratPerintahPage()
 const perihalNaskah = "cypress/fixtures/non_cred/kepala_surat/kepala_surat_temp_data.json"
 
 export class PerbaikiNaskahPage {
@@ -50,7 +52,7 @@ export class PerbaikiNaskahPage {
     }
 
     checkDetail() {
-        const btnKembali = cy.get(perbaiki.btnKembali).as('btnKembali')
+        const btnKembali = cy.get(perbaiki.btnKembaliDetail).as('btnKembali')
         btnKembali.should('be.visible')
 
         const titleHeaderPerbaikiNaskah = cy.get(perbaiki.titleHeaderPerbaikiNaskah).as('titleHeaderPerbaikiNaskah')
@@ -58,8 +60,7 @@ export class PerbaikiNaskahPage {
             .and('be.visible')
 
         const titleHeaderJenisNaskah = cy.get(perbaiki.titleHeaderJenisNaskah).as('titleHeaderJenisNaskah')
-        titleHeaderJenisNaskah.should('contain', 'Surat Biasa')
-            .and('be.visible')
+        titleHeaderJenisNaskah.should('be.visible')
 
         const btnEditPerbaikiNaskah = cy.get(perbaiki.btnEditPerbaikiNaskah).as('btnEditPerbaikiNaskah')
         btnEditPerbaikiNaskah.should('contain', 'Edit Naskah')
@@ -92,7 +93,7 @@ export class PerbaikiNaskahPage {
     }
 
     batalPerbaikiNaskah() {
-        const btnKembali = cy.get(perbaiki.btnKembali).as('btnKembali')
+        const btnKembali = cy.get(perbaiki.btnKembaliDetail).as('btnKembali')
         btnKembali.should('be.visible')
             .click()
 
@@ -149,6 +150,25 @@ export class PerbaikiNaskahPage {
         btnKirimPerbaikiNaskah.click()
 
         cy.wait(3000)
+
+        const popupKonfirmasiKirimNaskah = cy.get(perbaiki.popupKonfirmasiKirimNaskah).as('popupKonfirmasiKirimNaskah')
+        popupKonfirmasiKirimNaskah.should('be.visible')
+
+        const btnKonfirmasiKirimNaskah = cy.get(perbaiki.btnKonfirmasiKirimNaskah).as('btnKonfirmasiKirimNaskah')
+        btnKonfirmasiKirimNaskah.should('contain', 'Kirim naskah')
+            .click()
+    }
+
+    perbaikiNaskahSuratPerintah(inputanPerbaiki) {
+        cy.wait(6000)
+
+        const getPreviewKepalaSuratPerintah = cy.get(perbaiki.getPreviewKepalaSuratPerintah).as('getPreviewKepalaSuratPerintah')
+        getPreviewKepalaSuratPerintah.click(180, 240, { force: true })
+
+        draftingKepalaSuratPerintahPage.inputPerihal(inputanPerbaiki)
+
+        const btnKirimPerbaikiNaskahSuratPerintah = cy.get(perbaiki.btnKirimPerbaikiNaskahSuratPerintah).as('btnKirimPerbaikiNaskahSuratPerintah')
+        btnKirimPerbaikiNaskahSuratPerintah.click()
 
         const popupKonfirmasiKirimNaskah = cy.get(perbaiki.popupKonfirmasiKirimNaskah).as('popupKonfirmasiKirimNaskah')
         popupKonfirmasiKirimNaskah.should('be.visible')
