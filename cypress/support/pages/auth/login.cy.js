@@ -55,9 +55,6 @@ export class LoginPage {
 
         this.navigateLoginPageV1()
 
-        cy.get("#login > div").click()
-        cy.get("div.flex > div button").click()
-
         const username = cy.get(login.username).as('username')
         username.should('be.visible')
         username.type(nip, { force: true })
