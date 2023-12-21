@@ -7,11 +7,17 @@ let listSuratReviewNaskahKeluarPage = new ListSuratReviewNaskahKeluarPage()
 let menuPage = new MenuPage()
 let loginPage = new LoginPage()
 let user
+let data_filter
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
+    })
+
+    cy.fixture('non_cred/kepala_surat/filter_kotak_masuk_dan_keluar.json').then((data) => {
+        data_filter = data
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
@@ -38,13 +44,13 @@ describe('List Review Naskah Kotak Keluar Skenario', { testIsolation: false }, (
 
     qase(324,
         it('Cek hasil pencarian Tujuan pada kotak keluar review naskah', () => {
-            listSuratReviewNaskahKeluarPage.checkSearchResultsTujuanKotakKeluar()
+            listSuratReviewNaskahKeluarPage.checkSearchResultsTujuanKotakKeluar(data_filter.search_kotak_keluar[0].search_tujuan)
         })
     )
 
     qase(324,
         it('Cek hasil pencarian Perihal pada kotak keluar review naskah', () => {
-            listSuratReviewNaskahKeluarPage.checkSearchResultsPerihalKotakKeluar()
+            listSuratReviewNaskahKeluarPage.checkSearchResultsPerihalKotakKeluar(data_filter.search_kotak_keluar[0].search_perihal)
         })
     )
 

@@ -33,8 +33,8 @@ export class DraftingKakiSuratPage {
 
         cy.wait(3000)
 
-        const pilihPenandatangan = cy.get(kaki_surat.pilihPenandatanganNotaDinas + ' .vs__search').as('pilihPenandatangan')
-        pilihPenandatangan.should('have.attr', 'placeholder', ' Pilih Penandatangan')
+        const pilihPenandatangan = cy.get(kaki_surat.pilihPenandatanganNotaDinas).as('pilihPenandatangan')
+        pilihPenandatangan.find('input').should('have.attr', 'placeholder', ' Pilih Penandatangan')
 
         cy.wait(3000)
 

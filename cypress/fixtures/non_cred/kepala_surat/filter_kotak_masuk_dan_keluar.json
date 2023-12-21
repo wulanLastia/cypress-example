@@ -30,5 +30,11 @@
       "jenis_naskah2": "Surat Biasa",
       "jenis_naskah3": "Surat Perintah"
     }
+  ],
+  "search_kotak_keluar": [
+    {
+      "search_tujuan": "Pj Gubernur Jawa Barat",
+      "search_perihal": "Cancel"
+    }
   ]
 }

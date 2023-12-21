@@ -1,5 +1,6 @@
 import kembalikan_naskah from "../../../selectors/sidebar/kotak_masuk/kembalikan_naskah"
 import review_verifikasi_surat from "../../../selectors/sidebar/kotak_masuk/review_verifikasi_surat"
+import review_naskah from "../../../selectors/sidebar/kotak_masuk/list_review_naskah"
 import { MenuPage } from "../menu/menu.cy"
 
 const menuPage = new MenuPage()
@@ -11,6 +12,10 @@ export class KembalikanNaskahPage {
         menuPage.goToKotakMasukReviewNaskah()
         cy.readFile(perihalNaskah).then((object) => {
             const titlePerihalNaskah = object.titlePerihal
+
+            const searchReviewNaskah = cy.get(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
+            searchReviewNaskah.find('input').clear()
+            searchReviewNaskah.type(titlePerihalNaskah)
 
             const tableReviewSurat = cy.get(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
             tableReviewSurat.contains('td', titlePerihalNaskah)
