@@ -8,5 +8,11 @@
     {
       "perbaiki_perihal": " Perbaiki"
     }
+  ],
+  "koreksi": [
+    {
+      "koreksi_setujui_perihal": " Koreksi Setujui",
+      "koreksi_tandatangani_perihal": " Koreksi Tandatangani"
+    }
   ]
 }

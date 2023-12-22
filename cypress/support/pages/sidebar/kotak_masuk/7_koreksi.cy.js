@@ -1,14 +1,14 @@
 import review_verifikasi_surat from "../../../selectors/sidebar/kotak_masuk/review_verifikasi_surat"
 import koreksi from "../../../selectors/sidebar/kotak_masuk/koreksi"
-import { DraftingKonsepNaskahPage } from "../konsep_naskah/surat_biasa/pgs_drafting_surat_biasa.cy"
-import { CreateSuratBiasaPage } from "../konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
 import { MenuPage } from "../menu/menu.cy"
+import { CreateSuratBiasaPage } from "../konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
 import { UpdateNotaDinasPage } from "../konsep_naskah/nota_dinas/pgs_update_nota_dinas.cy.js"
+import { DraftingKepalaSuratPerintahPage } from "../konsep_naskah/surat_perintah/super_drafting_kepala_surat.cy"
 
 const menuPage = new MenuPage()
-const draftingSuratBiasaPage = new DraftingKonsepNaskahPage()
 const createSuratBiasaPage = new CreateSuratBiasaPage()
 const updateNotaDinasPage = new UpdateNotaDinasPage()
+const draftingKepalaSuratPerintahPage = new DraftingKepalaSuratPerintahPage()
 
 const perihalNaskah = "cypress/fixtures/non_cred/kepala_surat/kepala_surat_temp_data.json"
 
@@ -53,9 +53,6 @@ export class KoreksiSuratPage {
         btnKoreksiTandatangani.should('contain', 'Tandatangani')
             .and('be.visible')
 
-        const previewNaskah = cy.get(koreksi.previewNaskah).as('previewNaskah')
-        previewNaskah.should('be.visible')
-
         const tabEditNaskah = cy.get(koreksi.tabEditNaskah).as('tabEditNaskah')
         tabEditNaskah.should('contain', 'Edit Naskah')
             .and('be.visible')
@@ -82,9 +79,6 @@ export class KoreksiSuratPage {
         const btnKirimNaskah = cy.get(koreksi.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.should('contain', 'Kirim Naskah')
             .and('be.visible')
-
-        const previewNaskah = cy.get(koreksi.previewNaskah).as('previewNaskah')
-        previewNaskah.should('be.visible')
 
         const tabEditNaskah = cy.get(koreksi.tabEditNaskah).as('tabEditNaskah')
         tabEditNaskah.should('contain', 'Edit Naskah')
@@ -208,6 +202,43 @@ export class KoreksiSuratPage {
 
         const btnKonfirmasiKirimNaskah = cy.get(koreksi.btnKonfirmasiKirimNaskah).as('btnKonfirmasiKirimNaskah')
         btnKonfirmasiKirimNaskah.should('contain', 'Kirim naskah')
+            .click()
+    }
+
+    koreksiSetujuiSuratPerintah(inputanKoreksi) {
+        draftingKepalaSuratPerintahPage.aksesFormEditingKepalaSurat()
+
+        draftingKepalaSuratPerintahPage.inputPerihal(inputanKoreksi)
+
+        const btnKirimNaskah = cy.get(koreksi.btnKirimNaskah).as('btnKirimNaskah')
+        btnKirimNaskah.click()
+
+        const popupKonfirmasiKirimNaskah = cy.get(koreksi.popupKonfirmasiKirimNaskah).as('popupKonfirmasiKirimNaskah')
+        popupKonfirmasiKirimNaskah.should('be.visible')
+
+        const btnKonfirmasiKirimNaskah = cy.get(koreksi.btnKonfirmasiKirimNaskah).as('btnKonfirmasiKirimNaskah')
+        btnKonfirmasiKirimNaskah.should('contain', 'Kirim naskah')
+            .click()
+    }
+
+    koreksiTandatanganiSuratPerintah(passphrase, inputanKoreksi) {
+        draftingKepalaSuratPerintahPage.aksesFormEditingKepalaSurat()
+
+        draftingKepalaSuratPerintahPage.inputPerihal(inputanKoreksi)
+
+        const btnKoreksiTandatangani = cy.get(koreksi.btnKoreksiTandatangani).as('btnKoreksiTandatangani')
+        btnKoreksiTandatangani.click()
+
+        const getpopupKonfirmasiTandatanganiNaskah = cy.get(koreksi.getpopupKonfirmasiTandatanganiNaskah).as('getpopupKonfirmasiTandatanganiNaskah')
+        getpopupKonfirmasiTandatanganiNaskah.should('be.visible')
+
+        const inputPassphrase = cy.get(koreksi.inputPassphrase).as('inputPassphrase')
+        inputPassphrase.type(passphrase)
+
+        cy.wait(2000)
+
+        const btnTandatanganiNaskah = cy.get(koreksi.btnTandatanganiNaskah).as('btnTandatanganiNaskah')
+        btnTandatanganiNaskah.should('contain', 'Tandatangani')
             .click()
     }
 
