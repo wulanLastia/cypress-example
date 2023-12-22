@@ -1,5 +1,6 @@
 import setujui from "../../../selectors/sidebar/kotak_masuk/setujui"
 import koreksi from "../../../selectors/sidebar/kotak_masuk/koreksi"
+import review_naskah from "../../../selectors/sidebar/kotak_masuk/list_review_naskah"
 import { MenuPage } from "../menu/menu.cy"
 
 const menuPage = new MenuPage()
@@ -11,6 +12,10 @@ export class SetujuiPage {
         menuPage.goToKotakMasukReviewNaskah()
         cy.readFile(perihalNaskah).then((object) => {
             const titlePerihalNaskah = object.titlePerihal
+
+            const searchReviewNaskah = cy.get(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
+            searchReviewNaskah.find('input').clear()
+            searchReviewNaskah.type(titlePerihalNaskah)
 
             const tableReviewSurat = cy.get(setujui.tableReviewSurat).as('tableReviewSurat')
             tableReviewSurat.contains('td', titlePerihalNaskah)
