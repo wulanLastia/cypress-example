@@ -13,7 +13,7 @@ module.exports = {
     previewKaki: '[data-cy="surat__kaki-surat"]',
     titleKaki: '[data-cy="input-kaki-surat__title"]',
     editFormDefault: '[data-cy="surat-perintah__kepala-surat-preview__dasar--null-state"]',
-    btnSimpanNaskah: '[data-cy="surat-perintah__button--save"]',
+    btnSimpanNaskah: '[data-cy="drafting__button-save"]',
     btnKirimNaskah: '[data-cy="surat-nota-dinas-submit"]',
     konfirmasiKirimNaskah: '[data-cy="dialog__confirmation-submit__button--kirim-naskah"]',
 
