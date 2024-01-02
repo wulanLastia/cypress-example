@@ -1,13 +1,11 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../../support/pages/sidebar/menu/menu.cy"
 import { DraftingBadanNaskahPage } from "../../../../../support/pages/sidebar/konsep_naskah/nota_dinas/nodin_drafting_badan_surat.cy.js"
 import { CreateNotaDinasPage } from "../../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_create_nota_dinas.cy"
 
 let draftingBadanNaskahPage = new DraftingBadanNaskahPage()
 let createNotaDinasPage = new CreateNotaDinasPage()
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
 let user
 
 before(() => {
@@ -17,6 +15,11 @@ before(() => {
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
+    })
 })
 
 before(() => {
@@ -30,8 +33,6 @@ after(() => {
         loginPage.logoutV2step2()
     )
 })
-
-
 
 describe('Drafting Badan Naskah Skenario', { testIsolation: false }, () => {
     qase(1123,
@@ -59,7 +60,4 @@ describe('Drafting Badan Naskah Skenario', { testIsolation: false }, () => {
             draftingBadanNaskahPage.closeBadanNaskah()
         })
     )
-
-
-
 })

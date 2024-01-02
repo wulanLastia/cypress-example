@@ -33,6 +33,11 @@ before(() => {
     cy.fixture('non_cred/penomoran/jumlah_pengambilan.json').then((data) => {
         jumlah_pengambilan = data
     })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
+    })
 })
 
 before(() => {

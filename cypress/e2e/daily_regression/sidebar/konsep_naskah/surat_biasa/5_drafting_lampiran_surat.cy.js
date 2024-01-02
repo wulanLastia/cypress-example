@@ -1,11 +1,9 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../../support/pages/sidebar/menu/menu.cy"
 import { DraftingLampiranSuratPage } from "../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_lampiran_surat.cy"
 
 let draftingLampiranSuratPage = new DraftingLampiranSuratPage()
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
 let user
 
 before(() => {
@@ -15,6 +13,11 @@ before(() => {
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
+    })
 })
 
 before(() => {

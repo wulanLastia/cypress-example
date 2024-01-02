@@ -30,6 +30,11 @@ before(() => {
     cy.fixture('non_cred/penomoran/uk_up.json').then((data) => {
         uk_up = data
     })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
+    })
 })
 
 before(() => {

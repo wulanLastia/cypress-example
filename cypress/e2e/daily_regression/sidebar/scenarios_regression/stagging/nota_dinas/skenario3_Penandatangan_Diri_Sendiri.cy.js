@@ -1,32 +1,24 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../../../support/pages/sidebar/menu/menu.cy"
 import { DraftPage } from "../../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/draft.cy"
 import { DraftingNotaDinasPage } from "../../../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_drafting_nota_dinas.cy"
 import { CreateNotaDinasPage } from "../../../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_create_nota_dinas.cy"
-import { KembalikanNaskahPage } from "../../../../../../support/pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
-import { PerbaikiNaskahPage } from "../../../../../../support/pages/sidebar/kotak_masuk/6_perbaiki.cy"
 import { SetujuiPage } from "../../../../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
-import { KoreksiSuratPage } from "../../../../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
-
-
-
 
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
 let user
-
 let draftPage = new DraftPage()
 let draftingNotaDinasPage = new DraftingNotaDinasPage()
 let createNotaDinasPage = new CreateNotaDinasPage()
-let kembalikanNaskahPage = new KembalikanNaskahPage()
-let perbaikiNaskahPage = new PerbaikiNaskahPage()
 let setujuiPage = new SetujuiPage()
-let koreksiSuratPage = new KoreksiSuratPage()
-
 
 beforeEach(() => {
     cy.intercept({ resourceType: /xhr/ }, { log: false })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
+    })
 })
 
 before(() => {
@@ -47,8 +39,6 @@ afterEach(() => {
     cy.wait(10000)
     loginPage.logoutV2step2()
 })
-
-
 
 describe('Drafting Konsep Naskah Nota Dinas Skenario Penandatangan Diri Sendiri', () => {
 
