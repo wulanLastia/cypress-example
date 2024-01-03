@@ -115,13 +115,20 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
     qase(1739,
         it('Cek Dropdown Urgensi', () => {
             cy.wait(10000)
-            draftingKepalaSuratPerintahPage.validateUrgensi(testKepalaPositive.Kepala_Surat[2].Urgensi_Nota_Dinas)
+            draftingKepalaSuratPerintahPage.validateUrgensi(testKepalaPositive.Kepala_Surat[2].Urgensi_Surat_Perintah)
+        })
+    )
+
+    qase(1739,
+        it('Cek Dropdown Sifat Surat', () => {
+            cy.wait(10000)
+            draftingKepalaSuratPerintahPage.validateSifatSurat(testKepalaPositive.Kepala_Surat[3].Sifat_Surat_Perintah)
         })
     )
 
     qase([144, 735, 742],
         it('Cek Perihal Surat', () => {
-            draftingKepalaSuratPerintahPage.inputPerihal(testKepalaPositive.Kepala_Surat[3].Perihal)
+            draftingKepalaSuratPerintahPage.inputPerihal(testKepalaPositive.Kepala_Surat[4].Perihal)
             cy.wait(3000)
             })
     )
@@ -190,7 +197,7 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
             cy.wait(3000)
             draftingKepalaSuratPerintahPage.inputUnitPengolah(testKepalaNegative.TextTooLong[0].Unit_Pengolah)
             cy.wait(3000)
-            draftingKepalaSuratPerintahPage.validateUrgensi(testKepalaPositive.Kepala_Surat[2].Urgensi_Nota_Dinas)
+            draftingKepalaSuratPerintahPage.validateUrgensi(testKepalaPositive.Kepala_Surat[2].Urgensi_Surat_Perintah)
             cy.wait(3000)
             draftingKepalaSuratPerintahPage.inputPerihal(testKepalaNegative.TextTooLong[1].Perihal)
             cy.wait(3000)
@@ -247,6 +254,9 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
 
             cy.wait(3000)
             draftingKepalaSuratPerintahPage.deleteUrgensi()
+
+            cy.wait(3000)
+            draftingKepalaSuratPerintahPage.deleteSifatSurat()
 
             cy.wait(3000)
             draftingKepalaSuratPerintahPage.inputPerihal("{selectall}{backspace}{shift}{enter}")
