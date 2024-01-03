@@ -166,13 +166,50 @@ export class DraftingSuratPerintahPage {
     }
 
     kirimNaskah() {
+        // Intercept all POST network requests
+        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
+        
         const btnKirimNaskah = cy.get(surat_perintah.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.click()
-
+    
         const konfirmasiKirimNaskah = cy.get(surat_perintah.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
         konfirmasiKirimNaskah.should('contain', 'Kirim naskah')
             .click()
-
+    
+        // Wait and assert that the response status is 200
+        cy.wait('@postRequest', { timeout: 5000 }).then((interception) => {
+            if (interception.response) {
+                const status = interception.response.statusCode;
+                const clientErrorStatusCodes = [400, 401, 403, 404, 405, 406, 408, 409, 410, 411, 412];
+                const serverErrorStatusCodes = [500, 501, 502, 503, 504];
+                const errorStatusCodes = [...clientErrorStatusCodes, ...serverErrorStatusCodes];
+        
+                // Assert for error status codes
+                if (errorStatusCodes.includes(status)) {
+                    expect(errorStatusCodes, `Request failed with status code: ${status}`).to.include(status);
+                }
+        
+                const successStatusCodes = [200, 201, 202, 203, 204, 205, 206, 207, 208, 226];
+                const redirectStatusCodes = [300, 301, 302, 303, 307];
+                const acceptableStatusCodes = [...successStatusCodes, ...redirectStatusCodes];
+        
+                // Assert for success and redirect status codes
+                expect(acceptableStatusCodes, `Result of status code: ${status}`).to.include(status);
+            } else {
+                // Log and throw error if no response is received
+                cy.log('No response received.');
+                throw new Error('No response received.');
+            }
+        })
+        
+        
+        // Wait for up for the success dialog to appear only 0.5 seconds
+        const successKirimNaskah = cy.get(surat_perintah.popupSuccessKirimNaskah, { timeout: 500 }).as('successKirimNaskah')
+        successKirimNaskah.should('be.visible')
+        
+        successKirimNaskah.should('exist')
+            .find(surat_perintah.popupTitleSuccessKirimNaskah)
+            .should('contain', 'Naskah berhasil dikirim ke pihak selanjutnya')
     }
 
     negativeKirimNaskah() {

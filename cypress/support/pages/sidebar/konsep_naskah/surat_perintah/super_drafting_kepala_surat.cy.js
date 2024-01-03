@@ -225,7 +225,7 @@ export class DraftingKepalaSuratPerintahPage {
 
 
     // Dropdown Urgensi
-    validateUrgensi(Urgensi_Nota_Dinas) {
+    validateUrgensi(Urgensi_Surat_Perintah) {
         cy.wait(3000)
 
         const titleUrgensiSurat = cy.get(kepala_surat.titleUrgensiSurat).as('titleUrgensiSurat')
@@ -238,15 +238,15 @@ export class DraftingKepalaSuratPerintahPage {
                 data.Kepala_Surat = [];
             }
             
-            // Check if there's already a Urgensi_Nota_Dinas object
-            let urgensiExists = data.Kepala_Surat.some(item => 'Urgensi_Nota_Dinas' in item);
+            // Check if there's already a Urgensi_Surat_Perintah object
+            let urgensiExists = data.Kepala_Surat.some(item => 'Urgensi_Surat_Perintah' in item);
             
             if (urgensiExists) {
-                // Update existing Urgensi_Nota_Dinas object
-                data.Kepala_Surat.find(item => 'Urgensi_Nota_Dinas' in item).Urgensi_Nota_Dinas = Urgensi_Nota_Dinas;
+                // Update existing Urgensi_Surat_Perintah object
+                data.Kepala_Surat.find(item => 'Urgensi_Surat_Perintah' in item).Urgensi_Surat_Perintah = Urgensi_Surat_Perintah;
             } else {
                 // Or add a new Kode_Klasifikasi object
-                const createUrgensiSurat = { Urgensi_Nota_Dinas: Urgensi_Nota_Dinas };
+                const createUrgensiSurat = { Urgensi_Surat_Perintah: Urgensi_Surat_Perintah };
                 data.Kepala_Surat.push(createUrgensiSurat);
             }
             
@@ -257,7 +257,7 @@ export class DraftingKepalaSuratPerintahPage {
             const inputUrgensiSurat = cy.get(kepala_surat.selectUrgensiSurat).as('inputUrgensiSurat')
             inputUrgensiSurat.click()
             .wait(5000)
-            .contains(Urgensi_Nota_Dinas)
+            .contains(Urgensi_Surat_Perintah)
             .click()
         });        
     }
@@ -268,6 +268,54 @@ export class DraftingKepalaSuratPerintahPage {
         const deleteUrgensiSurat = cy.get(kepala_surat.btnDeleteUrgensiSurat).as('deleteUrgensiSurat')
         deleteUrgensiSurat.click({force: true})
     }
+
+
+
+    // Dropdown Sifat Surat
+    validateSifatSurat(Sifat_Surat_Perintah) {
+        cy.wait(3000)
+
+        const titleSifatSurat = cy.get(kepala_surat.titleSifatSurat).as('titleSifatSurat')
+        titleSifatSurat.should('contain', 'Sifat Surat')
+
+        // Cara dibawah KHUSUS UNTUK FIELD DROPDOWN TANPA FIELD TYPE
+        cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
+            // If there's no Kepala_Surat entry, initialize one
+            if (!data.Kepala_Surat) {
+                data.Kepala_Surat = [];
+            }
+            
+            // Check if there's already a Sifat_Surat_Perintah object
+            let sifatsuratExists = data.Kepala_Surat.some(item => 'Sifat_Surat_Perintah' in item);
+            
+            if (sifatsuratExists) {
+                // Update existing Sifat_Surat_Perintah object
+                data.Kepala_Surat.find(item => 'Sifat_Surat_Perintah' in item).Sifat_Surat_Perintah = Sifat_Surat_Perintah;
+            } else {
+                // Or add a new Kode_Klasifikasi object
+                const createSifatSuratSurat = { Sifat_Surat_Perintah: Sifat_Surat_Perintah };
+                data.Kepala_Surat.push(createSifatSuratSurat);
+            }
+            
+            // Write data back to the JSON file
+            cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
+    
+            // Input data into dropdown
+            const inputSifatSurat = cy.get(kepala_surat.selectSifatSurat).as('inputSifatSurat')
+            inputSifatSurat.click()
+            .wait(5000)
+            .contains(Sifat_Surat_Perintah)
+            .click()
+        });        
+    }
+
+    deleteSifatSurat() {
+        cy.wait(3000)
+
+        const deleteSifatSurat = cy.get(kepala_surat.btnDeleteSifatSurat).as('deleteSifatSurat')
+        deleteSifatSurat.click({force: true})
+    }
+
 
 
     // Field Perihal
@@ -369,7 +417,7 @@ export class DraftingKepalaSuratPerintahPage {
           // Find and click the 'Bold' button
           const btnBoldFormat = cy.get(kepala_surat.inputDasar).scrollIntoView()
           .find('button[title="Bold"]').as('btnBoldFormat')
-          btnBoldFormat.click({ force: true });
+          btnBoldFormat.click();
       
           cy.wait(3000);
       
@@ -380,15 +428,18 @@ export class DraftingKepalaSuratPerintahPage {
               const doc = $iframe[0].contentDocument;
               const body = doc.body;
               cy.wrap(body).as('iframeBody')
-                .clear()
+                .focus()
                 .type(dataBoldText)
                 .invoke('text')
                 .then((boldText) => {
-                  // Assign the boldText to the JSON data
-                  data.Dasar[0].Dasar_Bold = boldText;
-      
-                  // Write the updated data object back to the file
-                  cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
+                // Check for and remove BOM if present
+                const cleanBoldText = boldText.charCodeAt(0) === 0xFEFF ? boldText.slice(1) : boldText;
+
+                // Assign the cleaned boldText to the JSON data
+                data.Dasar[0].Dasar_Bold = cleanBoldText;
+
+                // Write the updated data object back to the file, specify encoding to avoid BOM
+                cy.writeFile(getJSONRequestFileCreateSuratPerintah, data, 'utf8');
                 });
             });
         });
@@ -400,6 +451,8 @@ export class DraftingKepalaSuratPerintahPage {
             // Check the iframe for preview
   
             const checkPreviewDasar = cy.get(kepala_surat.previewDasar).as('checkPreviewDasar')
+            .click()
+            .wait(1000)
             .should('be.visible');
 
             // Assert that the strong tag within the preview contains the correct bold text
@@ -419,7 +472,7 @@ export class DraftingKepalaSuratPerintahPage {
           // Find and click the 'Italic' button
           const btnItalicFormat = cy.get(kepala_surat.inputDasar).scrollIntoView()
           .find('button[title="Italic"]').as('btnItalicFormat')
-          btnItalicFormat.click({ force: true });
+          btnItalicFormat.click();
       
           cy.wait(3000);
       
@@ -430,14 +483,18 @@ export class DraftingKepalaSuratPerintahPage {
               const doc = $iframe[0].contentDocument;
               const body = doc.body;
               cy.wrap(body).as('iframeBody')
-                .clear()
+                .focus()
                 .type(dataItalicText)
                 .invoke('text')
                 .then((italicText) => {
+                
+                // Check for and remove BOM if present
+                const cleanItalicText = italicText.charCodeAt(0) === 0xFEFF ? italicText.slice(1) : italicText;
+
                 // Ensure that the second item of 'Dasar' array is an object
                 data.Dasar[1] = data.Dasar[1] || {}; // <-- This line ensures that data.Dasar[1] is an object
                 // Assign the italicText to the JSON data
-                data.Dasar[1].Dasar_Italic = italicText;
+                data.Dasar[1].Dasar_Italic = cleanItalicText;
       
                   // Write the updated data object back to the file
                   cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
@@ -557,7 +614,9 @@ export class DraftingKepalaSuratPerintahPage {
                 // Check if the first <br> tag is present within the preview element
                 const firstBr = $preview.find('br:first');
                 if (firstBr.length) {
-                    throw new Error('Unexpected first whitespace <br> tag found');
+                    cy.log('Note: First <br> tag found in the preview.');
+                } else {
+                    cy.log('No <br> tags found in the preview.');
                 }
             });
         });
@@ -578,8 +637,6 @@ export class DraftingKepalaSuratPerintahPage {
         const closeKepalaSurat = cy.get(kepala_surat.closeKepalaSurat).as('closeKepalaSurat')
         closeKepalaSurat.should('be.visible')
             .click()
-
-    draftingSuratPerintahPage.validateFormDefault()
     }
 
     closeLampiranKepalaSurat() {

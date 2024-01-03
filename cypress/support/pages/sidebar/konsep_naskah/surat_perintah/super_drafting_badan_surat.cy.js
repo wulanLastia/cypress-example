@@ -721,7 +721,7 @@ export class DraftingBadanSuratPerintahPage {
     
         cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
             if (!data.Penerima_Non_ASN) {
-                data.Penerima_Non_ASN = [{}]; // Initialize as an empty array
+                data.Penerima_Non_ASN = { Preview_Non_ASN: [] }; // Initialize as an empty array
             }
     
             cy.get(badan_surat.fieldNamaPenerima1).type(nonASN_Nama, { delay: 100 }).as('inputNama');
@@ -739,11 +739,11 @@ export class DraftingBadanSuratPerintahPage {
                                     "Jabatan": jabatan.trim()
                                 };
     
-                                const nama1Index = data.Penerima_Non_ASN.findIndex(non_asn => non_asn.hasOwnProperty('nama1'));
+                                const nama1Index = data.Penerima_Non_ASN.Preview_Non_ASN.findIndex(non_asn => non_asn.hasOwnProperty('nama1'));
                                 if (nama1Index !== -1) {
-                                    data.Penerima_Non_ASN[nama1Index].nama1 = [nonASNData];
+                                    data.Penerima_Non_ASN.Preview_Non_ASN[nama1Index].nama1 = [nonASNData];
                                 } else {
-                                    data.Penerima_Non_ASN.push({ "nama1": [nonASNData] });
+                                    data.Penerima_Non_ASN.Preview_Non_ASN.push({ "nama1": [nonASNData] });
                                 }
     
                                 cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
@@ -761,16 +761,16 @@ export class DraftingBadanSuratPerintahPage {
         cy.readFile(getJSONRequestFileCreateSuratPerintah).then((previewData) => {
             // Assertions for preview content based on JSON data
             const namaNonASN1Preview = cy.get(badan_surat.namaASN1).as('namaNonASN1Preview');
-            namaNonASN1Preview.should('contain', previewData.Penerima_Non_ASN[0].nama1[0].Nama);
+            namaNonASN1Preview.should('contain', previewData.Penerima_Non_ASN.Preview_Non_ASN[0].nama1[0].Nama);
     
             const pangkatgolonganNonASN1Preview = cy.get(badan_surat.pangkatgolonganASN1).as('pangkatgolonganNonASN1Preview');
-            pangkatgolonganNonASN1Preview.should('contain', previewData.Penerima_Non_ASN[0].nama1[0].Pangkat_or_Golongan);
+            pangkatgolonganNonASN1Preview.should('contain', previewData.Penerima_Non_ASN.Preview_Non_ASN[0].nama1[0].Pangkat_or_Golongan);
     
             const nipNonASN1Preview = cy.get(badan_surat.nipASN1).as('nipNonASN1Preview');
-            nipNonASN1Preview.should('contain', previewData.Penerima_Non_ASN[0].nama1[0].Nomor_Induk_Pegawai);
+            nipNonASN1Preview.should('contain', previewData.Penerima_Non_ASN.Preview_Non_ASN[0].nama1[0].Nomor_Induk_Pegawai);
     
             const jabatanNonASN1Preview = cy.get(badan_surat.jabatanASN1).as('jabatanNonASN1Preview');
-            jabatanNonASN1Preview.should('contain', previewData.Penerima_Non_ASN[0].nama1[0].Jabatan);
+            jabatanNonASN1Preview.should('contain', previewData.Penerima_Non_ASN.Preview_Non_ASN[0].nama1[0].Jabatan);
         });
     }
 
@@ -781,7 +781,7 @@ export class DraftingBadanSuratPerintahPage {
     
         cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
             if (!data.Penerima_Non_ASN) {
-                data.Penerima_Non_ASN = []; // Initialize as an empty array
+                data.Penerima_Non_ASN = { Preview_Non_ASN: [] }; // Initialize as an empty array
             }
     
             cy.get(badan_surat.fieldNamaPenerima2).type(nonASN_Nama2, { delay: 100 }).as('inputNama2');
@@ -799,11 +799,11 @@ export class DraftingBadanSuratPerintahPage {
                                     "Jabatan": jabatan.trim()
                                 };
     
-                                const nama2Index = data.Penerima_Non_ASN.findIndex(non_asn => non_asn.hasOwnProperty('nama2'));
+                                const nama2Index = data.Penerima_Non_ASN.Preview_Non_ASN.findIndex(non_asn => non_asn.hasOwnProperty('nama2'));
                                 if (nama2Index !== -1) {
-                                    data.Penerima_Non_ASN[nama2Index].nama2 = [nonASNData2];
+                                    data.Penerima_Non_ASN.Preview_Non_ASN[nama2Index].nama2 = [nonASNData2];
                                 } else {
-                                    data.Penerima_Non_ASN.push({ "nama2": [nonASNData2] });
+                                    data.Penerima_Non_ASN.Preview_Non_ASN.push({ "nama2": [nonASNData2] });
                                 }
     
                                 cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
@@ -822,19 +822,19 @@ export class DraftingBadanSuratPerintahPage {
             // Assertions for preview content based on JSON data
             const namaNonASN2Preview = cy.get(badan_surat.namaASN2).as('namaNonASN2Preview')
             namaNonASN2Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[1].nama2[0].Nama);
+            .should('contain', previewData.Penerima_Non_ASN.Preview_Non_ASN[1].nama2[0].Nama);
     
             const pangkatgolonganNonASN2Preview = cy.get(badan_surat.pangkatgolonganASN2).as('pangkatgolonganNonASN2Preview')
             pangkatgolonganNonASN2Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[1].nama2[0].Pangkat_or_Golongan)
+            .should('contain', previewData.Penerima_Non_ASN.Preview_Non_ASN[1].nama2[0].Pangkat_or_Golongan)
     
             const nipNonASN2Preview = cy.get(badan_surat.nipASN2).as('nipNonASN2Preview')
             nipNonASN2Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[1].nama2[0].Nomor_Induk_Pegawai)
+            .should('contain', previewData.Penerima_Non_ASN.Preview_Non_ASN[1].nama2[0].Nomor_Induk_Pegawai)
     
             const jabatanNonASN2Preview = cy.get(badan_surat.jabatanASN2).as('jabatanNonASN2Preview')
             jabatanNonASN2Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[1].nama2[0].Jabatan)
+            .should('contain', previewData.Penerima_Non_ASN.Preview_Non_ASN[1].nama2[0].Jabatan)
         });
     }
 
@@ -845,7 +845,7 @@ export class DraftingBadanSuratPerintahPage {
     
         cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
             if (!data.Penerima_Non_ASN) {
-                data.Penerima_Non_ASN = []; // Initialize as an empty array
+                data.Penerima_Non_ASN = { Preview_Non_ASN: [] }; // Initialize as an empty array
             }
     
             cy.get(badan_surat.fieldNamaPenerima3).type(nonASN_Nama3, { delay: 100 }).as('inputNama3');
@@ -863,11 +863,11 @@ export class DraftingBadanSuratPerintahPage {
                                     "Jabatan": jabatan.trim()
                                 };
     
-                                const nama3Index = data.Penerima_Non_ASN.findIndex(non_asn => non_asn.hasOwnProperty('nama3'));
+                                const nama3Index = data.Penerima_Non_ASN.Preview_Non_ASN.findIndex(non_asn => non_asn.hasOwnProperty('nama3'));
                                 if (nama3Index !== -1) {
-                                    data.Penerima_Non_ASN[nama3Index].nama3 = [nonASNData3];
+                                    data.Penerima_Non_ASN.Preview_Non_ASN[nama3Index].nama3 = [nonASNData3];
                                 } else {
-                                    data.Penerima_Non_ASN.push({ "nama3": [nonASNData3] });
+                                    data.Penerima_Non_ASN.Preview_Non_ASN.push({ "nama3": [nonASNData3] });
                                 }
     
                                 cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
@@ -886,19 +886,19 @@ export class DraftingBadanSuratPerintahPage {
             // Assertions for preview content based on JSON data
             const namaNonASN3Preview = cy.get(badan_surat.namaASN3).as('namaNonASN3Preview')
             namaNonASN3Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[2].nama3[0].Nama);
+            .should('contain', previewData.Penerima_Non_ASN.Preview_Non_ASN[2].nama3[0].Nama);
     
             const pangkatgolonganNonASN3Preview = cy.get(badan_surat.pangkatgolonganASN3).as('pangkatgolonganNonASN3Preview')
             pangkatgolonganNonASN3Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[2].nama3[0].Pangkat_or_Golongan)
+            .should('contain', previewData.Penerima_Non_ASN.Preview_Non_ASN[2].nama3[0].Pangkat_or_Golongan)
     
             const nipNonASN3Preview = cy.get(badan_surat.nipASN3).as('nipNonASN3Preview')
             nipNonASN3Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[2].nama3[0].Nomor_Induk_Pegawai)
+            .should('contain', previewData.Penerima_Non_ASN.Preview_Non_ASN[2].nama3[0].Nomor_Induk_Pegawai)
     
             const jabatanNonASN3Preview = cy.get(badan_surat.jabatanASN3).as('jabatanNonASN3Preview')
             jabatanNonASN3Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[2].nama3[0].Jabatan)
+            .should('contain', previewData.Penerima_Non_ASN.Preview_Non_ASN[2].nama3[0].Jabatan)
         });
     }
 
@@ -909,7 +909,7 @@ export class DraftingBadanSuratPerintahPage {
     
         cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
             if (!data.Penerima_Non_ASN) {
-                data.Penerima_Non_ASN = []; // Initialize as an empty array
+                data.Penerima_Non_ASN = { Preview_Non_ASN: [] }; // Initialize as an empty array
             }
     
             cy.get(badan_surat.fieldNamaPenerima4).type(nonASN_Nama4, { delay: 100 }).as('inputNama4');
@@ -927,11 +927,11 @@ export class DraftingBadanSuratPerintahPage {
                                     "Jabatan": jabatan.trim()
                                 };
     
-                                const nama4Index = data.Penerima_Non_ASN.findIndex(non_asn => non_asn.hasOwnProperty('nama4'));
+                                const nama4Index = data.Penerima_Non_ASN.Preview_Non_ASN.findIndex(non_asn => non_asn.hasOwnProperty('nama4'));
                                 if (nama4Index !== -1) {
-                                    data.Penerima_Non_ASN[nama4Index].nama4 = [nonASNData4];
+                                    data.Penerima_Non_ASN.Preview_Non_ASN[nama4Index].nama4 = [nonASNData4];
                                 } else {
-                                    data.Penerima_Non_ASN.push({ "nama4": [nonASNData4] });
+                                    data.Penerima_Non_ASN.Preview_Non_ASN.push({ "nama4": [nonASNData4] });
                                 }
     
                                 cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
@@ -947,24 +947,27 @@ export class DraftingBadanSuratPerintahPage {
     
         // Read from the JSON file for preview check
         cy.readFile(getJSONRequestFileCreateSuratPerintah).then((previewData) => {
+
+            const nonASNData4WithConditions = previewData.Penerima_Non_ASN.Preview_Non_ASN[3] || previewData.Penerima_Non_ASN.Preview_Non_ASN[0];
+        
             // Assertions for preview content based on JSON data
-            const namaNonASN4Preview = cy.get(badan_surat.namaASN4).as('namaNonASN4Preview')
+            const namaNonASN4Preview = cy.get(badan_surat.namaASN4).as('namaNonASN4Preview');
             namaNonASN4Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[3].nama4[0].Nama);
-    
-            const pangkatgolonganNonASN4Preview = cy.get(badan_surat.pangkatgolonganASN4).as('pangkatgolonganNonASN4Preview')
+            .should('contain', nonASNData4WithConditions.nama4[0].Nama);
+        
+            const pangkatgolonganNonASN4Preview = cy.get(badan_surat.pangkatgolonganASN4).as('pangkatgolonganNonASN4Preview');
             pangkatgolonganNonASN4Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[3].nama4[0].Pangkat_or_Golongan)
-    
-            const nipNonASN4Preview = cy.get(badan_surat.nipASN4).as('nipNonASN4Preview')
+            .should('contain', nonASNData4WithConditions.nama4[0].Pangkat_or_Golongan);
+        
+            const nipNonASN4Preview = cy.get(badan_surat.nipASN4).as('nipNonASN4Preview');
             nipNonASN4Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[3].nama4[0].Nomor_Induk_Pegawai)
-    
-            const jabatanNonASN4Preview = cy.get(badan_surat.jabatanASN4).as('jabatanNonASN4Preview')
+            .should('contain', nonASNData4WithConditions.nama4[0].Nomor_Induk_Pegawai);
+        
+            const jabatanNonASN4Preview = cy.get(badan_surat.jabatanASN4).as('jabatanNonASN4Preview');
             jabatanNonASN4Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[3].nama4[0].Jabatan)
-        });
-    }
+            .should('contain', nonASNData4WithConditions.nama4[0].Jabatan);
+            })
+        }
 
 
     inputandcheckFieldNonASN5th(nonASN_Nama5, nonASN_PangkatorGolongan5, nonASN_NIP5, nonASN_Jabatan5) {
@@ -973,7 +976,7 @@ export class DraftingBadanSuratPerintahPage {
     
         cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
             if (!data.Penerima_Non_ASN) {
-                data.Penerima_Non_ASN = []; // Initialize as an empty array
+                data.Penerima_Non_ASN = { Preview_Non_ASN: [] }; // Initialize as an empty array
             }
     
             cy.get(badan_surat.fieldNamaPenerima5).type(nonASN_Nama5, { delay: 100 }).as('inputNama5');
@@ -991,11 +994,11 @@ export class DraftingBadanSuratPerintahPage {
                                     "Jabatan": jabatan.trim()
                                 };
     
-                                const nama5Index = data.Penerima_Non_ASN.findIndex(non_asn => non_asn.hasOwnProperty('nama5'));
+                                const nama5Index = data.Penerima_Non_ASN.Preview_Non_ASN.findIndex(non_asn => non_asn.hasOwnProperty('nama5'));
                                 if (nama5Index !== -1) {
-                                    data.Penerima_Non_ASN[nama5Index].nama5 = [nonASNData5];
+                                    data.Penerima_Non_ASN.Preview_Non_ASN[nama5Index].nama5 = [nonASNData5];
                                 } else {
-                                    data.Penerima_Non_ASN.push({ "nama5": [nonASNData5] });
+                                    data.Penerima_Non_ASN.Preview_Non_ASN.push({ "nama5": [nonASNData5] });
                                 }
     
                                 cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
@@ -1011,23 +1014,26 @@ export class DraftingBadanSuratPerintahPage {
     
         // Read from the JSON file for preview check
         cy.readFile(getJSONRequestFileCreateSuratPerintah).then((previewData) => {
+
+            const nonASNData5WithConditions = previewData.Penerima_Non_ASN.Preview_Non_ASN[4] || previewData.Penerima_Non_ASN.Preview_Non_ASN[1];
+        
             // Assertions for preview content based on JSON data
-            const namaNonASN5Preview = cy.get(badan_surat.namaASN5).as('namaNonASN5Preview')
+            const namaNonASN5Preview = cy.get(badan_surat.namaASN5).as('namaNonASN5Preview');
             namaNonASN5Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[4].nama5[0].Nama);
-    
-            const pangkatgolonganNonASN5Preview = cy.get(badan_surat.pangkatgolonganASN5).as('pangkatgolonganNonASN5Preview')
+            .should('contain', nonASNData5WithConditions.nama5[0].Nama);
+        
+            const pangkatgolonganNonASN5Preview = cy.get(badan_surat.pangkatgolonganASN5).as('pangkatgolonganNonASN5Preview');
             pangkatgolonganNonASN5Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[4].nama5[0].Pangkat_or_Golongan)
-    
-            const nipNonASN5Preview = cy.get(badan_surat.nipASN5).as('nipNonASN5Preview')
+            .should('contain', nonASNData5WithConditions.nama5[0].Pangkat_or_Golongan);
+        
+            const nipNonASN5Preview = cy.get(badan_surat.nipASN5).as('nipNonASN5Preview');
             nipNonASN5Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[4].nama5[0].Nomor_Induk_Pegawai)
-    
-            const jabatanNonASN5Preview = cy.get(badan_surat.jabatanASN5).as('jabatanNonASN5Preview')
+            .should('contain', nonASNData5WithConditions.nama5[0].Nomor_Induk_Pegawai);
+        
+            const jabatanNonASN5Preview = cy.get(badan_surat.jabatanASN5).as('jabatanNonASN5Preview');
             jabatanNonASN5Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[4].nama5[0].Jabatan)
-        });
+            .should('contain', nonASNData5WithConditions.nama5[0].Jabatan);
+            })
     }
 
 
@@ -1037,7 +1043,7 @@ export class DraftingBadanSuratPerintahPage {
     
         cy.readFile(getJSONRequestFileCreateSuratPerintah).then((data) => {
             if (!data.Penerima_Non_ASN) {
-                data.Penerima_Non_ASN = []; // Initialize as an empty array
+                data.Penerima_Non_ASN = { Preview_Non_ASN: [] }; // Initialize as an empty array
             }
     
             cy.get(badan_surat.fieldNamaPenerima6).type(nonASN_Nama6, { delay: 100 }).as('inputNama6');
@@ -1055,11 +1061,11 @@ export class DraftingBadanSuratPerintahPage {
                                     "Jabatan": jabatan.trim()
                                 };
     
-                                const nama6Index = data.Penerima_Non_ASN.findIndex(non_asn => non_asn.hasOwnProperty('nama6'));
+                                const nama6Index = data.Penerima_Non_ASN.Preview_Non_ASN.findIndex(non_asn => non_asn.hasOwnProperty('nama6'));
                                 if (nama6Index !== -1) {
-                                    data.Penerima_Non_ASN[nama6Index].nama6 = [nonASNData6];
+                                    data.Penerima_Non_ASN.Preview_Non_ASN[nama6Index].nama6 = [nonASNData6];
                                 } else {
-                                    data.Penerima_Non_ASN.push({ "nama6": [nonASNData6] });
+                                    data.Penerima_Non_ASN.Preview_Non_ASN.push({ "nama6": [nonASNData6] });
                                 }
     
                                 cy.writeFile(getJSONRequestFileCreateSuratPerintah, data);
@@ -1075,22 +1081,25 @@ export class DraftingBadanSuratPerintahPage {
     
         // Read from the JSON file for preview check
         cy.readFile(getJSONRequestFileCreateSuratPerintah).then((previewData) => {
+            
+            const nonASNData6WithConditions = previewData.Penerima_Non_ASN.Preview_Non_ASN[5] || previewData.Penerima_Non_ASN.Preview_Non_ASN[2];
+        
             // Assertions for preview content based on JSON data
-            const namaNonASN6Preview = cy.get(badan_surat.namaASN6).as('namaNonASN6Preview')
+            const namaNonASN6Preview = cy.get(badan_surat.namaASN6).as('namaNonASN6Preview');
             namaNonASN6Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[5].nama6[0].Nama);
-    
-            const pangkatgolonganNonASN6Preview = cy.get(badan_surat.pangkatgolonganASN6).as('pangkatgolonganNonASN6Preview')
+            .should('contain', nonASNData6WithConditions.nama6[0].Nama);
+        
+            const pangkatgolonganNonASN6Preview = cy.get(badan_surat.pangkatgolonganASN6).as('pangkatgolonganNonASN6Preview');
             pangkatgolonganNonASN6Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[5].nama6[0].Pangkat_or_Golongan)
-    
-            const nipNonASN6Preview = cy.get(badan_surat.nipASN6).as('nipNonASN6Preview')
+            .should('contain', nonASNData6WithConditions.nama6[0].Pangkat_or_Golongan);
+        
+            const nipNonASN6Preview = cy.get(badan_surat.nipASN6).as('nipNonASN6Preview');
             nipNonASN6Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[5].nama6[0].Nomor_Induk_Pegawai)
-    
-            const jabatanNonASN6Preview = cy.get(badan_surat.jabatanASN6).as('jabatanNonASN6Preview')
+            .should('contain', nonASNData6WithConditions.nama6[0].Nomor_Induk_Pegawai);
+        
+            const jabatanNonASN6Preview = cy.get(badan_surat.jabatanASN6).as('jabatanNonASN6Preview');
             jabatanNonASN6Preview.scrollIntoView()
-            .should('contain', previewData.Penerima_Non_ASN[5].nama6[0].Jabatan)
+            .should('contain', nonASNData6WithConditions.nama6[0].Jabatan);
         });
     }
 

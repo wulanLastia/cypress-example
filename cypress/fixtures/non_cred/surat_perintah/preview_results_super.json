@@ -4,10 +4,13 @@
       "Unit_Pengolah": "PAD"
     },
     {
-      "Urgensi_Nota_Dinas": "Amat Segera"
+      "Sifat_Surat_Perintah": "Biasa"
     },
     {
       "Kode_Klasifikasi": "SK (Semua Klasifikasi)"
+    },
+    {
+      "Urgensi_Surat_Perintah": "Amat Segera"
     }
   ],
   "Dasar": [
@@ -26,90 +29,7 @@
   ],
   "Kaki_Surat": [
     {
-      "Pemeriksa_Diri_Sendiri": "VITA PUTRI UTAMI, S.Sos., M.I.Kom",
-      "Pemeriksa_Untuk_Beliau": "FAJAR LIBRIANTO, S.Si., M.M.",
-      "Pemeriksa_Atas_Nama": "Dra. Hj. I GUSTI AGUNG KIM FAJAR WIYATI OKA, M.Si.",
-      "Pemeriksa_Atasan": "Bey Triadi Machmudin, S.E., M.T.",
-      "Pemeriksa_Atas_Nama2": "FAJAR LIBRIANTO, S.Si., M.M."
-    }
-  ],
-  "Untuk": [
-    {
-      "Indent_of_Paragraph_X_Spacing": "  "
-    },
-    {
-      "Untuk_Bold": "Ditujukan kepada anggota JDS untuk hadir di acara Townhall bulan Juni 2023 dengan tema"
-    },
-    {
-      "Untuk_Italic": "Diharapkan kepada seluruh anggota dapat mengikuti acara tersebut dan mempersiapkan diri sebaik mungkin"
-    },
-    {
-      "Untuk_Numeric_List1": "Contains Tab And Newlines",
-      "Untuk_Numeric_List2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla placerat augue magna, nec pretium ipsum vestibulum posuere. Integer velit odio, suscipit a aliquam ac, tincidunt sed tellus. Donec at tortor dui. Pellentesque sed cursus tortor. Cras tincidunt purus venenatis velit blandit, sed luctus mauris ullamcorper. Nulla elementum neque eu bibendum condimentum.",
-      "Untuk_Numeric_List3": "Aliquam pharetra leo sem, eget tempus nunc dignissim sed. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla condimentum fringilla rutrum. Donec ultricies, nibh in facilisis hendrerit, augue nunc congue orci, sed auctor sem est eu lorem. Integer non auctor felis, et congue lorem. In eget tristique velit, a finibus dolor. Fusce ultrices pellentesque pretium. Vivamus rhoncus scelerisque massa sit amet rutrum. Fusce euismod urna non varius tincidunt. Sed et sollicitudin ligula. Vestibulum ut magna ut dui consectetur sagittis vitae eu eros. Donec vel nunc at nisi aliquam suscipit. Phasellus pretium ut mi a dignissim. Vivamus magna neque, scelerisque sit amet fringilla eu, condimentum eu ligula. Mauris sed congue orci. Mauris consequat sem ut egestas faucibus. Suspendisse potenti. Donec id nisl ligula. Donec aliquam ex eget turpis fermentum suscipit. Praesent venenatis mi augue, in laoreet ipsum convallis sed. Aenean scelerisque gravida mollis. Duis non erat sed elit faucibus pellentesque. Duis fermentum, massa eu egestas malesuada, tellus sapien ornare turpis, quis consectetur diam sem ut nibh. Aliquam id lacinia eros. Nulla eget sagittis eros. Suspendisse mauris elit, tristique at tincidunt accumsan, feugiat a leo. Phasellus fermentum massa eget lorem porta suscipit nec vel neque. Maecenas consequat, erat vitae blandit fringilla, tellus lectus eleifend ligula, non laoreet ex nisl id purus. Aliquam facilisis scelerisque pharetra. Phasellus suscipit ex quis faucibus dapibus. Duis iaculis porttitor ante, ac dictum tortor viverra et. Donec ut gravida mauris. Nunc dictum finibus accumsan. Ut auctor auctor elementum. Phasellus in sem a odio."
-    },
-    {
-      "Untuk_Bullet_List1": "Contains Tab And Newlines",
-      "Untuk_Bullet_List2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
-      "Untuk_Bullet_List3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-      "Untuk_Paste1": "Diharapkan kepada seluruh anggota dapat mengikuti acara tersebut dan mempersiapkan diri sebaik mungkin"
-    },
-    {
-      "Untuk_Whitespace_Text": "Contains Tab And NewlinesLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla placerat augue magna, nec pretium ipsum vestibulum posuere. Integer velit odio, suscipit a aliquam ac, tincidunt sed tellus. Donec at tortor dui. Pellentesque sed cursus tortor. Cras tincidunt purus venenatis velit blandit, sed luctus mauris ullamcorper. Nulla elementum neque eu bibendum condimentum."
-    }
-  ],
-  "Penerima_Non_ASN": [
-    {
-      "nama1": [
-        {
-          "Nama": "John Doe, S.Kom.",
-          "Pangkat_or_Golongan": "Diamond 1",
-          "Nomor_Induk_Pegawai": "081224327394",
-          "Jabatan": "Junior QA Engineer"
-        }
-      ]
-    },
-    {
-      "nama2": [
-        {
-          "Nama": "Yayan Jatnika, M. Ber.",
-          "Pangkat_or_Golongan": "-",
-          "Nomor_Induk_Pegawai": "14045",
-          "Jabatan": "Junior QA Engineer"
-        }
-      ]
-    },
-    {
-      "nama3": [
-        {
-          "Nama": "Kratos, M. Fus.",
-          "Pangkat_or_Golongan": "- / -",
-          "Nomor_Induk_Pegawai": "14045",
-          "Jabatan": "Junior QA Engineer"
-        }
-      ]
-    },
-    {
-      "nama4": [
-        {
-          "Nama": "Khidir Karawitah",
-          "Pangkat_or_Golongan": "-",
-          "Nomor_Induk_Pegawai": "14045",
-          "Jabatan": "Senior QA Engineer"
-        }
-      ]
-    },
-    {
-      "nama5": [
-        {
-          "Nama": "Ismail Ahmad Khan Nabawi",
-          "Pangkat_or_Golongan": "-",
-          "Nomor_Induk_Pegawai": "14045",
-          "Jabatan": "Senior QA Engineer"
-        }
-      ]
+      "Pemeriksa_Atasan": "Dra. Hj. I GUSTI AGUNG KIM FAJAR WIYATI OKA, M.Si."
     }
   ],
   "Penerima_ASN": {
@@ -139,5 +59,36 @@
         ]
       }
     ]
-  }
+  },
+  "Penerima_Non_ASN": {
+    "Preview_Non_ASN": [
+      {
+        "nama4": [
+          {
+            "Nama": "Khidir Karawitah",
+            "Pangkat_or_Golongan": "-",
+            "Nomor_Induk_Pegawai": "14045",
+            "Jabatan": "Senior QA Engineer"
+          }
+        ]
+      },
+      {
+        "nama5": [
+          {
+            "Nama": "Ismail Ahmad Khan Nabawi",
+            "Pangkat_or_Golongan": "-",
+            "Nomor_Induk_Pegawai": "14045",
+            "Jabatan": "Senior QA Engineer"
+          }
+        ]
+      }
+    ]
+  },
+  "Untuk": [
+    {
+      "Untuk_Numeric_List1": "Contains Tab And Newlines",
+      "Untuk_Numeric_List2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla placerat augue magna, nec pretium ipsum vestibulum posuere. Integer velit odio, suscipit a aliquam ac, tincidunt sed tellus. Donec at tortor dui. Pellentesque sed cursus tortor. Cras tincidunt purus venenatis velit blandit, sed luctus mauris ullamcorper. Nulla elementum neque eu bibendum condimentum.",
+      "Untuk_Numeric_List3": "Aliquam pharetra leo sem, eget tempus nunc dignissim sed. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla condimentum fringilla rutrum. Donec ultricies, nibh in facilisis hendrerit, augue nunc congue orci, sed auctor sem est eu lorem. Integer non auctor felis, et congue lorem. In eget tristique velit, a finibus dolor. Fusce ultrices pellentesque pretium. Vivamus rhoncus scelerisque massa sit amet rutrum. Fusce euismod urna non varius tincidunt. Sed et sollicitudin ligula. Vestibulum ut magna ut dui consectetur sagittis vitae eu eros. Donec vel nunc at nisi aliquam suscipit. Phasellus pretium ut mi a dignissim. Vivamus magna neque, scelerisque sit amet fringilla eu, condimentum eu ligula. Mauris sed congue orci. Mauris consequat sem ut egestas faucibus. Suspendisse potenti. Donec id nisl ligula. Donec aliquam ex eget turpis fermentum suscipit. Praesent venenatis mi augue, in laoreet ipsum convallis sed. Aenean scelerisque gravida mollis. Duis non erat sed elit faucibus pellentesque. Duis fermentum, massa eu egestas malesuada, tellus sapien ornare turpis, quis consectetur diam sem ut nibh. Aliquam id lacinia eros. Nulla eget sagittis eros. Suspendisse mauris elit, tristique at tincidunt accumsan, feugiat a leo. Phasellus fermentum massa eget lorem porta suscipit nec vel neque. Maecenas consequat, erat vitae blandit fringilla, tellus lectus eleifend ligula, non laoreet ex nisl id purus. Aliquam facilisis scelerisque pharetra. Phasellus suscipit ex quis faucibus dapibus. Duis iaculis porttitor ante, ac dictum tortor viverra et. Donec ut gravida mauris. Nunc dictum finibus accumsan. Ut auctor auctor elementum. Phasellus in sem a odio."
+    }
+  ]
 }

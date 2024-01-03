@@ -1,24 +1,27 @@
 {
-    "Kepala_Surat": [
-      {
-        "Kode_Klasifikasi": "SK (Semua Klasifikasi)"
-      },
-      {
-        "Unit_Pengolah": "PAD"
-      },
-      {
-        "Urgensi_Nota_Dinas": "Amat Segera"
-      },
-      {
-        "Perihal": "Automation Testing 659664 Tujuan Kepala Surat Lampiran - Internal - Lampiran"
-      }
-    ],
-    "Dasar": [
-        {
-          "Dasar_Bold": "Ditujukan kepada anggota JDS untuk hadir di acara Townhall bulan Juni 2023 dengan tema"
-        },
-        {
-          "Dasar_Italic": "Diharapkan kepada seluruh anggota dapat mengikuti acara tersebut dan mempersiapkan diri sebaik mungkin"
-        }  
-    ]
+  "Kepala_Surat": [
+    {
+      "Kode_Klasifikasi": "SK (Semua Klasifikasi)"
+    },
+    {
+      "Unit_Pengolah": "PAD"
+    },
+    {
+      "Urgensi_Surat_Perintah": "Amat Segera"
+    },
+    {
+      "Sifat_Surat_Perintah": "Biasa"
+    },
+    {
+      "Perihal": "Tujuan Kepala Surat Lampiran - Internal - Lampiran"
+    }
+  ],
+  "Dasar": [
+    {
+      "Dasar_Bold": "Ditujukan kepada anggota JDS untuk hadir di acara Townhall bulan Juni 2023 dengan tema"
+    },
+    {
+      "Dasar_Italic": "Diharapkan kepada seluruh anggota dapat mengikuti acara tersebut dan mempersiapkan diri sebaik mungkin"
+    }
+  ]
 }

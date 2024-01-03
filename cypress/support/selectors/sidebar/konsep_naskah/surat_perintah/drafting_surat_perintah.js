@@ -14,8 +14,10 @@ module.exports = {
     titleKaki: '[data-cy="input-kaki-surat__title"]',
     editFormDefault: '[data-cy="surat-perintah__kepala-surat-preview__dasar--null-state"]',
     btnSimpanNaskah: '[data-cy="drafting__button-save"]',
-    btnKirimNaskah: '[data-cy="surat-nota-dinas-submit"]',
+    btnKirimNaskah: '[data-cy="surat-perintah__button--submit"]',
     konfirmasiKirimNaskah: '[data-cy="dialog__confirmation-submit__button--kirim-naskah"]',
+    popupSuccessKirimNaskah: '[data-cy="dialog__success"]',
+    popupTitleSuccessKirimNaskah: '[data-cy="dialog__success__title"]',
 
     // XPATH
     titleLampiran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/h2[1]',
