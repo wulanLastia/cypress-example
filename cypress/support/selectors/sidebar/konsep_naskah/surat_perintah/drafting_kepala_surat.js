@@ -17,6 +17,10 @@ module.exports = {
     selectUrgensiSurat: '[data-cy="surat-perintah__kepala-surat-input__urgensi--select-option"]',
     btnDeleteUrgensiSurat: "div[id='vs2__combobox'] button[title='Clear Selected']",
 
+    titleSifatSurat: '[data-cy="surat-perintah__kepala-surat-input__sifat-surat__title"]',
+    selectSifatSurat: '[data-cy="surat-perintah__kepala-surat-input__sifat-surat__select-option"]',
+    btnDeleteSifatSurat: "div[id='vs3__combobox'] button[title='Clear Selected']",
+
     titlePerihal: '[data-cy="surat-perintah__kepala-surat-input__perihal--title"]',
     inputPerihal: '[data-cy="surat-perintah__kepala-surat-input__perihal--input"]',
 
