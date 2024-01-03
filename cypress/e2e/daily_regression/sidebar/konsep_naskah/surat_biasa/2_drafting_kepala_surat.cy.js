@@ -9,11 +9,6 @@ let data_temp
 
 beforeEach(() => {
     cy.intercept({ resourceType: /xhr/ }, { log: false })
-
-    cy.overrideFeatureToggle({
-        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-        'SIDEBAR-V1-LOGIN-CAPTCHA': true
-    })
 })
 
 before(() => {
@@ -24,6 +19,11 @@ before(() => {
 
     cy.fixture('non_cred/kepala_surat/create_data_surat_biasa.json').then((data) => {
         data_temp = data
+    })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
     })
 })
 

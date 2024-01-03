@@ -14,17 +14,18 @@ let setujuiPage = new SetujuiPage()
 
 beforeEach(() => {
     cy.intercept({ resourceType: /xhr/ }, { log: false })
-
-    cy.overrideFeatureToggle({
-        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-        'SIDEBAR-V1-LOGIN-CAPTCHA': true
-    })
 })
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
+    })
+
+    // Set toogle unleash
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
     })
 })
 

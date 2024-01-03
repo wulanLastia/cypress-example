@@ -24,8 +24,6 @@ export class KembalikanNaskahPage {
     }
 
     emptyField() {
-        this.goToNaskahBelumDireview()
-
         const btnKembalikan = cy.get(kembalikan_naskah.btnKembalikan).as('btnKembalikan')
         btnKembalikan.should('be.visible')
             .click()

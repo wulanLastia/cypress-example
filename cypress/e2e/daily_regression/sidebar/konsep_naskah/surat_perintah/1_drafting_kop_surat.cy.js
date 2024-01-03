@@ -8,9 +8,7 @@ import { DraftingKopSuratPerintahPage } from "../../../../../support/pages/sideb
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
-
 let draftingSuratPerintahPage = new DraftingSuratPerintahPage()
-
 let draftingKopSuratPerintahPage = new DraftingKopSuratPerintahPage()
 
 Cypress.on('uncaught:exception', (err, runnable) => {
@@ -23,13 +21,19 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     throw err;
 });
 
-    
+
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
-        cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
+    })
 })
 
 before(() => {
@@ -67,25 +71,25 @@ describe('Drafting Kop Surat Surat Perintah Skenario', { testIsolation: false },
         })
     )
 
-    qase([1731,1421],
+    qase([1731, 1421],
         it('Cek preview setelah memilih kop Sekretariat Daerah', () => {
             draftingKopSuratPerintahPage.checkPreviewSekda()
         })
     )
 
-    qase([1417,1732],
+    qase([1417, 1732],
         it('Cek preview setelah memilih kop Dinas/Badan', () => {
             draftingKopSuratPerintahPage.checkPreviewDinas()
         })
     )
 
-    qase([1418,1732],
+    qase([1418, 1732],
         it('Cek preview setelah memilih kop UPTD/cabang dinas', () => {
             draftingKopSuratPerintahPage.checkPreviewUPTD()
         })
     )
 
-    qase([1415,1732],
+    qase([1415, 1732],
         it('Cek list pilihan dropdown UPTD/Cabang Dinas', () => {
             draftingKopSuratPerintahPage.checkDropdownUPTD()
         })
