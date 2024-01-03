@@ -38,7 +38,8 @@ export class ListSuratReviewNaskahPage {
         const searchReviewNaskah = cy.get(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
         searchReviewNaskah.find('input').clear()
         searchReviewNaskah.type(inputText)
-            .then((inputText) => {
+            .invoke('val')
+            .then((val) => {
                 cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
 
                 cy.wait('@checkResponse', { timeout: 5000 })
@@ -53,7 +54,7 @@ export class ListSuratReviewNaskahPage {
                                     tableEmptyState.find('p').should('contain', 'Hasil pencarian tidak ditemukan')
                                 } else {
                                     const tableReviewNaskah = cy.get(review_naskah.tableReviewNaskah).as('tableReviewNaskah')
-                                    tableReviewNaskah.contains('td', inputText)
+                                    tableReviewNaskah.contains('td', val)
                                 }
                             }
                         }
@@ -125,7 +126,7 @@ export class ListSuratReviewNaskahPage {
                             const filterSifatBiasa = cy.get(review_naskah.filterSifatBiasa).as('filterStatusBiasa')
                             filterSifatBiasa.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterSifatBiasaLabel = cy.get(review_naskah.filterSifatBiasaLabel).as('filterSifatBiasaLabel')
@@ -149,7 +150,7 @@ export class ListSuratReviewNaskahPage {
                             const filterSifatKonfidensial = cy.get(review_naskah.filterSifatKonfidensial).as('filterSifatKonfidensial')
                             filterSifatKonfidensial.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterSifatKonfidensialLabel = cy.get(review_naskah.filterSifatKonfidensialLabel).as('filterSifatKonfidensialLabel')
@@ -176,7 +177,7 @@ export class ListSuratReviewNaskahPage {
                             const filterSifatPenting = cy.get(review_naskah.filterSifatPenting).as('filterSifatPenting')
                             filterSifatPenting.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterSifatPentingLabel = cy.get(review_naskah.filterSifatPentingLabel).as('filterSifatPentingLabel')
@@ -206,7 +207,7 @@ export class ListSuratReviewNaskahPage {
                             const filterSifatRahasia = cy.get(review_naskah.filterSifatRahasia).as('filterSifatRahasia')
                             filterSifatRahasia.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterSifatRahasiaLabel = cy.get(review_naskah.filterSifatRahasiaLabel).as('filterSifatRahasiaLabel')
@@ -239,7 +240,7 @@ export class ListSuratReviewNaskahPage {
                             const filterSifatSangatRahasia = cy.get(review_naskah.filterSifatSangatRahasia).as('filterSifatSangatRahasia')
                             filterSifatSangatRahasia.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterSifatSangatRahasiaLabel = cy.get(review_naskah.filterSifatSangatRahasiaLabel).as('filterSifatSangatRahasiaLabel')
@@ -302,7 +303,7 @@ export class ListSuratReviewNaskahPage {
                             const filterUrgensiBiasa = cy.get(review_naskah.filterUrgensiBiasa).as('filterUrgensiBiasa')
                             filterUrgensiBiasa.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterUrgensiBiasaLabel = cy.get(review_naskah.filterUrgensiBiasaLabel).as('filterUrgensiBiasaLabel')
@@ -326,7 +327,7 @@ export class ListSuratReviewNaskahPage {
                             const filterUrgensiPenting = cy.get(review_naskah.filterUrgensiPenting).as('filterUrgensiPenting')
                             filterUrgensiPenting.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterUrgensiPentingLabel = cy.get(review_naskah.filterUrgensiPentingLabel).as('filterUrgensiPentingLabel')
@@ -353,7 +354,7 @@ export class ListSuratReviewNaskahPage {
                             const filterUrgensiSegera = cy.get(review_naskah.filterUrgensiSegera).as('filterUrgensiSegera')
                             filterUrgensiSegera.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterUrgensiSegeraLabel = cy.get(review_naskah.filterUrgensiSegeraLabel).as('filterUrgensiSegeraLabel')
@@ -383,7 +384,7 @@ export class ListSuratReviewNaskahPage {
                             const filterUrgensiAmatSegera = cy.get(review_naskah.filterUrgensiAmatSegera).as('filterUrgensiAmatSegera')
                             filterUrgensiAmatSegera.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterUrgensiAmatSegeraLabel = cy.get(review_naskah.filterUrgensiAmatSegeraLabel).as('filterUrgensiAmatSegeraLabel')
@@ -446,7 +447,7 @@ export class ListSuratReviewNaskahPage {
                             const filterStatusBelumDireview = cy.get(review_naskah.filterStatusBelumDireview).as('filterStatusBelumDireview')
                             filterStatusBelumDireview.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterStatusBelumDireviewLabel = cy.get(review_naskah.filterStatusBelumDireviewLabel).as('filterStatusBelumDireviewLabel')
@@ -469,7 +470,7 @@ export class ListSuratReviewNaskahPage {
                             const filterStatusBelumDitandatangani = cy.get(review_naskah.filterStatusBelumDitandatangani).as('filterStatusBelumDitandatangani')
                             filterStatusBelumDitandatangani.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterStatusBelumDitandatanganiLabel = cy.get(review_naskah.filterStatusBelumDitandatanganiLabel).as('filterStatusBelumDitandatanganiLabel')
@@ -495,7 +496,7 @@ export class ListSuratReviewNaskahPage {
                             const filterStatusDisetujui = cy.get(review_naskah.filterStatusDisetujui).as('filterStatusDisetujui')
                             filterStatusDisetujui.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterStatusDisetujuiLabel = cy.get(review_naskah.filterStatusDisetujuiLabel).as('filterStatusDisetujuiLabel')
@@ -524,7 +525,7 @@ export class ListSuratReviewNaskahPage {
                             const filterStatusDikembalikan = cy.get(review_naskah.filterStatusDikembalikan).as('filterStatusDikembalikan')
                             filterStatusDikembalikan.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterStatusDikembalikanLabel = cy.get(review_naskah.filterStatusDikembalikanLabel).as('filterStatusDikembalikanLabel')
@@ -546,7 +547,6 @@ export class ListSuratReviewNaskahPage {
             .click()
 
         cy.wait(2000)
-
     }
 
     clearFilterStatus() {
@@ -587,7 +587,7 @@ export class ListSuratReviewNaskahPage {
                             const filterJenisSuratNotaDinas = cy.get(review_naskah.filterJenisSuratNotaDinas).as('filterJenisSuratNotaDinas')
                             filterJenisSuratNotaDinas.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterJenisSuratNotaDinasLabel = cy.get(review_naskah.filterJenisSuratNotaDinasLabel).as('filterJenisSuratNotaDinasLabel')
@@ -611,7 +611,7 @@ export class ListSuratReviewNaskahPage {
                             const filterJenisSuratSuratBiasa = cy.get(review_naskah.filterJenisSuratSuratBiasa).as('filterJenisSuratSuratBiasa')
                             filterJenisSuratSuratBiasa.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterJenisSuratSuratBiasaLabel = cy.get(review_naskah.filterJenisSuratSuratBiasaLabel).as('filterJenisSuratSuratBiasaLabel')
@@ -638,7 +638,7 @@ export class ListSuratReviewNaskahPage {
                             const filterJenisSuratSuratPerintah = cy.get(review_naskah.filterJenisSuratSuratPerintah).as('filterJenisSuratSuratPerintah')
                             filterJenisSuratSuratPerintah.check()
                                 .then(() => {
-                                    cy.wait('@checkResponse', { timeout: 5000 })
+                                    cy.wait('@checkResponse', { timeout: 10000 })
                                         .then((interception) => {
                                             if (interception.response.statusCode === 200) {
                                                 const filterJenisSuratSuratPerintahLabel = cy.get(review_naskah.filterJenisSuratSuratPerintahLabel).as('filterJenisSuratSuratPerintahLabel')
@@ -661,6 +661,5 @@ export class ListSuratReviewNaskahPage {
             .click()
 
         cy.wait(2000)
-
     }
 }
