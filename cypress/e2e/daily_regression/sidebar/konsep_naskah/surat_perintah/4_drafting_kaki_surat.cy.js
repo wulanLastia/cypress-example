@@ -1,17 +1,13 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../../support/pages/sidebar/menu/menu.cy"
 import { DraftingKakiSuratPerintahPage } from "../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/super_drafting_kaki_surat.cy"
 import { DraftingSuratPerintahPage } from "../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_surat_perintah.cy"
 
 let draftingKakiSuratPerintahPage = new DraftingKakiSuratPerintahPage()
 let draftingSuratPerintahPage = new DraftingSuratPerintahPage()
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
 let user
 let testKakiPositive
-
-
 
 before(() => {
     Cypress.on('uncaught:exception', (err, runnable) => {
@@ -19,17 +15,22 @@ before(() => {
         if (err.message.includes('postMessage')) {
             return false; // return false digunakan untuk skip error pada Headless Mode
         }
-    
+
         // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
         throw err;
     });
-    
 
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
+
     cy.intercept({ resourceType: /xhr/ }, { log: false })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
+    })
 })
 
 before(() => {
@@ -40,9 +41,8 @@ before(() => {
 
 before(() => {
     loginPage.loginViaV1(user.nip, user.password)
-
-    
     loginPage.directLogin()
+
     cy.wait(1000)
     draftingSuratPerintahPage.gotoKonsepNaskahSuratPerintah()
 
@@ -54,8 +54,6 @@ after(() => {
         loginPage.logoutV2step2()
     )
 })
-
-
 
 describe('Drafting Kaki Surat Skenario', { testIsolation: false }, () => {
     qase(1762,
@@ -169,8 +167,4 @@ describe('Drafting Kaki Surat Skenario', { testIsolation: false }, () => {
 
         })
     )
-
-
-
-
 })

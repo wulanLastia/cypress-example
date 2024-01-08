@@ -17,6 +17,11 @@ before(() => {
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
+    })
 })
 
 after(() => {
@@ -33,7 +38,7 @@ describe('Pencarian Naskah Kotak Keluar Skenario', { testIsolation: false }, () 
     )
 
     qase(324,
-        it('Akses halaman kotak keluar review naskah', () => {
+        it('Melakukan pencarian dengan kata kunci perihal yang tersedia pada data', () => {
             listSuratReviewNaskahPage.searchDokumen('Automation')
         })
     )

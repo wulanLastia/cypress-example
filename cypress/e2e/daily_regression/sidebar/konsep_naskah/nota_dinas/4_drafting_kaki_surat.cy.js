@@ -1,13 +1,11 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../../support/pages/sidebar/menu/menu.cy"
 import { DraftingKakiSuratPage } from "../../../../../support/pages/sidebar/konsep_naskah/nota_dinas/nodin_drafting_kaki_surat.cy.js"
 import { CreateNotaDinasPage } from "../../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_create_nota_dinas.cy"
 
 let draftingKakiSuratPage = new DraftingKakiSuratPage()
 let createNotaDinasPage = new CreateNotaDinasPage()
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
 let user
 
 before(() => {
@@ -15,8 +13,13 @@ before(() => {
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
-    
+
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
+    })
 })
 
 before(() => {
@@ -25,16 +28,13 @@ before(() => {
     createNotaDinasPage.gotoNotaDinas()
 })
 
-
-
 describe('Drafting Badan Naskah Skenario', { testIsolation: false }, () => {
     after(() => {
         qase(411,
             loginPage.logoutV2step2()
         )
     })
-    
-    
+
     qase(1146,
         it('Access kaki surat editing form', () => {
             draftingKakiSuratPage.aksesFormEditingKakiSurat()
@@ -53,14 +53,17 @@ describe('Drafting Badan Naskah Skenario', { testIsolation: false }, () => {
             draftingKakiSuratPage.closeKakiSurat()
         })
     )
-
 })
-
-
 
 describe('Kaki Naskah', { testIsolation: false }, () => {
     before(() => {
         cy.then(Cypress.session.clearCurrentSessionData)
+
+        cy.overrideFeatureToggle({
+            'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+            'SIDEBAR-V1-LOGIN-CAPTCHA': true
+        })
+
         loginPage.loginViaV1(user.nip, user.password)
         loginPage.directLogin()
         createNotaDinasPage.gotoNotaDinas()
@@ -72,8 +75,6 @@ describe('Kaki Naskah', { testIsolation: false }, () => {
         )
     })
 
-    
-    
     qase(1148,
         it('Check penandatangan dropdown list', () => {
             draftingKakiSuratPage.aksesFormEditingKakiSurat()
@@ -93,13 +94,17 @@ describe('Kaki Naskah', { testIsolation: false }, () => {
             draftingKakiSuratPage.pilihPenandatanganDiriSendiri()
         })
     )
-
 })
-
 
 describe('Penandatangan', { testIsolation: false }, () => {
     before(() => {
         cy.then(Cypress.session.clearCurrentSessionData)
+
+        cy.overrideFeatureToggle({
+            'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+            'SIDEBAR-V1-LOGIN-CAPTCHA': true
+        })
+
         loginPage.loginViaV1(user.nip, user.password)
         loginPage.directLogin()
         createNotaDinasPage.gotoNotaDinas()
@@ -111,8 +116,6 @@ describe('Penandatangan', { testIsolation: false }, () => {
         )
     })
 
-    
-    
     qase(1159,
         it('Check field if user select pemeriksa', () => {
             draftingKakiSuratPage.aksesFormEditingKakiSurat()

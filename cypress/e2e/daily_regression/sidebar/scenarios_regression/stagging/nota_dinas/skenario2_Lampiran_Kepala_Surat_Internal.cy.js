@@ -1,6 +1,5 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../../../support/pages/sidebar/menu/menu.cy"
 import { CreateNotaDinasPage } from "../../../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_create_nota_dinas.cy"
 import { KembalikanNaskahPage } from "../../../../../../support/pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
 import { PerbaikiNaskahPage } from "../../../../../../support/pages/sidebar/kotak_masuk/6_perbaiki.cy"
@@ -18,17 +17,13 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 });
 
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
 let user
 let dataNotaDinas
-
-
 let createNotaDinasPage = new CreateNotaDinasPage()
 let kembalikanNaskahPage = new KembalikanNaskahPage()
 let perbaikiNaskahPage = new PerbaikiNaskahPage()
 let setujuiPage = new SetujuiPage()
 let koreksiSuratPage = new KoreksiSuratPage()
-
 
 beforeEach(() => {
     cy.intercept({ resourceType: /xhr/ }, { log: false })
@@ -38,6 +33,11 @@ before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
+    })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
     })
 })
 
@@ -56,8 +56,6 @@ afterEach(() => {
     cy.wait(10000)
     loginPage.logoutV2step2()
 })
-
-
 
 describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
 
@@ -80,13 +78,17 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
         })
     )
 
-
     qase([399, 101, 377, 402, 100],
         it('Kembalikan Naskah', () => {
+            // Set toogle unleash
+            cy.overrideFeatureToggle({
+                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+                'SIDEBAR-V1-LOGIN-CAPTCHA': true
+            })
+
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa, user.password)
             loginPage.directLogin()
-
 
             // Create Naskah
             kembalikanNaskahPage.emptyField()
@@ -103,13 +105,17 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
         })
     )
 
-
     qase([367, 712, 713, 714, 715],
         it('Perbaiki Naskah', () => {
+            // Set toogle unleash
+            cy.overrideFeatureToggle({
+                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+                'SIDEBAR-V1-LOGIN-CAPTCHA': true
+            })
+
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
-
 
             perbaikiNaskahPage.goToPerbaikiNaskahNotaDinas()
             cy.wait(3000)
@@ -120,6 +126,12 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
 
     qase([358, 102],
         it('Setujui Naskah', () => {
+            // Set toogle unleash
+            cy.overrideFeatureToggle({
+                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+                'SIDEBAR-V1-LOGIN-CAPTCHA': true
+            })
+
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa, user.password)
             loginPage.directLogin()
@@ -131,6 +143,12 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
 
     qase([368, 370, 372],
         it('Koreksi dan Tandatangani Naskah', () => {
+            // Set toogle unleash
+            cy.overrideFeatureToggle({
+                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+                'SIDEBAR-V1-LOGIN-CAPTCHA': true
+            })
+
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa2, user.password)
             loginPage.directLogin()
@@ -141,6 +159,4 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             cy.wait(10000)
         })
     )
-
-
 })

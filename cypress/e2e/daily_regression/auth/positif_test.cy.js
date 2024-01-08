@@ -13,6 +13,7 @@ before(() => {
 
     cy.overrideFeatureToggle({
         'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': true,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
     })
 })
 

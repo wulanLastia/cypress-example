@@ -1,18 +1,14 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../../support/pages/sidebar/menu/menu.cy"
 import { DraftingKepalaSuratPerintahPage } from "../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/super_drafting_kepala_surat.cy"
 import { DraftingSuratPerintahPage } from "../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_surat_perintah.cy"
 
 let draftingKepalaSuratPerintahPage = new DraftingKepalaSuratPerintahPage()
 let draftingSuratPerintahPage = new DraftingSuratPerintahPage()
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
 let user
 let testKepalaPositive
 let testKepalaNegative
-
-
 
 before(() => {
     Cypress.on('uncaught:exception', (err, runnable) => {
@@ -20,17 +16,23 @@ before(() => {
         if (err.message.includes('postMessage')) {
             return false; // return false digunakan untuk skip error pada Headless Mode
         }
-    
+
         // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
         throw err;
     });
-    
 
     cy.then(Cypress.session.clearCurrentSessionData)
+
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
+
     cy.intercept({ resourceType: /xhr/ }, { log: false })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
+    })
 })
 
 before(() => {
@@ -45,9 +47,8 @@ before(() => {
 
 before(() => {
     loginPage.loginViaV1(user.nip, user.password)
-
-    
     loginPage.directLogin()
+
     cy.wait(1000)
     draftingSuratPerintahPage.gotoKonsepNaskahSuratPerintah()
 
@@ -59,8 +60,6 @@ after(() => {
         loginPage.logoutV2step2()
     )
 })
-
-
 
 describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
     qase(1423,
@@ -130,7 +129,7 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
         it('Cek Perihal Surat', () => {
             draftingKepalaSuratPerintahPage.inputPerihal(testKepalaPositive.Kepala_Surat[4].Perihal)
             cy.wait(3000)
-            })
+        })
     )
 
     qase(1425,
@@ -140,10 +139,7 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
             cy.wait(3000)
         })
     )
-
-    
 })
-
 
 describe('Free Text on Dasar Field', { testIsolation: false }, () => {
     qase(721,
@@ -172,7 +168,6 @@ describe('Free Text on Dasar Field', { testIsolation: false }, () => {
 
 })
 
-
 describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
     qase(1423,
         it('Akses form editing kepala surat', () => {
@@ -182,7 +177,7 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
             draftingSuratPerintahPage.gotoKonsepNaskahSuratPerintah()
-        
+
 
             cy.wait(3000)
             draftingKepalaSuratPerintahPage.aksesFormEditingKepalaSurat()
@@ -208,7 +203,6 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
     )
     // End of Kepala Surat Negative Case (Input Long Text)
 
-
     // Start Kepala Surat Negative Case (JS Scirpt)
     qase(1461,
         it('Input Tag Script', () => {
@@ -224,7 +218,6 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
     )
     // End of Kepala Surat Negative Case (JS Scirpt)
 
-
     // Start Kepala Surat Negative Case (HTML Scirpt)
     qase(1462,
         it('Input tag HTML', () => {
@@ -239,7 +232,6 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
         })
     )
     // End of Kepala Surat Negative Case (HTML Scirpt)
-
 
     // Start Kepala Surat Negative Case (Whitespace)
     qase(1467,
@@ -268,7 +260,6 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
     )
     // End Kepala Surat Negative Case (Whitespace)
 
-
     // Start Kepala Surat Negative Case (XSS Scirpt)
     qase(1461,
         it('Input XSS Injection Script', () => {
@@ -283,7 +274,6 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
         })
     )
     // End of Kepala Surat Negative Case (XSS Scirpt)
-
 
     // Start Kepala Surat Negative Case (URL)
     qase(1463,
@@ -300,8 +290,7 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
     )
     // End of Kepala Surat Negative Case (URL)
 
-
-     // Start Kepala Surat Negative Case (Emoji)
+    // Start Kepala Surat Negative Case (Emoji)
     qase(1460,
         it('Input Emoji', () => {
             cy.wait(3000)
@@ -315,7 +304,6 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
         })
     )
     // End of Kepala Surat Negative Case (Emoji)
-
 
     // Start Kepala Surat Negative Case (whitespace at the beginning and at the end of the input)
     qase(1465,
@@ -342,10 +330,8 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
             // draftingSuratPerintahPage.negativeKirimNaskah() // Kirim Naskah Sedang di Develop           
         })
     )
-
     // End Kepala Surat Negative Case (whitespace at the beginning and at the end of the input)
 
-    
     // Start Kepala Surat Negative Case (BLANK FIELD)
     qase(1464,
         it('Blank Field Kepala Surat', () => {
@@ -369,8 +355,4 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
         })
     )
     // End Kepala Surat Negative Case (BLANK FIELD)
-
-
-
-
 })

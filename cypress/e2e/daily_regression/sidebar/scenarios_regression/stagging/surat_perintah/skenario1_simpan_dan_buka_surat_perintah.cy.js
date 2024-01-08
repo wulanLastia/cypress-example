@@ -1,6 +1,5 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "@pages/auth/login.cy"
-import { MenuPage } from "@pages/sidebar/menu/menu.cy"
 import { DraftingSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_surat_perintah.cy"
 import { DraftingKopSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_kop_surat_perintah.cy"
 import { DraftingKepalaSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat_perintah/super_drafting_kepala_surat.cy"
@@ -8,28 +7,17 @@ import { DraftingBadanSuratPerintahPage } from "@pages/sidebar/konsep_naskah/sur
 import { DraftingKakiSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat_perintah/super_drafting_kaki_surat.cy"
 import { DraftPage } from "@pages/sidebar/konsep_naskah/konsep_naskah/draft.cy"
 
-
-
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
-let user
-
 let draftingSuratPerintahPage = new DraftingSuratPerintahPage()
-
 let draftingKopSuratPerintahPage = new DraftingKopSuratPerintahPage()
 let draftingKepalaSuratPerintahPage = new DraftingKepalaSuratPerintahPage()
 let draftingBadanSuratPerintahPage = new DraftingBadanSuratPerintahPage()
 let draftingKakiSuratPerintahPage = new DraftingKakiSuratPerintahPage()
-
 let draftPage = new DraftPage()
-
-
+let user
 let testKepalaPositive
-
 let testBadanPositive
-
 let testKakiPositive
-
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     // Jika terdapat error 'uncaught:exception' pada Headless Mode
@@ -41,15 +29,19 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     throw err;
 });
 
-    
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
-        cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
-})
 
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
+    })
+})
 
 before(() => {
     loginPage.loginViaV1(user.nip, user.password)
@@ -59,7 +51,6 @@ before(() => {
 
     cy.wait(3999)
 })
-
 
 before(() => {
     cy.fixture('non_cred/surat_perintah/kepala_surat/positive/kepala_surat_super_positive.json').then((data) => {
@@ -75,14 +66,11 @@ before(() => {
     })
 })
 
-
 after(() => {
     qase(411,
         loginPage.logoutV2step2()
     )
 })
-
-
 
 describe('Drafting Kaki Surat Skenario', { testIsolation: false }, () => {
     qase(1762,
@@ -110,7 +98,6 @@ describe('Drafting Kaki Surat Skenario', { testIsolation: false }, () => {
     )
 })
 
-
 describe('Drafting Kop Surat Surat Perintah Skenario', { testIsolation: false }, () => {
     qase([1395, 1419],
         it('Akses form editing kop surat (drafting)', () => {
@@ -119,7 +106,7 @@ describe('Drafting Kop Surat Surat Perintah Skenario', { testIsolation: false },
         })
     )
 
-    qase([1417,1732],
+    qase([1417, 1732],
         it('Cek preview setelah memilih kop Dinas/Badan', () => {
             draftingKopSuratPerintahPage.checkPreviewDinas()
         })
@@ -131,7 +118,6 @@ describe('Drafting Kop Surat Surat Perintah Skenario', { testIsolation: false },
         })
     )
 })
-
 
 describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
     qase(1423,
@@ -185,7 +171,6 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
     )
 })
 
-
 describe('Drafting Badan Surat Skenario', { testIsolation: false }, () => {
     qase(1755,
         it('Akses form editing badan surat', () => {
@@ -211,7 +196,7 @@ describe('Drafting Badan Surat Skenario', { testIsolation: false }, () => {
             cy.wait(3000)
             draftingBadanSuratPerintahPage.inputandcheckFieldASN3rd(ASNData.nama3)
             cy.wait(3000)
-            
+
             draftingBadanSuratPerintahPage.dragAndDropFirstToSecondASNandNonASN()
         })
     )
@@ -221,21 +206,20 @@ describe('Drafting Badan Surat Skenario', { testIsolation: false }, () => {
             const nonASNData4 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[3].nama4[0];
             const nonASNData5 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[4].nama5[0];
 
-            
             cy.wait(3000)
             draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
             cy.wait(3000)
             draftingBadanSuratPerintahPage.toggleASNandNonASN4()
             cy.wait(3000)
             draftingBadanSuratPerintahPage.inputandcheckFieldNonASN4th(nonASNData4.Nama, nonASNData4.Pangkat_or_Golongan, nonASNData4.Nomor_Induk_Pegawai, nonASNData4.Jabatan);
-           
+
             cy.wait(3000)
             draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
             cy.wait(3000)
             draftingBadanSuratPerintahPage.toggleASNandNonASN5()
             cy.wait(3000)
             draftingBadanSuratPerintahPage.inputandcheckFieldNonASN5th(nonASNData5.Nama, nonASNData5.Pangkat_or_Golongan, nonASNData5.Nomor_Induk_Pegawai, nonASNData5.Jabatan);
-           
+
             draftingBadanSuratPerintahPage.dragAndDropLastDataToFirstDataASNandNonASN()
         })
     )
@@ -244,8 +228,8 @@ describe('Drafting Badan Surat Skenario', { testIsolation: false }, () => {
         it('Input Text Numeric List on Untuk Field, Check on preview page if user create more than one page', () => {
             cy.wait(3000);
             draftingBadanSuratPerintahPage.inputNumericListTextOnUntuk(
-                testBadanPositive.Untuk[2].Untuk_Numeric_List1, 
-                testBadanPositive.Untuk[2].Untuk_Numeric_List2, 
+                testBadanPositive.Untuk[2].Untuk_Numeric_List1,
+                testBadanPositive.Untuk[2].Untuk_Numeric_List2,
                 testBadanPositive.Untuk[2].Untuk_Numeric_List3
             );
         })
@@ -258,7 +242,6 @@ describe('Drafting Badan Surat Skenario', { testIsolation: false }, () => {
         })
     )
 })
-
 
 describe('Simpan Surat Perintah', { testIsolation: false }, () => {
     qase(1860,

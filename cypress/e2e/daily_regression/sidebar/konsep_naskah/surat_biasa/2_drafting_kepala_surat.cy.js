@@ -1,11 +1,9 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../../support/pages/sidebar/menu/menu.cy"
 import { DraftingKepalaSuratPage } from "../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_kepala_surat.cy"
 
 let draftingKepalaSuratPage = new DraftingKepalaSuratPage()
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
 let user
 let data_temp
 
@@ -21,6 +19,11 @@ before(() => {
 
     cy.fixture('non_cred/kepala_surat/create_data_surat_biasa.json').then((data) => {
         data_temp = data
+    })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
     })
 })
 

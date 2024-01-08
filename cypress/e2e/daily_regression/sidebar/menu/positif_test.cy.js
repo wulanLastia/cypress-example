@@ -14,15 +14,14 @@ before(() => {
 })
 
 beforeEach(() => {
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
+    })
+
     loginPage.loginViaV1(user.nip, user.password)
     loginPage.directLogin()
 })
-
-/*afterEach(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
-})*/
 
 describe('Menu Positif Skenario', () => {
     qase(1,

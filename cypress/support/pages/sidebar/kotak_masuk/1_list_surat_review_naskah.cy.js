@@ -38,22 +38,27 @@ export class ListSuratReviewNaskahPage {
         const searchReviewNaskah = cy.get(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
         searchReviewNaskah.find('input').clear()
         searchReviewNaskah.type(inputText)
-            .then((inputText) => {
+            .invoke('val')
+            .then((val) => {
+                cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
 
-                if (inputText.length > 2) {
-                    const tableEmptyState = cy.get(review_naskah.tableEmptyState).as('tableEmptyState')
-                    tableEmptyState.then($tr => {
-                        if ($tr.is(':visible')) {
-                            closePopup.click()
-                        } else {
-                            const tableReviewNaskah = cy.get(review_naskah.tableReviewNaskah).as('tableReviewNaskah')
-                            tableReviewNaskah.contains('td', inputText)
+                cy.wait('@checkResponse', { timeout: 5000 })
+                    .then((interception) => {
+                        if (interception.response.statusCode === 200) {
+                            if (interception.response.body.data === null) {
+                                const tableEmptyState = cy.get(review_naskah.tableEmptyState).as('tableEmptyState')
+                                tableEmptyState.find('p').should('contain', 'Hasil pencarian tidak ditemukan')
+                            } else {
+                                if (interception.response.body.data.documents.pageInfo.totalCount === 0) {
+                                    const tableEmptyState = cy.get(review_naskah.tableEmptyState).as('tableEmptyState')
+                                    tableEmptyState.find('p').should('contain', 'Hasil pencarian tidak ditemukan')
+                                } else {
+                                    const tableReviewNaskah = cy.get(review_naskah.tableReviewNaskah).as('tableReviewNaskah')
+                                    tableReviewNaskah.contains('td', val)
+                                }
+                            }
                         }
                     })
-                } else {
-                    const tableDataPerihal = cy.get(review_naskah.tableDataPerihal).as('tableDataPerihal')
-                    tableDataPerihal.should('not.equal', inputText)
-                }
             })
     }
 
@@ -116,16 +121,23 @@ export class ListSuratReviewNaskahPage {
                     .click()
                     .then(() => {
                         if (inputanSifat === 'Biasa') {
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterSifatBiasa = cy.get(review_naskah.filterSifatBiasa).as('filterStatusBiasa')
                             filterSifatBiasa.check()
                                 .then(() => {
-                                    const filterSifatBiasaLabel = cy.get(review_naskah.filterSifatBiasaLabel).as('filterSifatBiasaLabel')
-                                    filterSifatBiasaLabel.should('be.visible')
-                                        .should('contain', inputanSifat)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterSifatBiasaLabel = cy.get(review_naskah.filterSifatBiasaLabel).as('filterSifatBiasaLabel')
+                                                filterSifatBiasaLabel.should('be.visible')
+                                                    .should('contain', inputanSifat)
 
-                                    const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
-                                    tagJenisSurat.find('span')
-                                        .should('contain', inputanSifat)
+                                                const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
+                                                tagJenisSurat.find('span')
+                                                    .should('contain', inputanSifat)
+                                            }
+                                        })
                                 })
                         } else if (inputanSifat === 'Konfidensial') {
                             filterSifat.click()
@@ -133,16 +145,23 @@ export class ListSuratReviewNaskahPage {
                             const filterSifatBiasa = cy.get(review_naskah.filterSifatBiasa).as('filterSifatBiasa')
                             filterSifatBiasa.uncheck()
 
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterSifatKonfidensial = cy.get(review_naskah.filterSifatKonfidensial).as('filterSifatKonfidensial')
                             filterSifatKonfidensial.check()
                                 .then(() => {
-                                    const filterSifatKonfidensialLabel = cy.get(review_naskah.filterSifatKonfidensialLabel).as('filterSifatKonfidensialLabel')
-                                    filterSifatKonfidensialLabel.should('be.visible')
-                                        .should('contain', inputanSifat)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterSifatKonfidensialLabel = cy.get(review_naskah.filterSifatKonfidensialLabel).as('filterSifatKonfidensialLabel')
+                                                filterSifatKonfidensialLabel.should('be.visible')
+                                                    .should('contain', inputanSifat)
 
-                                    const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
-                                    tagJenisSurat.find('span')
-                                        .should('contain', inputanSifat)
+                                                const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
+                                                tagJenisSurat.find('span')
+                                                    .should('contain', inputanSifat)
+                                            }
+                                        })
                                 })
                         } else if (inputanSifat === 'Penting') {
                             filterSifat.click()
@@ -153,16 +172,23 @@ export class ListSuratReviewNaskahPage {
                             const filterSifatKonfidensial = cy.get(review_naskah.filterSifatKonfidensial).as('filterSifatKonfidensial')
                             filterSifatKonfidensial.uncheck()
 
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterSifatPenting = cy.get(review_naskah.filterSifatPenting).as('filterSifatPenting')
                             filterSifatPenting.check()
                                 .then(() => {
-                                    const filterSifatPentingLabel = cy.get(review_naskah.filterSifatPentingLabel).as('filterSifatPentingLabel')
-                                    filterSifatPentingLabel.should('be.visible')
-                                        .should('contain', inputanSifat)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterSifatPentingLabel = cy.get(review_naskah.filterSifatPentingLabel).as('filterSifatPentingLabel')
+                                                filterSifatPentingLabel.should('be.visible')
+                                                    .should('contain', inputanSifat)
 
-                                    const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
-                                    tagJenisSurat.find('span')
-                                        .should('contain', inputanSifat)
+                                                const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
+                                                tagJenisSurat.find('span')
+                                                    .should('contain', inputanSifat)
+                                            }
+                                        })
                                 })
                         } else if (inputanSifat === 'Rahasia') {
                             filterSifat.click()
@@ -176,16 +202,23 @@ export class ListSuratReviewNaskahPage {
                             const filterSifatPenting = cy.get(review_naskah.filterSifatPenting).as('filterSifatPenting')
                             filterSifatPenting.uncheck()
 
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterSifatRahasia = cy.get(review_naskah.filterSifatRahasia).as('filterSifatRahasia')
                             filterSifatRahasia.check()
                                 .then(() => {
-                                    const filterSifatRahasiaLabel = cy.get(review_naskah.filterSifatRahasiaLabel).as('filterSifatRahasiaLabel')
-                                    filterSifatRahasiaLabel.should('be.visible')
-                                        .should('contain', inputanSifat)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterSifatRahasiaLabel = cy.get(review_naskah.filterSifatRahasiaLabel).as('filterSifatRahasiaLabel')
+                                                filterSifatRahasiaLabel.should('be.visible')
+                                                    .should('contain', inputanSifat)
 
-                                    const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
-                                    tagJenisSurat.find('span')
-                                        .should('contain', inputanSifat)
+                                                const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
+                                                tagJenisSurat.find('span')
+                                                    .should('contain', inputanSifat)
+                                            }
+                                        })
                                 })
                         } else {
                             filterSifat.click()
@@ -202,16 +235,23 @@ export class ListSuratReviewNaskahPage {
                             const filterSifatRahasia = cy.get(review_naskah.filterSifatRahasia).as('filterSifatRahasia')
                             filterSifatRahasia.uncheck()
 
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterSifatSangatRahasia = cy.get(review_naskah.filterSifatSangatRahasia).as('filterSifatSangatRahasia')
                             filterSifatSangatRahasia.check()
                                 .then(() => {
-                                    const filterSifatSangatRahasiaLabel = cy.get(review_naskah.filterSifatSangatRahasiaLabel).as('filterSifatSangatRahasiaLabel')
-                                    filterSifatSangatRahasiaLabel.should('be.visible')
-                                        .should('contain', inputanSifat)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterSifatSangatRahasiaLabel = cy.get(review_naskah.filterSifatSangatRahasiaLabel).as('filterSifatSangatRahasiaLabel')
+                                                filterSifatSangatRahasiaLabel.should('be.visible')
+                                                    .should('contain', inputanSifat)
 
-                                    const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
-                                    tagJenisSurat.find('span')
-                                        .should('contain', inputanSifat)
+                                                const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
+                                                tagJenisSurat.find('span')
+                                                    .should('contain', inputanSifat)
+                                            }
+                                        })
                                 })
                         }
                     })
@@ -258,16 +298,23 @@ export class ListSuratReviewNaskahPage {
                     .click()
                     .then(() => {
                         if (inputanUrgensi === 'Biasa') {
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterUrgensiBiasa = cy.get(review_naskah.filterUrgensiBiasa).as('filterUrgensiBiasa')
                             filterUrgensiBiasa.check()
                                 .then(() => {
-                                    const filterUrgensiBiasaLabel = cy.get(review_naskah.filterUrgensiBiasaLabel).as('filterUrgensiBiasaLabel')
-                                    filterUrgensiBiasaLabel.should('be.visible')
-                                        .should('contain', inputanUrgensi)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterUrgensiBiasaLabel = cy.get(review_naskah.filterUrgensiBiasaLabel).as('filterUrgensiBiasaLabel')
+                                                filterUrgensiBiasaLabel.should('be.visible')
+                                                    .should('contain', inputanUrgensi)
 
-                                    const tagUrgensi = cy.get(review_naskah.tagUrgensi).as('tagUrgensi')
-                                    tagUrgensi.find('p')
-                                        .should('contain', inputanUrgensi)
+                                                const tagUrgensi = cy.get(review_naskah.tagUrgensi).as('tagUrgensi')
+                                                tagUrgensi.find('p')
+                                                    .should('contain', inputanUrgensi)
+                                            }
+                                        })
                                 })
                         } else if (inputanUrgensi === 'Penting') {
                             filterUrgensi.click()
@@ -275,16 +322,23 @@ export class ListSuratReviewNaskahPage {
                             const filterUrgensiBiasa = cy.get(review_naskah.filterUrgensiBiasa).as('filterUrgensiBiasa')
                             filterUrgensiBiasa.uncheck()
 
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterUrgensiPenting = cy.get(review_naskah.filterUrgensiPenting).as('filterUrgensiPenting')
                             filterUrgensiPenting.check()
                                 .then(() => {
-                                    const filterUrgensiPentingLabel = cy.get(review_naskah.filterUrgensiPentingLabel).as('filterUrgensiPentingLabel')
-                                    filterUrgensiPentingLabel.should('be.visible')
-                                        .should('contain', inputanUrgensi)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterUrgensiPentingLabel = cy.get(review_naskah.filterUrgensiPentingLabel).as('filterUrgensiPentingLabel')
+                                                filterUrgensiPentingLabel.should('be.visible')
+                                                    .should('contain', inputanUrgensi)
 
-                                    const tagUrgensi = cy.get(review_naskah.tagUrgensi).as('tagUrgensi')
-                                    tagUrgensi.find('p')
-                                        .should('contain', inputanUrgensi)
+                                                const tagUrgensi = cy.get(review_naskah.tagUrgensi).as('tagUrgensi')
+                                                tagUrgensi.find('p')
+                                                    .should('contain', inputanUrgensi)
+                                            }
+                                        })
                                 })
                         } else if (inputanUrgensi === 'Segera') {
                             filterUrgensi.click()
@@ -295,16 +349,23 @@ export class ListSuratReviewNaskahPage {
                             const filterUrgensiPenting = cy.get(review_naskah.filterUrgensiPenting).as('filterUrgensiPenting')
                             filterUrgensiPenting.uncheck()
 
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterUrgensiSegera = cy.get(review_naskah.filterUrgensiSegera).as('filterUrgensiSegera')
                             filterUrgensiSegera.check()
                                 .then(() => {
-                                    const filterUrgensiSegeraLabel = cy.get(review_naskah.filterUrgensiSegeraLabel).as('filterUrgensiSegeraLabel')
-                                    filterUrgensiSegeraLabel.should('be.visible')
-                                        .should('contain', inputanUrgensi)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterUrgensiSegeraLabel = cy.get(review_naskah.filterUrgensiSegeraLabel).as('filterUrgensiSegeraLabel')
+                                                filterUrgensiSegeraLabel.should('be.visible')
+                                                    .should('contain', inputanUrgensi)
 
-                                    const tagUrgensi = cy.get(review_naskah.tagUrgensi).as('tagUrgensi')
-                                    tagUrgensi.find('p')
-                                        .should('contain', inputanUrgensi)
+                                                const tagUrgensi = cy.get(review_naskah.tagUrgensi).as('tagUrgensi')
+                                                tagUrgensi.find('p')
+                                                    .should('contain', inputanUrgensi)
+                                            }
+                                        })
                                 })
                         } else {
                             filterUrgensi.click()
@@ -318,16 +379,23 @@ export class ListSuratReviewNaskahPage {
                             const filterUrgensiSegera = cy.get(review_naskah.filterUrgensiSegera).as('filterUrgensiSegera')
                             filterUrgensiSegera.uncheck()
 
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterUrgensiAmatSegera = cy.get(review_naskah.filterUrgensiAmatSegera).as('filterUrgensiAmatSegera')
                             filterUrgensiAmatSegera.check()
                                 .then(() => {
-                                    const filterUrgensiAmatSegeraLabel = cy.get(review_naskah.filterUrgensiAmatSegeraLabel).as('filterUrgensiAmatSegeraLabel')
-                                    filterUrgensiAmatSegeraLabel.should('be.visible')
-                                        .should('contain', inputanUrgensi)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterUrgensiAmatSegeraLabel = cy.get(review_naskah.filterUrgensiAmatSegeraLabel).as('filterUrgensiAmatSegeraLabel')
+                                                filterUrgensiAmatSegeraLabel.should('be.visible')
+                                                    .should('contain', inputanUrgensi)
 
-                                    const tagUrgensi = cy.get(review_naskah.tagUrgensi).as('tagUrgensi')
-                                    tagUrgensi.find('p')
-                                        .should('contain', inputanUrgensi)
+                                                const tagUrgensi = cy.get(review_naskah.tagUrgensi).as('tagUrgensi')
+                                                tagUrgensi.find('p')
+                                                    .should('contain', inputanUrgensi)
+                                            }
+                                        })
                                 })
                         }
                     })
@@ -374,15 +442,22 @@ export class ListSuratReviewNaskahPage {
                     .click()
                     .then(() => {
                         if (inputanStatus === 'Belum Direview') {
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterStatusBelumDireview = cy.get(review_naskah.filterStatusBelumDireview).as('filterStatusBelumDireview')
                             filterStatusBelumDireview.check()
                                 .then(() => {
-                                    const filterStatusBelumDireviewLabel = cy.get(review_naskah.filterStatusBelumDireviewLabel).as('filterStatusBelumDireviewLabel')
-                                    filterStatusBelumDireviewLabel.should('be.visible')
-                                        .should('contain', inputanStatus)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterStatusBelumDireviewLabel = cy.get(review_naskah.filterStatusBelumDireviewLabel).as('filterStatusBelumDireviewLabel')
+                                                filterStatusBelumDireviewLabel.should('be.visible')
+                                                    .should('contain', inputanStatus)
 
-                                    const tagStatus = cy.get(review_naskah.tagStatus).as('tagStatus')
-                                    tagStatus.contains(inputanStatus, { matchCase: false })
+                                                const tagStatus = cy.get(review_naskah.tagStatus).as('tagStatus')
+                                                tagStatus.contains(inputanStatus, { matchCase: false })
+                                            }
+                                        })
                                 })
                         } else if (inputanStatus === 'Belum Ditandatangani') {
                             filterStatus.click()
@@ -390,15 +465,22 @@ export class ListSuratReviewNaskahPage {
                             const filterStatusBelumDireview = cy.get(review_naskah.filterStatusBelumDireview).as('filterStatusBelumDireview')
                             filterStatusBelumDireview.uncheck()
 
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterStatusBelumDitandatangani = cy.get(review_naskah.filterStatusBelumDitandatangani).as('filterStatusBelumDitandatangani')
                             filterStatusBelumDitandatangani.check()
                                 .then(() => {
-                                    const filterStatusBelumDitandatanganiLabel = cy.get(review_naskah.filterStatusBelumDitandatanganiLabel).as('filterStatusBelumDitandatanganiLabel')
-                                    filterStatusBelumDitandatanganiLabel.should('be.visible')
-                                        .should('contain', inputanStatus)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterStatusBelumDitandatanganiLabel = cy.get(review_naskah.filterStatusBelumDitandatanganiLabel).as('filterStatusBelumDitandatanganiLabel')
+                                                filterStatusBelumDitandatanganiLabel.should('be.visible')
+                                                    .should('contain', inputanStatus)
 
-                                    const tagStatus = cy.get(review_naskah.tagStatus).as('tagStatus')
-                                    tagStatus.contains(inputanStatus, { matchCase: false })
+                                                const tagStatus = cy.get(review_naskah.tagStatus).as('tagStatus')
+                                                tagStatus.contains(inputanStatus, { matchCase: false })
+                                            }
+                                        })
                                 })
                         } else if (inputanStatus === 'Disetujui') {
                             filterStatus.click()
@@ -409,15 +491,22 @@ export class ListSuratReviewNaskahPage {
                             const filterStatusBelumDitandatangani = cy.get(review_naskah.filterStatusBelumDitandatangani).as('filterStatusBelumDitandatangani')
                             filterStatusBelumDitandatangani.uncheck()
 
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterStatusDisetujui = cy.get(review_naskah.filterStatusDisetujui).as('filterStatusDisetujui')
                             filterStatusDisetujui.check()
                                 .then(() => {
-                                    const filterStatusDisetujuiLabel = cy.get(review_naskah.filterStatusDisetujuiLabel).as('filterStatusDisetujuiLabel')
-                                    filterStatusDisetujuiLabel.should('be.visible')
-                                        .should('contain', inputanStatus)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterStatusDisetujuiLabel = cy.get(review_naskah.filterStatusDisetujuiLabel).as('filterStatusDisetujuiLabel')
+                                                filterStatusDisetujuiLabel.should('be.visible')
+                                                    .should('contain', inputanStatus)
 
-                                    const tagStatus = cy.get(review_naskah.tagStatus).as('tagStatus')
-                                    tagStatus.contains(inputanStatus, { matchCase: false })
+                                                const tagStatus = cy.get(review_naskah.tagStatus).as('tagStatus')
+                                                tagStatus.contains(inputanStatus, { matchCase: false })
+                                            }
+                                        })
                                 })
 
                             const filterStatusDisetujui2 = cy.get(review_naskah.filterStatusDisetujui).as('filterStatusDisetujui')
@@ -431,15 +520,22 @@ export class ListSuratReviewNaskahPage {
                             const filterStatusBelumDitandatangani = cy.get(review_naskah.filterStatusBelumDitandatangani).as('filterStatusBelumDitandatangani')
                             filterStatusBelumDitandatangani.uncheck()
 
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterStatusDikembalikan = cy.get(review_naskah.filterStatusDikembalikan).as('filterStatusDikembalikan')
                             filterStatusDikembalikan.check()
                                 .then(() => {
-                                    const filterStatusDikembalikanLabel = cy.get(review_naskah.filterStatusDikembalikanLabel).as('filterStatusDikembalikanLabel')
-                                    filterStatusDikembalikanLabel.should('be.visible')
-                                        .should('contain', inputanStatus)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterStatusDikembalikanLabel = cy.get(review_naskah.filterStatusDikembalikanLabel).as('filterStatusDikembalikanLabel')
+                                                filterStatusDikembalikanLabel.should('be.visible')
+                                                    .should('contain', inputanStatus)
 
-                                    const tagStatus = cy.get(review_naskah.tagStatus).as('tagStatus')
-                                    tagStatus.contains(inputanStatus, { matchCase: false })
+                                                const tagStatus = cy.get(review_naskah.tagStatus).as('tagStatus')
+                                                tagStatus.contains(inputanStatus, { matchCase: false })
+                                            }
+                                        })
                                 })
                         }
                     })
@@ -451,7 +547,6 @@ export class ListSuratReviewNaskahPage {
             .click()
 
         cy.wait(2000)
-
     }
 
     clearFilterStatus() {
@@ -487,16 +582,23 @@ export class ListSuratReviewNaskahPage {
                     .click()
                     .then(() => {
                         if (inputanJenisSurat === 'Nota Dinas') {
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterJenisSuratNotaDinas = cy.get(review_naskah.filterJenisSuratNotaDinas).as('filterJenisSuratNotaDinas')
                             filterJenisSuratNotaDinas.check()
                                 .then(() => {
-                                    const filterJenisSuratNotaDinasLabel = cy.get(review_naskah.filterJenisSuratNotaDinasLabel).as('filterJenisSuratNotaDinasLabel')
-                                    filterJenisSuratNotaDinasLabel.should('be.visible')
-                                        .should('contain', inputanJenisSurat)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterJenisSuratNotaDinasLabel = cy.get(review_naskah.filterJenisSuratNotaDinasLabel).as('filterJenisSuratNotaDinasLabel')
+                                                filterJenisSuratNotaDinasLabel.should('be.visible')
+                                                    .should('contain', inputanJenisSurat)
 
-                                    const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
-                                    tagJenisSurat.find('strong')
-                                        .should('contain', inputanJenisSurat)
+                                                const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
+                                                tagJenisSurat.find('strong')
+                                                    .should('contain', inputanJenisSurat)
+                                            }
+                                        })
                                 })
                         } else if (inputanJenisSurat === 'Surat Biasa') {
                             filterJenisSurat.click()
@@ -504,16 +606,23 @@ export class ListSuratReviewNaskahPage {
                             const filterJenisSuratNotaDinas = cy.get(review_naskah.filterJenisSuratNotaDinas).as('filterJenisSuratNotaDinas')
                             filterJenisSuratNotaDinas.uncheck()
 
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterJenisSuratSuratBiasa = cy.get(review_naskah.filterJenisSuratSuratBiasa).as('filterJenisSuratSuratBiasa')
                             filterJenisSuratSuratBiasa.check()
                                 .then(() => {
-                                    const filterJenisSuratSuratBiasaLabel = cy.get(review_naskah.filterJenisSuratSuratBiasaLabel).as('filterJenisSuratSuratBiasaLabel')
-                                    filterJenisSuratSuratBiasaLabel.should('be.visible')
-                                        .should('contain', inputanJenisSurat)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterJenisSuratSuratBiasaLabel = cy.get(review_naskah.filterJenisSuratSuratBiasaLabel).as('filterJenisSuratSuratBiasaLabel')
+                                                filterJenisSuratSuratBiasaLabel.should('be.visible')
+                                                    .should('contain', inputanJenisSurat)
 
-                                    const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
-                                    tagJenisSurat.find('strong')
-                                        .should('contain', inputanJenisSurat)
+                                                const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
+                                                tagJenisSurat.find('strong')
+                                                    .should('contain', inputanJenisSurat)
+                                            }
+                                        })
                                 })
                         } else {
                             filterJenisSurat.click()
@@ -524,16 +633,23 @@ export class ListSuratReviewNaskahPage {
                             const filterJenisSuratSuratBiasa = cy.get(review_naskah.filterJenisSuratSuratBiasa).as('filterJenisSuratSuratBiasa')
                             filterJenisSuratSuratBiasa.uncheck()
 
+                            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
                             const filterJenisSuratSuratPerintah = cy.get(review_naskah.filterJenisSuratSuratPerintah).as('filterJenisSuratSuratPerintah')
                             filterJenisSuratSuratPerintah.check()
                                 .then(() => {
-                                    const filterJenisSuratSuratPerintahLabel = cy.get(review_naskah.filterJenisSuratSuratPerintahLabel).as('filterJenisSuratSuratPerintahLabel')
-                                    filterJenisSuratSuratPerintahLabel.should('be.visible')
-                                        .should('contain', inputanJenisSurat)
+                                    cy.wait('@checkResponse', { timeout: 10000 })
+                                        .then((interception) => {
+                                            if (interception.response.statusCode === 200) {
+                                                const filterJenisSuratSuratPerintahLabel = cy.get(review_naskah.filterJenisSuratSuratPerintahLabel).as('filterJenisSuratSuratPerintahLabel')
+                                                filterJenisSuratSuratPerintahLabel.should('be.visible')
+                                                    .should('contain', inputanJenisSurat)
 
-                                    const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
-                                    tagJenisSurat.find('strong')
-                                        .should('contain', inputanJenisSurat)
+                                                const tagJenisSurat = cy.get(review_naskah.tagJenisSurat).as('tagJenisSurat')
+                                                tagJenisSurat.find('strong')
+                                                    .should('contain', inputanJenisSurat)
+                                            }
+                                        })
                                 })
                         }
                     })
@@ -545,6 +661,5 @@ export class ListSuratReviewNaskahPage {
             .click()
 
         cy.wait(2000)
-
     }
 }

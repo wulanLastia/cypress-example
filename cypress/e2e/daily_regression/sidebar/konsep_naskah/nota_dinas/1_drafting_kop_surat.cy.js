@@ -4,22 +4,25 @@ import { MenuPage } from "../../../../../support/pages/sidebar/menu/menu.cy"
 import { CreateNotaDinasPage } from "../../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_create_nota_dinas.cy"
 import { DraftingKopSuratNotaDinasPage } from "../../../../../support/pages/sidebar/konsep_naskah/nota_dinas/nodin_drafting_kop_surat.cy"
 
-
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
-
 let createNotaDinasPage = new CreateNotaDinasPage()
+
 const draftingKopSuratNotaDinasPage = new DraftingKopSuratNotaDinasPage()
 
-
-    
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
-        cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
+    })
 })
 
 before(() => {
@@ -42,7 +45,7 @@ describe('Drafting Kop Surat Nota Dinas Skenario', { testIsolation: false }, () 
         })
     )
 
-    qase([1065,71],
+    qase([1065, 71],
         it('Cek detail form editing kop surat', () => {
             draftingKopSuratNotaDinasPage.checkDetail()
         })
@@ -54,19 +57,19 @@ describe('Drafting Kop Surat Nota Dinas Skenario', { testIsolation: false }, () 
         })
     )
 
-    qase([1066,71],
+    qase([1066, 71],
         it('Cek preview setelah memilih kop Sekretariat Daerah', () => {
             draftingKopSuratNotaDinasPage.checkPreviewSekda()
         })
     )
 
-    qase([1062,71],
+    qase([1062, 71],
         it('Cek preview setelah memilih kop Dinas/Badan', () => {
             draftingKopSuratNotaDinasPage.checkPreviewDinas()
         })
     )
 
-    qase([1063,71],
+    qase([1063, 71],
         it('Cek preview setelah memilih kop UPTD/cabang dinas', () => {
             draftingKopSuratNotaDinasPage.checkPreviewUPTD()
         })

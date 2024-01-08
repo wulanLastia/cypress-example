@@ -50,6 +50,12 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
 
     qase([13, 81, 83, 709, 150, 80, 849, 176],
         it('Create Naskah Surat Biasa', () => {
+            // Set toogle unleash
+            cy.overrideFeatureToggle({
+                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+                'SIDEBAR-V1-LOGIN-CAPTCHA': true
+            })
+
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
@@ -85,11 +91,20 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
 
     qase([399, 101, 377, 402, 100],
         it('Kembalikan Naskah', () => {
+            // Set toogle unleash
+            cy.overrideFeatureToggle({
+                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+                'SIDEBAR-V1-LOGIN-CAPTCHA': true
+            })
+
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa, user.password)
             loginPage.directLogin()
 
             // Create Naskah
+            kembalikanNaskahPage.goToNaskahBelumDireview()
+
+            cy.wait(6000)
             kembalikanNaskahPage.emptyField()
             kembalikanNaskahPage.batalKembalikanNaskah()
             kembalikanNaskahPage.checkHalamanInformasi()
@@ -102,6 +117,12 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
 
     qase([367, 712, 713, 714, 715],
         it('Perbaiki Naskah', () => {
+            // Set toogle unleash
+            cy.overrideFeatureToggle({
+                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+                'SIDEBAR-V1-LOGIN-CAPTCHA': true
+            })
+
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
@@ -115,11 +136,19 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
 
     qase([358, 102],
         it('Setujui Naskah', () => {
+            // Set toogle unleash
+            cy.overrideFeatureToggle({
+                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+                'SIDEBAR-V1-LOGIN-CAPTCHA': true
+            })
+
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa, user.password)
             loginPage.directLogin()
 
             setujuiPage.suratBelumDireview()
+
+            cy.wait(3000)
             setujuiPage.setujui()
 
             cy.wait(10000)
@@ -128,6 +157,12 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
 
     qase([368, 370, 372],
         it('Koreksi dan Tandatangani Naskah', () => {
+            // Set toogle unleash
+            cy.overrideFeatureToggle({
+                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+                'SIDEBAR-V1-LOGIN-CAPTCHA': true
+            })
+
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa2, user.password)
             loginPage.directLogin()
@@ -138,5 +173,4 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
             cy.wait(10000)
         })
     )
-
 }) 

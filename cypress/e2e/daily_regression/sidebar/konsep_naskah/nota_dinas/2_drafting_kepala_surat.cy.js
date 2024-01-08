@@ -31,6 +31,11 @@ before(() => {
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
+
+    cy.overrideFeatureToggle({
+        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        'SIDEBAR-V1-LOGIN-CAPTCHA': true
+    })
 })
 
 before(() => {
@@ -148,10 +153,7 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
             cy.wait(3000)
         })
     )
-
-
 })
-
 
 describe('Drafting Lampiran Kepala Surat Skenario', { testIsolation: false }, () => {
     qase(721,
@@ -174,7 +176,6 @@ describe('Drafting Lampiran Kepala Surat Skenario', { testIsolation: false }, ()
             draftingKepalaSuratNotaDinasPage.clickRButton2LampiranSurat()
         })
     )
-
 
     qase(725,
         it('Cek tujuan lampiran surat INTERNAL', () => {
@@ -214,14 +215,10 @@ describe('Drafting Lampiran Kepala Surat Skenario', { testIsolation: false }, ()
             menuPage.goToKotakMasukReviewNaskah()
             cy.wait(10000)
 
-
             loginPage.logoutV2step2()
-
         })
     )
-
 })
-
 
 describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
     qase(721,
@@ -229,16 +226,19 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
             // Clear Cache & Login
             cy.then(Cypress.session.clearCurrentSessionData)
 
+            cy.overrideFeatureToggle({
+                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+                'SIDEBAR-V1-LOGIN-CAPTCHA': true
+            })
+
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
             createNotaDinasPage.gotoNotaDinas()
-
 
             cy.wait(3000)
             draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
         })
     )
-
 
     // Start Tujuan Kepala Surat Negative Case (JS Scirpt)
     qase([305, 91, 839, 109, 122, 137],
@@ -263,7 +263,6 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
     )
     // End of Tujuan Kepala Surat Negative Case (JS Scirpt)
 
-
     // Start Tujuan Kepala Surat Negative Case (HTML Scirpt)
     qase([306, 92, 840, 110, 123, 138],
         it('Input tag HTML', () => {
@@ -280,7 +279,6 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
         })
     )
     // End of Tujuan Kepala Surat Negative Case (HTML Scirpt)
-
 
     // Start Tujuan Kepala Surat Negative Case (Whitespace)
     qase([106, 845, 115, 119, 128, 131, 134, 143],
@@ -317,7 +315,6 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
     )
     // End Tujuan Kepala Surat Negative Case (Whitespace)
 
-
     // Start Tujuan Kepala Surat Negative Case (XSS Scirpt)
     qase([305, 91, 839, 109, 122, 137],
         it('Input XSS Injection Script', () => {
@@ -334,7 +331,6 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
         })
     )
     // End of Tujuan Kepala Surat Negative Case (XSS Scirpt)
-
 
     // Start Tujuan Kepala Surat Negative Case (BLANK FIELD)
     qase([308, 94, 842, 112, 125, 140],
@@ -369,9 +365,7 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
             draftingNotaDinasPage.negativeKirimNaskah()
         })
     )
-
     // End Tujuan Kepala Surat Negative Case (BLANK FIELD)
-
 
     // Start Tujuan Kepala Surat Negative Case (Long Text, Same Tujuan, Same Tembusan)
     qase(744,
@@ -420,5 +414,4 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
         })
     )
     // End of Tujuan Kepala Surat Negative Case (Long Text, Same Tujuan, Same Tembusan)
-
 })
