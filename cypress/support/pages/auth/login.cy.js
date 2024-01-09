@@ -51,6 +51,15 @@ export class LoginPage {
     }
 
     loginViaV1(nip, passwordv1) {
+        cy.then(Cypress.session.clearCurrentSessionData)
+
+        cy.wait(1500)
+
+        cy.overrideFeatureToggle({
+            'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+            'SIDEBAR-V1-LOGIN-CAPTCHA': true
+        })    
+
         cy.intercept('POST', Cypress.env('base_url_api_v1')).as('checkResponse')
 
         this.navigateLoginPageV1()
