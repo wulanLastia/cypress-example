@@ -98,9 +98,7 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
             draftingKakiSuratPerintahPage.checkPemeriksaAtasan(testKakiPositive.Pemeriksa.Daftar_Pemeriksa_Naskah[0].nama2)
             cy.wait(3000)
         })
-    )
-
-    
+    ) 
 
     qase([1395, 1419],
         it('Akses form editing kop surat (drafting)', () => {
@@ -120,8 +118,6 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
             draftingKopSuratPerintahPage.closeKopSurat()
         })
     )
-
-
 
     qase(1423,
         it('Akses form editing kepala surat', () => {
@@ -179,8 +175,6 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
             cy.wait(3000)
         })
     )
-
-
 
     qase(1755,
         it('Akses form editing badan surat', () => {
@@ -253,8 +247,6 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
         })
     )
 
-
-
     qase(1913,
         it('Kirim drafting naskah surat perintah', () => {
             cy.wait(3000)
@@ -265,9 +257,6 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
     )
 
 })
-
-
-
 
 describe('Koreksi Tandatangani Naskah Skenario', { testIsolation: false }, () => {
     qase([2167, 2168, 2170, 2174],

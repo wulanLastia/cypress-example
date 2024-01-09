@@ -105,8 +105,6 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
         })
     )
 
-    
-
     qase([1395, 1419],
         it('Akses form editing kop surat (drafting)', () => {
             draftingKopSuratPerintahPage.aksesFormEditingKopSurat()
@@ -257,8 +255,6 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
             draftingBadanSuratPerintahPage.closeBadanSurat()
         })
     )
-
-
 
     qase(1913,
         it('Kirim drafting naskah surat perintah', () => {

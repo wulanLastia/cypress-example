@@ -32,7 +32,6 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     throw err;
 });
 
-
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
 
@@ -70,8 +69,6 @@ before(() => {
 after(() => {
     loginPage.logoutV2step2()
 })
-
-
 
 describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation: false }, () => {
     qase(1762,
@@ -255,8 +252,6 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
             draftingBadanSuratPerintahPage.closeBadanSurat()
         })
     )
-
-
 
     qase(1913,
         it('Kirim drafting naskah surat perintah', () => {

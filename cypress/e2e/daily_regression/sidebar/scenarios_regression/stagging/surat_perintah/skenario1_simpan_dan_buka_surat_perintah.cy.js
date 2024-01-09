@@ -68,8 +68,6 @@ after(() => {
     )
 })
 
-
-
 describe('Drafting & Validasi Simpan Surat Perintah', { testIsolation: false }, () => {
     qase(1762,
         it('Akses form editing kaki surat', () => {
@@ -100,8 +98,6 @@ describe('Drafting & Validasi Simpan Surat Perintah', { testIsolation: false }, 
         })
     )
 
-    
-
     qase([1395, 1419],
         it('Akses form editing kop surat (drafting)', () => {
             draftingKopSuratPerintahPage.aksesFormEditingKopSurat()
@@ -120,8 +116,6 @@ describe('Drafting & Validasi Simpan Surat Perintah', { testIsolation: false }, 
             draftingKopSuratPerintahPage.closeKopSurat()
         })
     )
-
-
 
     qase(1423,
         it('Akses form editing kepala surat', () => {
@@ -179,8 +173,6 @@ describe('Drafting & Validasi Simpan Surat Perintah', { testIsolation: false }, 
             cy.wait(3000)
         })
     )
-
-
 
     qase(1755,
         it('Akses form editing badan surat', () => {

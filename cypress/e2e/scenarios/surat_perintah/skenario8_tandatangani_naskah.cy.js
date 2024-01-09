@@ -71,8 +71,6 @@ after(() => {
     )
 })
 
-
-
 describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation: false }, () => {
     qase(1762,
         it('Akses form editing kaki surat', () => {
@@ -102,8 +100,6 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
             cy.wait(3000)
         })
     )
-
-    
 
     qase([1395, 1419],
         it('Akses form editing kop surat (drafting)', () => {
@@ -183,8 +179,6 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
         })
     )
 
-
-
     qase(1755,
         it('Akses form editing badan surat', () => {
             cy.wait(3000)
@@ -218,7 +212,6 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
         it('Cek preview tujuan jika penerima Non ASN, Cek perubahan urutan tujuan penerima Non ASN', () => {
             const nonASNData4 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[3].nama4[0];
             const nonASNData5 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[4].nama5[0];
-
 
             cy.wait(3000)
             draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
@@ -256,8 +249,6 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
         })
     )
 
-
-
     qase(1913,
         it('Kirim drafting naskah surat perintah', () => {
             cy.wait(3000)
@@ -268,9 +259,6 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
     )
 
 })
-
-
-
 
 describe('Setujui Naskah Skenario', { testIsolation: false }, () => {
     qase([2152, 2146],
@@ -288,9 +276,6 @@ describe('Setujui Naskah Skenario', { testIsolation: false }, () => {
         })
     )
 })
-
-
-
 
 describe('Tandatangani Naskah Skenario', { testIsolation: false }, () => {
     qase([2152, 2146],
