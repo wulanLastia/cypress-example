@@ -37,10 +37,6 @@ before(() => {
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 
-    cy.overrideFeatureToggle({
-        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-        'SIDEBAR-V1-LOGIN-CAPTCHA': true
-    })
 })
 
 before(() => {
@@ -72,7 +68,9 @@ after(() => {
     )
 })
 
-describe('Drafting Kaki Surat Skenario', { testIsolation: false }, () => {
+
+
+describe('Drafting & Validasi Simpan Surat Perintah', { testIsolation: false }, () => {
     qase(1762,
         it('Akses form editing kaki surat', () => {
             cy.wait(3000)
@@ -90,15 +88,20 @@ describe('Drafting Kaki Surat Skenario', { testIsolation: false }, () => {
     qase([1785, 1769, 1788, 1780],
         it('Check on preview page after select penandatangan Atasan', () => {
             cy.wait(3000)
-            draftingKakiSuratPerintahPage.pilihPenandatanganAtasan(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama1)
+            draftingKakiSuratPerintahPage.pilihPenandatanganAtasan(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama2)
             cy.wait(5000)
-            draftingKakiSuratPerintahPage.checkPemeriksaAtasan(testKakiPositive.Pemeriksa.Daftar_Pemeriksa_Naskah[0].nama1)
+            draftingKakiSuratPerintahPage.checkPemeriksaAtasan(testKakiPositive.Pemeriksa.Daftar_Pemeriksa_Naskah[0].nama2)
+            cy.wait(3000)
+
+            draftingKakiSuratPerintahPage.tambahPemeriksa()
+            cy.wait(3000)
+            draftingKakiSuratPerintahPage.inputPemeriksa1(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama3)
             cy.wait(3000)
         })
     )
-})
 
-describe('Drafting Kop Surat Surat Perintah Skenario', { testIsolation: false }, () => {
+    
+
     qase([1395, 1419],
         it('Akses form editing kop surat (drafting)', () => {
             draftingKopSuratPerintahPage.aksesFormEditingKopSurat()
@@ -117,9 +120,9 @@ describe('Drafting Kop Surat Surat Perintah Skenario', { testIsolation: false },
             draftingKopSuratPerintahPage.closeKopSurat()
         })
     )
-})
 
-describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
+
+
     qase(1423,
         it('Akses form editing kepala surat', () => {
             cy.wait(3000)
@@ -144,13 +147,20 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
     qase(1739,
         it('Cek Dropdown Urgensi', () => {
             cy.wait(10000)
-            draftingKepalaSuratPerintahPage.validateUrgensi(testKepalaPositive.Kepala_Surat[2].Urgensi_Nota_Dinas)
+            draftingKepalaSuratPerintahPage.validateUrgensi(testKepalaPositive.Kepala_Surat[2].Urgensi_Surat_Perintah)
+        })
+    )
+
+    qase(1739,
+        it('Cek Dropdown Sifat Surat', () => {
+            cy.wait(10000)
+            draftingKepalaSuratPerintahPage.validateSifatSurat(testKepalaPositive.Kepala_Surat[3].Sifat_Surat_Perintah)
         })
     )
 
     qase([144, 735, 742],
         it('Cek Perihal Surat', () => {
-            draftingKepalaSuratPerintahPage.inputPerihal(testKepalaPositive.Kepala_Surat[3].Perihal)
+            draftingKepalaSuratPerintahPage.inputPerihal(testKepalaPositive.Kepala_Surat[4].Perihal)
             cy.wait(3000)
         })
     )
@@ -169,9 +179,9 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
             cy.wait(3000)
         })
     )
-})
 
-describe('Drafting Badan Surat Skenario', { testIsolation: false }, () => {
+
+
     qase(1755,
         it('Akses form editing badan surat', () => {
             cy.wait(3000)
@@ -241,9 +251,7 @@ describe('Drafting Badan Surat Skenario', { testIsolation: false }, () => {
             draftingBadanSuratPerintahPage.closeBadanSurat()
         })
     )
-})
 
-describe('Simpan Surat Perintah', { testIsolation: false }, () => {
     qase(1860,
         it('Validasi Simpan Surat Perintah', () => {
             cy.wait(3000)

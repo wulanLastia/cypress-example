@@ -89,9 +89,14 @@ describe('Drafting Kaki Surat Skenario', { testIsolation: false }, () => {
     qase([1785, 1769, 1788, 1780],
         it('Check on preview page after select penandatangan Atasan', () => {
             cy.wait(3000)
-            draftingKakiSuratPerintahPage.pilihPenandatanganAtasan(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama1)
+            draftingKakiSuratPerintahPage.pilihPenandatanganAtasan(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama2)
             cy.wait(5000)
-            draftingKakiSuratPerintahPage.checkPemeriksaAtasan(testKakiPositive.Pemeriksa.Daftar_Pemeriksa_Naskah[0].nama1)
+            draftingKakiSuratPerintahPage.checkPemeriksaAtasan(testKakiPositive.Pemeriksa.Daftar_Pemeriksa_Naskah[0].nama2)
+            cy.wait(3000)
+
+            draftingKakiSuratPerintahPage.tambahPemeriksa()
+            cy.wait(3000)
+            draftingKakiSuratPerintahPage.inputPemeriksa1(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama3)
             cy.wait(3000)
         })
     )
@@ -143,13 +148,20 @@ describe('Drafting Kepala Surat Skenario', { testIsolation: false }, () => {
     qase(1739,
         it('Cek Dropdown Urgensi', () => {
             cy.wait(10000)
-            draftingKepalaSuratPerintahPage.validateUrgensi(testKepalaPositive.Kepala_Surat[2].Urgensi_Nota_Dinas)
+            draftingKepalaSuratPerintahPage.validateUrgensi(testKepalaPositive.Kepala_Surat[2].Urgensi_Surat_Perintah)
+        })
+    )
+
+    qase(1739,
+        it('Cek Dropdown Sifat Surat', () => {
+            cy.wait(10000)
+            draftingKepalaSuratPerintahPage.validateSifatSurat(testKepalaPositive.Kepala_Surat[3].Sifat_Surat_Perintah)
         })
     )
 
     qase([144, 735, 742],
         it('Cek Perihal Surat', () => {
-            draftingKepalaSuratPerintahPage.inputPerihal(testKepalaPositive.Kepala_Surat[3].Perihal)
+            draftingKepalaSuratPerintahPage.inputPerihal(testKepalaPositive.Kepala_Surat[4].Perihal)
             cy.wait(3000)
         })
     )
