@@ -1,5 +1,6 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "@pages/auth/login.cy"
+import { MenuPage } from "@pages/sidebar/menu/menu.cy"
 import { DraftingSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_surat_perintah.cy"
 import { DraftingKopSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_kop_surat_perintah.cy"
 import { DraftingKepalaSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat_perintah/super_drafting_kepala_surat.cy"
@@ -8,12 +9,14 @@ import { DraftingKakiSuratPerintahPage } from "@pages/sidebar/konsep_naskah/sura
 import { DraftPage } from "@pages/sidebar/konsep_naskah/konsep_naskah/draft.cy"
 
 let loginPage = new LoginPage()
+let draftPage = new DraftPage()
+
 let draftingSuratPerintahPage = new DraftingSuratPerintahPage()
 let draftingKopSuratPerintahPage = new DraftingKopSuratPerintahPage()
 let draftingKepalaSuratPerintahPage = new DraftingKepalaSuratPerintahPage()
 let draftingBadanSuratPerintahPage = new DraftingBadanSuratPerintahPage()
 let draftingKakiSuratPerintahPage = new DraftingKakiSuratPerintahPage()
-let draftPage = new DraftPage()
+
 let user
 let testKepalaPositive
 let testBadanPositive
@@ -31,18 +34,19 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
-
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
-
 })
 
 before(() => {
     loginPage.loginViaV1(user.nip, user.password)
     loginPage.directLogin()
+
     cy.wait(1000)
+
     draftingSuratPerintahPage.gotoKonsepNaskahSuratPerintah()
 
     cy.wait(3999)
@@ -63,12 +67,10 @@ before(() => {
 })
 
 after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
+    loginPage.logoutV2step2()
 })
 
-describe('Drafting & Validasi Simpan Surat Perintah', { testIsolation: false }, () => {
+describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation: false }, () => {
     qase(1762,
         it('Akses form editing kaki surat', () => {
             cy.wait(3000)
@@ -98,6 +100,8 @@ describe('Drafting & Validasi Simpan Surat Perintah', { testIsolation: false }, 
         })
     )
 
+    
+
     qase([1395, 1419],
         it('Akses form editing kop surat (drafting)', () => {
             draftingKopSuratPerintahPage.aksesFormEditingKopSurat()
@@ -116,6 +120,8 @@ describe('Drafting & Validasi Simpan Surat Perintah', { testIsolation: false }, 
             draftingKopSuratPerintahPage.closeKopSurat()
         })
     )
+
+
 
     qase(1423,
         it('Akses form editing kepala surat', () => {
@@ -174,6 +180,8 @@ describe('Drafting & Validasi Simpan Surat Perintah', { testIsolation: false }, 
         })
     )
 
+
+
     qase(1755,
         it('Akses form editing badan surat', () => {
             cy.wait(3000)
@@ -207,6 +215,7 @@ describe('Drafting & Validasi Simpan Surat Perintah', { testIsolation: false }, 
         it('Cek preview tujuan jika penerima Non ASN, Cek perubahan urutan tujuan penerima Non ASN', () => {
             const nonASNData4 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[3].nama4[0];
             const nonASNData5 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[4].nama5[0];
+
 
             cy.wait(3000)
             draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
@@ -244,11 +253,11 @@ describe('Drafting & Validasi Simpan Surat Perintah', { testIsolation: false }, 
         })
     )
 
-    qase(1860,
-        it('Validasi Simpan Surat Perintah', () => {
+    qase(1913,
+        it('Kirim drafting naskah surat perintah', () => {
             cy.wait(3000)
-            draftingSuratPerintahPage.simpanNaskah()
-            draftPage.checkDataPertamaNaskahDisimpan()
+            draftingSuratPerintahPage.kirimNaskah()
         })
     )
+
 })
