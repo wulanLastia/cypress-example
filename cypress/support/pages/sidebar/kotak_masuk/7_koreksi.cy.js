@@ -1,4 +1,5 @@
 import review_verifikasi_surat from "../../../selectors/sidebar/kotak_masuk/review_verifikasi_surat"
+import review_naskah from "../../../selectors/sidebar/kotak_masuk/list_review_naskah"
 import koreksi from "../../../selectors/sidebar/kotak_masuk/koreksi"
 import { MenuPage } from "../menu/menu.cy"
 import { CreateSuratBiasaPage } from "../konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
@@ -19,19 +20,22 @@ export class KoreksiSuratPage {
         cy.readFile(perihalNaskah).then((object) => {
             const titlePerihalNaskah = object.titlePerihal
 
-            const tableReviewSurat = cy.get(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
-            tableReviewSurat.contains('td', titlePerihalNaskah, { timeout: 10000 })
-                .click()
-                .then((data) => {
-                    const bsreErrorSign = cy.get(review_verifikasi_surat.bsreErrorSign).as('bsreErrorSign')
-                    bsreErrorSign.then($popup => {
-                        if ($popup.is(':visible')) {
-                            const btnLanjutkanReviewNaskah = cy.xpath(review_verifikasi_surat.btnLanjutkanReviewNaskah).as('btnLanjutkanReviewNaskah')
-                            btnLanjutkanReviewNaskah.should('contain', 'Ya, lanjut ke aksi selain TTE')
-                                .click()
-                        }
-                    })
+            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
+            const searchReviewNaskah = cy.get(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
+            searchReviewNaskah.find('input').clear()
+            searchReviewNaskah.type(titlePerihalNaskah)
+
+            cy.wait('@checkResponse', { timeout: 10000 })
+                .then((interception) => {
+                    if (interception.response.statusCode === 200) {
+                        const tableReviewSurat = cy.get(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
+                        tableReviewSurat.contains('td', titlePerihalNaskah)
+                            .click()
+                    }
                 })
+
+            cy.wait(6000)
         })
     }
 

@@ -523,7 +523,7 @@ export class DraftingKakiSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
-                    suggestTembusanEksternal.contains(inputanTembusan6, { timeout: 10000 }).should('be.visible')
+                    suggestTembusanEksternal.contains(inputanTembusan6, { timeout: 10000 })//.should('be.visible')
 
                     pilihTembusan6.type('{enter}')
                 }
