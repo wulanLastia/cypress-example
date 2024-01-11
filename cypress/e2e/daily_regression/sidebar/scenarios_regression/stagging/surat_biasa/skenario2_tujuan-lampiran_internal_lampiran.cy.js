@@ -103,8 +103,6 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
 
             // Create Naskah
             kembalikanNaskahPage.goToNaskahBelumDireview()
-
-            cy.wait(6000)
             kembalikanNaskahPage.emptyField()
             kembalikanNaskahPage.batalKembalikanNaskah()
             kembalikanNaskahPage.checkHalamanInformasi()

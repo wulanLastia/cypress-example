@@ -93,6 +93,7 @@ describe('Create Surat Biasa Tujuan Internal Skenario 1 (Tujuan Kepala Surat)', 
             loginPage.directLogin()
 
             // Create Naskah
+            kembalikanNaskahPage.goToNaskahBelumDireview()
             kembalikanNaskahPage.emptyField()
             kembalikanNaskahPage.batalKembalikanNaskah()
             kembalikanNaskahPage.checkHalamanInformasi()

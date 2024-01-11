@@ -44,7 +44,7 @@
       "tujuan_lampiran_xss": "'-prompt()-'",
       "assert_tujuan_lampiran_xss": "prompt()",
       "tujuan_lampiran_whitespace": "{shift}{enter}",
-      "tujuan_internal_prod1": "SMOKE TEST DR. IKA MARDIAH",
+      "tujuan_internal_prod1": "SMOKE TEST Dr. IKA MARDIAH",
       "tujuan_internal_prod2": "SMOKE TEST RIZKI HUSTINIASARI",
       "tujuan_internal_prod3": "SMOKE TEST ZUHARIN INSANA"
     },
@@ -121,7 +121,7 @@
       "tembusan_internal1": "Bey Triadi Machmudin, S.E., M.T.",
       "tembusan_internal2": "Dr. IKA MARDIAH",
       "tembusan_internal3": "RIZKI HUSTINIASARI",
-      "tembusan_internal_prod1": "SMOKE TEST DR. IKA MARDIAH",
+      "tembusan_internal_prod1": "SMOKE TEST Dr. IKA MARDIAH",
       "tembusan_internal_prod2": "SMOKE TEST RIZKI HUSTINIASARI",
       "tembusan_internal_prod3": "SMOKE TEST ZUHARIN INSANA"
     }
