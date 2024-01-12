@@ -5,16 +5,14 @@ let loginPage = new LoginPage()
 let user
 
 beforeEach(() => {
+    cy.overrideFeatureToggle()
+
+
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
-
-    cy.overrideFeatureToggle({
-        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-        'SIDEBAR-V1-LOGIN-CAPTCHA': true
-    })
 })
 
 describe('Login Negatif Skenario', () => {
