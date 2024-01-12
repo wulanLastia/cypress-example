@@ -31,11 +31,6 @@ before(() => {
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
-
-    cy.overrideFeatureToggle({
-        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-        'SIDEBAR-V1-LOGIN-CAPTCHA': true
-    })
 })
 
 before(() => {
@@ -225,11 +220,6 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
         it('Akses form editing kepala surat', () => {
             // Clear Cache & Login
             cy.then(Cypress.session.clearCurrentSessionData)
-
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
 
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()

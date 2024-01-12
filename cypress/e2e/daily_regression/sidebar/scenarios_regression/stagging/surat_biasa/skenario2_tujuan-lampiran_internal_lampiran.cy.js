@@ -51,10 +51,6 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
     qase([13, 81, 83, 709, 150, 80, 849, 176],
         it('Create Naskah Surat Biasa', () => {
             // Set toogle unleash
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
 
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
@@ -92,10 +88,6 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
     qase([399, 101, 377, 402, 100],
         it('Kembalikan Naskah', () => {
             // Set toogle unleash
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
 
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa, user.password)
@@ -116,10 +108,6 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
     qase([367, 712, 713, 714, 715],
         it('Perbaiki Naskah', () => {
             // Set toogle unleash
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
 
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
@@ -135,10 +123,6 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
     qase([358, 102],
         it('Setujui Naskah', () => {
             // Set toogle unleash
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
 
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa, user.password)
@@ -156,10 +140,6 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
     qase([368, 370, 372],
         it('Koreksi dan Tandatangani Naskah', () => {
             // Set toogle unleash
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
 
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa2, user.password)
