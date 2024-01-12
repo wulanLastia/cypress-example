@@ -16,10 +16,7 @@ before(() => {
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 
-    cy.overrideFeatureToggle({
-        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-        'SIDEBAR-V1-LOGIN-CAPTCHA': true
-    })
+    
 })
 
 before(() => {
@@ -59,11 +56,6 @@ describe('Kaki Naskah', { testIsolation: false }, () => {
     before(() => {
         cy.then(Cypress.session.clearCurrentSessionData)
 
-        cy.overrideFeatureToggle({
-            'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-            'SIDEBAR-V1-LOGIN-CAPTCHA': true
-        })
-
         loginPage.loginViaV1(user.nip, user.password)
         loginPage.directLogin()
         createNotaDinasPage.gotoNotaDinas()
@@ -99,11 +91,6 @@ describe('Kaki Naskah', { testIsolation: false }, () => {
 describe('Penandatangan', { testIsolation: false }, () => {
     before(() => {
         cy.then(Cypress.session.clearCurrentSessionData)
-
-        cy.overrideFeatureToggle({
-            'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-            'SIDEBAR-V1-LOGIN-CAPTCHA': true
-        })
 
         loginPage.loginViaV1(user.nip, user.password)
         loginPage.directLogin()
