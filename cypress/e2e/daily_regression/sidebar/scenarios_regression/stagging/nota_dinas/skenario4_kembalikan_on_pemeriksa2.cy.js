@@ -40,10 +40,7 @@ before(() => {
         dataNotaDinas = jsonData  // Assign data from jsonData
     })
 
-    cy.overrideFeatureToggle({
-        'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-        'SIDEBAR-V1-LOGIN-CAPTCHA': true
-    })
+    
 })
 
 before(() => {
@@ -81,10 +78,6 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
     qase([399, 101, 377, 402, 100],
         it('Kembalikan Naskah Pemeriksa 1', () => {
             // Set toogle unleash
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
 
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa, user.password)
@@ -107,10 +100,6 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
     qase([367, 712, 713, 714, 715],
         it('Perbaiki Naskah Pemeriksa 1', () => {
             // Set toogle unleash
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
 
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
@@ -126,10 +115,6 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
     qase([358, 102],
         it('Setujui Naskah', () => {
             // Set toogle unleash
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
 
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa, user.password)
@@ -143,10 +128,6 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
     qase([368, 370, 372],
         it('Kembalikan Naskah Pemeriksa 2', () => {
             // Set toogle unleash
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
 
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa2, user.password)
@@ -170,10 +151,6 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
     qase([367, 712, 713, 714, 715],
         it('Perbaiki Naskah Pemeriksa 2', () => {
             // Set toogle unleash
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
 
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
@@ -189,10 +166,6 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
     qase([368, 370, 372],
         it('Koreksi dan Tandatangani Naskah', () => {
             // Set toogle unleash
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
 
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa2, user.password)
