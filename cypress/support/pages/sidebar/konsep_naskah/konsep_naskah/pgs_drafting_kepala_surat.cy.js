@@ -34,19 +34,38 @@ export class DraftingKepalaSuratPage {
         draftingKonsepNaskahPage.validateFormDefault()
     }
 
-    validateTempat() {
+    // Tempat //
+    validateTempat(inputanTempat, assertInputanTempat) {
         const titleTempatPenulisan = cy.get(kepala_surat.titleTempatPenulisan).as('titleTempatPenulisan')
         titleTempatPenulisan.should('contain', 'Tempat Penulisan Surat')
 
-        const inputTempatPenulisan = cy.get(kepala_surat.inputTempatPenulisan).as('inputTempatPenulisan')
-        inputTempatPenulisan.invoke('val')
-            .then(text => {
-                const tempatPenulisan = text;
-                const previewTempat = cy.xpath(kepala_surat.previewTempat).as('previewTempat')
-                previewTempat.should('contain', tempatPenulisan)
-            });
+        if (inputanTempat && assertInputanTempat) {
+            const inputTempatPenulisan = cy.get(kepala_surat.inputTempatPenulisan).as('inputTempatPenulisan')
+            inputTempatPenulisan.clear()
+            inputTempatPenulisan.type(inputanTempat)
+            inputTempatPenulisan.invoke('val')
+                .then(text => {
+                    const previewTempat = cy.xpath(kepala_surat.previewTempat).as('previewTempat')
+                    previewTempat.should('contain', assertInputanTempat)
+                })
+        } else if (inputanTempat) {
+            const inputTempatPenulisan = cy.get(kepala_surat.inputTempatPenulisan).as('inputTempatPenulisan')
+            inputTempatPenulisan.clear()
+            inputTempatPenulisan.type(inputanTempat)
+            inputTempatPenulisan.invoke('val')
+                .then(text => {
+                    const tempatPenulisan = text;
+                    const previewTempat = cy.xpath(kepala_surat.previewTempat).as('previewTempat')
+                    previewTempat.should('contain', tempatPenulisan)
+                })
+        } else {
+            const inputTempatPenulisan = cy.get(kepala_surat.inputTempatPenulisan).as('inputTempatPenulisan')
+            inputTempatPenulisan.clear()
+        }
+
     }
 
+    // Tanggal //
     validateTanggal(val) {
         if (val === 'Manual') {
             const titleTanggal = cy.get(kepala_surat.titleTanggal).as('titleTanggal')
@@ -79,33 +98,143 @@ export class DraftingKepalaSuratPage {
         }
     }
 
-    validateTujuan(inputanTujuan1) {
-        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+    // Tujuan Surat //
+    checkDefaultPenempatanDaftarTujuan() {
+        const radio_daftarPenempatanKepala = cy.get(kepala_surat.radio_daftarPenempatanKepala).as('radio_daftarPenempatanKepala')
+        radio_daftarPenempatanKepala.should('be.checked')
+    }
+
+    checkPenempatanDaftarTujuanLampiran() {
+        const scrollForm = cy.get(kepala_surat.scrollForm).as('scrollForm')
+        scrollForm.scrollTo('top')
 
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
         titleTujuan.should('contain', 'Kepada Yth.')
 
-        const inputTujuan = cy.get(kepala_surat.inputTujuan0).as('inputTujuan')
-        inputTujuan.wait(1000)
-            .type(inputanTujuan1)
+        const radio_daftarPenempatanLampiran = cy.get(kepala_surat.radio_daftarPenempatanLampiran).as('radio_daftarPenempatanLampiran')
+        radio_daftarPenempatanLampiran.should('be.visible')
+            .click()
 
-        cy.wait('@checkResponse', { timeout: 5000 })
-            .then((interception) => {
-                if (interception.response.statusCode === 200) {
-                    const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
-                    suggestInputTujuan.contains(inputanTujuan1, { timeout: 10000 }).should('be.visible')
+        const label_daftarPenempatanLampiran = cy.get(kepala_surat.label_daftarPenempatanLampiran).as('label_daftarPenempatanLampiran')
+        label_daftarPenempatanLampiran.should('contain', 'Lampiran')
 
-                    inputTujuan.type('{enter}')
-                }
-            })
+        const uuid = () => Cypress._.random(0, 1e4)
+        const id = uuid()
+        const inputanTujuanLampiran = `Tujuan Lampiran ${id}`
+
+        const inputTujuanLampiran = cy.get(kepala_surat.inputTujuanLampiran).as('inputTujuanLampiran')
+        inputTujuanLampiran.wait(1000)
+            .clear()
+            .type(inputanTujuanLampiran)
+            .wait(3000)
+            .type('{enter}')
+
+        const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
+        previewPage.scrollTo(180, 1000, { force: true })
+
+        const previewKepalaLampiran = cy.get(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
+        previewKepalaLampiran.click()
     }
 
-    validateLokasi(inputanLokasi) {
+    inputPenempatanDaftarTujuanKepala() {
+        const radio_daftarPenempatanKepala = cy.get(kepala_surat.radio_daftarPenempatanKepala).as('radio_daftarPenempatanKepala')
+        radio_daftarPenempatanKepala.click()
+    }
+
+    validateTujuan(inputanTujuan, assertInputanTujuan) {
+        const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
+        titleTujuan.should('contain', 'Kepada Yth.')
+
+        if (inputanTujuan && assertInputanTujuan) {
+            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
+            const inputTujuan = cy.get(kepala_surat.inputTujuan0).as('inputTujuan')
+            inputTujuan.wait(1000)
+                .type(inputanTujuan)
+
+            cy.wait('@checkResponse', { timeout: 5000 })
+                .then((interception) => {
+                    if (interception.response.statusCode === 200) {
+                        const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
+                        suggestInputTujuan.contains(assertInputanTujuan, { timeout: 10000 }).should('be.visible')
+
+                        inputTujuan.type('{enter}')
+                    }
+                })
+        } else if (inputanTujuan) {
+            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
+            const inputTujuan = cy.get(kepala_surat.inputTujuan0).as('inputTujuan')
+            inputTujuan.wait(1000)
+                .type(inputanTujuan)
+
+            cy.wait('@checkResponse', { timeout: 5000 })
+                .then((interception) => {
+                    if (interception.response.statusCode === 200) {
+                        const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
+                        suggestInputTujuan.contains(inputanTujuan, { timeout: 10000 }).should('be.visible')
+
+                        inputTujuan.type('{enter}')
+                    }
+                })
+        }
+    }
+
+    validateTujuanLampiran(inputanTujuan, assertInputanTujuan) {
+        const titleTujuanLampiran = cy.get(kepala_surat.titleTujuanLampiran).as('titleTujuanLampiran')
+        titleTujuanLampiran.should('contain', 'Tujuan Surat')
+
+        if (inputanTujuan && assertInputanTujuan) {
+            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
+            const inputTujuanLampiran0 = cy.get(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
+            inputTujuanLampiran0.wait(1000).clear()
+                .type(inputanTujuan, { delay: 1000 })
+
+            cy.wait('@checkResponse', { timeout: 5000 })
+                .then((interception) => {
+                    if (interception.response.statusCode === 200) {
+                        const suggestTujuanLampiran = cy.get(kepala_surat.suggestTujuanLampiran).as('suggestTujuanLampiran')
+                        suggestTujuanLampiran.contains(assertInputanTujuan, { timeout: 10000 }).should('be.visible')
+
+                        inputTujuanLampiran0.type('{enter}')
+                    }
+                })
+        } else if (inputanTujuan) {
+            const inputTujuanLampiran0 = cy.get(kepala_surat.inputTujuanLampiran0).as('inputTujuanLampiran0')
+            inputTujuanLampiran0.wait(1000).clear()
+                .type(inputanTujuan)
+                .wait(10000)
+
+            const suggestTujuanLampiran = cy.get(kepala_surat.suggestTujuanLampiran).as('suggestTujuanLampiran')
+            suggestTujuanLampiran.contains(inputanTujuan, { timeout: 10000 }).should('be.visible')
+
+            inputTujuanLampiran0.type('{enter}')
+        }
+    }
+
+    deleteTujuan() {
+        const btn_deleteTujuanSurat = cy.get(kepala_surat.btn_deleteTujuanSurat).as('btn_deleteTujuanSurat')
+        btn_deleteTujuanSurat.find('button')
+        btn_deleteTujuanSurat.click()
+    }
+
+    // Lokasi //
+    validateLokasi(inputanLokasi, assertInputanLokasi) {
         const titleLokasi = cy.get(kepala_surat.titleLokasi).as('titleLokasi')
         titleLokasi.should('contain', 'di')
 
-        const inputLokasi = cy.get(kepala_surat.inputLokasi).as('inputLokasi')
-        inputLokasi.type(inputanLokasi)
+        if (inputanLokasi && assertInputanLokasi) {
+            const inputLokasi = cy.get(kepala_surat.inputLokasi).as('inputLokasi')
+            inputLokasi.clear()
+            inputLokasi.type(inputanLokasi)
+            inputLokasi.invoke('val')
+            inputLokasi.should('contain', assertInputanLokasi)
+        } else {
+            const inputLokasi = cy.get(kepala_surat.inputLokasi).as('inputLokasi')
+            inputLokasi.clear()
+            inputLokasi.type(inputanLokasi).blur()
+        }
     }
 
     validateLokasiNegatifTagScript(inputanLokasiNegatif) {
@@ -142,6 +271,7 @@ export class DraftingKepalaSuratPage {
             .blur()
     }
 
+    // Kode Klasifikasi //
     validateKodeKlasifikasi(inputanKodeKlasifikasi) {
         cy.wait(3000)
 
@@ -170,6 +300,13 @@ export class DraftingKepalaSuratPage {
             .trigger('blur')
     }
 
+    deleteKodeKlasifikasi() {
+        const selectKodeKlasifikasi = cy.get(kepala_surat.selectKodeKlasifikasi).as('selectKodeKlasifikasi')
+        selectKodeKlasifikasi.find('button')
+            .click()
+    }
+
+    // Unit Pengolah //
     validateUnitPengolah(inputanUnitPengolah) {
         const titleUnitPengolah = cy.get(kepala_surat.titleUnitPengolah).as('titleUnitPengolah')
         titleUnitPengolah.should('contain', 'Unit Pengolah')
@@ -212,6 +349,12 @@ export class DraftingKepalaSuratPage {
             .blur()
     }
 
+    deleteUnitPengolah() {
+        const inputUnitPengolah = cy.get(kepala_surat.inputUnitPengolah).as('inputUnitPengolah')
+        inputUnitPengolah.clear()
+    }
+
+    // Sifat Surat //
     validateSifatSurat(inputanSifatSurat) {
         const titleSifatSurat = cy.get(kepala_surat.titleSifatSurat).as('titleSifatSurat')
         titleSifatSurat.should('contain', 'Sifat Surat')
@@ -223,11 +366,9 @@ export class DraftingKepalaSuratPage {
     }
 
     deleteSifatSurat() {
-        const titleSifatSurat = cy.get(kepala_surat.titleSifatSurat).as('titleSifatSurat')
-        titleSifatSurat.should('contain', 'Sifat Surat')
-
         const selectSifatSurat = cy.get(kepala_surat.selectSifatSurat).as('selectSifatSurat')
-        selectSifatSurat.click()
+        selectSifatSurat.find('button')
+            .click()
     }
 
     whitespaceSifatSurat() {
@@ -240,6 +381,7 @@ export class DraftingKepalaSuratPage {
             .trigger('blur')
     }
 
+    // Urgensi Surat //
     validateUrgensiSurat(inputanUrgensiSurat) {
         const titleUrgensiSurat = cy.get(kepala_surat.titleUrgensiSurat).as('titleUrgensiSurat')
         titleUrgensiSurat.should('contain', 'Urgensi')
@@ -261,6 +403,13 @@ export class DraftingKepalaSuratPage {
             .trigger('blur')
     }
 
+    deleteUrgensiSurat() {
+        const selectUrgensiSurat = cy.get(kepala_surat.selectUrgensiSurat).as('selectUrgensiSurat')
+        selectUrgensiSurat.find('button')
+            .click()
+    }
+
+    // Perihal //
     validatePerihal(inputanPerihal) {
         const titlePerihal = cy.get(kepala_surat.titlePerihal).as('titlePerihal')
         titlePerihal.should('contain', 'Perihal')
@@ -288,6 +437,42 @@ export class DraftingKepalaSuratPage {
                     cy.writeFile(filename, { titlePerihal: perihal })
                 }
             })
+    }
+
+    // Pemberkasan otomatis //
+    validateJudulBerkas() {
+        const titleJudulBerkas = cy.get(kepala_surat.titleJudulBerkas).as('titleJudulBerkas')
+        titleJudulBerkas.should('contain', 'Judul berkas (kata tangkap)')
+
+        const uuid = () => Cypress._.random(0, 1e4)
+        const id = uuid()
+        const inputanBerkas = `Berkas ${id}`
+
+        const selectJudulBerkas = cy.get(kepala_surat.selectJudulBerkas).as('selectJudulBerkas')
+        selectJudulBerkas.click()
+            .wait(3000)
+            .type(inputanBerkas)
+            .wait(3000)
+            .type('{enter}')
+    }
+
+    checkDetailJudulBerkas() {
+        const titleJudulBerkas = cy.get(kepala_surat.titleJudulBerkas).as('titleJudulBerkas')
+        titleJudulBerkas.should('contain', 'Judul berkas (kata tangkap)')
+
+        const selectJudulBerkas = cy.get(kepala_surat.selectJudulBerkas).as('selectJudulBerkas')
+        selectJudulBerkas.find('input')
+            .should('have.attr', 'placeholder', 'Pilih berkas/kata tangkap')
+    }
+
+    checkDetailKurunWaktu() {
+        const xpathAwalKurunWaktu = cy.xpath(kepala_surat.xpathAwalKurunWaktu).as('xpathAwalKurunWaktu')
+        xpathAwalKurunWaktu.should('contain', 'Awal kurun waktu')
+            .and('be.visible')
+
+        const xpathAkhirKurunWaktu = cy.xpath(kepala_surat.xpathAkhirKurunWaktu).as('xpathAkhirKurunWaktu')
+        xpathAkhirKurunWaktu.should('contain', 'Akhir kurun waktu')
+            .and('be.visible')
     }
 
     validateTujuanSkenario1(inputanTujuan1, inputanTujuan2, inputanTujuan3) {
