@@ -51,7 +51,9 @@
     {
       "lokasi": "Tempat",
       "lokasi_negatif_script": "Test JS Script <script>alert('Executing JS')</script>",
+      "assert_lokasi_negatif_script": "Test JS Script scriptalertExecuting JSscript",
       "lokasi_negatif_html": "<blink>Hello World</blink>",
+      "assert_lokasi_negatif_html": "blinkHello Worldblink",
       "lokasi_negatif_xss": "'-prompt()-'",
       "lokasi_negatif_whitespace": "{shift}{enter}"
     },
@@ -84,6 +86,14 @@
       "perihal_negatif_html": " <blink>Hello World</blink>",
       "perihal_negatif_xss": " '-prompt()-'",
       "perihal_negatif_whitespace": " {shift}{enter}"
+    },
+    {
+      "tempat1": "Kota Bandung",
+      "tempat_negatif_script": " Test JS Script <script>alert('Executing JS')</script>",
+      "tempat_negatif_html": " <blink>Hello World</blink>",
+      "assert_tempat_negatif_script": " Test JS Script scriptalertExecuting JSscript",
+      "assert_tempat_negatif_html": " blinkHello Worldblink",
+      "tempat_negatif_whitespace": "{shift}{enter}"
     }
   ],
   "kembalikan": [

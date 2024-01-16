@@ -25,7 +25,7 @@ before(() => {
 
 describe('[Negatif] Input Whitespace Create Surat Biasa Tujuan Internal Eksternal Skenario 10 (Tujuan Kepala Lampiran Surat)', () => {
 
-    qase([13, 81, 83, 709, 150, 80, 849, 176, 106, 845, 115, 119, 128, 131, 134, 143],
+    qase([13, 81, 83, 709, 150, 80, 849, 176, 106, 845, 115, 119, 128, 131, 134, 143, 311],
         it('Create Naskah Surat Biasa', () => {
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
@@ -47,6 +47,7 @@ describe('[Negatif] Input Whitespace Create Surat Biasa Tujuan Internal Eksterna
                 data_temp.kaki_surat[2].tembusan_eksternal5,
                 data_temp.kaki_surat[2].tembusan_eksternal6)
             createSuratBiasaPage.inputKepalaSuratSkenario10Negatif(
+                data_temp.kepala_surat[7].tempat_negatif_whitespace,
                 data_temp.kepala_surat[0].tujuan_lampiran_whitespace,
                 data_temp.kepala_surat[1].lokasi_negatif_whitespace,
                 data_temp.kepala_surat[2].kode_klasifikasi_negatif_whitespace,

@@ -47,6 +47,8 @@ describe('[Negatif] Input HTML Script Create Surat Biasa Tujuan Internal Ekstern
                 data_temp.kaki_surat[2].tembusan_eksternal5,
                 data_temp.kaki_surat[2].tembusan_eksternal6)
             createSuratBiasaPage.inputKepalaSuratSkenario8Negatif(
+                data_temp.kepala_surat[7].tempat_negatif_html,
+                data_temp.kepala_surat[7].assert_tempat_negatif_html,
                 data_temp.kepala_surat[0].tujuan_lampiran_html1,
                 data_temp.kepala_surat[0].tujuan_lampiran_html2,
                 data_temp.kepala_surat[0].tujuan_lampiran_html3,

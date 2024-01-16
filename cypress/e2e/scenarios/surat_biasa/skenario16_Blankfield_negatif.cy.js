@@ -25,7 +25,7 @@ before(() => {
 
 describe('[Negatif] Leave the field empty when submitting the Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala Lampiran Surat)', () => {
 
-    qase([13, 81, 83, 709, 150, 80, 849, 176, 308, 94, 842, 112, 125, 140],
+    qase([13, 81, 83, 709, 150, 80, 849, 176, 308, 94, 842, 112, 119, 125, 140, 1938],
         it('Create Naskah Surat Biasa', () => {
             // Login 
             loginPage.loginViaV1(user.nip, user.password)
