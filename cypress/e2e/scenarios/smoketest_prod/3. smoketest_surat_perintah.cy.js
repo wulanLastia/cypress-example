@@ -10,7 +10,6 @@ import { KembalikanNaskahPage } from "@pages/sidebar/kotak_masuk/3_kembalikan_na
 import { PerbaikiNaskahPage } from "@pages/sidebar/kotak_masuk/6_perbaiki.cy"
 import { KoreksiSuratPage } from "@pages/sidebar/kotak_masuk/7_koreksi.cy"
 
-
 const { faker } = require('@faker-js/faker')
 
 let loginPage = new LoginPage()
@@ -23,13 +22,11 @@ let kembalikanNaskahPage = new KembalikanNaskahPage()
 let perbaikiNaskahPage = new PerbaikiNaskahPage()
 let koreksiSuratPage = new KoreksiSuratPage()
 
-
 let user
 let data_review
 let testKepalaPositive
 let testBadanPositive
 let testKakiPositive
-
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     // Jika terdapat error 'uncaught:exception' pada Headless Mode
@@ -88,8 +85,6 @@ after(() => {
         loginPage.logoutV2step2PROD()
     )
 })
-
-
 
 describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation: false }, () => {
     qase(1762,
@@ -231,7 +226,6 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
             const nonASNData4 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[3].nama4[0];
             const nonASNData5 = testBadanPositive.Penerima_Non_ASN.Daftar_Non_ASN[4].nama5[0];
 
-
             cy.wait(3000)
             draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
             cy.wait(3000)
@@ -347,7 +341,6 @@ describe('Perbaiki Naskah Skenario', { testIsolation: false }, () => {
 
 }) 
 
-
 describe('Koreksi Setujui Naskah Skenario', { testIsolation: false }, () => {
     qase([2167, 2168, 2170, 2174],
         it('Koreksi dan Setujui Naskah', () => {
@@ -371,7 +364,6 @@ describe('Koreksi Setujui Naskah Skenario', { testIsolation: false }, () => {
         })
     )
 })
-
 
 describe('Koreksi Tandatangani Naskah Skenario', { testIsolation: false }, () => {
     qase([2167, 2168, 2170, 2174],

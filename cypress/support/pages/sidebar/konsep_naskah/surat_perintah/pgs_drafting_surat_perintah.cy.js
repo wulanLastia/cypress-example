@@ -230,7 +230,6 @@ export class DraftingSuratPerintahPage {
             .should('contain', 'Naskah berhasil dikirim ke pihak selanjutnya')
     }
 
-
     negativeKirimNaskah() {
         const btnKirimNaskah = cy.get(surat_perintah.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.should('be.visible')
