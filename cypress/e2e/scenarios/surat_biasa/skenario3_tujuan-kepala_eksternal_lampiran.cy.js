@@ -44,6 +44,7 @@ describe('Skenario Create Surat Biasa Tujuan Eksternal Skenario 3 (Tujuan Kepala
                 data_temp.kaki_surat[2].tembusan_eksternal2,
                 data_temp.kaki_surat[2].tembusan_eksternal3)
             createSuratBiasaPage.inputKepalaSuratSkenario3(
+                data_temp.kepala_surat[7].tempat1,
                 data_temp.kepala_surat[0].tujuan_eksternal1,
                 data_temp.kepala_surat[0].tujuan_eksternal2,
                 data_temp.kepala_surat[0].tujuan_eksternal3,

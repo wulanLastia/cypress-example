@@ -268,7 +268,7 @@ export class DraftingKakiSuratPage {
         cy.wait('@checkResponse', { timeout: 5000 })
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
-                    const suggestTembusan = cy.get(kaki_surat.suggestTembusan, { timeout: 5000 }).as('suggestTembusan')
+                    const suggestTembusan = cy.get(kaki_surat.suggestTembusan, { timeout: 10000 }).as('suggestTembusan')
                     suggestTembusan.contains(inputanTembusanInternal1, { timeout: 15000 }).should('be.visible')
 
                     pilihTembusan.type('{enter}')
@@ -323,7 +323,7 @@ export class DraftingKakiSuratPage {
         cy.wait('@checkResponse', { timeout: 5000 })
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
-                    const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
+                    const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 10000 }).as('suggestTembusanEksternal')
                     suggestTembusanEksternal.contains(inputanTembusan1, { timeout: 10000 }).should('be.visible')
 
                     pilihTembusan.type('{enter}')

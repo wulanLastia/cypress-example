@@ -45,6 +45,7 @@ describe('Kembalikan Naskah Skenario', () => {
             createSuratBiasaPage.checkDetail()
             createSuratBiasaPage.inputKopSurat()
             createSuratBiasaPage.inputKepalaSurat(
+                data_temp.kepala_surat[7].tempat1,
                 data_temp.kepala_surat[0].tujuan1,
                 data_temp.kepala_surat[1].lokasi,
                 data_temp.kepala_surat[2].kode_klasifikasi,
@@ -71,6 +72,7 @@ describe('Kembalikan Naskah Skenario', () => {
             loginPage.directLogin()
 
             // Kembalikan Naskah
+            kembalikanNaskahPage.goToNaskahBelumDireview()
             kembalikanNaskahPage.emptyField()
             kembalikanNaskahPage.batalKembalikanNaskah()
             kembalikanNaskahPage.checkHalamanInformasi()

@@ -44,6 +44,7 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
                 data_temp.kaki_surat[2].tembusan_internal2,
                 data_temp.kaki_surat[2].tembusan_internal3)
             createSuratBiasaPage.inputKepalaSuratSkenario2(
+                data_temp.kepala_surat[7].tempat1,
                 data_temp.kepala_surat[0].tujuan1,
                 data_temp.kepala_surat[0].tujuan2,
                 data_temp.kepala_surat[0].tujuan4,

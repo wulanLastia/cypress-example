@@ -27,7 +27,7 @@ beforeEach(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-describe('Create dan Kembalikan Naskah Skenario', () => {
+describe('Create, Kembalikan dan Perbaiki Naskah Skenario', () => {
 
     qase([13, 81, 83, 709, 150, 80],
         it('Create Naskah Surat Biasa', () => {
@@ -40,6 +40,7 @@ describe('Create dan Kembalikan Naskah Skenario', () => {
             createSuratBiasaPage.checkDetail()
             createSuratBiasaPage.inputKopSurat()
             createSuratBiasaPage.inputKepalaSurat(
+                data_temp.kepala_surat[7].tempat1,
                 data_temp.kepala_surat[0].tujuan1,
                 data_temp.kepala_surat[1].lokasi,
                 data_temp.kepala_surat[2].kode_klasifikasi,
@@ -66,6 +67,7 @@ describe('Create dan Kembalikan Naskah Skenario', () => {
             loginPage.directLogin()
 
             // Kembalikan Naskah
+            kembalikanNaskahPage.goToNaskahBelumDireview()
             kembalikanNaskahPage.emptyField()
             kembalikanNaskahPage.batalKembalikanNaskah()
             kembalikanNaskahPage.checkHalamanInformasi()
@@ -77,10 +79,8 @@ describe('Create dan Kembalikan Naskah Skenario', () => {
             cy.wait(5000)
         })
     )
-})
 
-describe('Perbaiki Naskah Skenario', { testIsolation: false }, () => {
-    qase(367,
+    qase([367, 717],
         it('Akses halaman perbaikan naskah', () => {
             // Login
             loginPage.loginViaV1(user.nip, user.password)
@@ -88,11 +88,6 @@ describe('Perbaiki Naskah Skenario', { testIsolation: false }, () => {
 
             perbaikiNaskahPage.goToPerbaikiNaskah()
             cy.wait(5000)
-        })
-    )
-
-    qase(717,
-        it('Cek tombol batal kirim naskah', () => {
             perbaikiNaskahPage.batalPerbaikiNaskah()
             cy.wait(5000)
         })
@@ -111,4 +106,4 @@ describe('Perbaiki Naskah Skenario', { testIsolation: false }, () => {
         })
     )
 
-}) 
+})

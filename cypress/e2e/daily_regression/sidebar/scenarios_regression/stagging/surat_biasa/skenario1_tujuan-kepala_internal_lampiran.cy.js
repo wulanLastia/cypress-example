@@ -40,7 +40,7 @@ beforeEach(() => {
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 
-    
+
 })
 
 afterEach(() => {
@@ -69,6 +69,7 @@ describe('Create Surat Biasa Tujuan Internal Skenario 1 (Tujuan Kepala Surat)', 
                 data_temp.kaki_surat[2].tembusan_internal2,
                 data_temp.kaki_surat[2].tembusan_internal3)
             createSuratBiasaPage.inputKepalaSuratSkenario1(
+                data_temp.kepala_surat[7].tempat1,
                 data_temp.kepala_surat[0].tujuan1,
                 data_temp.kepala_surat[0].tujuan2,
                 data_temp.kepala_surat[0].tujuan3,
