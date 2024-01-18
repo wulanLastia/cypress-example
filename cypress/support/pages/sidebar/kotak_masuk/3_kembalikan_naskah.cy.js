@@ -28,7 +28,7 @@ export class KembalikanNaskahPage {
                     }
                 })
 
-            cy.wait(6000)
+            cy.wait(9000)
         })
     }
 

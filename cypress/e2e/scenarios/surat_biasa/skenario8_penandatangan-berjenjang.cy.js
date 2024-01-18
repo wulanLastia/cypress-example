@@ -47,6 +47,7 @@ describe('Create Surat Biasa Skenario', () => {
                 data_temp.kaki_surat[2].tembusan_eksternal2,
                 data_temp.kaki_surat[2].tembusan_eksternal3)
             createSuratBiasaPage.inputKepalaSurat(
+                data_temp.kepala_surat[7].tempat1,
                 data_temp.kepala_surat[0].tujuan1,
                 data_temp.kepala_surat[1].lokasi,
                 data_temp.kepala_surat[2].kode_klasifikasi,

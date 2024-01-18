@@ -41,6 +41,7 @@ describe('Create Surat Biasa Skenario', () => {
             createSuratBiasaPage.inputKakiSuratPenandatanganDiriSendiri(
                 data_temp.kaki_surat[0].penandatangan_diri_sendiri)
             createSuratBiasaPage.inputKepalaSurat(
+                data_temp.kepala_surat[7].tempat1,
                 data_temp.kepala_surat[0].tujuan1,
                 data_temp.kepala_surat[1].lokasi,
                 data_temp.kepala_surat[2].kode_klasifikasi,
