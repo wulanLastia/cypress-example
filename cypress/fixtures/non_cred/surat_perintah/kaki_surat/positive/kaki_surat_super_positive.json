@@ -11,6 +11,12 @@
             "nama5": "ZENAL MUSTOPA, S.Pd.",
             "nama6": "RADEN ANDHIKA MUHARMANSYAH, ST"
           }
+        ],
+        "Daftar_Atasan_PROD": [
+          {
+            "nama1": "SMOKE TEST 1 Dra. Hj. I GUSTI AGUNG KIM FAJAR WIYATI OKA, M.Si.",
+            "nama2": "SMOKE TEST FAJAR LIBRIANTO, S.Si., M.M."
+          }
         ]
       }
     ],
@@ -62,6 +68,12 @@
         "nama4": "LUDIA ROSEMA DEWI, S.Kom.",
         "nama5": "ZENAL MUSTOPA, S.Pd.",
         "nama6": "RADEN ANDHIKA MUHARMANSYAH, ST"
+      }
+    ],
+    "Daftar_Pemeriksa_Naskah_PROD": [
+      {
+        "nama1": "SMOKE TEST 1 Dra. Hj. I GUSTI AGUNG KIM FAJAR WIYATI OKA, M.Si.",
+        "nama2": "SMOKE TEST FAJAR LIBRIANTO, S.Si., M.M."
       }
     ]
   }

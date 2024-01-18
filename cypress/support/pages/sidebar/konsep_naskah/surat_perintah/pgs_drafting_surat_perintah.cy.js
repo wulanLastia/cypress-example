@@ -212,52 +212,33 @@ export class DraftingSuratPerintahPage {
             .should('contain', 'Naskah berhasil dikirim ke pihak selanjutnya')
     }
 
+    kirimNaskahPROD() {
+        const btnKirimNaskah = cy.get(surat_perintah.btnKirimNaskah).as('btnKirimNaskah')
+        btnKirimNaskah.click()
+    
+        const konfirmasiKirimNaskah = cy.get(surat_perintah.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
+        konfirmasiKirimNaskah.should('contain', 'Kirim naskah')
+            .click()
+    
+        
+        // Wait for up for the success dialog to appear only 0.5 seconds
+        const successKirimNaskah = cy.get(surat_perintah.popupSuccessKirimNaskah, { timeout: 500 }).as('successKirimNaskah')
+        successKirimNaskah.should('be.visible')
+        
+        successKirimNaskah.should('exist')
+            .find(surat_perintah.popupTitleSuccessKirimNaskah)
+            .should('contain', 'Naskah berhasil dikirim ke pihak selanjutnya')
+    }
+
     negativeKirimNaskah() {
         const btnKirimNaskah = cy.get(surat_perintah.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.should('be.visible')
         .should('be.disabled')
-    }
-
-    inputLampiranSuratNotaDinas() {
-        const findLampiranPage = cy.get(konsep_naskah.previewLampiran).first().as('findLampiranPage');
-        findLampiranPage.scrollIntoView();
-    
-        const previewLampiran1NotaDinas = cy.get(konsep_naskah.previewLampiranNotaDinas).first().as('previewLampiran1NotaDinas');
-        previewLampiran1NotaDinas.scrollIntoView()
-        .click({ force: true });
-        cy.wait(3000);
-    
-        const titleLampiran = cy.get(konsep_naskah.titleLampiran).as('titleLampiran');
-        titleLampiran.should('contain', 'Lampiran');
-    }
-    
-    inputLampiran2SuratNotaDinas() {
-        cy.wait(3000);
-    
-        const findLampiranPage = cy.get(konsep_naskah.previewLampiran).last().as('findLampiranPage');
-        findLampiranPage.scrollIntoView();
-    
-        const previewLampiran2NotaDinas = cy.get(konsep_naskah.previewLampiranNotaDinas).last().as('previewLampiran2NotaDinas');
-        previewLampiran2NotaDinas.scrollIntoView()
-        .click({ force: true });
-        cy.wait(3000);
-    
-        const titleLampiran = cy.get(konsep_naskah.titleLampiran).as('titleLampiran');
-        titleLampiran.should('contain', 'Lampiran');
     }
     
     scrollPreviewPage() {
         const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
         previewPage.scrollTo('top')
     }
-
-    clickSimpanSurat() {
-        cy.wait(3000)
-
-        const buttonSimpanSurat = cy.get(konsep_naskah.btnSimpanSuratNotaDinas).as('buttonSimpanSurat')
-        buttonSimpanSurat.should('contain', 'Simpan')
-            .click({ force: true })
-    }
-
 
 }

@@ -9,7 +9,8 @@ export class LoginPage {
     }
 
     navigateLoginPageV1Prod() {
-        cy.visit(Cypress.env('base_url_prod_v1'))
+        cy.log(Cypress.env('base_url_prod_v1'))
+        cy.visit(Cypress.env('base_url_prod_v1'), { failOnStatusCode: false })
     }
 
     navigateLoginPageV2() {
@@ -113,31 +114,66 @@ export class LoginPage {
 
 
     loginViaV1Prod(nip, passwordv1) {
+        cy.wait(1500)
+
+        
         this.navigateLoginPageV1Prod()
 
-        cy.get("#login > div").click()
-        cy.get("div.flex > div button").click()
+        // Check if popup notifier exists
+        cy.get('body').then($body => {
+            if ($body.find(login.alertPopUp).length > 0) {
+                // Popup exists
+                const alertPopUp = cy.get(login.alertPopUp).as('alertPopUp')
+                alertPopUp.should('be.visible')
+                alertPopUp.click({ force: true })
 
-        const username = cy.get(login.username).as('username')
-        username.should('be.visible')
-        username.type(nip, { force: true })
+                cy.wait(3000)
 
-        const password = cy.get(login.password).as('password')
-        password.type(passwordv1, { force: true })
+                const username = cy.get(login.username).as('username')
+                username.should('be.visible')
+                username.type(nip, { force: true })
 
-        const hiddenCaptcha = cy.get(login.hiddenCaptcha).as('hiddenCaptcha')
-        hiddenCaptcha.invoke('val')
-            .then((val) => {
-                const captchaType = cy.get(login.captcha).as('captcha')
-                captchaType.type(val, { force: true })
-            })
+                const password = cy.get(login.password).as('password')
+                password.type(passwordv1, { force: true })
 
-        const btnLogin = cy.get(login.btnLogin).as('btnLogin')
-        btnLogin.should('contain', 'Login')
-            .click({ force: true })
+                // const hiddenCaptcha = cy.get(login.hiddenCaptcha).as('hiddenCaptcha')
+                // hiddenCaptcha.invoke('val')
+                //     .then((val) => {
+                //         const captchaType = cy.get(login.captcha).as('captcha')
+                //         captchaType.type(val, { force: true })
+                //     })
 
-        cy.wait(3000)
-    }
+                const btnLogin = cy.get(login.btnLogin).as('btnLogin')
+                btnLogin.should('contain', 'Login')
+                .click({ force: true })
+
+                cy.wait(3000)
+            } else {
+                // No popup, proceed with login
+                cy.wait(3000)
+
+                const username = cy.get(login.username).as('username')
+                username.should('be.visible')
+                username.type(nip, { force: true })
+
+                const password = cy.get(login.password).as('password')
+                password.type(passwordv1, { force: true })
+
+                const hiddenCaptcha = cy.get(login.hiddenCaptcha).as('hiddenCaptcha')
+                hiddenCaptcha.invoke('val')
+                    .then((val) => {
+                        const captchaType = cy.get(login.captcha).as('captcha')
+                        captchaType.type(val, { force: true })
+                    })
+
+                const btnLogin = cy.get(login.btnLogin).as('btnLogin')
+                btnLogin.should('contain', 'Login')
+                .click({ force: true })
+
+                cy.wait(3000)
+                }
+            });
+        }
 
     // REDIRECT LOGIN TO SIDEBAR V2
 
@@ -148,6 +184,10 @@ export class LoginPage {
         const goToV2 = cy.get(login.goToV2).as('goToV2')
         goToV2.should('contain', 'LOGIN TO V2')
             .click()
+
+        cy.overrideFeatureToggle({
+            'SIDEBAR-V2__DRAFTING--SURAT-PERINTAH': true
+        })            
 
         cy.wait(3000)
 
