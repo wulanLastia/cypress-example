@@ -14,18 +14,18 @@ const draftingBadanNaskahPage = new DraftingBadanNaskahPage()
 const draftingKakiSuratPage = new DraftingKakiSuratPage()
 
 export class UpdateNotaDinasPage {
-        // Perbaiki
-        inputPerbaikiKepalaSurat() {
-            draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
-            draftingKepalaSuratNotaDinasPage.inputPerihal(' Perbaiki')
-            draftingKepalaSuratNotaDinasPage.closeKepalaSurat()
-        }
-    
-        // Koreksi
-        inputKoreksiKepalaSurat() {
-            draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
-            draftingKepalaSuratNotaDinasPage.inputPerihal(' Koreksi')
-            draftingKepalaSuratNotaDinasPage.closeKepalaSurat()
-        }
-    
+    // Perbaiki
+    inputPerbaikiKepalaSurat(inputanPerbaiki) {
+        draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratNotaDinasPage.inputPerihal(inputanPerbaiki)
+        draftingKepalaSuratNotaDinasPage.closeKepalaSurat()
+    }
+
+    // Koreksi
+    inputKoreksiKepalaSurat() {
+        draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
+        draftingKepalaSuratNotaDinasPage.inputPerihal(' Koreksi')
+        draftingKepalaSuratNotaDinasPage.closeKepalaSurat()
+    }
+
 }

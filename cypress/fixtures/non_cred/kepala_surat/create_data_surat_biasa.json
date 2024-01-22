@@ -135,5 +135,11 @@
       "tembusan_internal_prod2": "SMOKE TEST RIZKI HUSTINIASARI",
       "tembusan_internal_prod3": "SMOKE TEST ZUHARIN INSANA"
     }
+  ],
+  "env": [
+    {
+      "prod": "prod",
+      "staging": "staging"
+    }
   ]
 }

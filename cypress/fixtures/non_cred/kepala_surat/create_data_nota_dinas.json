@@ -41,5 +41,11 @@
     {
       "koreksi_perihal": " Koreksi"
     }
+  ],
+  "env": [
+    {
+      "prod": "prod",
+      "staging": "staging"
+    }
   ]
 }

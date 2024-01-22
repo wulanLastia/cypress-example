@@ -172,10 +172,14 @@ export class DraftingKonsepNaskahPage {
         titleLampiran.should('contain', 'Lampiran')
     }
 
-    kirimNaskah() {
+    kirimNaskah(inputEnv) {
         // Intercept all POST network requests
-        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        
+        if (inputEnv === 'prod') {
+            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
+        } else {
+            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
+        }
+
         const btnKirimNaskah = cy.get(konsep_naskah.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.click()
 
@@ -191,16 +195,16 @@ export class DraftingKonsepNaskahPage {
                 const clientErrorStatusCodes = [400, 401, 403, 404, 405, 406, 408, 409, 410, 411, 412];
                 const serverErrorStatusCodes = [500, 501, 502, 503, 504];
                 const errorStatusCodes = [...clientErrorStatusCodes, ...serverErrorStatusCodes];
-        
+
                 // Assert for error status codes
                 if (errorStatusCodes.includes(status)) {
                     expect(errorStatusCodes, `Request failed with status code: ${status}`).to.include(status);
                 }
-        
+
                 const successStatusCodes = [200, 201, 202, 203, 204, 205, 206, 207, 208, 226];
                 const redirectStatusCodes = [300, 301, 302, 303, 307];
                 const acceptableStatusCodes = [...successStatusCodes, ...redirectStatusCodes];
-        
+
                 // Assert for success and redirect status codes
                 expect(acceptableStatusCodes, `Result of status code: ${status}`).to.include(status);
             } else {
@@ -209,11 +213,11 @@ export class DraftingKonsepNaskahPage {
                 throw new Error('No response received.');
             }
         })
-    
+
         // Wait for up for the success dialog to appear only 0.5 seconds
         const successKirimNaskah = cy.get(konsep_naskah.popupSuccessKirimNaskah, { timeout: 500 }).as('successKirimNaskah')
         successKirimNaskah.should('be.visible')
-        
+
         successKirimNaskah.should('exist')
             .find(konsep_naskah.popupTitleSuccessKirimNaskah)
             .should('contain', 'Naskah berhasil dikirim ke pihak selanjutnya')
