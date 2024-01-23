@@ -59,7 +59,7 @@ export class LoginPage {
         cy.overrideFeatureToggle({
             'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
             'SIDEBAR-V1-LOGIN-CAPTCHA': true
-        })    
+        })
 
         cy.intercept('POST', Cypress.env('base_url_api_v1')).as('checkResponse')
 
@@ -112,11 +112,11 @@ export class LoginPage {
             });
     }
 
-
     loginViaV1Prod(nip, passwordv1) {
+        cy.then(Cypress.session.clearCurrentSessionData)
+
         cy.wait(1500)
 
-        
         this.navigateLoginPageV1Prod()
 
         // Check if popup notifier exists
@@ -145,7 +145,7 @@ export class LoginPage {
 
                 const btnLogin = cy.get(login.btnLogin).as('btnLogin')
                 btnLogin.should('contain', 'Login')
-                .click({ force: true })
+                    .click({ force: true })
 
                 cy.wait(3000)
             } else {
@@ -168,12 +168,12 @@ export class LoginPage {
 
                 const btnLogin = cy.get(login.btnLogin).as('btnLogin')
                 btnLogin.should('contain', 'Login')
-                .click({ force: true })
+                    .click({ force: true })
 
                 cy.wait(3000)
-                }
-            });
-        }
+            }
+        });
+    }
 
     // REDIRECT LOGIN TO SIDEBAR V2
 
@@ -184,10 +184,6 @@ export class LoginPage {
         const goToV2 = cy.get(login.goToV2).as('goToV2')
         goToV2.should('contain', 'LOGIN TO V2')
             .click()
-
-        cy.overrideFeatureToggle({
-            'SIDEBAR-V2__DRAFTING--SURAT-PERINTAH': true
-        })            
 
         cy.wait(3000)
 

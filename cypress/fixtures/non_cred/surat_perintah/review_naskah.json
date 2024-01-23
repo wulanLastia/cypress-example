@@ -14,5 +14,11 @@
       "koreksi_setujui_perihal": " Koreksi Setujui",
       "koreksi_tandatangani_perihal": " Koreksi Tandatangani"
     }
+  ],
+  "env": [
+    {
+      "prod": "prod",
+      "staging": "staging"
+    }
   ]
 }

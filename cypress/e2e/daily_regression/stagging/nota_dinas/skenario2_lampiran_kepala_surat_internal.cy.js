@@ -1,10 +1,19 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../../../../support/pages/auth/login.cy"
-import { CreateNotaDinasPage } from "../../../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_create_nota_dinas.cy"
-import { KembalikanNaskahPage } from "../../../../../../support/pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
-import { PerbaikiNaskahPage } from "../../../../../../support/pages/sidebar/kotak_masuk/6_perbaiki.cy"
-import { SetujuiPage } from "../../../../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
-import { KoreksiSuratPage } from "../../../../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
+import { LoginPage } from "../../../../support/pages/auth/login.cy"
+import { CreateNotaDinasPage } from "../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_create_nota_dinas.cy"
+import { KembalikanNaskahPage } from "../../../../support/pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
+import { PerbaikiNaskahPage } from "../../../../support/pages/sidebar/kotak_masuk/6_perbaiki.cy"
+import { SetujuiPage } from "../../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
+import { KoreksiSuratPage } from "../../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
+
+let loginPage = new LoginPage()
+let createNotaDinasPage = new CreateNotaDinasPage()
+let kembalikanNaskahPage = new KembalikanNaskahPage()
+let perbaikiNaskahPage = new PerbaikiNaskahPage()
+let setujuiPage = new SetujuiPage()
+let koreksiSuratPage = new KoreksiSuratPage()
+let user
+let dataNotaDinas
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     // Jika terdapat error 'uncaught:exception' pada Headless Mode
@@ -16,15 +25,6 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     throw err;
 });
 
-let loginPage = new LoginPage()
-let user
-let dataNotaDinas
-let createNotaDinasPage = new CreateNotaDinasPage()
-let kembalikanNaskahPage = new KembalikanNaskahPage()
-let perbaikiNaskahPage = new PerbaikiNaskahPage()
-let setujuiPage = new SetujuiPage()
-let koreksiSuratPage = new KoreksiSuratPage()
-
 beforeEach(() => {
     cy.intercept({ resourceType: /xhr/ }, { log: false })
 })
@@ -34,8 +34,6 @@ before(() => {
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
-
-    
 })
 
 before(() => {
@@ -46,7 +44,6 @@ before(() => {
     cy.fixture('non_cred/kepala_surat/create_data_nota_dinas.json').then((jsonData) => {
         dataNotaDinas = jsonData  // Assign data from jsonData
     })
-
 })
 
 afterEach(() => {
@@ -71,19 +68,19 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             cy.wait(3000)
             createNotaDinasPage.createBadanSurat()
             cy.wait(3000)
-            createNotaDinasPage.doKirimNaskah()
+            createNotaDinasPage.doKirimNaskah(dataNotaDinas.env[0].staging)
         })
     )
 
     qase([399, 101, 377, 402, 100],
         it('Kembalikan Naskah', () => {
-            // Set toogle unleash
-
             // Login 
             loginPage.loginViaV1(user.nipPemeriksa, user.password)
             loginPage.directLogin()
 
             // Create Naskah
+            kembalikanNaskahPage.goToNaskahBelumDireview(dataNotaDinas.env[0].staging)
+            cy.wait(3000)
             kembalikanNaskahPage.emptyField()
             cy.wait(3000)
             kembalikanNaskahPage.batalKembalikanNaskah()
@@ -106,9 +103,9 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             loginPage.loginViaV1(user.nip, user.password)
             loginPage.directLogin()
 
-            perbaikiNaskahPage.goToPerbaikiNaskahNotaDinas()
+            perbaikiNaskahPage.goToPerbaikiNaskahNotaDinas(dataNotaDinas.env[0].staging)
             cy.wait(3000)
-            perbaikiNaskahPage.perbaikiNaskahNotaDinas()
+            perbaikiNaskahPage.perbaikiNaskahNotaDinas(dataNotaDinas.perbaiki[0].perbaiki_perihal)
             cy.wait(10000)
         })
     )
@@ -121,7 +118,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             loginPage.loginViaV1(user.nipPemeriksa, user.password)
             loginPage.directLogin()
 
-            setujuiPage.suratBelumDireview()
+            setujuiPage.suratBelumDireview(dataNotaDinas.env[0].staging)
             setujuiPage.setujui()
         })
     )
@@ -134,7 +131,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             loginPage.loginViaV1(user.nipPemeriksa2, user.password)
             loginPage.directLogin()
 
-            koreksiSuratPage.goToNaskahBelumDireview()
+            koreksiSuratPage.goToNaskahBelumDireview(dataNotaDinas.env[0].staging)
             koreksiSuratPage.checkDetailKoreksiTandatanganiNotaDinas()
             koreksiSuratPage.koreksiTandatanganiNaskahNotaDinas(user.passphrase)
             cy.wait(10000)

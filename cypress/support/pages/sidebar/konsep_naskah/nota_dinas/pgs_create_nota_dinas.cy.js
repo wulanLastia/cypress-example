@@ -18,7 +18,7 @@ export class CreateNotaDinasPage {
     gotoNotaDinas() {
         draftingNotaDinasPage.goToKonsepNaskahNotaDinas()
     }
-    
+
     createKopSurat() {
         draftingKopSuratNotaDinasPage.aksesFormEditingKopSurat()
         draftingKopSuratNotaDinasPage.checkDetail()
@@ -240,9 +240,9 @@ export class CreateNotaDinasPage {
         draftingKakiSuratPage.closeKakiSurat()
     }
 
-    doKirimNaskah() {
+    doKirimNaskah(inputEnv) {
         cy.wait(3000)
-        draftingNotaDinasPage.kirimNaskah({force: true})
+        draftingNotaDinasPage.kirimNaskah(inputEnv, { force: true })
     }
 
 

@@ -104,7 +104,7 @@ export class DraftingNotaDinasPage {
 
     aksesFormKepalaSurat() {
         const findKepalaSurat = cy.get(nota_dinas.previewKepala).as('findKepalaSurat')
-        findKepalaSurat.scrollTo('top', {ensureScrollable: false})
+        findKepalaSurat.scrollTo('top', { ensureScrollable: false })
         cy.wait(3000)
 
         const previewKepala = cy.get(nota_dinas.previewKepala).as('previewKepala')
@@ -149,17 +149,21 @@ export class DraftingNotaDinasPage {
         titleKaki.should('contain', 'Kaki Surat')
     }
 
-    kirimNaskah() {
+    kirimNaskah(inputEnv) {
         // Intercept all POST network requests
-        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        
+        if (inputEnv === 'prod') {
+            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
+        } else {
+            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
+        }
+
         const btnKirimNaskah = cy.get(nota_dinas.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.click()
-    
+
         const konfirmasiKirimNaskah = cy.get(nota_dinas.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
         konfirmasiKirimNaskah.should('contain', 'Kirim naskah')
             .click()
-    
+
         // Wait and assert that the response status is 200
         cy.wait('@postRequest', { timeout: 5000 }).then((interception) => {
             if (interception.response) {
@@ -167,16 +171,16 @@ export class DraftingNotaDinasPage {
                 const clientErrorStatusCodes = [400, 401, 403, 404, 405, 406, 408, 409, 410, 411, 412];
                 const serverErrorStatusCodes = [500, 501, 502, 503, 504];
                 const errorStatusCodes = [...clientErrorStatusCodes, ...serverErrorStatusCodes];
-        
+
                 // Assert for error status codes
                 if (errorStatusCodes.includes(status)) {
                     expect(errorStatusCodes, `Request failed with status code: ${status}`).to.include(status);
                 }
-        
+
                 const successStatusCodes = [200, 201, 202, 203, 204, 205, 206, 207, 208, 226];
                 const redirectStatusCodes = [300, 301, 302, 303, 307];
                 const acceptableStatusCodes = [...successStatusCodes, ...redirectStatusCodes];
-        
+
                 // Assert for success and redirect status codes
                 expect(acceptableStatusCodes, `Result of status code: ${status}`).to.include(status);
             } else {
@@ -185,52 +189,52 @@ export class DraftingNotaDinasPage {
                 throw new Error('No response received.');
             }
         })
-        
-        
+
+
         // Wait for up for the success dialog to appear only 0.5 seconds
         const successKirimNaskah = cy.get(nota_dinas.popupSuccessKirimNaskah, { timeout: 500 }).as('successKirimNaskah')
         successKirimNaskah.should('be.visible')
-        
+
         successKirimNaskah.should('exist')
             .find(nota_dinas.popupTitleSuccessKirimNaskah)
             .should('contain', 'Naskah berhasil dikirim ke pihak selanjutnya')
     }
-    
+
 
     negativeKirimNaskah() {
         const btnKirimNaskah = cy.get(nota_dinas.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.should('be.visible')
-        .should('be.disabled')
+            .should('be.disabled')
     }
 
     inputLampiranSuratNotaDinas() {
         const findLampiranPage = cy.get(konsep_naskah.previewLampiran).first().as('findLampiranPage');
         findLampiranPage.scrollIntoView();
-    
+
         const previewLampiran1NotaDinas = cy.get(konsep_naskah.previewLampiranNotaDinas).first().as('previewLampiran1NotaDinas');
         previewLampiran1NotaDinas.scrollIntoView()
-        .click({ force: true });
+            .click({ force: true });
         cy.wait(3000);
-    
+
         const titleLampiran = cy.get(konsep_naskah.titleLampiran).as('titleLampiran');
         titleLampiran.should('contain', 'Lampiran');
     }
-    
+
     inputLampiran2SuratNotaDinas() {
         cy.wait(3000);
-    
+
         const findLampiranPage = cy.get(konsep_naskah.previewLampiran).last().as('findLampiranPage');
         findLampiranPage.scrollIntoView();
-    
+
         const previewLampiran2NotaDinas = cy.get(konsep_naskah.previewLampiranNotaDinas).last().as('previewLampiran2NotaDinas');
         previewLampiran2NotaDinas.scrollIntoView()
-        .click({ force: true });
+            .click({ force: true });
         cy.wait(3000);
-    
+
         const titleLampiran = cy.get(konsep_naskah.titleLampiran).as('titleLampiran');
         titleLampiran.should('contain', 'Lampiran');
     }
-    
+
     scrollPreviewPage() {
         const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
         previewPage.scrollTo('top')

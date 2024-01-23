@@ -15,12 +15,16 @@ const perihalNaskah = "cypress/fixtures/non_cred/kepala_surat/kepala_surat_temp_
 
 export class KoreksiSuratPage {
 
-    goToNaskahBelumDireview() {
+    goToNaskahBelumDireview(inputEnv) {
         menuPage.goToKotakMasukReviewNaskah()
         cy.readFile(perihalNaskah).then((object) => {
             const titlePerihalNaskah = object.titlePerihal
 
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+            if (inputEnv === 'prod') {
+                cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('checkResponse')
+            } else {
+                cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+            }
 
             const searchReviewNaskah = cy.get(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
             searchReviewNaskah.find('input').clear()

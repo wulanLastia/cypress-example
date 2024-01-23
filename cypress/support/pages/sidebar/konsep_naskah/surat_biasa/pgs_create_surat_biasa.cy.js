@@ -283,9 +283,9 @@ export class CreateSuratBiasaPage {
         draftingKopSuratPage.closeKopSurat()
     }
 
-    inputKepalaSuratSkenario5Prod(inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
+    inputKepalaSuratSkenario5Prod(inputanTempat, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
-        draftingKepalaSuratPage.validateTempat()
+        draftingKepalaSuratPage.validateTempat(inputanTempat)
         //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
         draftingKepalaSuratPage.validateTujuanSkenario5Prod(inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6)
         draftingKepalaSuratPage.validateLokasi(inputanLokasi)
@@ -312,8 +312,8 @@ export class CreateSuratBiasaPage {
     }
 
     // Kirim
-    kirimSurat() {
-        draftingKonsepNaskahPage.kirimNaskah()
+    kirimSurat(inputEnv) {
+        draftingKonsepNaskahPage.kirimNaskah(inputEnv)
     }
 
     kirimSuratNegatif() {
