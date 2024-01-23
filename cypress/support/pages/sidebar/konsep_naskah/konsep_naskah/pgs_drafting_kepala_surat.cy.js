@@ -466,13 +466,65 @@ export class DraftingKepalaSuratPage {
     }
 
     checkDetailKurunWaktu() {
-        const xpathAwalKurunWaktu = cy.xpath(kepala_surat.xpathAwalKurunWaktu).as('xpathAwalKurunWaktu')
-        xpathAwalKurunWaktu.should('contain', 'Awal kurun waktu')
+        const label_awalKurunWaktu = cy.get(kepala_surat.label_awalKurunWaktu).as('label_awalKurunWaktu')
+        label_awalKurunWaktu.should('contain', 'Awal kurun waktu')
             .and('be.visible')
 
-        const xpathAkhirKurunWaktu = cy.xpath(kepala_surat.xpathAkhirKurunWaktu).as('xpathAkhirKurunWaktu')
-        xpathAkhirKurunWaktu.should('contain', 'Akhir kurun waktu')
+        const input_awalKurunWaktu = cy.get(kepala_surat.input_awalKurunWaktu).as('input_awalKurunWaktu')
+        input_awalKurunWaktu.should('be.visible')
+
+        const label_akhirKurunWaktu = cy.get(kepala_surat.label_akhirKurunWaktu).as('label_akhirKurunWaktu')
+        label_akhirKurunWaktu.should('contain', 'Akhir kurun waktu')
             .and('be.visible')
+
+        const input_akhirKurunWaktu = cy.get(kepala_surat.input_akhirKurunWaktu).as('input_akhirKurunWaktu')
+        input_akhirKurunWaktu.should('be.visible')
+    }
+
+    inputAwalKurunWaktu(inputAwalKurunWaktu) {
+        const input_awalKurunWaktu = cy.get(kepala_surat.input_awalKurunWaktu).as('input_awalKurunWaktu')
+        input_awalKurunWaktu.click()
+
+        const xpath_popupKurunWaktu = cy.xpath(kepala_surat.xpath_popupKurunWaktu).as('xpath_popupKurunWaktu')
+        xpath_popupKurunWaktu.find('td')
+        xpath_popupKurunWaktu.contains(inputAwalKurunWaktu)
+        xpath_popupKurunWaktu.click()
+
+        // Assertion
+        input_awalKurunWaktu.should('contain', inputAwalKurunWaktu)
+    }
+
+    inputAkhirKurunWaktu(inputAkhirKurunWaktu) {
+        const input_akhirKurunWaktu = cy.get(kepala_surat.input_akhirKurunWaktu).as('input_akhirKurunWaktu')
+        input_akhirKurunWaktu.click()
+
+        const xpath_popupKurunWaktu = cy.xpath(kepala_surat.xpath_popupKurunWaktu).as('xpath_popupKurunWaktu')
+        xpath_popupKurunWaktu.find('td')
+        xpath_popupKurunWaktu.contains(inputAkhirKurunWaktu)
+        xpath_popupKurunWaktu.click()
+
+        // Assertion
+        input_akhirKurunWaktu.should('contain', inputAkhirKurunWaktu)
+    }
+
+    inputNegatifAwalKurunWaktu(inputAwalKurunWaktu) {
+        const input_awalKurunWaktu = cy.get(kepala_surat.input_awalKurunWaktu).as('input_awalKurunWaktu')
+        input_awalKurunWaktu.click()
+
+        const xpath_popupKurunWaktu = cy.xpath(kepala_surat.xpath_popupKurunWaktu).as('xpath_popupKurunWaktu')
+        xpath_popupKurunWaktu.find('td')
+        xpath_popupKurunWaktu.contains(inputAwalKurunWaktu)
+        xpath_popupKurunWaktu.parent().first().should('have.class', 'cell disabled')
+    }
+
+    inputNegatifAkhirKurunWaktu(inputAkhirKurunWaktu) {
+        const input_akhirKurunWaktu = cy.get(kepala_surat.input_akhirKurunWaktu).as('input_akhirKurunWaktu')
+        input_akhirKurunWaktu.click()
+
+        const xpath_popupKurunWaktu = cy.xpath(kepala_surat.xpath_popupKurunWaktu).as('xpath_popupKurunWaktu')
+        xpath_popupKurunWaktu.find('td')
+        xpath_popupKurunWaktu.contains(inputAkhirKurunWaktu)
+        xpath_popupKurunWaktu.parent().first().should('have.class', 'cell disabled')
     }
 
     validateTujuanSkenario1(inputanTujuan1, inputanTujuan2, inputanTujuan3) {

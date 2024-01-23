@@ -54,13 +54,15 @@ module.exports = {
     gettitlePopupPenomoran: '[data-cy="dialog__title-confirmation-ambil-nomor-manual"]',
     getsubtittlePopupPenomoran: '[data-cy="dialog__deskripsi-confirmation-ambil-nomor-manual"]',
     btn_deleteTujuanSurat: '[data-cy="input-lampiran-tujuan__tujuan__wrapper-0"]',
+    label_awalKurunWaktu: '[data-cy="input-kepala-surat__berkas__start-year__title"]',
+    label_akhirKurunWaktu: '[data-cy="input-kepala-surat__berkas__end-year__title"]',
+    input_awalKurunWaktu: '[data-cy="input-kepala-surat__berkas__start-year__input"]',
+    input_akhirKurunWaktu: '[data-cy="input-kepala-surat__berkas__end-year__input"]',
 
     // XPATH
     previewTempat: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]',
     btnkonfirmasiPopupPenomoran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[2]/div[1]/div[1]/div[2]/button[2]',
     xpathTabelPenomoran1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[1]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[2]',
     xpathBtnPesanPenomoran1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[1]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[4]/button[1]',
-    xpathAwalKurunWaktu: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[5]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]',
-    xpathAkhirKurunWaktu: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[5]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/input[1]'
-
+    xpath_popupKurunWaktu: '//div[@class="mx-datepicker-main mx-datepicker-popup"]',
 }
