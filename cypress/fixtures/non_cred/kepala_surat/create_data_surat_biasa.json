@@ -94,6 +94,12 @@
       "assert_tempat_negatif_script": " Test JS Script scriptalertExecuting JSscript",
       "assert_tempat_negatif_html": " blinkHello Worldblink",
       "tempat_negatif_whitespace": "{shift}{enter}"
+    },
+    {
+      "awal_kurun_waktu": "2023",
+      "akhir_kurun_waktu": "2024",
+      "negatif_awal_kurun_waktu": "2025",
+      "negatif_akhir_kurun_waktu": "2022"
     }
   ],
   "kembalikan": [

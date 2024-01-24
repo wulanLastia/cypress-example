@@ -23,7 +23,7 @@ before(() => {
         data_temp = data
     })
 
-    
+
 })
 
 before(() => {
@@ -35,11 +35,11 @@ before(() => {
     draftingKepalaSuratPage.aksesKonsepNaskahSuratBiasa()
 })
 
-/*after(() => {
+after(() => {
     qase(411,
         loginPage.logoutV2step2()
     )
-})*/
+})
 
 describe('Kepala Naskah', { testIsolation: false }, () => {
 
@@ -228,6 +228,30 @@ describe('Pemberkasan Otomatis', { testIsolation: false }, () => {
     qase(1939,
         it('Cek detail kolom masukan kurun waktu', () => {
             draftingKepalaSuratPage.checkDetailKurunWaktu()
+        })
+    )
+
+    qase(1946,
+        it('Memilih awal kurun waktu', () => {
+            draftingKepalaSuratPage.inputAwalKurunWaktu(data_temp.kepala_surat[8].awal_kurun_waktu)
+        })
+    )
+
+    qase(1951,
+        it('Memilih awal kurun waktu yang lebih besar dari akhir kurun waktu', () => {
+            draftingKepalaSuratPage.inputNegatifAwalKurunWaktu(data_temp.kepala_surat[8].negatif_awal_kurun_waktu)
+        })
+    )
+
+    qase(1947,
+        it('Memilih akhir kurun waktu', () => {
+            draftingKepalaSuratPage.inputAkhirKurunWaktu(data_temp.kepala_surat[8].akhir_kurun_waktu)
+        })
+    )
+
+    qase(1952,
+        it('Memilih akhir kurun waktu yang lebih kecil dari awal kurun waktu', () => {
+            draftingKepalaSuratPage.inputNegatifAkhirKurunWaktu(data_temp.kepala_surat[8].negatif_akhir_kurun_waktu)
         })
     )
 })
