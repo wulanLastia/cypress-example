@@ -41,12 +41,14 @@ describe('Create Surat Biasa Skenario', () => {
             createSuratBiasaPage.checkDetail()
             createSuratBiasaPage.inputKopSurat()
             createSuratBiasaPage.inputKakiSuratSkenario2(
+                data_temp.env[0].staging,
                 data_temp.kaki_surat[0].penandatangan_atasan1,
                 data_temp.kaki_surat[1].pemeriksa1,
                 data_temp.kaki_surat[2].tembusan_eksternal1,
                 data_temp.kaki_surat[2].tembusan_eksternal2,
                 data_temp.kaki_surat[2].tembusan_eksternal3)
             createSuratBiasaPage.inputKepalaSurat(
+                data_temp.env[0].staging,
                 data_temp.kepala_surat[7].tempat1,
                 data_temp.kepala_surat[0].tujuan1,
                 data_temp.kepala_surat[1].lokasi,
@@ -56,7 +58,7 @@ describe('Create Surat Biasa Skenario', () => {
                 data_temp.kepala_surat[5].urgensi_surat,
                 data_temp.kepala_surat[6].perihal1)
             createSuratBiasaPage.inputBadanNaskah(faker.lorem.paragraphs(13, '<br/>\n'))
-            createSuratBiasaPage.kirimSurat()
+            createSuratBiasaPage.kirimSurat(data_temp.env[0].staging)
         })
     )
 

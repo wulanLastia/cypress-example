@@ -46,6 +46,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             createSuratBiasaPage.inputLampiranSurat(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputLampiranSurat2(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputKakiSuratSkenario3Prod(
+                data_temp.env[0].prod,
                 data_temp.kaki_surat[0].penandatangan_atasan_prod,
                 data_temp.kaki_surat[1].pemeriksa_prod,
                 data_temp.kaki_surat[2].tembusan_internal_prod1,
@@ -55,6 +56,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
                 data_temp.kaki_surat[2].tembusan_eksternal5,
                 data_temp.kaki_surat[2].tembusan_eksternal6)
             createSuratBiasaPage.inputKepalaSuratSkenario5Prod(
+                data_temp.env[0].prod,
                 data_temp.kepala_surat[0].tujuan_internal_prod1,
                 data_temp.kepala_surat[0].tujuan_internal_prod2,
                 data_temp.kepala_surat[0].tujuan_internal_prod3,
@@ -68,7 +70,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
                 data_temp.kepala_surat[5].urgensi_surat,
                 data_temp.kepala_surat[6].perihal6)
             createSuratBiasaPage.inputBadanNaskahSkenarioRegression(faker.lorem.paragraphs(15, '<br/>\n'))
-            createSuratBiasaPage.kirimSurat()
+            createSuratBiasaPage.kirimSurat(data_temp.env[0].prod)
         })
     )
 
@@ -79,6 +81,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             loginPage.directLogin()
 
             // Create Naskah
+            kembalikanNaskahPage.goToNaskahBelumDireview(data_temp.env[0].prod)
             kembalikanNaskahPage.emptyField()
             kembalikanNaskahPage.batalKembalikanNaskah()
             kembalikanNaskahPage.checkHalamanInformasi()
@@ -95,7 +98,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             loginPage.loginViaV1Prod(user.nip, user.password)
             loginPage.directLogin()
 
-            perbaikiNaskahPage.goToPerbaikiNaskah()
+            perbaikiNaskahPage.goToPerbaikiNaskah(data_temp.env[0].prod)
             perbaikiNaskahPage.perbaikiNaskah(data_temp.perbaiki[0].perbaiki_perihal)
         })
     )
@@ -106,7 +109,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             loginPage.loginViaV1Prod(user.nipPemeriksa, user.passwordPemeriksa)
             loginPage.directLogin()
 
-            setujuiPage.suratBelumDireview()
+            setujuiPage.suratBelumDireview(data_temp.env[0].prod)
             setujuiPage.setujui()
         })
     )
@@ -117,7 +120,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             loginPage.loginViaV1Prod(user.nipPemeriksa2, user.passwordPemeriksa)
             loginPage.directLogin()
 
-            koreksiSuratPage.goToPerbaikiNaskah()
+            koreksiSuratPage.goToPerbaikiNaskah(data_temp.env[0].prod)
             koreksiSuratPage.checkDetailKoreksiTandatangani()
             koreksiSuratPage.koreksiTandatanganiNaskah(user.passphrase)
         })

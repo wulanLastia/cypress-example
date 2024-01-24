@@ -110,7 +110,7 @@ describe('Penempatan Daftar Tujuan Surat', { testIsolation: false }, () => {
             draftingKonsepNaskahPage.scrollPreviewPage()
             draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
             draftingKepalaSuratPage.inputPenempatanDaftarTujuanKepala()
-            draftingKepalaSuratPage.validateTujuan(data_temp.kepala_surat[0].tujuan1)
+            draftingKepalaSuratPage.validateTujuan(data_temp.env[0].staging, data_temp.kepala_surat[0].tujuan1)
         })
     )
 
@@ -120,7 +120,7 @@ describe('Penempatan Daftar Tujuan Surat', { testIsolation: false }, () => {
             draftingKonsepNaskahPage.scrollPreviewPage()
             draftingKepalaSuratPage.checkPenempatanDaftarTujuanLampiran()
             draftingKepalaSuratPage.deleteTujuan()
-            draftingKepalaSuratPage.validateTujuanLampiran(data_temp.kepala_surat[0].tujuan1)
+            draftingKepalaSuratPage.validateTujuanLampiran(data_temp.env[0].staging, data_temp.kepala_surat[0].tujuan1)
         })
     )
 })

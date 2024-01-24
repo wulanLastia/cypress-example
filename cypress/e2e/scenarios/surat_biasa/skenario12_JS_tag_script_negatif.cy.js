@@ -38,6 +38,7 @@ describe('[Negatif] Input tag Script Create Surat Biasa Tujuan Internal Eksterna
             createSuratBiasaPage.inputLampiranSurat(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputLampiranSurat2(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputKakiSuratSkenario3(
+                data_temp.env[0].staging,
                 data_temp.kaki_surat[0].penandatangan_atasan1,
                 data_temp.kaki_surat[1].pemeriksa1,
                 data_temp.kaki_surat[2].tembusan_internal1,
@@ -47,6 +48,7 @@ describe('[Negatif] Input tag Script Create Surat Biasa Tujuan Internal Eksterna
                 data_temp.kaki_surat[2].tembusan_eksternal5,
                 data_temp.kaki_surat[2].tembusan_eksternal6)
             createSuratBiasaPage.inputKepalaSuratSkenario7Negatif(
+                data_temp.env[0].staging,
                 data_temp.kepala_surat[7].tempat_negatif_script,
                 data_temp.kepala_surat[7].assert_tempat_negatif_script,
                 data_temp.kepala_surat[0].tujuan_lampiran_script1,
