@@ -202,16 +202,18 @@ export class DraftingKakiSuratPage {
         const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
         selectPenandatangan.select(1).should('have.value', 'ATASAN')
 
+        const pilihPenandatangan = cy.get(kaki_surat.pilihPenandatangan).as('pilihPenandatangan')
+        pilihPenandatangan.wait(1000)
+            .type(inputanPenandatanganAtasan1)
+
+        cy.log(inputEnv)
+
         // Intercept all POST network requests
         if (inputEnv === 'prod') {
             cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
         } else {
             cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
         }
-
-        const pilihPenandatangan = cy.get(kaki_surat.pilihPenandatangan).as('pilihPenandatangan')
-        pilihPenandatangan.wait(1000)
-            .type(inputanPenandatanganAtasan1)
 
         cy.wait('@postRequest', { timeout: 5000 })
             .then((interception) => {
