@@ -313,7 +313,11 @@ export class CreateSuratBiasaPage {
 
     // Kirim
     kirimSurat(inputEnv) {
-        draftingKonsepNaskahPage.kirimNaskah(inputEnv)
+        if (inputEnv === "prod") {
+            draftingKonsepNaskahPage.kirimNaskahProd(inputEnv)
+        } else {
+            draftingKonsepNaskahPage.kirimNaskah(inputEnv)
+        }
     }
 
     kirimSuratNegatif() {

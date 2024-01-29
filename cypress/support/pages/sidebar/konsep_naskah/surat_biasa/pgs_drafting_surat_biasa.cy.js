@@ -225,7 +225,6 @@ export class DraftingKonsepNaskahPage {
             .should('contain', 'Naskah berhasil dikirim ke pihak selanjutnya')
     }
 
-
     kirimNaskahNegatif() {
         cy.get(konsep_naskah.btnKirimNaskah).as('btnKirimNaskah')
             .should('be.visible')
@@ -242,6 +241,23 @@ export class DraftingKonsepNaskahPage {
                         .click();
                 }
             });
+    }
+
+    kirimNaskahProd(inputEnv) {
+        const btnKirimNaskah = cy.get(konsep_naskah.btnKirimNaskah).as('btnKirimNaskah')
+        btnKirimNaskah.click()
+
+        const konfirmasiKirimNaskah = cy.get(konsep_naskah.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
+        konfirmasiKirimNaskah.should('contain', 'Kirim naskah')
+            .click()
+
+        // Wait for up for the success dialog to appear only 0.5 seconds
+        const successKirimNaskah = cy.get(konsep_naskah.popupSuccessKirimNaskah, { timeout: 500 }).as('successKirimNaskah')
+        successKirimNaskah.should('be.visible')
+
+        successKirimNaskah.should('exist')
+            .find(konsep_naskah.popupTitleSuccessKirimNaskah)
+            .should('contain', 'Naskah berhasil dikirim ke pihak selanjutnya')
     }
 
     scrollPreviewPage() {

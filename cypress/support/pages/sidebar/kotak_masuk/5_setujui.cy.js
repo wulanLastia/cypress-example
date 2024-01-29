@@ -18,25 +18,35 @@ export class SetujuiPage {
             const titlePerihalNaskah = object.titlePerihal
 
             if (inputEnv === 'prod') {
-                cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('checkResponse')
+                const searchReviewNaskah = cy.get(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
+                searchReviewNaskah.find('input').clear()
+                searchReviewNaskah.type(titlePerihalNaskah)
+
+                cy.wait(10000)
+
+                const tableReviewSurat = cy.get(setujui.tableReviewSurat).as('tableReviewSurat')
+                tableReviewSurat.contains('td', titlePerihalNaskah)
+                    .click()
+
+                cy.wait(6000)
             } else {
                 cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
+                const searchReviewNaskah = cy.get(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
+                searchReviewNaskah.find('input').clear()
+                searchReviewNaskah.type(titlePerihalNaskah)
+
+                cy.wait('@checkResponse', { timeout: 10000 })
+                    .then((interception) => {
+                        if (interception.response.statusCode === 200) {
+                            const tableReviewSurat = cy.get(setujui.tableReviewSurat).as('tableReviewSurat')
+                            tableReviewSurat.contains('td', titlePerihalNaskah)
+                                .click()
+
+                            cy.wait(6000)
+                        }
+                    })
             }
-
-            const searchReviewNaskah = cy.get(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
-            searchReviewNaskah.find('input').clear()
-            searchReviewNaskah.type(titlePerihalNaskah)
-
-            cy.wait('@checkResponse', { timeout: 10000 })
-                .then((interception) => {
-                    if (interception.response.statusCode === 200) {
-                        const tableReviewSurat = cy.get(setujui.tableReviewSurat).as('tableReviewSurat')
-                        tableReviewSurat.contains('td', titlePerihalNaskah)
-                            .click()
-
-                        cy.wait(6000)
-                    }
-                })
         })
     }
 
