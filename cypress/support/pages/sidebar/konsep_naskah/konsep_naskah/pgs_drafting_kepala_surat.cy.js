@@ -1567,140 +1567,80 @@ export class DraftingKepalaSuratPage {
 
     // Tujuan Kepala Surat Internal Eksternal Prod
     inputTujuanSuratProd1(inputEnv, inputanTujuan1) {
-        // Intercept all POST network requests
-        if (inputEnv === 'prod') {
-            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
-        } else {
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        }
-
         const inputTujuan = cy.get(kepala_surat.inputTujuan0).as('inputTujuan')
         inputTujuan.wait(1000)
             .type(inputanTujuan1)
 
-        cy.wait('@postRequest', { timeout: 5000 })
-            .then((interception) => {
-                if (interception.response.statusCode === 200) {
-                    const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
-                    suggestInputTujuan.contains(inputanTujuan1, { timeout: 10000 }).should('be.visible')
+        cy.wait(5000)
 
-                    inputTujuan.type('{enter}')
-                }
-            })
+        const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan).scrollIntoView().as('suggestInputTujuan')
+        suggestInputTujuan.contains(inputanTujuan1, { timeout: 10000 }).should('be.visible')
+
+        inputTujuan.type('{enter}')
     }
 
     inputTujuanSuratProd2(inputEnv, inputanTujuan2) {
-        // Intercept all POST network requests
-        if (inputEnv === 'prod') {
-            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
-        } else {
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        }
-
         const inputTujuan2 = cy.get(kepala_surat.inputTujuan1).as('inputTujuan2')
         inputTujuan2.wait(1000)
             .type(inputanTujuan2)
 
-        cy.wait('@postRequest', { timeout: 5000 })
-            .then((interception) => {
-                if (interception.response.statusCode === 200) {
-                    const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
-                    suggestInputTujuan.contains(inputanTujuan2, { timeout: 10000 }).should('be.visible')
+        cy.wait(5000)
 
-                    inputTujuan2.type('{enter}')
-                }
-            })
+        const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan).scrollIntoView().as('suggestInputTujuan')
+        suggestInputTujuan.contains(inputanTujuan2, { timeout: 10000 }).should('be.visible')
+
+        inputTujuan2.type('{enter}')
     }
 
     inputTujuanSuratProd3(inputEnv, inputanTujuan3) {
-        // Intercept all POST network requests
-        if (inputEnv === 'prod') {
-            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
-        } else {
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        }
-
         const inputTujuan3 = cy.get(kepala_surat.inputTujuan2).as('inputTujuan3')
         inputTujuan3.wait(1000)
             .type(inputanTujuan3)
 
-        cy.wait('@postRequest', { timeout: 5000 })
-            .then((interception) => {
-                if (interception.response.statusCode === 200) {
-                    const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
-                    suggestInputTujuan.contains(inputanTujuan3, { timeout: 10000 }).should('be.visible')
+        cy.wait(5000)
 
-                    inputTujuan3.type('{enter}')
-                }
-            })
+        const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan).scrollIntoView().as('suggestInputTujuan')
+        suggestInputTujuan.contains(inputanTujuan3, { timeout: 10000 }).should('be.visible')
+
+        inputTujuan3.type('{enter}')
     }
 
     inputTujuanSuratEksternalProd4(inputEnv, inputanTujuanEksternal4) {
-        // Intercept all POST network requests
-        if (inputEnv === 'prod') {
-            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
-        } else {
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        }
-
         const inputTujuan3 = cy.get(kepala_surat.inputTujuan3).as('inputTujuan3')
         inputTujuan3.wait(1000)
             .type(inputanTujuanEksternal4)
 
-        cy.wait('@postRequest', { timeout: 5000 })
-            .then((interception) => {
-                if (interception.response.statusCode === 200) {
-                    const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal, { timeout: 5000 }).as('suggestInputTujuanEksternal')
-                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal4, { timeout: 10000 }).should('be.visible')
+        cy.wait(5000)
 
-                    inputTujuan3.type('{enter}')
-                }
-            })
+        const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal).scrollIntoView().as('suggestInputTujuanEksternal')
+        suggestInputTujuanEksternal.contains(inputanTujuanEksternal4, { timeout: 10000 }).should('be.visible')
+
+        inputTujuan3.type('{enter}')
     }
 
     inputTujuanSuratEksternalProd5(inputEnv, inputanTujuanEksternal5) {
-        // Intercept all POST network requests
-        if (inputEnv === 'prod') {
-            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
-        } else {
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        }
-
         const inputTujuan4 = cy.get(kepala_surat.inputTujuan4).as('inputTujuan4')
         inputTujuan4.wait(1000)
             .type(inputanTujuanEksternal5)
 
-        cy.wait('@postRequest', { timeout: 5000 })
-            .then((interception) => {
-                if (interception.response.statusCode === 200) {
-                    const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal, { timeout: 5000 }).as('suggestInputTujuanEksternal')
-                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal5, { timeout: 10000 }).should('be.visible')
+        cy.wait(5000)
 
-                    inputTujuan4.type('{enter}')
-                }
-            })
+        const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal).scrollIntoView().as('suggestInputTujuanEksternal')
+        suggestInputTujuanEksternal.contains(inputanTujuanEksternal5, { timeout: 10000 }).should('be.visible')
+
+        inputTujuan4.type('{enter}')
     }
 
     inputTujuanSuratEksternalProd6(inputEnv, inputanTujuanEksternal6) {
-        // Intercept all POST network requests
-        if (inputEnv === 'prod') {
-            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
-        } else {
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        }
-
         const inputTujuan5 = cy.get(kepala_surat.inputTujuan5).as('inputTujuan5')
         inputTujuan5.wait(1000)
             .type(inputanTujuanEksternal6)
 
-        cy.wait('@postRequest', { timeout: 5000 })
-            .then((interception) => {
-                if (interception.response.statusCode === 200) {
-                    const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal, { timeout: 5000 }).as('suggestInputTujuanEksternal')
-                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal6, { timeout: 10000 }).should('be.visible')
+        cy.wait(5000)
 
-                    inputTujuan5.type('{enter}')
-                }
-            })
+        const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal).scrollIntoView().as('suggestInputTujuanEksternal')
+        suggestInputTujuanEksternal.contains(inputanTujuanEksternal6, { timeout: 10000 }).should('be.visible')
+
+        inputTujuan5.type('{enter}')
     }
 }
