@@ -27,11 +27,11 @@ export class CreateSuratBiasaPage {
     }
 
     // Kepala Surat
-    inputKepalaSurat(inputanTempat, inputanTujuan1, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
+    inputKepalaSurat(inputEnv, inputanTempat, inputanTujuan1, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.validateTempat(inputanTempat)
         //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
-        draftingKepalaSuratPage.validateTujuan(inputanTujuan1)
+        draftingKepalaSuratPage.validateTujuan(inputEnv, inputanTujuan1)
         draftingKepalaSuratPage.validateLokasi(inputanLokasi)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
         draftingKepalaSuratPage.validateJudulBerkas()
@@ -42,11 +42,11 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
-    inputKepalaSuratSkenario1(inputanTempat, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
+    inputKepalaSuratSkenario1(inputEnv, inputanTempat, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.validateTempat(inputanTempat)
         //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
-        draftingKepalaSuratPage.validateTujuanSkenario1(inputanTujuan1, inputanTujuan2, inputanTujuan3)
+        draftingKepalaSuratPage.validateTujuanSkenario1(inputEnv, inputanTujuan1, inputanTujuan2, inputanTujuan3)
         draftingKepalaSuratPage.validateLokasi(inputanLokasi)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
         draftingKepalaSuratPage.validateJudulBerkas()
@@ -57,11 +57,11 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
-    inputKepalaSuratSkenario2(inputanTempat, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
+    inputKepalaSuratSkenario2(inputEnv, inputanTempat, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.validateTempat(inputanTempat)
         //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
-        draftingKepalaSuratPage.validateTujuanSkenario2(inputanTujuan1, inputanTujuan2, inputanTujuan3)
+        draftingKepalaSuratPage.validateTujuanSkenario2(inputEnv, inputanTujuan1, inputanTujuan2, inputanTujuan3)
         draftingKepalaSuratPage.validateLokasi(inputanLokasi)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
         draftingKepalaSuratPage.validateJudulBerkas()
@@ -72,11 +72,11 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
-    inputKepalaSuratSkenario3(inputanTempat, inputanTujuanEksternal1, inputanTujuanEksternal2, inputanTujuanEksternal3, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
+    inputKepalaSuratSkenario3(inputEnv, inputanTempat, inputanTujuanEksternal1, inputanTujuanEksternal2, inputanTujuanEksternal3, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.validateTempat(inputanTempat)
         //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
-        draftingKepalaSuratPage.validateTujuanSkenario3(inputanTujuanEksternal1, inputanTujuanEksternal2, inputanTujuanEksternal3)
+        draftingKepalaSuratPage.validateTujuanSkenario3(inputEnv, inputanTujuanEksternal1, inputanTujuanEksternal2, inputanTujuanEksternal3)
         draftingKepalaSuratPage.validateLokasi(inputanLokasi)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
         draftingKepalaSuratPage.validateJudulBerkas()
@@ -87,11 +87,11 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
-    inputKepalaSuratSkenario4(inputanTempat, inputanTujuanLampiran1, inputanTujuanLampiran2, inputanTujuanLampiran3, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
+    inputKepalaSuratSkenario4(inputEnv, inputanTempat, inputanTujuanLampiran1, inputanTujuanLampiran2, inputanTujuanLampiran3, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.validateTempat(inputanTempat)
         //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
-        draftingKepalaSuratPage.validateTujuanSkenario4(inputanTujuanLampiran1, inputanTujuanLampiran2, inputanTujuanLampiran3)
+        draftingKepalaSuratPage.validateTujuanSkenario4(inputEnv, inputanTujuanLampiran1, inputanTujuanLampiran2, inputanTujuanLampiran3)
         draftingKepalaSuratPage.validateLokasi(inputanLokasi)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
         draftingKepalaSuratPage.validateJudulBerkas()
@@ -102,11 +102,11 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
-    inputKepalaSuratSkenario5(inputanTempat, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
+    inputKepalaSuratSkenario5(inputEnv, inputanTempat, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.validateTempat(inputanTempat)
         //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
-        draftingKepalaSuratPage.validateTujuanSkenario5(inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6)
+        draftingKepalaSuratPage.validateTujuanSkenario5(inputEnv, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6)
         draftingKepalaSuratPage.validateLokasi(inputanLokasi)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
         draftingKepalaSuratPage.validateJudulBerkas()
@@ -131,11 +131,11 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.closeKepalaSurat()*/
     }
 
-    inputKepalaSuratSkenario6(inputanTempat, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
+    inputKepalaSuratSkenario6(inputEnv, inputanTempat, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.validateTempat(inputanTempat)
         //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
-        draftingKepalaSuratPage.validateTujuanSkenario6(inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6)
+        draftingKepalaSuratPage.validateTujuanSkenario6(inputEnv, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6)
         draftingKepalaSuratPage.validateLokasi(inputanLokasi)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
         draftingKepalaSuratPage.validateJudulBerkas()
@@ -146,11 +146,11 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
-    inputKepalaSuratSkenario7Negatif(inputanTempatNegatif, assertInputanTempatNegatif, inputanTujuanLampiranNegatif1, inputanTujuanLampiranNegatif2, inputanTujuanLampiranNegatif3, inputanTujuanLampiranNegatif4, inputanTujuanLampiranNegatif5, inputanTujuanLampiranNegatif6, assertTujuanLampiranNegatif1, assertTujuanLampiranNegatif2, assertTujuanLampiranNegatif3, assertTujuanLampiranNegatif4, assertTujuanLampiranNegatif5, assertTujuanLampiranNegatif6, inputanLokasiNegatif, inputanKodeKlasifikasi, inputanUnitPengolahNegatif, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalNegatif) {
+    inputKepalaSuratSkenario7Negatif(inputEnv, inputanTempatNegatif, assertInputanTempatNegatif, inputanTujuanLampiranNegatif1, inputanTujuanLampiranNegatif2, inputanTujuanLampiranNegatif3, inputanTujuanLampiranNegatif4, inputanTujuanLampiranNegatif5, inputanTujuanLampiranNegatif6, assertTujuanLampiranNegatif1, assertTujuanLampiranNegatif2, assertTujuanLampiranNegatif3, assertTujuanLampiranNegatif4, assertTujuanLampiranNegatif5, assertTujuanLampiranNegatif6, inputanLokasiNegatif, inputanKodeKlasifikasi, inputanUnitPengolahNegatif, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalNegatif) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.validateTempat(inputanTempatNegatif, assertInputanTempatNegatif)
         //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
-        draftingKepalaSuratPage.validateTujuanSkenario7NegatifTagScript(inputanTujuanLampiranNegatif1, inputanTujuanLampiranNegatif2, inputanTujuanLampiranNegatif3, inputanTujuanLampiranNegatif4, inputanTujuanLampiranNegatif5, inputanTujuanLampiranNegatif6, assertTujuanLampiranNegatif1, assertTujuanLampiranNegatif2, assertTujuanLampiranNegatif3, assertTujuanLampiranNegatif4, assertTujuanLampiranNegatif5, assertTujuanLampiranNegatif6,)
+        draftingKepalaSuratPage.validateTujuanSkenario7NegatifTagScript(inputEnv, inputanTujuanLampiranNegatif1, inputanTujuanLampiranNegatif2, inputanTujuanLampiranNegatif3, inputanTujuanLampiranNegatif4, inputanTujuanLampiranNegatif5, inputanTujuanLampiranNegatif6, assertTujuanLampiranNegatif1, assertTujuanLampiranNegatif2, assertTujuanLampiranNegatif3, assertTujuanLampiranNegatif4, assertTujuanLampiranNegatif5, assertTujuanLampiranNegatif6,)
         draftingKepalaSuratPage.validateLokasiNegatifTagScript(inputanLokasiNegatif)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
         draftingKepalaSuratPage.validateUnitPengolahNegatifTagScript(inputanUnitPengolahNegatif)
@@ -160,11 +160,11 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
-    inputKepalaSuratSkenario8Negatif(inputanTempatNegatif, assertInputanTempatNegatif, inputanTujuanLampiranNegatif1, inputanTujuanLampiranNegatif2, inputanTujuanLampiranNegatif3, inputanTujuanLampiranNegatif4, inputanTujuanLampiranNegatif5, inputanTujuanLampiranNegatif6, assertTujuanLampiranNegatif1, assertTujuanLampiranNegatif2, assertTujuanLampiranNegatif3, assertTujuanLampiranNegatif4, assertTujuanLampiranNegatif5, assertTujuanLampiranNegatif6, inputanLokasiNegatif, inputanKodeKlasifikasi, inputanUnitPengolahNegatif, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalNegatif) {
+    inputKepalaSuratSkenario8Negatif(inputEnv, inputanTempatNegatif, assertInputanTempatNegatif, inputanTujuanLampiranNegatif1, inputanTujuanLampiranNegatif2, inputanTujuanLampiranNegatif3, inputanTujuanLampiranNegatif4, inputanTujuanLampiranNegatif5, inputanTujuanLampiranNegatif6, assertTujuanLampiranNegatif1, assertTujuanLampiranNegatif2, assertTujuanLampiranNegatif3, assertTujuanLampiranNegatif4, assertTujuanLampiranNegatif5, assertTujuanLampiranNegatif6, inputanLokasiNegatif, inputanKodeKlasifikasi, inputanUnitPengolahNegatif, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalNegatif) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.validateTempat(inputanTempatNegatif, assertInputanTempatNegatif)
         //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
-        draftingKepalaSuratPage.validateTujuanSkenario8NegatifHTMLScript(inputanTujuanLampiranNegatif1, inputanTujuanLampiranNegatif2, inputanTujuanLampiranNegatif3, inputanTujuanLampiranNegatif4, inputanTujuanLampiranNegatif5, inputanTujuanLampiranNegatif6, assertTujuanLampiranNegatif1, assertTujuanLampiranNegatif2, assertTujuanLampiranNegatif3, assertTujuanLampiranNegatif4, assertTujuanLampiranNegatif5, assertTujuanLampiranNegatif6)
+        draftingKepalaSuratPage.validateTujuanSkenario8NegatifHTMLScript(inputEnv, inputanTujuanLampiranNegatif1, inputanTujuanLampiranNegatif2, inputanTujuanLampiranNegatif3, inputanTujuanLampiranNegatif4, inputanTujuanLampiranNegatif5, inputanTujuanLampiranNegatif6, assertTujuanLampiranNegatif1, assertTujuanLampiranNegatif2, assertTujuanLampiranNegatif3, assertTujuanLampiranNegatif4, assertTujuanLampiranNegatif5, assertTujuanLampiranNegatif6)
         draftingKepalaSuratPage.validateLokasiNegatifHTMLScript(inputanLokasiNegatif)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
         draftingKepalaSuratPage.validateUnitPengolahNegatifHTMLScript(inputanUnitPengolahNegatif)
@@ -174,11 +174,11 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.closeKepalaSurat()
     }
 
-    inputKepalaSuratSkenario9Negatif(inputanTujuanLampiranNegatif1, assertTujuanLampiranNegatif1, inputanLokasiNegatif, inputanKodeKlasifikasi, inputanUnitPengolahNegatif, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalNegatif) {
+    inputKepalaSuratSkenario9Negatif(inputEnv, inputanTujuanLampiranNegatif1, assertTujuanLampiranNegatif1, inputanLokasiNegatif, inputanKodeKlasifikasi, inputanUnitPengolahNegatif, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalNegatif) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.validateTempat()
         //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
-        draftingKepalaSuratPage.validateTujuanSkenario9NegatifXSSScript(inputanTujuanLampiranNegatif1, assertTujuanLampiranNegatif1)
+        draftingKepalaSuratPage.validateTujuanSkenario9NegatifXSSScript(inputEnv, inputanTujuanLampiranNegatif1, assertTujuanLampiranNegatif1)
         draftingKepalaSuratPage.validateLokasiNegatifXSSScript(inputanLokasiNegatif)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
         draftingKepalaSuratPage.validateUnitPengolahNegatifXSSScript(inputanUnitPengolahNegatif)
@@ -217,11 +217,11 @@ export class CreateSuratBiasaPage {
     }
 
     // Kaki Surat
-    inputKakiSurat(inputanPenandatanganAtasan1, inputanPemeriksa1, inputanTembusan1, inputanTembusan2) {
+    inputKakiSurat(inputEnv, inputanPenandatanganAtasan1, inputanPemeriksa1, inputanTembusan1, inputanTembusan2) {
         draftingKakiSuratPage.inputKakiSurat()
-        draftingKakiSuratPage.pilihPenandatanganAtasan(inputanPenandatanganAtasan1)
-        draftingKakiSuratPage.pilihPemeriksa(inputanPemeriksa1)
-        draftingKakiSuratPage.pilihTembusan(inputanTembusan1, inputanTembusan2)
+        draftingKakiSuratPage.pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan1)
+        draftingKakiSuratPage.pilihPemeriksa(inputEnv, inputanPemeriksa1)
+        draftingKakiSuratPage.pilihTembusan(inputEnv, inputanTembusan1, inputanTembusan2)
         draftingKakiSuratPage.closeKakiSurat()
     }
 
@@ -231,34 +231,34 @@ export class CreateSuratBiasaPage {
         draftingKakiSuratPage.closeKakiSurat()
     }
 
-    inputKakiSuratSkenario1(inputanPenandatanganAtasan1, inputanPemeriksa1, inputanTembusanInternal1, inputanTembusanInternal2, inputanTembusanInternal3) {
+    inputKakiSuratSkenario1(inputEnv, inputanPenandatanganAtasan1, inputanPemeriksa1, inputanTembusanInternal1, inputanTembusanInternal2, inputanTembusanInternal3) {
         draftingKakiSuratPage.inputKakiSurat()
-        draftingKakiSuratPage.pilihPenandatanganAtasan(inputanPenandatanganAtasan1)
-        draftingKakiSuratPage.pilihPemeriksa(inputanPemeriksa1)
-        draftingKakiSuratPage.pilihTembusanSkenario1(inputanTembusanInternal1, inputanTembusanInternal2, inputanTembusanInternal3)
+        draftingKakiSuratPage.pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan1)
+        draftingKakiSuratPage.pilihPemeriksa(inputEnv, inputanPemeriksa1)
+        draftingKakiSuratPage.pilihTembusanSkenario1(inputEnv, inputanTembusanInternal1, inputanTembusanInternal2, inputanTembusanInternal3)
         draftingKakiSuratPage.closeKakiSurat()
     }
 
-    inputKakiSuratSkenario2(inputanPenandatanganAtasan1, inputanPemeriksa1, inputanTembusanEksternal1, inputanTembusanEksternal2, inputanTembusanEksternal3) {
+    inputKakiSuratSkenario2(inputEnv, inputanPenandatanganAtasan1, inputanPemeriksa1, inputanTembusanEksternal1, inputanTembusanEksternal2, inputanTembusanEksternal3) {
         draftingKakiSuratPage.inputKakiSurat()
-        draftingKakiSuratPage.pilihPenandatanganAtasan(inputanPenandatanganAtasan1)
-        draftingKakiSuratPage.pilihPemeriksa(inputanPemeriksa1)
-        draftingKakiSuratPage.pilihTembusanSkenario2(inputanTembusanEksternal1, inputanTembusanEksternal2, inputanTembusanEksternal3)
+        draftingKakiSuratPage.pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan1)
+        draftingKakiSuratPage.pilihPemeriksa(inputEnv, inputanPemeriksa1)
+        draftingKakiSuratPage.pilihTembusanSkenario2(inputEnv, inputanTembusanEksternal1, inputanTembusanEksternal2, inputanTembusanEksternal3)
         draftingKakiSuratPage.closeKakiSurat()
     }
 
-    inputKakiSuratSkenario3(inputanPenandatanganAtasan1, inputanPemeriksa1, inputanTembusan1, inputanTembusan2, inputanTembusan3, inputanTembusanEksternal4, inputanTembusanEksternal5, inputanTembusanEksternal6) {
+    inputKakiSuratSkenario3(inputEnv, inputanPenandatanganAtasan1, inputanPemeriksa1, inputanTembusan1, inputanTembusan2, inputanTembusan3, inputanTembusanEksternal4, inputanTembusanEksternal5, inputanTembusanEksternal6) {
         draftingKakiSuratPage.inputKakiSurat()
-        draftingKakiSuratPage.pilihPenandatanganAtasan(inputanPenandatanganAtasan1)
-        draftingKakiSuratPage.pilihPemeriksa(inputanPemeriksa1)
-        draftingKakiSuratPage.pilihTembusanSkenario3(inputanTembusan1, inputanTembusan2, inputanTembusan3, inputanTembusanEksternal4, inputanTembusanEksternal5, inputanTembusanEksternal6)
+        draftingKakiSuratPage.pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan1)
+        draftingKakiSuratPage.pilihPemeriksa(inputEnv, inputanPemeriksa1)
+        draftingKakiSuratPage.pilihTembusanSkenario3(inputEnv, inputanTembusan1, inputanTembusan2, inputanTembusan3, inputanTembusanEksternal4, inputanTembusanEksternal5, inputanTembusanEksternal6)
         draftingKakiSuratPage.closeKakiSurat()
     }
 
-    inputKakiSuratSkenario4(inputanPenandatanganDiriSendiri, inputanTembusan1, inputanTembusan2, inputanTembusan3, inputanTembusanEksternal4, inputanTembusanEksternal5, inputanTembusanEksternal6) {
+    inputKakiSuratSkenario4(inputEnv, inputanPenandatanganDiriSendiri, inputanTembusan1, inputanTembusan2, inputanTembusan3, inputanTembusanEksternal4, inputanTembusanEksternal5, inputanTembusanEksternal6) {
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.pilihPenandatanganDiriSendiri(inputanPenandatanganDiriSendiri)
-        draftingKakiSuratPage.pilihTembusanSkenario3(inputanTembusan1, inputanTembusan2, inputanTembusan3, inputanTembusanEksternal4, inputanTembusanEksternal5, inputanTembusanEksternal6)
+        draftingKakiSuratPage.pilihTembusanSkenario3(inputEnv, inputanTembusan1, inputanTembusan2, inputanTembusan3, inputanTembusanEksternal4, inputanTembusanEksternal5, inputanTembusanEksternal6)
         draftingKakiSuratPage.closeKakiSurat()
     }
 
@@ -283,11 +283,11 @@ export class CreateSuratBiasaPage {
         draftingKopSuratPage.closeKopSurat()
     }
 
-    inputKepalaSuratSkenario5Prod(inputanTempat, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
+    inputKepalaSuratSkenario5Prod(inputEnv, inputanTempat, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
         draftingKepalaSuratPage.aksesFormEditingKepalaSurat()
         draftingKepalaSuratPage.validateTempat(inputanTempat)
         //draftingKepalaSuratPage.validateTanggal() Disable sementara menunggu penyesuaian penomoran manual
-        draftingKepalaSuratPage.validateTujuanSkenario5Prod(inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6)
+        draftingKepalaSuratPage.validateTujuanSkenario5Prod(inputEnv, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6)
         draftingKepalaSuratPage.validateLokasi(inputanLokasi)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
         draftingKepalaSuratPage.validateUnitPengolah(inputanUnitPengolah)
@@ -303,17 +303,21 @@ export class CreateSuratBiasaPage {
         draftingBadanNaskahPage.closeBadanNaskah()
     }
 
-    inputKakiSuratSkenario3Prod(inputanPenandatanganAtasan1, inputanPemeriksa1, inputanTembusan1, inputanTembusan2, inputanTembusan3, inputanTembusanEksternal4, inputanTembusanEksternal5, inputanTembusanEksternal6) {
+    inputKakiSuratSkenario3Prod(inputEnv, inputanPenandatanganAtasan1, inputanPemeriksa1, inputanTembusan1, inputanTembusan2, inputanTembusan3, inputanTembusanEksternal4, inputanTembusanEksternal5, inputanTembusanEksternal6) {
         draftingKakiSuratPage.inputKakiSurat()
-        draftingKakiSuratPage.pilihPenandatanganAtasanProd(inputanPenandatanganAtasan1)
-        draftingKakiSuratPage.pilihPemeriksaProd(inputanPemeriksa1)
-        draftingKakiSuratPage.pilihTembusanSkenario3Prod(inputanTembusan1, inputanTembusan2, inputanTembusan3, inputanTembusanEksternal4, inputanTembusanEksternal5, inputanTembusanEksternal6)
+        draftingKakiSuratPage.pilihPenandatanganAtasanProd(inputEnv, inputanPenandatanganAtasan1)
+        draftingKakiSuratPage.pilihPemeriksaProd(inputEnv, inputanPemeriksa1)
+        draftingKakiSuratPage.pilihTembusanSkenario3Prod(inputEnv, inputanTembusan1, inputanTembusan2, inputanTembusan3, inputanTembusanEksternal4, inputanTembusanEksternal5, inputanTembusanEksternal6)
         draftingKakiSuratPage.closeKakiSurat()
     }
 
     // Kirim
     kirimSurat(inputEnv) {
-        draftingKonsepNaskahPage.kirimNaskah(inputEnv)
+        if (inputEnv === "prod") {
+            draftingKonsepNaskahPage.kirimNaskahProd(inputEnv)
+        } else {
+            draftingKonsepNaskahPage.kirimNaskah(inputEnv)
+        }
     }
 
     kirimSuratNegatif() {

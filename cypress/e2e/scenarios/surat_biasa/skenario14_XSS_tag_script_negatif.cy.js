@@ -38,6 +38,7 @@ describe('[Negatif] Input XSS Script Create Surat Biasa Tujuan Internal Eksterna
             createSuratBiasaPage.inputLampiranSurat(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputLampiranSurat2(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputKakiSuratSkenario3(
+                data_temp.env[0].staging,
                 data_temp.kaki_surat[0].penandatangan_atasan1,
                 data_temp.kaki_surat[1].pemeriksa1,
                 data_temp.kaki_surat[2].tembusan_internal1,

@@ -27,8 +27,6 @@ beforeEach(() => {
     cy.fixture('non_cred/kepala_surat/create_data_surat_biasa.json').then((data) => {
         data_temp = data
     })
-
-    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
 describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala Surat) Penomoran Otomatis', () => {
@@ -46,6 +44,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             createSuratBiasaPage.inputLampiranSurat(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputLampiranSurat2(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputKakiSuratSkenario3Prod(
+                data_temp.env[0].prod,
                 data_temp.kaki_surat[0].penandatangan_atasan_prod,
                 data_temp.kaki_surat[1].pemeriksa_prod,
                 data_temp.kaki_surat[2].tembusan_internal_prod1,
@@ -55,6 +54,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
                 data_temp.kaki_surat[2].tembusan_eksternal5,
                 data_temp.kaki_surat[2].tembusan_eksternal6)
             createSuratBiasaPage.inputKepalaSuratSkenario5Prod(
+                data_temp.env[0].prod,
                 data_temp.kepala_surat[7].tempat1,
                 data_temp.kepala_surat[0].tujuan_internal_prod1,
                 data_temp.kepala_surat[0].tujuan_internal_prod2,
@@ -121,7 +121,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
 
             koreksiSuratPage.goToNaskahBelumDireview(data_temp.env[0].prod)
             koreksiSuratPage.checkDetailKoreksiTandatangani()
-            koreksiSuratPage.koreksiTandatanganiNaskah(user.passphrase)
+            koreksiSuratPage.koreksiTandatanganiNaskah(user.passphrase, data_temp.koreksi[0].koreksi_perihal)
         })
     )
 })
