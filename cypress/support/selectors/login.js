@@ -10,7 +10,7 @@ module.exports = {
     backToV1: '[data-cy="sidebar__v1__dashboard"]',
     closePopupLandingPage: '[data-cy="dialog__welcoming__button--close"]',
     getJQueryProfileV2: "button[tabindex='0']",
-    showHeaderNav: 'header[data-v-dd2902de]',
+    showHeaderNav: 'header[data-v-0e75a3b7]',
     alertSalah: '[data-cy="login__alert-failed"]',
     alertPopUp: "button[id='close-button-popup']",
 

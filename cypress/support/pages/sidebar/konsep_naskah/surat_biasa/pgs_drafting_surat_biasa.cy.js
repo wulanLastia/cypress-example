@@ -39,6 +39,8 @@ export class DraftingKonsepNaskahPage {
     checkDetail() {
         this.goToKonsepNaskahSuratBiasa()
 
+        cy.wait(3000)
+
         const btnKembali = cy.get(konsep_naskah.btnKembali).as('btnKembali')
         btnKembali.should('be.visible')
 

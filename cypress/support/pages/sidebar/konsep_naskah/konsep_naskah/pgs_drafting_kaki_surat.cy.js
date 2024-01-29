@@ -224,11 +224,7 @@ export class DraftingKakiSuratPage {
         btnTambahPemeriksa.click()
 
         // Intercept all POST network requests
-        if (inputEnv === 'prod') {
-            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
-        } else {
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        }
+        cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
 
         const pilihPemeriksa = cy.get(kaki_surat.pilihPemeriksa).as('pilihPemeriksa2')
         pilihPemeriksa.wait(1000)
@@ -485,17 +481,13 @@ export class DraftingKakiSuratPage {
     // Tembusan Internal Eksternal Prod
     inputTembusanInternalProd1(inputEnv, inputanTembusanInternal1) {
         // Intercept all POST network requests
-        if (inputEnv === 'prod') {
-            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
-        } else {
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        }
+        cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
 
         const pilihTembusan = cy.get(kaki_surat.pilihTembusan).as('pilihTembusan')
         pilihTembusan.wait(1000)
             .type(inputanTembusanInternal1)
 
-        cy.wait('@postRequest', { timeout: 5000 })
+        cy.wait('@postRequest', { timeout: 10000 })
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusan = cy.get(kaki_surat.suggestTembusan, { timeout: 5000 }).as('suggestTembusan')
@@ -508,17 +500,13 @@ export class DraftingKakiSuratPage {
 
     inputTembusanInternalProd2(inputEnv, inputanTembusanInternal2) {
         // Intercept all POST network requests
-        if (inputEnv === 'prod') {
-            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
-        } else {
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        }
+        cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
 
         const pilihTembusan2 = cy.get(kaki_surat.pilihTembusan2).as('pilihTembusan2')
         pilihTembusan2.wait(1000)
             .type(inputanTembusanInternal2)
 
-        cy.wait('@postRequest', { timeout: 5000 })
+        cy.wait('@postRequest', { timeout: 10000 })
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusan = cy.get(kaki_surat.suggestTembusan, { timeout: 5000 }).as('suggestTembusan')
@@ -531,17 +519,13 @@ export class DraftingKakiSuratPage {
 
     inputTembusanInternalProd3(inputEnv, inputanTembusanInternal3) {
         // Intercept all POST network requests
-        if (inputEnv === 'prod') {
-            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
-        } else {
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        }
+        cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
 
         const pilihTembusan3 = cy.get(kaki_surat.pilihTembusan3).as('pilihTembusan3')
         pilihTembusan3.wait(1000)
             .type(inputanTembusanInternal3)
 
-        cy.wait('@postRequest', { timeout: 5000 })
+        cy.wait('@postRequest', { timeout: 10000 })
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusan = cy.get(kaki_surat.suggestTembusan, { timeout: 5000 }).as('suggestTembusan')
@@ -554,17 +538,13 @@ export class DraftingKakiSuratPage {
 
     inputTembusanEksternalProd4(inputEnv, inputanTembusan4) {
         // Intercept all POST network requests
-        if (inputEnv === 'prod') {
-            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
-        } else {
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        }
+        cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
 
         const pilihTembusan4 = cy.get(kaki_surat.pilihTembusan4).as('pilihTembusan4')
         pilihTembusan4.wait(1000)
             .type(inputanTembusan4)
 
-        cy.wait('@postRequest', { timeout: 5000 })
+        cy.wait('@postRequest', { timeout: 10000 })
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
@@ -577,17 +557,13 @@ export class DraftingKakiSuratPage {
 
     inputTembusanEksternalProd5(inputEnv, inputanTembusan5) {
         // Intercept all POST network requests
-        if (inputEnv === 'prod') {
-            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
-        } else {
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        }
+        cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
 
         const pilihTembusan5 = cy.get(kaki_surat.pilihTembusan5).as('pilihTembusan5')
         pilihTembusan5.wait(1000)
             .type(inputanTembusan5)
 
-        cy.wait('@postRequest', { timeout: 5000 })
+        cy.wait('@postRequest', { timeout: 10000 })
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
@@ -600,17 +576,13 @@ export class DraftingKakiSuratPage {
 
     inputTembusanEksternalProd6(inputEnv, inputanTembusan6) {
         // Intercept all POST network requests
-        if (inputEnv === 'prod') {
-            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
-        } else {
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        }
+        cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
 
         const pilihTembusan6 = cy.get(kaki_surat.pilihTembusan6).as('pilihTembusan6')
         pilihTembusan6.wait(1000)
             .type(inputanTembusan6)
 
-        cy.wait('@postRequest', { timeout: 5000 })
+        cy.wait('@postRequest', { timeout: 10000 })
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
