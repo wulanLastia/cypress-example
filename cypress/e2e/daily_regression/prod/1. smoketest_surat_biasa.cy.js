@@ -27,8 +27,6 @@ beforeEach(() => {
     cy.fixture('non_cred/kepala_surat/create_data_surat_biasa.json').then((data) => {
         data_temp = data
     })
-
-    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
 describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala Surat) Penomoran Otomatis', () => {
