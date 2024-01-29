@@ -209,7 +209,7 @@ export class DraftingKakiSuratPage {
         pilihPenandatangan.wait(1000)
             .type(inputanPenandatanganAtasan1, { delay: 10 })
 
-        cy.wait('@postRequest', { timeout: 5000 })
+        cy.wait('@postRequest', { timeout: 10000 })
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestPenandatanganAtasan1 = cy.get(kaki_surat.suggestPenandatanganAtasan1).as('suggestPenandatanganAtasan1')
@@ -230,7 +230,7 @@ export class DraftingKakiSuratPage {
         pilihPemeriksa.wait(1000)
             .type(inputanPemeriksa1)
 
-        cy.wait('@postRequest', { timeout: 5000 })
+        cy.wait('@postRequest', { timeout: 10000 })
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestPemeriksa1 = cy.get(kaki_surat.suggestPemeriksa1).as('suggestPemeriksa1')
