@@ -45,15 +45,16 @@ module.exports = defineConfig({
       base_url_prod_v1: process.env.BASE_URL_PROD_V1,
       base_url_api_v1: process.env.BASE_URL_API_V1,
       base_url_api_v2: process.env.BASE_URL_API_V2,
-      base_url_api_prod_v2: process.env.BASE_URL_API_PROD_V2
+      base_url_api_prod_v2: process.env.BASE_URL_API_PROD_V2,
+      base_url_deploy_preview: process.env.BASE_URL_DEPLOY_PREVIEW,
     },
 
     testIsolation: true,
 
-    retries: {
+    /*retries: {
       runMode: 2,
       openMode: 1,
-    },
+    },*/
 
   },
   "reporter": "cypress-qase-reporter",
