@@ -28,9 +28,22 @@ after(() => {
 
 describe('Drafting Luar - Test Case Upload Single File', { testIsolation: false }, () => {
 
+    qase(2663,
+        it('Mengakses halaman naskah single file', () => {
+            uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
+        })
+    )
+
+    // TODO : Refactor
     qase(2664,
         it('Cek kesesuaian jenis naskah', () => {
             uploadSingleFilePage.checkDetailJenisNaskah()
+        })
+    )
+
+    qase(2701,
+        it('Cek tombol kirim naskah jika data masih kosong', () => {
+            uploadSingleFilePage.checkDetailButtonKirim()
         })
     )
 
@@ -54,6 +67,7 @@ describe('Drafting Luar - Test Case Upload Single File', { testIsolation: false 
 
     qase(2666,
         it('Batal drafting setelah melakukan pengisian data registrasi', () => {
+            uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
             uploadSingleFilePage.batalDrafting()
         })
     )

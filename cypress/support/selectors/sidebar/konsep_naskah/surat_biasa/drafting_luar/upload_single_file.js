@@ -11,5 +11,13 @@ module.exports = {
     label_headerDocumentType: '[data-cy="header__document-type"]',
     label_headerUrgency: '[data-cy="header__urgency"]',
     label_inputNaskahPlaceholderTitle: '[data-cy="input-naskah__placeholder__title"]',
-    label_inputNaskahPlaceholderDescription: '[data-cy="input-naskah__placeholder__description"]'
+    label_inputNaskahPlaceholderDescription: '[data-cy="input-naskah__placeholder__description"]',
+
+    // LIST JENIS NASKAH SURAT BIASA
+    list_listJenisNaskahSuratBiasa: '[data-cy="konsep-naskah__list-jenis-naskah-43"]',
+    list_naskahTitleSuratBiasa: '[data-cy="konsep-naskah__naskah-43__title"]',
+    btn_draftSuratBiasa: '[data-cy="konsep-naskah__naskah-43__button--create"]',
+    btn_uploadFileSuratBiasa: '[data-cy="konsep-naskah__naskah-43__button--upload"]',
+    btn_templateSuratBiasa: '[data-cy="konsep-naskah__naskah-43__button--template"]'
+
 }
