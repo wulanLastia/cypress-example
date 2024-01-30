@@ -117,6 +117,11 @@ export class LoginPage {
 
         cy.wait(1500)
 
+        cy.overrideFeatureToggle({
+            'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+            'SIDEBAR-V1-LOGIN-CAPTCHA': true
+        })
+
         this.navigateLoginPageV1Prod()
 
         // Check if popup notifier exists
@@ -268,7 +273,7 @@ export class LoginPage {
 
     logoutV2step2PROD() {
         // Show header if hidden
-        cy.get(login.showHeaderNav).invoke('css', 'display', 'block');
+        cy.get(login.showHeaderNavProd).invoke('css', 'display', 'block');
 
         cy.wait(3000)
 
