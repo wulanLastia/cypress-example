@@ -11,6 +11,7 @@ module.exports = {
     closePopupLandingPage: '[data-cy="dialog__welcoming__button--close"]',
     getJQueryProfileV2: "button[tabindex='0']",
     showHeaderNav: '[data-cy="header__component"]',
+    showHeaderNavProd: 'header[data-v-dd2902de]',
     alertSalah: '[data-cy="login__alert-failed"]',
     alertPopUp: "button[id='close-button-popup']",
 
