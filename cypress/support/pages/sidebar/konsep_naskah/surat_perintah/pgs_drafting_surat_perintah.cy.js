@@ -73,9 +73,10 @@ export class DraftingSuratPerintahPage {
             .and('be.visible')
             .click()
 
+        /* Pengecekan dimatikan sementara karena menunggu desain terbaru up to prod
         const titleKonsepNaskah2 = cy.get(konsep_naskah.titleKonsepNaskah).as('titleKonsepNaskah')
         titleKonsepNaskah2.should('contain', 'Buat Naskah Baru')
-            .and('be.visible')
+            .and('be.visible') */
     }
 
     lanjutkanDrafting() {
@@ -111,7 +112,7 @@ export class DraftingSuratPerintahPage {
 
     aksesFormKepalaSurat() {
         const findKepalaSurat = cy.get(surat_perintah.previewKepala).as('findKepalaSurat')
-        findKepalaSurat.scrollTo('top', {ensureScrollable: false})
+        findKepalaSurat.scrollTo('top', { ensureScrollable: false })
         cy.wait(3000)
 
         const previewKepala = cy.get(surat_perintah.previewKepala).as('previewKepala')
@@ -123,7 +124,7 @@ export class DraftingSuratPerintahPage {
 
     aksesBadanNaskah() {
         const previewBadan = cy.get(surat_perintah.previewBadan).as('previewBadan')
-        previewBadan.scrollIntoView({ensureScrollable: false})
+        previewBadan.scrollIntoView({ ensureScrollable: false })
         previewBadan.click(180, 360, { force: true })
 
         const titleBadan = cy.get(surat_perintah.titleBadan).as('titleBadan')
@@ -132,8 +133,8 @@ export class DraftingSuratPerintahPage {
 
     aksesKakiSurat() {
         const previewKaki = cy.get(surat_perintah.previewKaki).as('previewKaki')
-        previewKaki.scrollIntoView({ensureScrollable: false})
-        .click(180, 560, { force: true })
+        previewKaki.scrollIntoView({ ensureScrollable: false })
+            .click(180, 560, { force: true })
 
         cy.wait(1500)
 
@@ -168,14 +169,14 @@ export class DraftingSuratPerintahPage {
     kirimNaskah() {
         // Intercept all POST network requests
         cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        
+
         const btnKirimNaskah = cy.get(surat_perintah.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.click()
-    
+
         const konfirmasiKirimNaskah = cy.get(surat_perintah.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
         konfirmasiKirimNaskah.should('contain', 'Kirim naskah')
             .click()
-    
+
         // Wait and assert that the response status is 200
         cy.wait('@postRequest', { timeout: 5000 }).then((interception) => {
             if (interception.response) {
@@ -183,16 +184,16 @@ export class DraftingSuratPerintahPage {
                 const clientErrorStatusCodes = [400, 401, 403, 404, 405, 406, 408, 409, 410, 411, 412];
                 const serverErrorStatusCodes = [500, 501, 502, 503, 504];
                 const errorStatusCodes = [...clientErrorStatusCodes, ...serverErrorStatusCodes];
-        
+
                 // Assert for error status codes
                 if (errorStatusCodes.includes(status)) {
                     expect(errorStatusCodes, `Request failed with status code: ${status}`).to.include(status);
                 }
-        
+
                 const successStatusCodes = [200, 201, 202, 203, 204, 205, 206, 207, 208, 226];
                 const redirectStatusCodes = [300, 301, 302, 303, 307];
                 const acceptableStatusCodes = [...successStatusCodes, ...redirectStatusCodes];
-        
+
                 // Assert for success and redirect status codes
                 expect(acceptableStatusCodes, `Result of status code: ${status}`).to.include(status);
             } else {
@@ -201,12 +202,12 @@ export class DraftingSuratPerintahPage {
                 throw new Error('No response received.');
             }
         })
-        
-        
+
+
         // Wait for up for the success dialog to appear only 0.5 seconds
         const successKirimNaskah = cy.get(surat_perintah.popupSuccessKirimNaskah, { timeout: 500 }).as('successKirimNaskah')
         successKirimNaskah.should('be.visible')
-        
+
         successKirimNaskah.should('exist')
             .find(surat_perintah.popupTitleSuccessKirimNaskah)
             .should('contain', 'Naskah berhasil dikirim ke pihak selanjutnya')
@@ -215,16 +216,16 @@ export class DraftingSuratPerintahPage {
     kirimNaskahPROD() {
         const btnKirimNaskah = cy.get(surat_perintah.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.click()
-    
+
         const konfirmasiKirimNaskah = cy.get(surat_perintah.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
         konfirmasiKirimNaskah.should('contain', 'Kirim naskah')
             .click()
-    
-        
+
+
         // Wait for up for the success dialog to appear only 0.5 seconds
         const successKirimNaskah = cy.get(surat_perintah.popupSuccessKirimNaskah, { timeout: 500 }).as('successKirimNaskah')
         successKirimNaskah.should('be.visible')
-        
+
         successKirimNaskah.should('exist')
             .find(surat_perintah.popupTitleSuccessKirimNaskah)
             .should('contain', 'Naskah berhasil dikirim ke pihak selanjutnya')
@@ -233,9 +234,9 @@ export class DraftingSuratPerintahPage {
     negativeKirimNaskah() {
         const btnKirimNaskah = cy.get(surat_perintah.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.should('be.visible')
-        .should('be.disabled')
+            .should('be.disabled')
     }
-    
+
     scrollPreviewPage() {
         const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
         previewPage.scrollTo('top')

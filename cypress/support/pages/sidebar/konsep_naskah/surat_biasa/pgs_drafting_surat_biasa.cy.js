@@ -69,9 +69,10 @@ export class DraftingKonsepNaskahPage {
             .and('be.visible')
             .click()
 
+        /* Pengecekan dimatikan sementara karena menunggu desain terbaru up to prod
         const titleKonsepNaskah2 = cy.get(konsep_naskah.titleKonsepNaskah).as('titleKonsepNaskah')
         titleKonsepNaskah2.should('contain', 'Buat Naskah Baru')
-            .and('be.visible')
+            .and('be.visible') */
     }
 
     lanjutkanDrafting() {

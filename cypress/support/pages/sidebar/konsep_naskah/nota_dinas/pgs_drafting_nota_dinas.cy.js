@@ -68,9 +68,10 @@ export class DraftingNotaDinasPage {
             .and('be.visible')
             .click()
 
+        /* Pengecekan dimatikan sementara karena menunggu desain terbaru up to prod
         const titleKonsepNaskah2 = cy.get(konsep_naskah.titleKonsepNaskah).as('titleKonsepNaskah')
         titleKonsepNaskah2.should('contain', 'Buat Naskah Baru')
-            .and('be.visible')
+            .and('be.visible') */
     }
 
     lanjutkanDrafting() {
@@ -200,6 +201,22 @@ export class DraftingNotaDinasPage {
             .should('contain', 'Naskah berhasil dikirim ke pihak selanjutnya')
     }
 
+    kirimNaskahProd(inputEnv) {
+        const btnKirimNaskah = cy.get(nota_dinas.btnKirimNaskah).as('btnKirimNaskah')
+        btnKirimNaskah.click()
+
+        const konfirmasiKirimNaskah = cy.get(nota_dinas.konfirmasiKirimNaskah).as('konfirmasiKirimNaskah')
+        konfirmasiKirimNaskah.should('contain', 'Kirim naskah')
+            .click()
+
+        // Wait for up for the success dialog to appear only 0.5 seconds
+        const successKirimNaskah = cy.get(nota_dinas.popupSuccessKirimNaskah, { timeout: 500 }).as('successKirimNaskah')
+        successKirimNaskah.should('be.visible')
+
+        successKirimNaskah.should('exist')
+            .find(nota_dinas.popupTitleSuccessKirimNaskah)
+            .should('contain', 'Naskah berhasil dikirim ke pihak selanjutnya')
+    }
 
     negativeKirimNaskah() {
         const btnKirimNaskah = cy.get(nota_dinas.btnKirimNaskah).as('btnKirimNaskah')
