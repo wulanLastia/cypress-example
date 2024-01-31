@@ -124,7 +124,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             cy.wait(3000)
             koreksiSuratPage.checkDetailKoreksiTandatanganiNotaDinas()
             cy.wait(3000)
-            koreksiSuratPage.koreksiTandatanganiNaskahNotaDinas(user.passphrase)
+            koreksiSuratPage.koreksiTandatanganiNaskahNotaDinas('passphrase')
             cy.wait(10000)
         })
     )

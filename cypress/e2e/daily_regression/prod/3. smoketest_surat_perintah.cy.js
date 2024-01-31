@@ -374,7 +374,7 @@ describe('Koreksi Tandatangani Naskah Skenario', { testIsolation: false }, () =>
 
             koreksiSuratPage.goToNaskahBelumDireview(data_review.env[0].prod)
             koreksiSuratPage.checkDetailKoreksiTandatangani()
-            koreksiSuratPage.koreksiTandatanganiSuratPerintah(user.passphrase, data_review.koreksi[0].koreksi_tandatangani_perihal)
+            koreksiSuratPage.koreksiTandatanganiSuratPerintah('passphrase', data_review.koreksi[0].koreksi_tandatangani_perihal)
             cy.wait(10000)
         })
     )

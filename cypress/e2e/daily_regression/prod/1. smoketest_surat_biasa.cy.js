@@ -121,7 +121,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
 
             koreksiSuratPage.goToNaskahBelumDireview(data_temp.env[0].prod)
             koreksiSuratPage.checkDetailKoreksiTandatangani()
-            koreksiSuratPage.koreksiTandatanganiNaskah(user.passphrase, data_temp.koreksi[0].koreksi_perihal)
+            koreksiSuratPage.koreksiTandatanganiNaskah('passphrase', data_temp.koreksi[0].koreksi_perihal)
         })
     )
 })
