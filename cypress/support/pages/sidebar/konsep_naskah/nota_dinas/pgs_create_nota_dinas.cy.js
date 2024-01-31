@@ -242,7 +242,11 @@ export class CreateNotaDinasPage {
 
     doKirimNaskah(inputEnv) {
         cy.wait(3000)
-        draftingNotaDinasPage.kirimNaskah(inputEnv, { force: true })
+        if (inputEnv === "prod") {
+            draftingNotaDinasPage.kirimNaskahProd(inputEnv)
+        } else {
+            draftingNotaDinasPage.kirimNaskah(inputEnv)
+        }
     }
 
 

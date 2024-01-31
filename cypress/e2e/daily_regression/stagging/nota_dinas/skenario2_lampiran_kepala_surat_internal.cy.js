@@ -5,6 +5,7 @@ import { KembalikanNaskahPage } from "../../../../support/pages/sidebar/kotak_ma
 import { PerbaikiNaskahPage } from "../../../../support/pages/sidebar/kotak_masuk/6_perbaiki.cy"
 import { SetujuiPage } from "../../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
 import { KoreksiSuratPage } from "../../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
+import { ListNaskahSuratBiasaPage } from "../../../../support/pages/sidebar/konsep_naskah/surat_biasa/drafting_luar/list_jenis_naskah.cy"
 
 let loginPage = new LoginPage()
 let createNotaDinasPage = new CreateNotaDinasPage()
@@ -12,6 +13,7 @@ let kembalikanNaskahPage = new KembalikanNaskahPage()
 let perbaikiNaskahPage = new PerbaikiNaskahPage()
 let setujuiPage = new SetujuiPage()
 let koreksiSuratPage = new KoreksiSuratPage()
+let listNaskahSuratBiasaPage = new ListNaskahSuratBiasaPage()
 let user
 let dataNotaDinas
 
@@ -55,7 +57,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
 
     qase([1, 1069, 1064, 1065, 1067, 1066, 1062, 1063, 1061, 721, 723, 724, 725, 1123, 1118, 1146, 1147, 1148, 1151, 1159],
         it('Nota Dinas Tujuan Lampiran Kepala Internal', () => {
-            createNotaDinasPage.gotoNotaDinas() // Cek detail halaman drafting konsep naskah Nota Dinas
+            listNaskahSuratBiasaPage.checkDirectNotaDinas() // Cek detail halaman drafting konsep naskah Nota Dinas
             createNotaDinasPage.createKopSurat()
             cy.wait(3000)
             createNotaDinasPage.createLampiranSurat1()

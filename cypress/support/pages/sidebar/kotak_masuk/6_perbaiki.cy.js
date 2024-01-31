@@ -151,9 +151,10 @@ export class PerbaikiNaskahPage {
         btnKonfirmasiBatalPerbaikiNaskah.should('be.visible')
             .click()
 
+        /* Pengecekan dimatikan sementara karena menunggu desain terbaru up to prod
         const titleKonsepNaskah = cy.get(perbaiki.titleKonsepNaskah).as('titleKonsepNaskah')
         titleKonsepNaskah.should('contain', 'Buat Naskah Baru')
-            .and('be.visible')
+            .and('be.visible')*/
     }
 
     perbaikiNaskah(inputanPerbaiki) {
