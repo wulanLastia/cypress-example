@@ -117,11 +117,6 @@ export class LoginPage {
 
         cy.wait(1500)
 
-        cy.overrideFeatureToggle({
-            'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-            'SIDEBAR-V1-LOGIN-CAPTCHA': true
-        })
-
         this.navigateLoginPageV1Prod()
 
         // Check if popup notifier exists
