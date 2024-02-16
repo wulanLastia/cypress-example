@@ -94,39 +94,39 @@ export class DraftingLampiranSuratPage {
             .type('Lampiran 1{enter}{enter}')
             .type('Cras non odio diam. Nulla ex urna, scelerisque sed pretium in, facilisis ut sapien. Donec et orci nisl. Integer egestas finibus est eu pellentesque. Sed nisi eros, consectetur at est sed, posuere consequat velit. Curabitur ac rhoncus quam. In porttitor aliquam porttitor. Phasellus ultrices vehicula magna, nec faucibus ex rutrum et. Nam eget orci sed neque mollis tempor. Mauris vitae pellentesque eros. Nullam nec felis lobortis risus ornare sagittis.Nullam egestas in nibh sit amet sodales.Maecenas ut mauris ut massa sodales pretium.Integer nulla arcu, feugiat ut ante id, dictum sodales nunc.Etiam vitae lorem laoreet, tincidunt arcu euismod, auctor justo.In commodo nec ipsum in aliquam.Praesent porttitor nunc sit amet sapien eleifend, vel imperdiet ligula facilisis.Donec eget viverra lorem.Maecenas suscipit dolor elit, in volutpat purus luctus non.Aenean elit libero, dapibus non velit id, molestie ultrices eros.Etiam tempus metus urna, ut condimentum purus lobortis vel.')
 
-            cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
-                // If there's no Lampiran_Surat entry, initialize one
-                if (!data.Lampiran_Surat) {
-                    data.Lampiran_Surat = [];
-                }
-                
-                // Input data into fields
-                const scrappingLampiran1 = cy.get(lampiran_surat.scrappingWordsLampiran1).as('scrappingLampiran1')
-                scrappingLampiran1.wait(1000)
-                    .invoke('text')  // Extract the value of the input
-                    .then((inputValuesLampiran1) => { 
-                        // Check if there's already a Tembusan object
-                        let lampiranExists = data.Lampiran_Surat.some(item => 'Lampiran1' in item);
-                        
-                        if (lampiranExists) {
-                            // Update existing Tembusan object
-                            data.Lampiran_Surat.find(item => 'Lampiran1' in item).Lampiran1 = inputValuesLampiran1;
-                        } else {
-                            // Or add a new Tembusan object
-                            const createLampiran1 = { Lampiran1: inputValuesLampiran1 };
-                            data.Lampiran_Surat.push(createLampiran1);
-                        }
-                        
-                        // Write data back to the JSON file
-                        cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
-                    })
-            });
-    
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+            // If there's no Lampiran_Surat entry, initialize one
+            if (!data.Lampiran_Surat) {
+                data.Lampiran_Surat = [];
+            }
+
+            // Input data into fields
+            const scrappingLampiran1 = cy.get(lampiran_surat.scrappingWordsLampiran1).as('scrappingLampiran1')
+            scrappingLampiran1.wait(1000)
+                .invoke('text')  // Extract the value of the input
+                .then((inputValuesLampiran1) => {
+                    // Check if there's already a Tembusan object
+                    let lampiranExists = data.Lampiran_Surat.some(item => 'Lampiran1' in item);
+
+                    if (lampiranExists) {
+                        // Update existing Tembusan object
+                        data.Lampiran_Surat.find(item => 'Lampiran1' in item).Lampiran1 = inputValuesLampiran1;
+                    } else {
+                        // Or add a new Tembusan object
+                        const createLampiran1 = { Lampiran1: inputValuesLampiran1 };
+                        data.Lampiran_Surat.push(createLampiran1);
+                    }
+
+                    // Write data back to the JSON file
+                    cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
+                })
+        });
+
     }
 
 
 
-    
+
     inputLampiranSurat2() {
         draftingNotaDinasPage.inputLampiran2SuratNotaDinas()
 
@@ -147,15 +147,15 @@ export class DraftingLampiranSuratPage {
             if (!data.Lampiran_Surat) {
                 data.Lampiran_Surat = [];
             }
-            
+
             // Input data into fields
             const scrappingLampiran1 = cy.get(lampiran_surat.scrappingWordsLampiran1).as('scrappingLampiran1')
             scrappingLampiran1.wait(1000)
                 .invoke('text')  // Extract the value of the input
-                .then((inputValuesLampiran1) => { 
+                .then((inputValuesLampiran1) => {
                     // Check if there's already a Tembusan object
                     let lampiranExists = data.Lampiran_Surat.some(item => 'Lampiran1' in item);
-                    
+
                     if (lampiranExists) {
                         // Update existing Tembusan object
                         data.Lampiran_Surat.find(item => 'Lampiran1' in item).Lampiran1 = inputValuesLampiran1;
@@ -164,12 +164,12 @@ export class DraftingLampiranSuratPage {
                         const createLampiran1 = { Lampiran1: inputValuesLampiran1 };
                         data.Lampiran_Surat.push(createLampiran1);
                     }
-                    
+
                     // Write data back to the JSON file
                     cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
                 })
         });
-        
+
     }
 
     hapusLampiranSurat() {

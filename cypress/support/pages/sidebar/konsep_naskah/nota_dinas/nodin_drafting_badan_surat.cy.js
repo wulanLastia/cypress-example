@@ -191,7 +191,7 @@ export class DraftingBadanNaskahPage {
         sizeTable.should('be.visible')
             .click({ force: true })
 
-        cy.wait(3000)        
+        cy.wait(3000)
     }
 
     insertImage() {
@@ -255,16 +255,13 @@ export class DraftingBadanNaskahPage {
             .type('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc magna risus, auctor id fermentum nec, tristique sed nulla. Aliquam quis risus turpis. Nam aliquet eros erat, eget ornare mi gravida vel. Nunc id fermentum mauris. Vivamus ornare turpis vel luctus lobortis. Ut et tellus pellentesque, faucibus erat in, semper mauris. Quisque id purus non dolor pharetra pellentesque. Aliquam a est ultricies, pretium ante at, faucibus quam. Sed lorem nulla, gravida quis convallis eget, fermentum ac augue. Nulla fermentum laoreet urna vitae venenatis. Morbi pellentesque gravida lectus nec fringilla.{enter}Nunc et turpis vel quam volutpat gravida eget non erat.Cras lacinia nec mauris et interdum.Mauris ut finibus mauris.Duis blandit nibh sit amet sapien malesuada, sit amet fermentum neque vulputate.Mauris eu tristique odio, tincidunt eleifend libero.Morbi porta nulla ex, ut pretium lectus sollicitudin nec.Nulla ultrices a arcu eu porta.In a diam suscipit, volutpat ante a, consequat augue.Integer ornare massa eu nunc fringilla, non feugiat neque euismod.Ut quis neque at diam pretium fringilla.Quisque mi ante, lacinia pulvinar mi in, laoreet elementum massa.Aenean eget massa id nulla vestibulum porttitor.Mauris mollis tincidunt metus, et luctus sapien eleifend id.Nullam volutpat ut dui at fringilla.{enter}')
     }
 
-    insertDataProd() {
-        const iframeBadan = cy.get(badan_naskah.htmlBadan).as('htmlBadan')
-        iframeBadan.find('iframe')
-            .its('0.contentDocument.body')
-            .should('be.visible')
-            .then(cy.wrap)
-            .type('Cras non odio diam. Nulla ex urna, scelerisque sed pretium in, facilisis ut sapien. Donec et orci nisl. Integer egestas finibus est eu pellentesque. Sed nisi eros, consectetur at est sed, posuere consequat velit. Curabitur ac rhoncus quam. In porttitor aliquam porttitor. Phasellus ultrices vehicula magna, nec faucibus ex rutrum et. Nam eget orci sed neque mollis tempor. Mauris vitae pellentesque eros.{enter}')
-            .type('Nullam nec felis lobortis risus ornare sagittis. Nullam egestas in nibh sit amet sodales. Maecenas ut mauris ut massa sodales pretium. Integer nulla arcu, feugiat ut ante id, dictum sodales nunc. Etiam vitae lorem laoreet, tincidunt arcu euismod, auctor justo. In commodo nec ipsum in aliquam. Praesent porttitor nunc sit amet sapien eleifend, vel imperdiet ligula facilisis. Donec eget viverra lorem. Maecenas suscipit dolor elit, in volutpat purus luctus non. Aenean elit libero, dapibus non velit id, molestie ultrices eros. Etiam tempus metus urna, ut{enter}{enter}')
-            .type('Cras non odio diam. Nulla ex urna, scelerisque sed pretium in, facilisis ut sapien. Donec et orci nisl. Integer egestas finibus est eu pellentesque. Sed nisi eros, consectetur at est sed, posuere consequat velit. Curabitur ac rhoncus quam. In porttitor aliquam porttitor. Phasellus ultrices vehicula magna, nec faucibus ex rutrum et. Nam eget orci sed neque mollis tempor. Mauris vitae pellentesque eros.{enter}')
-            .type('Nullam nec felis lobortis risus ornare sagittis. Nullam egestas in nibh sit amet sodales. Maecenas ut mauris ut massa sodales pretium. Integer nulla arcu, feugiat ut ante id, dictum sodales nunc. Etiam vitae lorem laoreet, tincidunt arcu euismod, auctor justo. In commodo nec ipsum in aliquam. Praesent porttitor nunc sit amet sapien eleifend, vel imperdiet ligula facilisis. Donec eget viverra lorem. Maecenas suscipit dolor elit, in volutpat purus luctus non. Aenean elit libero, dapibus non velit id, molestie ultrices eros. Etiam tempus metus urna, ut{enter}{enter}')
+    insertDataProd(textToPaste) {
+        cy.wait(6000)
+
+        cy.window().then(win => {
+            win.tinyMCE.activeEditor.setContent(textToPaste)
+            win.tinyMCE.activeEditor.save()
+        })
     }
 
     clearBadanField() {
@@ -273,7 +270,7 @@ export class DraftingBadanNaskahPage {
             .its('0.contentDocument.body')
             .should('be.visible')
             .then(cy.wrap)
-        .type('{ctrl}a{del}', { delay: 100 });
+            .type('{ctrl}a{del}', { delay: 100 });
     }
 
 

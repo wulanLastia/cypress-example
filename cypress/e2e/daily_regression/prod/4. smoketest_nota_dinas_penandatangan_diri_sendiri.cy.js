@@ -5,6 +5,7 @@ import { DraftingNotaDinasPage } from "../../../support/pages/sidebar/konsep_nas
 import { CreateNotaDinasPage } from "../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_create_nota_dinas.cy"
 import { SetujuiPage } from "../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
 
+const { faker } = require('@faker-js/faker')
 let loginPage = new LoginPage()
 let draftPage = new DraftPage()
 let draftingNotaDinasPage = new DraftingNotaDinasPage()
@@ -52,7 +53,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario Penandatangan Diri Sendiri'
             cy.wait(3000)
             createNotaDinasPage.createLampiranKepalaSuratPROD()
             cy.wait(3000)
-            createNotaDinasPage.createBadanSurat()
+            createNotaDinasPage.createBadanSurat(faker.lorem.paragraphs(13, '<br/>\n'))
             cy.wait(3000)
             draftingNotaDinasPage.clickSimpanSurat()
             cy.wait(3000)
