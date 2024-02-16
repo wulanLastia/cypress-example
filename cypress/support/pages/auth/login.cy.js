@@ -159,12 +159,12 @@ export class LoginPage {
                 const password = cy.get(login.password).as('password')
                 password.type(passwordv1, { force: true })
 
-                const hiddenCaptcha = cy.get(login.hiddenCaptcha).as('hiddenCaptcha')
-                hiddenCaptcha.invoke('val')
-                    .then((val) => {
-                        const captchaType = cy.get(login.captcha).as('captcha')
-                        captchaType.type(val, { force: true })
-                    })
+                // const hiddenCaptcha = cy.get(login.hiddenCaptcha).as('hiddenCaptcha')
+                // hiddenCaptcha.invoke('val')
+                //     .then((val) => {
+                //         const captchaType = cy.get(login.captcha).as('captcha')
+                //         captchaType.type(val, { force: true })
+                //     })
 
                 const btnLogin = cy.get(login.btnLogin).as('btnLogin')
                 btnLogin.should('contain', 'Login')
@@ -268,7 +268,7 @@ export class LoginPage {
 
     logoutV2step2PROD() {
         // Show header if hidden
-        cy.get(login.showHeaderNavProd).invoke('css', 'display', 'block');
+        cy.get(login.showHeaderNav).invoke('css', 'display', 'block');
 
         cy.wait(3000)
 

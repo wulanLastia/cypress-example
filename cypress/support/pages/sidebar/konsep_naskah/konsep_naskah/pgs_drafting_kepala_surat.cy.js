@@ -293,7 +293,7 @@ export class DraftingKepalaSuratPage {
         const titleKodeKlasifikasi = cy.get(kepala_surat.titleKodeKlasifikasi).as('titleKodeKlasifikasi')
         titleKodeKlasifikasi.should('contain', 'Kode Klasifikasi')
 
-        const selectKodeKlasifikasi = cy.get(kepala_surat.selectKodeKlasifikasi).as('selectKodeKlasifikasi')
+        const selectKodeKlasifikasi = cy.get(kepala_surat.selectKodeKlasifikasi).first().as('selectKodeKlasifikasi')
         selectKodeKlasifikasi.click()
             .wait(3000)
             .type(inputanKodeKlasifikasi)
@@ -374,7 +374,7 @@ export class DraftingKepalaSuratPage {
         const titleSifatSurat = cy.get(kepala_surat.titleSifatSurat).as('titleSifatSurat')
         titleSifatSurat.should('contain', 'Sifat Surat')
 
-        const selectSifatSurat = cy.get(kepala_surat.selectSifatSurat).as('selectSifatSurat')
+        const selectSifatSurat = cy.get(kepala_surat.selectSifatSurat).first().as('selectSifatSurat')
         selectSifatSurat.click()
             .contains(inputanSifatSurat)
             .click()
@@ -401,7 +401,7 @@ export class DraftingKepalaSuratPage {
         const titleUrgensiSurat = cy.get(kepala_surat.titleUrgensiSurat).as('titleUrgensiSurat')
         titleUrgensiSurat.should('contain', 'Urgensi')
 
-        const selectUrgensiSurat = cy.get(kepala_surat.selectUrgensiSurat).as('selectUrgensiSurat')
+        const selectUrgensiSurat = cy.get(kepala_surat.selectUrgensiSurat).first().as('selectUrgensiSurat')
         selectUrgensiSurat.click()
             .wait(10000)
             .contains(inputanUrgensiSurat, { timeout: 10000 })
