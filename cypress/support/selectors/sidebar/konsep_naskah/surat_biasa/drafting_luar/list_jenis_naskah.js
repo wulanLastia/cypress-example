@@ -14,6 +14,15 @@ module.exports = {
     btn_uploadFileSuratBiasa: '[data-cy="konsep-naskah__surat-biasa__button--upload"]',
     btn_templateSuratBiasa: '[data-cy="konsep-naskah__surat-biasa__button--template"]',
     btn_draftNotaDinas: '[data-cy="konsep-naskah__nota-dinas__button--create"]',
+    btn_templateBeritaAcara: '[data-cy="konsep-naskah__berita-acara__button--template"]',
+    btn_templateBeritaAcaraGubernur: '[data-cy="konsep-naskah__berita-acara-gubernur__button--template"]',
+    btn_templateDaftarHadir: '[data-cy="konsep-naskah__daftar-hadir__button--template"]',
+    btn_templateLaporan: '[data-cy="konsep-naskah__laporan__button--template"]',
+    btn_templateLaporanGubernur: '[data-cy="konsep-naskah__laporan-gubernur__button--template"]',
+    btn_templatePengumuman: '[data-cy="konsep-naskah__pengumuman__button--template"]',
+    btn_templateSuratIzin: '[data-cy="konsep-naskah__surat-izin__button--template"]',
+    btn_templateSuratRekomendasi: '[data-cy="konsep-naskah__surat-rekomendasi__button--template"]',
+    btn_templateTelaahanStaf: '[data-cy="konsep-naskah__telaahan-staf__button--template"]',
 
     // BODY
     div_body: '[data-cy="panel__component"]',
