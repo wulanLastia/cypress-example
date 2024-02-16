@@ -7,6 +7,7 @@ import { SetujuiPage } from "../../../../support/pages/sidebar/kotak_masuk/5_set
 import { KoreksiSuratPage } from "../../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
 import { ListNaskahSuratBiasaPage } from "../../../../support/pages/sidebar/konsep_naskah/surat_biasa/drafting_luar/list_jenis_naskah.cy"
 
+const { faker } = require('@faker-js/faker')
 let loginPage = new LoginPage()
 let createNotaDinasPage = new CreateNotaDinasPage()
 let kembalikanNaskahPage = new KembalikanNaskahPage()
@@ -68,7 +69,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             cy.wait(3000)
             createNotaDinasPage.createLampiranKepalaSurat()
             cy.wait(3000)
-            createNotaDinasPage.createBadanSurat()
+            createNotaDinasPage.createBadanSurat(faker.lorem.paragraphs(13, '<br/>\n'))
             cy.wait(3000)
             createNotaDinasPage.doKirimNaskah(dataNotaDinas.env[0].staging)
         })

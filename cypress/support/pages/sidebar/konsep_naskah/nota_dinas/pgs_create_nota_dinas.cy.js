@@ -203,9 +203,9 @@ export class CreateNotaDinasPage {
         cy.wait(5000)
     }
 
-    createBadanSurat() {
+    createBadanSurat(textToPaste) {
         draftingBadanNaskahPage.inputBadanNaskahProd()
-        draftingBadanNaskahPage.insertDataProd()
+        draftingBadanNaskahPage.insertDataProd(textToPaste)
         draftingBadanNaskahPage.closeBadanNaskah()
 
     }

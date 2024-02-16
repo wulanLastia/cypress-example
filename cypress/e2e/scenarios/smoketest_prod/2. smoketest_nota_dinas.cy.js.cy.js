@@ -7,9 +7,7 @@ import { PerbaikiNaskahPage } from "../../../support/pages/sidebar/kotak_masuk/6
 import { SetujuiPage } from "../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
 import { KoreksiSuratPage } from "../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
 
-
-
-
+const { faker } = require('@faker-js/faker')
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
@@ -19,8 +17,6 @@ let kembalikanNaskahPage = new KembalikanNaskahPage()
 let perbaikiNaskahPage = new PerbaikiNaskahPage()
 let setujuiPage = new SetujuiPage()
 let koreksiSuratPage = new KoreksiSuratPage()
-
-
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
@@ -35,9 +31,6 @@ before(() => {
     loginPage.directLogin()
 
 })
-
-
-
 
 describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
 
@@ -55,7 +48,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             cy.wait(3000)
             createNotaDinasPage.createKepalaSurat()
             cy.wait(3000)
-            createNotaDinasPage.createBadanSurat()
+            createNotaDinasPage.createBadanSurat(faker.lorem.paragraphs(13, '<br/>\n'))
             cy.wait(3000)
             createNotaDinasPage.doKirimNaskah()
             cy.wait(10000)
@@ -96,7 +89,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             // Login 
             loginPage.loginViaV1Prod(user.nip, user.password)
             loginPage.directLogin()
-        
+
 
             perbaikiNaskahPage.goToPerbaikiNaskahNotaDinas()
             cy.wait(3000)
