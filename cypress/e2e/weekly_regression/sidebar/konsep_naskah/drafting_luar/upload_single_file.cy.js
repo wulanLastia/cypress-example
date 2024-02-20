@@ -34,10 +34,9 @@ describe('Drafting Luar - Test Case Upload Single File', { testIsolation: false 
         })
     )
 
-    // TODO : Refactor
     qase(2664,
         it('Cek kesesuaian jenis naskah', () => {
-            uploadSingleFilePage.checkDetailJenisNaskah()
+            uploadSingleFilePage.checkDetailJenisNaskah('Surat Biasa')
         })
     )
 
@@ -49,13 +48,45 @@ describe('Drafting Luar - Test Case Upload Single File', { testIsolation: false 
 
     qase(2671,
         it('Cek tombol registrasi sebelum melakukan upload file', () => {
-            uploadSingleFilePage.checkTabRegistrasi()
+            uploadSingleFilePage.checkTabRegistrasi('Before')
+        })
+    )
+
+    qase(2669,
+        it('Cek validasi jika upload naskah selain format PDF', () => {
+            uploadSingleFilePage.uploadSingleFile('negatif')
+        })
+    )
+
+    qase(2733,
+        it('Batal melakukan hapus file', () => {
+            uploadSingleFilePage.batalDeleteFileUpload()
+        })
+    )
+
+    qase(2721,
+        it('Cek perubahan file jika melakukan update file naskah', () => {
+            uploadSingleFilePage.uploadSingleFile('positif')
+            uploadSingleFilePage.checkDataFileUpload()
+        })
+    )
+
+    qase(2741,
+        it('Cek nama file pada popup konfirmasi hapus file', () => {
+            uploadSingleFilePage.checkDeleteFileUpload()
+        })
+    )
+
+    qase(2715,
+        it('Cek kesesuaian file ketika berhasil melakukan upload file', () => {
+            uploadSingleFilePage.uploadSingleFile('positif')
+            uploadSingleFilePage.checkDataFileUpload()
         })
     )
 
     qase(2672,
         it('Cek tombol registrasi setelah melakukan upload file', () => {
-            uploadSingleFilePage.checkTabRegistrasi()
+            uploadSingleFilePage.checkTabRegistrasi('After')
         })
     )
 
@@ -66,7 +97,7 @@ describe('Drafting Luar - Test Case Upload Single File', { testIsolation: false 
     )
 
     qase(2666,
-        it('Batal drafting setelah melakukan pengisian data registrasi', () => {
+        it.skip('Batal drafting setelah melakukan pengisian data registrasi', () => { // Skip dulu karena berhubungan sama step selanjutnya
             uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
             uploadSingleFilePage.batalDrafting()
         })

@@ -4,3 +4,4 @@ cypress/videos
 cypress/fixtures/cred
 
 .env
+.DS_Store

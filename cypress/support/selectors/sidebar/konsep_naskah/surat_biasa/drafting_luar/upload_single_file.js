@@ -5,6 +5,8 @@ module.exports = {
     btn_tabDocumentList: '[data-cy="tab__document-list"]',
     btn_tabDocumentRegistration: '[data-cy="tab__document-registration"]',
     btn_inputNaskahButtonUploadFile: '[data-cy="input-naskah__button--upload-file"]',
+    btn_reuploadFile: '[data-cy="external-drafting__file__reupload__1"]',
+    btn_deleteFile: '[data-cy="external-drafting__file__delete__1"]',
 
     // LABEL
     label_headerTitle: '[data-cy="header__title"]',
@@ -12,12 +14,22 @@ module.exports = {
     label_headerUrgency: '[data-cy="header__urgency"]',
     label_inputNaskahPlaceholderTitle: '[data-cy="input-naskah__placeholder__title"]',
     label_inputNaskahPlaceholderDescription: '[data-cy="input-naskah__placeholder__description"]',
+    label_fileUploadTitle: '[data-cy="external-drafting__file__title__1"]',
+    label_fileUploadSize: '[data-cy="external-drafting__file__size__1"]',
+    label_fileNotSupport: '(//p[contains(text(),"Format file tidak didukung, gunakan file berformat")])[1]',
 
     // LIST JENIS NASKAH SURAT BIASA
-    list_listJenisNaskahSuratBiasa: '[data-cy="konsep-naskah__list-jenis-naskah-43"]',
-    list_naskahTitleSuratBiasa: '[data-cy="konsep-naskah__naskah-43__title"]',
-    btn_draftSuratBiasa: '[data-cy="konsep-naskah__naskah-43__button--create"]',
-    btn_uploadFileSuratBiasa: '[data-cy="konsep-naskah__naskah-43__button--upload"]',
-    btn_templateSuratBiasa: '[data-cy="konsep-naskah__naskah-43__button--template"]'
+    list_listJenisNaskahSuratBiasa: '[data-cy="konsep-naskah__list-jenis-naskah__surat-biasa"]',
+    list_naskahTitleSuratBiasa: '[data-cy="konsep-naskah__surat-biasa__title"]',
+    btn_draftSuratBiasa: '[data-cy="konsep-naskah__surat-biasa__button--create"]',
+    btn_uploadFileSuratBiasa: '[data-cy="konsep-naskah__surat-biasa__button--upload"]',
+    btn_templateSuratBiasa: '[data-cy="konsep-naskah__surat-biasa__button--template"]',
+
+    // POPUP DIALOG
+    dialog_backPanel: '[data-cy="dialog__dialog-confirmation__panel"]',
+    dialog_backTitle: '[data-cy="dialog__dialog-confirmation__title"]',
+    dialog_backDesc: '[data-cy="dialog__dialog-confirmation__description"]',
+    dialog_backConfirm: '[data-cy="dialog__dialog-confirmation__button--confirm"]',
+    dialog_backCancel: '[data-cy="dialog__dialog-confirmation__button--cancel"]',
 
 }
