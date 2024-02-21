@@ -39,7 +39,6 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 });
 
 before(() => {
-    cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_prod.json').then((data) => {
         user = data
     })
@@ -72,14 +71,7 @@ after(() => {
 describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation: false }, () => {
     qase(1762,
         it('Akses form editing kaki surat', () => {
-            // Login 
-            cy.then(Cypress.session.clearCurrentSessionData)
-
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
-
+            // Login
             loginPage.loginViaV1Prod(user.nip, user.password)
             loginPage.directLogin()
 
