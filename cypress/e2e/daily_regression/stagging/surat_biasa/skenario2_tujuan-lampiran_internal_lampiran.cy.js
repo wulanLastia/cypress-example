@@ -6,6 +6,7 @@ import { KembalikanNaskahPage } from "../../../../support/pages/sidebar/kotak_ma
 import { PerbaikiNaskahPage } from "../../../../support/pages/sidebar/kotak_masuk/6_perbaiki.cy"
 import { SetujuiPage } from "../../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
 import { KoreksiSuratPage } from "../../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
+import { ListNaskahSuratBiasaPage } from "../../../../support/pages/sidebar/konsep_naskah/surat_biasa/drafting_luar/list_jenis_naskah.cy"
 
 const { faker } = require('@faker-js/faker')
 let createSuratBiasaPage = new CreateSuratBiasaPage()
@@ -13,6 +14,7 @@ let kembalikanNaskahPage = new KembalikanNaskahPage()
 let perbaikiNaskahPage = new PerbaikiNaskahPage()
 let setujuiPage = new SetujuiPage()
 let koreksiSuratPage = new KoreksiSuratPage()
+let listNaskahSuratBiasaPage = new ListNaskahSuratBiasaPage()
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
@@ -57,8 +59,7 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
             loginPage.directLogin()
 
             // Create Naskah
-            menuPage.goToKonsepNaskah()
-            createSuratBiasaPage.checkDetail()
+            listNaskahSuratBiasaPage.goToKonsepNaskahSuratBiasa()
             createSuratBiasaPage.inputKopSurat()
             createSuratBiasaPage.inputLampiranSurat(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputLampiranSurat2(faker.lorem.paragraphs(6, '<br/>\n'))

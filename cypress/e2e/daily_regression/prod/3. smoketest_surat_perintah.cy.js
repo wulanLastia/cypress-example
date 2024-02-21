@@ -46,16 +46,6 @@ before(() => {
 })
 
 before(() => {
-    // LogIn Skenario Default
-    loginPage.loginViaV1Prod(user.nip, user.password)
-    loginPage.directLogin()
-    cy.wait(1000)
-    draftingSuratPerintahPage.gotoKonsepNaskahSuratPerintah()
-
-    cy.wait(3999)
-})
-
-before(() => {
     cy.fixture('non_cred/surat_perintah/kepala_surat/positive/kepala_surat_super_positive.json').then((data) => {
         testKepalaPositive = data
     })
@@ -82,7 +72,21 @@ after(() => {
 describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation: false }, () => {
     qase(1762,
         it('Akses form editing kaki surat', () => {
-            cy.wait(3000)
+            // Login 
+            cy.then(Cypress.session.clearCurrentSessionData)
+
+            cy.overrideFeatureToggle({
+                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+                'SIDEBAR-V1-LOGIN-CAPTCHA': true
+            })
+
+            loginPage.loginViaV1Prod(user.nip, user.password)
+            loginPage.directLogin()
+
+            cy.wait(1000)
+            draftingSuratPerintahPage.gotoKonsepNaskahSuratPerintah()
+
+            cy.wait(6000)
             draftingKakiSuratPerintahPage.aksesFormEditingKakiSurat()
         })
     )
