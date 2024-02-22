@@ -72,18 +72,16 @@ after(() => {
 describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation: false }, () => {
     qase(1762,
         it('Akses form editing kaki surat', () => {
-            // Login 
-            cy.then(Cypress.session.clearCurrentSessionData)
-
-            cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
-
+            // Login
             loginPage.loginViaV1Prod(user.nip, user.password)
             loginPage.directLogin()
 
             cy.wait(1000)
+
+            cy.reload()
+
+            cy.wait(3000)
+
             draftingSuratPerintahPage.gotoKonsepNaskahSuratPerintah()
 
             cy.wait(6000)
