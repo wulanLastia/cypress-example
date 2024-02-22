@@ -39,7 +39,6 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 });
 
 before(() => {
-    cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_prod.json').then((data) => {
         user = data
     })
