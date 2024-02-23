@@ -4,7 +4,7 @@ module.exports = {
     btn_headerButtonSubmit: '[data-cy="header__button--submit"]',
     btn_tabDocumentList: '[data-cy="tab__document-list"]',
     btn_tabDocumentRegistration: '[data-cy="tab__document-registration"]',
-    btn_inputNaskahButtonUploadFile: '[data-cy="input-naskah__button--upload-file"]',
+    btn_inputNaskahButtonUploadFile: '[data-cy="input__upload-file"]',
     btn_reuploadFile: '[data-cy="external-drafting__file__reupload__1"]',
     btn_deleteFile: '[data-cy="external-drafting__file__delete__1"]',
 
@@ -16,7 +16,7 @@ module.exports = {
     label_inputNaskahPlaceholderDescription: '[data-cy="input-naskah__placeholder__description"]',
     label_fileUploadTitle: '[data-cy="external-drafting__file__title__1"]',
     label_fileUploadSize: '[data-cy="external-drafting__file__size__1"]',
-    label_fileNotSupport: '(//p[contains(text(),"Format file tidak didukung, gunakan file berformat")])[1]',
+    label_fileNotSupport: '[data-cy="external-drafting__file__error-reason__1"]',
 
     // LIST JENIS NASKAH SURAT BIASA
     list_listJenisNaskahSuratBiasa: '[data-cy="konsep-naskah__list-jenis-naskah__surat-biasa"]',

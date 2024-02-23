@@ -47,17 +47,17 @@ export class UploadSingleFilePage {
             // Upload File
             const fileUploadSingleFile = 'non_cred/drafting_luar/master_data/TEMPLATE_SURAT_BIASA.pdf'
 
-            const btn_inputNaskahButtonUploadFile = cy.xpath('(//input[@name="file"])[1]').as('btn_inputNaskahButtonUploadFile')
+            const btn_inputNaskahButtonUploadFile = cy.get(upload_single.btn_inputNaskahButtonUploadFile).as('btn_inputNaskahButtonUploadFile')
             btn_inputNaskahButtonUploadFile.attachFile(fileUploadSingleFile)
         } else {
             // Upload File
             const fileUploadSingleFile = 'non_cred/drafting_luar/master_data/image_example.jpg'
 
-            const btn_inputNaskahButtonUploadFile = cy.xpath('(//input[@name="file"])[1]').as('btn_inputNaskahButtonUploadFile')
+            const btn_inputNaskahButtonUploadFile = cy.get(upload_single.btn_inputNaskahButtonUploadFile).as('btn_inputNaskahButtonUploadFile')
             btn_inputNaskahButtonUploadFile.attachFile(fileUploadSingleFile)
 
             // Assertion file upload
-            const label_fileNotSupport = cy.xpath(upload_single.label_fileNotSupport).as('label_fileNotSupport')
+            const label_fileNotSupport = cy.get(upload_single.label_fileNotSupport).as('label_fileNotSupport')
             label_fileNotSupport.should('be.visible')
         }
     }

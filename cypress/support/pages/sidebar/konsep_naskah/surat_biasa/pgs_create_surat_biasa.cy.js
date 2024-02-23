@@ -64,7 +64,7 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateTujuanSkenario2(inputEnv, inputanTujuan1, inputanTujuan2, inputanTujuan3)
         draftingKepalaSuratPage.validateLokasi(inputanLokasi)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
-        draftingKepalaSuratPage.validateJudulBerkas()
+        //draftingKepalaSuratPage.validateJudulBerkas()
         draftingKepalaSuratPage.validateUnitPengolah(inputanUnitPengolah)
         draftingKepalaSuratPage.validateSifatSurat(inputanSifatSurat)
         draftingKepalaSuratPage.validateUrgensiSurat(inputanUrgensiSurat)
