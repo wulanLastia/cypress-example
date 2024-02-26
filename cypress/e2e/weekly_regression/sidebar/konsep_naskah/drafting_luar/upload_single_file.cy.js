@@ -1,6 +1,6 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { UploadSingleFilePage } from "../../../../../support/pages/sidebar/konsep_naskah/surat_biasa/drafting_luar/pgs_upload_single_file.cy"
+import { UploadSingleFilePage } from "../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
 
 let uploadSingleFilePage = new UploadSingleFilePage()
 let loginPage = new LoginPage()

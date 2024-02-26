@@ -4,7 +4,7 @@ import { DraftPage } from "../../../../support/pages/sidebar/konsep_naskah/konse
 import { DraftingNotaDinasPage } from "../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_drafting_nota_dinas.cy"
 import { CreateNotaDinasPage } from "../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_create_nota_dinas.cy"
 import { SetujuiPage } from "../../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
-import { ListNaskahSuratBiasaPage } from "../../../../support/pages/sidebar/konsep_naskah/surat_biasa/drafting_luar/list_jenis_naskah.cy"
+import { ListNaskahSuratBiasaPage } from "../../../../support/pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
 
 const { faker } = require('@faker-js/faker')
 let loginPage = new LoginPage()
