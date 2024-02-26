@@ -1,6 +1,6 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { ListNaskahSuratBiasaPage } from "../../../../../support/pages/sidebar/konsep_naskah/surat_biasa/drafting_luar/list_jenis_naskah.cy"
+import { ListNaskahSuratBiasaPage } from "../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
 
 let listNaskahSuratBiasaPage = new ListNaskahSuratBiasaPage()
 let loginPage = new LoginPage()
@@ -20,11 +20,11 @@ before(() => {
     loginPage.directLogin()
 })
 
-/*after(() => {
+after(() => {
     qase(411,
         loginPage.logoutV2step2()
     )
-})*/
+})
 
 describe('Drafting Luar - Test Case List Jenis Naskah', { testIsolation: false }, () => {
 

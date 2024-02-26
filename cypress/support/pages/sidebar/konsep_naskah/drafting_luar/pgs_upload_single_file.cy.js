@@ -1,4 +1,4 @@
-import upload_single from "../../../../../selectors/sidebar/konsep_naskah/surat_biasa/drafting_luar/upload_single_file"
+import upload_single from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/upload_single_file"
 
 export class UploadSingleFilePage {
 

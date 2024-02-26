@@ -6,7 +6,7 @@ import { KembalikanNaskahPage } from "../../../../support/pages/sidebar/kotak_ma
 import { PerbaikiNaskahPage } from "../../../../support/pages/sidebar/kotak_masuk/6_perbaiki.cy"
 import { SetujuiPage } from "../../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
 import { KoreksiSuratPage } from "../../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
-import { ListNaskahSuratBiasaPage } from "../../../../support/pages/sidebar/konsep_naskah/surat_biasa/drafting_luar/list_jenis_naskah.cy"
+import { ListNaskahSuratBiasaPage } from "../../../../support/pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
 
 const { faker } = require('@faker-js/faker')
 let createSuratBiasaPage = new CreateSuratBiasaPage()
