@@ -102,4 +102,250 @@ export class TabRegistrasiPage {
                 expect(val).to.deep.equal(assertionUnitPengolah);
             })
     }
+
+    // TUJUAN SURAT //
+    activateToggleDistribusi() {
+        const check_toggleDistribusi = cy.get(tab_registrasi.check_toggleDistribusi).as('check_toggleDistribusi')
+        check_toggleDistribusi.click({ force: true })
+    }
+
+    inputTujuan(inputEnv, tujuanKe, tujuanInternalEksternal, inputTujuan) {
+        // Intercept all POST network requests
+        if (inputEnv === 'prod') {
+            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
+        } else {
+            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
+        }
+
+        if (tujuanKe === '0') {
+            if (inputTujuan) {
+                const select_inputTujuan0 = cy.get(tab_registrasi.select_inputTujuan0).as('select_inputTujuan0')
+                select_inputTujuan0.click()
+                    .wait(1000)
+                    .type(inputTujuan)
+
+                if (tujuanInternalEksternal === 'internal') {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
+                                select_inputTujuanSuggest0.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+
+                                select_inputTujuan0.type('{enter}')
+                            }
+                        })
+                } else {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const input_inputTujuanEksternalSuggest = cy.get(tab_registrasi.input_inputTujuanEksternalSuggest).as('input_inputTujuanEksternalSuggest')
+                                input_inputTujuanEksternalSuggest.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+
+                                select_inputTujuan0.type('{enter}')
+                            }
+                        })
+                }
+            } else {
+                const select_inputTujuan0 = cy.get(tab_registrasi.select_inputTujuan0).as('select_inputTujuan0')
+                select_inputTujuan0.click()
+
+                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
+                select_inputTujuanSuggest0.wait(3000)
+                    .click()
+            }
+        } else if (tujuanKe === '1') {
+            if (inputTujuan) {
+                const select_inputTujuan1 = cy.get(tab_registrasi.select_inputTujuan1).as('select_inputTujuan1')
+                select_inputTujuan1.click()
+                    .wait(1000)
+                    .type(inputTujuan)
+
+                if (tujuanInternalEksternal === 'internal') {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const select_inputTujuanSuggest1 = cy.get(tab_registrasi.select_inputTujuanSuggest1).as('select_inputTujuanSuggest1')
+                                select_inputTujuanSuggest1.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+
+                                select_inputTujuan1.type('{enter}')
+                            }
+                        })
+                } else {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const input_inputTujuanEksternalSuggest = cy.get(tab_registrasi.input_inputTujuanEksternalSuggest).as('input_inputTujuanEksternalSuggest')
+                                input_inputTujuanEksternalSuggest.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+
+                                select_inputTujuan1.type('{enter}')
+                            }
+                        })
+                }
+            } else {
+                const select_inputTujuan0 = cy.get(tab_registrasi.select_inputTujuan0).as('select_inputTujuan0')
+                select_inputTujuan0.click()
+
+                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
+                select_inputTujuanSuggest0.wait(3000)
+                    .click()
+            }
+        } else if (tujuanKe === '2') {
+            if (inputTujuan) {
+                const select_inputTujuan2 = cy.get(tab_registrasi.select_inputTujuan2).as('select_inputTujuan2')
+                select_inputTujuan2.click()
+                    .wait(1000)
+                    .type(inputTujuan)
+
+                if (tujuanInternalEksternal === 'internal') {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const select_inputTujuanSuggest2 = cy.get(tab_registrasi.select_inputTujuanSuggest2).as('select_inputTujuanSuggest2')
+                                select_inputTujuanSuggest2.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+
+                                select_inputTujuan2.type('{enter}')
+                            }
+                        })
+                } else {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const input_inputTujuanEksternalSuggest = cy.get(tab_registrasi.input_inputTujuanEksternalSuggest).as('input_inputTujuanEksternalSuggest')
+                                input_inputTujuanEksternalSuggest.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+
+                                select_inputTujuan2.type('{enter}')
+                            }
+                        })
+                }
+            } else {
+                const select_inputTujuan0 = cy.get(tab_registrasi.select_inputTujuan0).as('select_inputTujuan0')
+                select_inputTujuan0.click()
+
+                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
+                select_inputTujuanSuggest0.wait(3000)
+                    .click()
+            }
+        } else if (tujuanKe === '3') {
+            if (inputTujuan) {
+                const select_inputTujuan3 = cy.get(tab_registrasi.select_inputTujuan3).as('select_inputTujuan3')
+                select_inputTujuan3.click()
+                    .wait(1000)
+                    .type(inputTujuan)
+
+                if (tujuanInternalEksternal === 'internal') {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const select_inputTujuanSuggest3 = cy.get(tab_registrasi.select_inputTujuanSuggest3).as('select_inputTujuanSuggest3')
+                                select_inputTujuanSuggest3.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+
+                                select_inputTujuan3.type('{enter}')
+                            }
+                        })
+                } else {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const input_inputTujuanEksternalSuggest = cy.get(tab_registrasi.input_inputTujuanEksternalSuggest).as('input_inputTujuanEksternalSuggest')
+                                input_inputTujuanEksternalSuggest.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+
+                                select_inputTujuan3.type('{enter}')
+                            }
+                        })
+                }
+            } else {
+                const select_inputTujuan0 = cy.get(tab_registrasi.select_inputTujuan0).as('select_inputTujuan0')
+                select_inputTujuan0.click()
+
+                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
+                select_inputTujuanSuggest0.wait(3000)
+                    .click()
+            }
+        } else if (tujuanKe === '4') {
+            if (inputTujuan) {
+                const select_inputTujuan4 = cy.get(tab_registrasi.select_inputTujuan4).as('select_inputTujuan4')
+                select_inputTujuan4.click()
+                    .wait(1000)
+                    .type(inputTujuan)
+
+                if (tujuanInternalEksternal === 'internal') {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const select_inputTujuanSuggest4 = cy.get(tab_registrasi.select_inputTujuanSuggest4).as('select_inputTujuanSuggest4')
+                                select_inputTujuanSuggest4.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+
+                                select_inputTujuan4.type('{enter}')
+                            }
+                        })
+                } else {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const input_inputTujuanEksternalSuggest = cy.get(tab_registrasi.input_inputTujuanEksternalSuggest).as('input_inputTujuanEksternalSuggest')
+                                input_inputTujuanEksternalSuggest.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+
+                                select_inputTujuan4.type('{enter}')
+                            }
+                        })
+                }
+            } else {
+                const select_inputTujuan0 = cy.get(tab_registrasi.select_inputTujuan0).as('select_inputTujuan0')
+                select_inputTujuan0.click()
+
+                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
+                select_inputTujuanSuggest0.wait(3000)
+                    .click()
+            }
+        } else if (tujuanKe === '5') {
+            if (inputTujuan) {
+                const select_inputTujuan5 = cy.get(tab_registrasi.select_inputTujuan5).as('select_inputTujuan5')
+                select_inputTujuan5.click()
+                    .wait(1000)
+                    .type(inputTujuan)
+
+                if (tujuanInternalEksternal === 'internal') {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const select_inputTujuanSuggest5 = cy.get(tab_registrasi.select_inputTujuanSuggest5).as('select_inputTujuanSuggest5')
+                                select_inputTujuanSuggest5.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+
+                                select_inputTujuan5.type('{enter}')
+                            }
+                        })
+                } else {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const input_inputTujuanEksternalSuggest = cy.get(tab_registrasi.input_inputTujuanEksternalSuggest).as('input_inputTujuanEksternalSuggest')
+                                input_inputTujuanEksternalSuggest.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+
+                                select_inputTujuan5.type('{enter}')
+                            }
+                        })
+                }
+            } else {
+                const select_inputTujuan0 = cy.get(tab_registrasi.select_inputTujuan0).as('select_inputTujuan0')
+                select_inputTujuan0.click()
+
+                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
+                select_inputTujuanSuggest0.wait(3000)
+                    .click()
+            }
+        }
+    }
+
+    deleteTujuan() {
+        const select_inputTujuanWrapper = cy.get(tab_registrasi.select_inputTujuanWrapper).as('select_inputTujuanWrapper')
+        select_inputTujuanWrapper.find('button')
+            .should('have.attr', 'title', 'Clear Selected')
+            .click()
+    }
+
+    addMoreTujuan() {
+        const btn_addMoreTujuan = cy.get(tab_registrasi.btn_addMoreTujuan).as('btn_addMoreTujuan')
+        btn_addMoreTujuan.should('contain', 'Tambah Penerima')
+            .click()
+    }
 }
