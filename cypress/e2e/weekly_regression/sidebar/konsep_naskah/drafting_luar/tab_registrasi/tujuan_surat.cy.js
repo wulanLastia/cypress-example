@@ -22,11 +22,11 @@ before(() => {
     loginPage.directLogin()
 })
 
-/*after(() => {
+after(() => {
     qase(411,
         loginPage.logoutV2step2()
     )
-})*/
+})
 
 describe('Drafting Luar - Test Case Tab Registrasi Tujuan Surat', { testIsolation: false }, () => {
 
