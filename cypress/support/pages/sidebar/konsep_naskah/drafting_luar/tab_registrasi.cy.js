@@ -117,222 +117,40 @@ export class TabRegistrasiPage {
             cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
         }
 
-        if (tujuanKe === '0') {
-            if (inputTujuan) {
-                const select_inputTujuan0 = cy.get(tab_registrasi.select_inputTujuan0).as('select_inputTujuan0')
-                select_inputTujuan0.click()
-                    .wait(1000)
-                    .type(inputTujuan)
+        if (inputTujuan) {
+            const select_inputTujuan = cy.get(tab_registrasi.select_inputTujuan + tujuanKe + '"').as('select_inputTujuan')
+            select_inputTujuan.click()
+                .wait(1000)
+                .type(inputTujuan)
 
-                if (tujuanInternalEksternal === 'internal') {
-                    cy.wait('@postRequest', { timeout: 5000 })
-                        .then((interception) => {
-                            if (interception.response.statusCode === 200) {
-                                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
-                                select_inputTujuanSuggest0.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+            if (tujuanInternalEksternal === 'internal') {
+                cy.wait('@postRequest', { timeout: 5000 })
+                    .then((interception) => {
+                        if (interception.response.statusCode === 200) {
+                            const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
+                            select_inputTujuanSuggest0.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
 
-                                select_inputTujuan0.type('{enter}')
-                            }
-                        })
-                } else {
-                    cy.wait('@postRequest', { timeout: 5000 })
-                        .then((interception) => {
-                            if (interception.response.statusCode === 200) {
-                                const input_inputTujuanEksternalSuggest = cy.get(tab_registrasi.input_inputTujuanEksternalSuggest).as('input_inputTujuanEksternalSuggest')
-                                input_inputTujuanEksternalSuggest.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
-
-                                select_inputTujuan0.type('{enter}')
-                            }
-                        })
-                }
+                            select_inputTujuan.type('{enter}')
+                        }
+                    })
             } else {
-                const select_inputTujuan0 = cy.get(tab_registrasi.select_inputTujuan0).as('select_inputTujuan0')
-                select_inputTujuan0.click()
+                cy.wait('@postRequest', { timeout: 5000 })
+                    .then((interception) => {
+                        if (interception.response.statusCode === 200) {
+                            const input_inputTujuanEksternalSuggest = cy.get(tab_registrasi.input_inputTujuanEksternalSuggest).as('input_inputTujuanEksternalSuggest')
+                            input_inputTujuanEksternalSuggest.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
 
-                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
-                select_inputTujuanSuggest0.wait(3000)
-                    .click()
+                            select_inputTujuan.type('{enter}')
+                        }
+                    })
             }
-        } else if (tujuanKe === '1') {
-            if (inputTujuan) {
-                const select_inputTujuan1 = cy.get(tab_registrasi.select_inputTujuan1).as('select_inputTujuan1')
-                select_inputTujuan1.click()
-                    .wait(1000)
-                    .type(inputTujuan)
+        } else {
+            const select_inputTujuan = cy.get(tab_registrasi.select_inputTujuan + tujuanKe + '"').as('select_inputTujuan')
+            select_inputTujuan.click()
 
-                if (tujuanInternalEksternal === 'internal') {
-                    cy.wait('@postRequest', { timeout: 5000 })
-                        .then((interception) => {
-                            if (interception.response.statusCode === 200) {
-                                const select_inputTujuanSuggest1 = cy.get(tab_registrasi.select_inputTujuanSuggest1).as('select_inputTujuanSuggest1')
-                                select_inputTujuanSuggest1.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
-
-                                select_inputTujuan1.type('{enter}')
-                            }
-                        })
-                } else {
-                    cy.wait('@postRequest', { timeout: 5000 })
-                        .then((interception) => {
-                            if (interception.response.statusCode === 200) {
-                                const input_inputTujuanEksternalSuggest = cy.get(tab_registrasi.input_inputTujuanEksternalSuggest).as('input_inputTujuanEksternalSuggest')
-                                input_inputTujuanEksternalSuggest.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
-
-                                select_inputTujuan1.type('{enter}')
-                            }
-                        })
-                }
-            } else {
-                const select_inputTujuan0 = cy.get(tab_registrasi.select_inputTujuan0).as('select_inputTujuan0')
-                select_inputTujuan0.click()
-
-                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
-                select_inputTujuanSuggest0.wait(3000)
-                    .click()
-            }
-        } else if (tujuanKe === '2') {
-            if (inputTujuan) {
-                const select_inputTujuan2 = cy.get(tab_registrasi.select_inputTujuan2).as('select_inputTujuan2')
-                select_inputTujuan2.click()
-                    .wait(1000)
-                    .type(inputTujuan)
-
-                if (tujuanInternalEksternal === 'internal') {
-                    cy.wait('@postRequest', { timeout: 5000 })
-                        .then((interception) => {
-                            if (interception.response.statusCode === 200) {
-                                const select_inputTujuanSuggest2 = cy.get(tab_registrasi.select_inputTujuanSuggest2).as('select_inputTujuanSuggest2')
-                                select_inputTujuanSuggest2.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
-
-                                select_inputTujuan2.type('{enter}')
-                            }
-                        })
-                } else {
-                    cy.wait('@postRequest', { timeout: 5000 })
-                        .then((interception) => {
-                            if (interception.response.statusCode === 200) {
-                                const input_inputTujuanEksternalSuggest = cy.get(tab_registrasi.input_inputTujuanEksternalSuggest).as('input_inputTujuanEksternalSuggest')
-                                input_inputTujuanEksternalSuggest.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
-
-                                select_inputTujuan2.type('{enter}')
-                            }
-                        })
-                }
-            } else {
-                const select_inputTujuan0 = cy.get(tab_registrasi.select_inputTujuan0).as('select_inputTujuan0')
-                select_inputTujuan0.click()
-
-                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
-                select_inputTujuanSuggest0.wait(3000)
-                    .click()
-            }
-        } else if (tujuanKe === '3') {
-            if (inputTujuan) {
-                const select_inputTujuan3 = cy.get(tab_registrasi.select_inputTujuan3).as('select_inputTujuan3')
-                select_inputTujuan3.click()
-                    .wait(1000)
-                    .type(inputTujuan)
-
-                if (tujuanInternalEksternal === 'internal') {
-                    cy.wait('@postRequest', { timeout: 5000 })
-                        .then((interception) => {
-                            if (interception.response.statusCode === 200) {
-                                const select_inputTujuanSuggest3 = cy.get(tab_registrasi.select_inputTujuanSuggest3).as('select_inputTujuanSuggest3')
-                                select_inputTujuanSuggest3.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
-
-                                select_inputTujuan3.type('{enter}')
-                            }
-                        })
-                } else {
-                    cy.wait('@postRequest', { timeout: 5000 })
-                        .then((interception) => {
-                            if (interception.response.statusCode === 200) {
-                                const input_inputTujuanEksternalSuggest = cy.get(tab_registrasi.input_inputTujuanEksternalSuggest).as('input_inputTujuanEksternalSuggest')
-                                input_inputTujuanEksternalSuggest.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
-
-                                select_inputTujuan3.type('{enter}')
-                            }
-                        })
-                }
-            } else {
-                const select_inputTujuan0 = cy.get(tab_registrasi.select_inputTujuan0).as('select_inputTujuan0')
-                select_inputTujuan0.click()
-
-                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
-                select_inputTujuanSuggest0.wait(3000)
-                    .click()
-            }
-        } else if (tujuanKe === '4') {
-            if (inputTujuan) {
-                const select_inputTujuan4 = cy.get(tab_registrasi.select_inputTujuan4).as('select_inputTujuan4')
-                select_inputTujuan4.click()
-                    .wait(1000)
-                    .type(inputTujuan)
-
-                if (tujuanInternalEksternal === 'internal') {
-                    cy.wait('@postRequest', { timeout: 5000 })
-                        .then((interception) => {
-                            if (interception.response.statusCode === 200) {
-                                const select_inputTujuanSuggest4 = cy.get(tab_registrasi.select_inputTujuanSuggest4).as('select_inputTujuanSuggest4')
-                                select_inputTujuanSuggest4.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
-
-                                select_inputTujuan4.type('{enter}')
-                            }
-                        })
-                } else {
-                    cy.wait('@postRequest', { timeout: 5000 })
-                        .then((interception) => {
-                            if (interception.response.statusCode === 200) {
-                                const input_inputTujuanEksternalSuggest = cy.get(tab_registrasi.input_inputTujuanEksternalSuggest).as('input_inputTujuanEksternalSuggest')
-                                input_inputTujuanEksternalSuggest.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
-
-                                select_inputTujuan4.type('{enter}')
-                            }
-                        })
-                }
-            } else {
-                const select_inputTujuan0 = cy.get(tab_registrasi.select_inputTujuan0).as('select_inputTujuan0')
-                select_inputTujuan0.click()
-
-                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
-                select_inputTujuanSuggest0.wait(3000)
-                    .click()
-            }
-        } else if (tujuanKe === '5') {
-            if (inputTujuan) {
-                const select_inputTujuan5 = cy.get(tab_registrasi.select_inputTujuan5).as('select_inputTujuan5')
-                select_inputTujuan5.click()
-                    .wait(1000)
-                    .type(inputTujuan)
-
-                if (tujuanInternalEksternal === 'internal') {
-                    cy.wait('@postRequest', { timeout: 5000 })
-                        .then((interception) => {
-                            if (interception.response.statusCode === 200) {
-                                const select_inputTujuanSuggest5 = cy.get(tab_registrasi.select_inputTujuanSuggest5).as('select_inputTujuanSuggest5')
-                                select_inputTujuanSuggest5.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
-
-                                select_inputTujuan5.type('{enter}')
-                            }
-                        })
-                } else {
-                    cy.wait('@postRequest', { timeout: 5000 })
-                        .then((interception) => {
-                            if (interception.response.statusCode === 200) {
-                                const input_inputTujuanEksternalSuggest = cy.get(tab_registrasi.input_inputTujuanEksternalSuggest).as('input_inputTujuanEksternalSuggest')
-                                input_inputTujuanEksternalSuggest.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
-
-                                select_inputTujuan5.type('{enter}')
-                            }
-                        })
-                }
-            } else {
-                const select_inputTujuan0 = cy.get(tab_registrasi.select_inputTujuan0).as('select_inputTujuan0')
-                select_inputTujuan0.click()
-
-                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
-                select_inputTujuanSuggest0.wait(3000)
-                    .click()
-            }
+            const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
+            select_inputTujuanSuggest0.wait(3000)
+                .click()
         }
     }
 
@@ -347,5 +165,119 @@ export class TabRegistrasiPage {
         const btn_addMoreTujuan = cy.get(tab_registrasi.btn_addMoreTujuan).as('btn_addMoreTujuan')
         btn_addMoreTujuan.should('contain', 'Tambah Penerima')
             .click()
+    }
+
+    inputTembusan(inputEnv, tembusanKe, tujuanInternalEksternal, inputTembusan) {
+        // Intercept all POST network requests
+        if (inputEnv === 'prod') {
+            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
+        } else {
+            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
+        }
+
+        if (inputTembusan) {
+            const select_inputTembusan = cy.get(tab_registrasi.select_inputTembusan + tembusanKe + '"').as('select_inputTembusan')
+            select_inputTembusan.click()
+                .wait(1000)
+                .type(inputTembusan)
+
+            if (tujuanInternalEksternal === 'internal') {
+                cy.wait('@postRequest', { timeout: 5000 })
+                    .then((interception) => {
+                        if (interception.response.statusCode === 200) {
+                            const select_inputTembusanSuggest0 = cy.get(tab_registrasi.select_inputTembusanSuggest0).as('select_inputTembusanSuggest0')
+                            select_inputTembusanSuggest0.contains(inputTembusan, { timeout: 10000 }).should('be.visible')
+
+                            select_inputTembusan.type('{enter}')
+                        }
+                    })
+            } else {
+                cy.wait('@postRequest', { timeout: 5000 })
+                    .then((interception) => {
+                        if (interception.response.statusCode === 200) {
+                            const input_inputTembusanEksternalSuggest = cy.get(tab_registrasi.input_inputTembusanEksternalSuggest).as('input_inputTembusanEksternalSuggest')
+                            input_inputTembusanEksternalSuggest.contains(inputTembusan, { timeout: 10000 }).should('be.visible')
+
+                            select_inputTembusan.type('{enter}')
+                        }
+                    })
+            }
+        } else {
+            const select_inputTembusan = cy.get(tab_registrasi.select_inputTembusan + tembusanKe + '"').as('select_inputTembusan')
+            select_inputTembusan.click()
+
+            const select_inputTembusanSuggest0 = cy.get(tab_registrasi.select_inputTembusanSuggest0).as('select_inputTembusanSuggest0')
+            select_inputTembusanSuggest0.wait(3000)
+                .click()
+        }
+    }
+
+    addMoreTembusan() {
+        const btn_addMoreTembusan = cy.get(tab_registrasi.btn_addMoreTembusan).as('btn_addMoreTembusan')
+        btn_addMoreTembusan.should('contain', 'Tambah Tembusan')
+            .click()
+    }
+
+    deleteTembusan() {
+        const btn_deleteTembusan1 = cy.get(tab_registrasi.btn_deleteTembusan1).as('btn_deleteTembusan1')
+        btn_deleteTembusan1.parent().click()
+    }
+
+    inputPerihal(inputPerihal, assertionPerihal) {
+        const label_perihal = cy.get(tab_registrasi.label_perihal).as('label_perihal')
+        label_perihal.should('contain', 'Perihal')
+
+        // Input perihal
+        const input_perihal = cy.get(tab_registrasi.input_perihal).as('input_perihal')
+        input_perihal.clear()
+            .type(inputPerihal)
+
+        // Assertion input unit pengolah
+        const assert_perihal = cy.get(tab_registrasi.input_perihal).as('assert_perihal')
+        assert_perihal.invoke('val')
+            .then((val) => {
+                expect(val).to.deep.equal(assertionPerihal);
+            })
+    }
+
+    checkWarnaLabelUrgensi(inputanUrgensi, index) {
+        // Label
+        const label_urgensi = cy.get(tab_registrasi.label_urgensi).as('label_urgensi')
+        label_urgensi.should('contain', 'Urgensi')
+
+        // Input Urgensi
+        const select_urgensi = cy.get(tab_registrasi.select_urgensi).first().as('select_urgensi')
+        select_urgensi.click()
+
+        const select_urgensiOption = cy.get(tab_registrasi.select_urgensiOption + index + '"').as('select_urgensiOption')
+        select_urgensiOption.click()
+
+        // Assertion warna
+        if (inputanUrgensi === 'Amat Segera') {
+            const label_urgensiHeader = cy.get(tab_registrasi.label_urgensiHeader).as('label_urgensiHeader')
+            label_urgensiHeader.should('have.class', 'py-2 px-4 rounded-3xl flex space-x-2 items-center bg-[#FFEBEE]')
+        } else if (inputanUrgensi === 'Biasa') {
+            const label_urgensiHeader = cy.get(tab_registrasi.label_urgensiHeader).as('label_urgensiHeader')
+            label_urgensiHeader.should('have.class', 'py-2 px-4 rounded-3xl flex space-x-2 items-center bg-[#E6F6EC]')
+        } else if (inputanUrgensi === 'Penting') {
+            const label_urgensiHeader = cy.get(tab_registrasi.label_urgensiHeader).as('label_urgensiHeader')
+            label_urgensiHeader.should('have.class', 'py-2 px-4 rounded-3xl flex space-x-2 items-center bg-[#E3F2FD]')
+        } else {
+            const label_urgensiHeader = cy.get(tab_registrasi.label_urgensiHeader).as('label_urgensiHeader')
+            label_urgensiHeader.should('have.class', 'py-2 px-4 rounded-3xl flex space-x-2 items-center bg-[#FFF9E1]')
+        }
+    }
+
+    inputSifat(indexSurat) {
+        // Label
+        const label_sifatSurat = cy.get(tab_registrasi.label_sifatSurat).as('label_sifatSurat')
+        label_sifatSurat.should('contain', 'Sifat Surat')
+
+        // Input Urgensi
+        const select_sifatSurat = cy.get(tab_registrasi.select_sifatSurat).first().as('select_sifatSurat')
+        select_sifatSurat.click()
+
+        const select_sifatSuratOption = cy.get(tab_registrasi.select_sifatSuratOption + indexSurat + '"').as('select_sifatSuratOption')
+        select_sifatSuratOption.click()
     }
 }
