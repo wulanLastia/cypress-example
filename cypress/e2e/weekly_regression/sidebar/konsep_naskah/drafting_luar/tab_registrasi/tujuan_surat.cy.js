@@ -51,6 +51,7 @@ describe('Drafting Luar - Test Case Tab Registrasi Tujuan Surat', { testIsolatio
         })
     )
 
+    // KEPADA YTH //
     qase(2762,
         it('Leave the field empty when submitting the form (Distribusi toggle on)', () => {
             // Distribusikan surat
@@ -93,6 +94,42 @@ describe('Drafting Luar - Test Case Tab Registrasi Tujuan Surat', { testIsolatio
         it('Input free text', () => {
             // Input tujuan eksternal
             tabRegistrasiPage.inputTujuan('staging', '1', 'eksternal', 'Tujuan Eksternal')
+        })
+    )
+
+    // TEMBUSAN //
+    qase(2824,
+        it('Leave the field empty when submitting the form', () => {
+            // Cek tombol kirim
+            tabRegistrasiPage.checkBtnSubmit()
+        })
+    )
+
+    qase(2784,
+        it('Check on preview page after select tembusan', () => {
+            // Input tembusan from dropdown
+            tabRegistrasiPage.inputTembusan('staging', '0', 'internal', '')
+        })
+    )
+
+    qase(2785,
+        it('Add tembusan', () => {
+            // Add more tembusan
+            tabRegistrasiPage.addMoreTembusan()
+        })
+    )
+
+    qase(2792,
+        it('Check on preview page after input tembusan', () => {
+            // Input tembusan from input field
+            tabRegistrasiPage.inputTembusan('staging', '1', 'eksternal', 'Tembusan Eksternal 1')
+        })
+    )
+
+    qase(2786,
+        it('Delete tembusan', () => {
+            // Delete tembusan
+            tabRegistrasiPage.deleteTembusan()
         })
     )
 })
