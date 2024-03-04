@@ -5,6 +5,10 @@ module.exports = {
     btn_addMoreTujuan: '[data-cy="registrasi__tujuan-naskah__button--add"]',
     btn_addMoreTembusan: '[data-cy="registrasi__tembusan-naskah__button--add"]',
     btn_deleteTembusan1: '[data-cy="registrasi__tembusan-naskah__select-option__delete-icon-1"]',
+    btn_addMorePenandatangan: '[data-cy="registrasi__penandatangan__button--add"]',
+    btn_simpanPenandatangan: '[data-cy="dialog__button--simpan"]',
+    btn_inputSuratPengantar: '[data-cy="input__upload-surat-pengantar"]',
+    btn_deleteSuratPengantar: '[data-cy="registrasi__surat-pengantar__file__button--delete"]',
 
     // INPUT
     input_bankNomorNomorUrut: '[data-cy="registrasi__nomor-naskah__input--nomor-urut"]',
@@ -20,6 +24,11 @@ module.exports = {
     label_urgensi: '[data-cy="registrasi__identitas-naskah__label--urgensi"]',
     label_urgensiHeader: '[data-cy="header__urgency"]',
     label_sifatSurat: '[data-cy="registrasi__identitas-naskah__label--sifat"]',
+    label_konseptorName: '[data-cy="header__username"]',
+    label_fileNotSupport: '[data-cy="registrasi__surat-pengantar__file__title"]',
+    label_fileTitle: '[data-cy="registrasi__surat-pengantar__file__title"]',
+    label_fileSize: '[data-cy="registrasi__surat-pengantar__file__size"]',
+    label_konsepNaskah: '[data-cy="header__title"]',
 
     // SELECT
     select_bankNomor: '[data-cy="registrasi__nomor-naskah__input--bank-nomor"]',
@@ -39,6 +48,18 @@ module.exports = {
     select_sifatSuratOption: '[data-cy="input__select-',
 
     // CHECKBOX/TOGGLE
-    check_toggleDistribusi: '[data-cy="registrasi__tujuan-naskah__toggle--distribusi"]'
+    check_toggleDistribusi: '[data-cy="registrasi__tujuan-naskah__toggle--distribusi"]',
 
+    // DIALOG
+    dialog_penandatangan: '[data-cy="dialog__registrasi__penandatangan"]',
+    dialog_penandatanganTitle: '[data-cy="dialog__penandatangan__title"]',
+    dialog_penandatanganModeLabel: '[data-cy="dialog__penandatangan__mode-label"]',
+    dialog_penandatanganModeInput: '[data-cy="dialog__penandatangan__mode-input"]',
+    dialog_penandatanganLabel: '[data-cy="dialog__penandatangan-label"]',
+    dialog_penandatanganInput: '[data-cy="penandatangan__wrapper-0"]',
+    dialog_backPanel: '[data-cy="dialog__dialog-confirmation__panel"]',
+    dialog_backTitle: '[data-cy="dialog__dialog-confirmation__title"]',
+    dialog_backDesc: '[data-cy="dialog__dialog-confirmation__description"]',
+    dialog_backConfirm: '[data-cy="dialog__dialog-confirmation__button--confirm"]:visible',
+    dialog_backCancel: '[data-cy="dialog__dialog-confirmation__button--cancel"]:visible',
 }

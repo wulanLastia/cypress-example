@@ -127,8 +127,9 @@ export class TabRegistrasiPage {
                 cy.wait('@postRequest', { timeout: 5000 })
                     .then((interception) => {
                         if (interception.response.statusCode === 200) {
-                            const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
-                            select_inputTujuanSuggest0.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+                            const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).first().as('select_inputTujuanSuggest0')
+                            select_inputTujuanSuggest0.scrollIntoView()
+                                .contains(inputTujuan, { timeout: 10000 })//.should('be.visible')
 
                             select_inputTujuan.type('{enter}')
                         }
@@ -279,5 +280,142 @@ export class TabRegistrasiPage {
 
         const select_sifatSuratOption = cy.get(tab_registrasi.select_sifatSuratOption + indexSurat + '"').as('select_sifatSuratOption')
         select_sifatSuratOption.click()
+    }
+
+    // PENANDATANGAN //
+    addMorePenandatangan() {
+        const btn_addMorePenandatangan = cy.get(tab_registrasi.btn_addMorePenandatangan).as('btn_addMorePenandatangan')
+        btn_addMorePenandatangan.should('contain', 'Tambah Penandatangan')
+            .click()
+
+        // Assertion
+        const dialog_penandatangan = cy.get(tab_registrasi.dialog_penandatangan).as('dialog_penandatangan')
+        dialog_penandatangan.should('be.visible')
+
+        const dialog_penandatanganTitle = cy.get(tab_registrasi.dialog_penandatanganTitle).as('dialog_penandatanganTitle')
+        dialog_penandatanganTitle.should('contain', 'Tambah Penandatangan')
+    }
+
+    inputPenandatanganDiriSendiri() {
+        const dialog_penandatanganModeLabel = cy.get(tab_registrasi.dialog_penandatanganModeLabel).as('dialog_penandatanganModeLabel')
+        dialog_penandatanganModeLabel.should('contain', 'Mode Penandatangan')
+
+        const dialog_penandatanganModeInput = cy.get(tab_registrasi.dialog_penandatanganModeInput).as('dialog_penandatanganModeInput')
+        dialog_penandatanganModeInput.select('Diri sendiri').should('have.value', 'DIRI_SENDIRI')
+
+        // Assertion
+        const dialog_penandatanganLabel = cy.get(tab_registrasi.dialog_penandatanganLabel).as('dialog_penandatanganLabel')
+        dialog_penandatanganLabel.should('contain', 'Penandatangan')
+
+        const label_konseptorName = cy.get(tab_registrasi.label_konseptorName).as('label_konseptorName')
+        label_konseptorName.invoke('val')
+            .then((val) => {
+                const dialog_penandatanganInput = cy.get(tab_registrasi.dialog_penandatanganInput).as('dialog_penandatanganInput')
+                dialog_penandatanganInput.find('span').should('contain', val)
+            })
+
+        const btn_simpanPenandatangan = cy.get(tab_registrasi.btn_simpanPenandatangan).as('btn_simpanPenandatangan')
+        btn_simpanPenandatangan.should('contain', 'Simpan')
+            .click()
+    }
+
+    uploadSuratPengantar(status) {
+        if (status === 'positif') {
+            // Upload File
+            const fileUploadSingleFile = 'non_cred/drafting_luar/master_data/TEMPLATE_SURAT_BIASA.pdf'
+            const fileName = 'TEMPLATE_SURAT_BIASA.pdf'
+
+            const btn_inputSuratPengantar = cy.get(tab_registrasi.btn_inputSuratPengantar).as('btn_inputSuratPengantar')
+            btn_inputSuratPengantar.attachFile(fileUploadSingleFile)
+
+            // Assertion file name
+            const label_fileTitle = cy.get(tab_registrasi.label_fileTitle).as('label_fileTitle')
+            label_fileTitle.should('contain', fileName)
+        } else {
+            // Upload File
+            const fileUploadSingleFile = 'non_cred/drafting_luar/master_data/image_example.jpg'
+            const fileName = 'image_example.jpg'
+
+            const btn_inputSuratPengantar = cy.get(tab_registrasi.btn_inputSuratPengantar).as('btn_inputSuratPengantar')
+            btn_inputSuratPengantar.attachFile(fileUploadSingleFile)
+
+            // Assertion file name
+            const label_fileNotSupport = cy.get(tab_registrasi.label_fileNotSupport).as('label_fileNotSupport')
+            label_fileNotSupport.should('contain', fileName)
+                .and('have.class', 'filename text-[#C62828]')
+        }
+    }
+
+    checkDeleteSuratPengantar() {
+        // Click button delete file
+        const btn_deleteSuratPengantar = cy.get(tab_registrasi.btn_deleteSuratPengantar).as('btn_deleteSuratPengantar')
+        btn_deleteSuratPengantar.scrollIntoView()
+            .should('be.visible')
+            .click()
+
+        // Assertion nama file
+        const dialog_backPanel = cy.get(tab_registrasi.dialog_backPanel).as('dialog_backPanel')
+        dialog_backPanel.should('be.visible')
+
+        const dialog_backTitle = cy.get(tab_registrasi.dialog_backTitle).as('dialog_backTitle')
+        dialog_backTitle.should('contain', 'Hapus Surat Pengantar')
+
+        const dialog_backDesc = cy.get(tab_registrasi.dialog_backDesc).as('dialog_backDesc')
+        dialog_backDesc.find('p')
+            .should('contain', 'image_example.jpg')
+
+        const dialog_backConfirm = cy.get(tab_registrasi.dialog_backConfirm).first().as('dialog_backConfirm')
+        dialog_backConfirm.find('div')
+            .find('span')
+            .should('contain', 'Ya, hapus file')
+
+        const dialog_backCancel = cy.get(tab_registrasi.dialog_backCancel).first().as('dialog_backCancel')
+        dialog_backCancel.find('div')
+            .find('span')
+            .should('contain', 'Tidak')
+    }
+
+    batalDeleteFile() {
+        const dialog_backCancel = cy.get(tab_registrasi.dialog_backCancel).as('dialog_backCancel')
+        dialog_backCancel.should('contain', 'Tidak')
+            .and('be.visible')
+            .click()
+
+        // Assertion
+        const label_konsepNaskah = cy.get(tab_registrasi.label_konsepNaskah).as('label_konsepNaskah')
+        label_konsepNaskah.should('contain', 'Konsep Naskah')
+            .and('be.visible')
+    }
+
+    deleteFileSuratPengantar() {
+        // Click button delete file
+        const btn_deleteSuratPengantar = cy.get(tab_registrasi.btn_deleteSuratPengantar).as('btn_deleteSuratPengantar')
+        btn_deleteSuratPengantar.scrollIntoView()
+            .should('be.visible')
+            .click()
+
+        const dialog_backConfirm = cy.get(tab_registrasi.dialog_backConfirm).first().as('dialog_backConfirm')
+        dialog_backConfirm.find('div')
+            .find('span')
+            .should('contain', 'Ya, hapus file')
+            .click()
+
+        // Assertion
+        const label_konsepNaskah = cy.get(tab_registrasi.label_konsepNaskah).as('label_konsepNaskah')
+        label_konsepNaskah.should('contain', 'Konsep Naskah')
+            .and('be.visible')
+    }
+
+    checkDataFileUpload() {
+        // Assertion file upload
+        const label_fileUploadTitle = cy.get(tab_registrasi.label_fileTitle).as('label_fileUploadTitle')
+        label_fileUploadTitle.scrollIntoView()
+            .should('contain', 'TEMPLATE_SURAT_BIASA.pdf')
+
+        const label_fileUploadSize = cy.get(tab_registrasi.label_fileSize).as('label_fileUploadSize')
+        label_fileUploadSize.should('contain', '434.0 KB')
+
+        const btn_deleteSuratPengantar = cy.get(tab_registrasi.btn_deleteSuratPengantar).as('btn_deleteSuratPengantar')
+        btn_deleteSuratPengantar.should('be.visible')
     }
 }
