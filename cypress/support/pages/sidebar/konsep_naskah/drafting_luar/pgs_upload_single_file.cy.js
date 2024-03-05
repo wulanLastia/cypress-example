@@ -42,7 +42,6 @@ export class UploadSingleFilePage {
     }
 
     uploadSingleFile(status) {
-
         if (status === 'positif') {
             // Upload File
             const fileUploadSingleFile = 'non_cred/drafting_luar/master_data/TEMPLATE_SURAT_BIASA.pdf'
@@ -60,6 +59,8 @@ export class UploadSingleFilePage {
             const label_fileNotSupport = cy.get(upload_single.label_fileNotSupport).as('label_fileNotSupport')
             label_fileNotSupport.should('be.visible')
         }
+
+        cy.wait(3000)
     }
 
     checkDataFileUpload() {
