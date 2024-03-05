@@ -1,7 +1,7 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../../../../support/pages/auth/login.cy"
-import { TabRegistrasiPage } from "../../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/tab_registrasi.cy"
-import { UploadSingleFilePage } from "../../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
+import { LoginPage } from "../../../../../../../support/pages/auth/login.cy"
+import { TabRegistrasiPage } from "../../../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/tab_registrasi.cy"
+import { UploadSingleFilePage } from "../../../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
 
 let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
