@@ -1,7 +1,7 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { DraftingKepalaSuratPage } from "../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_kepala_surat.cy"
-import { DraftingKonsepNaskahPage } from "../../../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_drafting_surat_biasa.cy"
+import { LoginPage } from "../../../../../../support/pages/auth/login.cy"
+import { DraftingKepalaSuratPage } from "../../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_kepala_surat.cy"
+import { DraftingKonsepNaskahPage } from "../../../../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_drafting_surat_biasa.cy"
 
 let draftingKepalaSuratPage = new DraftingKepalaSuratPage()
 let draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()

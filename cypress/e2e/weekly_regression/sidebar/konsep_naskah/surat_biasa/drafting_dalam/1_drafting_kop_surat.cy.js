@@ -1,7 +1,7 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../../support/pages/sidebar/menu/menu.cy"
-import { DraftingKopSuratPage } from "../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_kop_surat.cy"
+import { LoginPage } from "../../../../../../support/pages/auth/login.cy"
+import { MenuPage } from "../../../../../../support/pages/sidebar/menu/menu.cy"
+import { DraftingKopSuratPage } from "../../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_kop_surat.cy"
 
 let draftingKopSuratPage = new DraftingKopSuratPage()
 let loginPage = new LoginPage()
@@ -16,7 +16,7 @@ before(() => {
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 
-    
+
 })
 
 before(() => {

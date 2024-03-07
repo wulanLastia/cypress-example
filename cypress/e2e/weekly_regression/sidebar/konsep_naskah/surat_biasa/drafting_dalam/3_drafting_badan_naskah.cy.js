@@ -1,6 +1,6 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { DraftingBadanNaskahPage } from "../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_badan_naskah.cy"
+import { LoginPage } from "../../../../../../support/pages/auth/login.cy"
+import { DraftingBadanNaskahPage } from "../../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_badan_naskah.cy"
 
 let draftingBadanNaskahPage = new DraftingBadanNaskahPage()
 let loginPage = new LoginPage()
@@ -14,7 +14,7 @@ before(() => {
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 
-    
+
 })
 
 before(() => {
