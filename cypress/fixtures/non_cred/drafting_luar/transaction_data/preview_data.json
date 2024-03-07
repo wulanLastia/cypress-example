@@ -1,0 +1,56 @@
+{
+  "upload_file": [
+    {
+      "jenis_naskah": "Surat Biasa"
+    },
+    {
+      "upload_file_name": "TEMPLATE_SURAT_BIASA.pdf"
+    }
+  ],
+  "bank_nomor": [
+    {
+      "bank_nomor": "Unit Kearsipan Dinas Perpustakaan dan Kearsipan Daerah Provinsi Jawa Barat"
+    },
+    {
+      "nomor_urut": "120"
+    },
+    {
+      "kode_klasifikasi": "SK (Semua Klasifikasi)"
+    },
+    {
+      "unit_pengolah": "PAD"
+    }
+  ],
+  "tujuan_surat": [
+    {
+      "tujuan_internal": "Dra. Hj. I GUSTI AGUNG KIM FAJAR WIYATI OKA, M.Si. (KEPALA DINAS PERPUSTAKAAN DAN KEARSIPAN DAERAH PROVINSI JAWA BARAT)"
+    },
+    {
+      "tujuan_eksternal": "Tujuan Eksternal"
+    }
+  ],
+  "tembusan_surat": [
+    {
+      "tembusan_internal": "LUDIA ROSEMA DEWI, S.Kom. (PRANATA KOMPUTER AHLI PERTAMA)"
+    },
+    {
+      "tembusan_eksternal": "Tembusan Eksternal 1"
+    }
+  ],
+  "identitas_surat": [
+    {
+      "perihal": "Automation Drafting Luar 436597"
+    },
+    {
+      "urgensi": "Amat Segera"
+    },
+    {
+      "sifat": "Biasa"
+    }
+  ],
+  "penandatangan": [
+    {
+      "penandatangan_diri_sendiri": "VITA PUTRI UTAMI, S.Sos., M.I.Kom"
+    }
+  ]
+}

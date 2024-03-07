@@ -37,6 +37,7 @@ module.exports = {
     select_inputNomorUrut: '[data-cy="registrasi__nomor-naskah__input--nomor-urut"]',
     select_inputNomorUrut0: '[data-cy="input__select-0"]',
     select_inputKodeKlasifikasi: '[data-cy="registrasi__nomor-naskah__input--kode-klasifikasi"]',
+    select_inputKodeKlasifikasiSuggest: '[data-cy="input__select-0"]',
     select_inputTujuanWrapper: '[data-cy="registrasi__tujuan-naskah__wrapper-0"]',
     select_inputTujuan: '[data-cy="registrasi__tujuan-naskah__select-option__custom-input-',
     select_inputTujuanSuggest0: '[data-cy="registrasi__tujuan-naskah__select-option-0"]',
