@@ -1,5 +1,6 @@
 import tab_registrasi from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/tab_registrasi"
 
+const getPreviewData = "cypress/fixtures/non_cred/drafting_luar/transaction_data/preview_data.json"
 export class TabRegistrasiPage {
 
     // BANK NOMOR //
@@ -10,7 +11,6 @@ export class TabRegistrasiPage {
     }
 
     checkFieldNomorUrut(bank_nomor) {
-
         if (bank_nomor === 'none') {
             const input_bankNomorNomorUrut = cy.get(tab_registrasi.input_bankNomorNomorUrut).as('input_bankNomorNomorUrut')
             input_bankNomorNomorUrut.find('input')
@@ -34,24 +34,56 @@ export class TabRegistrasiPage {
     }
 
     inputNomorUrut() {
-        // Input Bank Nomor
-        const select_bankNomor = cy.get(tab_registrasi.select_bankNomor).first().as('select_bankNomor')
-        select_bankNomor.scrollIntoView()
-            .should('be.visible')
-            .click()
+        cy.readFile(getPreviewData).then((object) => {
+            if (!object.bank_nomor) {
+                object.bank_nomor = [];
+            }
 
-        const select_bankNomorUKDispusipda = cy.get(tab_registrasi.select_bankNomorUKDispusipda).as('select_bankNomorUKDispusipda')
-        select_bankNomorUKDispusipda.should('be.visible')
-            .click()
+            // Input Bank Nomor
+            const select_bankNomor = cy.get(tab_registrasi.select_bankNomor).first().as('select_bankNomor')
+            select_bankNomor.scrollIntoView()
+                .should('be.visible')
+                .click()
 
-        // Input Nomor Urut
-        const select_inputNomorUrut = cy.get(tab_registrasi.select_inputNomorUrut).first().as('select_inputNomorUrut')
-        select_inputNomorUrut.should('be.visible')
-            .click()
+            const select_bankNomorUKDispusipda = cy.get(tab_registrasi.select_bankNomorUKDispusipda).as('select_bankNomorUKDispusipda')
+            select_bankNomorUKDispusipda.should('be.visible')
+                .click()
+                .invoke('text')  // Extract the value of the input
+                .then((inputBankNomor) => { // Use the actual value from the input
+                    // Construct the sub-object
+                    const bank_nomor_name = {
+                        bank_nomor: inputBankNomor.trim()
+                    }
 
-        const select_inputNomorUrut0 = cy.get(tab_registrasi.select_inputNomorUrut0).as('select_inputNomorUrut0')
-        select_inputNomorUrut0.should('be.visible')
-            .click()
+                    // Push the sub-object to the array
+                    object.bank_nomor.push(bank_nomor_name)
+
+                    // Write data to the JSON file
+                    cy.writeFile(getPreviewData, object)
+                })
+
+            // Input Nomor Urut
+            const select_inputNomorUrut = cy.get(tab_registrasi.select_inputNomorUrut).first().as('select_inputNomorUrut')
+            select_inputNomorUrut.should('be.visible')
+                .click()
+
+            const select_inputNomorUrut0 = cy.get(tab_registrasi.select_inputNomorUrut0).as('select_inputNomorUrut0')
+            select_inputNomorUrut0.should('be.visible')
+                .click()
+                .invoke('text')  // Extract the value of the input
+                .then((inputNomorUrut) => { // Use the actual value from the input
+                    // Construct the sub-object
+                    const nomor_urut = {
+                        nomor_urut: inputNomorUrut.trim()
+                    }
+
+                    // Push the sub-object to the array
+                    object.bank_nomor.push(nomor_urut)
+
+                    // Write data to the JSON file
+                    cy.writeFile(getPreviewData, object)
+                })
+        })
     }
 
     checkBtnSubmit() {
@@ -61,15 +93,39 @@ export class TabRegistrasiPage {
     }
 
     searchKodeKlasifikasi(inputanKodeKlasifikasi) {
-        const label_kodeKlasifikasi = cy.get(tab_registrasi.label_kodeKlasifikasi).as('label_kodeKlasifikasi')
-        label_kodeKlasifikasi.should('contain', 'Kode klasifikasi')
+        cy.readFile(getPreviewData).then((object) => {
+            if (!object.bank_nomor) {
+                object.bank_nomor = [{}];
+            }
 
-        const select_inputKodeKlasifikasi = cy.get(tab_registrasi.select_inputKodeKlasifikasi).first().as('select_inputKodeKlasifikasi')
-        select_inputKodeKlasifikasi.click()
-            .wait(3000)
-            .type(inputanKodeKlasifikasi)
-            .wait(3000)
-            .type('{enter}')
+            const label_kodeKlasifikasi = cy.get(tab_registrasi.label_kodeKlasifikasi).as('label_kodeKlasifikasi')
+            label_kodeKlasifikasi.should('contain', 'Kode klasifikasi')
+
+            const select_inputKodeKlasifikasi = cy.get(tab_registrasi.select_inputKodeKlasifikasi).first().as('select_inputKodeKlasifikasi')
+            select_inputKodeKlasifikasi.click()
+                .wait(3000)
+                .type(inputanKodeKlasifikasi)
+                .wait(3000)
+                .type('{enter}')
+
+            const val_inputKodeKlasifikasi = cy.get(tab_registrasi.select_inputKodeKlasifikasi).as('val_inputKodeKlasifikasi')
+            val_inputKodeKlasifikasi.find('div')
+                .find('div')
+                .find('span')
+                .invoke('text')  // Extract the text of the input
+                .then((inputKodeKlasifikasi) => { // Use the actual value from the input
+                    // Construct the sub-object
+                    const kode_klasifikasi = {
+                        kode_klasifikasi: inputKodeKlasifikasi.trim()
+                    }
+
+                    // Push the sub-object to the array
+                    object.bank_nomor.push(kode_klasifikasi)
+
+                    // // Write data to the JSON file
+                    cy.writeFile(getPreviewData, object)
+                })
+        })
     }
 
     batalKodeKlasifikasi() {
@@ -87,20 +143,37 @@ export class TabRegistrasiPage {
     }
 
     inputUnitPengolah(inputUnitPengolah, assertionUnitPengolah) {
-        const label_unitPengolah = cy.get(tab_registrasi.label_unitPengolah).as('label_unitPengolah')
-        label_unitPengolah.should('contain', 'Unit pengolah')
+        cy.readFile(getPreviewData).then((object) => {
+            if (!object.bank_nomor) {
+                object.bank_nomor = [{}];
+            }
 
-        // Input unit pengolah
-        const input_unitPengolah = cy.get(tab_registrasi.input_unitPengolah).first().as('input_unitPengolah')
-        input_unitPengolah.clear()
-            .type(inputUnitPengolah)
+            const label_unitPengolah = cy.get(tab_registrasi.label_unitPengolah).as('label_unitPengolah')
+            label_unitPengolah.should('contain', 'Unit pengolah')
 
-        // Assertion input unit pengolah
-        const assert_unitPengolah = cy.get(tab_registrasi.input_unitPengolah).first().as('assert_unitPengolah')
-        assert_unitPengolah.invoke('val')
-            .then((val) => {
-                expect(val).to.deep.equal(assertionUnitPengolah);
-            })
+            // Input unit pengolah
+            const input_unitPengolah = cy.get(tab_registrasi.input_unitPengolah).first().as('input_unitPengolah')
+            input_unitPengolah.clear()
+                .type(inputUnitPengolah)
+
+            // Assertion input unit pengolah
+            const assert_unitPengolah = cy.get(tab_registrasi.input_unitPengolah).first().as('assert_unitPengolah')
+            assert_unitPengolah.invoke('val')
+                .then((val) => {
+                    expect(val).to.deep.equal(assertionUnitPengolah);
+
+                    // Construct the sub-object
+                    const unit_pengolah = {
+                        unit_pengolah: val.trim()
+                    }
+
+                    // Push the sub-object to the array
+                    object.bank_nomor.push(unit_pengolah)
+
+                    // // Write data to the JSON file
+                    cy.writeFile(getPreviewData, object)
+                })
+        })
     }
 
     // TUJUAN SURAT //
@@ -110,49 +183,81 @@ export class TabRegistrasiPage {
     }
 
     inputTujuan(inputEnv, tujuanKe, tujuanInternalEksternal, inputTujuan) {
-        // Intercept all POST network requests
-        if (inputEnv === 'prod') {
-            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
-        } else {
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        }
+        cy.readFile(getPreviewData).then((object) => {
+            if (!object.tujuan_surat) {
+                object.tujuan_surat = [{}]; // Initialize as an empty array
+            }
 
-        if (inputTujuan) {
-            const select_inputTujuan = cy.get(tab_registrasi.select_inputTujuan + tujuanKe + '"').as('select_inputTujuan')
-            select_inputTujuan.click()
-                .wait(1000)
-                .type(inputTujuan)
-
-            if (tujuanInternalEksternal === 'internal') {
-                cy.wait('@postRequest', { timeout: 5000 })
-                    .then((interception) => {
-                        if (interception.response.statusCode === 200) {
-                            const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).first().as('select_inputTujuanSuggest0')
-                            select_inputTujuanSuggest0.scrollIntoView()
-                                .contains(inputTujuan, { timeout: 10000 })//.should('be.visible')
-
-                            select_inputTujuan.type('{enter}')
-                        }
-                    })
+            // Intercept all POST network requests
+            if (inputEnv === 'prod') {
+                cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
             } else {
-                cy.wait('@postRequest', { timeout: 5000 })
-                    .then((interception) => {
-                        if (interception.response.statusCode === 200) {
-                            const input_inputTujuanEksternalSuggest = cy.get(tab_registrasi.input_inputTujuanEksternalSuggest).as('input_inputTujuanEksternalSuggest')
-                            input_inputTujuanEksternalSuggest.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+                cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
+            }
 
-                            select_inputTujuan.type('{enter}')
-                        }
+            if (inputTujuan) {
+                const select_inputTujuan = cy.get(tab_registrasi.select_inputTujuan + tujuanKe + '"').as('select_inputTujuan')
+                select_inputTujuan.click()
+                    .wait(1000)
+                    .type(inputTujuan)
+
+                if (tujuanInternalEksternal === 'internal') {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).first().as('select_inputTujuanSuggest0')
+                                select_inputTujuanSuggest0.scrollIntoView()
+                                    .contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+                                    .invoke('text')
+                                    .then((inputanTujuanSuggest) => {
+                                        // Push the sub-object to the array
+                                        object.tujuan_surat[tujuanKe] = { tujuan_internal: inputanTujuanSuggest.trim() };
+
+                                        // Write data to the JSON file
+                                        cy.writeFile(getPreviewData, object)
+
+                                        // Select Tujuan
+                                        select_inputTujuan.type('{enter}')
+                                    })
+                            }
+                        })
+                } else {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const input_inputTujuanEksternalSuggest = cy.get(tab_registrasi.input_inputTujuanEksternalSuggest).as('input_inputTujuanEksternalSuggest')
+                                input_inputTujuanEksternalSuggest.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
+                                    .invoke('text')
+                                    .then((inputanTujuanSuggest) => {
+                                        // Push the sub-object to the array
+                                        object.tujuan_surat[tujuanKe] = { tujuan_eksternal: inputanTujuanSuggest.trim() };
+
+                                        // Write data to the JSON file
+                                        cy.writeFile(getPreviewData, object)
+
+                                        // Select Tujuan
+                                        select_inputTujuan.type('{enter}')
+                                    })
+                            }
+                        })
+                }
+            } else {
+                const select_inputTujuan = cy.get(tab_registrasi.select_inputTujuan + tujuanKe + '"').as('select_inputTujuan')
+                select_inputTujuan.click()
+
+                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
+                select_inputTujuanSuggest0.wait(3000)
+                    .click()
+                    .invoke('text')
+                    .then((inputanTujuanSuggest) => {
+                        // Push the sub-object to the array
+                        object.tujuan_surat[tujuanKe] = { tujuan_eksternal: inputanTujuanSuggest.trim() };
+
+                        // Write data to the JSON file
+                        cy.writeFile(getPreviewData, object)
                     })
             }
-        } else {
-            const select_inputTujuan = cy.get(tab_registrasi.select_inputTujuan + tujuanKe + '"').as('select_inputTujuan')
-            select_inputTujuan.click()
-
-            const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
-            select_inputTujuanSuggest0.wait(3000)
-                .click()
-        }
+        })
     }
 
     deleteTujuan() {
@@ -169,48 +274,79 @@ export class TabRegistrasiPage {
     }
 
     inputTembusan(inputEnv, tembusanKe, tujuanInternalEksternal, inputTembusan) {
-        // Intercept all POST network requests
-        if (inputEnv === 'prod') {
-            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
-        } else {
-            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
-        }
-
-        if (inputTembusan) {
-            const select_inputTembusan = cy.get(tab_registrasi.select_inputTembusan + tembusanKe + '"').as('select_inputTembusan')
-            select_inputTembusan.click()
-                .wait(1000)
-                .type(inputTembusan)
-
-            if (tujuanInternalEksternal === 'internal') {
-                cy.wait('@postRequest', { timeout: 5000 })
-                    .then((interception) => {
-                        if (interception.response.statusCode === 200) {
-                            const select_inputTembusanSuggest0 = cy.get(tab_registrasi.select_inputTembusanSuggest0).as('select_inputTembusanSuggest0')
-                            select_inputTembusanSuggest0.contains(inputTembusan, { timeout: 10000 }).should('be.visible')
-
-                            select_inputTembusan.type('{enter}')
-                        }
-                    })
+        cy.readFile(getPreviewData).then((object) => {
+            if (!object.tembusan_surat) {
+                object.tembusan_surat = [{}]; // Initialize as an empty array
+            }
+            // Intercept all POST network requests
+            if (inputEnv === 'prod') {
+                cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
             } else {
-                cy.wait('@postRequest', { timeout: 5000 })
-                    .then((interception) => {
-                        if (interception.response.statusCode === 200) {
-                            const input_inputTembusanEksternalSuggest = cy.get(tab_registrasi.input_inputTembusanEksternalSuggest).as('input_inputTembusanEksternalSuggest')
-                            input_inputTembusanEksternalSuggest.contains(inputTembusan, { timeout: 10000 }).should('be.visible')
+                cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
+            }
 
-                            select_inputTembusan.type('{enter}')
-                        }
+            if (inputTembusan) {
+                const select_inputTembusan = cy.get(tab_registrasi.select_inputTembusan + tembusanKe + '"').as('select_inputTembusan')
+                select_inputTembusan.click()
+                    .wait(1000)
+                    .type(inputTembusan)
+
+                if (tujuanInternalEksternal === 'internal') {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const select_inputTembusanSuggest0 = cy.get(tab_registrasi.select_inputTembusanSuggest0).as('select_inputTembusanSuggest0')
+                                select_inputTembusanSuggest0.contains(inputTembusan, { timeout: 10000 }).should('be.visible')
+                                    .invoke('text')
+                                    .then((inputanTembusanSuggest) => {
+                                        // Push the sub-object to the array
+                                        object.tembusan_surat[tembusanKe] = { tembusan_internal: inputanTembusanSuggest.trim() };
+
+                                        // Write data to the JSON file
+                                        cy.writeFile(getPreviewData, object)
+
+                                        // Select Tembusan
+                                        select_inputTembusan.type('{enter}')
+                                    })
+                            }
+                        })
+                } else {
+                    cy.wait('@postRequest', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response.statusCode === 200) {
+                                const input_inputTembusanEksternalSuggest = cy.get(tab_registrasi.input_inputTembusanEksternalSuggest).as('input_inputTembusanEksternalSuggest')
+                                input_inputTembusanEksternalSuggest.contains(inputTembusan, { timeout: 10000 }).should('be.visible')
+                                    .invoke('text')
+                                    .then((inputanTembusanSuggest) => {
+                                        // Push the sub-object to the array
+                                        object.tembusan_surat[tembusanKe] = { tembusan_eksternal: inputanTembusanSuggest.trim() };
+
+                                        // Write data to the JSON file
+                                        cy.writeFile(getPreviewData, object)
+
+                                        // Select Tembusan
+                                        select_inputTembusan.type('{enter}')
+                                    })
+                            }
+                        })
+                }
+            } else {
+                const select_inputTembusan = cy.get(tab_registrasi.select_inputTembusan + tembusanKe + '"').as('select_inputTembusan')
+                select_inputTembusan.click()
+
+                const select_inputTembusanSuggest0 = cy.get(tab_registrasi.select_inputTembusanSuggest0).as('select_inputTembusanSuggest0')
+                select_inputTembusanSuggest0.wait(3000)
+                    .click()
+                    .invoke('text')
+                    .then((inputanTembusanSuggest) => {
+                        // Push the sub-object to the array
+                        object.tembusan_surat[tembusanKe] = { tembusan: inputanTembusanSuggest.trim() };
+
+                        // Write data to the JSON file
+                        cy.writeFile(getPreviewData, object)
                     })
             }
-        } else {
-            const select_inputTembusan = cy.get(tab_registrasi.select_inputTembusan + tembusanKe + '"').as('select_inputTembusan')
-            select_inputTembusan.click()
-
-            const select_inputTembusanSuggest0 = cy.get(tab_registrasi.select_inputTembusanSuggest0).as('select_inputTembusanSuggest0')
-            select_inputTembusanSuggest0.wait(3000)
-                .click()
-        }
+        })
     }
 
     addMoreTembusan() {
@@ -225,33 +361,68 @@ export class TabRegistrasiPage {
     }
 
     inputPerihal(inputPerihal, assertionPerihal) {
-        const label_perihal = cy.get(tab_registrasi.label_perihal).as('label_perihal')
-        label_perihal.should('contain', 'Perihal')
+        cy.readFile(getPreviewData).then((object) => {
+            if (!object.identitas_surat) {
+                object.identitas_surat = []; // Initialize as an empty array
+            }
 
-        // Input perihal
-        const input_perihal = cy.get(tab_registrasi.input_perihal).as('input_perihal')
-        input_perihal.clear()
-            .type(inputPerihal)
+            const label_perihal = cy.get(tab_registrasi.label_perihal).as('label_perihal')
+            label_perihal.should('contain', 'Perihal')
 
-        // Assertion input unit pengolah
-        const assert_perihal = cy.get(tab_registrasi.input_perihal).as('assert_perihal')
-        assert_perihal.invoke('val')
-            .then((val) => {
-                expect(val).to.deep.equal(assertionPerihal);
-            })
+            // Input perihal
+            const input_perihal = cy.get(tab_registrasi.input_perihal).as('input_perihal')
+            input_perihal.clear()
+                .type(inputPerihal)
+
+            // Assertion input unit pengolah
+            const assert_perihal = cy.get(tab_registrasi.input_perihal).as('assert_perihal')
+            assert_perihal.invoke('val')
+                .then((val) => {
+                    expect(val).to.deep.equal(assertionPerihal);
+
+                    // Construct the sub-object
+                    const perihal_name = {
+                        perihal: val.trim()
+                    }
+
+                    // Push the sub-object to the array
+                    object.identitas_surat.push(perihal_name)
+
+                    // Write data to the JSON file
+                    cy.writeFile(getPreviewData, object)
+                })
+        })
     }
 
     checkWarnaLabelUrgensi(inputanUrgensi, index) {
-        // Label
-        const label_urgensi = cy.get(tab_registrasi.label_urgensi).as('label_urgensi')
-        label_urgensi.should('contain', 'Urgensi')
+        cy.readFile(getPreviewData).then((object) => {
+            if (!object.identitas_surat) {
+                object.identitas_surat = []; // Initialize as an empty array
+            }
+            // Label
+            const label_urgensi = cy.get(tab_registrasi.label_urgensi).as('label_urgensi')
+            label_urgensi.should('contain', 'Urgensi')
 
-        // Input Urgensi
-        const select_urgensi = cy.get(tab_registrasi.select_urgensi).first().as('select_urgensi')
-        select_urgensi.click()
+            // Input Urgensi
+            const select_urgensi = cy.get(tab_registrasi.select_urgensi).first().as('select_urgensi')
+            select_urgensi.click()
 
-        const select_urgensiOption = cy.get(tab_registrasi.select_urgensiOption + index + '"').as('select_urgensiOption')
-        select_urgensiOption.click()
+            const select_urgensiOption = cy.get(tab_registrasi.select_urgensiOption + index + '"').as('select_urgensiOption')
+            select_urgensiOption.click()
+                .invoke('text')
+                .then((val) => {
+                    // Construct the sub-object
+                    const urgensi_name = {
+                        urgensi: val.trim()
+                    }
+
+                    // Push the sub-object to the array
+                    object.identitas_surat.push(urgensi_name)
+
+                    // Write data to the JSON file
+                    cy.writeFile(getPreviewData, object)
+                })
+        })
 
         // Assertion warna
         if (inputanUrgensi === 'Amat Segera') {
@@ -270,16 +441,35 @@ export class TabRegistrasiPage {
     }
 
     inputSifat(indexSurat) {
-        // Label
-        const label_sifatSurat = cy.get(tab_registrasi.label_sifatSurat).as('label_sifatSurat')
-        label_sifatSurat.should('contain', 'Sifat Surat')
+        cy.readFile(getPreviewData).then((object) => {
+            if (!object.identitas_surat) {
+                object.identitas_surat = []; // Initialize as an empty array
+            }
 
-        // Input Urgensi
-        const select_sifatSurat = cy.get(tab_registrasi.select_sifatSurat).first().as('select_sifatSurat')
-        select_sifatSurat.click()
+            // Label
+            const label_sifatSurat = cy.get(tab_registrasi.label_sifatSurat).as('label_sifatSurat')
+            label_sifatSurat.should('contain', 'Sifat Surat')
 
-        const select_sifatSuratOption = cy.get(tab_registrasi.select_sifatSuratOption + indexSurat + '"').as('select_sifatSuratOption')
-        select_sifatSuratOption.click()
+            // Input Sifat
+            const select_sifatSurat = cy.get(tab_registrasi.select_sifatSurat).first().as('select_sifatSurat')
+            select_sifatSurat.click()
+
+            const select_sifatSuratOption = cy.get(tab_registrasi.select_sifatSuratOption + indexSurat + '"').as('select_sifatSuratOption')
+            select_sifatSuratOption.click()
+                .invoke('text')
+                .then((val) => {
+                    // Construct the sub-object
+                    const sifat_name = {
+                        sifat: val.trim()
+                    }
+
+                    // Push the sub-object to the array
+                    object.identitas_surat.push(sifat_name)
+
+                    // Write data to the JSON file
+                    cy.writeFile(getPreviewData, object)
+                })
+        })
     }
 
     // PENANDATANGAN //
@@ -297,22 +487,42 @@ export class TabRegistrasiPage {
     }
 
     inputPenandatanganDiriSendiri() {
-        const dialog_penandatanganModeLabel = cy.get(tab_registrasi.dialog_penandatanganModeLabel).as('dialog_penandatanganModeLabel')
-        dialog_penandatanganModeLabel.should('contain', 'Mode Penandatangan')
+        cy.readFile(getPreviewData).then((object) => {
+            if (!object.penandatangan) {
+                object.penandatangan = []; // Initialize as an empty array
+            }
 
-        const dialog_penandatanganModeInput = cy.get(tab_registrasi.dialog_penandatanganModeInput).as('dialog_penandatanganModeInput')
-        dialog_penandatanganModeInput.select('Diri sendiri').should('have.value', 'DIRI_SENDIRI')
+            const dialog_penandatanganModeLabel = cy.get(tab_registrasi.dialog_penandatanganModeLabel).as('dialog_penandatanganModeLabel')
+            dialog_penandatanganModeLabel.should('contain', 'Mode Penandatangan')
 
-        // Assertion
-        const dialog_penandatanganLabel = cy.get(tab_registrasi.dialog_penandatanganLabel).as('dialog_penandatanganLabel')
-        dialog_penandatanganLabel.should('contain', 'Penandatangan')
+            const dialog_penandatanganModeInput = cy.get(tab_registrasi.dialog_penandatanganModeInput).as('dialog_penandatanganModeInput')
+            dialog_penandatanganModeInput.select('Diri sendiri').should('have.value', 'DIRI_SENDIRI')
 
-        const label_konseptorName = cy.get(tab_registrasi.label_konseptorName).as('label_konseptorName')
-        label_konseptorName.invoke('val')
-            .then((val) => {
-                const dialog_penandatanganInput = cy.get(tab_registrasi.dialog_penandatanganInput).as('dialog_penandatanganInput')
-                dialog_penandatanganInput.find('span').should('contain', val)
-            })
+            // Assertion
+            const dialog_penandatanganLabel = cy.get(tab_registrasi.dialog_penandatanganLabel).as('dialog_penandatanganLabel')
+            dialog_penandatanganLabel.should('contain', 'Penandatangan')
+
+            const label_konseptorName = cy.get(tab_registrasi.label_konseptorName).as('label_konseptorName')
+            label_konseptorName.invoke('val')
+                .then((val) => {
+                    const dialog_penandatanganInput = cy.get(tab_registrasi.dialog_penandatanganInput).as('dialog_penandatanganInput')
+                    dialog_penandatanganInput.find('span').should('contain', val)
+
+                    label_konseptorName.invoke('text')
+                        .then((text) => {
+                            // Construct the sub-object
+                            const penandatangan_name = {
+                                penandatangan_diri_sendiri: text.trim()
+                            }
+
+                            // Push the sub-object to the array
+                            object.penandatangan.push(penandatangan_name)
+
+                            // Write data to the JSON file
+                            cy.writeFile(getPreviewData, object)
+                        })
+                })
+        })
 
         const btn_simpanPenandatangan = cy.get(tab_registrasi.btn_simpanPenandatangan).as('btn_simpanPenandatangan')
         btn_simpanPenandatangan.should('contain', 'Simpan')

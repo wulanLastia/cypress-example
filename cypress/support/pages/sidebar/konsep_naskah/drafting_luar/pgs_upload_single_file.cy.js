@@ -1,5 +1,6 @@
 import upload_single from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/upload_single_file"
 
+const getPreviewData = "cypress/fixtures/non_cred/drafting_luar/transaction_data/preview_data.json"
 export class UploadSingleFilePage {
 
     goToUploadSingleFileSuratBiasa() {
@@ -28,6 +29,24 @@ export class UploadSingleFilePage {
 
         // Access Upload Single File
         btn_uploadFileSuratBiasa.click()
+
+        // Begin Save Assertion Data
+        cy.readFile(getPreviewData).then((object) => {
+            const createDataToWrite = {
+                upload_file: []
+            }
+
+            // Construct the sub-object
+            const jenis_naskah_name = {
+                jenis_naskah: 'Surat Biasa'
+            }
+
+            // Push the sub-object to the array
+            createDataToWrite.upload_file.push(jenis_naskah_name)
+
+            // // Write data to the JSON file
+            cy.writeFile(getPreviewData, createDataToWrite)
+        })
     }
 
     checkDetailJenisNaskah(jenis_naskah) {
@@ -45,9 +64,28 @@ export class UploadSingleFilePage {
         if (status === 'positif') {
             // Upload File
             const fileUploadSingleFile = 'non_cred/drafting_luar/master_data/TEMPLATE_SURAT_BIASA.pdf'
+            const fileName = 'TEMPLATE_SURAT_BIASA.pdf'
 
             const btn_inputNaskahButtonUploadFile = cy.get(upload_single.btn_inputNaskahButtonUploadFile).as('btn_inputNaskahButtonUploadFile')
             btn_inputNaskahButtonUploadFile.attachFile(fileUploadSingleFile)
+
+            // Begin Save Assertion Data
+            cy.readFile(getPreviewData).then((object) => {
+                if (!object.upload_file) {
+                    object.upload_file = [];
+                }
+
+                // Construct the sub-object
+                const upload_file_name = {
+                    upload_file_name: fileName
+                }
+
+                // Push the sub-object to the array
+                object.upload_file.push(upload_file_name)
+
+                // // Write data to the JSON file
+                cy.writeFile(getPreviewData, object)
+            })
         } else {
             // Upload File
             const fileUploadSingleFile = 'non_cred/drafting_luar/master_data/image_example.jpg'
