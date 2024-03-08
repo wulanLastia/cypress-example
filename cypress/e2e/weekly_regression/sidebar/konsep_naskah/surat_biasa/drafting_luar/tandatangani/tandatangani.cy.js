@@ -24,11 +24,11 @@ before(() => {
     loginPage.directLogin()
 })
 
-/*after(() => {
+after(() => {
     qase(411,
         loginPage.logoutV2step2()
     )
-})*/
+})
 
 describe('Drafting Luar - Test Case Tandatangani (Penandatangan Diri Sendiri)', { testIsolation: false }, () => {
 
