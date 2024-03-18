@@ -30,13 +30,28 @@ before(() => {
     loginPage.directLogin()
 })
 
-after(() => {
+/*after(() => {
     qase(411,
         loginPage.logoutV2step2()
     )
-})
+})*/
 
 describe('Drafting Luar - Test Case List Kotak Keluar', { testIsolation: false }, () => {
+
+    // LIST KOTAK KELUAR
+    qase(3062,
+        it('Akses menu kotak keluar', () => {
+            // Go To Kotak Keluar - TTE & Review
+            kotakKeluarPage.goToKotakKeluarTTEReview()
+        })
+    )
+
+    qase(3063,
+        it('Cek detail halaman naskah kotak keluar review naskah', () => {
+            // Check detail halaman
+            kotakKeluarPage.checkDetailHalamanKotakKeluar()
+        })
+    )
 
     // KOLOM URGENSI
     qase([3117, 3118, 3119, 3120],
