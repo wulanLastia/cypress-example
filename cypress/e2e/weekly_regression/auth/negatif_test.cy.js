@@ -18,14 +18,14 @@ beforeEach(() => {
 describe('Login Negatif Skenario', () => {
     qase(252,
         it('Input NIP selain angka', () => {
-            loginPage.loginViaV1(user.nipAbjad, user.password)
+            loginPage.loginViaV1(user.nip_abjad, user.password)
             loginPage.alertGagalLogin()
         })
     )
 
     qase(249,
         it('Login dengan NIP kurang dari 18 karakter', () => {
-            loginPage.loginViaV1(user.nipKurang, user.password)
+            loginPage.loginViaV1(user.nip_kurang, user.password)
             loginPage.alertGagalLogin()
         })
     )

@@ -33,7 +33,7 @@ describe('Create Surat Biasa Tujuan Internal Skenario 1 (Tujuan Kepala Surat)', 
     qase([13, 81, 83, 709, 150, 80, 176],
         it('Create Naskah Surat Biasa', () => {
             // Login 
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             // Create Naskah

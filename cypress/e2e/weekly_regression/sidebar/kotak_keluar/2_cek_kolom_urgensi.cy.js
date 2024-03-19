@@ -16,7 +16,7 @@ before(() => {
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 
-    
+
 })
 
 after(() => {
@@ -26,7 +26,7 @@ after(() => {
 describe('List Review Naskah Kotak Keluar Skenario', { testIsolation: false }, () => {
     qase(513,
         it('Akses halaman kotak keluar review naskah', () => {
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
             menuPage.goToKotakKeluarReviewNaskah()
         })

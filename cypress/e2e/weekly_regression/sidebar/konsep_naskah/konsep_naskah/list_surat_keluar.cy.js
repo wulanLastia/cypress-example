@@ -25,7 +25,7 @@ describe('List Review Naskah Keluar', () => {
     qase(46,
         it('Cek detail container naskah keluar', () => {
             // Login
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             // Check Detail

@@ -72,7 +72,7 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
     qase(1762,
         it('Akses form editing kaki surat', () => {
             // Login
-            loginPage.loginViaV1Prod(user.nip, user.password)
+            loginPage.loginViaV1Prod(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             cy.wait(1000)
@@ -278,7 +278,7 @@ describe('Kembalikan Naskah Skenario', () => {
                 'SIDEBAR-V1-LOGIN-CAPTCHA': true
             })
 
-            loginPage.loginViaV1Prod(user.nipPemeriksa, user.passwordPemeriksa)
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1 - 1, user.password_pemeriksa)
             loginPage.directLogin()
 
             // Kembalikan Naskah
@@ -307,7 +307,7 @@ describe('Perbaiki Naskah Skenario', { testIsolation: false }, () => {
                 'SIDEBAR-V1-LOGIN-CAPTCHA': true
             })
 
-            loginPage.loginViaV1Prod(user.nip, user.password)
+            loginPage.loginViaV1Prod(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             perbaikiNaskahPage.goToPerbaikiNaskah(data_review.env[0].prod)
@@ -346,7 +346,7 @@ describe('Koreksi Setujui Naskah Skenario', { testIsolation: false }, () => {
                 'SIDEBAR-V1-LOGIN-CAPTCHA': true
             })
 
-            loginPage.loginViaV1Prod(user.nipPemeriksa, user.passwordPemeriksa)
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1 - 1, user.password_pemeriksa)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview(data_review.env[0].prod)
@@ -370,7 +370,7 @@ describe('Koreksi Tandatangani Naskah Skenario', { testIsolation: false }, () =>
                 'SIDEBAR-V1-LOGIN-CAPTCHA': true
             })
 
-            loginPage.loginViaV1Prod(user.nipPemeriksa2, user.passwordPemeriksa)
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1 - 2, user.password_pemeriksa)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview(data_review.env[0].prod)

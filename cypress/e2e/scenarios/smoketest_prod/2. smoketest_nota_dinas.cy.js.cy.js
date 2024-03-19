@@ -27,7 +27,7 @@ before(() => {
 
 before(() => {
     // LogIn Skenario Default
-    loginPage.loginViaV1Prod(user.nip, user.password)
+    loginPage.loginViaV1Prod(user.nip_konseptor_1, user.password)
     loginPage.directLogin()
 
 })
@@ -61,7 +61,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
     qase([399, 101, 377, 402, 100],
         it('Kembalikan Naskah', () => {
             // Login 
-            loginPage.loginViaV1Prod(user.nipPemeriksa, user.passwordPemeriksa)
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1 - 1, user.password_pemeriksa)
             loginPage.directLogin()
 
 
@@ -87,7 +87,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
     qase([367, 712, 713, 714, 715],
         it('Perbaiki Naskah', () => {
             // Login 
-            loginPage.loginViaV1Prod(user.nip, user.password)
+            loginPage.loginViaV1Prod(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
 
@@ -104,7 +104,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
     qase([358, 102],
         it('Setujui Naskah', () => {
             // Login 
-            loginPage.loginViaV1Prod(user.nipPemeriksa, user.passwordPemeriksa)
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1 - 1, user.password_pemeriksa)
             loginPage.directLogin()
 
             setujuiPage.suratBelumDireview()
@@ -120,7 +120,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
     qase([368, 370, 372],
         it.skip('Koreksi dan Tandatangani Naskah', () => {
             // Login 
-            loginPage.loginViaV1Prod(user.nipPemeriksa2, user.passwordPemeriksa)
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1 - 2, user.password_pemeriksa)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview()

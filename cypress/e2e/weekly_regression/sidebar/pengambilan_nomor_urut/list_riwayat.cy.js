@@ -35,7 +35,7 @@ before(() => {
 
     cy.intercept({ resourceType: /xhr/ }, { log: false })
 
-    
+
 })
 
 after(() => {
@@ -47,7 +47,7 @@ describe('List riwayat pengambilan nomor urut', { testIsolation: false }, () => 
     qase([1006, 1035],
         it('Cek detail list riwayat pengambilan nomor', () => {
             // Login
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             // Akses menu pengambilan nomor

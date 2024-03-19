@@ -37,7 +37,7 @@ describe('Kembalikan Naskah Skenario', () => {
     qase([13, 81, 83, 709, 150, 80],
         it('Create Naskah Surat Biasa', () => {
             // Login 
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             // Create Naskah
@@ -70,7 +70,7 @@ describe('Kembalikan Naskah Skenario', () => {
     qase([399, 101, 377, 402, 100],
         it('Kembalikan Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.nipPemeriksa, user.password)
+            loginPage.loginViaV1(user.nip_pemeriksa_1 - 1, user.password)
             loginPage.directLogin()
 
             // Kembalikan Naskah

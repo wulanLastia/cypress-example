@@ -48,7 +48,7 @@ describe('Pengambilan nomor urut oleh user UK Dispusida memilih UK Setda', () =>
     qase([1006, 1109, 1009, 1684, 1686, 1687, 1688, 1689],
         it('Create nomor urut multiple', () => {
             // Login
-            loginPage.loginViaV1(user.nipUK, user.password)
+            loginPage.loginViaV1(user.nip_uk, user.password)
             loginPage.directLogin()
 
             // Akses menu pengambilan nomor
@@ -82,7 +82,7 @@ describe('Pengambilan nomor urut oleh user UK Dispusida memilih UK Setda', () =>
     qase(1703,
         it('Cek list bank nomor akun UK Setda setelah UK dinas lain (dispusipda) mengambil nomor multiple', () => {
             // Login
-            loginPage.loginViaV1(user.nipUKSetda, user.password)
+            loginPage.loginViaV1(user.nip_uk_setda, user.password)
             loginPage.directLogin()
 
             // Validasi data pada list UK yang mengambil diluar organisasinya

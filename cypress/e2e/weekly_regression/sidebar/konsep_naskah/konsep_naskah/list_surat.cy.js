@@ -25,7 +25,7 @@ describe('List Surat Skenario', () => {
     qase(18,
         it('Cek detail container Konsep Naskah', () => {
             // Login
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             // Cek Detail

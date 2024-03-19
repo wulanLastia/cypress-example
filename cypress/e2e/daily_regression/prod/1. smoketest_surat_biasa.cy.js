@@ -34,7 +34,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
     qase([13, 81, 83, 709, 150, 80],
         it('Create Naskah Surat Biasa', () => {
             // Login 
-            loginPage.loginViaV1Prod(user.nip, user.password)
+            loginPage.loginViaV1Prod(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             // Create Naskah
@@ -76,7 +76,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
     qase([399, 101, 377, 402, 100],
         it('Kembalikan Naskah', () => {
             // Login 
-            loginPage.loginViaV1Prod(user.nipPemeriksa, user.passwordPemeriksa)
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1 - 1, user.password_pemeriksa)
             loginPage.directLogin()
 
             // Create Naskah
@@ -94,7 +94,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
     qase([367, 712, 713, 714, 715],
         it('Perbaiki Naskah', () => {
             // Login 
-            loginPage.loginViaV1Prod(user.nip, user.password)
+            loginPage.loginViaV1Prod(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             perbaikiNaskahPage.goToPerbaikiNaskah(data_temp.env[0].prod)
@@ -105,7 +105,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
     qase([358, 102],
         it('Setujui Naskah', () => {
             // Login 
-            loginPage.loginViaV1Prod(user.nipPemeriksa, user.passwordPemeriksa)
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1 - 1, user.password_pemeriksa)
             loginPage.directLogin()
 
             setujuiPage.suratBelumDireview(data_temp.env[0].prod)
@@ -116,7 +116,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
     qase([368, 370, 372],
         it('Koreksi dan Tandatangani Naskah', () => {
             // Login 
-            loginPage.loginViaV1Prod(user.nipPemeriksa2, user.passwordPemeriksa)
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1 - 2, user.password_pemeriksa)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview(data_temp.env[0].prod)

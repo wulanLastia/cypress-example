@@ -79,7 +79,7 @@ describe('Pengambilan nomor urut oleh user TU memilih UK Sekdis', () => {
     qase(1616,
         it('Cek data pada list ketika TU memilih surat dinas UK sekdis', () => {
             // Login
-            loginPage.loginViaV1(user.nipUKSetda, user.password)
+            loginPage.loginViaV1(user.nip_uk_setda, user.password)
             loginPage.directLogin()
 
             // Validasi data pada list TU yang mengambil diluar organisasinya
