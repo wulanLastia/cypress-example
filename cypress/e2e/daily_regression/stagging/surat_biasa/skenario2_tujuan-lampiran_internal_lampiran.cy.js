@@ -94,7 +94,7 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
             // Set toogle unleash
 
             // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_1 - 1, user.password)
+            loginPage.loginViaV1(user.user.nip_pemeriksa_1 - 1, user.password)
             loginPage.directLogin()
 
             // Create Naskah
@@ -129,7 +129,7 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
             // Set toogle unleash
 
             // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_1 - 1, user.password)
+            loginPage.loginViaV1(user.user.nip_pemeriksa_1 - 1, user.password)
             loginPage.directLogin()
 
             setujuiPage.suratBelumDireview(data_temp.env[0].staging)
@@ -146,7 +146,7 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
             // Set toogle unleash
 
             // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_1 - 2, user.password)
+            loginPage.loginViaV1(user.user.nip_pemeriksa_1 - 2, user.password)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview(data_temp.env[0].staging)

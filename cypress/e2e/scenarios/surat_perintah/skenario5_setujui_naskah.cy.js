@@ -267,7 +267,7 @@ describe('Setujui Naskah Skenario', { testIsolation: false }, () => {
     qase([2152, 2146],
         it('Setujui Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_1 - 1, user.password)
+            loginPage.loginViaV1(user.user.nip_pemeriksa_1 - 1, user.password)
             loginPage.directLogin()
 
             setujuiPage.suratBelumDireview()

@@ -262,7 +262,7 @@ describe('Koreksi Tandatangani Naskah Skenario', { testIsolation: false }, () =>
     qase([2167, 2168, 2170, 2174],
         it('Koreksi dan Tandatangani Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_1 - 2, user.password)
+            loginPage.loginViaV1(user.user.nip_pemeriksa_1 - 2, user.password)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview()

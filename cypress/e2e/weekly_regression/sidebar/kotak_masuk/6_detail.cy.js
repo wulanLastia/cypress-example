@@ -73,7 +73,7 @@ describe('Detail Review dan Verifikasi hasil Surat (Kotak Masuk) Skenario', () =
     qase([97, 358, 99],
         it('Check Detail Review dan Verifikasi hasil Surat (Kotak Masuk)', () => {
             //Login
-            loginPage.loginViaV1(user.nip_pemeriksa_1 - 1, user.password)
+            loginPage.loginViaV1(user.user.nip_pemeriksa_1 - 1, user.password)
             loginPage.directLogin()
 
             menuPage.goToKotakMasukReviewNaskah()
