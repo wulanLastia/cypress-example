@@ -76,7 +76,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
     qase([399, 101, 377, 402, 100],
         it('Kembalikan Naskah', () => {
             // Login 
-            loginPage.loginViaV1Prod(user.nip_pemeriksa_1 - 1, user.password_pemeriksa)
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1_1, user.password_pemeriksa)
             loginPage.directLogin()
 
             // Create Naskah
@@ -105,7 +105,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
     qase([358, 102],
         it('Setujui Naskah', () => {
             // Login 
-            loginPage.loginViaV1Prod(user.nip_pemeriksa_1 - 1, user.password_pemeriksa)
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1_1, user.password_pemeriksa)
             loginPage.directLogin()
 
             setujuiPage.suratBelumDireview(data_temp.env[0].prod)
@@ -116,7 +116,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
     qase([368, 370, 372],
         it('Koreksi dan Tandatangani Naskah', () => {
             // Login 
-            loginPage.loginViaV1Prod(user.user.nip_pemeriksa_1 - 2, user.password_pemeriksa)
+            loginPage.loginViaV1Prod(user.user.nip_pemeriksa_1_2, user.password_pemeriksa)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview(data_temp.env[0].prod)

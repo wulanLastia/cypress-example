@@ -81,7 +81,7 @@ describe('Create Surat Biasa Tujuan Internal Skenario 1 (Tujuan Kepala Surat)', 
     qase([358, 102],
         it('Setujui Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.user.nip_pemeriksa_1 - 1, user.password)
+            loginPage.loginViaV1(user.user.nip_pemeriksa_1_1, user.password)
             loginPage.directLogin()
 
             setujuiPage.suratBelumDireview(data_temp.env[0].staging)

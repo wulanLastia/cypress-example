@@ -267,7 +267,7 @@ describe('Koreksi Setujui Naskah Skenario', { testIsolation: false }, () => {
     qase([2167, 2168, 2170, 2174],
         it('Koreksi dan Setujui Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.user.nip_pemeriksa_1 - 1, user.password)
+            loginPage.loginViaV1(user.user.nip_pemeriksa_1_1, user.password)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview()
