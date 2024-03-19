@@ -31,7 +31,7 @@ describe('Create Surat Biasa Skenario', () => {
 
     qase([13, 81, 83, 709, 150, 80, 913, 176],
         it('Create Naskah Surat Biasa', () => {
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             // Create Naskah

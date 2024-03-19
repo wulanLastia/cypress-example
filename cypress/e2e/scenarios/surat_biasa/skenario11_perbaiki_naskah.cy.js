@@ -32,7 +32,7 @@ describe('Create, Kembalikan dan Perbaiki Naskah Skenario', () => {
     qase([13, 81, 83, 709, 150, 80],
         it('Create Naskah Surat Biasa', () => {
             // Login 
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             // Create Naskah
@@ -65,7 +65,7 @@ describe('Create, Kembalikan dan Perbaiki Naskah Skenario', () => {
     qase([399, 101, 377, 402, 100],
         it('Kembalikan Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.nipPemeriksa, user.password)
+            loginPage.loginViaV1(user.user.nip_pemeriksa_1_1, user.password)
             loginPage.directLogin()
 
             // Kembalikan Naskah
@@ -85,7 +85,7 @@ describe('Create, Kembalikan dan Perbaiki Naskah Skenario', () => {
     qase([367, 717],
         it('Akses halaman perbaikan naskah', () => {
             // Login
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             perbaikiNaskahPage.goToPerbaikiNaskah(data_temp.env[0].staging)
@@ -98,7 +98,7 @@ describe('Create, Kembalikan dan Perbaiki Naskah Skenario', () => {
     qase([712, 713, 714, 715],
         it('Memperbaiki isi naskah', () => {
             // Login
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             perbaikiNaskahPage.goToPerbaikiNaskah(data_temp.env[0].staging)

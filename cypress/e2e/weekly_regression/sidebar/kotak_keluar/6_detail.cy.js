@@ -36,7 +36,7 @@ describe('Detail Surat (Kotak Keluar) Skenario', () => {
     qase([13, 81, 83, 709, 150, 80],
         it('Create Naskah Surat Biasa', () => {
             // Login 
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             // Create Naskah
@@ -73,7 +73,7 @@ describe('Detail Surat (Kotak Keluar) Skenario', () => {
     qase([513, 514],
         it('Cek detail halaman detail kotak keluar review naskah', () => {
             //Login
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
             menuPage.goToKotakKeluarReviewNaskah()
 

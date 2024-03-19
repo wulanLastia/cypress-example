@@ -43,7 +43,7 @@ describe('Pengambilan nomor urut oleh user UK memilih UK diri sendiri', () => {
     qase([1006, 1109, 1012, 1014, 1015, 1054, 1045, 1017, 1599],
         it('Cek data pada list ketika memilih UK diri sendiri', () => {
             // Login
-            loginPage.loginViaV1(user.nipUK, user.password)
+            loginPage.loginViaV1(user.nip_uk, user.password)
             loginPage.directLogin()
 
             // Akses menu pengambilan nomor

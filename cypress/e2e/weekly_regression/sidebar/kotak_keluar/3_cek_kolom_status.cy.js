@@ -11,7 +11,7 @@ let user
 beforeEach(() => {
     cy.intercept({ resourceType: /xhr/ }, { log: false })
 
-    
+
 })
 
 before(() => {
@@ -28,7 +28,7 @@ after(() => {
 describe('Pengecekan Kolom Status', { testIsolation: false }, () => {
     qase(513,
         it('Akses halaman kotak keluar review naskah', () => {
-            loginPage.loginViaV1(user.nipPemeriksa, user.password)
+            loginPage.loginViaV1(user.user.nip_pemeriksa_1 - 1, user.password)
             loginPage.directLogin()
             menuPage.goToKotakKeluarReviewNaskah()
         })

@@ -41,7 +41,7 @@ before(() => {
 })
 
 before(() => {
-    loginPage.loginViaV1(user.nip, user.password)
+    loginPage.loginViaV1(user.nip_konseptor_1, user.password)
     loginPage.directLogin()
 
     cy.wait(1000)
@@ -264,7 +264,7 @@ describe('Setujui Naskah Skenario', { testIsolation: false }, () => {
     qase([2152, 2146],
         it('Setujui Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.nipPemeriksa, user.password)
+            loginPage.loginViaV1(user.user.nip_pemeriksa_1_1, user.password)
             loginPage.directLogin()
 
             setujuiPage.suratBelumDireview()
@@ -281,7 +281,7 @@ describe('Tandatangani Naskah Skenario', { testIsolation: false }, () => {
     qase([2152, 2146],
         it('Setujui Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.nipPemeriksa2, user.password)
+            loginPage.loginViaV1(user.user.nip_pemeriksa_1_2, user.password)
             loginPage.directLogin()
 
             setujuiPage.suratBelumDireview()

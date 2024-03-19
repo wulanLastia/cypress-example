@@ -18,7 +18,7 @@ before(() => {
 })
 
 before(() => {
-    loginPage.loginViaV1(user.nip, user.password)
+    loginPage.loginViaV1(user.nip_konseptor_2, user.password)
     loginPage.directLogin()
 })
 
@@ -59,24 +59,23 @@ describe('Drafting Luar - Test Case Tab Registrasi Identitas Surat', { testIsola
             // Input tujuan from input field
             tabRegistrasiPage.inputTujuan('staging', '0', 'internal', 'Dra. Hj. I GUSTI AGUNG')
 
-            // @TODO : Menunggu bug fixing dari sisi backend
-            // // Add more tujuan
-            // tabRegistrasiPage.addMoreTujuan()
+            // Add more tujuan
+            tabRegistrasiPage.addMoreTujuan()
 
-            // // Input tujuan from input field
-            // tabRegistrasiPage.inputTujuan('staging', '1', 'internal', 'LUDIA ROSEMA DEWI, S.Kom.')
+            // Input tujuan from input field
+            tabRegistrasiPage.inputTujuan('staging', '1', 'internal', 'LUDIA ROSEMA DEWI, S.Kom.')
 
-            // // Add more tujuan
-            // tabRegistrasiPage.addMoreTujuan()
+            // Add more tujuan
+            tabRegistrasiPage.addMoreTujuan()
 
-            // // Input tujuan eksternal
-            // tabRegistrasiPage.inputTujuan('staging', '2', 'eksternal', 'Tujuan Eksternal 1')
+            // Input tujuan eksternal
+            tabRegistrasiPage.inputTujuan('staging', '2', 'eksternal', 'Tujuan Eksternal 1')
 
-            // // Add more tujuan
-            // tabRegistrasiPage.addMoreTujuan()
+            // Add more tujuan
+            tabRegistrasiPage.addMoreTujuan()
 
-            // // Input tujuan eksternal
-            // tabRegistrasiPage.inputTujuan('staging', '3', 'eksternal', 'Tujuan Eksternal 1')
+            // Input tujuan eksternal
+            tabRegistrasiPage.inputTujuan('staging', '3', 'eksternal', 'Tujuan Eksternal 1')
         })
     )
 

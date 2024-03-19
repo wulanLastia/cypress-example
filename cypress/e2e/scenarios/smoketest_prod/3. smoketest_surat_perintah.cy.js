@@ -51,10 +51,10 @@ before(() => {
     cy.overrideFeatureToggle({
         'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
         'SIDEBAR-V1-LOGIN-CAPTCHA': true
-    })    
+    })
 
     // LogIn Skenario Default
-    loginPage.loginViaV1Prod(user.nip, user.password)
+    loginPage.loginViaV1Prod(user.nip_konseptor_1, user.password)
     loginPage.directLogin()
     cy.wait(1000)
     draftingSuratPerintahPage.gotoKonsepNaskahSuratPerintah()
@@ -282,9 +282,9 @@ describe('Kembalikan Naskah Skenario', () => {
             cy.overrideFeatureToggle({
                 'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
                 'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })            
+            })
 
-            loginPage.loginViaV1Prod(user.nipPemeriksa, user.passwordPemeriksa)
+            loginPage.loginViaV1Prod(user.user.nip_pemeriksa_1_1, user.password_pemeriksa)
             loginPage.directLogin()
 
             // Kembalikan Naskah
@@ -311,9 +311,9 @@ describe('Perbaiki Naskah Skenario', { testIsolation: false }, () => {
             cy.overrideFeatureToggle({
                 'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
                 'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })            
+            })
 
-            loginPage.loginViaV1Prod(user.nip, user.password)
+            loginPage.loginViaV1Prod(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             perbaikiNaskahPage.goToPerbaikiNaskah()
@@ -339,7 +339,7 @@ describe('Perbaiki Naskah Skenario', { testIsolation: false }, () => {
         })
     )
 
-}) 
+})
 
 describe('Koreksi Setujui Naskah Skenario', { testIsolation: false }, () => {
     qase([2167, 2168, 2170, 2174],
@@ -350,9 +350,9 @@ describe('Koreksi Setujui Naskah Skenario', { testIsolation: false }, () => {
             cy.overrideFeatureToggle({
                 'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
                 'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })            
+            })
 
-            loginPage.loginViaV1Prod(user.nipPemeriksa, user.passwordPemeriksa)
+            loginPage.loginViaV1Prod(user.user.nip_pemeriksa_1_1, user.password_pemeriksa)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview()
@@ -374,9 +374,9 @@ describe('Koreksi Tandatangani Naskah Skenario', { testIsolation: false }, () =>
             cy.overrideFeatureToggle({
                 'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
                 'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })            
+            })
 
-            loginPage.loginViaV1Prod(user.nipPemeriksa2, user.passwordPemeriksa)
+            loginPage.loginViaV1Prod(user.user.nip_pemeriksa_1_2, user.password_pemeriksa)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview()

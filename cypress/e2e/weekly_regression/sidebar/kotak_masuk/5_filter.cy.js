@@ -23,7 +23,7 @@ before(() => {
         user = data
     })
 
-    
+
 })
 
 after(() => {
@@ -33,7 +33,7 @@ after(() => {
 describe('Filter Naskah Kotak Masuk Skenario', { testIsolation: false }, () => {
     qase(97,
         it('Akses menu kotak masuk (Review naskah)', () => {
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
             menuPage.goToKotakMasukReviewNaskah()
         })

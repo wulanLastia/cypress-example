@@ -42,7 +42,7 @@ before(() => {
 })
 
 before(() => {
-    loginPage.loginViaV1(user.nip, user.password)
+    loginPage.loginViaV1(user.nip_konseptor_1, user.password)
     loginPage.directLogin()
 
     cy.wait(1000)
@@ -100,7 +100,7 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
         })
     )
 
-    
+
 
     qase([1395, 1419],
         it('Akses form editing kop surat (drafting)', () => {

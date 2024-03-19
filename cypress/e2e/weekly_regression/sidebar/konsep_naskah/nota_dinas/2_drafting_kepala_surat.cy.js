@@ -34,7 +34,7 @@ before(() => {
 })
 
 before(() => {
-    loginPage.loginViaV1(user.nip, user.password)
+    loginPage.loginViaV1(user.nip_konseptor_1, user.password)
     loginPage.directLogin()
     createNotaDinasPage.gotoNotaDinas()
 })
@@ -221,7 +221,7 @@ describe('[Negative] Drafting Kepala Surat Skenario', { testIsolation: false }, 
             // Clear Cache & Login
             cy.then(Cypress.session.clearCurrentSessionData)
 
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
             createNotaDinasPage.gotoNotaDinas()
 

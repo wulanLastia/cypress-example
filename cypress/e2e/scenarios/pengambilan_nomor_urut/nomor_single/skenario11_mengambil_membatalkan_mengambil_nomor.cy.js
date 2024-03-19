@@ -48,7 +48,7 @@ describe('Pengambilan nomor urut oleh user UK Dispusida memilih UK Setda', () =>
     qase([1006, 1109, 1012, 1014, 1015, 1054, 1045, 1017],
         it('Cek detail list riwayat pengambilan nomor', () => {
             // Login
-            loginPage.loginViaV1(user.nipUK, user.password)
+            loginPage.loginViaV1(user.nip_uk, user.password)
             loginPage.directLogin()
 
             // Akses menu pengambilan nomor
@@ -85,7 +85,7 @@ describe('Pengambilan nomor urut oleh user UK Dispusida memilih UK Setda', () =>
     qase(1703,
         it('Cek list bank nomor akun UK Setda setelah UK dinas lain (dispusipda) mengambil nomor multiple', () => {
             // Login
-            loginPage.loginViaV1(user.nipUKSetda, user.password)
+            loginPage.loginViaV1(user.nip_uk_setda, user.password)
             loginPage.directLogin()
 
             // Validasi data pada list UK yang mengambil diluar organisasinya
@@ -99,7 +99,7 @@ describe('Pengambilan nomor urut oleh user UK Dispusida memilih UK Setda', () =>
     qase([1006, 1109, 1012, 1014, 1015, 1054, 1045, 1017],
         it('Generate ulang nomor', () => {
             // Login
-            loginPage.loginViaV1(user.nipUK, user.password)
+            loginPage.loginViaV1(user.nip_uk, user.password)
             loginPage.directLogin()
 
             // Akses menu pengambilan nomor
@@ -136,7 +136,7 @@ describe('Pengambilan nomor urut oleh user UK Dispusida memilih UK Setda', () =>
     qase(1705,
         it('[Negative] Cek urutan nomor multiple setelah membatalkan nomor', () => {
             // Login
-            loginPage.loginViaV1(user.nipUKSetda, user.password)
+            loginPage.loginViaV1(user.nip_uk_setda, user.password)
             loginPage.directLogin()
 
             // Validasi data pada list UK yang mengambil diluar organisasinya

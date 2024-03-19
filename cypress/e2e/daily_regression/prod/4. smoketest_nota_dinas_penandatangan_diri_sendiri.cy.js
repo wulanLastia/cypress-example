@@ -28,7 +28,7 @@ before(() => {
 
 before(() => {
     // LogIn Skenario Default
-    loginPage.loginViaV1Prod(user.nip, user.password)
+    loginPage.loginViaV1Prod(user.nip_konseptor_1, user.password)
     loginPage.directLogin()
 
 })

@@ -28,7 +28,7 @@ describe('[Negatif] Leave the field empty when submitting the Surat Biasa Tujuan
     qase([13, 81, 83, 709, 150, 80, 849, 176, 308, 94, 842, 112, 119, 125, 140, 1938],
         it('Create Naskah Surat Biasa', () => {
             // Login 
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             // Create Naskah

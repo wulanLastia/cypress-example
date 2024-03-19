@@ -45,7 +45,7 @@ describe('Create Surat Biasa Tujuan Internal Skenario 1 (Tujuan Kepala Surat)', 
     qase([13, 81, 83, 709, 150, 80, 176],
         it('Create Naskah Surat Biasa', () => {
             // Login 
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             // Create Naskah
@@ -81,7 +81,7 @@ describe('Create Surat Biasa Tujuan Internal Skenario 1 (Tujuan Kepala Surat)', 
     qase([368, 370, 372],
         it('Koreksi dan Setujui Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.nipPemeriksa, user.password)
+            loginPage.loginViaV1(user.user.nip_pemeriksa_1_1, user.password)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview(data_temp.env[0].staging)

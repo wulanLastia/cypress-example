@@ -41,7 +41,7 @@ before(() => {
 })
 
 before(() => {
-    loginPage.loginViaV1(user.nip, user.password)
+    loginPage.loginViaV1(user.nip_konseptor_1, user.password)
     loginPage.directLogin()
 
     cy.wait(1000)
@@ -103,7 +103,7 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
             draftingKakiSuratPerintahPage.inputPemeriksa1(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama3)
             cy.wait(3000)
         })
-    )    
+    )
 
     qase([1395, 1419],
         it('Akses form editing kop surat (drafting)', () => {
@@ -267,7 +267,7 @@ describe('Koreksi Setujui Naskah Skenario', { testIsolation: false }, () => {
     qase([2167, 2168, 2170, 2174],
         it('Koreksi dan Setujui Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.nipPemeriksa, user.password)
+            loginPage.loginViaV1(user.user.nip_pemeriksa_1_1, user.password)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview()

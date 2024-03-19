@@ -26,7 +26,7 @@ before(() => {
 })
 
 before(() => {
-    loginPage.loginViaV1(user.nip, user.password)
+    loginPage.loginViaV1(user.nip_konseptor_2, user.password)
     loginPage.directLogin()
 })
 
@@ -56,9 +56,6 @@ describe('Drafting Luar - Test Case List Kotak Keluar', { testIsolation: false }
     // KOLOM URGENSI
     qase([3117, 3118, 3119, 3120],
         it('Cek warna label urgensi', () => {
-            // Go To Kotak Keluar - TTE & Review
-            kotakKeluarPage.goToKotakKeluarTTEReview()
-
             // Cek warna label
             kotakKeluarPage.checkWarnaLabelUrgensi()
         })

@@ -28,7 +28,7 @@ describe('[Negatif] Input HTML Script Create Surat Biasa Tujuan Internal Ekstern
     qase([13, 81, 83, 709, 150, 80, 849, 176, 306, 92, 840, 110, 123, 138],
         it('Create Naskah Surat Biasa', () => {
             // Login 
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             // Create Naskah

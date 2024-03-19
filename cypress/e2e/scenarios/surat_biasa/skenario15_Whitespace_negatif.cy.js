@@ -28,7 +28,7 @@ describe('[Negatif] Input Whitespace Create Surat Biasa Tujuan Internal Eksterna
     qase([13, 81, 83, 709, 150, 80, 849, 176, 106, 845, 115, 119, 128, 131, 134, 143, 311],
         it('Create Naskah Surat Biasa', () => {
             // Login 
-            loginPage.loginViaV1(user.nip, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             // Create Naskah
