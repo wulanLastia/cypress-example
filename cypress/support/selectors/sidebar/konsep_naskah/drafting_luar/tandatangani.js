@@ -1,6 +1,7 @@
 module.exports = {
     // BUTTON
     btn_tandatanganiNaskah: '[data-cy="header__button--sign-document"]',
+    btn_tandTanganiNaskahReview: '[data-cy="tte-review-naskah__button--sign-document"]',
     btn_tteNaskah: '[data-cy="dialog__dialog-send-document__button--confirm"]',
     btn_tteConfirm: '[data-cy="dialog__dialog-signing__button--confirm"]',
     btn_tteCancel: '[data-cy="dialog__dialog-signing__button--cancel"]',
@@ -28,6 +29,6 @@ module.exports = {
     dialog_panelTteTitle: '[data-cy="dialog__dialog-signing__title"]',
     dialog_panelTteDesc: '[data-cy="dialog__dialog-signing__description"]',
     dialog_panelInputPassphrase: '[data-cy="dialog__dialog-signing__input--passphrase"]',
-    dialog_panelIconHideShow: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[5]/div[1]/div[1]/div[1]/button[1]'
-
+    dialog_panelIconHideShow: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[5]/div[1]/div[1]/div[1]/button[1]',
+    dialog_successTTENaskah: '[data-cy="dialog__dialog-info__wrapper"]',
 }

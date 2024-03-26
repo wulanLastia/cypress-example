@@ -32,6 +32,7 @@ module.exports = {
 
     // SELECT
     select_bankNomor: '[data-cy="registrasi__nomor-naskah__input--bank-nomor"]',
+    select_inputBankNomor: '[data-cy="input__select-',
     select_bankNomorUKDispusipda: '[data-cy="input__select-1"]',
     select_bankNomorlainnya: '[data-cy="input__select-9999"]',
     select_inputNomorUrut: '[data-cy="registrasi__nomor-naskah__input--nomor-urut"]',
@@ -47,6 +48,8 @@ module.exports = {
     select_urgensiOption: '[data-cy="input__custom-select-',
     select_sifatSurat: '[data-cy="registrasi__identitas-naskah__select--sifat"]',
     select_sifatSuratOption: '[data-cy="input__select-',
+    select_inputPenandatanganAtasan: '[data-cy="penandatangan__select-option__custom-input-1"]',
+    select_inputPenandatanganAtasanSuggest: '[data-cy="penandatangan__select-option__0"]',
 
     // CHECKBOX/TOGGLE
     check_toggleDistribusi: '[data-cy="registrasi__tujuan-naskah__toggle--distribusi"]',

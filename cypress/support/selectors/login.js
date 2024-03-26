@@ -8,7 +8,6 @@ module.exports = {
     closePopupLandingPageV1: '[data-cy="aksi-close-modal-beranda"]',
     goToV2: '[data-cy="aksi-login-to-v2"]',
     backToV1: '[data-cy="sidebar__v1__dashboard"]',
-    closePopupLandingPage: '[data-cy="dialog__welcoming__button--close"]',
     getJQueryProfileV2: "button[tabindex='0']",
     showHeaderNav: '[data-cy="header__component"]',
     showHeaderNavProd: 'header[data-v-dd2902de]',
@@ -23,4 +22,5 @@ module.exports = {
     profileUser: '/html[1]/body[1]/div[1]/header[1]/nav[1]/div[1]/ul[1]/li[2]/a[1]',
     btnKeluar: '/html[1]/body[1]/div[1]/header[1]/nav[1]/div[1]/ul[1]/li[2]/ul[1]/li[2]/div[2]/a[1]',
     konsepNaskahMenu: '/html[1]/body[1]/div[1]/aside[1]/div[1]/section[1]/ul[1]/li[3]/a[1]/span[1]',
+    showInputLogin: '/html[1]/body[1]/section[1]/div[1]/div[2]/div[2]/button[1]',
 }

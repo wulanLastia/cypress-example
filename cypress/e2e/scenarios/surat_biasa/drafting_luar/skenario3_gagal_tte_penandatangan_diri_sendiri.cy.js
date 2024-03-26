@@ -21,11 +21,11 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-after(() => {
+/*after(() => {
     qase(411,
         loginPage.logoutV2step2()
     )
-})
+})*/
 
 describe('Drafting Luar - Skenario Penandatangan Diri Sendiri', { testIsolation: false }, () => {
 
@@ -79,7 +79,7 @@ describe('Drafting Luar - Skenario Penandatangan Diri Sendiri', { testIsolation:
             tandatanganiPage.tandatanganiNaskah()
             tandatanganiPage.checkInputDataRegistrasi()
             tandatanganiPage.tteNaskah()
-            tandatanganiPage.submitTteNaskah(user.passphrase, 'staging')
+            tandatanganiPage.submitTteNaskah('passphrase', 'staging')
 
             // Check Naskah Di Kotak Keluar
             kotakKeluarPage.goToKotakKeluarTTEReview()
