@@ -31,6 +31,14 @@ export class ListNaskahSuratBiasaPage {
         btn_draftSuratBiasa.click()
     }
 
+    goToKonsepNaskahSuratBiasaDispusipda() {
+        // Find Document Type
+        const suratBiasa = cy.get(konsep_naskah.suratBiasa).as('suratBiasa')
+        suratBiasa.contains('Surat Biasa')
+            .scrollIntoView()
+            .click()
+    }
+
     batalDrafting() {
         const btnKembali = cy.get(konsep_naskah.btnKembali).as('btnKembali')
         btnKembali.should('be.visible')
@@ -153,6 +161,14 @@ export class ListNaskahSuratBiasaPage {
 
         // Assertion
         cy.url().should('eq', Cypress.env('base_url') + '/konsep-naskah/nota-dinas')
+    }
+
+    goToKonsepNaskahNotaDinasDispusipda() {
+        // Find Document Type
+        const notaDinas = cy.get(konsep_naskah.notaDinas).as('notaDinas')
+        notaDinas.contains('Nota Dinas')
+            .scrollIntoView()
+            .click()
     }
 
     downloadFile(jenis_naskah) {

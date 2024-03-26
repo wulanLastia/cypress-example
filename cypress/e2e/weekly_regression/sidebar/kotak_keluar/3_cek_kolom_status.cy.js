@@ -28,7 +28,7 @@ after(() => {
 describe('Pengecekan Kolom Status', { testIsolation: false }, () => {
     qase(513,
         it('Akses halaman kotak keluar review naskah', () => {
-            loginPage.loginViaV1(user.user.nip_pemeriksa_1 - 1, user.password)
+            loginPage.loginViaV1(user.nip_pemeriksa_1_1, user.password)
             loginPage.directLogin()
             menuPage.goToKotakKeluarReviewNaskah()
         })

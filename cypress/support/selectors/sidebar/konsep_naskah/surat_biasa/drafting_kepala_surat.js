@@ -60,7 +60,7 @@ module.exports = {
     input_akhirKurunWaktu: '[data-cy="input-kepala-surat__berkas__end-year__input"]',
 
     // XPATH
-    previewTempat: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]',
+    previewTempat: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/p[1]',
     btnkonfirmasiPopupPenomoran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[2]/div[1]/div[1]/div[2]/button[2]',
     xpathTabelPenomoran1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[1]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[2]',
     xpathBtnPesanPenomoran1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[9]/div[1]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[4]/button[1]',

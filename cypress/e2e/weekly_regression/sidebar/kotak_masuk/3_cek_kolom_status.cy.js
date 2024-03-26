@@ -28,7 +28,7 @@ after(() => {
 describe('Pengecekan Kolom Status', { testIsolation: false }, () => {
     qase(97,
         it('Akses menu kotak masuk (Review naskah)', () => {
-            loginPage.loginViaV1(user.user.nip_pemeriksa_1 - 1, user.password)
+            loginPage.loginViaV1(user.nip_pemeriksa_1_1, user.password)
             loginPage.directLogin()
             menuPage.goToKotakMasukReviewNaskah()
         })

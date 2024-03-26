@@ -18,10 +18,10 @@ module.exports = {
     htmlLampiranNotaDinas: '[data-cy="drafting__lampiran__input-area__isi-lampiran"]',
 
     // XPATH
-    scrollPreview: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]',
-    btnBuatLampiran2: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[3]/div[2]/button[1]',
-    scrollLampiran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]',
-    btnHapusLampiran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/span[1]',
-    btnCloseLampiranXpath: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/button[1]"
+    scrollPreview: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[1]/div[1]',
+    btnBuatLampiran2: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[1]/div[1]/div[3]/div[2]/button[1]',
+    scrollLampiran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[2]/div[1]',
+    btnHapusLampiran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/span[1]',
+    btnCloseLampiranXpath: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/button[1]"
 
 }

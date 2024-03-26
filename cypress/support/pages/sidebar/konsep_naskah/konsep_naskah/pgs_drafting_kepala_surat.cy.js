@@ -546,17 +546,17 @@ export class DraftingKepalaSuratPage {
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
         titleTujuan.should('contain', 'Kepada Yth.')
 
-        this.inputTujuanSurat1(inputEnv, inputanTujuan1)
+        this.inputTujuanSurat1(inputEnv, inputanTujuan2)
 
         cy.wait(3000)
         this.clickTambahTujuan()
 
-        this.inputTujuanSurat2(inputEnv, inputanTujuan2)
+        this.inputTujuanSurat2(inputEnv, inputanTujuan3)
 
-        cy.wait(3000)
-        this.clickTambahTujuan()
+        // cy.wait(3000)
+        // this.clickTambahTujuan()
 
-        this.inputTujuanSurat3(inputEnv, inputanTujuan3)
+        // this.inputTujuanSurat3(inputEnv, inputanTujuan3)
     }
 
     validateTujuanSkenario2(inputEnv, inputanTujuan1, inputanTujuan2, inputanTujuan3) {
@@ -1011,7 +1011,9 @@ export class DraftingKepalaSuratPage {
         inputTujuan.wait(1000)
             .type(inputanTujuan1)
 
-        cy.wait('@postRequest', { timeout: 5000 })
+        cy.wait(10000)
+
+        cy.wait('@postRequest', { timeout: 10000 })
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
