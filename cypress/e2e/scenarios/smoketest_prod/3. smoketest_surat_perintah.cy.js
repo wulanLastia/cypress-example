@@ -284,7 +284,7 @@ describe('Kembalikan Naskah Skenario', () => {
                 'SIDEBAR-V1-LOGIN-CAPTCHA': true
             })
 
-            loginPage.loginViaV1Prod(user.user.nip_pemeriksa_1_1, user.password_pemeriksa)
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1_1, user.password_pemeriksa)
             loginPage.directLogin()
 
             // Kembalikan Naskah
@@ -352,7 +352,7 @@ describe('Koreksi Setujui Naskah Skenario', { testIsolation: false }, () => {
                 'SIDEBAR-V1-LOGIN-CAPTCHA': true
             })
 
-            loginPage.loginViaV1Prod(user.user.nip_pemeriksa_1_1, user.password_pemeriksa)
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1_1, user.password_pemeriksa)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview()
@@ -376,7 +376,7 @@ describe('Koreksi Tandatangani Naskah Skenario', { testIsolation: false }, () =>
                 'SIDEBAR-V1-LOGIN-CAPTCHA': true
             })
 
-            loginPage.loginViaV1Prod(user.user.nip_pemeriksa_1_2, user.password_pemeriksa)
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1_2, user.password_pemeriksa)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview()
