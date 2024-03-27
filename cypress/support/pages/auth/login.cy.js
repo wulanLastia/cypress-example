@@ -40,17 +40,6 @@ export class LoginPage {
         btnMasuk.click()
     }
 
-    closePopupLandingPage() {
-        cy.wait(6000)
-
-        const closePopup = cy.get(login.closePopupLandingPage, { timeout: 10000 }).as('closePopupLandingPage')
-        closePopup.then($popup => {
-            if ($popup.is(':visible')) {
-                closePopup.click()
-            }
-        })
-    }
-
     loginViaV1(nip, passwordv1) {
         cy.then(Cypress.session.clearCurrentSessionData)
 
@@ -58,26 +47,32 @@ export class LoginPage {
 
         cy.overrideFeatureToggle({
             'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-            'SIDEBAR-V1-LOGIN-CAPTCHA': true
+            //'SIDEBAR-V1-LOGIN-CAPTCHA': true
         })
 
         cy.intercept('POST', Cypress.env('base_url_api_v1')).as('checkResponse')
 
         this.navigateLoginPageV1()
 
+        const showInputLogin = cy.xpath(login.showInputLogin).as('showInputLogin')
+        showInputLogin.scrollIntoView()
+            .click({ force: true })
+
         const username = cy.get(login.username).as('username')
-        username.should('be.visible')
-        username.type(nip, { force: true })
+        username.scrollIntoView()
+            .should('be.visible')
+            .type(nip, { force: true })
 
         const password = cy.get(login.password).as('password')
         password.type(passwordv1, { force: true })
 
-        const hiddenCaptcha = cy.get(login.hiddenCaptcha).as('hiddenCaptcha')
-        hiddenCaptcha.invoke('val')
-            .then((val) => {
-                const captchaType = cy.get(login.captcha).as('captcha')
-                captchaType.type(val, { force: true })
-            })
+        // Disable sementara menyesuaikan dengan kebutuhan
+        // const hiddenCaptcha = cy.get(login.hiddenCaptcha).as('hiddenCaptcha')
+        // hiddenCaptcha.invoke('val')
+        //     .then((val) => {
+        //         const captchaType = cy.get(login.captcha).as('captcha')
+        //         captchaType.type(val, { force: true })
+        //     })
 
         const btnLogin = cy.get(login.btnLogin).as('btnLogin')
         btnLogin.should('contain', 'Login')
@@ -186,16 +181,10 @@ export class LoginPage {
             .click()
 
         cy.wait(3000)
-
-        this.closePopupLandingPage()
     }
 
     directDeployPreview() {
         cy.visit(Cypress.env('base_url_deploy_preview'))
-
-        cy.wait(3000)
-
-        this.closePopupLandingPage()
 
         cy.wait(3000)
     }

@@ -10,6 +10,12 @@ export class TandatanganiPage {
             .click()
     }
 
+    tandatanganiNaskahAtasan() {
+        const btn_tandTanganiNaskahReview = cy.get(tandatangani.btn_tandTanganiNaskahReview).as('btn_tandTanganiNaskahReview')
+        btn_tandTanganiNaskahReview.should('contain', 'TTE Naskah')
+            .click()
+    }
+
     checkInputDataRegistrasi() {
         // Check Popup
         const dialog_konfirmasiTandatangani = cy.get(tandatangani.dialog_konfirmasiTandatangani).as('dialog_konfirmasiTandatangani')
@@ -109,6 +115,35 @@ export class TandatanganiPage {
             .and('be.visible')
     }
 
+    tteNaskahAtasan() {
+        const btn_tteNaskah = cy.get(tandatangani.btn_tteNaskah).as('btn_tteNaskah')
+        btn_tteNaskah.should('contain', 'TTE Naskah')
+            .click()
+
+        // Assertion 
+        const dialog_panelTte = cy.get(tandatangani.dialog_panelTte).as('dialog_panelTte')
+        dialog_panelTte.should('be.visible')
+
+        const dialog_panelTteTitle = cy.get(tandatangani.dialog_panelTteTitle).as('dialog_panelTteTitle')
+        dialog_panelTteTitle.should('contain', 'TTE Naskah')
+            .and('be.visible')
+
+        const dialog_panelTteDesc = cy.get(tandatangani.dialog_panelTteDesc).as('dialog_panelTteDesc')
+        dialog_panelTteDesc.contains('Pastikan anda sudah membaca draft naskah dan yakin isi naskah sudah benar sebelum TTE')
+            .and('be.visible')
+
+        const dialog_panelInputPassphrase = cy.get(tandatangani.dialog_panelInputPassphrase).as('dialog_panelInputPassphrase')
+        dialog_panelInputPassphrase.should('be.visible')
+
+        const btn_tteConfirm = cy.get(tandatangani.btn_tteConfirm).as('btn_tteConfirm')
+        btn_tteConfirm.should('contain', 'TTE Naskah')
+            .and('be.visible')
+
+        const btn_tteCancel = cy.get(tandatangani.btn_tteCancel).as('btn_tteCancel')
+        btn_tteCancel.should('contain', 'Periksa Kembali')
+            .and('be.visible')
+    }
+
     confirmTteNaskah(status) {
         if (status === 'negatif') {
             // Assert button disable
@@ -145,7 +180,14 @@ export class TandatanganiPage {
         label_headerDocumentType.should('contain', 'Konsep Naskah')
     }
 
-    submitTteNaskah(passphrase) {
+    submitTteNaskah(passphrase, inputEnv) {
+        // Intercept all POST network requests
+        if (inputEnv === 'prod') {
+            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
+        } else {
+            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
+        }
+
         // Input passphrase
         const dialog_panelInputPassphrase = cy.get(tandatangani.dialog_panelInputPassphrase).as('dialog_panelInputPassphrase')
         dialog_panelInputPassphrase.type(passphrase)
@@ -154,6 +196,34 @@ export class TandatanganiPage {
         // Click button tte naskah
         this.confirmTteNaskah('positif')
 
-        // @TODO: Assert popup konfirmasi menunggu konfirmasi data-cy
+        // Wait and assert that the response status is 200
+        cy.wait('@postRequest', { timeout: 5000 }).then((interception) => {
+            if (interception.response) {
+                const status = interception.response.statusCode;
+                const clientErrorStatusCodes = [400, 401, 403, 404, 405, 406, 408, 409, 410, 411, 412];
+                const serverErrorStatusCodes = [500, 501, 502, 503, 504];
+                const errorStatusCodes = [...clientErrorStatusCodes, ...serverErrorStatusCodes];
+
+                // Assert for error status codes
+                if (errorStatusCodes.includes(status)) {
+                    expect(errorStatusCodes, `Request failed with status code: ${status}`).to.include(status);
+                }
+
+                const successStatusCodes = [200, 201, 202, 203, 204, 205, 206, 207, 208, 226];
+                const redirectStatusCodes = [300, 301, 302, 303, 307];
+                const acceptableStatusCodes = [...successStatusCodes, ...redirectStatusCodes];
+
+                // Assert for success and redirect status codes
+                expect(acceptableStatusCodes, `Result of status code: ${status}`).to.include(status);
+            } else {
+                // Log and throw error if no response is received
+                cy.log('No response received.');
+                throw new Error('No response received.');
+            }
+        })
+
+        // Wait for up for the success dialog to appear only 0.5 seconds
+        const dialog_successTTENaskah = cy.get(tandatangani.dialog_successTTENaskah, { timeout: 500 }).as('dialog_successTTENaskah')
+        dialog_successTTENaskah.should('be.visible')
     }
 }

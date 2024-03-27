@@ -71,7 +71,7 @@ describe('Drafting Luar - Test Case Tab Registrasi Bank Nomor', { testIsolation:
     qase(2712,
         it('Cek kesesuaian nomor urut yang tampil setelah user memilih dropdown bank nomor', () => {
             // Input nomor urut
-            tabRegistrasiPage.inputNomorUrut()
+            tabRegistrasiPage.inputNomorUrut('2')
         })
     )
 
