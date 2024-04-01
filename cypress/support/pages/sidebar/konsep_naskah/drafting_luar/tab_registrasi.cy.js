@@ -33,7 +33,7 @@ export class TabRegistrasiPage {
         }
     }
 
-    inputNomorUrut() {
+    inputNomorUrut(inputIndex) {
         cy.readFile(getPreviewData).then((object) => {
             if (!object.bank_nomor) {
                 object.bank_nomor = [];
@@ -45,8 +45,8 @@ export class TabRegistrasiPage {
                 .should('be.visible')
                 .click()
 
-            const select_bankNomorUKDispusipda = cy.get(tab_registrasi.select_bankNomorUKDispusipda).as('select_bankNomorUKDispusipda')
-            select_bankNomorUKDispusipda.should('be.visible')
+            const select_inputBankNomor = cy.get(tab_registrasi.select_inputBankNomor + inputIndex + '"').as('select_inputBankNomor')
+            select_inputBankNomor.should('be.visible')
                 .click()
                 .invoke('text')  // Extract the value of the input
                 .then((inputBankNomor) => { // Use the actual value from the input
@@ -64,7 +64,8 @@ export class TabRegistrasiPage {
 
             // Input Nomor Urut
             const select_inputNomorUrut = cy.get(tab_registrasi.select_inputNomorUrut).first().as('select_inputNomorUrut')
-            select_inputNomorUrut.should('be.visible')
+            select_inputNomorUrut.scrollIntoView()
+                .should('be.visible')
                 .click()
 
             const select_inputNomorUrut0 = cy.get(tab_registrasi.select_inputNomorUrut0).as('select_inputNomorUrut0')
@@ -296,7 +297,8 @@ export class TabRegistrasiPage {
                         .then((interception) => {
                             if (interception.response.statusCode === 200) {
                                 const select_inputTembusanSuggest0 = cy.get(tab_registrasi.select_inputTembusanSuggest0).as('select_inputTembusanSuggest0')
-                                select_inputTembusanSuggest0.contains(inputTembusan, { timeout: 10000 }).should('be.visible')
+                                select_inputTembusanSuggest0.scrollIntoView()
+                                    .contains(inputTembusan, { timeout: 10000 }).should('be.visible')
                                     .invoke('text')
                                     .then((inputanTembusanSuggest) => {
                                         // Push the sub-object to the array
@@ -529,6 +531,61 @@ export class TabRegistrasiPage {
             .click()
     }
 
+    inputPenandatanganAtasan(inputanAtasan, inputEnv) {
+        cy.readFile(getPreviewData).then((object) => {
+            if (!object.penandatangan) {
+                object.penandatangan = []; // Initialize as an empty array
+            }
+
+            const dialog_penandatanganModeLabel = cy.get(tab_registrasi.dialog_penandatanganModeLabel).as('dialog_penandatanganModeLabel')
+            dialog_penandatanganModeLabel.should('contain', 'Mode Penandatangan')
+
+            const dialog_penandatanganModeInput = cy.get(tab_registrasi.dialog_penandatanganModeInput).as('dialog_penandatanganModeInput')
+            dialog_penandatanganModeInput.select('Atasan').should('have.value', 'ATASAN')
+
+            const dialog_penandatanganLabel = cy.get(tab_registrasi.dialog_penandatanganLabel).as('dialog_penandatanganLabel')
+            dialog_penandatanganLabel.should('contain', 'Penandatangan')
+
+            // Intercept all POST network requests
+            if (inputEnv === 'prod') {
+                cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
+            } else {
+                cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
+            }
+
+            const select_inputPenandatanganAtasan = cy.get(tab_registrasi.select_inputPenandatanganAtasan).as('select_inputPenandatanganAtasan')
+            select_inputPenandatanganAtasan.click()
+                .wait(1000)
+                .type(inputanAtasan)
+
+            cy.wait('@postRequest', { timeout: 5000 })
+                .then((interception) => {
+                    if (interception.response.statusCode === 200) {
+                        const select_inputPenandatanganAtasanSuggest = cy.get(tab_registrasi.select_inputPenandatanganAtasanSuggest).as('select_inputPenandatanganAtasanSuggest')
+                        select_inputPenandatanganAtasanSuggest.contains(inputanAtasan, { timeout: 10000 }).should('be.visible')
+                            .click()
+                            .invoke('text')
+                            .then((inputanAtasan) => {
+                                // Construct the sub-object
+                                const penandatangan_name = {
+                                    penandatangan_atasan: inputanAtasan.trim()
+                                }
+
+                                // Push the sub-object to the array
+                                object.penandatangan.push(penandatangan_name)
+
+                                // Write data to the JSON file
+                                cy.writeFile(getPreviewData, object)
+                            })
+                    }
+                })
+        })
+
+        const btn_simpanPenandatangan = cy.get(tab_registrasi.btn_simpanPenandatangan).as('btn_simpanPenandatangan')
+        btn_simpanPenandatangan.should('contain', 'Simpan')
+            .click()
+    }
+
     uploadSuratPengantar(status) {
         if (status === 'positif') {
             // Upload File
@@ -627,5 +684,7 @@ export class TabRegistrasiPage {
 
         const btn_deleteSuratPengantar = cy.get(tab_registrasi.btn_deleteSuratPengantar).as('btn_deleteSuratPengantar')
         btn_deleteSuratPengantar.should('be.visible')
+
+        cy.wait(6000)
     }
 }

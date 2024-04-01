@@ -79,7 +79,7 @@ describe('Drafting Luar - Skenario Penandatangan Diri Sendiri', { testIsolation:
             tandatanganiPage.tandatanganiNaskah()
             tandatanganiPage.checkInputDataRegistrasi()
             tandatanganiPage.tteNaskah()
-            tandatanganiPage.submitTteNaskah(user.passphrase, 'staging')
+            tandatanganiPage.submitTteNaskah('passphrase', 'staging')
 
             // Check Naskah Di Kotak Keluar
             kotakKeluarPage.goToKotakKeluarTTEReview()

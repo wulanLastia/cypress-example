@@ -3,10 +3,14 @@ import { LoginPage } from "../../../../support/pages/auth/login.cy"
 import { TabRegistrasiPage } from "../../../../support/pages/sidebar/konsep_naskah/drafting_luar/tab_registrasi.cy"
 import { UploadSingleFilePage } from "../../../../support/pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
 import { TandatanganiPage } from "../../../../support/pages/sidebar/konsep_naskah/drafting_luar/tandatangani.cy"
+import { KotakKeluarPage } from "../../../../support/pages/sidebar/konsep_naskah/drafting_luar/kotak_keluar.cy"
+import { KotakMasukPage } from "../../../../support/pages/sidebar/konsep_naskah/drafting_luar/kotak_masuk.cy"
 
 let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
 let tandatanganiPage = new TandatanganiPage()
+let kotakKeluarPage = new KotakKeluarPage()
+let kotakMasukPage = new KotakMasukPage()
 let loginPage = new LoginPage()
 let user
 
@@ -79,15 +83,29 @@ describe('Drafting Luar - Skenario Penandatangan Atasan', { testIsolation: false
             tandatanganiPage.tandatanganiNaskah()
             tandatanganiPage.checkInputDataRegistrasi()
             tandatanganiPage.tteNaskah()
-            tandatanganiPage.submitTteNaskah(user.passphrase)
+            tandatanganiPage.submitTteNaskah(user.passphrase, 'staging')
+
+            // Check Naskah Di Kotak Keluar
+            kotakKeluarPage.goToKotakKeluarTTEReview()
+            kotakKeluarPage.checkNaskahKotakKeluar()
         })
     )
 
     qase([],
-        it.only('Tandatangani Naskah Penandatangan Atasan', () => {
+        it('Tandatangani Naskah Penandatangan Atasan', () => {
             // Login 
             loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
             loginPage.directLogin()
+
+            // Tandatangani Naskah
+            kotakMasukPage.goToKotakMasukTTEReview()
+            kotakMasukPage.checkNaskahKotakMasuk()
+
+            // Melakukan TTE Naskah (Penandatangan Atasan)
+            tandatanganiPage.tandatanganiNaskahAtasan()
+            //tandatanganiPage.checkInputDataRegistrasi()
+            tandatanganiPage.tteNaskahAtasan()
+            tandatanganiPage.submitTteNaskah(user.passphrase, 'staging')
         })
     )
 })

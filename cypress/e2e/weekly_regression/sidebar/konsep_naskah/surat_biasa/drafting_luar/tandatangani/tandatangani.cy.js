@@ -56,7 +56,7 @@ describe('Drafting Luar - Test Case Tandatangani (Penandatangan Diri Sendiri)', 
     qase(2712,
         it('Cek kesesuaian nomor urut yang tampil setelah user memilih dropdown bank nomor', () => {
             // Input nomor urut
-            tabRegistrasiPage.inputNomorUrut()
+            tabRegistrasiPage.inputNomorUrut('2')
         })
     )
 
@@ -206,7 +206,7 @@ describe('Drafting Luar - Test Case Tandatangani (Penandatangan Diri Sendiri)', 
             tandatanganiPage.tteNaskah()
 
             // Confirm tte naskah
-            tandatanganiPage.submitTteNaskah(user.passphrase)
+            tandatanganiPage.submitTteNaskah(user.passphrase, 'staging')
         })
     )
 })

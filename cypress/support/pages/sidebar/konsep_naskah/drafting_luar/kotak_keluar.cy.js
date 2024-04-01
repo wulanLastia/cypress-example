@@ -1,7 +1,6 @@
 import kotak_keluar from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/kotak_keluar"
 
 const getPreviewData = "cypress/fixtures/non_cred/drafting_luar/transaction_data/preview_data.json"
-
 export class KotakKeluarPage {
 
     goToKotakKeluarTTEReview() {
@@ -103,5 +102,16 @@ export class KotakKeluarPage {
                         })
                 }
             })
+    }
+
+    checkNaskahKotakKeluar() {
+        cy.readFile(getPreviewData).then((object) => {
+            // Assert perihal naskah (Status tidak diassert karena kemungkinan akan cepat proses ttenya)
+            const perihal = object.identitas_surat[0].perihal
+
+            const label_tableDataJenis = cy.get(kotak_keluar.label_tableDataJenis).as('label_tableDataJenis')
+            label_tableDataJenis.find('p')
+                .should('contain', perihal)
+        })
     }
 }
