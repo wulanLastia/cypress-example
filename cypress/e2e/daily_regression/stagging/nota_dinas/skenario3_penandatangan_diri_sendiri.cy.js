@@ -41,7 +41,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario Penandatangan Diri Sendiri'
 
     qase([1, 1069, 1064, 1065, 1067, 1066, 1062, 1063, 1061, 721, 723, 724, 725, 1123, 1118, 1146, 1147, 1148, 1151, 1159],
         it('Nota Dinas Penandatangan Diri Sendiri Tujuan Lampiran Kepala Internal', () => {
-            listNaskahSuratBiasaPage.checkDirectNotaDinas() // Cek detail halaman drafting konsep naskah Nota Dinas
+            listNaskahSuratBiasaPage.goToKonsepNaskahNotaDinas() // Cek detail halaman drafting konsep naskah Nota Dinas
             createNotaDinasPage.createKopSurat()
             cy.wait(3000)
             createNotaDinasPage.createLampiranSurat1()

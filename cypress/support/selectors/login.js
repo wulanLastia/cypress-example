@@ -1,5 +1,6 @@
 module.exports = {
     // GET
+    showInput: '[data-cy="login__button--toggle-nip-password"]',
     username: '[data-cy="login__username-input"]',
     password: '[data-cy="login__password-input"]',
     hiddenCaptcha: '[data-cy="login__captcha-hidden"]',
@@ -23,4 +24,5 @@ module.exports = {
     profileUser: '/html[1]/body[1]/div[1]/header[1]/nav[1]/div[1]/ul[1]/li[2]/a[1]',
     btnKeluar: '/html[1]/body[1]/div[1]/header[1]/nav[1]/div[1]/ul[1]/li[2]/ul[1]/li[2]/div[2]/a[1]',
     konsepNaskahMenu: '/html[1]/body[1]/div[1]/aside[1]/div[1]/section[1]/ul[1]/li[3]/a[1]/span[1]',
+    skipOnboarding: '.introjs-skipbutton',
 }

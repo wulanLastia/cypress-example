@@ -58,12 +58,15 @@ export class LoginPage {
 
         cy.overrideFeatureToggle({
             'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-            'SIDEBAR-V1-LOGIN-CAPTCHA': true
+            'SIDEBAR-V1-LOGIN-CAPTCHA': false
         })
 
         cy.intercept('POST', Cypress.env('base_url_api_v1')).as('checkResponse')
 
         this.navigateLoginPageV1()
+
+        const showInput = cy.get(login.showInput).as('showInput')
+        showInput.click({ force: true})
 
         const username = cy.get(login.username).as('username')
         username.should('be.visible')
@@ -72,12 +75,12 @@ export class LoginPage {
         const password = cy.get(login.password).as('password')
         password.type(passwordv1, { force: true })
 
-        const hiddenCaptcha = cy.get(login.hiddenCaptcha).as('hiddenCaptcha')
+        /*const hiddenCaptcha = cy.get(login.hiddenCaptcha).as('hiddenCaptcha')
         hiddenCaptcha.invoke('val')
             .then((val) => {
                 const captchaType = cy.get(login.captcha).as('captcha')
                 captchaType.type(val, { force: true })
-            })
+            })*/
 
         const btnLogin = cy.get(login.btnLogin).as('btnLogin')
         btnLogin.should('contain', 'Login')
@@ -187,7 +190,8 @@ export class LoginPage {
 
         cy.wait(3000)
 
-        this.closePopupLandingPage()
+        const skipOnboarding = cy.get(login.skipOnboarding).as('skipOnboarding')
+        skipOnboarding.click()
     }
 
     directDeployPreview() {

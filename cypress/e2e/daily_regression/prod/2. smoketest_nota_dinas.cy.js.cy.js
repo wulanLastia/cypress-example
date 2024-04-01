@@ -77,8 +77,6 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             kembalikanNaskahPage.checkBtnPeriksaKembali(data_temp.kembalikan[0].kembalikan_perihal)
             cy.wait(3000)
             kembalikanNaskahPage.kembalikanNaskah(data_temp.kembalikan[0].kembalikan_perihal)
-            cy.wait(3000)
-            loginPage.closePopupLandingPage()
             cy.wait(10000)
 
             loginPage.logoutV2step2PROD()
