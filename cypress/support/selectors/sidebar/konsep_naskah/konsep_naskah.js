@@ -4,6 +4,7 @@ module.exports = {
     titleKonsepNaskah: '[data-cy="template-naskah__title"]',
     subTitleKonsepNaskah: '[data-cy="template-naskah__subtitle"]',
     suratBiasa: '[data-cy="template-naskah__surat-biasa"]',
+    notaDinas: '[data-cy="template-naskah__nota-dinas"]',
     btnKembali: '[data-cy="surat-biasa-left-arrow"]',
     titleMenu: '[data-cy="surat-biasa-title"]',
     selectedKonsep: '[data-cy="document-type__dropdown--surat-biasa"]',
@@ -41,6 +42,6 @@ module.exports = {
     tableNaskahKeluar: '[data-cy="konsep-naskah__table"]',
 
     // XPATH
-    previewPage: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]',
-    previewPageDown: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]'
+    previewPage: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[1]/div[1]',
+    previewPageDown: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[1]/div[1]'
 }

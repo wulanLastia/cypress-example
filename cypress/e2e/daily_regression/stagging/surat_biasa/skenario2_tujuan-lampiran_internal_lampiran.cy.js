@@ -52,8 +52,6 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
 
     qase([13, 81, 83, 709, 150, 80, 849, 176],
         it('Create Naskah Surat Biasa', () => {
-            // Set toogle unleash
-
             // Login 
             loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
@@ -105,14 +103,11 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
             kembalikanNaskahPage.checkBtnPeriksaKembali(data_temp.kembalikan[0].kembalikan_perihal)
             kembalikanNaskahPage.kembalikanNaskah(data_temp.kembalikan[0].kembalikan_perihal)
             cy.wait(3000)
-            loginPage.closePopupLandingPage()
         })
     )
 
     qase([367, 712, 713, 714, 715],
         it('Perbaiki Naskah', () => {
-            // Set toogle unleash
-
             // Login 
             loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
@@ -126,8 +121,6 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
 
     qase([358, 102],
         it('Setujui Naskah', () => {
-            // Set toogle unleash
-
             // Login 
             loginPage.loginViaV1(user.nip_pemeriksa_1_1, user.password)
             loginPage.directLogin()
@@ -143,8 +136,6 @@ describe('Create Surat Biasa Tujuan Internal Skenario 2 (Tujuan Lampiran Surat)'
 
     qase([368, 370, 372],
         it('Koreksi dan Tandatangani Naskah', () => {
-            // Set toogle unleash
-
             // Login 
             loginPage.loginViaV1(user.nip_pemeriksa_1_2, user.password)
             loginPage.directLogin()

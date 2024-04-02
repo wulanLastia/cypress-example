@@ -273,10 +273,10 @@ describe('Kembalikan Naskah Skenario', () => {
             // Login 
             cy.then(Cypress.session.clearCurrentSessionData)
 
-            cy.overrideFeatureToggle({
+            /*cy.overrideFeatureToggle({
                 'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
                 'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
+            })*/
 
             loginPage.loginViaV1Prod(user.nip_pemeriksa_1_1, user.password_pemeriksa)
             loginPage.directLogin()
@@ -289,8 +289,6 @@ describe('Kembalikan Naskah Skenario', () => {
             kembalikanNaskahPage.checkBtnPeriksaKembali(data_review.kembalikan[0].kembalikan_perihal)
             kembalikanNaskahPage.kembalikanNaskah(data_review.kembalikan[0].kembalikan_perihal)
             cy.wait(3000)
-            loginPage.closePopupLandingPage()
-            cy.wait(3000)
             loginPage.logoutV2step2PROD()
         })
     )
@@ -302,10 +300,10 @@ describe('Perbaiki Naskah Skenario', { testIsolation: false }, () => {
             // Login
             cy.then(Cypress.session.clearCurrentSessionData)
 
-            cy.overrideFeatureToggle({
+            /*cy.overrideFeatureToggle({
                 'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
                 'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
+            })*/
 
             loginPage.loginViaV1Prod(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
@@ -341,10 +339,10 @@ describe('Koreksi Setujui Naskah Skenario', { testIsolation: false }, () => {
             // Login 
             cy.then(Cypress.session.clearCurrentSessionData)
 
-            cy.overrideFeatureToggle({
+            /*cy.overrideFeatureToggle({
                 'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
                 'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
+            })*/
 
             loginPage.loginViaV1Prod(user.nip_pemeriksa_1_1, user.password_pemeriksa)
             loginPage.directLogin()
@@ -365,10 +363,10 @@ describe('Koreksi Tandatangani Naskah Skenario', { testIsolation: false }, () =>
             // Login 
             cy.then(Cypress.session.clearCurrentSessionData)
 
-            cy.overrideFeatureToggle({
+            /*cy.overrideFeatureToggle({
                 'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
                 'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })
+            })*/
 
             loginPage.loginViaV1Prod(user.nip_pemeriksa_1_2, user.password_pemeriksa)
             loginPage.directLogin()

@@ -47,13 +47,13 @@ export class LoginPage {
 
         cy.overrideFeatureToggle({
             'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-            //'SIDEBAR-V1-LOGIN-CAPTCHA': true
+            'SIDEBAR-V1-LOGIN-CAPTCHA': false
         })
 
         cy.intercept('POST', Cypress.env('base_url_api_v1')).as('checkResponse')
 
         this.navigateLoginPageV1()
-
+      
         const showInputLogin = cy.xpath(login.showInputLogin).as('showInputLogin')
         showInputLogin.scrollIntoView()
             .click({ force: true })
@@ -181,6 +181,9 @@ export class LoginPage {
             .click()
 
         cy.wait(3000)
+      
+        const skipOnboarding = cy.get(login.skipOnboarding).as('skipOnboarding')
+        skipOnboarding.click()
     }
 
     directDeployPreview() {

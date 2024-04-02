@@ -22,5 +22,6 @@ module.exports = {
     profileUser: '/html[1]/body[1]/div[1]/header[1]/nav[1]/div[1]/ul[1]/li[2]/a[1]',
     btnKeluar: '/html[1]/body[1]/div[1]/header[1]/nav[1]/div[1]/ul[1]/li[2]/ul[1]/li[2]/div[2]/a[1]',
     konsepNaskahMenu: '/html[1]/body[1]/div[1]/aside[1]/div[1]/section[1]/ul[1]/li[3]/a[1]/span[1]',
+    skipOnboarding: '.introjs-skipbutton',
     showInputLogin: '/html[1]/body[1]/section[1]/div[1]/div[2]/div[2]/button[1]',
 }

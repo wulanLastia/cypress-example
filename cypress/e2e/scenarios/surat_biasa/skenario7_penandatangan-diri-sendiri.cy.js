@@ -35,7 +35,6 @@ describe('Create Surat Biasa Skenario', () => {
             loginPage.directLogin()
 
             // Create Naskah
-            menuPage.goToKonsepNaskah()
             createSuratBiasaPage.checkDetail()
             createSuratBiasaPage.inputKopSurat()
             createSuratBiasaPage.inputKakiSuratPenandatanganDiriSendiri(

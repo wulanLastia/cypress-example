@@ -38,5 +38,5 @@ module.exports = {
     btnTambahPemeriksaNotaDinas: '[data-cy="input-kaki-surat__pemeriksa__button--add"]',
 
     // XPATH
-    selectedPenandatangan: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/span[1]'
+    selectedPenandatangan: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/span[1]'
 }

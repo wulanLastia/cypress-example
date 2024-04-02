@@ -46,7 +46,7 @@ export class DraftingKopSuratNotaDinasPage {
 
         const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
         previewSelectedKop.find('img')
-        .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/38a80733a1c6437c596c4568e1d263d4.PNG')
+            .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/38a80733a1c6437c596c4568e1d263d4.PNG')
     }
 
     checkPreviewSekda() {
@@ -55,7 +55,7 @@ export class DraftingKopSuratNotaDinasPage {
 
         const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
         previewSelectedKop.find('img')
-            .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/6d0b277d4b29db3eafab2d5708149d7d.png')
+            .should('have.attr', 'src', 'https://devsidebar.digitalservice.id/FilesUploaded/kop/d800bd29e2cfa7b2ca89928aea3300b5.png')
     }
 
     checkPreviewDinas() {

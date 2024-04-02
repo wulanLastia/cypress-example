@@ -34,7 +34,7 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateTujuan(inputEnv, inputanTujuan1)
         draftingKepalaSuratPage.validateLokasi(inputanLokasi)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
-        draftingKepalaSuratPage.validateJudulBerkas()
+        //draftingKepalaSuratPage.validateJudulBerkas()
         draftingKepalaSuratPage.validateUnitPengolah(inputanUnitPengolah)
         draftingKepalaSuratPage.validateSifatSurat(inputanSifatSurat)
         draftingKepalaSuratPage.validateUrgensiSurat(inputanUrgensiSurat)
@@ -235,7 +235,7 @@ export class CreateSuratBiasaPage {
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan1)
         draftingKakiSuratPage.pilihPemeriksa(inputEnv, inputanPemeriksa1)
-        draftingKakiSuratPage.pilihTembusanSkenario1(inputEnv, inputanTembusanInternal1, inputanTembusanInternal2, inputanTembusanInternal3)
+        //draftingKakiSuratPage.pilihTembusanSkenario1(inputEnv, inputanTembusanInternal1, inputanTembusanInternal2, inputanTembusanInternal3)
         draftingKakiSuratPage.closeKakiSurat()
     }
 

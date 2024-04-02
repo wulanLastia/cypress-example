@@ -48,7 +48,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
 
     qase([1, 1069, 1064, 1065, 1067, 1066, 1062, 1063, 1061, 721, 723, 724, 725, 1123, 1118, 1146, 1147, 1148, 1151, 1159],
         it('Nota Dinas Tujuan Kepala Internal', () => {
-            listNaskahSuratBiasaPage.checkDirectNotaDinas() // Cek detail halaman drafting konsep naskah Nota Dinas
+            listNaskahSuratBiasaPage.goToKonsepNaskahNotaDinas() // Cek detail halaman drafting konsep naskah Nota Dinas
             createNotaDinasPage.createKopSurat()
             cy.wait(3000)
             createNotaDinasPage.createLampiranSurat1()
@@ -68,7 +68,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
     qase([399, 101, 377, 402, 100],
         it('Kembalikan Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.user.nip_pemeriksa_1_1, user.password)
+            loginPage.loginViaV1(user.nip_pemeriksa_1_1, user.password)
             loginPage.directLogin()
 
             // Create Naskah
@@ -83,8 +83,6 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             kembalikanNaskahPage.checkBtnPeriksaKembali(dataNotaDinas.kembalikan[0].kembalikan_perihal)
             cy.wait(3000)
             kembalikanNaskahPage.kembalikanNaskah(dataNotaDinas.kembalikan[0].kembalikan_perihal)
-            cy.wait(3000)
-            loginPage.closePopupLandingPage()
         })
     )
 
@@ -104,7 +102,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
     qase([358, 102],
         it('Setujui Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.user.nip_pemeriksa_1_1, user.password)
+            loginPage.loginViaV1(user.nip_pemeriksa_1_1, user.password)
             loginPage.directLogin()
 
             setujuiPage.suratBelumDireview(dataNotaDinas.env[0].staging)
@@ -115,7 +113,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
     qase([368, 370, 372],
         it('Koreksi dan Tandatangani Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.user.nip_pemeriksa_1_2, user.password)
+            loginPage.loginViaV1(user.nip_pemeriksa_1_2, user.password)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview(dataNotaDinas.env[0].staging)

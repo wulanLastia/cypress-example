@@ -202,7 +202,7 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
             cy.wait(3000)
             draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
             cy.wait(3000)
-            draftingBadanSuratPerintahPage.inputandcheckFieldASN2nd(ASNData.nama2)
+            draftingBadanSuratPerintahPage.inputandcheckFieldASN2nd(ASNData.nama6)
 
             cy.wait(3000)
             draftingBadanSuratPerintahPage.addmoreDataTujuanSurat()
@@ -279,13 +279,13 @@ describe('Kembalikan Naskah Skenario', () => {
             loginPage.directLogin()
 
             // Kembalikan Naskah
+            kembalikanNaskahPage.goToNaskahBelumDireview(dataNotaDinas.env[0].prod)
             kembalikanNaskahPage.emptyField()
             kembalikanNaskahPage.batalKembalikanNaskah()
             kembalikanNaskahPage.checkHalamanInformasi()
             kembalikanNaskahPage.checkBtnPeriksaKembali(data_review.kembalikan[0].kembalikan_perihal)
             kembalikanNaskahPage.kembalikanNaskah(data_review.kembalikan[0].kembalikan_perihal)
             cy.wait(3000)
-            loginPage.closePopupLandingPage()
         })
     )
 }) 
