@@ -5,7 +5,7 @@ export class LoginPage {
 
     navigateLoginPageV1() {
         cy.log(Cypress.env('base_url_v1'))
-        cy.visit(Cypress.env('base_url_v1'), { failOnStatusCode: false })
+        cy.visit(Cypress.env('base_url_v1'), { failOnStatusCode: true })
     }
 
     navigateLoginPageV1Prod() {
@@ -181,9 +181,11 @@ export class LoginPage {
             .click()
 
         cy.wait(3000)
-      
-        const skipOnboarding = cy.get(login.skipOnboarding).as('skipOnboarding')
-        skipOnboarding.click()
+
+        if(Cypress.env('cypress_layout') === '2') {
+            const skipOnboarding = cy.get(login.skipOnboarding).as('skipOnboarding')
+            skipOnboarding.click()
+        }
     }
 
     directDeployPreview() {
