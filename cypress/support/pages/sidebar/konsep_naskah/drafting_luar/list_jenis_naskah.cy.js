@@ -169,7 +169,7 @@ export class ListNaskahSuratBiasaPage {
     }
 
     goToKonsepNaskahNotaDinas() {
-
+        cy.log(Cypress.env('cypress_layout'))
         if(Cypress.env('cypress_layout') === '1') {
             // Fitur layout lama (Akun Dispusipda)
 
