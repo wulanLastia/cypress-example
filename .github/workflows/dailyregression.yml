@@ -74,3 +74,5 @@ jobs:
           CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY: ${{ secrets.CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY }}
           # used algo name: RS256, EdDSA, HS256, etc
           CYPRESS_UNLEASH_OVERRIDE_KEY_ALGORITHM: ${{ secrets.CYPRESS_UNLEASH_OVERRIDE_KEY_ALGORITHM }}
+          # override unleash v2
+          CYPRESS_DRAFTING_LAYOUT: ${{ secrets.CYPRESS_DRAFTING_LAYOUT }}
