@@ -1,0 +1,58 @@
+{
+  "upload": [
+    {
+      "upload1": "positif",
+      "upload2": "negatif"
+    }
+  ],
+  "registrasi": [
+    {
+      "bank_nomor1": "1",
+      "bank_nomor2": "2",
+      "bank_nomor3": "3",
+      "bank_nomor4": "4",
+      "bank_nomor5": "5"
+    },
+    {
+      "kode_klasifikasi": "SK (Semua Klasifikasi)"
+    },
+    {
+      "unit_pengolah": "PAD"
+    },
+    {
+      "index0": "0",
+      "index1": "1",
+      "index2": "2",
+      "index3": "3",
+      "index4": "4",
+      "index5": "5"
+    },
+    {
+      "input_internal": "internal",
+      "input_eksternal": "eksternal"
+    },
+    {
+      "tujuan_internal1": "Dr. IKA MARDIAH, M.Si.",
+      "tujuan_eksternal1": "Tujuan Eksternal"
+    },
+    {
+      "tembusan_internal1": "RIZKI HUSTINIASARI, S.T., M.T.",
+      "tembusan_eksternal1": "Tembusan Eksternal"
+    },
+    {
+      "urgensi_surat": "Amat Segera"
+    },
+    {
+      "sifat_surat1": "1"
+    },
+    {
+      "atasan1": "RIZKI HUSTINIASARI, S.T., M.T."
+    }
+  ],
+  "env": [
+    {
+      "prod": "prod",
+      "staging": "staging"
+    }
+  ]
+}

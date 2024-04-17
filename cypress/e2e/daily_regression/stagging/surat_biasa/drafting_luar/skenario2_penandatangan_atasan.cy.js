@@ -1,10 +1,10 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { TabRegistrasiPage } from "../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/tab_registrasi.cy"
-import { UploadSingleFilePage } from "../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
-import { TandatanganiPage } from "../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/tandatangani.cy"
-import { KotakKeluarPage } from "../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/kotak_keluar.cy"
-import { KotakMasukPage } from "../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/kotak_masuk.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { TabRegistrasiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tab_registrasi.cy"
+import { UploadSingleFilePage } from "@pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
+import { TandatanganiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tandatangani.cy"
+import { KotakKeluarPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_keluar.cy"
+import { KotakMasukPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_masuk.cy"
 
 let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
@@ -13,11 +13,16 @@ let kotakKeluarPage = new KotakKeluarPage()
 let kotakMasukPage = new KotakMasukPage()
 let loginPage = new LoginPage()
 let user
+let data_temp
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
+    })
+
+    cy.fixture('non_cred/drafting_luar/master_data/create_data.json').then((data) => {
+        data_temp = data
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
@@ -41,49 +46,49 @@ describe('Drafting Luar - Skenario Penandatangan Atasan', { testIsolation: false
             uploadSingleFilePage.goToUploadSingleFileSkp()
 
             // Upload File
-            uploadSingleFilePage.uploadSingleFile('positif')
+            uploadSingleFilePage.uploadSingleFile(data_temp.upload[0].upload1)
             uploadSingleFilePage.checkDataFileUpload()
 
             // Click tab registrasi
             tabRegistrasiPage.clickTabRegistrasi()
 
             // Tab Registrasi - Bank Nomor
-            tabRegistrasiPage.inputNomorUrut('2')
-            tabRegistrasiPage.searchKodeKlasifikasi('SK (Semua Klasifikasi)')
-            tabRegistrasiPage.inputUnitPengolah('PAD', 'PAD')
+            tabRegistrasiPage.inputNomorUrut(data_temp.registrasi[0].bank_nomor2)
+            tabRegistrasiPage.searchKodeKlasifikasi(data_temp.registrasi[1].kode_klasifikasi)
+            tabRegistrasiPage.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
 
             // Tab Registrasi - Tujuan Surat
             tabRegistrasiPage.activateToggleDistribusi()
-            tabRegistrasiPage.inputTujuan('staging', '0', 'internal', 'Dr. IKA MARDIAH, M.Si.')
+            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_internal1)
             tabRegistrasiPage.addMoreTujuan()
-            tabRegistrasiPage.inputTujuan('staging', '1', 'eksternal', 'Tujuan Eksternal')
-            tabRegistrasiPage.inputTembusan('staging', '0', 'internal', 'RIZKI HUSTINIASARI, S.T., M.T.')
+            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[5].tujuan_eksternal1)
+            tabRegistrasiPage.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[6].tembusan_internal1)
             tabRegistrasiPage.addMoreTembusan()
-            tabRegistrasiPage.inputTembusan('staging', '1', 'eksternal', 'Tembusan Eksternal 1')
+            tabRegistrasiPage.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[6].tembusan_eksternal1)
 
             // Tab Registrasi - Section Identitas Surat
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
 
             tabRegistrasiPage.inputPerihal('Automation Drafting Luar ' + id, 'Automation Drafting Luar ' + id)
-            tabRegistrasiPage.checkWarnaLabelUrgensi('Amat Segera', '0')
-            tabRegistrasiPage.inputSifat('1')
+            tabRegistrasiPage.checkWarnaLabelUrgensi(data_temp.registrasi[7].urgensi_surat, data_temp.registrasi[3].index0)
+            tabRegistrasiPage.inputSifat(data_temp.registrasi[8].sifat_surat1)
 
             // Tab Registrasi - Section Penandatangan
             tabRegistrasiPage.addMorePenandatangan()
             tabRegistrasiPage.inputPenandatanganDiriSendiri()
             tabRegistrasiPage.addMorePenandatangan()
-            tabRegistrasiPage.inputPenandatanganAtasan('RIZKI HUSTINIASARI, S.T., M.T.', 'staging')
+            tabRegistrasiPage.inputPenandatanganAtasan(data_temp.registrasi[9].atasan1, data_temp.env[0].staging)
 
             // Upload file pengantar
-            tabRegistrasiPage.uploadSuratPengantar('positif')
+            tabRegistrasiPage.uploadSuratPengantar(data_temp.upload[0].upload1)
             tabRegistrasiPage.checkDataFileUpload()
 
             // Melakukan TTE Naskah (Penandatangan Diri Sendiri)
             tandatanganiPage.tandatanganiNaskah()
             tandatanganiPage.checkInputDataRegistrasi()
             tandatanganiPage.tteNaskah()
-            tandatanganiPage.submitTteNaskah(user.passphrase, 'staging')
+            tandatanganiPage.submitTteNaskah(user.passphrase, data_temp.env[0].staging)
 
             // Check Naskah Di Kotak Keluar
             kotakKeluarPage.goToKotakKeluarTTEReview()
@@ -104,7 +109,7 @@ describe('Drafting Luar - Skenario Penandatangan Atasan', { testIsolation: false
             // Melakukan TTE Naskah (Penandatangan Atasan)
             tandatanganiPage.tandatanganiNaskahAtasan()
             tandatanganiPage.tteNaskahAtasan()
-            tandatanganiPage.submitTteNaskah(user.passphrase, 'staging')
+            tandatanganiPage.submitTteNaskah(user.passphrase, data_temp.env[0].staging)
         })
     )
 })

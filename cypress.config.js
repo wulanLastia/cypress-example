@@ -59,7 +59,7 @@ module.exports = defineConfig({
   },
   "reporter": "cypress-qase-reporter",
   "reporterOptions": {
-    "projectCode": "SIDEBAR2",
+    "projectCode": "SIDEBARV2",
     "logging": true,
     "runComplete": false,
     "sendScreenshot": false,
