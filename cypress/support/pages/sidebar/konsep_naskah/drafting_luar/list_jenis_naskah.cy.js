@@ -4,7 +4,7 @@ import nota_dinas from "../../../../selectors/sidebar/konsep_naskah/nota_dinas/d
 export class ListNaskahSuratBiasaPage {
 
     goToKonsepNaskahSuratBiasa() {
-
+        cy.log(Cypress.env('cypress_layout'))
         if(Cypress.env('cypress_layout') == 1) {
             // Fitur layout lama (Akun Dispusipda)
 

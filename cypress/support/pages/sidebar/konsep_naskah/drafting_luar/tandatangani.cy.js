@@ -116,10 +116,6 @@ export class TandatanganiPage {
     }
 
     tteNaskahAtasan() {
-        const btn_tteNaskah = cy.get(tandatangani.btn_tteNaskah).as('btn_tteNaskah')
-        btn_tteNaskah.should('contain', 'TTE Naskah')
-            .click()
-
         // Assertion 
         const dialog_panelTte = cy.get(tandatangani.dialog_panelTte).as('dialog_panelTte')
         dialog_panelTte.should('be.visible')
