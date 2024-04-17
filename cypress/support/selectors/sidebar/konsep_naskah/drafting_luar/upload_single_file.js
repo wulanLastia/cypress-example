@@ -32,4 +32,10 @@ module.exports = {
     dialog_backConfirm: '[data-cy="dialog__dialog-confirmation__button--confirm"]',
     dialog_backCancel: '[data-cy="dialog__dialog-confirmation__button--cancel"]',
 
+    // LIST JENIS NASKAH SASARAN KINERJA PEGAWAI
+    list_listJenisNaskahSkp: '[data-cy="konsep-naskah__list-jenis-naskah__sasaran-kinerja-pegawai-(skp)"]',
+    list_naskahTitleSkp: '[data-cy="konsep-naskah__sasaran-kinerja-pegawai-(skp)__title"]',
+    btn_uploadFileSkp: '[data-cy="konsep-naskah__sasaran-kinerja-pegawai-(skp)__button--upload"]',
+    btn_templateSkp: '[data-cy="konsep-naskah__sasaran-kinerja-pegawai-(skp)__button--template"]',
+
 }

@@ -1,10 +1,10 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../../support/pages/auth/login.cy"
-import { TabRegistrasiPage } from "../../../../support/pages/sidebar/konsep_naskah/drafting_luar/tab_registrasi.cy"
-import { UploadSingleFilePage } from "../../../../support/pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
-import { TandatanganiPage } from "../../../../support/pages/sidebar/konsep_naskah/drafting_luar/tandatangani.cy"
-import { KotakKeluarPage } from "../../../../support/pages/sidebar/konsep_naskah/drafting_luar/kotak_keluar.cy"
-import { KotakMasukPage } from "../../../../support/pages/sidebar/konsep_naskah/drafting_luar/kotak_masuk.cy"
+import { LoginPage } from "../../../../../support/pages/auth/login.cy"
+import { TabRegistrasiPage } from "../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/tab_registrasi.cy"
+import { UploadSingleFilePage } from "../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
+import { TandatanganiPage } from "../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/tandatangani.cy"
+import { KotakKeluarPage } from "../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/kotak_keluar.cy"
+import { KotakMasukPage } from "../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/kotak_masuk.cy"
 
 let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
@@ -37,8 +37,8 @@ describe('Drafting Luar - Skenario Penandatangan Atasan', { testIsolation: false
             loginPage.loginViaV1(user.nip_konseptor_2, user.password)
             loginPage.directLogin()
 
-            // Go To Konsep Naskah Surat Biasa
-            uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
+            // Go To Konsep Naskah Sasaran Kinerja Pegawai (SKP)
+            uploadSingleFilePage.goToUploadSingleFileSkp()
 
             // Upload File
             uploadSingleFilePage.uploadSingleFile('positif')

@@ -203,4 +203,46 @@ export class UploadSingleFilePage {
             .should('contain', 'Ya, hapus file')
             .click()
     }
+
+    goToUploadSingleFileSkp() {
+        // Find Document Type
+        const list_listJenisNaskahSkp = cy.get(upload_single.list_listJenisNaskahSkp).as('list_listJenisNaskahSkp')
+        list_listJenisNaskahSkp.find('div')
+            .contains('Sasaran Kinerja Pegawai (SKP)')
+            .scrollIntoView()
+
+        // Check Detail List
+        const list_naskahTitleSkp = cy.get(upload_single.list_naskahTitleSkp).as('list_naskahTitleSkp')
+        list_naskahTitleSkp.should('contain', 'Sasaran Kinerja Pegawai (SKP)')
+            .and('be.visible')
+
+        const btn_uploadFileSkp = cy.get(upload_single.btn_uploadFileSkp).as('btn_uploadFileSkp')
+        btn_uploadFileSkp.should('contain', 'Upload')
+            .and('be.visible')
+
+        const btn_templateSkp = cy.get(upload_single.btn_templateSkp).as('btn_templateSkp')
+        btn_templateSkp.should('contain', 'Template')
+            .and('be.visible')
+
+        // Access Upload Single File
+        btn_uploadFileSkp.click()
+
+        // Begin Save Assertion Data
+        cy.readFile(getPreviewData).then((object) => {
+            const createDataToWrite = {
+                upload_file: []
+            }
+
+            // Construct the sub-object
+            const jenis_naskah_name = {
+                jenis_naskah: 'Sasaran Kinerja Pegawai (SKP)'
+            }
+
+            // Push the sub-object to the array
+            createDataToWrite.upload_file.push(jenis_naskah_name)
+
+            // // Write data to the JSON file
+            cy.writeFile(getPreviewData, createDataToWrite)
+        })
+    }
 }
