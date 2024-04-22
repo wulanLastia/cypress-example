@@ -13,6 +13,7 @@ module.exports = {
     showHeaderNavProd: 'header[data-v-dd2902de]',
     alertSalah: '[data-cy="login__alert-failed"]',
     alertPopUp: "button[id='close-button-popup']",
+    chooseVersion: "[data-cy='choose-version__navigation__button--sidebar-v2']",
 
     // SIMULATE V2 STAGING
     btnLoginSso: '/html[1]/body[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/form[1]/div[1]/button[1]',

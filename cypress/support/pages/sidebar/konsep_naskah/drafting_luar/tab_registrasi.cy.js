@@ -62,28 +62,52 @@ export class TabRegistrasiPage {
                     cy.writeFile(getPreviewData, object)
                 })
 
-            // Input Nomor Urut
-            const select_inputNomorUrut = cy.get(tab_registrasi.select_inputNomorUrut).first().as('select_inputNomorUrut')
-            select_inputNomorUrut.scrollIntoView()
-                .should('be.visible')
-                .click()
+            if(inputIndex == 9999){
+                // Input Nomor Urut lainnya
+                const uuid = () => Cypress._.random(0, 1e6)
+                const id = uuid()
+                const nomorUrut = `SKP/AUTOMATION/${id}`
 
-            const select_inputNomorUrut0 = cy.get(tab_registrasi.select_inputNomorUrut0).as('select_inputNomorUrut0')
-            select_inputNomorUrut0.should('be.visible')
-                .click()
-                .invoke('text')  // Extract the value of the input
-                .then((inputNomorUrut) => { // Use the actual value from the input
-                    // Construct the sub-object
-                    const nomor_urut = {
-                        nomor_urut: inputNomorUrut.trim()
-                    }
+                const select_inputNomorUrut = cy.get(tab_registrasi.select_inputNomorUrut).first().as('select_inputNomorUrut')
+                select_inputNomorUrut.scrollIntoView()
+                    .type(nomorUrut)  
+                    .invoke('val') // Extract the value of the input
+                    .then((val) => { // Use the actual value from the input
+                        // Construct the sub-object
+                        const nomor_urut = {
+                            nomor_urut: val.trim()
+                        }
 
-                    // Push the sub-object to the array
-                    object.bank_nomor.push(nomor_urut)
+                        // Push the sub-object to the array
+                        object.bank_nomor.push(nomor_urut)
 
-                    // Write data to the JSON file
-                    cy.writeFile(getPreviewData, object)
-                })
+                        // Write data to the JSON file
+                        cy.writeFile(getPreviewData, object)
+                    })
+            }else{
+                // Input Nomor Urut
+                const select_inputNomorUrut = cy.get(tab_registrasi.select_inputNomorUrut).first().as('select_inputNomorUrut')
+                select_inputNomorUrut.scrollIntoView()
+                    .should('be.visible')
+                    .click()
+
+                const select_inputNomorUrut0 = cy.get(tab_registrasi.select_inputNomorUrut0).as('select_inputNomorUrut0')
+                select_inputNomorUrut0.should('be.visible')
+                    .click()
+                    .invoke('text')  // Extract the value of the input
+                    .then((inputNomorUrut) => { // Use the actual value from the input
+                        // Construct the sub-object
+                        const nomor_urut = {
+                            nomor_urut: inputNomorUrut.trim()
+                        }
+
+                        // Push the sub-object to the array
+                        object.bank_nomor.push(nomor_urut)
+
+                        // Write data to the JSON file
+                        cy.writeFile(getPreviewData, object)
+                    })
+            }
         })
     }
 

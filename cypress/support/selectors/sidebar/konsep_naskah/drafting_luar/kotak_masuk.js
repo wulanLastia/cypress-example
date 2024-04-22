@@ -23,4 +23,8 @@ module.exports = {
     // TABEL
     table_kotakMasuk: '[data-cy="tte-review-naskah__table"]',
     table_emptyState: '[data-cy="table__empty-state"]',
+
+    // DIALOG
+    dialog_onboarding: '.introjs-tooltipReferenceLayer',
+    dialog_onboardingSkip: '.introjs-skipbutton',
 }

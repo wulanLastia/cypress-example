@@ -205,6 +205,17 @@ export class UploadSingleFilePage {
     }
 
     goToUploadSingleFileSkp() {
+        // Check onboarding
+        cy.get('body').then($body => {
+            if ($body.find(upload_single.dialog_onboarding).length > 0) {
+                // Skip onboarding
+                const dialog_onboardingSkip = cy.get(upload_single.dialog_onboardingSkip).as('dialog_onboardingSkip')
+                dialog_onboardingSkip.click()
+
+                cy.reload()
+            }
+        })
+
         // Find Document Type
         const list_listJenisNaskahSkp = cy.get(upload_single.list_listJenisNaskahSkp).as('list_listJenisNaskahSkp')
         list_listJenisNaskahSkp.find('div')
@@ -225,7 +236,7 @@ export class UploadSingleFilePage {
             .and('be.visible')
 
         // Access Upload Single File
-        btn_uploadFileSkp.click()
+        btn_uploadFileSkp.click({ force: true})
 
         // Begin Save Assertion Data
         cy.readFile(getPreviewData).then((object) => {

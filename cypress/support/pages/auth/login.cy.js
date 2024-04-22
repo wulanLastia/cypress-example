@@ -173,19 +173,33 @@ export class LoginPage {
     // REDIRECT LOGIN TO SIDEBAR V2
 
     directLogin() {
-        const closePopupLandingPageV1 = cy.get(login.closePopupLandingPageV1).as('closePopupLandingPageV1')
-        closePopupLandingPageV1.click()
+        // Check choose version
+        cy.get('body').then($body => {
+            if ($body.find(login.chooseVersion).length > 0) {
+                // Choose version exists
+                const chooseVersion = cy.get(login.chooseVersion).as('chooseVersion')
+                chooseVersion.scrollIntoView()
+                    .click()
+            }else{
+                const closePopupLandingPageV1 = cy.get(login.closePopupLandingPageV1).as('closePopupLandingPageV1')
+                closePopupLandingPageV1.click()
 
-        const goToV2 = cy.get(login.goToV2).as('goToV2')
-        goToV2.should('contain', 'LOGIN TO V2')
-            .click()
+                const goToV2 = cy.get(login.goToV2).as('goToV2')
+                goToV2.should('contain', 'LOGIN TO V2')
+                    .click()
+            }
 
-        cy.wait(3000)
+            cy.wait(6000)
 
-        if(Cypress.env('cypress_layout') === '2') {
-            const skipOnboarding = cy.get(login.skipOnboarding).as('skipOnboarding')
-            skipOnboarding.click()
-        }
+            // Check onboarding
+            cy.get('body').then($body => {
+                if ($body.find(login.skipOnboarding).length > 0) {
+                    // Skip onboarding
+                    const skipOnboarding = cy.get(login.skipOnboarding).as('skipOnboarding')
+                    skipOnboarding.click()
+                }
+            })
+        })
     }
 
     directDeployPreview() {
