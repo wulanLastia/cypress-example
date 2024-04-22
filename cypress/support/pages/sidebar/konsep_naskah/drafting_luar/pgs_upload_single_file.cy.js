@@ -211,10 +211,10 @@ export class UploadSingleFilePage {
                 // Skip onboarding
                 const dialog_onboardingSkip = cy.get(upload_single.dialog_onboardingSkip).as('dialog_onboardingSkip')
                 dialog_onboardingSkip.click()
-
-                cy.reload()
             }
         })
+
+        cy.reload()
 
         // Find Document Type
         const list_listJenisNaskahSkp = cy.get(upload_single.list_listJenisNaskahSkp).as('list_listJenisNaskahSkp')
