@@ -9,10 +9,12 @@ export class KotakKeluarPage {
         btn_menuKotakKeluar.should('contain', 'Kotak Keluar')
             .click()
 
+        cy.wait(2000)
+
         // CLick Menu TTE & Review
         const btn_menuTteReview = cy.get(kotak_keluar.btn_menuTteReview).as('btn_menuTteReview')
         btn_menuTteReview.should('contain', 'TTE & Review')
-            .click()
+            .click({force: true})
     }
 
     checkWarnaLabelUrgensi() {

@@ -51,7 +51,7 @@ describe('Drafting Luar - Skenario Penandatangan Diri Sendiri', { testIsolation:
             tabRegistrasiPage.clickTabRegistrasi()
 
             // Tab Registrasi - Bank Nomor
-            tabRegistrasiPage.inputNomorUrut(data_temp.registrasi[0].bank_nomor2)
+            tabRegistrasiPage.inputNomorUrut(data_temp.registrasi[0].bank_nomor_lainnya)
             tabRegistrasiPage.searchKodeKlasifikasi(data_temp.registrasi[1].kode_klasifikasi)
             tabRegistrasiPage.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
 
@@ -68,7 +68,7 @@ describe('Drafting Luar - Skenario Penandatangan Diri Sendiri', { testIsolation:
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
 
-            tabRegistrasiPage.inputPerihal('Automation Drafting Luar ' + id, 'Automation Drafting Luar ' + id)
+            tabRegistrasiPage.inputPerihal('Automation Drafting Luar (SKP) ' + id, 'Automation Drafting Luar (SKP) ' + id)
             tabRegistrasiPage.checkWarnaLabelUrgensi(data_temp.registrasi[7].urgensi_surat, data_temp.registrasi[3].index0)
             tabRegistrasiPage.inputSifat(data_temp.registrasi[8].sifat_surat1)
 

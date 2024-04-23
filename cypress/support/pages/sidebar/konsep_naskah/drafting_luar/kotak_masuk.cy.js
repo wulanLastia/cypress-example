@@ -5,6 +5,17 @@ const getPreviewData = "cypress/fixtures/non_cred/drafting_luar/transaction_data
 export class KotakMasukPage {
 
     goToKotakMasukTTEReview() {
+        // Check onboarding
+        cy.get('body').then($body => {
+            if ($body.find(kotak_masuk.dialog_onboarding).length > 0) {
+                // Skip onboarding
+                const dialog_onboardingSkip = cy.get(kotak_masuk.dialog_onboardingSkip).as('dialog_onboardingSkip')
+                dialog_onboardingSkip.click()
+
+                cy.reload()
+            }
+        })
+
         // Click Menu Kotak Keluar
         const btn_menuKotakMasuk = cy.get(kotak_masuk.btn_menuKotakMasuk).as('btn_menuKotakMasuk')
         btn_menuKotakMasuk.should('contain', 'Kotak Masuk')

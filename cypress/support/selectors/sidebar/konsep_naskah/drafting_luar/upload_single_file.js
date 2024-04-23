@@ -31,6 +31,8 @@ module.exports = {
     dialog_backDesc: '[data-cy="dialog__dialog-confirmation__description"]',
     dialog_backConfirm: '[data-cy="dialog__dialog-confirmation__button--confirm"]',
     dialog_backCancel: '[data-cy="dialog__dialog-confirmation__button--cancel"]',
+    dialog_onboarding: '.introjs-tooltipReferenceLayer',
+    dialog_onboardingSkip: '.introjs-skipbutton',
 
     // LIST JENIS NASKAH SASARAN KINERJA PEGAWAI
     list_listJenisNaskahSkp: '[data-cy="konsep-naskah__list-jenis-naskah__sasaran-kinerja-pegawai-(skp)"]',

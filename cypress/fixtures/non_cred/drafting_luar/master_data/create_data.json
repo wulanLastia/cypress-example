@@ -11,7 +11,8 @@
       "bank_nomor2": "2",
       "bank_nomor3": "3",
       "bank_nomor4": "4",
-      "bank_nomor5": "5"
+      "bank_nomor5": "5",
+      "bank_nomor_lainnya": "9999"
     },
     {
       "kode_klasifikasi": "SK (Semua Klasifikasi)"

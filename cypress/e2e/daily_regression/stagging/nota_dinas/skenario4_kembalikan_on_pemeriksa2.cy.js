@@ -93,7 +93,6 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             cy.wait(3000)
             kembalikanNaskahPage.kembalikanNaskah(dataNotaDinas.kembalikan[0].kembalikan_perihal)
             cy.wait(3000)
-            loginPage.closePopupLandingPage()
         })
     )
 
@@ -139,8 +138,6 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             cy.wait(3000)
             kembalikanNaskahPage.kembalikanNaskah(dataNotaDinas.kembalikan[0].kembalikan_perihal)
             cy.wait(3000)
-            loginPage.closePopupLandingPage()
-            cy.wait(10000)
         })
     )
 
