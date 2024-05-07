@@ -1,10 +1,10 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../../support/pages/auth/login.cy"
-import { DraftPage } from "../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/draft.cy"
-import { DraftingNotaDinasPage } from "../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_drafting_nota_dinas.cy"
-import { CreateNotaDinasPage } from "../../../../support/pages/sidebar/konsep_naskah/nota_dinas/pgs_create_nota_dinas.cy"
-import { SetujuiPage } from "../../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
-import { ListNaskahSuratBiasaPage } from "../../../../support/pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { DraftPage } from "@pages/sidebar/konsep_naskah/konsep_naskah/draft.cy"
+import { DraftingNotaDinasPage } from "@pages/sidebar/konsep_naskah/nota_dinas/pgs_drafting_nota_dinas.cy"
+import { CreateNotaDinasPage } from "@pages/sidebar/konsep_naskah/nota_dinas/pgs_create_nota_dinas.cy"
+import { SetujuiPage } from "@pages/sidebar/kotak_masuk/5_setujui.cy"
+import { ListNaskahSuratBiasaPage } from "@pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
 
 const { faker } = require('@faker-js/faker')
 let loginPage = new LoginPage()
@@ -54,11 +54,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario Penandatangan Diri Sendiri'
             cy.wait(3000)
             createNotaDinasPage.createBadanSurat(faker.lorem.paragraphs(13, '<br/>\n'))
             cy.wait(3000)
-            draftingNotaDinasPage.clickSimpanSurat()
-            cy.wait(3000)
-            draftPage.checkDataPertamaNaskahDisimpan()
-            cy.wait(3000)
-            setujuiPage.doTandaTanganiSurat(user.passphrase)
+            createNotaDinasPage.doKirimNaskah(dataNotaDinas.env[0].staging)
         })
     )
 })

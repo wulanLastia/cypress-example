@@ -124,9 +124,14 @@ export class LoginPage {
 
                 cy.wait(3000)
 
+                const showInputLogin = cy.xpath(login.showInputLogin).as('showInputLogin')
+                showInputLogin.scrollIntoView()
+                    .click({ force: true })
+
                 const username = cy.get(login.username).as('username')
-                username.should('be.visible')
-                username.type(nip, { force: true })
+                username.scrollIntoView()
+                    .should('be.visible')
+                    .type(nip, { force: true })
 
                 const password = cy.get(login.password).as('password')
                 password.type(passwordv1, { force: true })
@@ -147,9 +152,14 @@ export class LoginPage {
                 // No popup, proceed with login
                 cy.wait(3000)
 
+                const showInputLogin = cy.xpath(login.showInputLogin).as('showInputLogin')
+                showInputLogin.scrollIntoView()
+                    .click({ force: true })
+
                 const username = cy.get(login.username).as('username')
-                username.should('be.visible')
-                username.type(nip, { force: true })
+                username.scrollIntoView()
+                    .should('be.visible')
+                    .type(nip, { force: true })
 
                 const password = cy.get(login.password).as('password')
                 password.type(passwordv1, { force: true })
@@ -185,7 +195,7 @@ export class LoginPage {
                 closePopupLandingPageV1.click()
 
                 const goToV2 = cy.get(login.goToV2).as('goToV2')
-                goToV2.should('contain', 'LOGIN TO V2')
+                goToV2.should('contain', 'SIDEBAR BARU')
                     .click()
             }
 
@@ -199,6 +209,8 @@ export class LoginPage {
                     skipOnboarding.click()
                 }
             })
+
+            cy.reload()
         })
     }
 

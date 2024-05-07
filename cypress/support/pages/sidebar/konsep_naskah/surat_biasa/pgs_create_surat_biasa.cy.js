@@ -235,7 +235,7 @@ export class CreateSuratBiasaPage {
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan1)
         draftingKakiSuratPage.pilihPemeriksa(inputEnv, inputanPemeriksa1)
-        //draftingKakiSuratPage.pilihTembusanSkenario1(inputEnv, inputanTembusanInternal1, inputanTembusanInternal2, inputanTembusanInternal3)
+        draftingKakiSuratPage.pilihTembusanSkenario1(inputEnv, inputanTembusanInternal1, inputanTembusanInternal2, inputanTembusanInternal3)
         draftingKakiSuratPage.closeKakiSurat()
     }
 
@@ -259,6 +259,12 @@ export class CreateSuratBiasaPage {
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.pilihPenandatanganDiriSendiri(inputanPenandatanganDiriSendiri)
         draftingKakiSuratPage.pilihTembusanSkenario3(inputEnv, inputanTembusan1, inputanTembusan2, inputanTembusan3, inputanTembusanEksternal4, inputanTembusanEksternal5, inputanTembusanEksternal6)
+        draftingKakiSuratPage.closeKakiSurat()
+    }
+
+    inputKakiSuratSkenario5(inputEnv, inputanPenandatanganAtasan1) {
+        draftingKakiSuratPage.inputKakiSurat()
+        draftingKakiSuratPage.pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan1)
         draftingKakiSuratPage.closeKakiSurat()
     }
 

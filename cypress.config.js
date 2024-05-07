@@ -66,6 +66,7 @@ module.exports = defineConfig({
     "video": false,
     "basePath": "https://api.qase.io/v1",
     "environmentId": 1,
+    "apiToken": process.env.QASE_API_TOKEN,
   },
   "chromeWebSecurity": false,
   // Width x Height preview in cypress GUI
