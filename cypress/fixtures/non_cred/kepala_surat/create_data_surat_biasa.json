@@ -82,6 +82,8 @@
       "perihal5": " Tujuan Lampiran - Eksternal - Lampiran",
       "perihal6": " Tujuan Kepala Surat - Internal Eksternal - Lampiran",
       "perihal7": " Tujuan Lampiran - Internal Eksternal - Lampiran",
+      "perihal8": " Simpan - Open - TTE Draft",
+      "perihal9": " Simpan - Open - Kirim Draft",
       "perihal_negatif_script": " Test JS Script <script>alert('Executing JS')</script>",
       "perihal_negatif_html": " <blink>Hello World</blink>",
       "perihal_negatif_xss": " '-prompt()-'",

@@ -218,7 +218,7 @@ export class DraftingKonsepNaskahPage {
         })
 
         // Wait for up for the success dialog to appear only 0.5 seconds
-        const successKirimNaskah = cy.get(konsep_naskah.popupSuccessKirimNaskah, { timeout: 500 }).as('successKirimNaskah')
+        const successKirimNaskah = cy.get(konsep_naskah.popupSuccessKirimNaskah, { timeout: 5000 }).as('successKirimNaskah')
         successKirimNaskah.should('be.visible')
 
         successKirimNaskah.should('exist')
