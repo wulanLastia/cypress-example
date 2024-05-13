@@ -242,4 +242,22 @@ export class DraftingSuratPerintahPage {
         previewPage.scrollTo('top')
     }
 
+    tandatanganiSuratPerintah(passphrase) {
+        const btnTandatanganiNaskah = cy.get(surat_perintah.btnTandatanganiNaskah).as('btnTandatanganiNaskah')
+        btnTandatanganiNaskah.should('contain', 'Tandatangani')
+            .click()
+
+        const konfirmasiTandatanganiNaskah = cy.get(surat_perintah.konfirmasiTandatanganiNaskah).as('konfirmasiTandatanganiNaskah')
+        konfirmasiTandatanganiNaskah.should('be.visible')
+
+        const inputPassphrase = cy.get(surat_perintah.inputPassphrase).as('inputPassphrase')
+        inputPassphrase.type(passphrase)
+
+        cy.wait(2000)
+
+        const btnSubmitTandatanganiNaskah = cy.get(surat_perintah.btnSubmitTandatanganiNaskah).as('btnSubmitTandatanganiNaskah')
+        btnSubmitTandatanganiNaskah.should('contain', 'Tandatangani')
+            .click()
+    }
+
 }

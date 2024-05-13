@@ -68,7 +68,7 @@ after(() => {
     )
 })
 
-describe('Drafting & Validasi Simpan Surat Perintah', { testIsolation: false }, () => {
+describe('Drafting, Simpan, dan TTE Surat Perintah', { testIsolation: false }, () => {
     qase(1762,
         it('Akses form editing kaki surat', () => {
             cy.wait(3000)
@@ -86,15 +86,7 @@ describe('Drafting & Validasi Simpan Surat Perintah', { testIsolation: false }, 
     qase([1785, 1769, 1788, 1780],
         it('Check on preview page after select penandatangan Atasan', () => {
             cy.wait(3000)
-            draftingKakiSuratPerintahPage.pilihPenandatanganAtasan(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama2)
-            cy.wait(5000)
-            draftingKakiSuratPerintahPage.checkPemeriksaAtasan(testKakiPositive.Pemeriksa.Daftar_Pemeriksa_Naskah[0].nama2)
-            cy.wait(3000)
-
-            draftingKakiSuratPerintahPage.tambahPemeriksa()
-            cy.wait(3000)
-            draftingKakiSuratPerintahPage.inputPemeriksa1(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama3)
-            cy.wait(3000)
+            draftingKakiSuratPerintahPage.pilihPenandatanganDiriSendiri()
         })
     )
 
@@ -249,6 +241,13 @@ describe('Drafting & Validasi Simpan Surat Perintah', { testIsolation: false }, 
             cy.wait(3000)
             draftingSuratPerintahPage.simpanNaskah()
             draftPage.checkDataPertamaNaskahDisimpan()
+        })
+    )
+
+    qase(1913,
+        it('Kirim drafting naskah surat perintah', () => {
+            cy.wait(3000)
+            draftingSuratPerintahPage.tandatanganiSuratPerintah(user.passphrase)
         })
     )
 })
