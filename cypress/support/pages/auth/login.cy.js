@@ -195,8 +195,9 @@ export class LoginPage {
                 closePopupLandingPageV1.click()
 
                 const goToV2 = cy.get(login.goToV2).as('goToV2')
-                goToV2.should('contain', 'SIDEBAR BARU')
-                    .click()
+                goToV2.click()
+                // @NOTED: Assertion digunakan kembali setelah up to prod -> .should('contain', 'SIDEBAR BARU')
+                    
             }
 
             cy.wait(6000)

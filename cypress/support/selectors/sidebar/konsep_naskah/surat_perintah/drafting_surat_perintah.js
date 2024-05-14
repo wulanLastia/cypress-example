@@ -1,3 +1,5 @@
+const { inputPassphrase } = require("@selectors/sidebar/kotak_masuk/setujui");
+
 module.exports = {
     // GET
     btnSuratPerintah: '[data-cy="template-naskah__surat-perintah"]',
@@ -18,6 +20,10 @@ module.exports = {
     konfirmasiKirimNaskah: '[data-cy="dialog__confirmation-submit__button--kirim-naskah"]',
     popupSuccessKirimNaskah: '[data-cy="dialog__success"]',
     popupTitleSuccessKirimNaskah: '[data-cy="dialog__success__title"]',
+    btnTandatanganiNaskah: '[data-cy="button--signing"]',
+    konfirmasiTandatanganiNaskah: '[data-cy="dialog__signing-naskah"]',
+    inputPassphrase: '[data-cy="dialog__signing-naskah__input--passphrase"]',
+    btnSubmitTandatanganiNaskah: '[data-cy="dialog__signing-naskah__button--submit"]',
 
     // XPATH
     titleLampiran: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/h2[1]',

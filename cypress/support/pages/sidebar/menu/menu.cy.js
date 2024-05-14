@@ -75,9 +75,23 @@ export class MenuPage {
     goToKotakMasukReviewNaskah() {
         this.goToKotakMasuk()
 
-        const reviewNaskahKM = cy.get(menu.reviewNaskahKM).as('reviewNaskahKM')
-        reviewNaskahKM.should('be.visible')
-            .click()
+        cy.wait(6000)
+
+        cy.get('body').then($body => {
+            if ($body.find(menu.reviewNaskahKM).length > 0) {
+                // Click menu kotak masuk
+                const reviewNaskahKM = cy.get(menu.reviewNaskahKM).as('reviewNaskahKM')
+                reviewNaskahKM.should('be.visible')
+                    .click()
+            }else{
+                this.goToKotakMasuk()
+
+                // Click menu kotak masuk
+                const reviewNaskahKM = cy.get(menu.reviewNaskahKM).as('reviewNaskahKM')
+                reviewNaskahKM.should('be.visible')
+                    .click()
+            }
+        })
     }
 
     goToKotakMasukTindakLanjut() {
