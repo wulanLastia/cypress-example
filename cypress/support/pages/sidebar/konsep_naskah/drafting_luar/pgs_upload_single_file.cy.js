@@ -102,18 +102,22 @@ export class UploadSingleFilePage {
     }
 
     checkDataFileUpload() {
-        // Assertion file upload
-        const label_fileUploadTitle = cy.get(upload_single.label_fileUploadTitle).as('label_fileUploadTitle')
-        label_fileUploadTitle.should('contain', 'Dummy.pdf')
+        cy.readFile(getPreviewData).then((object) => {
+            // Assertion file upload
+            const upload_file_name = object.upload_file[1].upload_file_name
 
-        const label_fileUploadSize = cy.get(upload_single.label_fileUploadSize).as('label_fileUploadSize')
-        label_fileUploadSize.should('contain', '18.3 KB')
+            const label_fileUploadTitle = cy.get(upload_single.label_fileUploadTitle).as('label_fileUploadTitle')
+            label_fileUploadTitle.should('contain', upload_file_name)
 
-        const btn_reuploadFile = cy.get(upload_single.btn_reuploadFile).as('btn_reuploadFile')
-        btn_reuploadFile.should('be.visible')
+            const label_fileUploadSize = cy.get(upload_single.label_fileUploadSize).as('label_fileUploadSize')
+            label_fileUploadSize.should('contain', '18.3 KB')
 
-        const btn_deleteFile = cy.get(upload_single.btn_deleteFile).as('btn_deleteFile')
-        btn_deleteFile.should('be.visible')
+            const btn_reuploadFile = cy.get(upload_single.btn_reuploadFile).as('btn_reuploadFile')
+            btn_reuploadFile.should('be.visible')
+
+            const btn_deleteFile = cy.get(upload_single.btn_deleteFile).as('btn_deleteFile')
+            btn_deleteFile.should('be.visible')
+        })
     }
 
     checkTabRegistrasi(status) {

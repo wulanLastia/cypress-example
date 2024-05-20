@@ -698,17 +698,21 @@ export class TabRegistrasiPage {
     }
 
     checkDataFileUpload() {
-        // Assertion file upload
-        const label_fileUploadTitle = cy.get(tab_registrasi.label_fileTitle).as('label_fileUploadTitle')
-        label_fileUploadTitle.scrollIntoView()
-            .should('contain', 'Dummy.pdf')
+        cy.readFile(getPreviewData).then((object) => {
+            // Assertion file upload
+            const upload_file_name = object.upload_file[1].upload_file_name
 
-        const label_fileUploadSize = cy.get(tab_registrasi.label_fileSize).as('label_fileUploadSize')
-        label_fileUploadSize.should('contain', '18.3 KB')
+            const label_fileUploadTitle = cy.get(tab_registrasi.label_fileTitle).as('label_fileUploadTitle')
+            label_fileUploadTitle.scrollIntoView()
+                .should('contain', upload_file_name)
 
-        const btn_deleteSuratPengantar = cy.get(tab_registrasi.btn_deleteSuratPengantar).as('btn_deleteSuratPengantar')
-        btn_deleteSuratPengantar.should('be.visible')
+            const label_fileUploadSize = cy.get(tab_registrasi.label_fileSize).as('label_fileUploadSize')
+            label_fileUploadSize.should('contain', '18.3 KB')
 
-        cy.wait(6000)
+            const btn_deleteSuratPengantar = cy.get(tab_registrasi.btn_deleteSuratPengantar).as('btn_deleteSuratPengantar')
+            btn_deleteSuratPengantar.should('be.visible')
+
+            cy.wait(6000)
+        })
     }
 }
