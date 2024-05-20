@@ -98,7 +98,7 @@ describe('Drafting Luar - Skenario Nota Dinas', { testIsolation: false }, () => 
     )
 
     qase([],
-        it.only('Tandatangani Naskah Penandatangan Atasan', () => {
+        it('Tandatangani Naskah Penandatangan Atasan', () => {
             // Login 
             loginPage.loginViaV1(user.nip_pemeriksa_2_2, user.password)
             loginPage.directLogin()
