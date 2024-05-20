@@ -613,8 +613,8 @@ export class TabRegistrasiPage {
     uploadSuratPengantar(status) {
         if (status === 'positif') {
             // Upload File
-            const fileUploadSingleFile = 'non_cred/drafting_luar/master_data/TEMPLATE_SURAT_BIASA.pdf'
-            const fileName = 'TEMPLATE_SURAT_BIASA.pdf'
+            const fileUploadSingleFile = 'non_cred/drafting_luar/master_data/Dummy.pdf'
+            const fileName = 'Dummy.pdf'
 
             const btn_inputSuratPengantar = cy.get(tab_registrasi.btn_inputSuratPengantar).as('btn_inputSuratPengantar')
             btn_inputSuratPengantar.attachFile(fileUploadSingleFile)
@@ -698,17 +698,21 @@ export class TabRegistrasiPage {
     }
 
     checkDataFileUpload() {
-        // Assertion file upload
-        const label_fileUploadTitle = cy.get(tab_registrasi.label_fileTitle).as('label_fileUploadTitle')
-        label_fileUploadTitle.scrollIntoView()
-            .should('contain', 'TEMPLATE_SURAT_BIASA.pdf')
+        cy.readFile(getPreviewData).then((object) => {
+            // Assertion file upload
+            const upload_file_name = object.upload_file[1].upload_file_name
 
-        const label_fileUploadSize = cy.get(tab_registrasi.label_fileSize).as('label_fileUploadSize')
-        label_fileUploadSize.should('contain', '434.0 KB')
+            const label_fileUploadTitle = cy.get(tab_registrasi.label_fileTitle).as('label_fileUploadTitle')
+            label_fileUploadTitle.scrollIntoView()
+                .should('contain', upload_file_name)
 
-        const btn_deleteSuratPengantar = cy.get(tab_registrasi.btn_deleteSuratPengantar).as('btn_deleteSuratPengantar')
-        btn_deleteSuratPengantar.should('be.visible')
+            const label_fileUploadSize = cy.get(tab_registrasi.label_fileSize).as('label_fileUploadSize')
+            label_fileUploadSize.should('contain', '18.3 KB')
 
-        cy.wait(6000)
+            const btn_deleteSuratPengantar = cy.get(tab_registrasi.btn_deleteSuratPengantar).as('btn_deleteSuratPengantar')
+            btn_deleteSuratPengantar.should('be.visible')
+
+            cy.wait(6000)
+        })
     }
 }

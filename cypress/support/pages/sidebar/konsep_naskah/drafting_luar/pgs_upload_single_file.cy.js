@@ -63,8 +63,8 @@ export class UploadSingleFilePage {
     uploadSingleFile(status) {
         if (status === 'positif') {
             // Upload File
-            const fileUploadSingleFile = 'non_cred/drafting_luar/master_data/TEMPLATE_SURAT_BIASA.pdf'
-            const fileName = 'TEMPLATE_SURAT_BIASA.pdf'
+            const fileUploadSingleFile = 'non_cred/drafting_luar/master_data/Dummy.pdf'
+            const fileName = 'Dummy.pdf'
 
             const btn_inputNaskahButtonUploadFile = cy.get(upload_single.btn_inputNaskahButtonUploadFile).as('btn_inputNaskahButtonUploadFile')
             btn_inputNaskahButtonUploadFile.attachFile(fileUploadSingleFile)
@@ -102,18 +102,22 @@ export class UploadSingleFilePage {
     }
 
     checkDataFileUpload() {
-        // Assertion file upload
-        const label_fileUploadTitle = cy.get(upload_single.label_fileUploadTitle).as('label_fileUploadTitle')
-        label_fileUploadTitle.should('contain', 'TEMPLATE_SURAT_BIASA.pdf')
+        cy.readFile(getPreviewData).then((object) => {
+            // Assertion file upload
+            const upload_file_name = object.upload_file[1].upload_file_name
 
-        const label_fileUploadSize = cy.get(upload_single.label_fileUploadSize).as('label_fileUploadSize')
-        label_fileUploadSize.should('contain', '434.0 KB')
+            const label_fileUploadTitle = cy.get(upload_single.label_fileUploadTitle).as('label_fileUploadTitle')
+            label_fileUploadTitle.should('contain', upload_file_name)
 
-        const btn_reuploadFile = cy.get(upload_single.btn_reuploadFile).as('btn_reuploadFile')
-        btn_reuploadFile.should('be.visible')
+            const label_fileUploadSize = cy.get(upload_single.label_fileUploadSize).as('label_fileUploadSize')
+            label_fileUploadSize.should('contain', '18.3 KB')
 
-        const btn_deleteFile = cy.get(upload_single.btn_deleteFile).as('btn_deleteFile')
-        btn_deleteFile.should('be.visible')
+            const btn_reuploadFile = cy.get(upload_single.btn_reuploadFile).as('btn_reuploadFile')
+            btn_reuploadFile.should('be.visible')
+
+            const btn_deleteFile = cy.get(upload_single.btn_deleteFile).as('btn_deleteFile')
+            btn_deleteFile.should('be.visible')
+        })
     }
 
     checkTabRegistrasi(status) {
@@ -195,7 +199,7 @@ export class UploadSingleFilePage {
 
         const dialog_backDesc = cy.get(upload_single.dialog_backDesc).as('dialog_backDesc')
         dialog_backDesc.find('p')
-            .should('contain', 'TEMPLATE_SURAT_BIASA.pdf')
+            .should('contain', 'Dummy.pdf')
 
         const dialog_backConfirm = cy.get(upload_single.dialog_backConfirm).first().as('dialog_backConfirm')
         dialog_backConfirm.find('div')
@@ -247,6 +251,52 @@ export class UploadSingleFilePage {
             // Construct the sub-object
             const jenis_naskah_name = {
                 jenis_naskah: 'Sasaran Kinerja Pegawai (SKP)'
+            }
+
+            // Push the sub-object to the array
+            createDataToWrite.upload_file.push(jenis_naskah_name)
+
+            // // Write data to the JSON file
+            cy.writeFile(getPreviewData, createDataToWrite)
+        })
+    }
+
+    goToUploadSingleFileNotaDinas() {
+        // Find Document Type
+        const list_listJenisNaskahNotaDinas = cy.get(upload_single.list_listJenisNaskahNotaDinas).as('list_listJenisNaskahNotaDinas')
+        list_listJenisNaskahNotaDinas.find('div')
+            .contains('Nota Dinas')
+            .scrollIntoView()
+
+        // Check Detail List
+        const list_naskahTitleNotaDinas = cy.get(upload_single.list_naskahTitleNotaDinas).as('list_naskahTitleNotaDinas')
+        list_naskahTitleNotaDinas.should('contain', 'Nota Dinas')
+            .and('be.visible')
+
+        const btn_draftNotaDinas = cy.get(upload_single.btn_draftNotaDinas).as('btn_draftNotaDinas')
+        btn_draftNotaDinas.should('contain', 'Buat Draft')
+            .and('be.visible')
+
+        const btn_uploadFileNotaDinas = cy.get(upload_single.btn_uploadFileNotaDinas).as('btn_uploadFileNotaDinas')
+        btn_uploadFileNotaDinas.should('contain', 'Upload')
+            .and('be.visible')
+
+        const btn_templateNotaDinas = cy.get(upload_single.btn_templateNotaDinas).as('btn_templateNotaDinas')
+        btn_templateNotaDinas.should('contain', 'Template')
+            .and('be.visible')
+
+        // Access Upload Single File
+        btn_uploadFileNotaDinas.click()
+
+        // Begin Save Assertion Data
+        cy.readFile(getPreviewData).then((object) => {
+            const createDataToWrite = {
+                upload_file: []
+            }
+
+            // Construct the sub-object
+            const jenis_naskah_name = {
+                jenis_naskah: 'Nota Dinas'
             }
 
             // Push the sub-object to the array

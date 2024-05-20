@@ -38,6 +38,7 @@
     },
     {
       "tembusan_internal1": "RIZKI HUSTINIASARI, S.T., M.T.",
+      "tembusan_internal2": "ALLAMANDA CATHARTICA, S.I.Kom.",
       "tembusan_eksternal1": "Tembusan Eksternal"
     },
     {
@@ -47,7 +48,8 @@
       "sifat_surat1": "1"
     },
     {
-      "atasan1": "RIZKI HUSTINIASARI, S.T., M.T."
+      "atasan1": "RIZKI HUSTINIASARI, S.T., M.T.",
+      "atasan2": "Dr. IKA MARDIAH, M.Si."
     }
   ],
   "env": [
