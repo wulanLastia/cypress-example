@@ -40,4 +40,10 @@ module.exports = {
     btn_uploadFileSkp: '[data-cy="konsep-naskah__sasaran-kinerja-pegawai-(skp)__button--upload"]',
     btn_templateSkp: '[data-cy="konsep-naskah__sasaran-kinerja-pegawai-(skp)__button--template"]',
 
+    // LIST JENIS NASKAH NOTA DINAS
+    list_listJenisNaskahNotaDinas: '[data-cy="konsep-naskah__list-jenis-naskah__nota-dinas"]',
+    list_naskahTitleNotaDinas: '[data-cy="konsep-naskah__nota-dinas__title"]',
+    btn_draftNotaDinas: '[data-cy="konsep-naskah__nota-dinas__button--create"]',
+    btn_uploadFileNotaDinas: '[data-cy="konsep-naskah__nota-dinas__button--upload"]',
+    btn_templateNotaDinas: '[data-cy="konsep-naskah__nota-dinas__button--template"]',
 }

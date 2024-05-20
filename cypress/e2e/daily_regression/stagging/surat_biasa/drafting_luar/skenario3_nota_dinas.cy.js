@@ -4,17 +4,20 @@ import { TabRegistrasiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/ta
 import { UploadSingleFilePage } from "@pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
 import { TandatanganiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tandatangani.cy"
 import { KotakKeluarPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_keluar.cy"
+import { KotakMasukPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_masuk.cy"
 
 let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
 let tandatanganiPage = new TandatanganiPage()
 let kotakKeluarPage = new KotakKeluarPage()
+let kotakMasukPage = new KotakMasukPage()
 let loginPage = new LoginPage()
 let user
 let data_temp
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
@@ -32,16 +35,16 @@ after(() => {
     )
 })
 
-describe('Drafting Luar - Skenario Penandatangan Diri Sendiri', { testIsolation: false }, () => {
+describe('Drafting Luar - Skenario Nota Dinas', { testIsolation: false }, () => {
 
     qase([2663, 2708, 2715, 2712, 2754, 2766, 2949, 2952, 2960, 2784, 2785, 2792, 2879, 2867, 2883, 2925, 2777, 2893, 2980, 3016, 2982],
         it('Upload dan registrasi naskah single file', () => {
             // Login 
-            loginPage.loginViaV1(user.nip_konseptor_2, user.password)
+            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
             loginPage.directLogin()
 
-            // Go To Konsep Naskah Sasaran Kinerja Pegawai (SKP)
-            uploadSingleFilePage.goToUploadSingleFileSkp()
+            // Go To Konsep Naskah Surat Biasa
+            uploadSingleFilePage.goToUploadSingleFileNotaDinas()
 
             // Upload File
             uploadSingleFilePage.uploadSingleFile(data_temp.upload[0].upload1)
@@ -54,13 +57,13 @@ describe('Drafting Luar - Skenario Penandatangan Diri Sendiri', { testIsolation:
             tabRegistrasiPage.inputNomorUrut(data_temp.registrasi[0].bank_nomor_lainnya)
             tabRegistrasiPage.searchKodeKlasifikasi(data_temp.registrasi[1].kode_klasifikasi)
             tabRegistrasiPage.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
-
+ 
             // Tab Registrasi - Tujuan Surat
             tabRegistrasiPage.activateToggleDistribusi()
             tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_internal1)
             tabRegistrasiPage.addMoreTujuan()
             tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[5].tujuan_eksternal1)
-            tabRegistrasiPage.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[6].tembusan_internal1)
+            tabRegistrasiPage.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[6].tembusan_internal2)
             tabRegistrasiPage.addMoreTembusan()
             tabRegistrasiPage.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[6].tembusan_eksternal1)
 
@@ -68,13 +71,15 @@ describe('Drafting Luar - Skenario Penandatangan Diri Sendiri', { testIsolation:
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
 
-            tabRegistrasiPage.inputPerihal('Automation Drafting Luar (SKP) ' + id, 'Automation Drafting Luar (SKP) ' + id)
+            tabRegistrasiPage.inputPerihal('Automation Drafting Luar (Surat Biasa) ' + id, 'Automation Drafting Luar (Surat Biasa) ' + id)
             tabRegistrasiPage.checkWarnaLabelUrgensi(data_temp.registrasi[7].urgensi_surat, data_temp.registrasi[3].index0)
             tabRegistrasiPage.inputSifat(data_temp.registrasi[8].sifat_surat1)
 
             // Tab Registrasi - Section Penandatangan
             tabRegistrasiPage.addMorePenandatangan()
             tabRegistrasiPage.inputPenandatanganDiriSendiri()
+            tabRegistrasiPage.addMorePenandatangan()
+            tabRegistrasiPage.inputPenandatanganAtasan(data_temp.registrasi[9].atasan2, data_temp.env[0].staging)
 
             // Upload file pengantar
             tabRegistrasiPage.uploadSuratPengantar(data_temp.upload[0].upload1)
@@ -89,6 +94,23 @@ describe('Drafting Luar - Skenario Penandatangan Diri Sendiri', { testIsolation:
             // Check Naskah Di Kotak Keluar
             kotakKeluarPage.goToKotakKeluarTTEReview()
             kotakKeluarPage.checkNaskahKotakKeluar()
+        })
+    )
+
+    qase([],
+        it.only('Tandatangani Naskah Penandatangan Atasan', () => {
+            // Login 
+            loginPage.loginViaV1(user.nip_pemeriksa_2_2, user.password)
+            loginPage.directLogin()
+
+            // Tandatangani Naskah
+            kotakMasukPage.goToKotakMasukTTEReview()
+            kotakMasukPage.checkNaskahKotakMasuk()
+
+            // Melakukan TTE Naskah (Penandatangan Atasan)
+            tandatanganiPage.tandatanganiNaskahAtasan()
+            tandatanganiPage.tteNaskahAtasan()
+            tandatanganiPage.submitTteNaskah(user.passphrase, data_temp.env[0].staging)
         })
     )
 })

@@ -5,7 +5,7 @@ import { DraftingKopSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat
 import { DraftingKepalaSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat_perintah/super_drafting_kepala_surat.cy"
 import { DraftingBadanSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat_perintah/super_drafting_badan_surat.cy"
 import { DraftingKakiSuratPerintahPage } from "@pages/sidebar/konsep_naskah/surat_perintah/super_drafting_kaki_surat.cy"
-import { DraftPage } from "../../../support/pages/sidebar/konsep_naskah/konsep_naskah/draft.cy"
+import { DraftPage } from "@pages/sidebar/konsep_naskah/konsep_naskah/draft.cy"
 import { KembalikanNaskahPage } from "@pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
 import { PerbaikiNaskahPage } from "@pages/sidebar/kotak_masuk/6_perbaiki.cy"
 import { KoreksiSuratPage } from "@pages/sidebar/kotak_masuk/7_koreksi.cy"
@@ -92,14 +92,14 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
     qase([1785, 1769, 1788, 1780],
         it('Check on preview page after select penandatangan Atasan', () => {
             cy.wait(3000)
-            draftingKakiSuratPerintahPage.pilihPenandatanganAtasan(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan_PROD[0].nama1)
+            draftingKakiSuratPerintahPage.pilihPenandatanganAtasan(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama1)
             cy.wait(5000)
-            draftingKakiSuratPerintahPage.checkPemeriksaAtasan(testKakiPositive.Pemeriksa.Daftar_Pemeriksa_Naskah_PROD[0].nama1)
+            draftingKakiSuratPerintahPage.checkPemeriksaAtasan(testKakiPositive.Pemeriksa.Daftar_Pemeriksa_Naskah[0].nama1)
             cy.wait(3000)
 
             draftingKakiSuratPerintahPage.tambahPemeriksa()
             cy.wait(3000)
-            draftingKakiSuratPerintahPage.inputPemeriksa1(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan_PROD[0].nama2)
+            draftingKakiSuratPerintahPage.inputPemeriksa1(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama2)
             cy.wait(3000)
         })
     )

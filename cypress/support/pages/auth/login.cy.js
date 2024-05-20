@@ -210,8 +210,6 @@ export class LoginPage {
                     skipOnboarding.click()
                 }
             })
-
-            cy.reload()
         })
     }
 

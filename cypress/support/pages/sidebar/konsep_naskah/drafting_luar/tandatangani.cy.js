@@ -51,11 +51,13 @@ export class TandatanganiPage {
             label_dataPerihal.should('contain', perihal)
 
             // Assert Nomor Naskah
-            const nomor_urut = object.bank_nomor[1].nomor_urut
+            if (jenis_naskah !== 'Sasaran Kinerja Pegawai (SKP)'){
+                const nomor_urut = object.bank_nomor[1].nomor_urut
 
-            const label_dataNomorUrut = cy.get(tandatangani.label_dataNomorUrut).as('label_dataNomorUrut')
-            label_dataNomorUrut.should('contain', nomor_urut)
-
+                const label_dataNomorUrut = cy.get(tandatangani.label_dataNomorUrut).as('label_dataNomorUrut')
+                label_dataNomorUrut.should('contain', nomor_urut)
+            }
+            
             // Assert Nama File
             const upload_file_name = object.upload_file[1].upload_file_name
 
