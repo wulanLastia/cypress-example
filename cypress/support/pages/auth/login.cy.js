@@ -45,10 +45,11 @@ export class LoginPage {
 
         cy.wait(1500)
 
-        cy.overrideFeatureToggle({
-            'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-            'SIDEBAR-V1-LOGIN-CAPTCHA': false
-        })
+        // @TODO: Disable sementara karena menyebabkan error 500 
+        // cy.overrideFeatureToggle({
+        //     'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
+        //     'SIDEBAR-V1-LOGIN-CAPTCHA': false
+        // })
 
         cy.intercept('POST', Cypress.env('base_url_api_v1')).as('checkResponse')
 
