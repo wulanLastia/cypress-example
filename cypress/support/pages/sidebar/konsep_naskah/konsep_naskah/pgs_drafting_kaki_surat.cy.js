@@ -198,6 +198,20 @@ export class DraftingKakiSuratPage {
         this.inputTembusanEksternal6(inputEnv, inputanTembusanEksternal6)
     }
 
+    pilihPenandatanganDiriSendiriProd(inputanPenandatanganDiriSendiri) {
+        const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
+        selectPenandatangan.select(2).should('have.value', 'DIRI_SENDIRI')
+
+        const selectedPenandatangan = cy.xpath(kaki_surat.selectedPenandatangan).as('selectedPenandatangan')
+        selectedPenandatangan.should('contain', inputanPenandatanganDiriSendiri)
+            .invoke('val')
+            .then(text => {
+                const Penandatangan = text;
+                const profileName = cy.get(kaki_surat.profileName).as('profileName')
+                profileName.should('contain', Penandatangan)
+            })
+    }
+
     pilihPenandatanganAtasanProd(inputEnv, inputanPenandatanganAtasan1) {
         const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
         selectPenandatangan.select(1).should('have.value', 'ATASAN')

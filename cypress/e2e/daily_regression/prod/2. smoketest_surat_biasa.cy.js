@@ -1,11 +1,11 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
-import { CreateSuratBiasaPage } from "../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
-import { KembalikanNaskahPage } from "../../../support/pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
-import { PerbaikiNaskahPage } from "../../../support/pages/sidebar/kotak_masuk/6_perbaiki.cy"
-import { SetujuiPage } from "../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
-import { KoreksiSuratPage } from "../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { MenuPage } from "@pages/sidebar/menu/menu.cy"
+import { CreateSuratBiasaPage } from "@pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { KembalikanNaskahPage } from "@pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
+import { PerbaikiNaskahPage } from "@pages/sidebar/kotak_masuk/6_perbaiki.cy"
+import { SetujuiPage } from "@pages/sidebar/kotak_masuk/5_setujui.cy"
+import { KoreksiSuratPage } from "@pages/sidebar/kotak_masuk/7_koreksi.cy"
 
 const { faker } = require('@faker-js/faker')
 let createSuratBiasaPage = new CreateSuratBiasaPage()

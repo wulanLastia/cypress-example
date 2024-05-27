@@ -317,6 +317,13 @@ export class CreateSuratBiasaPage {
         draftingKakiSuratPage.closeKakiSurat()
     }
 
+    inputKakiSuratPenandatanganDiriSendiriProd(inputanPenandatanganDiriSendiri) {
+        draftingKakiSuratPage.aksesFormEditingKakiSurat()
+        draftingKakiSuratPage.inputKakiSurat()
+        draftingKakiSuratPage.pilihPenandatanganDiriSendiriProd(inputanPenandatanganDiriSendiri)
+        draftingKakiSuratPage.closeKakiSurat()
+    }
+
     // Kirim
     kirimSurat(inputEnv) {
         if (inputEnv === "prod") {

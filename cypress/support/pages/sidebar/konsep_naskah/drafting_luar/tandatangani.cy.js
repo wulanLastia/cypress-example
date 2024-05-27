@@ -224,4 +224,17 @@ export class TandatanganiPage {
         const dialog_successTTENaskah = cy.get(tandatangani.dialog_successTTENaskah, { timeout: 500 }).as('dialog_successTTENaskah')
         dialog_successTTENaskah.should('be.visible')
     }
+
+    kirimNaskah(){
+        const btn_kirimNaskah = cy.get(tandatangani.btn_kirimNaskah).as('btn_kirimNaskah')
+        btn_kirimNaskah.should('contain', 'Kirim Naskah')
+            .click()
+
+        cy.wait(2000)
+
+        const btn_confirmKirimNaskah = cy.get(tandatangani.btn_confirmKirimNaskah).as('btn_confirmKirimNaskah')
+        btn_confirmKirimNaskah.should('contain', 'Kirim Naskah')
+            .click()
+
+    }
 }
