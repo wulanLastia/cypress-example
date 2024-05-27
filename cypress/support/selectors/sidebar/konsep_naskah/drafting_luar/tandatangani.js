@@ -5,6 +5,8 @@ module.exports = {
     btn_tteNaskah: '[data-cy="dialog__dialog-send-document__button--confirm"]',
     btn_tteConfirm: '[data-cy="dialog__dialog-signing__button--confirm"]',
     btn_tteCancel: '[data-cy="dialog__dialog-signing__button--cancel"]',
+    btn_kirimNaskah: '[data-cy="header__button--submit"]',
+    btn_confirmKirimNaskah: '[data-cy="dialog__dialog-send-document__button--confirm"]',
 
     // LABEL
     label_headerDocumentType: '[data-cy="header__title"]',

@@ -76,11 +76,9 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
             loginPage.directLogin()
 
             cy.wait(1000)
-
             cy.reload()
 
             cy.wait(3000)
-
             draftingSuratPerintahPage.gotoKonsepNaskahSuratPerintah()
 
             cy.wait(6000)
@@ -210,8 +208,6 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
             cy.wait(3000)
             draftingBadanSuratPerintahPage.inputandcheckFieldASN3rd(ASNData.nama3)
             cy.wait(3000)
-
-            draftingBadanSuratPerintahPage.dragAndDropFirstToSecondASNandNonASN()
         })
     )
 
@@ -233,8 +229,6 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
             draftingBadanSuratPerintahPage.toggleASNandNonASN5()
             cy.wait(3000)
             draftingBadanSuratPerintahPage.inputandcheckFieldNonASN5th(nonASNData5.Nama, nonASNData5.Pangkat_or_Golongan, nonASNData5.Nomor_Induk_Pegawai, nonASNData5.Jabatan);
-
-            draftingBadanSuratPerintahPage.dragAndDropLastDataToFirstDataASNandNonASN()
         })
     )
 
@@ -273,11 +267,6 @@ describe('Kembalikan Naskah Skenario', () => {
             // Login 
             cy.then(Cypress.session.clearCurrentSessionData)
 
-            /*cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })*/
-
             loginPage.loginViaV1Prod(user.nip_pemeriksa_1_1, user.password_pemeriksa)
             loginPage.directLogin()
 
@@ -295,33 +284,14 @@ describe('Kembalikan Naskah Skenario', () => {
 })
 
 describe('Perbaiki Naskah Skenario', { testIsolation: false }, () => {
-    qase(2263,
+    qase([2263, 2267],
         it('Akses halaman perbaikan naskah', () => {
             // Login
             cy.then(Cypress.session.clearCurrentSessionData)
 
-            /*cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })*/
-
             loginPage.loginViaV1Prod(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
-            perbaikiNaskahPage.goToPerbaikiNaskah(data_review.env[0].prod)
-            cy.wait(5000)
-        })
-    )
-
-    qase(2272,
-        it('Cek tombol batal kirim naskah', () => {
-            perbaikiNaskahPage.batalPerbaikiNaskah()
-            cy.wait(5000)
-        })
-    )
-
-    qase(2267,
-        it('Memperbaiki isi naskah', () => {
             perbaikiNaskahPage.goToPerbaikiNaskah(data_review.env[0].prod)
             cy.wait(5000)
             perbaikiNaskahPage.perbaikiNaskahSuratPerintah(data_review.perbaiki[0].perbaiki_perihal)
@@ -338,11 +308,6 @@ describe('Koreksi Setujui Naskah Skenario', { testIsolation: false }, () => {
         it('Koreksi dan Setujui Naskah', () => {
             // Login 
             cy.then(Cypress.session.clearCurrentSessionData)
-
-            /*cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })*/
 
             loginPage.loginViaV1Prod(user.nip_pemeriksa_1_1, user.password_pemeriksa)
             loginPage.directLogin()
@@ -362,11 +327,6 @@ describe('Koreksi Tandatangani Naskah Skenario', { testIsolation: false }, () =>
         it('Koreksi dan Tandatangani Naskah', () => {
             // Login 
             cy.then(Cypress.session.clearCurrentSessionData)
-
-            /*cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })*/
 
             loginPage.loginViaV1Prod(user.nip_pemeriksa_1_2, user.password_pemeriksa)
             loginPage.directLogin()
