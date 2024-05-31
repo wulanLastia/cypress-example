@@ -1,19 +1,14 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "@pages/auth/login.cy"
-import { DraftPage } from "@pages/sidebar/konsep_naskah/konsep_naskah/draft.cy"
-import { DraftingNotaDinasPage } from "@pages/sidebar/konsep_naskah/nota_dinas/pgs_drafting_nota_dinas.cy"
 import { CreateNotaDinasPage } from "@pages/sidebar/konsep_naskah/nota_dinas/pgs_create_nota_dinas.cy"
-import { SetujuiPage } from "@pages/sidebar/kotak_masuk/5_setujui.cy"
 import { ListNaskahSuratBiasaPage } from "@pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
 
 const { faker } = require('@faker-js/faker')
 let loginPage = new LoginPage()
-let draftPage = new DraftPage()
-let draftingNotaDinasPage = new DraftingNotaDinasPage()
 let createNotaDinasPage = new CreateNotaDinasPage()
-let setujuiPage = new SetujuiPage()
 let listNaskahSuratBiasaPage = new ListNaskahSuratBiasaPage()
 let user
+let dataNotaDinas
 
 beforeEach(() => {
     cy.intercept({ resourceType: /xhr/ }, { log: false })
@@ -23,6 +18,10 @@ before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
+    })
+
+    cy.fixture('non_cred/kepala_surat/create_data_nota_dinas.json').then((jsonData) => {
+        dataNotaDinas = jsonData  // Assign data from jsonData
     })
 })
 

@@ -61,7 +61,7 @@ module.exports = defineConfig({
   "reporterOptions": {
     "projectCode": "SIDEBARV2",
     "logging": true,
-    "runComplete": false,
+    "runComplete": true,
     "sendScreenshot": false,
     "video": false,
     "basePath": "https://api.qase.io/v1",

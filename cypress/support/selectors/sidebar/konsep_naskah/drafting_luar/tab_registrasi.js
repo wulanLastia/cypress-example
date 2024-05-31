@@ -9,6 +9,7 @@ module.exports = {
     btn_simpanPenandatangan: '[data-cy="dialog__button--simpan"]',
     btn_inputSuratPengantar: '[data-cy="input__upload-surat-pengantar"]',
     btn_deleteSuratPengantar: '[data-cy="registrasi__surat-pengantar__file__button--delete"]',
+    btn_tujuanTembusan: '[data-cy="registrasi__tujuan-tembusan__button--add"]',
 
     // INPUT
     input_bankNomorNomorUrut: '[data-cy="registrasi__nomor-naskah__input--nomor-urut"]',
