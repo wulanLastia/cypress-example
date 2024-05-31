@@ -1,3 +1,4 @@
+## SonarCloud Scanning Code ##
 on:
   push:
     branches:
