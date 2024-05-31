@@ -44,11 +44,11 @@ before(() => {
     loginPage.directLogin()
 })
 
-// after(() => {
-//     qase(411,
-//         loginPage.logoutV2step2()
-//     )
-// })
+after(() => {
+    qase(411,
+        loginPage.logoutV2step2()
+    )
+})
 
 describe('Drafting Luar - Test Case List Kotak Masuk', { testIsolation: false }, () => {
 
