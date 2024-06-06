@@ -2,11 +2,13 @@ import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "@pages/auth/login.cy"
 import { CreateNotaDinasPage } from "@pages/sidebar/konsep_naskah/nota_dinas/pgs_create_nota_dinas.cy"
 import { ListNaskahSuratBiasaPage } from "@pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
+import { SetujuiPage } from "@pages/sidebar/kotak_masuk/5_setujui.cy"
 
 const { faker } = require('@faker-js/faker')
 let loginPage = new LoginPage()
 let createNotaDinasPage = new CreateNotaDinasPage()
 let listNaskahSuratBiasaPage = new ListNaskahSuratBiasaPage()
+let setujuiPage = new SetujuiPage()
 let user
 let dataNotaDinas
 
@@ -53,7 +55,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario Penandatangan Diri Sendiri'
             cy.wait(3000)
             createNotaDinasPage.createBadanSurat(faker.lorem.paragraphs(13, '<br/>\n'))
             cy.wait(3000)
-            createNotaDinasPage.doKirimNaskah(dataNotaDinas.env[0].staging)
+            setujuiPage.doTandaTanganiSurat(dataNotaDinas.env[0].staging)
         })
     )
 })

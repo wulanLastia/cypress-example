@@ -100,7 +100,7 @@ describe('Drafting Luar - Skenario SKP', { testIsolation: false }, () => {
 
             // Tandatangani Naskah
             kotakMasukPage.goToKotakMasukTTEReview()
-            kotakMasukPage.checkNaskahKotakMasuk()
+            kotakMasukPage.checkNaskahKotakMasuk(data_temp.env[0].staging)
 
             // Melakukan TTE Naskah (Penandatangan Atasan)
             tandatanganiPage.tandatanganiNaskahAtasan()
