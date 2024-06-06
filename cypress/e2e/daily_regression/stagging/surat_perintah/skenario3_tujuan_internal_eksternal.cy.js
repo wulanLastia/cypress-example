@@ -92,14 +92,14 @@ describe('Drafting & Kirim Surat Perintah Penandatangan Atasan', { testIsolation
     qase([1785, 1769, 1788, 1780],
         it('Check on preview page after select penandatangan Atasan', () => {
             cy.wait(3000)
-            draftingKakiSuratPerintahPage.pilihPenandatanganAtasan(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama1)
+            draftingKakiSuratPerintahPage.pilihPenandatanganAtasan(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama2)
             cy.wait(5000)
-            draftingKakiSuratPerintahPage.checkPemeriksaAtasan(testKakiPositive.Pemeriksa.Daftar_Pemeriksa_Naskah[0].nama1)
+            draftingKakiSuratPerintahPage.checkPemeriksaAtasan(testKakiPositive.Pemeriksa.Daftar_Pemeriksa_Naskah[0].nama2)
             cy.wait(3000)
 
             draftingKakiSuratPerintahPage.tambahPemeriksa()
             cy.wait(3000)
-            draftingKakiSuratPerintahPage.inputPemeriksa1(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama2)
+            draftingKakiSuratPerintahPage.inputPemeriksa1(testKakiPositive.Penandatangan.Penandatangan_Atasan[0].Daftar_Atasan[0].nama3)
             cy.wait(3000)
         })
     )
@@ -263,12 +263,7 @@ describe('Kembalikan Naskah Skenario', () => {
             // Login 
             cy.then(Cypress.session.clearCurrentSessionData)
 
-            /*cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })*/
-
-            loginPage.loginViaV1(user.nip_pemeriksa_1_1, user.password_pemeriksa)
+            loginPage.loginViaV1(user.nip_pemeriksa_1_1, user.password)
             loginPage.directLogin()
 
             // Kembalikan Naskah
@@ -285,35 +280,17 @@ describe('Kembalikan Naskah Skenario', () => {
 })
 
 describe('Perbaiki Naskah Skenario', { testIsolation: false }, () => {
-    qase(2263,
+    qase([2263, 2267], 
         it('Akses halaman perbaikan naskah', () => {
             // Login
             cy.then(Cypress.session.clearCurrentSessionData)
-
-            /*cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })*/
 
             loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             perbaikiNaskahPage.goToPerbaikiNaskah(data_review.env[0].prod)
             cy.wait(5000)
-        })
-    )
-
-    qase(2272,
-        it('Cek tombol batal kirim naskah', () => {
-            perbaikiNaskahPage.batalPerbaikiNaskah()
-            cy.wait(5000)
-        })
-    )
-
-    qase(2267,
-        it('Memperbaiki isi naskah', () => {
-            perbaikiNaskahPage.goToPerbaikiNaskah(data_review.env[0].prod)
-            cy.wait(5000)
+        
             perbaikiNaskahPage.perbaikiNaskahSuratPerintah(data_review.perbaiki[0].perbaiki_perihal)
             cy.wait(10000)
 
@@ -329,12 +306,7 @@ describe('Koreksi Setujui Naskah Skenario', { testIsolation: false }, () => {
             // Login 
             cy.then(Cypress.session.clearCurrentSessionData)
 
-            /*cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })*/
-
-            loginPage.loginViaV1(user.nip_pemeriksa_1_1, user.password_pemeriksa)
+            loginPage.loginViaV1(user.nip_pemeriksa_1_1, user.password)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview(data_review.env[0].prod)
@@ -353,17 +325,12 @@ describe('Koreksi Tandatangani Naskah Skenario', { testIsolation: false }, () =>
             // Login 
             cy.then(Cypress.session.clearCurrentSessionData)
 
-            /*cy.overrideFeatureToggle({
-                'SIDEBAR-V1_RATE-LIMITER--FAILED_LOGIN': false,
-                'SIDEBAR-V1-LOGIN-CAPTCHA': true
-            })*/
-
-            loginPage.loginViaV1(user.nip_pemeriksa_1_2, user.password_pemeriksa)
+            loginPage.loginViaV1(user.nip_pemeriksa_1_2, user.password)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview(data_review.env[0].prod)
             koreksiSuratPage.checkDetailKoreksiTandatangani()
-            koreksiSuratPage.koreksiTandatanganiSuratPerintah('passphrase', data_review.koreksi[0].koreksi_tandatangani_perihal)
+            koreksiSuratPage.koreksiTandatanganiSuratPerintah(user.passphrase, data_review.koreksi[0].koreksi_tandatangani_perihal)
             cy.wait(10000)
 
             loginPage.logoutV2step2()

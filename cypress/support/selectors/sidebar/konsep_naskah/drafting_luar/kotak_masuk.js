@@ -2,6 +2,9 @@ module.exports = {
     // BUTTON
     btn_menuKotakMasuk: '[data-cy="sidebar-menu-kotak-masuk"]',
     btn_menuTteReview: '[data-cy="sidebar-menu-kotak-masuk-tte-review"]',
+    btn_previewPdf: '[data-cy="tte-review-naskah__button--preview-pdf"]',
+    btn_headerTteNaskah: '[data-cy="tte-review-naskah__button--sign-document"]',
+    btn_headerKembali: '[data-cy="header__button--back"]',
 
     // LABEL
     label_tteReviewTitle: '[data-cy="panel__title"]',
@@ -16,6 +19,16 @@ module.exports = {
     label_tableDataUrgensi: '[data-cy="tte-review-naskah__table--urgency-tag-0"]',
     label_tableDataSifat: '[data-cy="tte-review-naskah__table--sifat-0"]',
     label_tableDataUpdate: '[data-cy="tte-review-naskah__table--update-0"]',
+    label_detailHeaderJenisNaskah: '[data-cy="header__document-type"]',
+    label_detailHeaderUrgensi: '[data-cy="header__urgency"]',
+    label_detailJenisNaskah: '[data-cy="document-information__document-type__title"]',
+    label_detailNomorUrut: '[data-cy="document-information__document-number__title"]',
+    label_detailUrgensi: '[data-cy="document-information__urgency__title"]',
+    label_detailPerihal: '[data-cy="document-information__perihal__title"]',
+    label_detailSifat: '[data-cy="document-information__sifat__title"]',
+    label_detailPenerimaTitle: '[data-cy="tujuan__title"]',
+    label_detailPenerimaDescription: '[data-cy="tujuan__description"]',
+    label_detailPenandatanganTitle: '[data-cy="penandatangan__title"]',
 
     // INPUT
     input_searchKotakMasuk: '[data-cy="tte-review__filter-box"]',
@@ -29,4 +42,17 @@ module.exports = {
     // DIALOG
     dialog_onboarding: '.introjs-tooltipReferenceLayer',
     dialog_onboardingSkip: '.introjs-skipbutton',
+
+    // TAB
+    tab_registrasi: '[data-cy="tab__detail-registrasi"]',
+    tab_history: '[data-cy="tab__detail-histori"]',
+    tab_dataJenisNaskah: '[data-cy="document-information__document-type__data"]',
+    tab_dataNomorUrut: '[data-cy="document-information__document-number__data"]',
+    tab_dataUrgensi: '[data-cy="document-information__urgency__data"]',
+    tab_dataPerihal: '[data-cy="document-information__perihal__data"]',
+    tab_dataSifat: '[data-cy="document-information__sifat__data"]',
+    tab_dataPenerima0: '[data-cy="tujuan-data__card-user__people-name-0"]',
+    tab_dataPenerima1: '[data-cy="tujuan-data__card-user__people-name-1"]',
+    tab_dataPenandatangan0: '[data-cy="penandatangan-data__card-user__people-name-0"]',
+    tab_dataPenandatangan1: '[data-cy="penandatangan-data__card-user__people-name-1"]',
 }
