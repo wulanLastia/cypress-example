@@ -1,5 +1,5 @@
 # more info see official docs: https://github.com/cypress-io/github-action
-name: E2E Cypress Daily Test at 06:30 WIB
+name: E2E Cypress Daily Test at 01:00 WIB
 on:
   workflow_dispatch:
   schedule:
