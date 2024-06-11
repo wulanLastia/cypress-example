@@ -37,11 +37,11 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: true })
 })
 
-/*after(() => {
+after(() => {
     qase(411,
         loginPage.logoutV2step2()
     )
-})*/
+})
 
 describe('Drafting Luar - Test Case Detail Kotak Keluar', { testIsolation: false }, () => {
 
@@ -52,49 +52,49 @@ describe('Drafting Luar - Test Case Detail Kotak Keluar', { testIsolation: false
             loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
             loginPage.directLogin()
 
-            // // Go To Konsep Naskah Surat Biasa
-            // uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
+            // Go To Konsep Naskah Surat Biasa
+            uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
 
-            // // Upload File
-            // uploadSingleFilePage.uploadSingleFile(data_temp.upload[0].upload1)
-            // uploadSingleFilePage.checkDataFileUpload()
+            // Upload File
+            uploadSingleFilePage.uploadSingleFile(data_temp.upload[0].upload1)
+            uploadSingleFilePage.checkDataFileUpload()
 
-            // // Click tab registrasi
-            // tabRegistrasiPage.clickTabRegistrasi()
+            // Click tab registrasi
+            tabRegistrasiPage.clickTabRegistrasi()
 
-            // // Tab Registrasi - Bank Nomor
-            // tabRegistrasiPage.inputNomorUrut(data_temp.registrasi[0].bank_nomor_lainnya)
-            // tabRegistrasiPage.searchKodeKlasifikasi(data_temp.registrasi[1].kode_klasifikasi)
-            // tabRegistrasiPage.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
+            // Tab Registrasi - Bank Nomor
+            tabRegistrasiPage.inputNomorUrut(data_temp.registrasi[0].bank_nomor_lainnya)
+            tabRegistrasiPage.searchKodeKlasifikasi(data_temp.registrasi[1].kode_klasifikasi)
+            tabRegistrasiPage.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
  
-            // // Tab Registrasi - Tujuan Surat
-            // tabRegistrasiPage.inputTujuanTembusanSurat()
+            // Tab Registrasi - Tujuan Surat
+            tabRegistrasiPage.inputTujuanTembusanSurat()
 
-            // // Tab Registrasi - Section Identitas Surat
-            // const uuid = () => Cypress._.random(0, 1e6)
-            // const id = uuid()
+            // Tab Registrasi - Section Identitas Surat
+            const uuid = () => Cypress._.random(0, 1e6)
+            const id = uuid()
 
-            // tabRegistrasiPage.inputPerihal('Automation Drafting Luar - Kotak Keluar (Surat Biasa) ' + id, 'Automation Drafting Luar - Kotak Keluar (Surat Biasa) ' + id)
-            // tabRegistrasiPage.checkWarnaLabelUrgensi(data_temp.registrasi[7].urgensi_surat, data_temp.registrasi[3].index0)
-            // tabRegistrasiPage.inputSifat(data_temp.registrasi[8].sifat_surat1)
+            tabRegistrasiPage.inputPerihal('Automation Drafting Luar - Kotak Keluar (Surat Biasa) ' + id, 'Automation Drafting Luar - Kotak Keluar (Surat Biasa) ' + id)
+            tabRegistrasiPage.checkWarnaLabelUrgensi(data_temp.registrasi[7].urgensi_surat, data_temp.registrasi[3].index0)
+            tabRegistrasiPage.inputSifat(data_temp.registrasi[8].sifat_surat1)
 
-            // // Tab Registrasi - Section Penandatangan
-            // tabRegistrasiPage.addMorePenandatangan()
-            // tabRegistrasiPage.inputPenandatanganDiriSendiri()
-            // tabRegistrasiPage.addMorePenandatangan()
-            // tabRegistrasiPage.inputPenandatanganAtasan(data_temp.registrasi[9].atasan2, data_temp.env[0].staging)
+            // Tab Registrasi - Section Penandatangan
+            tabRegistrasiPage.addMorePenandatangan()
+            tabRegistrasiPage.inputPenandatanganDiriSendiri()
+            tabRegistrasiPage.addMorePenandatangan()
+            tabRegistrasiPage.inputPenandatanganAtasan(data_temp.registrasi[9].atasan2, data_temp.env[0].staging)
 
-            // // Upload file pengantar
-            // tabRegistrasiPage.uploadSuratPengantar(data_temp.upload[0].upload1)
-            // tabRegistrasiPage.checkDataFileUpload()
+            // Upload file pengantar
+            tabRegistrasiPage.uploadSuratPengantar(data_temp.upload[0].upload1)
+            tabRegistrasiPage.checkDataFileUpload()
 
-            // // Melakukan TTE Naskah (Penandatangan Diri Sendiri)
-            // tandatanganiPage.tandatanganiNaskah()
-            // tandatanganiPage.checkInputDataRegistrasi()
-            // tandatanganiPage.tteNaskah()
-            // tandatanganiPage.submitTteNaskah(user.passphrase, data_temp.env[0].staging)
+            // Melakukan TTE Naskah (Penandatangan Diri Sendiri)
+            tandatanganiPage.tandatanganiNaskah()
+            tandatanganiPage.checkInputDataRegistrasi()
+            tandatanganiPage.tteNaskah()
+            tandatanganiPage.submitTteNaskah(user.passphrase, data_temp.env[0].staging)
 
-            // cy.wait(3000)
+            cy.wait(3000)
         })
     )
 
