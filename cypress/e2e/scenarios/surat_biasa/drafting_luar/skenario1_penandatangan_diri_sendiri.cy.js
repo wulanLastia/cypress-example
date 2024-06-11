@@ -51,13 +51,7 @@ describe('Drafting Luar - Skenario Penandatangan Diri Sendiri', { testIsolation:
             tabRegistrasiPage.inputUnitPengolah('PAD', 'PAD')
 
             // Tab Registrasi - Tujuan Surat
-            tabRegistrasiPage.activateToggleDistribusi()
-            tabRegistrasiPage.inputTujuan('staging', '0', 'internal', 'Dr. IKA MARDIAH, M.Si.')
-            tabRegistrasiPage.addMoreTujuan()
-            tabRegistrasiPage.inputTujuan('staging', '1', 'eksternal', 'Tujuan Eksternal')
-            tabRegistrasiPage.inputTembusan('staging', '0', 'internal', 'RIZKI HUSTINIASARI, S.T., M.T.')
-            tabRegistrasiPage.addMoreTembusan()
-            tabRegistrasiPage.inputTembusan('staging', '1', 'eksternal', 'Tembusan Eksternal 1')
+            tabRegistrasiPage.inputTujuanTembusanSurat()
 
             // Tab Registrasi - Section Identitas Surat
             const uuid = () => Cypress._.random(0, 1e6)
@@ -83,7 +77,7 @@ describe('Drafting Luar - Skenario Penandatangan Diri Sendiri', { testIsolation:
 
             // Check Naskah Di Kotak Keluar
             kotakKeluarPage.goToKotakKeluarTTEReview()
-            kotakKeluarPage.checkNaskahKotakKeluar()
+            kotakKeluarPage.checkNaskahKotakKeluar(data_temp.env[0].staging)
         })
     )
 })

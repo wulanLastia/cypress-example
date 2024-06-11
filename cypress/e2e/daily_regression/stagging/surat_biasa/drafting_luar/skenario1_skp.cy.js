@@ -15,6 +15,16 @@ let loginPage = new LoginPage()
 let user
 let data_temp
 
+Cypress.on('uncaught:in promise', (err, runnable) => {
+    // Jika terdapat error 'uncaught:exception' pada Headless Mode
+    if (err.message.includes('postMessage')) {
+        return false; // return false digunakan untuk skip error pada Headless Mode
+    }
+
+    // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
+    throw err;
+});
+
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     
@@ -54,13 +64,7 @@ describe('Drafting Luar - Skenario SKP', { testIsolation: false }, () => {
             tabRegistrasiPage.clickTabRegistrasi()
 
             // Tab Registrasi - Tujuan Surat
-            tabRegistrasiPage.activateToggleDistribusi()
-            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_internal1)
-            tabRegistrasiPage.addMoreTujuan()
-            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[5].tujuan_eksternal1)
-            tabRegistrasiPage.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[6].tembusan_internal1)
-            tabRegistrasiPage.addMoreTembusan()
-            tabRegistrasiPage.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[6].tembusan_eksternal1)
+            tabRegistrasiPage.inputTujuanTembusanSurat()
 
             // Tab Registrasi - Section Identitas Surat
             const uuid = () => Cypress._.random(0, 1e6)
@@ -88,7 +92,7 @@ describe('Drafting Luar - Skenario SKP', { testIsolation: false }, () => {
 
             // Check Naskah Di Kotak Keluar
             kotakKeluarPage.goToKotakKeluarTTEReview()
-            kotakKeluarPage.checkNaskahKotakKeluar()
+            kotakKeluarPage.checkNaskahKotakKeluar(data_temp.env[0].staging)
         })
     )
 

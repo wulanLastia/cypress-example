@@ -70,14 +70,8 @@ describe('Drafting Luar - Test Case Detail Kotak Masuk', { testIsolation: false 
             tabRegistrasiPage.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
  
             // Tab Registrasi - Tujuan Surat
-            tabRegistrasiPage.activateToggleDistribusi()
-            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_internal1)
-            tabRegistrasiPage.addMoreTujuan()
-            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[5].tujuan_eksternal1)
-            tabRegistrasiPage.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[6].tembusan_internal2)
-            tabRegistrasiPage.addMoreTembusan()
-            tabRegistrasiPage.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[6].tembusan_eksternal1)
-
+            tabRegistrasiPage.inputTujuanTembusanSurat()
+            
             // Tab Registrasi - Section Identitas Surat
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
@@ -106,7 +100,7 @@ describe('Drafting Luar - Test Case Detail Kotak Masuk', { testIsolation: false 
 
     // Begin test case detail kotak masuk
     qase([3389, 3390, 3406, 3393, 3395, 3396, 3397, 3398, 3399, 3400, 3401, 3394],
-        it.only('Detail kotak masuk', () => {
+        it('Detail kotak masuk', () => {
             // Login 
             loginPage.loginViaV1(user.nip_pemeriksa_2_2, user.password)
             loginPage.directLogin()

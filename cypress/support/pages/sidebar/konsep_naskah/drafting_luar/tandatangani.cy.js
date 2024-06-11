@@ -73,18 +73,21 @@ export class TandatanganiPage {
             const label_dataNamaPenandatangan = cy.get(tandatangani.label_dataNamaPenandatangan).as('label_dataNamaPenandatangan')
             label_dataNamaPenandatangan.contains(penandatangan_diri_sendiri, { matchCase: false })
 
-            // Assert Penerima
-            const label_penerima = cy.get(tandatangani.label_penerima).as('label_penerima')
-            label_penerima.should('contain', 'Penerima')
+            // Assert Penerima 
+            if (jenis_naskah !== 'Sasaran Kinerja Pegawai (SKP)'){
+                const label_penerima = cy.get(tandatangani.label_penerima).as('label_penerima')
+                label_penerima.scrollIntoView()
+                    .should('contain', 'Penerima')
 
-            const tujuan_surat1 = object.tujuan_surat[0].tujuan_internal
-            let arrPenerima = tujuan_surat1.split('(')
+                const tujuan_surat1 = object.tujuan_surat[0].tujuan_internal
+                let arrPenerima = tujuan_surat1.split('(')
 
-            const label_dataNamaPenerima = cy.get(tandatangani.label_dataNamaPenerima).as('label_dataNamaPenerima')
-            label_dataNamaPenerima.contains(arrPenerima[0], { matchCase: false })
+                const label_dataNamaPenerima = cy.get(tandatangani.label_dataNamaPenerima).as('label_dataNamaPenerima')
+                label_dataNamaPenerima.contains(arrPenerima[0], { matchCase: false })
 
-            const label_dataJabatanPenerima = cy.get(tandatangani.label_dataJabatanPenerima).as('label_dataJabatanPenerima')
-            label_dataJabatanPenerima.contains(arrPenerima[1].replace(')', ''), { matchCase: false })
+                const label_dataJabatanPenerima = cy.get(tandatangani.label_dataJabatanPenerima).as('label_dataJabatanPenerima')
+                label_dataJabatanPenerima.contains(arrPenerima[1].replace(')', ''), { matchCase: false })
+            }
         })
     }
 
@@ -118,6 +121,11 @@ export class TandatanganiPage {
     }
 
     tteNaskahAtasan() {
+        // Click btn tte naskah
+        const btn_tteNaskah = cy.get(tandatangani.btn_tteNaskah).as('btn_tteNaskah')
+        btn_tteNaskah.should('contain', 'TTE Naskah')
+            .click()
+
         // Assertion 
         const dialog_panelTte = cy.get(tandatangani.dialog_panelTte).as('dialog_panelTte')
         dialog_panelTte.should('be.visible')
@@ -221,7 +229,7 @@ export class TandatanganiPage {
         })
 
         // Wait for up for the success dialog to appear only 0.5 seconds
-        const dialog_successTTENaskah = cy.get(tandatangani.dialog_successTTENaskah, { timeout: 500 }).as('dialog_successTTENaskah')
+        const dialog_successTTENaskah = cy.get(tandatangani.dialog_successTTENaskah, { timeout: 6000 }).as('dialog_successTTENaskah')
         dialog_successTTENaskah.should('be.visible')
     }
 

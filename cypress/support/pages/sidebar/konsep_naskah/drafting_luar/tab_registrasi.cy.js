@@ -1,5 +1,6 @@
 import tab_registrasi from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/tab_registrasi"
 
+const getMasterData = "cypress/fixtures/non_cred/drafting_luar/master_data/create_data.json"
 const getPreviewData = "cypress/fixtures/non_cred/drafting_luar/transaction_data/preview_data.json"
 export class TabRegistrasiPage {
 
@@ -207,6 +208,48 @@ export class TabRegistrasiPage {
         check_toggleDistribusi.click({ force: true })
     }
 
+    inputTujuanTembusan() {
+        // Click button tambah tujuan dan tembusan
+        const label_daftarTujuanTembusan = cy.get(tab_registrasi.label_daftarTujuanTembusan).as('label_daftarTujuanTembusan')
+        label_daftarTujuanTembusan.scrollIntoView()
+            .should('contain', 'Tujuan & Tembusan surat')
+
+        const btn_tujuanTembusan = cy.get(tab_registrasi.btn_tujuanTembusan).as('btn_tujuanTembusan')
+        btn_tujuanTembusan.should('contain', 'Tambah daftar tujuan & tembusan')
+            .click()
+    }
+
+    selectLintasDinas() {
+        // Pilih lintas dinas
+        const btn_daftarLintasDinas = cy.get(tab_registrasi.btn_daftarLintasDinas).as('btn_daftarLintasDinas')
+        btn_daftarLintasDinas
+            .find('div')
+            .should('contain', 'Lintas Dinas')
+            .click()
+
+        // Assertion pop up
+        const dialog_tujuanTembusan = cy.get(tab_registrasi.dialog_tujuanTembusan).as('dialog_tujuanTembusan')
+        dialog_tujuanTembusan.should('be.visible')
+
+        const dialog_tujuanTembusanTitle = cy.get(tab_registrasi.dialog_tujuanTembusanTitle).as('dialog_tujuanTembusanTitle')
+        dialog_tujuanTembusanTitle.should('contain', 'Lintas Dinas')
+
+        const btn_closeDialogTujuanTembusan = cy.get(tab_registrasi.btn_closeDialogTujuanTembusan).as('btn_closeDialogTujuanTembusan')
+        btn_closeDialogTujuanTembusan.should('be.visible')
+
+        const label_dialogTujuanTembusanInfo = cy.get(tab_registrasi.label_dialogTujuanTembusanInfo).as('label_dialogTujuanTembusanInfo')
+        label_dialogTujuanTembusanInfo.find('span')
+            .should('contain', 'Naskah akan dikirim ke akun Unit Kearsipan penerima untuk didistribusikan.')
+
+        const btn_cancelDialogTujuanTembusan = cy.get(tab_registrasi.btn_cancelDialogTujuanTembusan).as('btn_cancelDialogTujuanTembusan')
+        btn_cancelDialogTujuanTembusan.find('div')
+            .should('contain', 'Batal')
+
+        const btn_confirmDialogTujuanTembusan = cy.get(tab_registrasi.btn_confirmDialogTujuanTembusan).as('btn_confirmDialogTujuanTembusan')
+        btn_confirmDialogTujuanTembusan.find('div')
+            .should('contain', 'Simpan')
+    }
+
     inputTujuan(inputEnv, tujuanKe, tujuanInternalEksternal, inputTujuan) {
         cy.readFile(getPreviewData).then((object) => {
             if (!object.tujuan_surat) {
@@ -221,8 +264,8 @@ export class TabRegistrasiPage {
             }
 
             if (inputTujuan) {
-                const select_inputTujuan = cy.get(tab_registrasi.select_inputTujuan + tujuanKe + '"').as('select_inputTujuan')
-                select_inputTujuan.click()
+                const select_inputTujuanWrapper = cy.get(tab_registrasi.select_inputTujuanWrapper + tujuanKe + '"').as('select_inputTujuanWrapper')
+                select_inputTujuanWrapper.click()
                     .wait(1000)
                     .type(inputTujuan)
 
@@ -242,7 +285,7 @@ export class TabRegistrasiPage {
                                         cy.writeFile(getPreviewData, object)
 
                                         // Select Tujuan
-                                        select_inputTujuan.type('{enter}')
+                                        select_inputTujuanWrapper.type('{enter}')
                                     })
                             }
                         })
@@ -261,14 +304,14 @@ export class TabRegistrasiPage {
                                         cy.writeFile(getPreviewData, object)
 
                                         // Select Tujuan
-                                        select_inputTujuan.type('{enter}')
+                                        select_inputTujuanWrapper.type('{enter}')
                                     })
                             }
                         })
                 }
             } else {
-                const select_inputTujuan = cy.get(tab_registrasi.select_inputTujuan + tujuanKe + '"').as('select_inputTujuan')
-                select_inputTujuan.click()
+                const select_inputTujuanWrapper = cy.get(tab_registrasi.select_inputTujuanWrapper + tujuanKe + '"').as('select_inputTujuanWrapper')
+                select_inputTujuanWrapper.click()
 
                 const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
                 select_inputTujuanSuggest0.wait(3000)
@@ -384,6 +427,41 @@ export class TabRegistrasiPage {
     deleteTembusan() {
         const btn_deleteTembusan1 = cy.get(tab_registrasi.btn_deleteTembusan1).as('btn_deleteTembusan1')
         btn_deleteTembusan1.parent().click()
+    }
+
+    inputTujuanTembusanSurat() {
+        cy.get('body').then($body => {
+            if ($body.find(tab_registrasi.check_toggleDistribusi).length > 0) {
+                // Pilih distribusi
+                this.activateToggleDistribusi()
+
+                // Input data tujuan dan tembusan
+                cy.readFile(getMasterData).then((data_temp) => {
+                    this.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_internal1)
+                    this.addMoreTujuan()
+                    this.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[5].tujuan_eksternal1)
+                    this.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[6].tembusan_internal2)
+                    this.addMoreTembusan()
+                    this.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[6].tembusan_eksternal1)
+                });
+            }else{
+                // Pilih Daftar Tujuan & Tembusan
+                this.inputTujuanTembusan()
+                this.selectLintasDinas()
+
+                // Input data tujuan dan tembusan
+                cy.readFile(getMasterData).then((data_temp) => {
+                    this.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_internal1)
+                    this.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[6].tembusan_internal3)
+                });
+
+                // Click button simpan
+                const btn_confirmDialogTujuanTembusan = cy.get(tab_registrasi.btn_confirmDialogTujuanTembusan).as('btn_confirmDialogTujuanTembusan')
+                btn_confirmDialogTujuanTembusan.find('div')
+                    .should('contain', 'Simpan')
+                    .click()
+            }
+        })
     }
 
     inputPerihal(inputPerihal, assertionPerihal) {
@@ -522,7 +600,7 @@ export class TabRegistrasiPage {
             dialog_penandatanganModeLabel.should('contain', 'Mode Penandatangan')
 
             const dialog_penandatanganModeInput = cy.get(tab_registrasi.dialog_penandatanganModeInput).as('dialog_penandatanganModeInput')
-            dialog_penandatanganModeInput.select('Diri sendiri').should('have.value', 'DIRI_SENDIRI')
+            dialog_penandatanganModeInput.select('DIRI_SENDIRI')
 
             // Assertion
             const dialog_penandatanganLabel = cy.get(tab_registrasi.dialog_penandatanganLabel).as('dialog_penandatanganLabel')
@@ -565,7 +643,7 @@ export class TabRegistrasiPage {
             dialog_penandatanganModeLabel.should('contain', 'Mode Penandatangan')
 
             const dialog_penandatanganModeInput = cy.get(tab_registrasi.dialog_penandatanganModeInput).as('dialog_penandatanganModeInput')
-            dialog_penandatanganModeInput.select('Atasan').should('have.value', 'ATASAN')
+            dialog_penandatanganModeInput.select('ATASAN')
 
             const dialog_penandatanganLabel = cy.get(tab_registrasi.dialog_penandatanganLabel).as('dialog_penandatanganLabel')
             dialog_penandatanganLabel.should('contain', 'Penandatangan')
