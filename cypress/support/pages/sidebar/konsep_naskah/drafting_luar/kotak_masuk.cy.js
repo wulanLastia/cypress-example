@@ -33,6 +33,20 @@ export class KotakMasukPage {
         cy.readFile(getPreviewData).then((object) => {
             const perihal = object.identitas_surat[0].perihal
 
+            // Wait until page ready
+            cy.wait(3000)
+
+            // Check onboarding
+            cy.get('body').then($body => {
+                if ($body.find(kotak_masuk.dialog_onboarding).length > 0) {
+                    // Skip onboarding
+                    const dialog_onboardingSkip = cy.get(kotak_masuk.dialog_onboardingSkip).as('dialog_onboardingSkip')
+                    dialog_onboardingSkip.click()
+
+                    cy.reload()
+                }
+            })
+
             if(inputEnv == "staging"){
                 cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
 
@@ -272,17 +286,8 @@ export class KotakMasukPage {
             const tujuanInternalValue = object.tujuan_surat[0].tujuan_internal
             const arrTujuanInternal = tujuanInternalValue.split(" (")
 
-            cy.log(arrTujuanInternal)
-            cy.log(arrTujuanInternal[0])
-
             const tab_dataPenerima0 = cy.get(kotak_masuk.tab_dataPenerima0).as('tab_dataPenerima0')
             tab_dataPenerima0.contains(arrTujuanInternal[0], { matchCase: false })
-
-            const tujuanEksternalValue = object.tujuan_surat[1].tujuan_eksternal
-            const arrTujuanEksterna = tujuanEksternalValue.split(" (")
-
-            const tab_dataPenerima1 = cy.get(kotak_masuk.tab_dataPenerima1).as('tab_dataPenerima1')
-            tab_dataPenerima1.contains(arrTujuanEksterna[0], { matchCase: false })
         })
     }
 

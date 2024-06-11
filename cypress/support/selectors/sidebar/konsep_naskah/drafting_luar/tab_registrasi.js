@@ -10,6 +10,11 @@ module.exports = {
     btn_inputSuratPengantar: '[data-cy="input__upload-surat-pengantar"]',
     btn_deleteSuratPengantar: '[data-cy="registrasi__surat-pengantar__file__button--delete"]',
     btn_tujuanTembusan: '[data-cy="registrasi__tujuan-tembusan__button--add"]',
+    btn_daftarLintasDinas: '[data-cy="tujuan-tembusan-menu__lintas-dinas"]',
+    btn_closeDialogTujuanTembusan: '[data-cy="dialog__button--close"]',
+    btn_cancelDialogTujuanTembusan: '[data-cy="dialog__dialog-tujuan-tembusan__button--cancel"]',
+    btn_confirmDialogTujuanTembusan: '[data-cy="dialog__dialog-tujuan-tembusan__button--confirm"]',
+
 
     // INPUT
     input_bankNomorNomorUrut: '[data-cy="registrasi__nomor-naskah__input--nomor-urut"]',
@@ -30,6 +35,8 @@ module.exports = {
     label_fileTitle: '[data-cy="registrasi__surat-pengantar__file__title"]',
     label_fileSize: '[data-cy="registrasi__surat-pengantar__file__size"]',
     label_konsepNaskah: '[data-cy="header__title"]',
+    label_daftarTujuanTembusan: '[data-cy="registrasi__tujuan-tembusan-naskah__title"]',
+    label_dialogTujuanTembusanInfo: '[data-cy="info__component"]',
 
     // SELECT
     select_bankNomor: '[data-cy="registrasi__nomor-naskah__input--bank-nomor"]',
@@ -40,16 +47,16 @@ module.exports = {
     select_inputNomorUrut0: '[data-cy="input__select-0"]',
     select_inputKodeKlasifikasi: '[data-cy="registrasi__nomor-naskah__input--kode-klasifikasi"]',
     select_inputKodeKlasifikasiSuggest: '[data-cy="input__select-0"]',
-    select_inputTujuanWrapper: '[data-cy="registrasi__tujuan-naskah__wrapper-0"]',
+    select_inputTujuanWrapper: '[data-cy="registrasi__tujuan-naskah__wrapper-',
     select_inputTujuan: '[data-cy="registrasi__tujuan-naskah__select-option__custom-input-',
     select_inputTujuanSuggest0: '[data-cy="registrasi__tujuan-naskah__select-option-0"]',
-    select_inputTembusan: '[data-cy="registrasi__tembusan-naskah__select-option__custom-input-',
+    select_inputTembusan: '[data-cy="registrasi__tembusan-naskah__wrapper-',
     select_inputTembusanSuggest0: '[data-cy="registrasi__tembusan-naskah__select-option-0"]',
     select_urgensi: '[data-cy="registrasi__identitas-naskah__select--urgensi"]',
     select_urgensiOption: '[data-cy="input__custom-select-',
     select_sifatSurat: '[data-cy="registrasi__identitas-naskah__select--sifat"]',
     select_sifatSuratOption: '[data-cy="input__select-',
-    select_inputPenandatanganAtasan: '[data-cy="penandatangan__select-option__custom-input-1"]',
+    select_inputPenandatanganAtasan: '[data-cy="penandatangan__select-option__custom-input-0"]',
     select_inputPenandatanganAtasanSuggest: '[data-cy="penandatangan__select-option__0"]',
 
     // CHECKBOX/TOGGLE
@@ -67,4 +74,6 @@ module.exports = {
     dialog_backDesc: '[data-cy="dialog__dialog-confirmation__description"]',
     dialog_backConfirm: '[data-cy="dialog__dialog-confirmation__button--confirm"]:visible',
     dialog_backCancel: '[data-cy="dialog__dialog-confirmation__button--cancel"]:visible',
+    dialog_tujuanTembusan: '[data-cy="dialog__dialog-tujuan-tembusan__wrapper"]',
+    dialog_tujuanTembusanTitle: '[data-cy="dialog__dialog-tujuan-tembusan__title"]',
 }

@@ -3,12 +3,12 @@ import { LoginPage } from "@pages/auth/login.cy"
 import { TabRegistrasiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tab_registrasi.cy"
 import { UploadSingleFilePage } from "@pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
 import { TandatanganiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tandatangani.cy"
-import { KotakMasukPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_masuk.cy"
+import { KotakKeluarPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_keluar.cy"
 
 let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
 let tandatanganiPage = new TandatanganiPage()
-let kotakMasukPage = new KotakMasukPage()
+let kotakKeluarPage = new KotakKeluarPage()
 let loginPage = new LoginPage()
 let user
 let data_temp
@@ -37,22 +37,21 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: true })
 })
 
-before(() => {
-    loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
-    loginPage.directLogin()
-})
-
 after(() => {
     qase(411,
         loginPage.logoutV2step2()
     )
 })
 
-describe('Drafting Luar - Test Case List Kotak Masuk', { testIsolation: false }, () => {
+describe('Drafting Luar - Test Case Detail Kotak Keluar', { testIsolation: false }, () => {
 
     // Create sample data
     qase([2663, 2708, 2715, 2712, 2754, 2766, 2949, 2952, 2960, 2784, 2785, 2792, 2879, 2867, 2883, 2925, 2777, 2893, 2980, 3016, 2982],
         it('Upload dan registrasi naskah single file', () => {
+            // Login
+            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
+            loginPage.directLogin()
+
             // Go To Konsep Naskah Surat Biasa
             uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
 
@@ -70,12 +69,12 @@ describe('Drafting Luar - Test Case List Kotak Masuk', { testIsolation: false },
  
             // Tab Registrasi - Tujuan Surat
             tabRegistrasiPage.inputTujuanTembusanSurat()
-            
+
             // Tab Registrasi - Section Identitas Surat
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
 
-            tabRegistrasiPage.inputPerihal('Automation Drafting Luar - Kotak Masuk (Surat Biasa) ' + id, 'Automation Drafting Luar - Kotak Masuk (Surat Biasa) ' + id)
+            tabRegistrasiPage.inputPerihal('Automation Drafting Luar - Kotak Keluar (Surat Biasa) ' + id, 'Automation Drafting Luar - Kotak Keluar (Surat Biasa) ' + id)
             tabRegistrasiPage.checkWarnaLabelUrgensi(data_temp.registrasi[7].urgensi_surat, data_temp.registrasi[3].index0)
             tabRegistrasiPage.inputSifat(data_temp.registrasi[8].sifat_surat1)
 
@@ -93,83 +92,76 @@ describe('Drafting Luar - Test Case List Kotak Masuk', { testIsolation: false },
             tandatanganiPage.tandatanganiNaskah()
             tandatanganiPage.checkInputDataRegistrasi()
             tandatanganiPage.tteNaskah()
-            tandatanganiPage.submitTteNaskah('user.passphrase', data_temp.env[0].staging)
+            tandatanganiPage.submitTteNaskah(user.passphrase, data_temp.env[0].staging)
+
+            cy.wait(3000)
         })
     )
 
-    // Begin test case kotak masuk
-    qase(97,
-        it('Akses menu kotak masuk tab TTE Naskah', () => {
-            cy.wait(6000)
-            
-            // Go To Kotak Masuk - TTE & Review
-            kotakMasukPage.goToKotakMasukTTEReview()
+    // Begin test case detail kotak keluar
+    qase(3205,
+        it('Akses halaman kotak keluar TTE dan Review', () => {
+            // Akses halaman kotak keluar TTE dan Review
+            kotakKeluarPage.goToKotakKeluarTTEReview()
+
+            // Akses detail naskah kotak keluar
+            kotakKeluarPage.checkNaskahKotakKeluar(data_temp.env[0].staging)
         })
     )
 
-    qase([236,3300],
-        it('Cek list halaman kotak masuk dengann status TTE di Ulang', () => {
-            // Wait for 6 seconds
-            cy.wait(10000)
-
-            // Check status tte "TTE Ulang"
-            kotakMasukPage.checkStatusNaskah(data_temp.registrasi[10].status1)
+    qase(3206,
+        it('Cek detail halaman detail kotak keluar review naskah', () => {
+            // Cek detail halaman detail kotak keluar review naskah
+            kotakKeluarPage.checkDetailNaskah()
         })
     )
 
-    qase(300,
-        it('Cek kesesuaian data urgensi', () => {
-            // Cek kesesuaian data urgensi
-            kotakMasukPage.checkDataUrgensi()
+    qase(3252,
+        it('Cek detail data tab registrasi - jenis naskah', () => {
+            // Cek detail data tab registrasi - jenis naskah
+            kotakKeluarPage.checkDataJenisNaskah()
         })
     )
 
-    qase(238,
-        it('Cek kesesuaian data jenis', () => {
-            // Cek kesesuaian data jenis
-            kotakMasukPage.checkDataJenis()
+    qase(3253,
+        it('Cek detail data tab registrasi - nomor naskah', () => {
+            // Cek detail data tab registrasi - nomor naskah
+            kotakKeluarPage.checkDataNomorNaskah()
         })
     )
 
-    qase(301,
-        it('Cek kesesuaian data sifat', () => {
-            // Cek kesesuaian data sifat
-            kotakMasukPage.checkDataSifat()
+    qase(3254,
+        it('Cek detail data tab registrasi - urgensi', () => {
+            // Cek detail data tab registrasi - urgensi
+            kotakKeluarPage.checkDataUrgensi()
         })
     )
 
-    qase(239,
-        it('Cek kesesuaian data perihal', () => {
-            // Cek kesesuaian data perihal
-            kotakMasukPage.checkDataPerihal()
+    qase(3255,
+        it('Cek detail data tab registrasi - perihal', () => {
+            // Cek detail data tab registrasi - perihal
+            kotakKeluarPage.checkDataPerihal()
         })
     )
 
-    qase(235,
-        it('Cek fungsi tombol Selanjutnya', () => {
-            // Cek fungsi tombol Selanjutnya
-            kotakMasukPage.checkNextPageData()
+    qase(3256,
+        it('Cek detail data tab registrasi - sifat', () => {
+            // Cek detail data tab registrasi - sifat
+            kotakKeluarPage.checkDataSifat()
         })
     )
 
-    qase(234,
-        it('Cek fungsi tombol Sebelumnya', () => {
-            // Cek fungsi tombol Sebelumnya
-            kotakMasukPage.checkPrevPageData()
+    qase(3257,
+        it('Cek detail data tab registrasi - penerima', () => {
+            // Cek detail data tab registrasi - penerima
+            kotakKeluarPage.checkDataPenerima()
         })
     )
 
-    qase(232,
-        it('Cek tombol Sebelumnya pada halaman pertama tabel', () => {
-            // Cek tombol Sebelumnya pada halaman pertama tabel
-            kotakMasukPage.checkPrevPage()
-        })
-    )
-
-    qase(233,
-        it('Cek tombol Selanjutnya pada halaman terakhir tabel', () => {
-            // Cek tombol Selanjutnya pada halaman terakhir tabel
-            kotakMasukPage.checkNextPage()
+    qase(3258,
+        it('Cek detail data tab registrasi - penandatangan', () => {
+            // Cek detail data tab registrasi - penandatangan
+            kotakKeluarPage.checkDataPenandatangan()
         })
     )
 })

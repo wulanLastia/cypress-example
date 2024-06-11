@@ -59,14 +59,8 @@ describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () =>
             tabRegistrasiPage.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
  
             // Tab Registrasi - Tujuan Surat
-            tabRegistrasiPage.activateToggleDistribusi()
-            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_internal1)
-            tabRegistrasiPage.addMoreTujuan()
-            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[5].tujuan_eksternal1)
-            tabRegistrasiPage.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[6].tembusan_internal2)
-            tabRegistrasiPage.addMoreTembusan()
-            tabRegistrasiPage.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[6].tembusan_eksternal1)
-
+            tabRegistrasiPage.inputTujuanTembusanSurat()
+            
             // Tab Registrasi - Section Identitas Surat
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
@@ -93,7 +87,7 @@ describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () =>
 
             // Check Naskah Di Kotak Keluar
             kotakKeluarPage.goToKotakKeluarTTEReview()
-            kotakKeluarPage.checkNaskahKotakKeluar()
+            kotakKeluarPage.checkNaskahKotakKeluar(data_temp.env[0].staging)
         })
     )
 
