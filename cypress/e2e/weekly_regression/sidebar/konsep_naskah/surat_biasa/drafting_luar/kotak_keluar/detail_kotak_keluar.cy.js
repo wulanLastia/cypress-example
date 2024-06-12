@@ -164,4 +164,11 @@ describe('Drafting Luar - Test Case Detail Kotak Keluar', { testIsolation: false
             kotakKeluarPage.checkDataPenandatangan()
         })
     )
+
+    qase(3220,
+        it('Cek tombol kembali', () => {
+            // Cek tombol kembali
+            kotakKeluarPage.checkBtnKembali()
+        })
+    )
 })
