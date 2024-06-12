@@ -109,6 +109,8 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
 
             setujuiPage.suratBelumDireview(data_temp.env[0].prod)
             setujuiPage.setujui()
+
+            cy.wait(6000)
         })
     )
 
