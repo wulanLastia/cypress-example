@@ -9,6 +9,43 @@ export class TabRegistrasiPage {
         const btn_uploadFileTabRegistrasi = cy.get(tab_registrasi.btn_uploadFileTabRegistrasi).as('btn_uploadFileTabRegistrasi')
         btn_uploadFileTabRegistrasi.should('contain', 'Registrasi')
             .click()
+
+        // Begin Save Assertion Data
+        cy.readFile(getPreviewData).then((object) => {
+            if (!object.konseptor) {
+                object.konseptor = [];
+            }
+
+            const label_konseptorName = cy.get(tab_registrasi.label_konseptorName).as('label_konseptorName')
+            label_konseptorName.invoke('text')
+                .then((textValue) => {
+                    // Construct the sub-object
+                    const konseptorName = {
+                        konseptor_name: textValue.trim()
+                    }
+
+                    // Push the sub-object to the array
+                    object.konseptor.push(konseptorName)
+
+                    // // Write data to the JSON file
+                    cy.writeFile(getPreviewData, object)
+                })
+
+            const label_konseptorPosition = cy.get(tab_registrasi.label_konseptorPosition).as('label_konseptorPosition')
+            label_konseptorPosition.invoke('text')
+                .then((textValue) => {
+                    // Construct the sub-object
+                    const konseptorPosition = {
+                        konseptor_position: textValue.trim()
+                    }
+
+                    // Push the sub-object to the array
+                    object.konseptor.push(konseptorPosition)
+
+                    // // Write data to the JSON file
+                    cy.writeFile(getPreviewData, object)
+                })
+        })
     }
 
     checkFieldNomorUrut(bank_nomor) {
