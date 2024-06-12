@@ -348,4 +348,12 @@ export class KotakKeluarPage {
             tab_dataPenandatangan1.contains(arrPenandatanganAtasan[0], { matchCase: false })
         })
     }
+
+    checkBtnKembali() {
+        const btn_headerKembali = cy.get(kotak_masuk.btn_headerKembali).as('btn_headerKembali')
+        btn_headerKembali.click()
+
+        // Assertion
+        cy.url().should('eq', Cypress.env('base_url') + 'kotak-keluar/tte-review')
+    }
 }

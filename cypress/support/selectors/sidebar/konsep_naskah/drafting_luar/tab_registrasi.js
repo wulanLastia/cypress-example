@@ -31,6 +31,7 @@ module.exports = {
     label_urgensiHeader: '[data-cy="header__urgency"]',
     label_sifatSurat: '[data-cy="registrasi__identitas-naskah__label--sifat"]',
     label_konseptorName: '[data-cy="header__username"]',
+    label_konseptorPosition: '[data-cy="header__rolename"]',
     label_fileNotSupport: '[data-cy="registrasi__surat-pengantar__file__title"]',
     label_fileTitle: '[data-cy="registrasi__surat-pengantar__file__title"]',
     label_fileSize: '[data-cy="registrasi__surat-pengantar__file__size"]',
