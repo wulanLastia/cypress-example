@@ -37,7 +37,7 @@ after(() => {
 
 describe('Drafting Luar - Skenario Penandatangan Diri Sendiri', { testIsolation: false }, () => {
 
-    qase([2663, 2708, 2715, 2712, 2754, 2766, 2949, 2952, 2960, 2784, 2785, 2792, 2879, 2867, 2883, 2925, 2777, 2893, 2980, 3016, 2982, 3228, 3250, 3306],
+    qase([2663, 2708, 2715, 2712, 2754, 2766, 2949, 2952, 2960, 2784, 2785, 2792, 2879, 2867, 2883, 2925, 2777, 2893, 2980, 3016, 2982, 3228, 3250],
         it('Upload dan registrasi naskah single file', () => {
             // Login 
             loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
@@ -89,7 +89,7 @@ describe('Drafting Luar - Skenario Penandatangan Diri Sendiri', { testIsolation:
             kotakKeluarPage.goToKotakKeluarTTEReview()
             kotakKeluarPage.checkNaskahKotakKeluar(data_temp.env[0].staging)
 
-            // Check Histori Di Detail Kotak Keluar 3228, 3250, 3306
+            // Check Histori Di Detail Kotak Keluar 3228, 3250
             historiPage.goToHistori()
             historiPage.checkHistoryPenandatanganDiriSendiri()
         })
