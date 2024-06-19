@@ -4,14 +4,12 @@ import { TabRegistrasiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/ta
 import { UploadSingleFilePage } from "@pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
 import { TandatanganiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tandatangani.cy"
 import { KotakKeluarPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_keluar.cy"
-import { KotakMasukPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_masuk.cy"
 import { HistoriPage } from "@pages/sidebar/konsep_naskah/drafting_luar/histori.cy"
 
 let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
 let tandatanganiPage = new TandatanganiPage()
 let kotakKeluarPage = new KotakKeluarPage()
-let kotakMasukPage = new KotakMasukPage()
 let historiPage = new HistoriPage()
 let loginPage = new LoginPage()
 let user
@@ -37,12 +35,12 @@ after(() => {
     )
 })
 
-describe('Drafting Luar - Skenario Penandatangan Atasan', { testIsolation: false }, () => {
+describe('Drafting Luar - Skenario histori status selesai', { testIsolation: false }, () => {
 
-    qase([2663, 2708, 2715, 2712, 2754, 2766, 2949, 2952, 2960, 2784, 2785, 2792, 2879, 2867, 2883, 2925, 2777, 2893, 2980, 3016, 2982, 3228, 3250, 3306],
+    qase([2663, 2708, 2715, 2712, 2754, 2766, 2949, 2952, 2960, 2784, 2785, 2792, 2879, 2867, 2883, 2925, 2777, 2893, 2980, 3016, 2982, 3228, 3250],
         it('Upload dan registrasi naskah single file', () => {
             // Login 
-            loginPage.loginViaV1(user.nip_konseptor_2, user.password)
+            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
             loginPage.directLogin()
 
             // Go To Konsep Naskah Surat Biasa
@@ -59,10 +57,10 @@ describe('Drafting Luar - Skenario Penandatangan Atasan', { testIsolation: false
             tabRegistrasiPage.inputNomorUrut(data_temp.registrasi[0].bank_nomor_lainnya)
             tabRegistrasiPage.searchKodeKlasifikasi(data_temp.registrasi[1].kode_klasifikasi)
             tabRegistrasiPage.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
-
+ 
             // Tab Registrasi - Tujuan Surat
             tabRegistrasiPage.inputTujuanTembusanSurat()
-
+            
             // Tab Registrasi - Section Identitas Surat
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
@@ -91,27 +89,9 @@ describe('Drafting Luar - Skenario Penandatangan Atasan', { testIsolation: false
             kotakKeluarPage.goToKotakKeluarTTEReview()
             kotakKeluarPage.checkNaskahKotakKeluar(data_temp.env[0].staging)
 
-            // Check Histori Di Detail Kotak Keluar 3228, 3250, 3306
+            // Check Histori Di Detail Kotak Keluar 3228, 3250
             historiPage.goToHistori()
             historiPage.checkHistoryPenandatanganDiriSendiri()
-            historiPage.checkHistoriPenandatanganBefore()
-        })
-    )
-
-    qase([3307],
-        it('Tandatangani Naskah Penandatangan Atasan', () => {
-            // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
-            loginPage.directLogin()
-
-            // Tandatangani Naskah
-            kotakMasukPage.goToKotakMasukTTEReview()
-            kotakMasukPage.checkNaskahKotakMasuk(data_temp.env[0].staging)
-
-            // Melakukan TTE Naskah (Penandatangan Atasan)
-            tandatanganiPage.tandatanganiNaskahAtasan()
-            tandatanganiPage.tteNaskahAtasan()
-            tandatanganiPage.submitTteNaskah(user.passphrase, data_temp.env[0].staging)
         })
     )
 })

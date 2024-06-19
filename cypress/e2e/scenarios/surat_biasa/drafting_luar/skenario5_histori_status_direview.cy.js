@@ -37,12 +37,12 @@ after(() => {
     )
 })
 
-describe('Drafting Luar - Skenario Penandatangan Atasan', { testIsolation: false }, () => {
+describe('Drafting Luar - Skenario histori status direview', { testIsolation: false }, () => {
 
     qase([2663, 2708, 2715, 2712, 2754, 2766, 2949, 2952, 2960, 2784, 2785, 2792, 2879, 2867, 2883, 2925, 2777, 2893, 2980, 3016, 2982, 3228, 3250, 3306],
         it('Upload dan registrasi naskah single file', () => {
             // Login 
-            loginPage.loginViaV1(user.nip_konseptor_2, user.password)
+            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
             loginPage.directLogin()
 
             // Go To Konsep Naskah Surat Biasa
@@ -98,20 +98,34 @@ describe('Drafting Luar - Skenario Penandatangan Atasan', { testIsolation: false
         })
     )
 
-    qase([3307],
+    qase([],
         it('Tandatangani Naskah Penandatangan Atasan', () => {
             // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
+            loginPage.loginViaV1(user.nip_pemeriksa_2_2, user.password)
             loginPage.directLogin()
 
             // Tandatangani Naskah
             kotakMasukPage.goToKotakMasukTTEReview()
             kotakMasukPage.checkNaskahKotakMasuk(data_temp.env[0].staging)
 
-            // Melakukan TTE Naskah (Penandatangan Atasan)
-            tandatanganiPage.tandatanganiNaskahAtasan()
-            tandatanganiPage.tteNaskahAtasan()
-            tandatanganiPage.submitTteNaskah(user.passphrase, data_temp.env[0].staging)
+            // Wait until status change
+            cy.wait(3000)
+        })
+    )
+
+    qase([3228, 3307],
+        it('Cek histori konseptor jika pemeriksa/penandatangan sudah membaca naskah', () => {
+            // Login 
+            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
+            loginPage.directLogin()
+
+            // Check Naskah Di Kotak Keluar
+            kotakKeluarPage.goToKotakKeluarTTEReview()
+            kotakKeluarPage.checkNaskahKotakKeluar(data_temp.env[0].staging)
+
+            // Cek histori konseptor jika pemeriksa/penandatangan sudah membaca naskah
+            historiPage.goToHistori()
+            historiPage.checkHistoriPenandatanganAfter()
         })
     )
 })

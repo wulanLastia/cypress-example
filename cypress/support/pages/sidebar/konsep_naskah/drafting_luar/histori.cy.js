@@ -35,7 +35,12 @@ export class HistoriPage {
             const card_historiActivity10 = cy.get(histori.card_historiActivity10).as('card_historiActivity10')
             card_historiActivity10.should('contain', 'Menandatangani')
                 .and('have.class', 'card-last-activity rounded-lg p-3 gap-1 mt-2')
+        })
+    }
 
+    // Assert Histori Penandatangan di Kotak Keluar Konseptor (Belum Membaca)
+    checkHistoriPenandatanganBefore() {
+        cy.readFile(getPreviewData).then((object) => {
             // Assert Histori Penandatangan Atasan
             const penandatanganAtasanValue = object.penandatangan[1].penandatangan_atasan
             const arrAtasan = penandatanganAtasanValue.split('(')
@@ -49,6 +54,26 @@ export class HistoriPage {
 
             const card_historiActivity01 = cy.get(histori.card_historiActivity01).as('card_historiActivity01')
             card_historiActivity01.should('contain', 'Belum Membaca')
+                .and('have.class', 'card-temporary rounded-lg p-3 gap-1 mt-2')
+        })
+    }
+
+    // Assert Histori Penandatangan di Kotak Masul Konseptor (Telah Membaca)
+    checkHistoriPenandatanganAfter() {
+        cy.readFile(getPreviewData).then((object) => {
+            // Assert Histori Penandatangan Atasan
+            const penandatanganAtasanValue = object.penandatangan[1].penandatangan_atasan
+            const arrAtasan = penandatanganAtasanValue.split('(')
+            const arrPosition = arrAtasan[1].split(')')
+
+            const card_penandatanganName0 = cy.get(histori.card_penandatanganName0).as('card_penandatanganName0')
+            card_penandatanganName0.contains(arrAtasan[0], { matchCase: false })
+
+            const card_penandatanganPosition0 = cy.get(histori.card_penandatanganPosition0).as('card_penandatanganPosition0')
+            card_penandatanganPosition0.contains(arrPosition[0], { matchCase: false })
+
+            const card_historiActivity01 = cy.get(histori.card_historiActivity01).as('card_historiActivity01')
+            card_historiActivity01.should('contain', 'Telah Membaca')
                 .and('have.class', 'card-temporary rounded-lg p-3 gap-1 mt-2')
         })
     }
