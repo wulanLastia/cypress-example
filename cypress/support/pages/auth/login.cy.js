@@ -192,13 +192,25 @@ export class LoginPage {
                 chooseVersion.scrollIntoView()
                     .click()
             }else{
-                const closePopupLandingPageV1 = cy.get(login.closePopupLandingPageV1).as('closePopupLandingPageV1')
-                closePopupLandingPageV1.click()
+                // Check popup landing page v1
+                cy.get('body').then($body => {
+                    if ($body.find(login.closePopupLandingPageV1).length > 0) {
+                        // Close popup landing page v1
+                        const closePopupLandingPageV1 = cy.get(login.closePopupLandingPageV1).as('closePopupLandingPageV1')
+                        closePopupLandingPageV1.click()
 
-                const goToV2 = cy.get(login.goToV2).as('goToV2')
-                goToV2.click()
-                // @NOTED: Assertion digunakan kembali setelah up to prod -> .should('contain', 'SIDEBAR BARU')
+                        // Go To Sidebar V2
+                        const goToV2 = cy.get(login.goToV2).as('goToV2')
+                        goToV2.click()
+                            .should('contain', 'SIDEBAR BARU')
+                    } else {
+                        // Go To Sidebar V2
+                        const goToV2 = cy.get(login.goToV2).as('goToV2')
+                        goToV2.click()
+                            .should('contain', 'SIDEBAR BARU')
                     
+                    }
+                })    
             }
 
             cy.wait(6000)
@@ -317,9 +329,117 @@ export class LoginPage {
         cy.url().should('eq', Cypress.env('base_url_prod_v1'));
     }
 
+    // TODO : Diskusi dengan backend tekait login via sso
+    // loginSSOJabar() {
+    //     // Clear current session
+    //     cy.then(Cypress.session.clearCurrentSessionData)
+
+    //     // Direct to url staging sidebar v1
+    //     this.navigateLoginPageV1()
+
+    //     // Go to login sso jabar
+    //     const btnLoginSSO = cy.get(login.btnLoginSSO).as('btnLoginSSO')
+    //     btnLoginSSO.scrollIntoView()
+    //         .click({ force: true })
+    // }
+
+    // inputDataLoginSSO(nip, password) {
+    //     // Input Username & Password
+    //     const usernameSSO = cy.get(login.usernameSSO).as('usernameSSO')
+    //     usernameSSO.scrollIntoView()
+    //         .should('be.visible')
+    //         .type(nip, { force: true })
+
+    //     const passwordSSO = cy.get(login.passwordSSO).as('passwordSSO')
+    //     passwordSSO.scrollIntoView()
+    //         .should('be.visible')
+    //         .type(password, { force: true })
+    //         //.type('{enter}')
+
+    // cy.url().then((url) => {
+    //     cy.log('Current URL is: ' + url)
+    //     cy.request('POST', url, {}).then(
+    //         (response) => {
+    //             cy.log(response)
+    //         }
+    //     )
+    // })
+
+    //     const formLoginSSO = cy.get(login.formLoginSSO).as('formLoginSSO')
+    //     formLoginSSO.submit()
+
+    // Click button masuk
+    // const btnConfirmLoginSSO = cy.get(login.btnConfirmLoginSSO).as('btnConfirmLoginSSO')
+    // btnConfirmLoginSSO.should('contain', 'Masuk')
+    //     .click({ force: true })
+    //     .then(() => {
+    //         cy.request('POST', url, {}).then(
+    //             (response) => {
+    //                 cy.log('test')
+    //             }
+    //         )
+    //     }) 
+
+    //     cy.wait(3000)
+    // }
+
+    loginSiapJabar() {
+        // Clear current session
+        cy.then(Cypress.session.clearCurrentSessionData)
+
+        // Direct to url prod sidebar v1
+        this.navigateLoginPageV1Prod()
+
+        // Go to login sso jabar
+        const btnLoginSiap = cy.get(login.btnLoginSiap).as('btnLoginSiap')
+        btnLoginSiap.scrollIntoView()
+            .click({ force: true })
+    }
+
+    inputDataLoginSiap(nip, password) {
+        // Input Username & Password
+        const usernameSiap = cy.xpath(login.usernameSiap).as('usernameSiap')
+        usernameSiap.scrollIntoView()
+            .should('be.visible')
+            .type(nip, { force: true })
+
+        const passwordSiap = cy.xpath(login.passwordSiap).as('passwordSiap')
+        passwordSiap.scrollIntoView()
+            .should('be.visible')
+            .type(password, { force: true })
+
+        // Click button masuk
+        const btnConfirmSiap = cy.xpath(login.btnConfirmSiap).as('btnConfirmSiap')
+        btnConfirmSiap.should('contain', 'Login')
+            .click({ force: true })
+
+        cy.wait(3000)
+
+        // Choose version sidebar v2
+        cy.get('body').then($body => {
+            if ($body.find(login.chooseVersion).length > 0) {
+                // Choose version exists
+                const chooseVersion = cy.get(login.chooseVersion).as('chooseVersion')
+                chooseVersion.scrollIntoView()
+                    .click()
+
+                cy.wait(3000)
+
+                // Assertion Login Sidebar V2 - Siap Jabar
+                cy.url().should('eq', Cypress.env('base_url') + 'konsep-naskah');
+            }else{
+                // Go To Sidebar V2
+                const goToV2 = cy.get(login.goToV2).as('goToV2')
+                goToV2.click()
+                    .should('contain', 'SIDEBAR BARU')
+
+                // Assertion Login Sidebar V2 - Siap Jabar
+                cy.url().should('eq', Cypress.env('base_url_prod_v2') + 'konsep-naskah');
+            }
+        })
+    }
 
     // ALERT
-
     alertGagalLogin() {
         const alertSalah = cy.get(login.alertSalah).as('alertSalah')
         alertSalah.should('be.visible')

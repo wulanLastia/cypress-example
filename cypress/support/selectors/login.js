@@ -14,6 +14,12 @@ module.exports = {
     alertSalah: '[data-cy="login__alert-failed"]',
     alertPopUp: "button[id='close-button-popup']",
     chooseVersion: "[data-cy='choose-version__navigation__button--sidebar-v2']",
+    btnLoginSSO: '[data-cy="login__button--sso"]',
+    btnLoginSiap: '[data-cy="login__button--trk"]',
+    usernameSSO: '[id="username"]',
+    passwordSSO: '[id="password"]',
+    btnConfirmLoginSSO: '[id="kc-login"]',
+    formLoginSSO: '[id="kc-form-login"]',
 
     // SIMULATE V2 STAGING
     btnLoginSso: '/html[1]/body[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/form[1]/div[1]/button[1]',
@@ -25,4 +31,7 @@ module.exports = {
     konsepNaskahMenu: '/html[1]/body[1]/div[1]/aside[1]/div[1]/section[1]/ul[1]/li[3]/a[1]/span[1]',
     skipOnboarding: '.introjs-skipbutton',
     showInputLogin: '/html[1]/body[1]/section[1]/div[1]/div[2]/div[2]/button[1]',
+    usernameSiap: '/html[1]/body[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/input[1]',
+    passwordSiap: '/html[1]/body[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[2]/input[1]',
+    btnConfirmSiap: '/html[1]/body[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[3]/button[1]',
 }
