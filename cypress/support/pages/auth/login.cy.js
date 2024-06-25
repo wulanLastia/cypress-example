@@ -330,58 +330,58 @@ export class LoginPage {
     }
 
     // TODO : Diskusi dengan backend tekait login via sso
-    // loginSSOJabar() {
-    //     // Clear current session
-    //     cy.then(Cypress.session.clearCurrentSessionData)
+    loginSSOJabar() {
+        // Clear current session
+        cy.then(Cypress.session.clearCurrentSessionData)
 
-    //     // Direct to url staging sidebar v1
-    //     this.navigateLoginPageV1()
+        // Direct to url staging sidebar v1
+        this.navigateLoginPageV1()
 
-    //     // Go to login sso jabar
-    //     const btnLoginSSO = cy.get(login.btnLoginSSO).as('btnLoginSSO')
-    //     btnLoginSSO.scrollIntoView()
-    //         .click({ force: true })
-    // }
+        // Go to login sso jabar
+        const btnLoginSSO = cy.get(login.btnLoginSSO).as('btnLoginSSO')
+        btnLoginSSO.scrollIntoView()
+            .click({ force: true })
+    }
 
-    // inputDataLoginSSO(nip, password) {
-    //     // Input Username & Password
-    //     const usernameSSO = cy.get(login.usernameSSO).as('usernameSSO')
-    //     usernameSSO.scrollIntoView()
-    //         .should('be.visible')
-    //         .type(nip, { force: true })
+    inputDataLoginSSO(nip, password) {
+        // Input Username & Password
+        const usernameSSO = cy.get(login.usernameSSO).as('usernameSSO')
+        usernameSSO.scrollIntoView()
+            .should('be.visible')
+            .type(nip, { force: true })
 
-    //     const passwordSSO = cy.get(login.passwordSSO).as('passwordSSO')
-    //     passwordSSO.scrollIntoView()
-    //         .should('be.visible')
-    //         .type(password, { force: true })
-    //         //.type('{enter}')
+        const passwordSSO = cy.get(login.passwordSSO).as('passwordSSO')
+        passwordSSO.scrollIntoView()
+            .should('be.visible')
+            .type(password, { force: true })
+            //.type('{enter}')
 
-    // cy.url().then((url) => {
-    //     cy.log('Current URL is: ' + url)
-    //     cy.request('POST', url, {}).then(
-    //         (response) => {
-    //             cy.log(response)
-    //         }
-    //     )
-    // })
+        // cy.url().then((url) => {
+        //     cy.log('Current URL is: ' + url)
+        //     cy.request('POST', url, {}).then(
+        //         (response) => {
+        //             cy.log(response)
+        //         }
+        //     )
+        // })
 
-    //     const formLoginSSO = cy.get(login.formLoginSSO).as('formLoginSSO')
-    //     formLoginSSO.submit()
+        const formLoginSSO = cy.get(login.formLoginSSO).as('formLoginSSO')
+        formLoginSSO.submit()
 
-    // Click button masuk
-    // const btnConfirmLoginSSO = cy.get(login.btnConfirmLoginSSO).as('btnConfirmLoginSSO')
-    // btnConfirmLoginSSO.should('contain', 'Masuk')
-    //     .click({ force: true })
-    //     .then(() => {
-    //         cy.request('POST', url, {}).then(
-    //             (response) => {
-    //                 cy.log('test')
-    //             }
-    //         )
-    //     }) 
+        // Click button masuk
+        // const btnConfirmLoginSSO = cy.get(login.btnConfirmLoginSSO).as('btnConfirmLoginSSO')
+        // btnConfirmLoginSSO.should('contain', 'Masuk')
+        //     .click({ force: true })
+        //     .then(() => {
+        //         cy.request('POST', url, {}).then(
+        //             (response) => {
+        //                 cy.log('test')
+        //             }
+        //         )
+        //     }) 
 
-    //     cy.wait(3000)
-    // }
+        cy.wait(3000)
+    }
 
     loginSiapJabar() {
         // Clear current session
