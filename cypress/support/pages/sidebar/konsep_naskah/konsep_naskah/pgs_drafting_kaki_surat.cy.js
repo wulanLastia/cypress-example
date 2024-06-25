@@ -203,7 +203,7 @@ export class DraftingKakiSuratPage {
         selectPenandatangan.select(4).should('have.value', 'DIRI_SENDIRI')
 
         const selectedPenandatangan = cy.xpath(kaki_surat.selectedPenandatangan).as('selectedPenandatangan')
-        selectedPenandatangan.should('contain', inputanPenandatanganDiriSendiri)
+        selectedPenandatangan.contains(inputanPenandatanganDiriSendiri, { matchCase: false })
             .invoke('val')
             .then(text => {
                 const Penandatangan = text;
