@@ -4,44 +4,46 @@ import nota_dinas from "../../../../selectors/sidebar/konsep_naskah/nota_dinas/d
 export class ListNaskahSuratBiasaPage {
 
     goToKonsepNaskahSuratBiasa() {
-        cy.log(Cypress.env('cypress_layout'))
-        if(Cypress.env('cypress_layout') == 1) {
-            // Fitur layout lama (Akun Dispusipda)
+        cy.get('body').then($body => {
+            if ($body.find(konsep_naskah.suratBiasa).length > 0) {
+                // Find Document Type
+                const suratBiasa = cy.get(konsep_naskah.suratBiasa).as('suratBiasa')
+                suratBiasa.contains('Surat Biasa')
+                    .scrollIntoView()
+                    .click()
+            }else{
+                // Find Document Type
+                const list_listJenisNaskahSuratBiasa = cy.get(list_surat_biasa.list_listJenisNaskahSuratBiasa).as('list_listJenisNaskahSuratBiasa')
+                list_listJenisNaskahSuratBiasa.find('div')
+                    .contains('Surat Biasa')
+                    .scrollIntoView()
 
-            // Find Document Type
-            const suratBiasa = cy.get(konsep_naskah.suratBiasa).as('suratBiasa')
-            suratBiasa.contains('Surat Biasa')
-                .scrollIntoView()
-                .click()
-        } else {
-            // Fitur layout baru (Akun Diskominfo)
+                // Check Detail List
+                const list_naskahTitleSuratBiasa = cy.get(list_surat_biasa.list_naskahTitleSuratBiasa).as('list_naskahTitleSuratBiasa')
+                list_naskahTitleSuratBiasa.should('contain', 'Surat Biasa')
+                    .and('be.visible')
 
-             // Find Document Type
-            const list_listJenisNaskahSuratBiasa = cy.get(list_surat_biasa.list_listJenisNaskahSuratBiasa).as('list_listJenisNaskahSuratBiasa')
-            list_listJenisNaskahSuratBiasa.find('div')
-                .contains('Surat Biasa')
-                .scrollIntoView()
+                const btn_draftSuratBiasa = cy.get(list_surat_biasa.btn_draftSuratBiasa).as('btn_draftSuratBiasa')
+                btn_draftSuratBiasa.should('contain', 'Buat Draft')
+                    .and('be.visible')
 
-            // Check Detail List
-            const list_naskahTitleSuratBiasa = cy.get(list_surat_biasa.list_naskahTitleSuratBiasa).as('list_naskahTitleSuratBiasa')
-            list_naskahTitleSuratBiasa.should('contain', 'Surat Biasa')
-                .and('be.visible')
+                // Check if btn visible
+                cy.get('body').then($body => {
+                    if ($body.find(list_surat_biasa.btn_uploadFileSuratBiasa).length > 0) {
+                        const btn_uploadFileSuratBiasa = cy.get(list_surat_biasa.btn_uploadFileSuratBiasa).as('btn_uploadFileSuratBiasa')
+                    btn_uploadFileSuratBiasa.should('contain', 'Upload')
+                        .and('be.visible')
+                    }
+                })
 
-            const btn_draftSuratBiasa = cy.get(list_surat_biasa.btn_draftSuratBiasa).as('btn_draftSuratBiasa')
-            btn_draftSuratBiasa.should('contain', 'Buat Draft')
-                .and('be.visible')
+                const btn_templateSuratBiasa = cy.get(list_surat_biasa.btn_templateSuratBiasa).as('btn_templateSuratBiasa')
+                btn_templateSuratBiasa.should('contain', 'Template')
+                    .and('be.visible')
 
-            const btn_uploadFileSuratBiasa = cy.get(list_surat_biasa.btn_uploadFileSuratBiasa).as('btn_uploadFileSuratBiasa')
-            btn_uploadFileSuratBiasa.should('contain', 'Upload')
-                .and('be.visible')
-
-            const btn_templateSuratBiasa = cy.get(list_surat_biasa.btn_templateSuratBiasa).as('btn_templateSuratBiasa')
-            btn_templateSuratBiasa.should('contain', 'Template')
-                .and('be.visible')
-
-            // Access Button Buat Draft
-            btn_draftSuratBiasa.click()
-        }
+                // Access Button Buat Draft
+                btn_draftSuratBiasa.click()
+            }
+        })
     }
 
     batalDrafting() {

@@ -47,14 +47,15 @@ module.exports = defineConfig({
       base_url_api_v2: process.env.BASE_URL_API_V2,
       base_url_api_prod_v2: process.env.BASE_URL_API_PROD_V2,
       cypress_layout: process.env.CYPRESS_DRAFTING_LAYOUT,
+      base_url_login_sso: process.env.BASE_URL_LOGIN_SSO,
     },
 
     testIsolation: true,
 
-    retries: {
-      runMode: 2,
-      openMode: 1,
-    },
+    // retries: {
+    //   runMode: 2,
+    //   openMode: 1,
+    // },
 
   },
   "reporter": "cypress-qase-reporter",

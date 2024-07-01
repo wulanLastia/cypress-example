@@ -55,4 +55,5 @@ module.exports = {
     tab_dataPenerima1: '[data-cy="tujuan-data__card-user__people-name-1"]',
     tab_dataPenandatangan0: '[data-cy="penandatangan-data__card-user__people-name-0"]',
     tab_dataPenandatangan1: '[data-cy="penandatangan-data__card-user__people-name-1"]',
+    tab_kotakMasukReviewNaskah: '[data-cy="tab__review-naskah"]',
 }
