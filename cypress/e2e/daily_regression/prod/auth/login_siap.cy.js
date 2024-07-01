@@ -15,7 +15,7 @@ Cypress.on('uncaught:in promise', (err, runnable) => {
 });
 
 before(() => {
-    cy.fixture('cred/credentials_dev.json').then((data) => {
+    cy.fixture('cred/credentials_prod.json').then((data) => {
         user = data
     })
 

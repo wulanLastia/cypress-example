@@ -12,7 +12,7 @@ module.exports = {
     showHeaderNav: '[data-cy="header__component"]',
     showHeaderNavProd: 'header[data-v-dd2902de]',
     alertSalah: '[data-cy="login__alert-failed"]',
-    alertPopUp: "button[id='close-button-popup']",
+    alertPopUp: '[data-cy="dialog__button--confirm"]',
     chooseVersion: "[data-cy='choose-version__navigation__button--sidebar-v2']",
     btnLoginSSO: '[data-cy="login__button--sso"]',
     btnLoginSiap: '[data-cy="login__button--trk"]',

@@ -1,6 +1,7 @@
 import review_verifikasi_surat from "../../../selectors/sidebar/kotak_masuk/review_verifikasi_surat"
 import review_naskah from "../../../selectors/sidebar/kotak_masuk/list_review_naskah"
 import koreksi from "../../../selectors/sidebar/kotak_masuk/koreksi"
+import kotak_masuk from "../../../selectors/sidebar/konsep_naskah/drafting_luar/kotak_masuk"
 import { MenuPage } from "../menu/menu.cy"
 import { CreateSuratBiasaPage } from "../konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
 import { UpdateNotaDinasPage } from "../konsep_naskah/nota_dinas/pgs_update_nota_dinas.cy.js"
@@ -16,39 +17,107 @@ const perihalNaskah = "cypress/fixtures/non_cred/kepala_surat/kepala_surat_temp_
 export class KoreksiSuratPage {
 
     goToNaskahBelumDireview(inputEnv) {
-        menuPage.goToKotakMasukReviewNaskah()
-        cy.readFile(perihalNaskah).then((object) => {
-            const titlePerihalNaskah = object.titlePerihal
+        // Check layout lama atau baru
+        cy.get('body').then($body => {
+            if ($body.find(review_naskah.searchReviewNaskah).length > 0) {
+                // Go To Menu Kotak Masuk Layout Lama
+                menuPage.goToKotakMasukReviewNaskah()
 
-            if (inputEnv === 'prod') {
-                const searchReviewNaskah = cy.get(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
-                searchReviewNaskah.find('input').clear()
-                searchReviewNaskah.type(titlePerihalNaskah)
+                cy.readFile(perihalNaskah).then((object) => {
+                    const titlePerihalNaskah = object.titlePerihal
 
-                cy.wait(10000)
+                    if (inputEnv === 'prod') {
+                        const searchReviewNaskah = cy.get(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
+                        searchReviewNaskah.find('input').clear()
+                        searchReviewNaskah.type(titlePerihalNaskah)
 
-                const tableReviewSurat = cy.get(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
-                tableReviewSurat.contains('td', titlePerihalNaskah)
+                        cy.wait(10000)
+
+                        const tableReviewSurat = cy.get(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
+                        tableReviewSurat.contains('td', titlePerihalNaskah)
+                            .click()
+                    } else {
+                        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
+                        const searchReviewNaskah = cy.get(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
+                        searchReviewNaskah.find('input').clear()
+                        searchReviewNaskah.type(titlePerihalNaskah)
+
+                        cy.wait('@checkResponse', { timeout: 10000 })
+                            .then((interception) => {
+                                if (interception.response.statusCode === 200) {
+                                    const tableReviewSurat = cy.get(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
+                                    tableReviewSurat.contains('td', titlePerihalNaskah)
+                                        .click()
+                                }
+                            })
+                    }
+
+                    cy.wait(6000)
+                })
+            }else {
+                // Go To Menu Kotak Masuk Layout Baru
+                const btn_menuKotakMasuk = cy.get(kotak_masuk.btn_menuKotakMasuk).as('btn_menuKotakMasuk')
+                btn_menuKotakMasuk.should('contain', 'Kotak Masuk')
                     .click()
-            } else {
-                cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
 
-                const searchReviewNaskah = cy.get(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
-                searchReviewNaskah.find('input').clear()
-                searchReviewNaskah.type(titlePerihalNaskah)
+                // Click Menu Submenu TTE & Review
+                const btn_menuTteReview = cy.get(kotak_masuk.btn_menuTteReview).as('btn_menuTteReview')
+                btn_menuTteReview.should('contain', 'TTE & Review')
+                    .click()
 
-                cy.wait('@checkResponse', { timeout: 10000 })
-                    .then((interception) => {
-                        if (interception.response.statusCode === 200) {
-                            const tableReviewSurat = cy.get(review_verifikasi_surat.tableReviewSurat).as('tableReviewSurat')
-                            tableReviewSurat.contains('td', titlePerihalNaskah)
-                                .click()
+                cy.readFile(perihalNaskah).then((object) => {
+                    const titlePerihalNaskah = object.titlePerihal
+        
+                    // Wait until page ready
+                    cy.wait(3000)
+        
+                    // Check onboarding
+                    cy.get('body').then($body => {
+                        if ($body.find(kotak_masuk.dialog_onboarding).length > 0) {
+                            // Skip onboarding
+                            const dialog_onboardingSkip = cy.get(kotak_masuk.dialog_onboardingSkip).as('dialog_onboardingSkip')
+                            dialog_onboardingSkip.click()
+        
+                            cy.reload()
                         }
                     })
+        
+                    if(inputEnv == "staging"){
+                        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+        
+                        const input_searchKotakMasuk = cy.get(kotak_masuk.input_searchKotakMasuk).first().as('input_searchKotakMasuk')
+                        input_searchKotakMasuk.find('input')
+                            .clear()
+                            .type(titlePerihalNaskah)
+        
+                        cy.wait('@checkResponse', { timeout: 10000 })
+                            .then((interception) => {
+                                if (interception.response.statusCode === 200) {
+                                    const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
+                                    table_kotakMasuk.contains('td', titlePerihalNaskah)
+                                        .click()
+                                }
+                            })
+                    }else{
+                        const input_searchKotakMasuk = cy.get(kotak_masuk.input_searchKotakMasuk).first().as('input_searchKotakMasuk')
+                        input_searchKotakMasuk.find('input')
+                            .clear()
+                            .type(titlePerihalNaskah)
+        
+                        // Wait until document found
+                        cy.wait(10000)
+        
+                        const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
+                        table_kotakMasuk.contains('td', titlePerihalNaskah)
+                            .click()
+                    }
+                    
+                })
             }
-
-            cy.wait(6000)
         })
+
+        
     }
 
     checkDetailKoreksiTandatangani() {

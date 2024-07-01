@@ -120,7 +120,7 @@ export class LoginPage {
             if ($body.find(login.alertPopUp).length > 0) {
                 // Popup exists
                 const alertPopUp = cy.get(login.alertPopUp).as('alertPopUp')
-                alertPopUp.should('be.visible')
+                alertPopUp.scrollIntoView()
                 alertPopUp.click({ force: true })
 
                 cy.wait(3000)
@@ -428,10 +428,22 @@ export class LoginPage {
                 // Assertion Login Sidebar V2 - Siap Jabar
                 cy.url().should('eq', Cypress.env('base_url') + 'konsep-naskah');
             }else{
-                // Go To Sidebar V2
-                const goToV2 = cy.get(login.goToV2).as('goToV2')
-                goToV2.click()
-                    .should('contain', 'SIDEBAR BARU')
+                if ($body.find(login.closePopupLandingPageV1).length > 0) {
+                    // Close popup landing page v1
+                    const closePopupLandingPageV1 = cy.get(login.closePopupLandingPageV1).as('closePopupLandingPageV1')
+                    closePopupLandingPageV1.click()
+
+                    // Go To Sidebar V2
+                    const goToV2 = cy.get(login.goToV2).as('goToV2')
+                    goToV2.click()
+                        .should('contain', 'SIDEBAR BARU')
+                } else {
+                    // Go To Sidebar V2
+                    const goToV2 = cy.get(login.goToV2).as('goToV2')
+                    goToV2.click()
+                        .should('contain', 'SIDEBAR BARU')
+                
+                }
 
                 // Assertion Login Sidebar V2 - Siap Jabar
                 cy.url().should('eq', Cypress.env('base_url_prod_v2') + 'konsep-naskah');
