@@ -120,7 +120,7 @@ export class LoginPage {
             if ($body.find(login.alertPopUp).length > 0) {
                 // Popup exists
                 const alertPopUp = cy.get(login.alertPopUp).as('alertPopUp')
-                alertPopUp.should('be.visible')
+                alertPopUp.scrollIntoView()
                 alertPopUp.click({ force: true })
 
                 cy.wait(3000)
