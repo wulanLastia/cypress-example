@@ -1,7 +1,7 @@
 module.exports = {
     // GET
     titleKepalaSurat: '[data-cy="kepala-surat__nota-dinas__title"]',
-    closeKepalaSurat: '[data-cy="kepala-surat__nota-dinas__close-button"]',
+    closeKepalaSurat: '[data-cy="input-kepala-surat__close-button"]',
 
     radio1: '[data-cy="radio-button-0"]',
 
@@ -9,13 +9,13 @@ module.exports = {
 
     titleTujuan: '[data-cy="kepala-surat__tujuan__title"]',
     selectTujuan: '[data-cy="kepala-surat__tujuan__select-option"]',
-    inputTujuan0: '[data-cy="kepala-surat__tujuan__select-option__custom-input0"]',
-    inputTujuan1: '[data-cy="kepala-surat__tujuan__select-option__custom-input1"]',
-    inputTujuan2: '[data-cy="kepala-surat__tujuan__select-option__custom-input2"]',
-    inputTujuan3: '[data-cy="kepala-surat__tujuan__select-option__custom-input3"]',
-    inputTujuan4: '[data-cy="kepala-surat__tujuan__select-option__custom-input4"]',
-    inputTujuan5: '[data-cy="kepala-surat__tujuan__select-option__custom-input5"]',
-    addMoreTujuan: '[data-cy="kepala-surat__tujuan__add-button"]',
+    inputTujuan0: '[data-cy="input-kepala-surat__tujuan__custom-input-0"]',
+    inputTujuan1: '[data-cy="input-kepala-surat__tujuan__custom-input-1"]',
+    inputTujuan2: '[data-cy="input-kepala-surat__tujuan__custom-input-2"]',
+    inputTujuan3: '[data-cy="input-kepala-surat__tujuan__custom-input-3"]',
+    inputTujuan4: '[data-cy="input-kepala-surat__tujuan__custom-input-4"]',
+    inputTujuan5: '[data-cy="input-kepala-surat__tujuan__custom-input-5"]',
+    addMoreTujuan: '[data-cy="input-kepala-surat__tujuan__add-button"]',
     inputTujuanLampiran: '[data-cy="kepala-surat__tujuan__lampiran__input"]',
     btnBuatTujuanSuratDiLampiran: '[data-cy="kepala-surat__tujuan__lampiran__add-button"]',
     btnUbahPenerimaSuratLampiran: '[data-cy="lampiran__tujuan-surat__title"]',
@@ -27,15 +27,15 @@ module.exports = {
     closeLampiranKepalaSurat: '[data-cy="input-lampiran-tujuan__button--close"]',
 
     labelTembusan: '[data-cy="kepala-surat__nota-dinas__tembusan__title"]',
-    inputTembusan0: '[data-cy="kepala-surat__nota-dinas__tembusan__select-option__custom-input0"]',
-    inputTembusan1: '[data-cy="kepala-surat__nota-dinas__tembusan__select-option__custom-input1"]',
-    addMoreTembusan: '[data-cy="kepala-surat__nota-dinas__tembusan__add-button"]',
+    inputTembusan0: '[data-cy="input-kepala-surat__tembusan__select-option__custom-input-0"]',
+    inputTembusan1: '[data-cy="input-kepala-surat__tembusan__select-option__custom-input-1"]',
+    addMoreTembusan: '[data-cy="input-kepala-surat__tembusan__add-button"]',
 
-    titleKodeKlasifikasi: '[data-cy="kepala-surat__nota-dinas__kode-klasifikasi__title"]',
-    selectKodeKlasifikasi: '[data-cy="kepala-surat__nota-dinas__kode-klasifikasi__select-option"]',
+    titleKodeKlasifikasi: '[data-cy="input-kepala-surat__kode-klasifikasi__title"]',
+    selectKodeKlasifikasi: '[data-cy="input-kepala-surat__kode-klasifikasi__select-option"]',
 
-    titleUnitPengolah: '[data-cy="kepala-surat__nota-dinas__unit-pengolah__title"]',
-    inputUnitPengolah: '[data-cy="kepala-surat__nota-dinas__unit-pengolah__input"]',
+    titleUnitPengolah: '[data-cy="input-kepala-surat__unit-pengolah__title"]',
+    inputUnitPengolah: '[data-cy="input-kepala-surat__unit-pengolah__input"]',
 
     titleTanggal: '[data-cy="kepala-surat__nota-dinas__tanggal-input__title"]',
     inputTanggal: '[data-cy="kepala-surat__tanggal-input"]',
@@ -45,16 +45,16 @@ module.exports = {
     getsubtittlePopupPenomoran: '[data-cy="dialog__deskripsi-confirmation-ambil-nomor-manual"]',
 
 
-    titleSifatSurat: '[data-cy="kepala-surat__nota-dinas__sifat-surat__title"]',
-    selectSifatSurat: '[data-cy="kepala-surat__nota-dinas__sifat-surat__select-option"]',
+    titleSifatSurat: '[data-cy="input-kepala-surat__sifat-surat__title"]',
+    selectSifatSurat: '[data-cy="input-kepala-surat__sifat-surat__select-option"]',
     btnDeleteSifatSurat: "div[id='vs4__combobox'] button[title='Clear Selected']",
 
-    titleUrgensiSurat: '[data-cy="kepala-surat__nota-dinas__urgensi__title"]',
-    selectUrgensiSurat: '[data-cy="kepala-surat__nota-dinas__urgensi__select-option"]',
+    titleUrgensiSurat: '[data-cy="input-kepala-surat__urgensi__title"]',
+    selectUrgensiSurat: '[data-cy="input-kepala-surat__urgensi__select-option"]',
     btnDeleteUrgensiSurat: "div[id='vs5__combobox'] button[title='Clear Selected']",
 
-    titlePerihal: '[data-cy="kepala-surat__nota-dinas__perihal__title"]',
-    inputPerihal: '[data-cy="kepala-surat__nota-dinas__perihal__input"]',
+    titlePerihal: '[data-cy="input-kepala-surat__perihal__title"]',
+    inputPerihal: '[data-cy="input-kepala-surat__perihal__input"]',
     scrapPerihal: ':nth-child(8) > .col-span-9 > .font-arial',
 
     scrollForm: '[data-cy="nota-dinas__frame__input-kepala-surat"]',

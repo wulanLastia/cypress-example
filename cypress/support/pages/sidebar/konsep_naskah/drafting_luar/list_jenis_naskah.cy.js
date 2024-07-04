@@ -171,8 +171,8 @@ export class ListNaskahSuratBiasaPage {
     }
 
     goToKonsepNaskahNotaDinas() {
-        cy.log(Cypress.env('cypress_layout'))
-        if(Cypress.env('cypress_layout') == 1) {
+        cy.get('body').then($body => {
+            if ($body.find(konsep_naskah.notaDinas).length > 0) {
             // Fitur layout lama (Akun Dispusipda)
 
             // Find Document Type
@@ -180,28 +180,29 @@ export class ListNaskahSuratBiasaPage {
             notaDinas.contains('Nota Dinas')
                 .scrollIntoView()
                 .click()
-        } else {
-            // Fitur layout baru (Akun Diskominfo)
+            } else {
+                // Fitur layout baru (Akun Diskominfo)
 
-            // Find Document Type
-            const list_listJenisNaskahNotaDinas = cy.get(list_surat_biasa.list_listJenisNaskahNotaDinas).as('list_listJenisNaskahNotaDinas')
-            list_listJenisNaskahNotaDinas.find('div')
-                .contains('Nota Dinas')
-                .scrollIntoView()
+                // Find Document Type
+                const list_listJenisNaskahNotaDinas = cy.get(list_surat_biasa.list_listJenisNaskahNotaDinas).as('list_listJenisNaskahNotaDinas')
+                list_listJenisNaskahNotaDinas.find('div')
+                    .contains('Nota Dinas')
+                    .scrollIntoView()
 
-            // Check Detail List
-            const list_naskahTitleNotaDinas = cy.get(list_surat_biasa.list_naskahTitleNotaDinas).as('list_naskahTitleNotaDinas')
-            list_naskahTitleNotaDinas.should('contain', 'Nota Dinas')
-                .and('be.visible')
+                // Check Detail List
+                const list_naskahTitleNotaDinas = cy.get(list_surat_biasa.list_naskahTitleNotaDinas).as('list_naskahTitleNotaDinas')
+                list_naskahTitleNotaDinas.should('contain', 'Nota Dinas')
+                    .and('be.visible')
 
-            const btn_draftNotaDinas = cy.get(list_surat_biasa.btn_draftNotaDinas).as('btn_draftNotaDinas')
-            btn_draftNotaDinas.should('contain', 'Buat Draft')
-                .and('be.visible')
-                .click()
+                const btn_draftNotaDinas = cy.get(list_surat_biasa.btn_draftNotaDinas).as('btn_draftNotaDinas')
+                btn_draftNotaDinas.should('contain', 'Buat Draft')
+                    .and('be.visible')
+                    .click()
 
-            // Access Button Buat Draft
-            btn_draftNotaDinas.click()
-        }
+                // Access Button Buat Draft
+                btn_draftNotaDinas.click()
+            }
+        })
     }
 
     downloadFile(jenis_naskah) {
