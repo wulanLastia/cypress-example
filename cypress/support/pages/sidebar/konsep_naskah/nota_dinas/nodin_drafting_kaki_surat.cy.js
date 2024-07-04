@@ -117,11 +117,6 @@ export class DraftingKakiSuratPage {
         pilihPenandatanganNotaDinas.wait(1000)
             .type(inputanPenandatanganAtasan1)
             .wait(3000)
-            //.type('{enter}')
-
-            // const suggestPenandatanganAtasan1 = cy.get(kaki_surat.suggestPenandatanganAtasan1).as('suggestPenandatanganAtasan1')
-            // suggestPenandatanganAtasan1.contains(inputanPenandatanganAtasan1, { timeout: 10000 }).should('be.visible')
-            // pilihPenandatanganNotaDinas.type('{enter}')
 
         cy.wait('@postRequest', { timeout: 15000 })
         .then((interception) => {
