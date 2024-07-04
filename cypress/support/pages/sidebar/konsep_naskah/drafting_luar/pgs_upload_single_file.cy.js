@@ -218,8 +218,6 @@ export class UploadSingleFilePage {
             }
         })
 
-        cy.reload()
-
         // Find Document Type
         const list_listJenisNaskahSkp = cy.get(upload_single.list_listJenisNaskahSkp).as('list_listJenisNaskahSkp')
         list_listJenisNaskahSkp.find('div')

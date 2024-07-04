@@ -78,7 +78,7 @@ export class MenuPage {
         cy.wait(6000)
 
         cy.get('body').then($body => {
-            if ($body.find(menu.reviewNaskahKM).length > 0) {
+            if ($body.find(menu.reviewNaskahKM).parent().parent().css('display') !== 'none') {
                 // Click menu kotak masuk
                 const reviewNaskahKM = cy.get(menu.reviewNaskahKM).as('reviewNaskahKM')
                 reviewNaskahKM.should('be.visible')
