@@ -102,14 +102,30 @@ export class DraftingKakiSuratPage {
             })
     }
 
-    pilihPenandatanganAtasan() {
+    pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan1) {
         const selectPenandatangan = cy.get(kaki_surat.selectPenandatanganNotaDinas).as('selectPenandatangan')
         selectPenandatangan.select(1).should('have.value', 'ATASAN')
 
-        const pilihPenandatangan = cy.get(kaki_surat.pilihPenandatanganNotaDinas).as('pilihPenandatangan')
-        pilihPenandatangan.type('I Gusti Agung Kim Fajar')
-            .wait(2000)
-            .type('{enter}')
+        // Intercept all POST network requests
+        if (inputEnv === 'prod') {
+            cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
+        } else {
+            cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
+        }
+
+        const pilihPenandatanganNotaDinas = cy.get(kaki_surat.pilihPenandatanganNotaDinas).as('pilihPenandatanganNotaDinas')
+        pilihPenandatanganNotaDinas.wait(1000)
+            .type(inputanPenandatanganAtasan1)
+            .wait(3000)
+
+        cy.wait('@postRequest', { timeout: 15000 })
+        .then((interception) => {
+            if (interception.response.statusCode === 200) {
+                const suggestPenandatanganAtasan1 = cy.get(kaki_surat.suggestPenandatanganAtasan1).as('suggestPenandatanganAtasan1')
+                suggestPenandatanganAtasan1.contains(inputanPenandatanganAtasan1, { timeout: 10000 }).should('be.visible')
+                pilihPenandatanganNotaDinas.type('{enter}')
+            }
+        })
     }
 
     pilihPenandatanganAtasanPROD() {

@@ -18,6 +18,16 @@ let listNaskahSuratBiasaPage = new ListNaskahSuratBiasaPage()
 let user
 let dataNotaDinas
 
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // Jika terdapat error 'uncaught:exception' pada Headless Mode
+    if (err.message.includes('postMessage')) {
+        return false; // return false digunakan untuk skip error pada Headless Mode
+    }
+
+    // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
+    throw err;
+});
+
 beforeEach(() => {
     cy.intercept({ resourceType: /xhr/ }, { log: false })
 })
@@ -55,13 +65,14 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             cy.wait(3000)
             createNotaDinasPage.createLampiranSurat2()
             cy.wait(3000)
-            createNotaDinasPage.createKakiSurat()
+            createNotaDinasPage.createKakiSurat(dataNotaDinas.env[0].staging, dataNotaDinas.kaki_surat[0].penandatangan_atasan1, dataNotaDinas.kaki_surat[1].pemeriksa1)
             cy.wait(3000)
             createNotaDinasPage.createKepalaSurat()
             cy.wait(3000)
             createNotaDinasPage.createBadanSurat(faker.lorem.paragraphs(13, '<br/>\n'))
             cy.wait(3000)
             createNotaDinasPage.doKirimNaskah(dataNotaDinas.env[0].staging)
+            cy.wait(3000)
         })
     )
 

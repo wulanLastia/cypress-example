@@ -65,7 +65,7 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
             cy.wait(3000)
             createNotaDinasPage.createLampiranSurat2()
             cy.wait(3000)
-            createNotaDinasPage.createKakiSurat()
+            createNotaDinasPage.createKakiSurat(dataNotaDinas.env[0].staging, dataNotaDinas.kaki_surat[0].penandatangan_atasan1, dataNotaDinas.kaki_surat[1].pemeriksa1)
             cy.wait(3000)
             createNotaDinasPage.createLampiranKepalaSurat()
             cy.wait(3000)
