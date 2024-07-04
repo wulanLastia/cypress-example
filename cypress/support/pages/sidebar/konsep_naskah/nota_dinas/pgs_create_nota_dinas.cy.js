@@ -210,11 +210,13 @@ export class CreateNotaDinasPage {
 
     }
 
-    createKakiSurat() {
+    createKakiSurat(inputEnv, inputanPenandatanganAtasan, inputanPemeriksa) {
         draftingKakiSuratPage.aksesFormEditingKakiSurat()
         draftingKakiSuratPage.inputKakiSurat()
-        draftingKakiSuratPage.pilihPenandatanganAtasan()
-        draftingKakiSuratPage.pilihPemeriksa()
+        draftingKakiSuratPage.pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan)
+        if(inputanPemeriksa){       
+            draftingKakiSuratPage.pilihPemeriksa()
+        }
         draftingKakiSuratPage.closeKakiSurat()
     }
 
