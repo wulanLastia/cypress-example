@@ -1,18 +1,26 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
-import { CreateSuratBiasaPage } from "../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
-import { ReviewVerifikasiSuratPage } from "../../../support/pages/sidebar/kotak_masuk/2_review_verifikasi_surat.cy"
-import { SetujuiPage } from "../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { CreateSuratBiasaPage } from "@pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { ListNaskahSuratBiasaPage } from "@pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
+import { SetujuiPage } from "@pages/sidebar/kotak_masuk/5_setujui.cy"
 
 const { faker } = require('@faker-js/faker')
-let setujuiPage = new SetujuiPage()
-let reviewVerifikasiSuratPage = new ReviewVerifikasiSuratPage()
-let createSuratBiasaPage = new CreateSuratBiasaPage()
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
+let createSuratBiasaPage = new CreateSuratBiasaPage()
+let listNaskahSuratBiasaPage = new ListNaskahSuratBiasaPage()
+let setujuiPage = new SetujuiPage()
 let user
 let data_temp
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // Jika terdapat error 'uncaught:exception' pada Headless Mode
+    if (err.message.includes('postMessage')) {
+        return false; // return false digunakan untuk skip error pada Headless Mode
+    }
+
+    // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
+    throw err;
+});
 
 beforeEach(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
@@ -27,6 +35,11 @@ beforeEach(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
+after(() => {
+    cy.wait(10000)
+    loginPage.logoutV2step2()
+})
+
 describe('Create Surat Biasa Skenario', () => {
 
     qase([13, 81, 83, 709, 150, 80],
@@ -36,9 +49,7 @@ describe('Create Surat Biasa Skenario', () => {
             loginPage.directLogin()
 
             // Create Naskah
-            menuPage.goToKonsepNaskah()
-            cy.wait(5000)
-            createSuratBiasaPage.checkDetail()
+            listNaskahSuratBiasaPage.goToKonsepNaskahSuratBiasa()
             createSuratBiasaPage.inputKopSurat()
             createSuratBiasaPage.inputKakiSuratSkenario2(
                 data_temp.env[0].staging,
@@ -68,9 +79,10 @@ describe('Create Surat Biasa Skenario', () => {
             loginPage.loginViaV1(user.nip_pemeriksa_1_1, user.password)
             loginPage.directLogin()
 
-            menuPage.goToKotakMasukReviewNaskah()
-            reviewVerifikasiSuratPage.suratBelumDireview()
+            setujuiPage.suratBelumDireview(data_temp.env[0].staging)
             setujuiPage.setujui()
+
+            cy.wait(6000)
         })
     )
 
@@ -80,8 +92,7 @@ describe('Create Surat Biasa Skenario', () => {
             loginPage.loginViaV1(user.nip_pemeriksa_1_2, user.password)
             loginPage.directLogin()
 
-            menuPage.goToKotakMasukReviewNaskah()
-            reviewVerifikasiSuratPage.suratBelumDireview()
+            setujuiPage.suratBelumDireview(data_temp.env[0].staging)
             setujuiPage.doTandaTanganiSurat(user.passphrase)
         })
     )

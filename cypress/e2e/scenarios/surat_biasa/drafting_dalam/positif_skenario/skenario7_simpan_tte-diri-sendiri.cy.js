@@ -1,18 +1,33 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
-import { CreateSuratBiasaPage } from "../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
-import { SetujuiPage } from "../../../support/pages/sidebar/kotak_masuk/5_setujui.cy"
-import { DraftPage } from "../../../support/pages/sidebar/konsep_naskah/konsep_naskah/draft.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { CreateSuratBiasaPage } from "@pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { ListNaskahSuratBiasaPage } from "@pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
+import { SetujuiPage } from "@pages/sidebar/kotak_masuk/5_setujui.cy"
+import { DraftPage } from "@pages/sidebar/konsep_naskah/konsep_naskah/draft.cy"
 
 const { faker } = require('@faker-js/faker')
-let createSuratBiasaPage = new CreateSuratBiasaPage()
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
+let createSuratBiasaPage = new CreateSuratBiasaPage()
+let listNaskahSuratBiasaPage = new ListNaskahSuratBiasaPage()
 let setujuiPage = new SetujuiPage()
 let draftPage = new DraftPage()
 let user
 let data_temp
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // Jika terdapat error 'uncaught:exception' pada Headless Mode
+    if (err.message.includes('postMessage')) {
+        return false; // return false digunakan untuk skip error pada Headless Mode
+    }
+
+    // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
+    throw err;
+});
+
+after(() => {
+    cy.wait(10000)
+    loginPage.logoutV2step2()
+})
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
@@ -35,7 +50,7 @@ describe('Create Surat Biasa Skenario', () => {
             loginPage.directLogin()
 
             // Create Naskah
-            createSuratBiasaPage.checkDetail()
+            listNaskahSuratBiasaPage.goToKonsepNaskahSuratBiasa()
             createSuratBiasaPage.inputKopSurat()
             createSuratBiasaPage.inputKakiSuratPenandatanganDiriSendiri(
                 data_temp.kaki_surat[0].penandatangan_diri_sendiri)

@@ -162,16 +162,18 @@ export class DraftingKakiSuratPage {
         this.inputTembusanInternal3(inputEnv, inputanTembusanInternal3)
     }
 
-    pilihTembusanSkenario2(inputanTembusan1, inputanTembusan2, inputanTembusan3) {
-        this.inputTembusanEksternal1(inputanTembusan1)
+    pilihTembusanSkenario2(inputEnv, inputanTembusan1, inputanTembusan2, inputanTembusan3) {
+        cy.log('ada')
+        cy.log(inputanTembusan1)
+        this.inputTembusanEksternal1(inputEnv, inputanTembusan1)
 
         this.clickTambahTembusan()
 
-        this.inputTembusanEksternal2(inputanTembusan2)
+        this.inputTembusanEksternal2(inputEnv, inputanTembusan2)
 
         this.clickTambahTembusan()
 
-        this.inputTembusanEksternal3(inputanTembusan3)
+        this.inputTembusanEksternal3(inputEnv, inputanTembusan3)
     }
 
     pilihTembusanSkenario3(inputEnv, inputanTembusan1, inputanTembusan2, inputanTembusan3, inputanTembusanEksternal4, inputanTembusanEksternal5, inputanTembusanEksternal6) {

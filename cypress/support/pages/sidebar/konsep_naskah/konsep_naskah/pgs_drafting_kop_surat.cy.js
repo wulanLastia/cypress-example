@@ -60,7 +60,7 @@ export class DraftingKopSuratPage {
 
         const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
         previewSelectedKop.find('img')
-            .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/89c72083b0261a4a48569fd26d2d2b6d.png')
+            .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/659b50e7a894063e5d4f2699ee0bd788.png')
     }
 
     checkPreviewUPTD() {

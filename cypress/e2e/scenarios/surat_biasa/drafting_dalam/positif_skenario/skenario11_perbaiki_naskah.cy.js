@@ -1,18 +1,28 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
-import { PerbaikiNaskahPage } from "../../../support/pages/sidebar/kotak_masuk/6_perbaiki.cy"
-import { KembalikanNaskahPage } from "../../../support/pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
-import { CreateSuratBiasaPage } from "../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { CreateSuratBiasaPage } from "@pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { ListNaskahSuratBiasaPage } from "@pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
+import { PerbaikiNaskahPage } from "@pages/sidebar/kotak_masuk/6_perbaiki.cy"
+import { KembalikanNaskahPage } from "@pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
 
 const { faker } = require('@faker-js/faker')
+let loginPage = new LoginPage()
 let createSuratBiasaPage = new CreateSuratBiasaPage()
+let listNaskahSuratBiasaPage = new ListNaskahSuratBiasaPage()
 let kembalikanNaskahPage = new KembalikanNaskahPage()
 let perbaikiNaskahPage = new PerbaikiNaskahPage()
-let loginPage = new LoginPage()
-let menuPage = new MenuPage()
 let user
 let data_temp
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // Jika terdapat error 'uncaught:exception' pada Headless Mode
+    if (err.message.includes('postMessage')) {
+        return false; // return false digunakan untuk skip error pada Headless Mode
+    }
+
+    // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
+    throw err;
+});
 
 beforeEach(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
@@ -27,6 +37,12 @@ beforeEach(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
+after(() => {
+    qase(411,
+        loginPage.logoutV2step2()
+    )
+})
+
 describe('Create, Kembalikan dan Perbaiki Naskah Skenario', () => {
 
     qase([13, 81, 83, 709, 150, 80],
@@ -36,8 +52,7 @@ describe('Create, Kembalikan dan Perbaiki Naskah Skenario', () => {
             loginPage.directLogin()
 
             // Create Naskah
-            menuPage.goToKonsepNaskah()
-            createSuratBiasaPage.checkDetail()
+            listNaskahSuratBiasaPage.goToKonsepNaskahSuratBiasa()
             createSuratBiasaPage.inputKopSurat()
             createSuratBiasaPage.inputKepalaSurat(
                 data_temp.env[0].staging,
@@ -75,9 +90,6 @@ describe('Create, Kembalikan dan Perbaiki Naskah Skenario', () => {
             kembalikanNaskahPage.checkHalamanInformasi()
             kembalikanNaskahPage.checkBtnPeriksaKembali(data_temp.kembalikan[0].kembalikan_perihal)
             kembalikanNaskahPage.kembalikanNaskah(data_temp.kembalikan[0].kembalikan_perihal)
-            cy.wait(3000)
-            loginPage.closePopupLandingPage()
-
             cy.wait(5000)
         })
     )
