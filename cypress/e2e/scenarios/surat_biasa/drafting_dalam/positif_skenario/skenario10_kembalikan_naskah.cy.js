@@ -1,16 +1,26 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
-import { KembalikanNaskahPage } from "../../../support/pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
-import { CreateSuratBiasaPage } from "../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { CreateSuratBiasaPage } from "@pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { ListNaskahSuratBiasaPage } from "@pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
+import { KembalikanNaskahPage } from "@pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
 
 const { faker } = require('@faker-js/faker')
-let createSuratBiasaPage = new CreateSuratBiasaPage()
-let kembalikanNaskahPage = new KembalikanNaskahPage()
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
+let createSuratBiasaPage = new CreateSuratBiasaPage()
+let listNaskahSuratBiasaPage = new ListNaskahSuratBiasaPage()
+let kembalikanNaskahPage = new KembalikanNaskahPage()
 let user
 let data_temp
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // Jika terdapat error 'uncaught:exception' pada Headless Mode
+    if (err.message.includes('postMessage')) {
+        return false; // return false digunakan untuk skip error pada Headless Mode
+    }
+
+    // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
+    throw err;
+});
 
 before(() => {
     cy.fixture('cred/credentials_dev.json').then((data) => {
@@ -24,13 +34,11 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-
 after(() => {
     qase(411,
         loginPage.logoutV2step2()
     )
 })
-
 
 describe('Kembalikan Naskah Skenario', () => {
 
@@ -41,8 +49,7 @@ describe('Kembalikan Naskah Skenario', () => {
             loginPage.directLogin()
 
             // Create Naskah
-            menuPage.goToKonsepNaskah()
-            createSuratBiasaPage.checkDetail()
+            listNaskahSuratBiasaPage.goToKonsepNaskahSuratBiasa()
             createSuratBiasaPage.inputKopSurat()
             createSuratBiasaPage.inputKepalaSurat(
                 data_temp.env[0].staging,
@@ -81,7 +88,6 @@ describe('Kembalikan Naskah Skenario', () => {
             kembalikanNaskahPage.checkBtnPeriksaKembali(data_temp.kembalikan[0].kembalikan_perihal)
             kembalikanNaskahPage.kembalikanNaskah(data_temp.kembalikan[0].kembalikan_perihal)
             cy.wait(3000)
-            loginPage.closePopupLandingPage()
         })
     )
 }) 

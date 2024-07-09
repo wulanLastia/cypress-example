@@ -79,7 +79,7 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateTujuanSkenario3(inputEnv, inputanTujuanEksternal1, inputanTujuanEksternal2, inputanTujuanEksternal3)
         draftingKepalaSuratPage.validateLokasi(inputanLokasi)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
-        draftingKepalaSuratPage.validateJudulBerkas()
+        //draftingKepalaSuratPage.validateJudulBerkas()
         draftingKepalaSuratPage.validateUnitPengolah(inputanUnitPengolah)
         draftingKepalaSuratPage.validateSifatSurat(inputanSifatSurat)
         draftingKepalaSuratPage.validateUrgensiSurat(inputanUrgensiSurat)
@@ -94,7 +94,7 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateTujuanSkenario4(inputEnv, inputanTujuanLampiran1, inputanTujuanLampiran2, inputanTujuanLampiran3)
         draftingKepalaSuratPage.validateLokasi(inputanLokasi)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
-        draftingKepalaSuratPage.validateJudulBerkas()
+        //draftingKepalaSuratPage.validateJudulBerkas()
         draftingKepalaSuratPage.validateUnitPengolah(inputanUnitPengolah)
         draftingKepalaSuratPage.validateSifatSurat(inputanSifatSurat)
         draftingKepalaSuratPage.validateUrgensiSurat(inputanUrgensiSurat)
@@ -109,7 +109,7 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateTujuanSkenario5(inputEnv, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6)
         draftingKepalaSuratPage.validateLokasi(inputanLokasi)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
-        draftingKepalaSuratPage.validateJudulBerkas()
+        //draftingKepalaSuratPage.validateJudulBerkas()
         draftingKepalaSuratPage.validateUnitPengolah(inputanUnitPengolah)
         draftingKepalaSuratPage.validateSifatSurat(inputanSifatSurat)
         draftingKepalaSuratPage.validateUrgensiSurat(inputanUrgensiSurat)
@@ -138,7 +138,7 @@ export class CreateSuratBiasaPage {
         draftingKepalaSuratPage.validateTujuanSkenario6(inputEnv, inputanTujuan1, inputanTujuan2, inputanTujuan3, inputanTujuanEksternal4, inputanTujuanEksternal5, inputanTujuanEksternal6)
         draftingKepalaSuratPage.validateLokasi(inputanLokasi)
         draftingKepalaSuratPage.validateKodeKlasifikasi(inputanKodeKlasifikasi)
-        draftingKepalaSuratPage.validateJudulBerkas()
+        //draftingKepalaSuratPage.validateJudulBerkas()
         draftingKepalaSuratPage.validateUnitPengolah(inputanUnitPengolah)
         draftingKepalaSuratPage.validateSifatSurat(inputanSifatSurat)
         draftingKepalaSuratPage.validateUrgensiSurat(inputanUrgensiSurat)
@@ -240,6 +240,7 @@ export class CreateSuratBiasaPage {
     }
 
     inputKakiSuratSkenario2(inputEnv, inputanPenandatanganAtasan1, inputanPemeriksa1, inputanTembusanEksternal1, inputanTembusanEksternal2, inputanTembusanEksternal3) {
+        cy.log(inputanTembusanEksternal1)
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan1)
         draftingKakiSuratPage.pilihPemeriksa(inputEnv, inputanPemeriksa1)

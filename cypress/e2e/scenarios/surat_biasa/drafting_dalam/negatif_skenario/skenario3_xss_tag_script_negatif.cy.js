@@ -1,12 +1,12 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
-import { CreateSuratBiasaPage } from "../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { CreateSuratBiasaPage } from "@pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { ListNaskahSuratBiasaPage } from "@pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
 
 const { faker } = require('@faker-js/faker')
-let createSuratBiasaPage = new CreateSuratBiasaPage()
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
+let createSuratBiasaPage = new CreateSuratBiasaPage()
+let listNaskahSuratBiasaPage = new ListNaskahSuratBiasaPage()
 let user
 let data_temp
 
@@ -23,17 +23,16 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-describe('Skenario Create Surat Biasa Tujuan Internal Eksternal Skenario 6 (Tujuan Lampiran Surat)', () => {
+describe('[Negatif] Input XSS Script Create Surat Biasa Tujuan Internal Eksternal Skenario 9 (Tujuan Kepala Lampiran Surat)', () => {
 
-    qase([13, 81, 83, 709, 150, 80, 849, 176],
+    qase([13, 81, 83, 709, 150, 80, 849, 176, 305, 91, 839, 109, 122, 137],
         it('Create Naskah Surat Biasa', () => {
             // Login 
             loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
 
             // Create Naskah
-            menuPage.goToKonsepNaskah()
-            createSuratBiasaPage.checkDetail()
+            listNaskahSuratBiasaPage.goToKonsepNaskahSuratBiasa()
             createSuratBiasaPage.inputKopSurat()
             createSuratBiasaPage.inputLampiranSurat(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputLampiranSurat2(faker.lorem.paragraphs(6, '<br/>\n'))
@@ -47,23 +46,17 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal Skenario 6 (Tuju
                 data_temp.kaki_surat[2].tembusan_eksternal4,
                 data_temp.kaki_surat[2].tembusan_eksternal5,
                 data_temp.kaki_surat[2].tembusan_eksternal6)
-            createSuratBiasaPage.inputKepalaSuratSkenario6(
-                data_temp.env[0].staging,
-                data_temp.kepala_surat[7].tempat1,
-                data_temp.kepala_surat[0].tujuan1,
-                data_temp.kepala_surat[0].tujuan2,
-                data_temp.kepala_surat[0].tujuan3,
-                data_temp.kepala_surat[0].tujuan_lampiran_eksternal4,
-                data_temp.kepala_surat[0].tujuan_lampiran_eksternal5,
-                data_temp.kepala_surat[0].tujuan_lampiran_eksternal6,
-                data_temp.kepala_surat[1].lokasi,
+            createSuratBiasaPage.inputKepalaSuratSkenario9Negatif(
+                data_temp.kepala_surat[0].tujuan_lampiran_xss,
+                data_temp.kepala_surat[0].assert_tujuan_lampiran_xss,
+                data_temp.kepala_surat[1].lokasi_negatif_xss,
                 data_temp.kepala_surat[2].kode_klasifikasi,
-                data_temp.kepala_surat[3].unit_pengolah,
+                data_temp.kepala_surat[3].unit_pengolah_xss,
                 data_temp.kepala_surat[4].sifat_surat,
                 data_temp.kepala_surat[5].urgensi_surat,
-                data_temp.kepala_surat[6].perihal7)
+                data_temp.kepala_surat[6].perihal_negatif_xss)
             createSuratBiasaPage.inputBadanNaskahSkenarioRegression(faker.lorem.paragraphs(13, '<br/>\n'))
-            createSuratBiasaPage.kirimSurat(data_temp.env[0].staging)
+            createSuratBiasaPage.kirimSuratNegatif()
         })
     )
 })

@@ -1,14 +1,12 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../support/pages/sidebar/menu/menu.cy"
-import { CreateSuratBiasaPage } from "../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
-import { KoreksiSuratPage } from "../../../support/pages/sidebar/kotak_masuk/7_koreksi.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { CreateSuratBiasaPage } from "@pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { ListNaskahSuratBiasaPage } from "@pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
 
 const { faker } = require('@faker-js/faker')
-let createSuratBiasaPage = new CreateSuratBiasaPage()
-let koreksiSuratPage = new KoreksiSuratPage()
 let loginPage = new LoginPage()
-let menuPage = new MenuPage()
+let createSuratBiasaPage = new CreateSuratBiasaPage()
+let listNaskahSuratBiasaPage = new ListNaskahSuratBiasaPage()
 let user
 let data_temp
 
@@ -22,7 +20,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     throw err;
 });
 
-beforeEach(() => {
+before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
@@ -35,12 +33,12 @@ beforeEach(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-afterEach(() => {
+after(() => {
     cy.wait(10000)
     loginPage.logoutV2step2()
 })
 
-describe('Create Surat Biasa Tujuan Internal Skenario 1 (Tujuan Kepala Surat)', () => {
+describe('Skenario Create Surat Biasa Tujuan Eksternal Skenario 3 (Tujuan Kepala Surat)', () => {
 
     qase([13, 81, 83, 709, 150, 80, 176],
         it('Create Naskah Surat Biasa', () => {
@@ -49,46 +47,32 @@ describe('Create Surat Biasa Tujuan Internal Skenario 1 (Tujuan Kepala Surat)', 
             loginPage.directLogin()
 
             // Create Naskah
-            menuPage.goToKonsepNaskah()
-            createSuratBiasaPage.checkDetail()
+            listNaskahSuratBiasaPage.goToKonsepNaskahSuratBiasa()
             createSuratBiasaPage.inputKopSurat()
             createSuratBiasaPage.inputLampiranSurat(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputLampiranSurat2(faker.lorem.paragraphs(6, '<br/>\n'))
-            createSuratBiasaPage.inputKakiSuratSkenario1(
+            createSuratBiasaPage.inputKakiSuratSkenario2(
                 data_temp.env[0].staging,
                 data_temp.kaki_surat[0].penandatangan_atasan1,
                 data_temp.kaki_surat[1].pemeriksa1,
-                data_temp.kaki_surat[2].tembusan_internal1,
-                data_temp.kaki_surat[2].tembusan_internal2,
-                data_temp.kaki_surat[2].tembusan_internal3)
-            createSuratBiasaPage.inputKepalaSuratSkenario1(
+                data_temp.kaki_surat[2].tembusan_eksternal1,
+                data_temp.kaki_surat[2].tembusan_eksternal2,
+                data_temp.kaki_surat[2].tembusan_eksternal3)
+            createSuratBiasaPage.inputKepalaSuratSkenario3(
                 data_temp.env[0].staging,
                 data_temp.kepala_surat[7].tempat1,
-                data_temp.kepala_surat[0].tujuan1,
-                data_temp.kepala_surat[0].tujuan2,
-                data_temp.kepala_surat[0].tujuan3,
+                data_temp.kepala_surat[0].tujuan_eksternal1,
+                data_temp.kepala_surat[0].tujuan_eksternal2,
+                data_temp.kepala_surat[0].tujuan_eksternal3,
                 data_temp.kepala_surat[1].lokasi,
                 data_temp.kepala_surat[2].kode_klasifikasi,
                 data_temp.kepala_surat[3].unit_pengolah,
                 data_temp.kepala_surat[4].sifat_surat,
                 data_temp.kepala_surat[5].urgensi_surat,
-                data_temp.kepala_surat[6].perihal2)
+                data_temp.kepala_surat[6].perihal4)
             createSuratBiasaPage.inputBadanNaskahSkenarioRegression(faker.lorem.paragraphs(13, '<br/>\n'))
             createSuratBiasaPage.kirimSurat(data_temp.env[0].staging)
         })
     )
 
-    qase([368, 370, 372],
-        it('Koreksi dan Setujui Naskah', () => {
-            // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_1_1, user.password)
-            loginPage.directLogin()
-
-            koreksiSuratPage.goToNaskahBelumDireview(data_temp.env[0].staging)
-            koreksiSuratPage.checkDetailKoreksiSetujui()
-            koreksiSuratPage.koreksiNaskah(data_temp.koreksi[0].koreksi_perihal)
-            cy.wait(10000)
-        })
-    )
-
-}) 
+})
