@@ -1,6 +1,6 @@
 import { qase } from 'cypress-qase-reporter/dist/mocha';
-import { LoginPage } from "../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../support/pages/sidebar/menu/menu.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { MenuPage } from "@pages/sidebar/menu/menu.cy"
 
 let menuPage = new MenuPage()
 let loginPage = new LoginPage()
@@ -8,22 +8,22 @@ let user
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+    
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
 })
 
-beforeEach(() => {
-
-
+before(() => {
     loginPage.loginViaV1(user.nip_konseptor_1, user.password)
     loginPage.directLogin()
 })
 
-describe('Menu Positif Skenario', () => {
+describe('Menu Positif Skenario', { testIsolation: false }, () => {
+
     qase(1,
         it('Cek detail navbar', () => {
-            menuPage.checkProfile('Vita Putri Utami, S.Sos., M.I.Kom', 'ARSIPARIS AHLI MUDA')
+            menuPage.checkProfile('Vita Putri Utami, S.Sos., M.I.Kom', 'Arsiparis Ahli Muda')
         })
     )
 
@@ -82,4 +82,30 @@ describe('Menu Positif Skenario', () => {
             loginPage.navigateLoginPageV2()
         })
     )
+
+    qase(3466,
+        it('Cek tampilan icon sertifikat elektronik jika SE aktif', () => {
+            menuPage.checkIconSE('Aktif')
+        })
+    )
+
+    qase(3468,
+        it('Cek tampilan icon sertifikat elektronik saat di hover jika SE aktif', () => {
+            menuPage.checkHoverIconSE('Aktif')
+        })
+    )
+
+    // TODO : Di uncomment di card selanjutnya
+    // qase(3474,
+    //     it('Cek tampilan icon BSRE jika BSRE aktif', () => {
+    //         menuPage.checkIconBSRE('Aktif')
+    //     })
+    // )
+
+    // qase(3476,
+    //     it('Cek tampilan icon BSRE saat di hover jika BSRE aktif', () => {
+    //         menuPage.checkHoverIconBSRE('Aktif')
+    //     })
+    // )
+    
 })

@@ -21,9 +21,6 @@ export class MenuPage {
     }
 
     clickBtnShowMenu() {
-        const hideMenu = cy.get(navbar.hideShowMenu).as('hideMenu')
-        hideMenu.click()
-
         const showMenu = cy.get(navbar.hideShowMenu).as('showMenu')
         showMenu.click()
 
@@ -54,7 +51,7 @@ export class MenuPage {
 
     goToKotakKeluar() {
         const parentKotakKeluar = cy.get(menu.parentKotakKeluar).as('parentKotakKeluar')
-        parentKotakKeluar.click()
+        parentKotakKeluar.click({force: true})
     }
 
     goToKonsepNaskah() {
@@ -104,8 +101,6 @@ export class MenuPage {
     }
 
     goToKotakKeluarReviewNaskah() {
-        this.goToKotakKeluar()
-
         const reviewNaskahKK = cy.get(menu.reviewNaskahKK).as('reviewNaskahKK')
         reviewNaskahKK.should('contain', 'Review Naskah')
             .and('be.visible')
@@ -190,4 +185,79 @@ export class MenuPage {
             .click()
     }
 
+    checkIconSE(inputStatus) {
+        if(inputStatus == 'Aktif'){
+            const icon_se = cy.get(menu.icon_se).as('icon_se')
+            icon_se.should('be.visible')
+                .find('svg')
+                .and('have.attr', 'style', 'color: rgb(33, 150, 243);')
+                .click()
+        }else {
+            const icon_se = cy.get(menu.icon_se).as('icon_se')
+            icon_se.should('be.visible')
+                .find('svg')
+                .and('have.attr', 'style', 'color: rgb(255, 200, 0);')
+                .click()
+        }
+    }
+
+    checkHoverIconSE(inputStatus) {
+        if(inputStatus == 'Aktif'){
+            // Click icon se
+            const icon_se = cy.get(menu.icon_se).as('icon_se')
+            icon_se.realHover()
+
+            // Assert check popup hover se
+            const popup_hoverSE = cy.get(menu.popup_hoverSE).as('popup_hoverSE')
+            popup_hoverSE.should('be.visible')
+                .and('contain', 'Sertifikat Elektronik aktif')
+        } else {
+            // Click icon se
+            const icon_se = cy.get(menu.icon_se).as('icon_se')
+            icon_se.realHover()
+
+            // Assert check popup hover se
+            const popup_hoverSE = cy.get(menu.popup_hoverSE).as('popup_hoverSE')
+            popup_hoverSE.should('be.visible')
+                .and('contain', 'Sertifikat Elektronik non aktif, untuk mengaktifkan sertifikat elektronik anda dapat menghubungi admin SIDEBAR')
+        }
+    }
+
+    checkIconBSRE(inputStatus) {
+        if(inputStatus == 'Aktif'){
+            const icon_bsre = cy.get(menu.icon_bsre).as('icon_bsre')
+            icon_bsre.should('be.visible')
+                .find('svg')
+                .and('have.attr', 'style', 'color: rgb(33, 150, 243);')
+                .click()
+        }else {
+            const icon_bsre = cy.get(menu.icon_bsre).as('icon_bsre')
+            icon_bsre.should('be.visible')
+                .find('svg')
+                .and('have.attr', 'style', 'color: rgb(255, 200, 0);')
+                .click()
+        }
+    }
+
+    checkHoverIconBSRE(inputStatus) {
+        if(inputStatus == 'Aktif'){
+            // Click icon bsre
+            const icon_bsre = cy.get(menu.icon_bsre).as('icon_bsre')
+            icon_bsre.realHover()
+
+            // Assert check popup hover bsre
+            const popup_hoverBSRE = cy.get(menu.popup_hoverBSRE).as('popup_hoverBSRE')
+            popup_hoverBSRE.should('be.visible')
+                .and('contain', 'BSRE aktif')
+        } else {
+            // Click icon bsre
+            const icon_bsre = cy.get(menu.icon_bsre).as('icon_bsre')
+            icon_bsre.realHover()
+
+            // Assert check popup hover bsre
+            const popup_hoverBSRE = cy.get(menu.popup_hoverBSRE).as('popup_hoverBSRE')
+            popup_hoverBSRE.should('be.visible')
+                .and('contain', 'Mohon maaf BSRE sedang mengalami kendala, mohon dicek secara berkala')
+        }
+    }
 }
