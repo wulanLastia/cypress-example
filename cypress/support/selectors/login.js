@@ -20,6 +20,7 @@ module.exports = {
     passwordSSO: '[id="password"]',
     btnConfirmLoginSSO: '[id="kc-login"]',
     formLoginSSO: '[id="kc-form-login"]',
+    btnClosePopupV2: '[data-cy="dialog__welcoming__button--close"]',
 
     // SIMULATE V2 STAGING
     btnLoginSso: '/html[1]/body[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/form[1]/div[1]/button[1]',

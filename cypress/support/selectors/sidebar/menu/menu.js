@@ -11,7 +11,11 @@ module.exports = {
     menuPengambilanNomor: '[data-cy="sidebar-menu-pengambilan-nomor"]',
     titleNaskahKeluar: '[data-cy="naskah-keluar__title"]',
     sidebarv1Menu: '[data-cy="sidebar__v1__dashboard"]',
+    icon_se: '[data-cy="icon__status-se"]',
+    icon_bsre: '[data-cy="icon__status-bsre"]',
+    popup_hoverSE: '[data-cy="status-se__message"]',
+    popup_hoverBSRE: '[data-cy="status-bsre__message"]',
 
     // XPATH
-    sidebarClass: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/div[1]'
+    sidebarClass: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/nav[1]/div[1]'
 }
