@@ -260,4 +260,36 @@ export class MenuPage {
                 .and('contain', 'Mohon maaf BSRE sedang mengalami kendala, mohon dicek secara berkala')
         }
     }
+
+    checkBtnTandatangani(inputStatus) {
+        if(inputStatus == 'SE tidak aktif'){
+            const btnTandatangani = cy.get(menu.btnTandatangani).as('btnTandatangani')
+            btnTandatangani.should('be.disabled')
+        } else {
+            const btnTandatangani = cy.get(menu.btnTandatangani).as('btnTandatangani')
+            btnTandatangani.should('be.disabled')
+        }
+    }
+
+    checkHoverBtnTandatangani(inputStatus) {
+        if(inputStatus == 'SE tidak aktif'){
+            // Click btn tandatangani
+            const btnTandatangani = cy.get(menu.btnTandatangani).as('btnTandatangani')
+            btnTandatangani.realHover()
+
+            // Assert check popup hover tte
+            const popup_hoverTTE = cy.get(menu.popup_hoverTTE).as('popup_hoverTTE')
+            popup_hoverTTE.should('be.visible')
+            .and('contain', 'Sertifikat Elektronik non aktif, untuk mengaktifkan sertifikat elektronik anda dapat menghubungi admin SIDEBAR')
+        } else {
+            // Click btn tandatangani
+            const btnTandatangani = cy.get(menu.btnTandatangani).as('btnTandatangani')
+            btnTandatangani.realHover()
+
+            // Assert check popup hover tte
+            const popup_hoverTTE = cy.get(menu.popup_hoverTTE).as('popup_hoverTTE')
+            popup_hoverTTE.should('be.visible')
+            .and('contain', 'Mohon maaf BSRE sedang mengalami kendala, mohon dicek secara berkala')
+        }
+    }
 }

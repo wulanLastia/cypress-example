@@ -95,17 +95,16 @@ describe('Menu Positif Skenario', { testIsolation: false }, () => {
         })
     )
 
-    // TODO : Di uncomment di card selanjutnya
-    // qase(3474,
-    //     it('Cek tampilan icon BSRE jika BSRE aktif', () => {
-    //         menuPage.checkIconBSRE('Aktif')
-    //     })
-    // )
+    qase(3474,
+        it('Cek tampilan icon BSRE jika BSRE aktif', () => {
+            menuPage.checkIconBSRE('Aktif')
+        })
+    )
 
-    // qase(3476,
-    //     it('Cek tampilan icon BSRE saat di hover jika BSRE aktif', () => {
-    //         menuPage.checkHoverIconBSRE('Aktif')
-    //     })
-    // )
+    qase(3476,
+        it('Cek tampilan icon BSRE saat di hover jika BSRE aktif', () => {
+            menuPage.checkHoverIconBSRE('Aktif')
+        })
+    )
     
 })

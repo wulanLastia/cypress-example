@@ -15,6 +15,8 @@ module.exports = {
     icon_bsre: '[data-cy="icon__status-bsre"]',
     popup_hoverSE: '[data-cy="status-se__message"]',
     popup_hoverBSRE: '[data-cy="status-bsre__message"]',
+    btnTandatangani: '[data-cy="button--signing"]',
+    popup_hoverTTE: '[data-cy="tte-disable__message"]',
 
     // XPATH
     sidebarClass: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/nav[1]/div[1]'
