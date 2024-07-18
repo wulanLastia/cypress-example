@@ -56,6 +56,20 @@
       "status1": "TTE Ulang"
     }
   ],
+  "kembalikan": [
+    {
+      "perbaikan_negatif": "negatif",
+      "perbaikan_positif": "positif"
+    },
+    {
+      "perbaikan_html": "<blink>Hello World</blink>",
+      "assert_perbaikan_html": "<blink>Hello World</blink>",
+      "perbaikan_script": "Test JS Script <script>alert('Executing JS')</script>",
+      "assert_perbaikan_script": "Test JS Script <script>alert('Executing JS')</script>",
+      "perbaikan_url": "https://www.google.com/",
+      "assert_perbaikan_url": "https://www.google.com/"
+    }
+  ],
   "env": [
     {
       "prod": "prod",

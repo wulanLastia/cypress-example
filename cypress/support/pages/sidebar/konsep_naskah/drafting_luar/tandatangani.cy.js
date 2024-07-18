@@ -229,8 +229,35 @@ export class TandatanganiPage {
         })
 
         // Wait for up for the success dialog to appear only 0.5 seconds
-        const dialog_successTTENaskah = cy.get(tandatangani.dialog_successTTENaskah, { timeout: 6000 }).as('dialog_successTTENaskah')
+        const dialog_successTTENaskah = cy.get(tandatangani.dialog_successTTENaskah, { timeout: 10000 }).as('dialog_successTTENaskah')
         dialog_successTTENaskah.should('be.visible')
+
+        // Wait until tte process
+        cy.wait(6000)
+
+        // Cek popup csat
+        cy.get('body').then($body => {
+            if ($body.find(tandatangani.dialog_csat).length > 0) {
+                // Close popup csat
+                // const btn_closeCsat = cy.get(tandatangani.btn_closeCsat, { timeout: 6000 }).as('btn_closeCsat')
+                // btn_closeCsat.click()
+
+                // Input CSAT
+                const dialog_csat = cy.get(tandatangani.dialog_csat).as('dialog_csat')
+                dialog_csat.should('be.visible')
+
+                const input_emotCsat = cy.get(tandatangani.input_emotCsat).as('input_emotCsat')
+                input_emotCsat.click()
+
+                const input_saranCsat = cy.get(tandatangani.input_saranCsat).as('input_saranCsat')
+                input_saranCsat.type('Sip Mantap!')
+
+                const btn_submitCsat = cy.get(tandatangani.btn_submitCsat).as('btn_submitCsat')
+                btn_submitCsat.click()
+
+                cy.wait(3000)
+            }
+        })
     }
 
     kirimNaskah(){
