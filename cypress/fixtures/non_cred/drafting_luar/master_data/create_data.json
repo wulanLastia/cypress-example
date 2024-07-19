@@ -62,6 +62,7 @@
       "perbaikan_positif": "positif"
     },
     {
+      "input_perbaikan": "Perbaiki perihal, isi naskah, lampiran, tujuan, alamat naskah, tembusan, urgensi, sifat naskah, kode klasifikasi",
       "perbaikan_html": "<blink>Hello World</blink>",
       "assert_perbaikan_html": "<blink>Hello World</blink>",
       "perbaikan_script": "Test JS Script <script>alert('Executing JS')</script>",

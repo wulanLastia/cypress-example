@@ -1,4 +1,4 @@
-import { qase } from 'cypress-qase-reporter/mocha';
+import { qase } from 'cypress-qase-reporter/dist/mocha';
 import { LoginPage } from "@pages/auth/login.cy"
 import { TabRegistrasiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tab_registrasi.cy"
 import { UploadSingleFilePage } from "@pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
@@ -98,7 +98,7 @@ describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () =>
     )
 
     // Begin test case kembalikan naskah
-    qase([3389, 3390, 3649, 3659, 3665, 3705, 3709],
+    qase([3389, 3390, 3649, 3659, 3665, 3705, 3709, 3650, 3711, 3712, 3713, 3714, 3715, 3716, 3717, 3718, 3663, 3647],
         it('Check Kembalikan Naskah', () => {
             // Login 
             loginPage.loginViaV1(user.nip_pemeriksa_2_2, user.password)
@@ -118,14 +118,44 @@ describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () =>
             kembalikanPage.checkBtnKembalikan()
 
             // Input tag html pada kolom point perbaikan 3665
-            kembalikanPage.inputPerbaikan(data_temp.kembalikan[0].perbaikan_negatif, data_temp.kembalikan[1].perbaikan_html, data_temp.kembalikan[1].assert_perbaikan_html)
+            kembalikanPage.inputPoinPerbaikan(data_temp.kembalikan[0].perbaikan_negatif, data_temp.kembalikan[1].perbaikan_html, data_temp.kembalikan[1].assert_perbaikan_html)
 
             // Input tag script pada kolom point perbaikan 3705
-            kembalikanPage.inputPerbaikan(data_temp.kembalikan[0].perbaikan_negatif, data_temp.kembalikan[1].perbaikan_script, data_temp.kembalikan[1].assert_perbaikan_script)
+            kembalikanPage.inputPoinPerbaikan(data_temp.kembalikan[0].perbaikan_negatif, data_temp.kembalikan[1].perbaikan_script, data_temp.kembalikan[1].assert_perbaikan_script)
         
             // Input link url pada kolom point perbaikan 3709
-            kembalikanPage.inputPerbaikan(data_temp.kembalikan[0].perbaikan_negatif, data_temp.kembalikan[1].perbaikan_url, data_temp.kembalikan[1].assert_perbaikan_url)
+            kembalikanPage.inputPoinPerbaikan(data_temp.kembalikan[0].perbaikan_negatif, data_temp.kembalikan[1].perbaikan_url, data_temp.kembalikan[1].assert_perbaikan_url)
         
+            // Cek kembalikan naskah berdasarkan checkbox "Perihal" 3650 
+            kembalikanPage.inputPerbaikanPerihal()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Isi Naskah" 3711
+            kembalikanPage.inputPerbaikanIsiNaskah()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Lampiran" 3712
+            kembalikanPage.inputPerbaikanLampiran()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Tujuan" 3713
+            kembalikanPage.inputPerbaikanTujuanNaskah()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Alamat Naskah" 3714
+            kembalikanPage.inputPerbaikanAlamatNaskah()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Tembusan" 3715
+            kembalikanPage.inputPerbaikanTembusan()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Urgensi" 3716
+            kembalikanPage.inputPerbaikanUrgensiNaskah()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Sifat Naskah" 3717
+            kembalikanPage.inputPerbaikanSifatNaskah()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Kode Klasifikasi" 3718 
+            kembalikanPage.inputPerbaikanKodeKlasifikasi()
+
+            // Check dan uncheck fungsi checkbox bagian perbaikan 3663
+            kembalikanPage.uncheckPerbaikan()
+
             // Cek tombol batal pada popup kembalikan 3647
             kembalikanPage.batalKembalikan()
         })
