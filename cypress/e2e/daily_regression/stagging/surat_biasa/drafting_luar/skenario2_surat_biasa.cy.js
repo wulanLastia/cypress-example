@@ -41,11 +41,11 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-// after(() => {
-//     qase(411,
-//         loginPage.logoutV2step2()
-//     )
-// })
+after(() => {
+    qase(411,
+        loginPage.logoutV2step2()
+    )
+})
 
 describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () => {
 
