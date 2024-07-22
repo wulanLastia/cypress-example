@@ -56,6 +56,21 @@
       "status1": "TTE Ulang"
     }
   ],
+  "kembalikan": [
+    {
+      "perbaikan_negatif": "negatif",
+      "perbaikan_positif": "positif"
+    },
+    {
+      "input_perbaikan": "Perbaiki perihal, isi naskah, lampiran, tujuan, alamat naskah, tembusan, urgensi, sifat naskah, kode klasifikasi",
+      "perbaikan_html": "<blink>Hello World</blink>",
+      "assert_perbaikan_html": "<blink>Hello World</blink>",
+      "perbaikan_script": "Test JS Script <script>alert('Executing JS')</script>",
+      "assert_perbaikan_script": "Test JS Script <script>alert('Executing JS')</script>",
+      "perbaikan_url": "https://www.google.com/",
+      "assert_perbaikan_url": "https://www.google.com/"
+    }
+  ],
   "env": [
     {
       "prod": "prod",

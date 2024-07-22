@@ -3,16 +3,14 @@ import { LoginPage } from "@pages/auth/login.cy"
 import { TabRegistrasiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tab_registrasi.cy"
 import { UploadSingleFilePage } from "@pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
 import { TandatanganiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tandatangani.cy"
-import { KotakKeluarPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_keluar.cy"
-import { KotakMasukPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_masuk.cy"
 import { KembalikanPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kembalikan.cy"
+import { KotakMasukPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_masuk.cy"
 
 let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
 let tandatanganiPage = new TandatanganiPage()
-let kotakKeluarPage = new KotakKeluarPage()
-let kotakMasukPage = new KotakMasukPage()
 let kembalikanPage = new KembalikanPage()
+let kotakMasukPage = new KotakMasukPage()
 let loginPage = new LoginPage()
 let user
 let data_temp
@@ -77,7 +75,7 @@ describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () =>
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
 
-            tabRegistrasiPage.inputPerihal('Automation Drafting Luar (Surat Biasa) ' + id, 'Automation Drafting Luar (Surat Biasa) ' + id)
+            tabRegistrasiPage.inputPerihal('Automation Drafting Luar Kembalikan (Surat Biasa) ' + id, 'Automation Drafting Luar Kembalikan (Surat Biasa) ' + id)
             tabRegistrasiPage.checkWarnaLabelUrgensi(data_temp.registrasi[7].urgensi_surat, data_temp.registrasi[3].index0)
             tabRegistrasiPage.inputSifat(data_temp.registrasi[8].sifat_surat1)
 
@@ -99,8 +97,9 @@ describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () =>
         })
     )
 
-    qase([3389, 3390, 3649, 3650, 3711, 3712, 3713, 3714, 3715, 3716, 3717, 3718],
-        it('Kembalikan Naskah', () => {
+    // Begin test case kembalikan naskah
+    qase([3389, 3390, 3649, 3659, 3665, 3705, 3709, 3650, 3711, 3712, 3713, 3714, 3715, 3716, 3717, 3718, 3663, 3647],
+        it('Check Kembalikan Naskah', () => {
             // Login 
             loginPage.loginViaV1(user.nip_pemeriksa_2_2, user.password)
             loginPage.directLogin()
@@ -110,44 +109,55 @@ describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () =>
 
             // Cek status pada detail halaman detail kotak masuk review naskah 3390
             kotakMasukPage.checkNaskahKotakMasuk(data_temp.env[0].staging)
+            kotakMasukPage.checkStatusdanDetailNaskah()
 
             // Cek tombol kembalikan pada detail naskah 3649
             kembalikanPage.checkPopupKembalikanNaskah()
 
-            // Input poin perbaikan
-            kembalikanPage.inputPoinPerbaikan(data_temp.kembalikan[0].perbaikan_positif, data_temp.kembalikan[1].input_perbaikan, null)
+            // Mengosongkan kolom perbaikan dan klik button kembalikan 3659
+            kembalikanPage.checkBtnKembalikan()
 
-            // Input bagian perbaikan 3650, 3711, 3712, 3713, 3714, 3715, 3716, 3717, 3718 
+            // Input tag html pada kolom point perbaikan 3665
+            kembalikanPage.inputPoinPerbaikan(data_temp.kembalikan[0].perbaikan_negatif, data_temp.kembalikan[1].perbaikan_html, data_temp.kembalikan[1].assert_perbaikan_html)
+
+            // Input tag script pada kolom point perbaikan 3705
+            kembalikanPage.inputPoinPerbaikan(data_temp.kembalikan[0].perbaikan_negatif, data_temp.kembalikan[1].perbaikan_script, data_temp.kembalikan[1].assert_perbaikan_script)
+        
+            // Input link url pada kolom point perbaikan 3709
+            kembalikanPage.inputPoinPerbaikan(data_temp.kembalikan[0].perbaikan_negatif, data_temp.kembalikan[1].perbaikan_url, data_temp.kembalikan[1].assert_perbaikan_url)
+        
+            // Cek kembalikan naskah berdasarkan checkbox "Perihal" 3650 
             kembalikanPage.inputPerbaikanPerihal()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Isi Naskah" 3711
             kembalikanPage.inputPerbaikanIsiNaskah()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Lampiran" 3712
             kembalikanPage.inputPerbaikanLampiran()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Tujuan" 3713
             kembalikanPage.inputPerbaikanTujuanNaskah()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Alamat Naskah" 3714
             kembalikanPage.inputPerbaikanAlamatNaskah()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Tembusan" 3715
             kembalikanPage.inputPerbaikanTembusan()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Urgensi" 3716
             kembalikanPage.inputPerbaikanUrgensiNaskah()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Sifat Naskah" 3717
             kembalikanPage.inputPerbaikanSifatNaskah()
+
+            // Cek kembalikan naskah berdasarkan checkbox "Kode Klasifikasi" 3718 
             kembalikanPage.inputPerbaikanKodeKlasifikasi()
 
-            // Click btn kembalikan naskah
-            kembalikanPage.confirmKembalikanNaskah()
+            // Check dan uncheck fungsi checkbox bagian perbaikan 3663
+            kembalikanPage.uncheckPerbaikan()
+
+            // Cek tombol batal pada popup kembalikan 3647
+            kembalikanPage.batalKembalikan()
         })
     )
-
-    // TODO : Diopen setelah proses perbaiki selesai
-    // qase([],
-    //     it('Tandatangani Naskah Penandatangan Atasan', () => {
-    //         // Login 
-    //         loginPage.loginViaV1(user.nip_pemeriksa_2_2, user.password)
-    //         loginPage.directLogin()
-
-    //         // Tandatangani Naskah
-    //         kotakMasukPage.goToKotakMasukTTEReview()
-    //         kotakMasukPage.checkNaskahKotakMasuk(data_temp.env[0].staging)
-
-    //         // Melakukan TTE Naskah (Penandatangan Atasan)
-    //         tandatanganiPage.tandatanganiNaskahAtasan()
-    //         tandatanganiPage.tteNaskahAtasan()
-    //         tandatanganiPage.submitTteNaskah(user.passphrase, data_temp.env[0].staging)
-    //     })
-    // )
 })

@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@cypress/webpack-preprocessor": "^6.0.0",
-    "cypress-qase-reporter": "^1.4.2-alpha.2",
+    "cypress-qase-reporter": "^1.4.3",
     "cypress-real-events": "^1.7.6",
     "dayjs": "^1.11.10",
     "jose": "^5.1.1"

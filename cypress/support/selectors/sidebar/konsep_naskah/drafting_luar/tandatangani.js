@@ -7,6 +7,8 @@ module.exports = {
     btn_tteCancel: '[data-cy="dialog__dialog-signing__button--cancel"]',
     btn_kirimNaskah: '[data-cy="header__button--submit"]',
     btn_confirmKirimNaskah: '[data-cy="dialog__dialog-send-document__button--confirm"]',
+    btn_closeCsat: '[data-cy="dialog__dialog-csat__button--close"]',
+    btn_submitCsat: '[data-cy="dialog__dialog-csat__button--confirm"]',
 
     // LABEL
     label_headerDocumentType: '[data-cy="header__title"]',
@@ -33,4 +35,9 @@ module.exports = {
     dialog_panelInputPassphrase: '[data-cy="dialog__dialog-signing__input--passphrase"]',
     dialog_panelIconHideShow: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[5]/div[1]/div[1]/div[1]/button[1]',
     dialog_successTTENaskah: '[data-cy="dialog__dialog-info__wrapper"]',
+    dialog_csat: '[data-cy="dialog__dialog-csat__panel"]',
+
+    // INPUT
+    input_emotCsat: '[data-cy="dialog__dialog-csat__input-rate-4"]',
+    input_saranCsat: '[data-cy="dialog__dialog-csat__input-comment"]'
 }
