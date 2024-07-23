@@ -104,7 +104,7 @@ export class TabRegistrasiPage {
                 // Input Nomor Urut lainnya
                 const uuid = () => Cypress._.random(0, 1e6)
                 const id = uuid()
-                const nomorUrut = `SKP/AUTOMATION/${id}`
+                const nomorUrut = `AUTOMATION/${id}`
 
                 const select_inputNomorUrut = cy.get(tab_registrasi.select_inputNomorUrut).first().as('select_inputNomorUrut')
                 select_inputNomorUrut.scrollIntoView()
