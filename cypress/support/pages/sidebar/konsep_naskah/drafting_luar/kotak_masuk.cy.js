@@ -317,4 +317,17 @@ export class KotakMasukPage {
         // Assertion
         cy.url().should('eq', Cypress.env('base_url') + 'kotak-masuk/tte-review')
     }
+
+    goToPerbaikiNaskah() {
+        // Click Tab Review Naskah
+        const tab_kotakMasukReviewNaskah = cy.get(kotak_masuk.tab_kotakMasukReviewNaskah).as('tab_kotakMasukReviewNaskah')
+        tab_kotakMasukReviewNaskah.should('contain', 'Review Naskah')
+            .click()
+            .wait(6000)
+
+        // Get data terakhir 
+        const label_tableDataJenis = cy.get(kotak_masuk.label_tableDataJenis).as('label_tableDataJenis')
+        label_tableDataJenis.click()
+            .wait(6000)
+    }
 }
