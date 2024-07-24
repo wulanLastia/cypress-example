@@ -25,6 +25,8 @@ module.exports = {
     label_inputUrgensiNaskah: '[data-cy="dialog__dialog-send-back-document__input-label--urgensi-naskah"]',
     label_inputSifatNaskah: '[data-cy="dialog__dialog-send-back-document__input-label--sifat-naskah"]',
     label_inputKodeKlasifikasi: '[data-cy="dialog__dialog-send-back-document__input-label--kode-klasifikasi"]',
+    label_pemeriksaName: '[data-cy="header__username"]',
+    label_pemeriksaPosition: '[data-cy="header__rolename"]',
 
     // INPUT
     input_perbaikan: '[data-cy="dialog__dialog-send-back-document__input--perbaikan"]',
