@@ -215,6 +215,17 @@ export class LoginPage {
 
             cy.wait(6000)
 
+            // Close banner popup v2
+            cy.get('body').then($body => {
+                if ($body.find(login.btnClosePopupV2).length > 0) {
+                    // Close banner popup v2
+                    const btnClosePopupV2 = cy.get(login.btnClosePopupV2).as('btnClosePopupV2')
+                    btnClosePopupV2.click()
+                }
+            })
+
+            cy.wait(6000)
+
             // Check onboarding
             cy.get('body').then($body => {
                 if ($body.find(login.skipOnboarding).length > 0) {
@@ -225,15 +236,6 @@ export class LoginPage {
             })
 
             cy.wait(6000)
-
-            // Close banner popup v2
-            cy.get('body').then($body => {
-                if ($body.find(login.btnClosePopupV2).length > 0) {
-                    // Close banner popup v2
-                    const btnClosePopupV2 = cy.get(login.btnClosePopupV2).as('btnClosePopupV2')
-                    btnClosePopupV2.click()
-                }
-            })
         })
     }
 

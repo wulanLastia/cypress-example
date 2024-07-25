@@ -1,7 +1,6 @@
 import kembalikan from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/kembalikan"
 
 const getPreviewData = "cypress/fixtures/non_cred/drafting_luar/transaction_data/preview_data.json"
-
 export class KembalikanPage {
 
     checkPopupKembalikanNaskah() {
@@ -36,6 +35,57 @@ export class KembalikanPage {
             input_perbaikan.clear()
                 .type(inputPerbaikan)
                 .should('have.value', inputPerbaikan)
+
+            // Begin save assertion data perbaikan
+            cy.readFile(getPreviewData).then((object) => {
+                if (!object.perbaikan) {
+                    object.perbaikan = [];
+                }
+
+                // Input data preview poin perbaikan
+                // Construct the sub-object
+                const poin_perbaikan = {
+                    poin_perbaikan: inputPerbaikan
+                }
+
+                // Push the sub-object to the array
+                object.perbaikan.push(poin_perbaikan)
+
+                // Write data to the JSON file
+                cy.writeFile(getPreviewData, object)
+
+                // Input data preview pemeriksa
+                const label_pemeriksaName = cy.get(kembalikan.label_pemeriksaName).as('label_pemeriksaName')
+                label_pemeriksaName.invoke('text')
+                    .then((textValue) => {
+                        // Construct the sub-object
+                        const pemeriksaName = {
+                            pemeriksa_name: textValue.trim()
+                        }
+
+                        // Push the sub-object to the array
+                        object.perbaikan.push(pemeriksaName)
+
+                        // // Write data to the JSON file
+                        cy.writeFile(getPreviewData, object)
+                    })
+
+                // Input data preview posisi pemeriksa
+                const label_pemeriksaPosition = cy.get(kembalikan.label_pemeriksaPosition).as('label_pemeriksaPosition')
+                label_pemeriksaPosition.invoke('text')
+                    .then((textValue) => {
+                        // Construct the sub-object
+                        const pemeriksaPosition = {
+                            pemeriksa_position: textValue.trim()
+                        }
+
+                        // Push the sub-object to the array
+                        object.perbaikan.push(pemeriksaPosition)
+
+                        // // Write data to the JSON file
+                        cy.writeFile(getPreviewData, object)
+                    })
+            })
         }
     }
 
