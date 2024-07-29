@@ -356,4 +356,43 @@ export class KotakKeluarPage {
         // Assertion
         cy.url().should('eq', Cypress.env('base_url') + 'kotak-keluar/tte-review')
     }
+
+    checkNaskahDikembalikan(inputEnv) {
+        cy.readFile(getPreviewData).then((object) => {
+            const perihal = object.identitas_surat[0].perihal
+
+            if(inputEnv == "staging"){
+                cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+
+                const input_searchKotakKeluar = cy.get(kotak_keluar.input_searchKotakKeluar).first().as('input_searchKotakKeluar')
+                input_searchKotakKeluar.find('input')
+                    .clear()
+                    .type(perihal)
+
+                cy.wait('@checkResponse', { timeout: 10000 })
+                    .then((interception) => {
+                        if (interception.response.statusCode === 200) {
+                            const label_tableDataJenis = cy.get(kotak_keluar.label_tableDataJenis).first().as('label_tableDataJenis')
+                            label_tableDataJenis.contains('p', perihal)
+                        }
+                    })
+            }else{
+                const input_searchKotakKeluar = cy.get(kotak_keluar.input_searchKotakKeluar).first().as('input_searchKotakKeluar')
+                input_searchKotakKeluar.find('input')
+                    .clear()
+                    .type(perihal)
+
+                // Wait until document found
+                cy.wait(10000)
+
+                const label_tableDataJenis = cy.get(kotak_keluar.label_tableDataJenis).first().as('label_tableDataJenis')
+                label_tableDataJenis.contains('p', perihal)
+            } 
+            
+            // Check status dikembalikan
+            const label_tableDataStatus = cy.get(kotak_keluar.label_tableDataStatus).as('label_tableDataStatus')
+            label_tableDataStatus.find('p')
+                .should('contain', 'Dikembalikan')
+        })
+    }
 }
