@@ -149,4 +149,29 @@ export class SetujuiPage {
         btnTandatanganiNaskah.should('contain', 'Tandatangani')
             .click()
     }
+
+    goToSetujuiNaskah() {
+        // Go To Menu Kotak Masuk
+        const btn_menuKotakMasuk = cy.get(kotak_masuk.btn_menuKotakMasuk).as('btn_menuKotakMasuk')
+        btn_menuKotakMasuk.should('contain', 'Kotak Masuk')
+            .click()
+            .wait(3000)
+
+        // Click Menu Submenu TTE & Review
+        const btn_menuTteReview = cy.get(kotak_masuk.btn_menuTteReview).as('btn_menuTteReview')
+        btn_menuTteReview.should('contain', 'TTE & Review')
+            .click()
+            .wait(3000)
+
+        // Click Tab Review Naskah
+        const tab_kotakMasukReviewNaskah = cy.get(kotak_masuk.tab_kotakMasukReviewNaskah).as('tab_kotakMasukReviewNaskah')
+        tab_kotakMasukReviewNaskah.should('contain', 'Review Naskah')
+            .click()
+            .wait(6000)
+
+        // Get data terakhir 
+        const label_tableDataJenis = cy.get(kotak_masuk.label_tableDataJenis).as('label_tableDataJenis')
+        label_tableDataJenis.click()
+            .wait(6000)
+    }
 }

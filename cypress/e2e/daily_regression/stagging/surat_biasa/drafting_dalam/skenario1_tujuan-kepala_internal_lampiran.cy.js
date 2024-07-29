@@ -56,7 +56,7 @@ describe('Create Surat Biasa Tujuan Internal Skenario 1 (Tujuan Kepala Surat)', 
 
             // Create Naskah
             listNaskahSuratBiasaPage.goToKonsepNaskahSuratBiasa()
-            createSuratBiasaPage.inputKopSurat()
+            createSuratBiasaPage.inputKopSurat(data_temp.org[0].org1)
             createSuratBiasaPage.inputLampiranSurat(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputLampiranSurat2(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputKakiSuratSkenario1(

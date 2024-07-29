@@ -34,7 +34,7 @@ module.exports = {
     selectPenandatanganNotaDinas: '[data-cy="input-kaki-surat__penandatangan__select--format"]',
     pilihPenandatanganNotaDinas: '[data-cy="input-kaki-surat__penandatangan__wrapper-0"]',
     labelPemeriksaNotaDinas: '[data-cy="input-kaki-surat__pemeriksa__label"]',
-    pilihPemeriksaNotaDinas: '[data-cy="input-kaki-surat__pemeriksa__select-option__custom-input0"]',
+    pilihPemeriksaNotaDinas: '[data-cy="input-kaki-surat__pemeriksa__select-option__custom-input-0"]',
     btnTambahPemeriksaNotaDinas: '[data-cy="input-kaki-surat__pemeriksa__button--add"]',
 
     // XPATH

@@ -54,13 +54,19 @@ export class DraftingKopSuratPage {
             .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/6d0b277d4b29db3eafab2d5708149d7d.png')
     }
 
-    checkPreviewDinas() {
+    checkPreviewDinas(inputOrg) {
         const checkRadio2 = cy.get(kop_surat.checkRadio2).as('checkRadio2')
         checkRadio2.click()
 
-        const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
-        previewSelectedKop.find('img')
-            .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/659b50e7a894063e5d4f2699ee0bd788.png')
+        if(inputOrg == 'dispusipda') {
+            const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
+            previewSelectedKop.find('img')
+                .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/659b50e7a894063e5d4f2699ee0bd788.png')
+        } else {
+            const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
+            previewSelectedKop.find('img')
+                .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/89c72083b0261a4a48569fd26d2d2b6d.png')
+        }
     }
 
     checkPreviewUPTD() {

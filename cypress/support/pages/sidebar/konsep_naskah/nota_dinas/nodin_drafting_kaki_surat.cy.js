@@ -90,7 +90,7 @@ export class DraftingKakiSuratPage {
 
     pilihPenandatanganDiriSendiriPROD() {
         const selectPenandatangan = cy.get(kaki_surat.selectPenandatanganNotaDinas).as('selectPenandatangan')
-        selectPenandatangan.select(4).should('have.value', 'DIRI_SENDIRI')
+        selectPenandatangan.select(2).should('have.value', 'DIRI_SENDIRI')
 
         const selectedPenandatangan = cy.xpath(kaki_surat.selectedPenandatangan).as('selectedPenandatangan')
         selectedPenandatangan.should('contain', 'SMOKE TEST VITA PUTRI UTAMI, S.Sos., M.I.Kom')
@@ -133,17 +133,17 @@ export class DraftingKakiSuratPage {
         selectPenandatangan.select(1).should('have.value', 'ATASAN')
 
         const pilihPenandatangan = cy.get(kaki_surat.pilihPenandatanganNotaDinas).as('pilihPenandatangan')
-        pilihPenandatangan.type('SMOKE TEST 1 Dra. Hj. I GUSTI AGUNG')
+        pilihPenandatangan.type('SMOKE TEST FAJAR LIBRIANTO')
             .wait(2000)
             .type('{enter}')
     }
 
-    pilihPemeriksa() {
+    pilihPemeriksa(inputanPemeriksa) {
         const btnTambahPemeriksa = cy.get(kaki_surat.btnTambahPemeriksaNotaDinas).as('btnTambahPemeriksa')
         btnTambahPemeriksa.click()
 
         const pilihPemeriksa = cy.get(kaki_surat.pilihPemeriksaNotaDinas).as('pilihPemeriksa2')
-        pilihPemeriksa.type('FAJAR LIBRIANTO', { force: true })
+        pilihPemeriksa.type(inputanPemeriksa)
             .wait(5000)
             .type('{enter}')
     }
