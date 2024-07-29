@@ -130,6 +130,9 @@ describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () =>
 
             // Click btn kembalikan naskah
             kembalikanPage.confirmKembalikanNaskah()
+
+            // Check status naskah di kotak keluar
+            kotakKeluarPage.checkNaskahDikembalikan(data_temp.env[0].staging)
         })
     )
 
