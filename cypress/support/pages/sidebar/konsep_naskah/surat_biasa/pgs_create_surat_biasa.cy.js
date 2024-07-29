@@ -20,9 +20,9 @@ export class CreateSuratBiasaPage {
     }
 
     // Kop Surat
-    inputKopSurat() {
+    inputKopSurat(inputOrg) {
         draftingKopSuratPage.aksesFormEditingKopSurat()
-        draftingKopSuratPage.checkPreviewDinas()
+        draftingKopSuratPage.checkPreviewDinas(inputOrg)
         draftingKopSuratPage.closeKopSurat()
     }
 
@@ -322,6 +322,13 @@ export class CreateSuratBiasaPage {
         draftingKakiSuratPage.aksesFormEditingKakiSurat()
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.pilihPenandatanganDiriSendiriProd(inputanPenandatanganDiriSendiri)
+        draftingKakiSuratPage.closeKakiSurat()
+    }
+
+    inputKakiSuratSkenarioProd(inputEnv, inputanPenandatanganAtasan1) {
+        cy.log(inputanPenandatanganAtasan1)
+        draftingKakiSuratPage.inputKakiSurat()
+        draftingKakiSuratPage.pilihPenandatanganAtasanProd(inputEnv, inputanPenandatanganAtasan1)
         draftingKakiSuratPage.closeKakiSurat()
     }
 

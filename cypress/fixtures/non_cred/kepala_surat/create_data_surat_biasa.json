@@ -125,6 +125,7 @@
       "penandatangan_atasan1": "Dra. Hj. I GUSTI AGUNG",
       "penandatangan_atasan2": "Dr. IKA MARDIAH, M.Si.",
       "penandatangan_atasan_prod": "SMOKE TEST 1 Dra. Hj. I GUSTI AGUNG",
+      "penandatangan_atasan_prod2": "SMOKE TEST FAJAR LIBRIANTO",
       "penandatangan_diri_sendiri_prod": "Smoke Test Vita Putri Utami, S.Sos., M.I.Kom",
       "penandatangan_se_not_active": "ELIYA NURUL HIDAYAH, S.Kom.I",
       "penandatangan_bsre_not_active": "WINNY CITRA DEWI UTAMI, S.Sos., M.Kesos."
@@ -152,6 +153,11 @@
     {
       "prod": "prod",
       "staging": "staging"
+    }
+  ],"org": [
+    {
+      "org1": "dispusipda",
+      "org2": "diskominfo"
     }
   ]
 }

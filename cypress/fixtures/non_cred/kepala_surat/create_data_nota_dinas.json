@@ -60,5 +60,11 @@
       "prod": "prod",
       "staging": "staging"
     }
+  ],
+  "org": [
+    {
+      "org1": "dispusipda",
+      "org2": "diskominfo"
+    }
   ]
 }

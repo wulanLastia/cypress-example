@@ -19,13 +19,13 @@ export class CreateNotaDinasPage {
         draftingNotaDinasPage.goToKonsepNaskahNotaDinas()
     }
 
-    createKopSurat() {
+    createKopSurat(inputOrg) {
         draftingKopSuratNotaDinasPage.aksesFormEditingKopSurat()
         draftingKopSuratNotaDinasPage.checkDetail()
-        draftingKopSuratNotaDinasPage.checkPreviewDefault()
+        draftingKopSuratNotaDinasPage.checkPreviewDefault(inputOrg)
         draftingKopSuratNotaDinasPage.checkPreviewSekda()
-        draftingKopSuratNotaDinasPage.checkPreviewDinas()
-        draftingKopSuratNotaDinasPage.checkPreviewUPTD()
+        draftingKopSuratNotaDinasPage.checkPreviewDinas(inputOrg)
+        draftingKopSuratNotaDinasPage.checkPreviewUPTD(inputOrg)
         draftingKopSuratNotaDinasPage.clickPreviewDinas()
         draftingKopSuratNotaDinasPage.closeKopSurat()
     }
@@ -214,8 +214,10 @@ export class CreateNotaDinasPage {
         draftingKakiSuratPage.aksesFormEditingKakiSurat()
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan)
-        if(inputanPemeriksa){       
-            draftingKakiSuratPage.pilihPemeriksa()
+        if(inputanPemeriksa){ 
+            cy.log('masuk')  
+            cy.log(inputanPemeriksa)     
+            draftingKakiSuratPage.pilihPemeriksa(inputanPemeriksa)
         }
         draftingKakiSuratPage.closeKakiSurat()
     }
@@ -238,7 +240,6 @@ export class CreateNotaDinasPage {
         draftingKakiSuratPage.aksesFormEditingKakiSurat()
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.pilihPenandatanganAtasanPROD()
-        draftingKakiSuratPage.pilihPemeriksaPROD()
         draftingKakiSuratPage.closeKakiSurat()
     }
 
