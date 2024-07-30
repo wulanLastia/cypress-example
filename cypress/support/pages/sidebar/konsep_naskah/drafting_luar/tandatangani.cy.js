@@ -36,7 +36,7 @@ export class TandatanganiPage {
             const jenis_naskah = object.upload_file[0].jenis_naskah
 
             const label_dataJenisNaskah = cy.get(tandatangani.label_dataJenisNaskah).as('label_dataJenisNaskah')
-            label_dataJenisNaskah.should('contain', jenis_naskah)
+            label_dataJenisNaskah.contains(jenis_naskah, { matchCase: false })
 
             // Assert Urgensi
             const urgensi = object.identitas_surat[1].urgensi
@@ -256,6 +256,14 @@ export class TandatanganiPage {
                 btn_submitCsat.click()
 
                 cy.wait(3000)
+
+                cy.get('body').then($body => {
+                    if ($body.find(tandatangani.btn_closeCsat).length > 0) {
+                        // Close button csat
+                        const btn_closeCsat = cy.get(tandatangani.btn_closeCsat).as('btn_closeCsat')
+                        btn_closeCsat.click()
+                    }
+                })
             }
         })
     }

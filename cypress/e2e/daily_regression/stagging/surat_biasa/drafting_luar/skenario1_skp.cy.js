@@ -5,17 +5,21 @@ import { UploadSingleFilePage } from "@pages/sidebar/konsep_naskah/drafting_luar
 import { TandatanganiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tandatangani.cy"
 import { KotakKeluarPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_keluar.cy"
 import { KotakMasukPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_masuk.cy"
+import { KembalikanPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kembalikan.cy"
+import { PerbaikiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/perbaiki.cy"
 
 let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
 let tandatanganiPage = new TandatanganiPage()
 let kotakKeluarPage = new KotakKeluarPage()
 let kotakMasukPage = new KotakMasukPage()
+let kembalikanPage = new KembalikanPage()
+let perbaikiPage = new PerbaikiPage()
 let loginPage = new LoginPage()
 let user
 let data_temp
 
-Cypress.on('uncaught:in promise', (err, runnable) => {
+Cypress.on('uncaught:exception', (err, runnable) => {
     // Jika terdapat error 'uncaught:exception' pada Headless Mode
     if (err.message.includes('postMessage')) {
         return false; // return false digunakan untuk skip error pada Headless Mode
@@ -39,7 +43,7 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-after(() => {
+afterEach(() => {
     qase(411,
         loginPage.logoutV2step2()
     )
@@ -62,6 +66,11 @@ describe('Drafting Luar - Skenario SKP', { testIsolation: false }, () => {
 
             // Click tab registrasi
             tabRegistrasiPage.clickTabRegistrasi()
+
+            // Tab Registrasi - Bank Nomor
+            tabRegistrasiPage.inputNomorUrut(data_temp.registrasi[0].bank_nomor_lainnya)
+            tabRegistrasiPage.searchKodeKlasifikasi(data_temp.registrasi[1].kode_klasifikasi)
+            tabRegistrasiPage.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
 
             // Tab Registrasi - Tujuan Surat
             tabRegistrasiPage.inputTujuanTembusanSurat()
@@ -96,20 +105,73 @@ describe('Drafting Luar - Skenario SKP', { testIsolation: false }, () => {
         })
     )
 
-    qase([],
-        it('Tandatangani Naskah Penandatangan Atasan', () => {
+    qase([3389, 3390, 3649, 3650, 3711, 3712, 3713, 3714, 3715, 3716, 3717, 3718],
+        it('Kembalikan Naskah', () => {
             // Login 
             loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
             loginPage.directLogin()
 
-            // Tandatangani Naskah
+            // Go To Kotak Masuk - TTE & Review 3389
             kotakMasukPage.goToKotakMasukTTEReview()
+
+            // Cek status pada detail halaman detail kotak masuk review naskah 3390
             kotakMasukPage.checkNaskahKotakMasuk(data_temp.env[0].staging)
 
-            // Melakukan TTE Naskah (Penandatangan Atasan)
-            tandatanganiPage.tandatanganiNaskahAtasan()
-            tandatanganiPage.tteNaskahAtasan()
-            tandatanganiPage.submitTteNaskah(user.passphrase, data_temp.env[0].staging)
+            // Cek tombol kembalikan pada detail naskah 3649
+            kembalikanPage.checkPopupKembalikanNaskah()
+
+            // Input poin perbaikan
+            kembalikanPage.inputPoinPerbaikan(data_temp.kembalikan[0].perbaikan_positif, data_temp.kembalikan[1].input_perbaikan, null)
+
+            // Input bagian perbaikan 3650, 3711, 3712, 3713, 3714, 3715, 3716, 3717, 3718 
+            kembalikanPage.inputPerbaikanPerihal()
+            kembalikanPage.inputPerbaikanIsiNaskah()
+            kembalikanPage.inputPerbaikanLampiran()
+            kembalikanPage.inputPerbaikanTujuanNaskah()
+            kembalikanPage.inputPerbaikanAlamatNaskah()
+            kembalikanPage.inputPerbaikanTembusan()
+            kembalikanPage.inputPerbaikanUrgensiNaskah()
+            kembalikanPage.inputPerbaikanSifatNaskah()
+            kembalikanPage.inputPerbaikanKodeKlasifikasi()
+
+            // Click btn kembalikan naskah
+            kembalikanPage.confirmKembalikanNaskah()
+
+            // Check status naskah di kotak keluar
+            kotakKeluarPage.checkNaskahDikembalikan(data_temp.env[0].staging)
         })
     )
+
+    qase([3389, 3738, 3862],
+        it('Cek Tab Perbaikan', () => {
+            // Login 
+            loginPage.loginViaV1(user.nip_konseptor_2, user.password)
+            loginPage.directLogin()
+
+            // Go To Kotak Masuk - TTE & Review 3389
+            kotakMasukPage.goToKotakMasukTTEReview()
+            kotakMasukPage.goToPerbaikiNaskah()
+
+            // Mengakses halaman perbaiki naskah tab daftar file 3862
+            perbaikiPage.aksesTabDaftarFile()
+        })
+    )
+
+    // @TODO = Dibuka setelah step perbaiki selesai
+    // qase([],
+    //     it('Tandatangani Naskah Penandatangan Atasan', () => {
+    //         // Login 
+    //         loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
+    //         loginPage.directLogin()
+
+    //         // Tandatangani Naskah
+    //         kotakMasukPage.goToKotakMasukTTEReview()
+    //         kotakMasukPage.checkNaskahKotakMasuk(data_temp.env[0].staging)
+
+    //         // Melakukan TTE Naskah (Penandatangan Atasan)
+    //         tandatanganiPage.tandatanganiNaskahAtasan()
+    //         tandatanganiPage.tteNaskahAtasan()
+    //         tandatanganiPage.submitTteNaskah(user.passphrase, data_temp.env[0].staging)
+    //     })
+    // )
 })
