@@ -239,7 +239,8 @@ export class UploadSingleFilePage {
             .and('be.visible')
 
         // Access Upload Single File
-        btn_uploadFileSkp.click({ force: true})
+        btn_uploadFileSkp.click()
+            .wait(6000)
 
         // Begin Save Assertion Data
         cy.readFile(getPreviewData).then((object) => {

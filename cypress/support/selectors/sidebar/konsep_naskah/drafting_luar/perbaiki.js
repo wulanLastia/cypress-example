@@ -1,6 +1,7 @@
 module.exports = {
     // TAB
     tab_perbaikan: '[data-cy="tab__detail-revision"]',
+    tab_daftar_file: '[data-cy="tab__document-list"]',
 
     // BUTTON
     btn_perbaikiNavbar: '[data-cy="tte-review-naskah__button--go-to-document-revision"]',

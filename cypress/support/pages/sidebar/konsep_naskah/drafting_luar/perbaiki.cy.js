@@ -1,5 +1,5 @@
 import perbaiki from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/perbaiki"
-
+import tab_registrasi from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/tab_registrasi"
 
 const getPreviewData = "cypress/fixtures/non_cred/drafting_luar/transaction_data/preview_data.json"
 
@@ -112,5 +112,34 @@ export class PerbaikiPage {
 
         const label_inputKodeKlasifikasi = cy.get(perbaiki.label_inputKodeKlasifikasi).as('label_inputKodeKlasifikasi')
         label_inputKodeKlasifikasi.should('contain', 'Kode klasifikasi')   
+    }
+
+    aksesTabDaftarFile() {
+        // Click button perbaiki
+        const btn_perbaikiNavbar = cy.get(perbaiki.btn_perbaikiNavbar).as('btn_perbaikiNavbar')
+        btn_perbaikiNavbar.should('contain', 'Perbaiki')  
+            .click()
+        
+        // Assert tab daftar file
+        const tab_daftar_file = cy.get(perbaiki.tab_daftar_file).as('tab_daftar_file')
+        tab_daftar_file.click()
+            .should('have.class', 'tabs__menu active')  
+
+        cy.readFile(getPreviewData).then((object) => {
+            // Assertion file upload
+            const upload_file_name = object.upload_file[1].upload_file_name
+
+            const label_fileUploadTitle = cy.get(tab_registrasi.label_fileTitle).as('label_fileUploadTitle')
+            label_fileUploadTitle.scrollIntoView()
+                .should('contain', upload_file_name)
+
+            const label_fileUploadSize = cy.get(tab_registrasi.label_fileSize).as('label_fileUploadSize')
+            label_fileUploadSize.should('contain', '18.3 KB')
+
+            const btn_deleteSuratPengantar = cy.get(tab_registrasi.btn_deleteSuratPengantar).as('btn_deleteSuratPengantar')
+            btn_deleteSuratPengantar.should('be.visible')
+
+            cy.wait(6000)
+        })
     }
 }
