@@ -52,22 +52,48 @@ module.exports = defineConfig({
 
     testIsolation: true,
 
-    retries: {
-      runMode: 2,
-      openMode: 1,
-    },
+    // retries: {
+    //   runMode: 2,
+    //   openMode: 1,
+    // },
 
   },
-  "reporter": "cypress-qase-reporter",
-  "reporterOptions": {
-    "projectCode": "SIDEBARV2",
-    "logging": true,
-    "runComplete": true,
-    "sendScreenshot": false,
-    "video": false,
-    "basePath": "https://api.qase.io/v1",
-    "environmentId": 1,
-    "apiToken": process.env.QASE_API_TOKEN,
+  // "reporter": "cypress-qase-reporter",
+  // "reporterOptions": {
+  //   "projectCode": "SIDEBARV2",
+  //   "logging": true,
+  //   "runComplete": true,
+  //   "sendScreenshot": false,
+  //   "video": false,
+  //   "basePath": "https://api.qase.io/v1",
+  //   "environmentId": 1,
+  //   "apiToken": 'b5a5d4259c67979e6f5ff8ae25777a867e9a3b5b883801adb6c3334580f22f07',
+  // },
+  reporter: 'cypress-multi-reporters',
+  reporterOptions: {
+    reporterEnabled: 'cypress-qase-reporter',
+    cypressQaseReporterReporterOptions: {
+      debug: true,
+
+      testops: {
+        api: {
+          token: 'b5a5d4259c67979e6f5ff8ae25777a867e9a3b5b883801adb6c3334580f22f07',
+        },
+
+        project: 'SIDEBARV2',
+        uploadAttachments: true,
+
+        run: {
+          complete: true,
+        },
+      },
+
+      framework: {
+        cypress: {
+          screenshotsFolder: 'cypress/screenshots',
+        }
+      }
+    },
   },
   "chromeWebSecurity": false,
   // Width x Height preview in cypress GUI
