@@ -73,21 +73,16 @@ module.exports = defineConfig({
   reporterOptions: {
     reporterEnabled: 'cypress-qase-reporter',
     cypressQaseReporterReporterOptions: {
-      debug: true,
-
-      testops: {
-        api: {
-          token: 'b5a5d4259c67979e6f5ff8ae25777a867e9a3b5b883801adb6c3334580f22f07',
-        },
-
-        project: 'SIDEBARV2',
-        uploadAttachments: true,
-
-        run: {
-          complete: true,
-        },
+      api: {
+        token: 'b5a5d4259c67979e6f5ff8ae25777a867e9a3b5b883801adb6c3334580f22f07',
       },
 
+      project: 'SIDEBARV2',
+      uploadAttachments: true,
+
+      run: {
+        complete: true,
+      },
       framework: {
         cypress: {
           screenshotsFolder: 'cypress/screenshots',
