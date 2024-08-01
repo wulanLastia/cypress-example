@@ -6,6 +6,7 @@ require('dotenv').config()
 const { generateFeatureToggleOverrideJWT } = require('./cypress/support/util')
 
 module.exports = defineConfig({
+  pageLoadTimeout: 120000,
   projectId: 'rbzy6f',
   e2e: {
     setupNodeEvents(on, config) {
