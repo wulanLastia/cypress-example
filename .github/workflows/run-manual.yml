@@ -61,6 +61,7 @@ jobs:
           # CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
           # 1: staging
           QASE_REPORT: 1
+          QASE_MODE: "testops"
           QASE_RUN_NAME: "${{ env.DATETIME }} - ${{ inputs.run_name }}"
           QASE_API_TOKEN: ${{ secrets.QASE_API_TOKEN }}
           # settings for cloud.cypress.io
