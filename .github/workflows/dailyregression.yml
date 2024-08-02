@@ -8,12 +8,12 @@ jobs:
   cypress-run:
     runs-on: self-hosted
     container:
-      image: cypress/included:12.17.4
+      image: cypress/included:13.13.1
       # solution from https://github.com/cypress-io/cypress-docker-images/issues/560#issuecomment-1121774167
       # options: --user 1001
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # bisa disesuaikan kalau ada banyak fixture lain. jangan lupa tambahkan di setting env repo
       - name: 'Create credential fixture dir'
@@ -33,7 +33,7 @@ jobs:
       # Install npm dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         continue-on-error: true
         with:
           # sesuaikan
