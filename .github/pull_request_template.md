@@ -1,6 +1,6 @@
 ### Related 
 
-• [[Fitur] [Clickup Title]](Clickup link)
+- [[Fitur] [Clickup Title]](Clickup link)
 
 ### Overview
 

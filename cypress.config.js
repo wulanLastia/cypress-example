@@ -6,6 +6,7 @@ require('dotenv').config()
 const { generateFeatureToggleOverrideJWT } = require('./cypress/support/util')
 
 module.exports = defineConfig({
+  pageLoadTimeout: 120000,
   projectId: 'rbzy6f',
   e2e: {
     setupNodeEvents(on, config) {
@@ -58,16 +59,30 @@ module.exports = defineConfig({
     },
 
   },
-  "reporter": "cypress-qase-reporter",
-  "reporterOptions": {
-    "projectCode": "SIDEBARV2",
-    "logging": true,
-    "runComplete": true,
-    "sendScreenshot": false,
-    "video": false,
-    "basePath": "https://api.qase.io/v1",
-    "environmentId": 1,
-    "apiToken": process.env.QASE_API_TOKEN,
+  reporter: 'cypress-multi-reporters',
+  reporterOptions: {
+    reporterEnabled: 'cypress-qase-reporter',
+    cypressQaseReporterReporterOptions: {
+      debug: true,
+
+      testops: {
+        api: {
+          token: process.env.QASE_API_TOKEN,
+        },
+
+        project: 'SIDEBARV2',
+
+        run: {
+          complete: true,
+        },
+      },
+
+      framework: {
+        cypress: {
+          screenshotsFolder: 'cypress/screenshots',
+        }
+      }
+    },
   },
   "chromeWebSecurity": false,
   // Width x Height preview in cypress GUI
