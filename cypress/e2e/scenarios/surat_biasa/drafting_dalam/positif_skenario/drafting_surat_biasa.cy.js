@@ -1,4 +1,4 @@
-import { qase } from 'cypress-qase-reporter/dist/mocha';
+import { qase } from 'cypress-qase-reporter/mocha';
 import { LoginPage } from "@pages/auth/login.cy"
 import { DraftingKonsepNaskahPage } from "@pages/sidebar/konsep_naskah/surat_biasa/pgs_drafting_surat_biasa.cy"
 

@@ -11,7 +11,7 @@ module.exports = {
     getJQueryProfileV2: "button[tabindex='0']",
     showHeaderNav: '[data-cy="header__component"]',
     showHeaderNavProd: 'header[data-v-dd2902de]',
-    alertSalah: '[data-cy="login__alert-failed"]',
+    alertSalah: '[id="error-username"]',
     alertPopUp: '[data-cy="dialog__button--confirm"]',
     chooseVersion: "[data-cy='choose-version__navigation__button--sidebar-v2']",
     btnLoginSSO: '[data-cy="login__button--sso"]',
@@ -35,4 +35,5 @@ module.exports = {
     usernameSiap: '/html[1]/body[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/input[1]',
     passwordSiap: '/html[1]/body[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[2]/input[1]',
     btnConfirmSiap: '/html[1]/body[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[3]/button[1]',
+    alertLimiter: '/html[1]/body[1]/section[1]/div[1]/div[2]/div[2]/div[3]/form[1]/div[1]/div[1]/p[1]'
 }

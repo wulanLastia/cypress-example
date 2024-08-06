@@ -4,12 +4,12 @@ import navbar from "../../selectors/navbar"
 export class LoginPage {
 
     navigateLoginPageV1() {
-        cy.log(Cypress.env('base_url_v1'))
+        //cy.log(Cypress.env('base_url_v1'))
         cy.visit(Cypress.env('base_url_v1'), { failOnStatusCode: true })
     }
 
     navigateLoginPageV1Prod() {
-        cy.log(Cypress.env('base_url_prod_v1'))
+        //cy.log(Cypress.env('base_url_prod_v1'))
         cy.visit(Cypress.env('base_url_prod_v1'), { failOnStatusCode: false })
     }
 
@@ -77,35 +77,40 @@ export class LoginPage {
 
         const btnLogin = cy.get(login.btnLogin).as('btnLogin')
         btnLogin.should('contain', 'Login')
-            .click({ force: true })
+            .then(($btnLogin) => {
+                if ($btnLogin.is(':enabled')) {
+                    // If button is Enabled
+                    cy.get('@btnLogin').click({ force: true });
 
-        cy.wait(3000)
+                    cy.wait(3000)
 
-        cy.wait('@checkResponse', { timeout: 5000 })
-            .then((interception) => {
-                if (interception.response) {
-                    const status = interception.response.statusCode;
-                    const clientErrorStatusCodes = [400, 401, 403, 404, 405, 406, 408, 409, 410, 411, 412];
-                    const serverErrorStatusCodes = [500, 501, 502, 503, 504];
-                    const errorStatusCodes = [...clientErrorStatusCodes, ...serverErrorStatusCodes];
+                    cy.wait('@checkResponse', { timeout: 5000 })
+                        .then((interception) => {
+                            if (interception.response) {
+                                const status = interception.response.statusCode;
+                                const clientErrorStatusCodes = [400, 401, 403, 404, 405, 406, 408, 409, 410, 411, 412];
+                                const serverErrorStatusCodes = [500, 501, 502, 503, 504];
+                                const errorStatusCodes = [...clientErrorStatusCodes, ...serverErrorStatusCodes];
 
-                    // Assert berupa message di Cypress E2E pada status code ketika gagal, bila status code tidak sesuai maka status dibawah akan memberhentikan untuk masuk ke skenario selanjutnya
-                    if (errorStatusCodes.includes(status)) {
-                        expect(errorStatusCodes, `Request failed with status code: ${status}`).to.include(status);
-                    }
+                                // Assert berupa message di Cypress E2E pada status code ketika gagal, bila status code tidak sesuai maka status dibawah akan memberhentikan untuk masuk ke skenario selanjutnya
+                                if (errorStatusCodes.includes(status)) {
+                                    expect(errorStatusCodes, `Request failed with status code: ${status}`).to.include(status);
+                                }
 
-                    const successStatusCodes = [200, 201, 202, 203, 204, 205, 206, 207, 208, 226];
-                    const redirectStatusCodes = [300, 301, 302, 303, 307];
-                    const acceptableStatusCodes = [...successStatusCodes, ...redirectStatusCodes];
+                                const successStatusCodes = [200, 201, 202, 203, 204, 205, 206, 207, 208, 226];
+                                const redirectStatusCodes = [300, 301, 302, 303, 307];
+                                const acceptableStatusCodes = [...successStatusCodes, ...redirectStatusCodes];
 
-                    // Assert berupa message di Cypress E2E pada status code ketika sukses
-                    expect(acceptableStatusCodes, `Result of status code: ${status}`).to.include(status);
-                } else {
-                    // Jika response tidak sesuai dengan status code diatas, makan akan throw error dengan assert message seperti dibawah
-                    cy.log('No response received.');
-                    throw new Error('No response received.');
+                                // Assert berupa message di Cypress E2E pada status code ketika sukses
+                                expect(acceptableStatusCodes, `Result of status code: ${status}`).to.include(status);
+                            } else {
+                                // Jika response tidak sesuai dengan status code diatas, makan akan throw error dengan assert message seperti dibawah
+                                cy.log('No response received.');
+                                throw new Error('No response received.');
+                            }
+                        });
                 }
-            });
+            })
     }
 
     loginViaV1Prod(nip, passwordv1) {
@@ -466,9 +471,19 @@ export class LoginPage {
 
     // ALERT
     alertGagalLogin() {
-        const alertSalah = cy.get(login.alertSalah).as('alertSalah')
-        alertSalah.should('be.visible')
-            .should('contain', 'Username atau password Anda salah')
+        cy.get('body').then($body => {
+            if ($body.find(login.btnLogin).is(':disabled')) {
+                // Alert error limiter
+                const alertLimiter = cy.xpath(login.alertLimiter).as('alertLimiter')
+                alertLimiter.should('be.visible')
+                    .contains('Maaf, jumlah login sudah melewati batas. Silahkan coba lagi setelah 5 menit, atau gunakan metode login lain yang tersedia')
+            }else{
+                // Alert error username password
+                const alertSalah = cy.get(login.alertSalah).as('alertSalah')
+                alertSalah.should('be.visible')
+                    .should('contain', 'Silakan login melalui akun SIAP / SSO Jabar Anda')
+            }
+        })
     }
 
     alertFailedNipKurang() {

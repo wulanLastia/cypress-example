@@ -1,4 +1,4 @@
-import { qase } from 'cypress-qase-reporter/dist/mocha';
+import { qase } from 'cypress-qase-reporter/mocha';
 import { LoginPage } from "../../../../../../../support/pages/auth/login.cy"
 import { ListNaskahSuratBiasaPage } from "../../../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
 
