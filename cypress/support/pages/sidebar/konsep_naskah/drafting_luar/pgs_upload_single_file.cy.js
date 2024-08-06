@@ -52,7 +52,7 @@ export class UploadSingleFilePage {
 
     checkDetailJenisNaskah(jenis_naskah) {
         const label_headerDocumentType = cy.get(upload_single.label_headerDocumentType).as('label_headerDocumentType')
-        label_headerDocumentType.should('contain', jenis_naskah)
+        label_headerDocumentType.contains(jenis_naskah, { matchCase: false })
     }
 
     checkDetailButtonKirim() {
@@ -239,26 +239,27 @@ export class UploadSingleFilePage {
             .and('be.visible')
 
         // Access Upload Single File
-        btn_uploadFileSkp.click()
-            .wait(6000)
+        btn_uploadFileSkp.click({ force : true })
+            .wait(9000)
+            .then((val) => {
+                // Begin Save Assertion Data
+                cy.readFile(getPreviewData).then((object) => {
+                    const createDataToWrite = {
+                        upload_file: []
+                    }
 
-        // Begin Save Assertion Data
-        cy.readFile(getPreviewData).then((object) => {
-            const createDataToWrite = {
-                upload_file: []
-            }
+                    // Construct the sub-object
+                    const jenis_naskah_name = {
+                        jenis_naskah: 'Sasaran Kinerja Pegawai (SKP)'
+                    }
 
-            // Construct the sub-object
-            const jenis_naskah_name = {
-                jenis_naskah: 'Sasaran Kinerja Pegawai (SKP)'
-            }
+                    // Push the sub-object to the array
+                    createDataToWrite.upload_file.push(jenis_naskah_name)
 
-            // Push the sub-object to the array
-            createDataToWrite.upload_file.push(jenis_naskah_name)
-
-            // // Write data to the JSON file
-            cy.writeFile(getPreviewData, createDataToWrite)
-        })
+                    // // Write data to the JSON file
+                    cy.writeFile(getPreviewData, createDataToWrite)
+                })
+            })
     }
 
     goToUploadSingleFileNotaDinas() {

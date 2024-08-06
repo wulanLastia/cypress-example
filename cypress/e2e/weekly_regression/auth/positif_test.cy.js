@@ -23,8 +23,8 @@ before(() => {
 })
 
 describe('Login Positif Skenario', () => {
-    qase([411],
-        it('Login dengan NIP akun yang aktif', () => {
+    qase([78, 411],
+        it('Login with username & password valid user SIDEBAR', () => {
             loginPage.loginViaV1(user.nip_konseptor_1, user.password)
             loginPage.directLogin()
             loginPage.logoutV2()

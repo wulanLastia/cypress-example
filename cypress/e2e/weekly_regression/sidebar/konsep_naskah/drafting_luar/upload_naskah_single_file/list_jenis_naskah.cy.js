@@ -1,10 +1,20 @@
 import { qase } from 'cypress-qase-reporter/mocha';
-import { LoginPage } from "../../../../../../../support/pages/auth/login.cy"
-import { ListNaskahSuratBiasaPage } from "../../../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { ListNaskahSuratBiasaPage } from "@pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
 
 let listNaskahSuratBiasaPage = new ListNaskahSuratBiasaPage()
 let loginPage = new LoginPage()
 let user
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // Jika terdapat error 'uncaught:exception' pada Headless Mode
+    if (err.message.includes('postMessage')) {
+        return false; // return false digunakan untuk skip error pada Headless Mode
+    }
+
+    // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
+    throw err;
+});
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
