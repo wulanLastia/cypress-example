@@ -1,16 +1,14 @@
 import { qase } from 'cypress-qase-reporter/mocha';
 import { LoginPage } from "@pages/auth/login.cy"
-import { TabRegistrasiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tab_registrasi.cy"
-import { UploadSingleFilePage } from "@pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
-import { TandatanganiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tandatangani.cy"
 import { KotakKeluarPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_keluar.cy"
-import { KotakMasukPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_masuk.cy"
+import { UploadSingleFilePage } from "@pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
+import { TabRegistrasiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tab_registrasi.cy"
+import { TandatanganiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tandatangani.cy"
 
 let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
 let tandatanganiPage = new TandatanganiPage()
 let kotakKeluarPage = new KotakKeluarPage()
-let kotakMasukPage = new KotakMasukPage()
 let loginPage = new LoginPage()
 let user
 let data_temp
@@ -39,21 +37,22 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: true })
 })
 
-afterEach(() => {
+before(() => {
+    loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
+    loginPage.directLogin()
+})
+
+after(() => {
     qase(411,
         loginPage.logoutV2step2()
     )
 })
 
-describe('Drafting Luar - Test Case Detail Kotak Masuk', { testIsolation: false }, () => {
+describe('Drafting Luar - Test Case List Kotak Keluar', { testIsolation: false }, () => {
 
     // Create sample data
-    qase([2663, 2708, 2715, 2712, 2754, 2766, 2949, 2952, 2960, 2784, 2785, 2792, 2879, 2867, 2883, 2925, 2777, 2893, 2980, 3016, 2982],
+    qase([4289, 3878, 3879, 3882, 3910, 3922, 4051, 4054, 4061, 4650, 4651, 4656, 3996, 4122, 4123, 4035, 3930, 4008, 4078, 4097, 4080],
         it('Upload dan registrasi naskah single file', () => {
-            // Login
-            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
-            loginPage.directLogin()
-
             // Go To Konsep Naskah Surat Biasa
             uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
 
@@ -71,7 +70,7 @@ describe('Drafting Luar - Test Case Detail Kotak Masuk', { testIsolation: false 
  
             // Tab Registrasi - Tujuan Surat
             tabRegistrasiPage.inputTujuanTembusanSurat()
-            
+
             // Tab Registrasi - Section Identitas Surat
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
@@ -98,46 +97,98 @@ describe('Drafting Luar - Test Case Detail Kotak Masuk', { testIsolation: false 
         })
     )
 
-    // Begin test case detail kotak masuk
-    qase([3389, 3390, 3406, 3393, 3395, 3396, 3397, 3398, 3399, 3400, 3401, 3394],
-        it('Detail kotak masuk', () => {
-            // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_2_2, user.password)
-            loginPage.directLogin()
-            
-            // Go To Kotak Masuk - TTE & Review 3389
-            kotakMasukPage.goToKotakMasukTTEReview()
+    // Begin test case kotak keluar
+    qase(3062,
+        it('Akses menu kotak keluar', () => {
+            // Go To Kotak Keluar - TTE & Review
+            kotakKeluarPage.goToKotakKeluarTTEReview()
+        })
+    )
 
-            // Cek status pada detail halaman detail kotak masuk review naskah 3390
-            kotakMasukPage.checkNaskahKotakMasuk(data_temp.env[0].staging)
-            kotakMasukPage.checkStatusdanDetailNaskah()
+    qase(3063,
+        it('Cek detail halaman naskah kotak keluar review naskah', () => {
+            // Check detail halaman
+            kotakKeluarPage.checkDetailHalamanKotakKeluar()
+        })
+    )
 
-            // Cek tombol tandatangani jika penerima atasan 3406
-            kotakMasukPage.checkBtnTte()
+    qase(3065,
+        it('Cek kesesuaian data jenis', () => {
+            // Cek kesesuaian data jenis
+            kotakKeluarPage.checkDataJenis()
+        })
+    )
 
-            // Cek detail data tab registrasi - jenis naskah 3395
-            kotakMasukPage.checkDataJenisNaskah()
+    qase(3066,
+        it('Cek kesesuaian data perihal', () => {
+            // Cek kesesuaian data perihal
+            kotakKeluarPage.checkDataPerihal()
+        })
+    )
 
-            // Cek detail data tab registrasi - nomor naskah 3396
-            kotakMasukPage.checkDataNomorNaskah()
+    qase(3069,
+        it('Cek kesesuaian data urgensi', () => {
+            // Cek kesesuaian data urgensi
+            kotakKeluarPage.checkDataUrgensi()
+        })
+    )
 
-            // Cek detail data tab registrasi - urgensi 3397
-            kotakMasukPage.checkDataUrgensi()
+    qase(3070,
+        it('Cek kesesuaian data sifat', () => {
+            // Cek kesesuaian data sifat
+            kotakKeluarPage.checkDataSifat()
+        })
+    )
 
-            // Cek detail data tab registrasi - perihal 3398
-            kotakMasukPage.checkDataPerihal()
+    qase(3128,
+        it('Cek kesesuaian data nomor naskah', () => {
+            // Cek kesesuaian data nomor naskah
+            kotakKeluarPage.checkDataNomorNaskah()
+        })
+    )
 
-            // Cek detail data tab registrasi - sifat 3399
-            kotakMasukPage.checkDataSifat()
+    // Kolom urgensi
+    qase([3117, 3118, 3119, 3120],
+        it('Cek warna label urgensi', () => {
+            // Cek warna label
+            kotakKeluarPage.checkWarnaLabelUrgensi()
+        })
+    )
 
-            // Cek detail data tab registrasi - penerima 3400
-            kotakMasukPage.checkDataPenerima()
+    // Kolom status
+    qase([], // @TODO : Belum dilakukan penyesuaian di sisi test qase
+        it('Cek warna label status', () => {
+            // Cek kolom status
+            kotakKeluarPage.checkWarnaLabelStatus()
+        })
+    )
 
-            // Cek detail data tab registrasi - konseptor 3401
-            kotakMasukPage.checkDataPenandatangan()
+    // Pencarian
+    qase(3072,
+        it('Cek aksi pencarian jika kata kunci kurang dari 3 karakter', () => {
+            // Input pencarian
+            kotakKeluarPage.searchDokumen('Dr')
+        })
+    )
 
-            // Cek tombol kembali 3394
-            kotakMasukPage.checkBtnKembali()
+    qase(3073,
+        it('Melakukan pencarian dengan kata kunci perihal yang tersedia pada data', () => {
+            // Input pencarian
+            kotakKeluarPage.searchDokumen('Automation Drafting')
+        })
+    )
+
+    qase(3074,
+        it('Melakukan pencarian dengan kata kunci yang tidak tersedia pada data', () => {
+            // Input pencarian
+            kotakKeluarPage.searchDokumen('XXX')
+        })
+    )
+
+    qase(3076,
+        it('Input script pada kolom pencarian', () => {
+            // Input pencarian
+            kotakKeluarPage.searchDokumen('<script>alert("hai")</script>')
         })
     )
 })

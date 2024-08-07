@@ -1,12 +1,22 @@
 import { qase } from 'cypress-qase-reporter/mocha';
-import { LoginPage } from "../../../../../../../support/pages/auth/login.cy"
-import { TabRegistrasiPage } from "../../../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/tab_registrasi.cy"
-import { UploadSingleFilePage } from "../../../../../../../support/pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { TabRegistrasiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tab_registrasi.cy"
+import { UploadSingleFilePage } from "@pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
 
 let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
 let loginPage = new LoginPage()
 let user
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // Jika terdapat error 'uncaught:exception' pada Headless Mode
+    if (err.message.includes('postMessage')) {
+        return false; // return false digunakan untuk skip error pada Headless Mode
+    }
+
+    // throw error untuk exceptions lain bila terdapat error lainnya selain 'uncaught:exception'
+    throw err;
+});
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
@@ -30,7 +40,7 @@ after(() => {
 
 describe('Drafting Luar - Test Case Tab Registrasi Identitas Surat', { testIsolation: false }, () => {
 
-    qase([2663, 2708],
+    qase([4289, 3878],
         it('Cek tab registrasi sebelum melakukan upload file', () => {
             // Go To Konsep Naskah Surat Biasa
             uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
@@ -40,7 +50,7 @@ describe('Drafting Luar - Test Case Tab Registrasi Identitas Surat', { testIsola
         })
     )
 
-    qase(2715,
+    qase(3879,
         it('Cek tab registrasi setelah melakukan upload file', () => {
             // Upload File
             uploadSingleFilePage.uploadSingleFile('positif')
@@ -51,7 +61,7 @@ describe('Drafting Luar - Test Case Tab Registrasi Identitas Surat', { testIsola
         })
     )
 
-    qase([2949, 2952, 2960],
+    qase([4051, 4054, 4061],
         it('Check on preview page after input tujuan', () => {
             // Distribusikan surat
             tabRegistrasiPage.activateToggleDistribusi()
@@ -80,82 +90,74 @@ describe('Drafting Luar - Test Case Tab Registrasi Identitas Surat', { testIsola
     )
 
     // PERIHAL //
-    qase(2879,
-        it('Check on preview page after input perihal', () => {
-            const uuid = () => Cypress._.random(0, 1e6)
-            const id = uuid()
-
-            // Input perihal
-            tabRegistrasiPage.inputPerihal('Automation Drafting Luar ' + id, 'Automation Drafting Luar ' + id)
-        })
-    )
-
-    // KOLOM URGENSI //
-    qase(2867,
-        it('Cek warna label urgensi amat segera', () => {
-            tabRegistrasiPage.checkWarnaLabelUrgensi('Amat Segera', '0')
-        })
-    )
-
-    // SIFAT SURAT //
-    qase(2883,
-        it('Cek preview setelah memilih sifat', () => {
-            // Input perihal
-            tabRegistrasiPage.inputSifat('0')
-        })
-    )
-
-    // PENANDATANGAN //
-    qase(2773,
+    qase(3992,
         it('Leave the field empty when submitting the form', () => {
             // Cek tombol kirim
             tabRegistrasiPage.checkBtnSubmit()
         })
     )
 
-    qase(2925,
-        it('Check button tambah penandatangan', () => {
-            // Tambah penandatangan
-            tabRegistrasiPage.addMorePenandatangan()
+    qase(2872,
+        it('Input tag script', () => {
+            // Input tag script
+            tabRegistrasiPage.inputPerihal('<script>alert("hai")</script>', '<script>alert("hai")</script>')
         })
     )
 
-    qase(2777,
-        it('Check dropdown list if user select diri sendiri', () => {
-            // Input penandatangan
-            tabRegistrasiPage.inputPenandatanganDiriSendiri()
+    qase(3990,
+        it('Input tag html', () => {
+            // Input tag html
+            tabRegistrasiPage.inputPerihal('<html>Hello Word</html>', '<html>Hello Word</html>')
         })
     )
 
-    qase(2906,
-        it('Cek nama file ketika user melakukan upload naskah', () => {
-            // Check nama 
-            tabRegistrasiPage.uploadSuratPengantar('negatif')
+    qase(3996,
+        it('Check on preview page after input perihal', () => {
+            const uuid = () => Cypress._.random(0, 1e6)
+            const id = uuid()
+
+            // Input perihal
+            tabRegistrasiPage.inputPerihal('Drafting Luar ' + id, 'Drafting Luar ' + id)
         })
     )
 
-    qase([2905, 2908],
-        it('Cek tampilan popup konfirmasi ketika melakukan hapus file', () => {
-            // Check nama 
-            tabRegistrasiPage.checkDeleteSuratPengantar()
+    // KOLOM URGENSI //
+    qase(4122,
+        it('Cek warna label urgensi amat segera', () => {
+            tabRegistrasiPage.checkWarnaLabelUrgensi('Amat Segera', '0')
         })
     )
 
-    qase(2909,
-        it('Cek nama file pada popup konfirmasi kembali ke halaman konsep naskah', () => {
-            // Cek nama file
-            tabRegistrasiPage.batalDeleteFile()
+    qase(4129,
+        it('Cek warna label urgensi penting', () => {
+            tabRegistrasiPage.checkWarnaLabelUrgensi('Penting', '2')
         })
     )
 
-    qase(2893,
-        it('Cek kesesuaian file ketika berhasil melakukan upload file', () => {
-            // Delete not supported file
-            tabRegistrasiPage.deleteFileSuratPengantar()
+    qase(4130,
+        it('Cek warna label urgensi biasa', () => {
+            tabRegistrasiPage.checkWarnaLabelUrgensi('Biasa', '1')
+        })
+    )
 
-            // Upload file
-            tabRegistrasiPage.uploadSuratPengantar('positif')
-            tabRegistrasiPage.checkDataFileUpload()
+    qase(4128,
+        it('Cek warna label urgensi segera', () => {
+            tabRegistrasiPage.checkWarnaLabelUrgensi('Segera', '3')
+        })
+    )
+
+    // SIFAT SURAT //
+    qase(3998,
+        it('Tidak memilih sifat ketika submit form', () => {
+            // Cek tombol kirim
+            tabRegistrasiPage.checkBtnSubmit()
+        })
+    )
+
+    qase(4123,
+        it('Cek preview setelah memilih sifat', () => {
+            // Input perihal
+            tabRegistrasiPage.inputSifat('0')
         })
     )
 })

@@ -51,7 +51,7 @@ after(() => {
 describe('Drafting Luar - Test Case List Kotak Masuk', { testIsolation: false }, () => {
 
     // Create sample data
-    qase([2663, 2708, 2715, 2712, 2754, 2766, 2949, 2952, 2960, 2784, 2785, 2792, 2879, 2867, 2883, 2925, 2777, 2893, 2980, 3016, 2982],
+    qase([4289, 3878, 3879, 3882, 3910, 3922, 4051, 4054, 4061, 4650, 4651, 4656, 3996, 4122, 4123, 4035, 3930, 4008, 4078, 4097, 4080],
         it('Upload dan registrasi naskah single file', () => {
             // Go To Konsep Naskah Surat Biasa
             uploadSingleFilePage.goToUploadSingleFileSuratBiasa()

@@ -3,14 +3,18 @@ import { LoginPage } from "@pages/auth/login.cy"
 import { TabRegistrasiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tab_registrasi.cy"
 import { UploadSingleFilePage } from "@pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
 import { TandatanganiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tandatangani.cy"
-import { KembalikanPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kembalikan.cy"
+import { KotakKeluarPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_keluar.cy"
 import { KotakMasukPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_masuk.cy"
+import { KembalikanPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kembalikan.cy"
+import { PerbaikiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/perbaiki.cy"
 
 let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
 let tandatanganiPage = new TandatanganiPage()
-let kembalikanPage = new KembalikanPage()
+let kotakKeluarPage = new KotakKeluarPage()
 let kotakMasukPage = new KotakMasukPage()
+let kembalikanPage = new KembalikanPage()
+let perbaikiPage = new PerbaikiPage()
 let loginPage = new LoginPage()
 let user
 let data_temp
@@ -39,15 +43,9 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
-})
+describe('Drafting Luar - Tab Perbaikan Naskah', () => {
 
-describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () => {
-
-    qase([2663, 2708, 2715, 2712, 2754, 2766, 2949, 2952, 2960, 2784, 2785, 2792, 2879, 2867, 2883, 2925, 2777, 2893, 2980, 3016, 2982],
+    qase([4289, 3878, 3879, 3882, 3910, 3922, 4051, 4054, 4061, 4650, 4651, 4656, 3996, 4122, 4123, 4035, 3930, 4008, 4078, 4097, 4080],
         it('Upload dan registrasi naskah single file', () => {
             // Login 
             loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
@@ -67,10 +65,10 @@ describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () =>
             tabRegistrasiPage.inputNomorUrut(data_temp.registrasi[0].bank_nomor_lainnya)
             tabRegistrasiPage.searchKodeKlasifikasi(data_temp.registrasi[1].kode_klasifikasi)
             tabRegistrasiPage.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
- 
+
             // Tab Registrasi - Tujuan Surat
             tabRegistrasiPage.inputTujuanTembusanSurat()
-            
+
             // Tab Registrasi - Section Identitas Surat
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
@@ -81,25 +79,22 @@ describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () =>
 
             // Tab Registrasi - Section Penandatangan
             tabRegistrasiPage.addMorePenandatangan()
-            tabRegistrasiPage.inputPenandatanganDiriSendiri()
-            tabRegistrasiPage.addMorePenandatangan()
             tabRegistrasiPage.inputPenandatanganAtasan(data_temp.registrasi[9].atasan2, data_temp.env[0].staging)
 
             // Upload file pengantar
             tabRegistrasiPage.uploadSuratPengantar(data_temp.upload[0].upload1)
             tabRegistrasiPage.checkDataFileUpload()
 
-            // Melakukan TTE Naskah (Penandatangan Diri Sendiri)
-            tandatanganiPage.tandatanganiNaskah()
-            tandatanganiPage.checkInputDataRegistrasi()
-            tandatanganiPage.tteNaskah()
-            tandatanganiPage.submitTteNaskah(user.passphrase, data_temp.env[0].staging)
+            // Mengirimkan naskah ke penandatangan
+            tandatanganiPage.kirimNaskah()
+
+            // Wait until process finish
+            cy.wait(6000)
         })
     )
 
-    // Begin test case kembalikan naskah
-    qase([3389, 3390, 3649, 3659, 3665, 3705, 3709, 3650, 3711, 3712, 3713, 3714, 3715, 3716, 3717, 3718, 3663, 3647],
-        it('Check Kembalikan Naskah', () => {
+    qase([3389, 3390, 4194, 4195, 4204, 4205, 4206, 4207, 4208, 4209, 4210, 4211],
+        it('Kembalikan Naskah', () => {
             // Login 
             loginPage.loginViaV1(user.nip_pemeriksa_2_2, user.password)
             loginPage.directLogin()
@@ -109,55 +104,74 @@ describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () =>
 
             // Cek status pada detail halaman detail kotak masuk review naskah 3390
             kotakMasukPage.checkNaskahKotakMasuk(data_temp.env[0].staging)
-            kotakMasukPage.checkStatusdanDetailNaskah()
 
-            // Cek tombol kembalikan pada detail naskah 3649
+            // Cek tombol kembalikan pada detail naskah 4194
             kembalikanPage.checkPopupKembalikanNaskah()
 
-            // Mengosongkan kolom perbaikan dan klik button kembalikan 3659
-            kembalikanPage.checkBtnKembalikan()
+            // Input poin perbaikan
+            kembalikanPage.inputPoinPerbaikan(data_temp.kembalikan[0].perbaikan_positif, data_temp.kembalikan[1].input_perbaikan, null)
 
-            // Input tag html pada kolom point perbaikan 3665
-            kembalikanPage.inputPoinPerbaikan(data_temp.kembalikan[0].perbaikan_negatif, data_temp.kembalikan[1].perbaikan_html, data_temp.kembalikan[1].assert_perbaikan_html)
-
-            // Input tag script pada kolom point perbaikan 3705
-            kembalikanPage.inputPoinPerbaikan(data_temp.kembalikan[0].perbaikan_negatif, data_temp.kembalikan[1].perbaikan_script, data_temp.kembalikan[1].assert_perbaikan_script)
-        
-            // Input link url pada kolom point perbaikan 3709
-            kembalikanPage.inputPoinPerbaikan(data_temp.kembalikan[0].perbaikan_negatif, data_temp.kembalikan[1].perbaikan_url, data_temp.kembalikan[1].assert_perbaikan_url)
-        
-            // Cek kembalikan naskah berdasarkan checkbox "Perihal" 3650 
+            // Input bagian perbaikan 4195, 4204, 4205, 4206, 4207, 4208, 4209, 4210, 4211
             kembalikanPage.inputPerbaikanPerihal()
-
-            // Cek kembalikan naskah berdasarkan checkbox "Isi Naskah" 3711
             kembalikanPage.inputPerbaikanIsiNaskah()
-
-            // Cek kembalikan naskah berdasarkan checkbox "Lampiran" 3712
             kembalikanPage.inputPerbaikanLampiran()
-
-            // Cek kembalikan naskah berdasarkan checkbox "Tujuan" 3713
             kembalikanPage.inputPerbaikanTujuanNaskah()
-
-            // Cek kembalikan naskah berdasarkan checkbox "Alamat Naskah" 3714
             kembalikanPage.inputPerbaikanAlamatNaskah()
-
-            // Cek kembalikan naskah berdasarkan checkbox "Tembusan" 3715
             kembalikanPage.inputPerbaikanTembusan()
-
-            // Cek kembalikan naskah berdasarkan checkbox "Urgensi" 3716
             kembalikanPage.inputPerbaikanUrgensiNaskah()
-
-            // Cek kembalikan naskah berdasarkan checkbox "Sifat Naskah" 3717
             kembalikanPage.inputPerbaikanSifatNaskah()
-
-            // Cek kembalikan naskah berdasarkan checkbox "Kode Klasifikasi" 3718 
             kembalikanPage.inputPerbaikanKodeKlasifikasi()
 
-            // Check dan uncheck fungsi checkbox bagian perbaikan 3663
-            kembalikanPage.uncheckPerbaikan()
+            // Click btn kembalikan naskah
+            kembalikanPage.confirmKembalikanNaskah()
 
-            // Cek tombol batal pada popup kembalikan 3647
-            kembalikanPage.batalKembalikan()
+            // Check Naskah Di Kotak Keluar
+            kotakKeluarPage.checkNaskahKotakKeluar(data_temp.env[0].staging)
+        })
+    )
+
+    qase([3389, 4223, 4225, 4226, 4214, 4215, 4216, 4217, 4218, 4219, 4220, 4221, 4222],
+        it('Cek Tab Perbaikan', () => {
+            // Login 
+            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
+            loginPage.directLogin()
+
+            // Go To Kotak Masuk - TTE & Review 3389
+            kotakMasukPage.goToKotakMasukTTEReview()
+            kotakMasukPage.goToPerbaikiNaskah()
+
+            // Cek value poin perbaikan naskah berdasarkan inputan poin perbaikan 4223
+            perbaikiPage.checkPoinPerbaikan()
+
+            // Cek kesesuaian nama dan jabatan pemeriksa naskah 4225, 4226
+            perbaikiPage.checkDataPemeriksa()
+
+            // Cek value kembalikan naskah berdasarkan checkbox "Perihal" 4214
+            perbaikiPage.checkInputPerbaikanPerihal()
+
+            // Cek value kembalikan naskah berdasarkan checkbox "Isi Naskah" 4215
+            perbaikiPage.checkInputPerbaikanIsiNaskah()
+
+            // Cek value kembalikan naskah berdasarkan checkbox "Lampiran" 4216
+            perbaikiPage.checkInputPerbaikanLampiran()
+
+            // Cek value kembalikan naskah berdasarkan checkbox "Tujuan" 4217
+            perbaikiPage.checkInputPerbaikanTujuan()
+
+            // Cek value kembalikan naskah berdasarkan checkbox "Alamat Naskah" 4218
+            perbaikiPage.checkInputPerbaikanAlamatNaskah()
+
+            // Cek value kembalikan naskah berdasarkan checkbox "Tembusan" 4219
+            perbaikiPage.checkInputPerbaikanTembusan()
+
+            // Cek value kembalikan naskah berdasarkan checkbox "Urgensi" 4220
+            perbaikiPage.checkInputPerbaikanUrgensi()
+
+            // Cek value kembalikan naskah berdasarkan checkbox "Sifat Naskah" 4221
+            perbaikiPage.checkInputPerbaikanSifatNaskah()
+
+            // Cek value kembalikan naskah berdasarkan checkbox "Kode Klasifikasi" 4222
+            perbaikiPage.checkInputPerbaikanKodeKlasifikasi()
         })
     )
 })
