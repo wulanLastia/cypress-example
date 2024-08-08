@@ -292,4 +292,16 @@ export class MenuPage {
             .and('contain', 'Mohon maaf BSRE sedang mengalami kendala, mohon dicek secara berkala')
         }
     }
+
+    goToNaskahKeluar() {
+        const menu_naskahKeluar = cy.get(menu.menu_naskahKeluar).as('menu_naskahKeluar')
+        menu_naskahKeluar.should('contain', 'Naskah Keluar')
+            .click()
+
+        // Assertion
+        cy.url().should('eq', Cypress.env('base_url') + 'naskah-keluar')
+
+        const label_naskahKeluarTitle = cy.get(menu.label_naskahKeluarTitle).as('label_naskahKeluarTitle')
+        label_naskahKeluarTitle.should('contain', 'Naskah keluar')
+    }
 }
