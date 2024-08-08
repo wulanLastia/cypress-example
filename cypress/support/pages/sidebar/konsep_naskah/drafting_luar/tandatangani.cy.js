@@ -238,10 +238,6 @@ export class TandatanganiPage {
         // Cek popup csat
         cy.get('body').then($body => {
             if ($body.find(tandatangani.dialog_csat).length > 0) {
-                // Close popup csat
-                // const btn_closeCsat = cy.get(tandatangani.btn_closeCsat, { timeout: 6000 }).as('btn_closeCsat')
-                // btn_closeCsat.click()
-
                 // Input CSAT
                 const dialog_csat = cy.get(tandatangani.dialog_csat).as('dialog_csat')
                 dialog_csat.should('be.visible')
@@ -279,5 +275,34 @@ export class TandatanganiPage {
         btn_confirmKirimNaskah.should('contain', 'Kirim Naskah')
             .click()
 
+        cy.wait(2000)
+
+        // Cek popup csat
+        cy.get('body').then($body => {
+            if ($body.find(tandatangani.dialog_csat).length > 0) {
+                // Input CSAT
+                const dialog_csat = cy.get(tandatangani.dialog_csat).as('dialog_csat')
+                dialog_csat.should('be.visible')
+
+                const input_emotCsat = cy.get(tandatangani.input_emotCsat).as('input_emotCsat')
+                input_emotCsat.click()
+
+                const input_saranCsat = cy.get(tandatangani.input_saranCsat).as('input_saranCsat')
+                input_saranCsat.type('Sip Mantap!')
+
+                const btn_submitCsat = cy.get(tandatangani.btn_submitCsat).as('btn_submitCsat')
+                btn_submitCsat.click()
+
+                cy.wait(3000)
+
+                cy.get('body').then($body => {
+                    if ($body.find(tandatangani.btn_closeCsat).length > 0) {
+                        // Close button csat
+                        const btn_closeCsat = cy.get(tandatangani.btn_closeCsat).as('btn_closeCsat')
+                        btn_closeCsat.click()
+                    }
+                })
+            }
+        })
     }
 }

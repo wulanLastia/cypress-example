@@ -48,6 +48,25 @@ export class TabRegistrasiPage {
         })
     }
 
+    inputPenomoran() {
+        // Check if section nomor surat exist
+        cy.get('body').then($body => {
+            if ($body.find(tab_registrasi.label_nomorSurat).length > 0) {
+
+                cy.readFile(getMasterData).then((data_temp) => {
+                    // Input nomor urut
+                    this.inputNomorUrut(data_temp.registrasi[0].bank_nomor_lainnya)
+                    
+                    // Input kode klasifikasi
+                    this.searchKodeKlasifikasi(data_temp.registrasi[1].kode_klasifikasi)
+
+                    // Input unit pengolah
+                    this.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
+                });
+            }
+        });
+    }
+
     checkFieldNomorUrut(bank_nomor) {
         if (bank_nomor === 'none') {
             const input_bankNomorNomorUrut = cy.get(tab_registrasi.input_bankNomorNomorUrut).as('input_bankNomorNomorUrut')
@@ -468,35 +487,39 @@ export class TabRegistrasiPage {
 
     inputTujuanTembusanSurat() {
         cy.get('body').then($body => {
-            if ($body.find(tab_registrasi.check_toggleDistribusi).length > 0) {
-                // Pilih distribusi
-                this.activateToggleDistribusi()
-
-                // Input data tujuan dan tembusan
-                cy.readFile(getMasterData).then((data_temp) => {
-                    this.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_internal1)
-                    this.addMoreTujuan()
-                    this.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[5].tujuan_eksternal1)
-                    this.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[6].tembusan_internal2)
-                    this.addMoreTembusan()
-                    this.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[6].tembusan_eksternal1)
-                });
-            }else{
-                // Pilih Daftar Tujuan & Tembusan
-                this.inputTujuanTembusan()
-                this.selectLintasDinas()
-
-                // Input data tujuan dan tembusan
-                cy.readFile(getMasterData).then((data_temp) => {
-                    this.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_internal1)
-                    this.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[6].tembusan_internal3)
-                });
-
-                // Click button simpan
-                const btn_confirmDialogTujuanTembusan = cy.get(tab_registrasi.btn_confirmDialogTujuanTembusan).as('btn_confirmDialogTujuanTembusan')
-                btn_confirmDialogTujuanTembusan.find('div')
-                    .should('contain', 'Simpan')
-                    .click()
+            if ($body.find(tab_registrasi.label_daftarTujuanTembusan).length > 0) {
+                cy.get('body').then($body => {
+                    if ($body.find(tab_registrasi.check_toggleDistribusi).length > 0) {
+                        // Pilih distribusi
+                        this.activateToggleDistribusi()
+        
+                        // Input data tujuan dan tembusan
+                        cy.readFile(getMasterData).then((data_temp) => {
+                            this.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_internal1)
+                            this.addMoreTujuan()
+                            this.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[5].tujuan_eksternal1)
+                            this.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[6].tembusan_internal2)
+                            this.addMoreTembusan()
+                            this.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_eksternal, data_temp.registrasi[6].tembusan_eksternal1)
+                        });
+                    }else{
+                        // Pilih Daftar Tujuan & Tembusan
+                        this.inputTujuanTembusan()
+                        this.selectLintasDinas()
+        
+                        // Input data tujuan dan tembusan
+                        cy.readFile(getMasterData).then((data_temp) => {
+                            this.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_internal1)
+                            this.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[6].tembusan_internal3)
+                        });
+        
+                        // Click button simpan
+                        const btn_confirmDialogTujuanTembusan = cy.get(tab_registrasi.btn_confirmDialogTujuanTembusan).as('btn_confirmDialogTujuanTembusan')
+                        btn_confirmDialogTujuanTembusan.find('div')
+                            .should('contain', 'Simpan')
+                            .click()
+                    }
+                })
             }
         })
     }
