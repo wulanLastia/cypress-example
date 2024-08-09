@@ -58,7 +58,7 @@ export class NaskahKeluarPage {
     }
 
     checkModeDistribusi() {
-        const filter_modeDistribusi = cy.get(naskah_keluar.filter_modeDistribusi).first()
+        const filter_modeDistribusi = cy.get(naskah_keluar.filter_modeDistribusi)
         filter_modeDistribusi.should('be.visible')
             .click()
 
@@ -91,7 +91,7 @@ export class NaskahKeluarPage {
                 .and('be.visible')
         } else if(inputModeDistribusi == 2) {
             // Select mode distribusi : distribusi luar sidebar
-            const filter_modeDistribusi = cy.get(naskah_keluar.filter_modeDistribusi).first()
+            const filter_modeDistribusi = cy.get(naskah_keluar.filter_modeDistribusi)
             filter_modeDistribusi.should('be.visible')
                 .click()
 
@@ -106,7 +106,7 @@ export class NaskahKeluarPage {
                 .and('be.visible')
         } else {
             // Select mode distribusi : semua
-            const filter_modeDistribusi = cy.get(naskah_keluar.filter_modeDistribusi).first()
+            const filter_modeDistribusi = cy.get(naskah_keluar.filter_modeDistribusi)
             filter_modeDistribusi.should('be.visible')
                 .click()
 
@@ -120,9 +120,154 @@ export class NaskahKeluarPage {
                 .and('be.visible')
                 .invoke('text')
                 .then((textValue) => {
-                    cy.log(textValue)
-                    //expect(textValue).to.be.oneOf(['Telah distribusi', 'Distribusi luar Sidebar'])
+                    expect(textValue.trim()).to.be.oneOf(['Telah distribusi', 'Distribusi luar Sidebar'])
                 })
         }
+    }
+
+    checkFilterUrgensi() {
+        const filter_urgensi = cy.get(naskah_keluar.filter_urgensi)
+        filter_urgensi.should('be.visible')
+            .click()
+
+        // Assertion
+        const filter_urgensi_biasa = cy.get(naskah_keluar.filter_urgensi_biasa)
+        filter_urgensi_biasa.should('be.visible')
+
+        const filter_urgensi_penting = cy.get(naskah_keluar.filter_urgensi_penting)
+        filter_urgensi_penting.should('be.visible')
+
+        const filter_urgensi_segera = cy.get(naskah_keluar.filter_urgensi_segera)
+        filter_urgensi_segera.should('be.visible')
+
+        const filter_urgensi_amat_segera = cy.get(naskah_keluar.filter_urgensi_amat_segera)
+        filter_urgensi_amat_segera.should('be.visible')
+
+        const filter_urgensi_selected = cy.get(naskah_keluar.filter_urgensi_selected)
+        filter_urgensi_selected.find('input')
+            .should('be.visible')
+            .and('have.attr', 'placeholder', 'Semua Urgensi')
+    }
+
+    selectUrgensi(inputanUrgensi){
+        if(inputanUrgensi == 1) {
+            // Select urgensi : biasa
+            const filter_urgensi_biasa = cy.get(naskah_keluar.filter_urgensi_biasa)
+            filter_urgensi_biasa.scrollIntoView()
+                .should('be.visible')
+                .click()
+
+            // Assertion
+            const label_urgensiTindakLanjut = cy.get(naskah_keluar.label_urgensiTindakLanjut).last()
+            label_urgensiTindakLanjut.find('p')
+                .should('contain', 'Biasa')
+                .and('be.visible')
+                .wait(2000)
+        } else if(inputanUrgensi == 2) {
+            // Select urgensi : penting
+            const filter_urgensi = cy.get(naskah_keluar.filter_urgensi)
+            filter_urgensi.scrollIntoView()
+                .should('be.visible')
+                .click()
+
+            const filter_urgensi_penting = cy.get(naskah_keluar.filter_urgensi_penting)
+            filter_urgensi_penting.should('be.visible')
+                    .click()
+
+            // Assertion
+            const label_urgensiTindakLanjut = cy.get(naskah_keluar.label_urgensiTindakLanjut).last()
+            label_urgensiTindakLanjut.find('p')
+                .should('contain', 'Penting')
+                .and('be.visible')
+                .wait(2000)
+        } else if(inputanUrgensi == 3) {
+            // Select urgensi : segera
+            const filter_urgensi = cy.get(naskah_keluar.filter_urgensi)
+            filter_urgensi.scrollIntoView()
+                .should('be.visible')
+                .click()
+
+            const filter_urgensi_segera = cy.get(naskah_keluar.filter_urgensi_segera)
+            filter_urgensi_segera.should('be.visible')
+                .click()
+
+            // Assertion
+            const label_urgensiTindakLanjut = cy.get(naskah_keluar.label_urgensiTindakLanjut).last()
+            label_urgensiTindakLanjut.find('p')
+                .should('contain', 'Segera')
+                .and('be.visible')
+                .wait(2000)
+        } else if(inputanUrgensi == 4) {
+            // Select urgensi : amat segera
+            const filter_urgensi = cy.get(naskah_keluar.filter_urgensi)
+            filter_urgensi.scrollIntoView()
+                .should('be.visible')
+                .click()
+
+            const filter_urgensi_amat_segera = cy.get(naskah_keluar.filter_urgensi_amat_segera)
+            filter_urgensi_amat_segera.should('be.visible')
+                .click()
+
+            // Assertion
+            const label_urgensiTindakLanjut = cy.get(naskah_keluar.label_urgensiTindakLanjut).last()
+            label_urgensiTindakLanjut.find('p')
+                .should('contain', 'Amat Segera')
+                .and('be.visible')
+                .wait(2000)
+        } else {
+            // Select urgensi : all checkbox
+            const filter_urgensi = cy.get(naskah_keluar.filter_urgensi)
+            filter_urgensi.scrollIntoView()
+                .should('be.visible')
+                .click()
+
+            const filter_urgensi_biasa = cy.get(naskah_keluar.filter_urgensi_biasa)
+            filter_urgensi_biasa.should('be.visible')
+                .click()
+
+            const filter_urgensi_penting = cy.get(naskah_keluar.filter_urgensi_penting)
+            filter_urgensi_penting.should('be.visible')
+                    .click()
+
+            const filter_urgensi_segera = cy.get(naskah_keluar.filter_urgensi_segera)
+            filter_urgensi_segera.should('be.visible')
+                .click()
+                
+            const filter_urgensi_amat_segera = cy.get(naskah_keluar.filter_urgensi_amat_segera)
+            filter_urgensi_amat_segera.should('be.visible')
+                .click()
+
+            // Assertion
+            const label_urgensiTindakLanjut = cy.get(naskah_keluar.label_urgensiTindakLanjut).last()
+            label_urgensiTindakLanjut.find('p')
+                .and('be.visible')
+                .invoke('text')
+                .then((textValue) => {
+                    expect(textValue.trim()).to.be.oneOf(['Biasa', 'Penting', 'Segera', 'Amat Segera'])
+                })
+        }
+    }
+
+    clearFilterUrgensi() {
+        // Click btn clear selected
+        const btn_clear_urgensi = cy.get(naskah_keluar.btn_clear_urgensi)
+        btn_clear_urgensi.should('be.visible')
+                .click()
+    }
+
+    closeFilterUrgensi() {
+        // Select urgensi
+        const filter_urgensi = cy.get(naskah_keluar.filter_urgensi)
+        filter_urgensi.scrollIntoView()
+            .should('be.visible')
+            .click()
+
+        const label_naskahKeluarTitle = cy.get(naskah_keluar.label_naskahKeluarTitle)
+        label_naskahKeluarTitle.scrollIntoView()
+            .click()
+
+        // Assertion
+        const filter_urgensi_assert = cy.get(naskah_keluar.filter_urgensi)
+        filter_urgensi_assert.should('have.class', 'v-select w-full max-w-52 font-lato text-sm font-normal filter-select vs--multiple vs--searchable')
     }
 }

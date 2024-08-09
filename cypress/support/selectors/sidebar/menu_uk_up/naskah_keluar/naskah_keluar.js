@@ -13,6 +13,7 @@ module.exports = {
     label_sifatTitle: '[data-cy="document-information__sifat__title"]',
     value_sifat: '[data-cy="document-information__sifat__data"]',
     label_statusTindakLanjut: '[data-cy="tindak-lanjut-naskah__table--status-tag-0"]',
+    label_urgensiTindakLanjut: '[data-cy="tindak-lanjut-naskah__table--urgency-tag-0"]',
 
     // TAB
     tab_registrasi: '[data-cy="tab__detail-registrasi"]',
@@ -20,6 +21,7 @@ module.exports = {
 
     // BUTTON
     btn_bagikan: '[data-cy="header__button--bagikan"]',
+    btn_clear_urgensi: '[data-cy="filter-tindak-lanjut__select__urgency__clear"]',
 
     // SECTION
     section_preview: '[data-testid="core__viewer"]',
@@ -30,5 +32,10 @@ module.exports = {
     filter_modeDistribusi_semua: '[data-cy="filter-tindak-lanjut__select__activity__option-0"]',
     filter_modeDistribusi_telah_ditribusi: '[data-cy="filter-tindak-lanjut__select__activity__option-1"]',
     filter_modeDistribusi_diluar_sidebar: '[data-cy="filter-tindak-lanjut__select__activity__option-2"]',
-
+    filter_urgensi: '[data-cy="filter-tindak-lanjut__select__urgency__wrapper"]',
+    filter_urgensi_selected: '[data-cy="filter-tindak-lanjut__select__urgency__wrapper"] div[id="vs4__combobox"] div[class="vs__selected-options"]',
+    filter_urgensi_biasa: '[data-cy="filter-tindak-lanjut__select__urgency__option-0"]',
+    filter_urgensi_penting: '[data-cy="filter-tindak-lanjut__select__urgency__option-1"]',
+    filter_urgensi_segera: '[data-cy="filter-tindak-lanjut__select__urgency__option-2"]',
+    filter_urgensi_amat_segera: '[data-cy="filter-tindak-lanjut__select__urgency__option-3"]',
 }

@@ -18,7 +18,7 @@ before(() => {
     cy.intercept({ resourceType: /xhr/ }, { log: false })
 })
 
-describe('Menu UK dan UP - Naskah Keluar UK', { testIsolation: false }, () => {
+describe('Menu UK dan UP - Filter Naskah Keluar UK', { testIsolation: false }, () => {
 
     qase(4838,
         it('Akses halaman naskah keluar', () => {
@@ -32,7 +32,7 @@ describe('Menu UK dan UP - Naskah Keluar UK', { testIsolation: false }, () => {
     )
 
     qase([4951, 5590, 5591],
-        it('Filter mode distribusi', () => {
+        it('Naskah Keluar UK - Filter Mode Distribusi', () => {
             // Select filter mode distribusi 4951
             naskahKeluarPage.checkModeDistribusi()
 
@@ -44,6 +44,36 @@ describe('Menu UK dan UP - Naskah Keluar UK', { testIsolation: false }, () => {
 
             // Select default "Semua"
             naskahKeluarPage.selectModeDistribusi(0)
+        })
+    )
+
+    qase([5598, 5599, 5603, 5604, 5605, 5606, 5601],
+        it('Naskah Keluar UK - Filter Urgensi', () => {
+            // Select filter urgensi 5598
+            naskahKeluarPage.checkFilterUrgensi()
+
+            // Select checkbox urgensi biasa 5599
+            naskahKeluarPage.selectUrgensi(1)
+            naskahKeluarPage.clearFilterUrgensi()
+
+            // Select checkbox urgensi penting 5603
+            naskahKeluarPage.selectUrgensi(2)
+            naskahKeluarPage.clearFilterUrgensi()
+
+            // Select checkbox urgensi segera 5604
+            naskahKeluarPage.selectUrgensi(3)
+            naskahKeluarPage.clearFilterUrgensi()
+
+            // Select checkbox urgensi amat segera 5605
+            naskahKeluarPage.selectUrgensi(4)
+            naskahKeluarPage.clearFilterUrgensi()
+
+            // Select multiple checkbox 5606
+            naskahKeluarPage.selectUrgensi(0)
+            naskahKeluarPage.clearFilterUrgensi()
+
+            // Close filter urgensi 5601
+            naskahKeluarPage.closeFilterUrgensi()
         })
     )
 })
