@@ -14,6 +14,7 @@ module.exports = {
     value_sifat: '[data-cy="document-information__sifat__data"]',
     label_statusTindakLanjut: '[data-cy="tindak-lanjut-naskah__table--status-tag-0"]',
     label_urgensiTindakLanjut: '[data-cy="tindak-lanjut-naskah__table--urgency-tag-0"]',
+    label_dataEmpty: '[data-cy="table__empty-state"]',
 
     // TAB
     tab_registrasi: '[data-cy="tab__detail-registrasi"]',
