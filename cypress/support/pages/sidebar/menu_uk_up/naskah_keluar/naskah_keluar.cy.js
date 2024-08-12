@@ -84,6 +84,8 @@ export class NaskahKeluarPage {
             filter_modeDistribusi_telah_ditribusi.should('be.visible')
                 .click()
 
+            cy.wait(3000)
+
             // Check if data available
             cy.get('body').then($body => {
                 if ($body.find(naskah_keluar.label_statusTindakLanjut).length > 0) {
@@ -110,6 +112,8 @@ export class NaskahKeluarPage {
             filter_modeDistribusi_diluar_sidebar.should('be.visible')
                 .click()
 
+            cy.wait(3000)
+
             // Check if data available
             cy.get('body').then($body => {
                 if ($body.find(naskah_keluar.label_statusTindakLanjut).length > 0) {
@@ -135,6 +139,8 @@ export class NaskahKeluarPage {
             const filter_modeDistribusi_semua = cy.get(naskah_keluar.filter_modeDistribusi_semua)
             filter_modeDistribusi_semua.should('be.visible')
                 .click()
+
+            cy.wait(3000)
 
             // Check if data available
             cy.get('body').then($body => {
@@ -190,6 +196,8 @@ export class NaskahKeluarPage {
                 .should('be.visible')
                 .click()
 
+            cy.wait(3000)
+
             // Check if data available
             cy.get('body').then($body => {
                 if ($body.find(naskah_keluar.label_statusTindakLanjut).length > 0) {
@@ -217,6 +225,8 @@ export class NaskahKeluarPage {
             const filter_urgensi_penting = cy.get(naskah_keluar.filter_urgensi_penting)
             filter_urgensi_penting.should('be.visible')
                     .click()
+
+            cy.wait(3000)
 
             // Check if data available
             cy.get('body').then($body => {
@@ -246,6 +256,8 @@ export class NaskahKeluarPage {
             filter_urgensi_segera.should('be.visible')
                 .click()
 
+            cy.wait(3000)
+
             // Check if data available
             cy.get('body').then($body => {
                 if ($body.find(naskah_keluar.label_statusTindakLanjut).length > 0) {
@@ -273,6 +285,8 @@ export class NaskahKeluarPage {
             const filter_urgensi_amat_segera = cy.get(naskah_keluar.filter_urgensi_amat_segera)
             filter_urgensi_amat_segera.should('be.visible')
                 .click()
+
+            cy.wait(3000)
 
             // Check if data available
             cy.get('body').then($body => {
@@ -313,6 +327,8 @@ export class NaskahKeluarPage {
             const filter_urgensi_amat_segera = cy.get(naskah_keluar.filter_urgensi_amat_segera)
             filter_urgensi_amat_segera.should('be.visible')
                 .click()
+
+            cy.wait(3000)
 
             // Check if data available
             cy.get('body').then($body => {
