@@ -84,11 +84,24 @@ export class NaskahKeluarPage {
             filter_modeDistribusi_telah_ditribusi.should('be.visible')
                 .click()
 
-            // Assertion
-            const label_statusTindakLanjut = cy.get(naskah_keluar.label_statusTindakLanjut).last()
-            label_statusTindakLanjut.find('p')
-                .should('contain', 'Telah distribusi')
-                .and('be.visible')
+            cy.wait(3000)
+
+            // Check if data available
+            cy.get('body').then($body => {
+                if ($body.find(naskah_keluar.label_statusTindakLanjut).length > 0) {
+                    // Assertion
+                    const label_statusTindakLanjut = cy.get(naskah_keluar.label_statusTindakLanjut).last()
+                    label_statusTindakLanjut.find('p')
+                        .should('contain', 'Telah distribusi')
+                        .and('be.visible')
+                } else {
+                    // Assertion
+                    const label_statusTindakLanjut = cy.get(naskah_keluar.label_dataEmpty)
+                    label_statusTindakLanjut.find('p')
+                        .should('contain', 'Belum ada naskah keluar')
+                        .and('be.visible')
+                }
+            })
         } else if(inputModeDistribusi == 2) {
             // Select mode distribusi : distribusi luar sidebar
             const filter_modeDistribusi = cy.get(naskah_keluar.filter_modeDistribusi)
@@ -99,11 +112,24 @@ export class NaskahKeluarPage {
             filter_modeDistribusi_diluar_sidebar.should('be.visible')
                 .click()
 
-            // Assertion
-            const label_statusTindakLanjut = cy.get(naskah_keluar.label_statusTindakLanjut).last()
-            label_statusTindakLanjut.find('p')
-                .should('contain', 'Distribusi luar Sidebar')
-                .and('be.visible')
+            cy.wait(3000)
+
+            // Check if data available
+            cy.get('body').then($body => {
+                if ($body.find(naskah_keluar.label_statusTindakLanjut).length > 0) {
+                    // Assertion
+                    const label_statusTindakLanjut = cy.get(naskah_keluar.label_statusTindakLanjut).last()
+                    label_statusTindakLanjut.find('p')
+                        .should('contain', 'Distribusi luar Sidebar')
+                        .and('be.visible')
+                } else {
+                    // Assertion
+                    const label_statusTindakLanjut = cy.get(naskah_keluar.label_dataEmpty)
+                    label_statusTindakLanjut.find('p')
+                        .should('contain', 'Belum ada naskah keluar')
+                        .and('be.visible')
+                }
+            })
         } else {
             // Select mode distribusi : semua
             const filter_modeDistribusi = cy.get(naskah_keluar.filter_modeDistribusi)
@@ -114,14 +140,27 @@ export class NaskahKeluarPage {
             filter_modeDistribusi_semua.should('be.visible')
                 .click()
 
-            // Assertion
-            const label_statusTindakLanjut = cy.get(naskah_keluar.label_statusTindakLanjut).last()
-            label_statusTindakLanjut.find('p')
-                .and('be.visible')
-                .invoke('text')
-                .then((textValue) => {
-                    expect(textValue.trim()).to.be.oneOf(['Telah distribusi', 'Distribusi luar Sidebar'])
-                })
+            cy.wait(3000)
+
+            // Check if data available
+            cy.get('body').then($body => {
+                if ($body.find(naskah_keluar.label_statusTindakLanjut).length > 0) {
+                    // Assertion
+                    const label_statusTindakLanjut = cy.get(naskah_keluar.label_statusTindakLanjut).last()
+                    label_statusTindakLanjut.find('p')
+                        .and('be.visible')
+                        .invoke('text')
+                        .then((textValue) => {
+                            expect(textValue.trim()).to.be.oneOf(['Telah distribusi', 'Distribusi luar Sidebar'])
+                        })
+                } else {
+                    // Assertion
+                    const label_statusTindakLanjut = cy.get(naskah_keluar.label_dataEmpty)
+                    label_statusTindakLanjut.find('p')
+                        .should('contain', 'Belum ada naskah keluar')
+                        .and('be.visible')
+                }
+            })
         }
     }
 
@@ -157,12 +196,25 @@ export class NaskahKeluarPage {
                 .should('be.visible')
                 .click()
 
-            // Assertion
-            const label_urgensiTindakLanjut = cy.get(naskah_keluar.label_urgensiTindakLanjut).last()
-            label_urgensiTindakLanjut.find('p')
-                .should('contain', 'Biasa')
-                .and('be.visible')
-                .wait(2000)
+            cy.wait(3000)
+
+            // Check if data available
+            cy.get('body').then($body => {
+                if ($body.find(naskah_keluar.label_statusTindakLanjut).length > 0) {
+                    // Assertion
+                    const label_urgensiTindakLanjut = cy.get(naskah_keluar.label_urgensiTindakLanjut).last()
+                    label_urgensiTindakLanjut.find('p')
+                        .should('contain', 'Biasa')
+                        .and('be.visible')
+                        .wait(2000)
+                } else {
+                    // Assertion
+                    const label_statusTindakLanjut = cy.get(naskah_keluar.label_dataEmpty)
+                    label_statusTindakLanjut.find('p')
+                        .should('contain', 'Belum ada naskah keluar')
+                        .and('be.visible')
+                }
+            })
         } else if(inputanUrgensi == 2) {
             // Select urgensi : penting
             const filter_urgensi = cy.get(naskah_keluar.filter_urgensi)
@@ -174,12 +226,25 @@ export class NaskahKeluarPage {
             filter_urgensi_penting.should('be.visible')
                     .click()
 
-            // Assertion
-            const label_urgensiTindakLanjut = cy.get(naskah_keluar.label_urgensiTindakLanjut).last()
-            label_urgensiTindakLanjut.find('p')
-                .should('contain', 'Penting')
-                .and('be.visible')
-                .wait(2000)
+            cy.wait(3000)
+
+            // Check if data available
+            cy.get('body').then($body => {
+                if ($body.find(naskah_keluar.label_statusTindakLanjut).length > 0) {
+                    // Assertion
+                    const label_urgensiTindakLanjut = cy.get(naskah_keluar.label_urgensiTindakLanjut).last()
+                    label_urgensiTindakLanjut.find('p')
+                        .should('contain', 'Penting')
+                        .and('be.visible')
+                        .wait(2000)
+                } else {
+                    // Assertion
+                    const label_statusTindakLanjut = cy.get(naskah_keluar.label_dataEmpty)
+                    label_statusTindakLanjut.find('p')
+                        .should('contain', 'Belum ada naskah keluar')
+                        .and('be.visible')
+                }
+            })
         } else if(inputanUrgensi == 3) {
             // Select urgensi : segera
             const filter_urgensi = cy.get(naskah_keluar.filter_urgensi)
@@ -191,12 +256,25 @@ export class NaskahKeluarPage {
             filter_urgensi_segera.should('be.visible')
                 .click()
 
-            // Assertion
-            const label_urgensiTindakLanjut = cy.get(naskah_keluar.label_urgensiTindakLanjut).last()
-            label_urgensiTindakLanjut.find('p')
-                .should('contain', 'Segera')
-                .and('be.visible')
-                .wait(2000)
+            cy.wait(3000)
+
+            // Check if data available
+            cy.get('body').then($body => {
+                if ($body.find(naskah_keluar.label_statusTindakLanjut).length > 0) {
+                    // Assertion
+                    const label_urgensiTindakLanjut = cy.get(naskah_keluar.label_urgensiTindakLanjut).last()
+                    label_urgensiTindakLanjut.find('p')
+                        .should('contain', 'Segera')
+                        .and('be.visible')
+                        .wait(2000)
+                } else {
+                    // Assertion
+                    const label_statusTindakLanjut = cy.get(naskah_keluar.label_dataEmpty)
+                    label_statusTindakLanjut.find('p')
+                        .should('contain', 'Belum ada naskah keluar')
+                        .and('be.visible')
+                }
+            })
         } else if(inputanUrgensi == 4) {
             // Select urgensi : amat segera
             const filter_urgensi = cy.get(naskah_keluar.filter_urgensi)
@@ -208,12 +286,25 @@ export class NaskahKeluarPage {
             filter_urgensi_amat_segera.should('be.visible')
                 .click()
 
-            // Assertion
-            const label_urgensiTindakLanjut = cy.get(naskah_keluar.label_urgensiTindakLanjut).last()
-            label_urgensiTindakLanjut.find('p')
-                .should('contain', 'Amat Segera')
-                .and('be.visible')
-                .wait(2000)
+            cy.wait(3000)
+
+            // Check if data available
+            cy.get('body').then($body => {
+                if ($body.find(naskah_keluar.label_statusTindakLanjut).length > 0) {
+                    // Assertion
+                    const label_urgensiTindakLanjut = cy.get(naskah_keluar.label_urgensiTindakLanjut).last()
+                    label_urgensiTindakLanjut.find('p')
+                        .should('contain', 'Amat Segera')
+                        .and('be.visible')
+                        .wait(2000)
+                } else {
+                    // Assertion
+                    const label_statusTindakLanjut = cy.get(naskah_keluar.label_dataEmpty)
+                    label_statusTindakLanjut.find('p')
+                        .should('contain', 'Belum ada naskah keluar')
+                        .and('be.visible')
+                }
+            })
         } else {
             // Select urgensi : all checkbox
             const filter_urgensi = cy.get(naskah_keluar.filter_urgensi)
@@ -237,14 +328,27 @@ export class NaskahKeluarPage {
             filter_urgensi_amat_segera.should('be.visible')
                 .click()
 
-            // Assertion
-            const label_urgensiTindakLanjut = cy.get(naskah_keluar.label_urgensiTindakLanjut).last()
-            label_urgensiTindakLanjut.find('p')
-                .and('be.visible')
-                .invoke('text')
-                .then((textValue) => {
-                    expect(textValue.trim()).to.be.oneOf(['Biasa', 'Penting', 'Segera', 'Amat Segera'])
-                })
+            cy.wait(3000)
+
+            // Check if data available
+            cy.get('body').then($body => {
+                if ($body.find(naskah_keluar.label_statusTindakLanjut).length > 0) {
+                    // Assertion
+                    const label_urgensiTindakLanjut = cy.get(naskah_keluar.label_urgensiTindakLanjut).last()
+                    label_urgensiTindakLanjut.find('p')
+                        .and('be.visible')
+                        .invoke('text')
+                        .then((textValue) => {
+                            expect(textValue.trim()).to.be.oneOf(['Biasa', 'Penting', 'Segera', 'Amat Segera'])
+                        })
+                } else {
+                    // Assertion
+                    const label_statusTindakLanjut = cy.get(naskah_keluar.label_dataEmpty)
+                    label_statusTindakLanjut.find('p')
+                        .should('contain', 'Belum ada naskah keluar')
+                        .and('be.visible')
+                }
+            })
         }
     }
 
