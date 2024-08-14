@@ -81,6 +81,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
 
             // Create Naskah
             kembalikanNaskahPage.goToNaskahBelumDireview(data_temp.env[0].prod)
+            cy.wait(2000)
             kembalikanNaskahPage.emptyField()
             kembalikanNaskahPage.batalKembalikanNaskah()
             kembalikanNaskahPage.checkHalamanInformasi()
@@ -97,6 +98,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             loginPage.directLogin()
 
             perbaikiNaskahPage.goToPerbaikiNaskah(data_temp.env[0].prod)
+            cy.wait(2000)
             perbaikiNaskahPage.perbaikiNaskah(data_temp.perbaiki[0].perbaiki_perihal)
         })
     )
@@ -108,6 +110,7 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview(data_temp.env[0].prod)
+            cy.wait(2000)
             koreksiSuratPage.checkDetailKoreksiTandatangani()
             koreksiSuratPage.koreksiTandatanganiNaskah('passphrase', data_temp.koreksi[0].koreksi_perihal)
         })

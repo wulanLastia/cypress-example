@@ -59,11 +59,12 @@ describe('Drafting Konsep Naskah Nota Dinas Skenario', () => {
     qase([1, 1069, 1064, 1065, 1067, 1066, 1062, 1063, 1061, 721, 723, 724, 725, 1123, 1118, 1146, 1147, 1148, 1151, 1159],
         it('Nota Dinas Tujuan Lampiran Kepala Internal', () => {
             listNaskahSuratBiasaPage.goToKonsepNaskahNotaDinas() // Cek detail halaman drafting konsep naskah Nota Dinas
+            cy.wait(9000)
             createNotaDinasPage.createKopSurat(dataNotaDinas.org[0].org1)
             cy.wait(3000)
-            createNotaDinasPage.createLampiranSurat1()
+            createNotaDinasPage.createLampiranSurat1('Lampiran 1 ' + faker.lorem.paragraphs(6, '<br/>\n'))
             cy.wait(3000)
-            createNotaDinasPage.createLampiranSurat2()
+            createNotaDinasPage.createLampiranSurat2('Lampiran 2 ' + faker.lorem.paragraphs(6, '<br/>\n'))
             cy.wait(3000)
             createNotaDinasPage.createKakiSurat(dataNotaDinas.env[0].staging, dataNotaDinas.kaki_surat[0].penandatangan_atasan1, dataNotaDinas.kaki_surat[1].pemeriksa1)
             cy.wait(3000)

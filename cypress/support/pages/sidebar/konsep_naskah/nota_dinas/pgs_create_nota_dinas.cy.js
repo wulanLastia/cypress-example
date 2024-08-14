@@ -183,22 +183,22 @@ export class CreateNotaDinasPage {
         draftingKepalaSuratNotaDinasPage.closeLampiranKepalaSurat()
     }
 
-    createLampiranSurat1() {
+    createLampiranSurat1(textToPaste) {
         cy.wait(3000)
         draftingLampiranSuratPage.aksesFormEditingLampiranSurat()
         cy.wait(3000)
         // Input Lampiran Surat 1
-        draftingLampiranSuratPage.inputLampiranSurat()
+        draftingLampiranSuratPage.inputLampiranSurat(textToPaste)
         draftingLampiranSuratPage.closeLampiranNotaDinas()
         cy.wait(5000)
     }
 
-    createLampiranSurat2() {
+    createLampiranSurat2(textToPaste) {
         cy.wait(3000)
         draftingLampiranSuratPage.aksesFormEditingLampiranSuratke2()
         cy.wait(3000)
         // Input Lampiran Surat 2
-        draftingLampiranSuratPage.inputLampiranSurat2()
+        draftingLampiranSuratPage.inputLampiranSurat2(textToPaste)
         draftingLampiranSuratPage.closeLampiranNotaDinas()
         cy.wait(5000)
     }
