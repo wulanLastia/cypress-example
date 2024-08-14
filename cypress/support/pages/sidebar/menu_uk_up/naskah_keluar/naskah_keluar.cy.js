@@ -372,6 +372,6 @@ export class NaskahKeluarPage {
 
         // Assertion
         const filter_urgensi_assert = cy.get(naskah_keluar.filter_urgensi)
-        filter_urgensi_assert.should('have.class', 'v-select w-full max-w-52 font-lato text-sm font-normal filter-select vs--multiple vs--searchable')
+        filter_urgensi_assert.should('have.class', 'v-select w-full max-w-52 font-lato text-sm font-normal filter-select vs--multiple vs--unsearchable')
     }
 }
