@@ -76,4 +76,28 @@ describe('Menu UK dan UP - Filter Naskah Keluar UK', { testIsolation: false }, (
             naskahKeluarPage.closeFilterUrgensi()
         })
     )
+
+    qase([5616, 5625, 5627, 5623, 5618],
+        it('Naskah Keluar UK - Filter Jenis', () => {
+            // Select filter jenis naskah 5616
+            naskahKeluarPage.checkFilterJenis()
+
+            // Search jenis naskah 5625
+            naskahKeluarPage.searchJenisNaskah('Berita Acara')
+            naskahKeluarPage.clearJenisNaskah()
+
+            // Select checkbox urgensi penting 5627
+            naskahKeluarPage.checkFilterJenis()
+            naskahKeluarPage.selectJenisNaskah('Berita Acara', 2)
+            naskahKeluarPage.clearJenisNaskah()
+
+            // Select multiple checkbox jenis naskah 5623
+            naskahKeluarPage.checkFilterJenis()
+            naskahKeluarPage.selectJenisNaskah('Berita Acara', 2)
+            naskahKeluarPage.selectJenisNaskah('Nota Dinas', 3)
+
+            // Close filter urgensi 5618
+            naskahKeluarPage.closeFilterJenisNaskah()
+        })
+    )
 })

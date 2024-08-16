@@ -48,6 +48,17 @@ describe('Menu UK dan UP - Filter Naskah Keluar UK', { testIsolation: false }, (
 
             // Select filter urgensi when data not available on list 5599
             naskahKeluarPage.selectUrgensi(1)
+            naskahKeluarPage.closeFilterUrgensi()
+        })
+    )
+
+    qase([5616, 5619],
+        it('Naskah Keluar UK - Filter Jenis', () => {
+            // Select filter jenis naskah 5616
+            naskahKeluarPage.checkFilterJenis()
+
+            // Select filter jenis naskah when data not available on list 5619
+            naskahKeluarPage.searchJenisNaskah('Surat Perintah')
         })
     )
 })
