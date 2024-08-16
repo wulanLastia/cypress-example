@@ -14,6 +14,7 @@ module.exports = {
     value_sifat: '[data-cy="document-information__sifat__data"]',
     label_statusTindakLanjut: '[data-cy="tindak-lanjut-naskah__table--status-tag-0"]',
     label_urgensiTindakLanjut: '[data-cy="tindak-lanjut-naskah__table--urgency-tag-0"]',
+    label_jenisNaskahTindakLanjut: '[data-cy="tindak-lanjut-naskah__table--jenis-surat-0"]',
     label_dataEmpty: '[data-cy="table__empty-state"]',
 
     // TAB
@@ -23,6 +24,7 @@ module.exports = {
     // BUTTON
     btn_bagikan: '[data-cy="header__button--bagikan"]',
     btn_clear_urgensi: '[data-cy="filter-tindak-lanjut__select__urgency__clear"]',
+    btn_clear_jenis_naskah: '[data-cy="filter-tindak-lanjut__select__document-type__clear"]',
 
     // SECTION
     section_preview: '[data-testid="core__viewer"]',
@@ -39,4 +41,13 @@ module.exports = {
     filter_urgensi_penting: '[data-cy="filter-tindak-lanjut__select__urgency__option-1"]',
     filter_urgensi_segera: '[data-cy="filter-tindak-lanjut__select__urgency__option-2"]',
     filter_urgensi_amat_segera: '[data-cy="filter-tindak-lanjut__select__urgency__option-3"]',
+    filter_jenis: '[data-cy="filter-tindak-lanjut__select__document-type__wrapper"]',
+    filter_jenis_selected: '[data-cy="filter-tindak-lanjut__select__document-type__wrapper"] div[id="vs5__combobox"] div[class="vs__selected-options"]',
+    filter_jenis_search: '[data-cy="filter-tindak-lanjut__select__document-type__option-2"]', // Berita Acara
+    filter_jenis_search_selected: '[data-cy="filter-tindak-lanjut__select__document-type__wrapper"] div[id="vs5__combobox"] div[class="vs__selected-options"] span[class="vs__selected"]',
+    filter_jenis_check: '[data-cy="filter-tindak-lanjut__select__document-type__option-',
+
+    // INPUT
+    input_search_jenisNaskah: '[data-cy="filter-tindak-lanjut__select__document-type__search"]',
+    input_search: '[class="vs__search__select"]',
 }

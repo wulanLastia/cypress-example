@@ -374,4 +374,115 @@ export class NaskahKeluarPage {
         const filter_urgensi_assert = cy.get(naskah_keluar.filter_urgensi)
         filter_urgensi_assert.should('have.class', 'v-select w-full max-w-52 font-lato text-sm font-normal filter-select vs--multiple vs--unsearchable')
     }
+
+    checkFilterJenis() {
+        const filter_jenis = cy.get(naskah_keluar.filter_jenis)
+        filter_jenis.should('be.visible')
+            .click()
+
+        // Assertion
+        const filter_jenis_selected = cy.get(naskah_keluar.filter_jenis_selected)
+        filter_jenis_selected.find('input')
+            .should('be.visible')
+            .and('have.attr', 'placeholder', 'Semua jenis dokumen')
+    }
+
+    searchJenisNaskah(inputanJenis) {
+        // Click filter jenis naskah
+        const filter_jenis = cy.get(naskah_keluar.filter_jenis)
+        filter_jenis.should('be.visible')
+            .click()
+
+        // Search jenis naskah
+        const input_search = cy.get(naskah_keluar.input_search)
+        input_search.click()
+            .type(inputanJenis, { force : true})
+
+        // Check if element exist
+        cy.get('body').then($body => {
+            if ($body.find(naskah_keluar.filter_jenis_search).length > 0) {
+                // Assertion
+                const filter_jenis_search = cy.get(naskah_keluar.filter_jenis_search)
+                filter_jenis_search.should('be.visible')
+                    .find('p')
+                    .contains(inputanJenis, { matchCase: false })
+                    .click()
+
+                const filter_jenis_search_selected = cy.get(naskah_keluar.filter_jenis_search_selected)
+                filter_jenis_search_selected.should('be.visible')
+                    .and('contain', inputanJenis)
+
+                const label_jenisNaskahTindakLanjut = cy.get(naskah_keluar.label_jenisNaskahTindakLanjut).first()
+                label_jenisNaskahTindakLanjut.find('strong')
+                    .should('contain', inputanJenis)
+                    .and('be.visible')
+                    .wait(2000)
+            } else {
+                // Assertion
+                const label_statusTindakLanjut = cy.get(naskah_keluar.label_dataEmpty)
+                label_statusTindakLanjut.find('p')
+                    .should('contain', 'Belum ada naskah keluar')
+                    .and('be.visible')
+            }
+        })
+    }
+
+    selectJenisNaskah(inputanJenis, inputIndex) {
+        // Click filter jenis naskah
+        const filter_jenis = cy.get(naskah_keluar.filter_jenis)
+        filter_jenis.should('be.visible')
+            .click()
+
+        // Select jenis naskah
+        const filter_jenis_berita_acara = cy.get(naskah_keluar.filter_jenis_check + inputIndex + '"')
+        filter_jenis_berita_acara.click()
+
+        // Check if element exist
+        cy.get('body').then($body => {
+            if ($body.find(naskah_keluar.filter_jenis_search).length > 0) {
+                // Assertion
+                const filter_jenis_search_selected = cy.get(naskah_keluar.filter_jenis_search_selected)
+                filter_jenis_search_selected.should('be.visible')
+                    .and('contain', inputanJenis)
+
+                const label_jenisNaskahTindakLanjut = cy.get(naskah_keluar.label_jenisNaskahTindakLanjut).first()
+                label_jenisNaskahTindakLanjut.find('strong')
+                    .should('be.visible')
+                    .invoke('text')
+                    .then((textValue) => {
+                        expect(textValue.trim()).to.be.oneOf(['Surat Biasa', 'Nota Dinas', 'Berita Acara'])
+                    })
+                    .wait(2000)
+            } else {
+                // Assertion
+                const label_statusTindakLanjut = cy.get(naskah_keluar.label_dataEmpty)
+                label_statusTindakLanjut.find('p')
+                    .should('contain', 'Belum ada naskah keluar')
+                    .and('be.visible')
+            }
+        })
+    }
+
+    clearJenisNaskah() {
+        // Click btn clear selected
+        const btn_clear_jenis_naskah = cy.get(naskah_keluar.btn_clear_jenis_naskah)
+        btn_clear_jenis_naskah.should('be.visible')
+                .click()
+    }
+
+    closeFilterJenisNaskah() {
+        // Select jenis naskah
+        const filter_jenis = cy.get(naskah_keluar.filter_jenis)
+        filter_jenis.scrollIntoView()
+            .should('be.visible')
+            .click()
+
+        const label_naskahKeluarTitle = cy.get(naskah_keluar.label_naskahKeluarTitle)
+        label_naskahKeluarTitle.scrollIntoView()
+            .click()
+
+        // Assertion
+        const filter_jenis_assert = cy.get(naskah_keluar.filter_jenis)
+        filter_jenis_assert.should('have.class', 'v-select w-full max-w-52 font-lato text-sm font-normal filter-select vs--multiple vs--unsearchable')
+    }
 }
