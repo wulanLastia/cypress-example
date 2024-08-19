@@ -18,7 +18,7 @@ jobs:
   cypress-run:
     runs-on: self-hosted
     container:
-      image: cypress/included:13.0.0
+      image: cypress/included:12.17.4
       # solution from https://github.com/cypress-io/cypress-docker-images/issues/560#issuecomment-1121774167
       # options: --user 1001
     steps:
