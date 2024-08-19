@@ -24,7 +24,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+      
+      # Set XDG_RUNTIME_DIR
+      - name: Set XDG_RUNTIME_DIR
+        run: |
+          mkdir -p /tmp/runtime-dir
+          echo "XDG_RUNTIME_DIR=/tmp/runtime-dir" >> $GITHUB_ENV
+          
       # bisa disesuaikan kalau ada banyak fixture lain. jangan lupa tambahkan di setting env repo
       - name: 'Create credential fixture dir'
         run: |
