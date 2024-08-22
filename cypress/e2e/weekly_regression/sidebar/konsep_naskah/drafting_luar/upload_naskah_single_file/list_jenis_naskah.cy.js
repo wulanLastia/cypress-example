@@ -18,6 +18,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+    
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
@@ -30,18 +31,11 @@ before(() => {
     loginPage.directLogin()
 })
 
-after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
-})
-
 describe('Drafting Luar - Test Case List Jenis Naskah', { testIsolation: false }, () => {
 
     qase(1825,
         it('Mengakses halaman konsep naskah', () => {
-            listNaskahSuratBiasaPage.goToKonsepNaskahSuratBiasa()
-            listNaskahSuratBiasaPage.batalDrafting()
+            listNaskahSuratBiasaPage.assertHalamanKonsepNaskah()
         })
     )
 
@@ -58,14 +52,15 @@ describe('Drafting Luar - Test Case List Jenis Naskah', { testIsolation: false }
         })
     )
 
+    // Skip karena fitur di hide
     qase(2651,
-        it('Cek kesesuaian flag Multifile jika naskah dapat melakukan upload multifile', () => {
+        it.skip('Cek kesesuaian flag Multifile jika naskah dapat melakukan upload multifile', () => {
             listNaskahSuratBiasaPage.checkFlagMultifile()
         })
     )
 
     qase(2652,
-        it('Cek kesesuaian flag eMaterai jika naskah mengharuskan membubukan ematerai', () => {
+        it.skip('Cek kesesuaian flag eMaterai jika naskah mengharuskan membubukan ematerai', () => {
             listNaskahSuratBiasaPage.checkFlagEmaterai()
         })
     )
