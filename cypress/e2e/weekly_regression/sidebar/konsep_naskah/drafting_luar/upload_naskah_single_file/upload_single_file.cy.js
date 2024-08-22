@@ -20,6 +20,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+    
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
@@ -30,12 +31,6 @@ before(() => {
 before(() => {
     loginPage.loginViaV1(user.nip_konseptor_2, user.password)
     loginPage.directLogin()
-})
-
-after(() => {
-    qase(411,
-        loginPage.logoutV2()
-    )
 })
 
 describe('Drafting Luar - Test Case Upload Single File SKP', { testIsolation: false }, () => {

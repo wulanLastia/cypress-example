@@ -3,6 +3,20 @@ import konsep_naskah from "../../../../selectors/sidebar/konsep_naskah/konsep_na
 import nota_dinas from "../../../../selectors/sidebar/konsep_naskah/nota_dinas/drafting_nota_dinas"
 export class ListNaskahSuratBiasaPage {
 
+    assertHalamanKonsepNaskah() {
+        // Find Document Type Surat Biasa
+        const list_listJenisNaskahSuratBiasa = cy.get(list_surat_biasa.list_listJenisNaskahSuratBiasa).as('list_listJenisNaskahSuratBiasa')
+        list_listJenisNaskahSuratBiasa.find('div')
+            .contains('Surat Biasa')
+            .scrollIntoView()
+
+        // Find Document Type Nota Dinas
+        const list_listJenisNaskahNotaDinas = cy.get(list_surat_biasa.list_listJenisNaskahNotaDinas).as('list_listJenisNaskahNotaDinas')
+        list_listJenisNaskahNotaDinas.find('div')
+            .contains('Nota Dinas')
+            .scrollIntoView()
+    }
+
     goToKonsepNaskahSuratBiasa() {
         cy.get('body').then($body => {
             if ($body.find(konsep_naskah.suratBiasa).length > 0) {
@@ -145,8 +159,11 @@ export class ListNaskahSuratBiasaPage {
             .and('be.visible')
             .click()
 
+        // Wait until page loaded
+        cy.wait(30000)
+
         // Assertion
-        cy.url().should('eq', Cypress.env('base_url') + '/konsep-naskah/surat-biasa')
+        cy.url().should('eq', Cypress.env('base_url') + 'konsep-naskah/surat-biasa')
     }
 
     checkDirectNotaDinas() {
@@ -166,8 +183,11 @@ export class ListNaskahSuratBiasaPage {
             .and('be.visible')
             .click()
 
+        // Wait until page loaded
+        cy.wait(30000)
+
         // Assertion
-        cy.url().should('eq', Cypress.env('base_url') + '/konsep-naskah/nota-dinas')
+        cy.url().should('eq', Cypress.env('base_url') + 'konsep-naskah/nota-dinas')
     }
 
     goToKonsepNaskahNotaDinas() {
