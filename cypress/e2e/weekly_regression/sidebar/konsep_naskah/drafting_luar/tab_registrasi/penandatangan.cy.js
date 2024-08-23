@@ -7,6 +7,7 @@ let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
 let loginPage = new LoginPage()
 let user
+let data_temp
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     // Jika terdapat error 'uncaught:exception' pada Headless Mode
@@ -20,8 +21,13 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
+    })
+
+    cy.fixture('non_cred/drafting_luar/master_data/create_data.json').then((data) => {
+        data_temp = data
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
@@ -32,13 +38,7 @@ before(() => {
     loginPage.directLogin()
 })
 
-after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
-})
-
-describe('Drafting Luar - Test Case Tab Registrasi Identitas Surat', { testIsolation: false }, () => {
+describe('Drafting Luar - Test Case Tab Registrasi Penandatangan', { testIsolation: false }, () => {
 
     qase([4289, 3878],
         it('Cek tab registrasi sebelum melakukan upload file', () => {
@@ -53,7 +53,7 @@ describe('Drafting Luar - Test Case Tab Registrasi Identitas Surat', { testIsola
     qase(3879,
         it('Cek tab registrasi setelah melakukan upload file', () => {
             // Upload File
-            uploadSingleFilePage.uploadSingleFile('positif')
+            uploadSingleFilePage.uploadSingleFile(data_temp.upload[0].upload1)
             uploadSingleFilePage.checkDataFileUpload()
 
             // Click tab registrasi
@@ -61,61 +61,28 @@ describe('Drafting Luar - Test Case Tab Registrasi Identitas Surat', { testIsola
         })
     )
 
-    qase([4051, 4054, 4061],
-        it('Check on preview page after input tujuan', () => {
-            // Distribusikan surat
-            tabRegistrasiPage.activateToggleDistribusi()
-
-            // Input tujuan from input field
-            tabRegistrasiPage.inputTujuan('staging', '0', 'internal', 'Dra. Hj. I GUSTI AGUNG')
-
-            // Add more tujuan
-            tabRegistrasiPage.addMoreTujuan()
-
-            // Input tujuan from input field
-            tabRegistrasiPage.inputTujuan('staging', '1', 'internal', 'LUDIA ROSEMA DEWI, S.Kom.')
-
-            // Add more tujuan
-            tabRegistrasiPage.addMoreTujuan()
-
-            // Input tujuan eksternal
-            tabRegistrasiPage.inputTujuan('staging', '2', 'eksternal', 'Tujuan Eksternal 1')
-
-            // Add more tujuan
-            tabRegistrasiPage.addMoreTujuan()
-
-            // Input tujuan eksternal
-            tabRegistrasiPage.inputTujuan('staging', '3', 'eksternal', 'Tujuan Eksternal 1')
-        })
-    )
-
-    // PERIHAL //
-    qase(3996,
-        it('Check on preview page after input perihal', () => {
-            const uuid = () => Cypress._.random(0, 1e6)
-            const id = uuid()
-
-            // Input perihal
-            tabRegistrasiPage.inputPerihal('Automation Drafting Luar ' + id, 'Automation Drafting Luar ' + id)
-        })
-    )
-
-    // KOLOM URGENSI //
-    qase(4122,
-        it('Cek warna label urgensi amat segera', () => {
-            tabRegistrasiPage.checkWarnaLabelUrgensi('Amat Segera', '0')
-        })
-    )
-
-    // SIFAT SURAT //
-    qase(4123,
-        it('Cek preview setelah memilih sifat', () => {
-            // Input perihal
-            tabRegistrasiPage.inputSifat('0')
-        })
-    )
-
     // PENANDATANGAN //
+    qase(3927,
+        it('Check penandatangan mode on dropdown list', () => {
+            // Cek penandatangan mode
+            tabRegistrasiPage.checkPenandatanganMode()
+        })
+    )
+
+    qase(4403,
+        it('Search penandatangan on dropdown list', () => {
+            // Search penandatangan
+            tabRegistrasiPage.searchPenandatangan(data_temp.registrasi[9].atasan1)
+        })
+    )
+
+    qase(4526,
+        it('Cancel tambah penandatangan', () => {
+            // Cancel penandatangan
+            tabRegistrasiPage.cancelPenandatangan()
+        })
+    )
+
     qase(3929,
         it('Leave the field empty when submitting the form', () => {
             // Cek tombol kirim
@@ -137,6 +104,69 @@ describe('Drafting Luar - Test Case Tab Registrasi Identitas Surat', { testIsola
         })
     )
 
+    qase(4036,
+        it('Add another penandatangan after choose penandatangan diri sendiri', () => {
+            // Tambah penandatangan
+            tabRegistrasiPage.addMorePenandatangan()
+
+            // Input penandatangan > 1
+            tabRegistrasiPage.inputPenandatanganAtasan(data_temp.registrasi[9].atasan1, data_temp.env[0].staging)
+        })
+    )
+
+    qase(3928,
+        it('Check on preview page after select penandatangan', () => {
+            // Assert Penandatangan Atasan 1
+            tabRegistrasiPage.assertPenandatanganAtasan1(data_temp.registrasi[9].atasan1)
+        })
+    )
+
+    qase(4402,
+        it('Validate penandatangan cant be same', () => {
+            // Tambah penandatangan
+            tabRegistrasiPage.addMorePenandatangan()
+
+            // Assertion validate same penandatangan
+            tabRegistrasiPage.validateSamePenandatangan(data_temp.registrasi[9].atasan1, data_temp.env[0].staging)
+
+            // Cancel penandatangan
+            tabRegistrasiPage.cancelPenandatangan()
+        })
+    )
+
+    qase(3942,
+        it('Delete penandatangan', () => {
+            // Delete penandatangan
+            tabRegistrasiPage.deletePenandatangan(data_temp.registrasi[9].atasan1)
+        })
+    )
+
+    qase(4041,
+        it('Hide button tambah after choose 4 penandatangan', () => {
+            // Tambah penandatangan 2
+            tabRegistrasiPage.addMorePenandatangan()
+
+            // Input penandatangan 2
+            tabRegistrasiPage.inputPenandatanganAtasan(data_temp.registrasi[9].atasan1, data_temp.env[0].staging)
+
+            // Tambah penandatangan 3
+            tabRegistrasiPage.addMorePenandatangan()
+
+            // Input penandatangan 3
+            tabRegistrasiPage.inputPenandatanganAtasan(data_temp.registrasi[9].atasan2, data_temp.env[0].staging)
+
+            // Tambah penandatangan 4
+            tabRegistrasiPage.addMorePenandatangan()
+
+            // Input penandatangan 4
+            tabRegistrasiPage.inputPenandatanganAtasan(data_temp.registrasi[9].atasan3, data_temp.env[0].staging)
+
+            // Assert penandatangan lebih dari 4
+            tabRegistrasiPage.assertJumlahPenandatangan()
+        })
+    )
+
+    // SURAT PENGANTAR //
     qase(4021,
         it('Cek nama file ketika user melakukan upload naskah', () => {
             // Check nama 
