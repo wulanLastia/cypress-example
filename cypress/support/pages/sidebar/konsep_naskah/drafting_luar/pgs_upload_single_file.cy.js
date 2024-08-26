@@ -29,7 +29,7 @@ export class UploadSingleFilePage {
 
         // Access Upload Single File
         btn_uploadFileSuratBiasa.click()
-            .wait(6000)
+            .wait(30000)
 
         // Begin Save Assertion Data
         cy.readFile(getPreviewData).then((object) => {

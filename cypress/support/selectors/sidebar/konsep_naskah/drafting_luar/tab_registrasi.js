@@ -4,7 +4,7 @@ module.exports = {
     btn_submitFormRegistrasi: '[data-cy="header__button--submit"]',
     btn_addMoreTujuan: '[data-cy="registrasi__tujuan-naskah__button--add"]',
     btn_addMoreTembusan: '[data-cy="registrasi__tembusan-naskah__button--add"]',
-    btn_deleteTembusan1: '[data-cy="registrasi__tembusan-naskah__select-option__delete-icon-1"]',
+    btn_deleteTembusan1: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/section[1]/div[2]/div[1]/div[1]/div[3]/div[1]',
     btn_addMorePenandatangan: '[data-cy="registrasi__penandatangan__button--add"]',
     btn_simpanPenandatangan: '[data-cy="dialog__button--simpan"]',
     btn_inputSuratPengantar: '[data-cy="input__upload-surat-pengantar"]',
@@ -14,7 +14,9 @@ module.exports = {
     btn_closeDialogTujuanTembusan: '[data-cy="dialog__button--close"]',
     btn_cancelDialogTujuanTembusan: '[data-cy="dialog__dialog-tujuan-tembusan__button--cancel"]',
     btn_confirmDialogTujuanTembusan: '[data-cy="dialog__dialog-tujuan-tembusan__button--confirm"]',
-
+    btn_batalAddPenandatangan: '[data-cy="dialog__button--batal"]',
+    btn_deletePenandatangan: '[data-cy="registrasi__penandatangan__delete-1"]',
+    btn_deleteTujuan: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/section[1]/div[1]/div[1]/div[1]/div[3]/div[1]',
 
     // INPUT
     input_bankNomorNomorUrut: '[data-cy="registrasi__nomor-naskah__input--nomor-urut"]',
@@ -38,6 +40,8 @@ module.exports = {
     label_konsepNaskah: '[data-cy="header__title"]',
     label_daftarTujuanTembusan: '[data-cy="registrasi__tujuan-tembusan-naskah__title"]',
     label_dialogTujuanTembusanInfo: '[data-cy="info__component"]',
+    label_penandatanganName1: '[data-cy="penandatangan-name-1"]',
+    label_errorSamePenandatangan: '[data-cy="registrasi__penandatangan__error-message"]',
 
     // SELECT
     select_bankNomor: '[data-cy="registrasi__nomor-naskah__input--bank-nomor"]',
@@ -59,6 +63,7 @@ module.exports = {
     select_sifatSuratOption: '[data-cy="input__select-',
     select_inputPenandatanganAtasan: '[data-cy="penandatangan__select-option__custom-input-0"]',
     select_inputPenandatanganAtasanSuggest: '[data-cy="penandatangan__select-option__0"]',
+    select_inputTujuanSelected: '[data-cy="registrasi__tujuan-naskah__selected-option-0"]',
 
     // CHECKBOX/TOGGLE
     check_toggleDistribusi: '[data-cy="registrasi__tujuan-naskah__toggle--distribusi"]',

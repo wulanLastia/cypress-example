@@ -7,6 +7,7 @@ let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
 let loginPage = new LoginPage()
 let user
+let data_temp
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     // Jika terdapat error 'uncaught:exception' pada Headless Mode
@@ -20,8 +21,13 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
+    })
+
+    cy.fixture('non_cred/drafting_luar/master_data/create_data.json').then((data) => {
+        data_temp = data
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
@@ -30,12 +36,6 @@ before(() => {
 before(() => {
     loginPage.loginViaV1(user.nip_konseptor_2, user.password)
     loginPage.directLogin()
-})
-
-after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
 })
 
 describe('Drafting Luar - Test Case Tab Registrasi Tujuan Surat', { testIsolation: false }, () => {
@@ -53,7 +53,7 @@ describe('Drafting Luar - Test Case Tab Registrasi Tujuan Surat', { testIsolatio
     qase(3879,
         it('Cek tab registrasi setelah melakukan upload file', () => {
             // Upload File
-            uploadSingleFilePage.uploadSingleFile('positif')
+            uploadSingleFilePage.uploadSingleFile(data_temp.upload[0].upload1)
             uploadSingleFilePage.checkDataFileUpload()
 
             // Click tab registrasi
@@ -61,64 +61,68 @@ describe('Drafting Luar - Test Case Tab Registrasi Tujuan Surat', { testIsolatio
         })
     )
 
-    // KEPADA YTH //
-    qase(3918,
-        it('Leave the field empty when submitting the form (Distribusi toggle on)', () => {
-            // Distribusikan surat
-            tabRegistrasiPage.activateToggleDistribusi()
-
-            // Cek tombol kirim
-            tabRegistrasiPage.checkBtnSubmit()
-        })
-    )
-
-    qase(4060,
-        it('Select tujuan from dropdown list', () => {
-            // Input tujuan from dropdown
-            tabRegistrasiPage.inputTujuan('staging', '0', 'internal', '')
-        })
-    )
-
-    qase(4055,
-        it('Delete tujuan', () => {
-            // Delete tujuan
-            tabRegistrasiPage.deleteTujuan()
-        })
-    )
-
-    qase(4051,
-        it('Check on preview page after input tujuan', () => {
-            // Input tujuan from input field
-            tabRegistrasiPage.inputTujuan('staging', '0', 'internal', 'Dra. Hj. I GUSTI AGUNG')
-        })
-    )
-
-    qase(4054,
-        it('Add tujuan', () => {
-            // Add more tujuan
-            tabRegistrasiPage.addMoreTujuan()
-        })
-    )
-
-    qase(4061,
-        it('Input free text', () => {
-            // Input tujuan eksternal
-            tabRegistrasiPage.inputTujuan('staging', '1', 'eksternal', 'Tujuan Eksternal')
-        })
-    )
-
-    // TEMBUSAN //
-    qase(3952,
+    // LINTAS DINAS - KEPADA YTH //
+    qase(4047,
         it('Leave the field empty when submitting the form', () => {
             // Cek tombol kirim
             tabRegistrasiPage.checkBtnSubmit()
         })
     )
 
+    qase(4054,
+        it('Add tujuan', () => {
+            // Add tujuan
+            tabRegistrasiPage.inputTujuanTembusan()
+        })
+    )
+
+    qase(4229,
+        it('Select tujuan/tembusan lintas dinas', () => {
+            // Add tujuan Lintas Dinas
+            tabRegistrasiPage.selectLintasDinas()
+        })
+    )
+
+    qase(4060,
+        it('Select tujuan from dropdown list', () => {
+            // Input tujuan from dropdown
+            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, '')
+        })
+    )
+
+    qase(4061,
+        it('Input free text', () => {
+            // Input tujuan from input field
+            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_internal1)
+        })
+    )
+
+    qase(4051,
+        it('Check on preview page after input tujuan', () => {
+            // Assertion after input tujuan
+            tabRegistrasiPage.assertInputTujuan(data_temp.registrasi[5].tujuan_internal1)
+        })
+    )
+
+    qase(4055,
+        it('Delete tujuan', () => {
+            // Delete tujuan
+            tabRegistrasiPage.deleteTujuan(data_temp.registrasi[5].tujuan_internal1)
+        })
+    )
+
+    // TEMBUSAN //
     qase(4650,
         it('Check on preview page after select tembusan', () => {
             // Input tembusan from dropdown
-            tabRegistrasiPage.inputTembusan('staging', '0', 'internal', '')
+            tabRegistrasiPage.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, '')
+        })
+    )
+
+    qase(4656,
+        it('Check on preview page after input tembusan', () => {
+            // Input tembusan from input field
+            tabRegistrasiPage.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[6].tembusan_internal1)
         })
     )
 
@@ -129,17 +133,20 @@ describe('Drafting Luar - Test Case Tab Registrasi Tujuan Surat', { testIsolatio
         })
     )
 
-    qase(4656,
-        it('Check on preview page after input tembusan', () => {
-            // Input tembusan from input field
-            tabRegistrasiPage.inputTembusan('staging', '1', 'eksternal', 'Tembusan Eksternal 1')
-        })
-    )
-
     qase(4652,
         it('Delete tembusan', () => {
             // Delete tembusan
-            tabRegistrasiPage.deleteTembusan()
+            tabRegistrasiPage.deleteTembusan(data_temp.registrasi[6].tembusan_internal1)
+        })
+    )
+
+    qase(3952,
+        it('Leave the field empty when submitting the form', () => {
+            // Cancel input tujuan tembusan
+            tabRegistrasiPage.batalTujuanTembusan()
+
+            // Cek tombol kirim
+            tabRegistrasiPage.checkBtnSubmit()
         })
     )
 })

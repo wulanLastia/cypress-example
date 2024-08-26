@@ -20,6 +20,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+    
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
@@ -30,12 +31,6 @@ before(() => {
 before(() => {
     loginPage.loginViaV1(user.nip_konseptor_2, user.password)
     loginPage.directLogin()
-})
-
-after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
 })
 
 describe('Drafting Luar - Test Case Tab Registrasi Bank Nomor', { testIsolation: false }, () => {
@@ -53,7 +48,7 @@ describe('Drafting Luar - Test Case Tab Registrasi Bank Nomor', { testIsolation:
     qase([3879, 3879],
         it('Cek tab registrasi setelah melakukan upload file', () => {
             // Upload File
-            uploadSingleFilePage.uploadSingleFile('positif')
+            uploadSingleFilePage.uploadSingleFile(data_temp.upload[0].upload1)
             uploadSingleFilePage.checkDataFileUpload()
 
             // Cek tab registrasi
@@ -143,5 +138,4 @@ describe('Drafting Luar - Test Case Tab Registrasi Bank Nomor', { testIsolation:
             tabRegistrasiPage.inputUnitPengolah('PAD', 'PAD')
         })
     )
-
 })

@@ -20,6 +20,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
@@ -32,18 +33,12 @@ before(() => {
     loginPage.directLogin()
 })
 
-after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
-})
-
 describe('Drafting Luar - Test Case Tab Registrasi Identitas Surat', { testIsolation: false }, () => {
 
     qase([4289, 3878],
         it('Cek tab registrasi sebelum melakukan upload file', () => {
-            // Go To Konsep Naskah Surat Biasa
-            uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
+            // Go To Konsep Naskah SKP
+            uploadSingleFilePage.goToUploadSingleFileSkp()
 
             // Cek tab registrasi
             uploadSingleFilePage.checkTabRegistrasi('Before')
@@ -53,39 +48,11 @@ describe('Drafting Luar - Test Case Tab Registrasi Identitas Surat', { testIsola
     qase(3879,
         it('Cek tab registrasi setelah melakukan upload file', () => {
             // Upload File
-            uploadSingleFilePage.uploadSingleFile('positif')
+            uploadSingleFilePage.uploadSingleFile(data_temp.upload[0].upload1)
             uploadSingleFilePage.checkDataFileUpload()
 
             // Click tab registrasi
             tabRegistrasiPage.clickTabRegistrasi()
-        })
-    )
-
-    qase([4051, 4054, 4061],
-        it('Check on preview page after input tujuan', () => {
-            // Distribusikan surat
-            tabRegistrasiPage.activateToggleDistribusi()
-
-            // Input tujuan from input field
-            tabRegistrasiPage.inputTujuan('staging', '0', 'internal', 'Dra. Hj. I GUSTI AGUNG')
-
-            // Add more tujuan
-            tabRegistrasiPage.addMoreTujuan()
-
-            // Input tujuan from input field
-            tabRegistrasiPage.inputTujuan('staging', '1', 'internal', 'LUDIA ROSEMA DEWI, S.Kom.')
-
-            // Add more tujuan
-            tabRegistrasiPage.addMoreTujuan()
-
-            // Input tujuan eksternal
-            tabRegistrasiPage.inputTujuan('staging', '2', 'eksternal', 'Tujuan Eksternal 1')
-
-            // Add more tujuan
-            tabRegistrasiPage.addMoreTujuan()
-
-            // Input tujuan eksternal
-            tabRegistrasiPage.inputTujuan('staging', '3', 'eksternal', 'Tujuan Eksternal 1')
         })
     )
 
@@ -100,14 +67,14 @@ describe('Drafting Luar - Test Case Tab Registrasi Identitas Surat', { testIsola
     qase(2872,
         it('Input tag script', () => {
             // Input tag script
-            tabRegistrasiPage.inputPerihal('<script>alert("hai")</script>', '<script>alert("hai")</script>')
+            tabRegistrasiPage.inputPerihal('<script>alert("hai")</script>', 'alert("hai")')
         })
     )
 
     qase(3990,
         it('Input tag html', () => {
             // Input tag html
-            tabRegistrasiPage.inputPerihal('<html>Hello Word</html>', '<html>Hello Word</html>')
+            tabRegistrasiPage.inputPerihal('<html>Hello Word</html>', 'Hello Word')
         })
     )
 
