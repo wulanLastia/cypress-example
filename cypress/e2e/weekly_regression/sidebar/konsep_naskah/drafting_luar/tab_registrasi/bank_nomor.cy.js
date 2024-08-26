@@ -7,6 +7,7 @@ let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
 let loginPage = new LoginPage()
 let user
+let data_temp
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     // Jika terdapat error 'uncaught:exception' pada Headless Mode
@@ -23,6 +24,10 @@ before(() => {
     
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
+    })
+
+    cy.fixture('non_cred/drafting_luar/master_data/create_data.json').then((data) => {
+        data_temp = data
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
