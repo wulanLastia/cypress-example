@@ -787,11 +787,11 @@ export class TabRegistrasiPage {
             } else {
                 cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
             }
-
+            
             const select_inputPenandatanganAtasan = cy.get(tab_registrasi.select_inputPenandatanganAtasan).as('select_inputPenandatanganAtasan')
             select_inputPenandatanganAtasan.click()
                 .wait(3000)
-                .type(inputanAtasan, {delay: 200})
+                .type(inputanAtasan, {delay: 500})
 
             cy.wait('@postRequest', { timeout: 30000 })
                 .then((interception) => {

@@ -9,6 +9,7 @@ let tabRegistrasiPage = new TabRegistrasiPage()
 let tandatanganiPage = new TandatanganiPage()
 let loginPage = new LoginPage()
 let user
+let data_temp
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     // Jika terdapat error 'uncaught:exception' pada Headless Mode
@@ -22,8 +23,13 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
+    })
+
+    cy.fixture('non_cred/drafting_luar/master_data/create_data.json').then((data) => {
+        data_temp = data
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
@@ -34,135 +40,49 @@ before(() => {
     loginPage.directLogin()
 })
 
-after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
-})
-
 describe('Drafting Luar - Test Case Tandatangani (Penandatangan Diri Sendiri)', { testIsolation: false }, () => {
 
-    qase([4289, 3878],
-        it('Cek tab registrasi sebelum melakukan upload file', () => {
-            // Go To Konsep Naskah Surat Biasa
-            uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
+    qase([4289, 3878, 3879, 3882, 3910, 3922, 4051, 4054, 4061, 4650, 4651, 4656, 3996, 4122, 4123, 4035, 3930, 4008],
+        it('Upload dan registrasi naskah single file', () => {
+            // Login 
+            loginPage.loginViaV1(user.nip_konseptor_2, user.password)
+            loginPage.directLogin()
 
-            // Cek tab registrasi
-            uploadSingleFilePage.checkTabRegistrasi('Before')
-        })
-    )
+            // Go To Konsep Naskah SKP
+            uploadSingleFilePage.goToUploadSingleFileSkp()
 
-    qase(3879,
-        it('Cek tab registrasi setelah melakukan upload file', () => {
             // Upload File
-            uploadSingleFilePage.uploadSingleFile('positif')
+            uploadSingleFilePage.uploadSingleFile(data_temp.upload[0].upload1)
             uploadSingleFilePage.checkDataFileUpload()
 
             // Click tab registrasi
             tabRegistrasiPage.clickTabRegistrasi()
-        })
-    )
 
-    qase(3882,
-        it('Cek kesesuaian nomor urut yang tampil setelah user memilih dropdown bank nomor', () => {
-            // Input nomor urut
-            tabRegistrasiPage.inputNomorUrut('2')
-        })
-    )
-
-    qase(3910,
-        it('Search kode klasifikasi', () => {
-            // Search Kode
-            tabRegistrasiPage.searchKodeKlasifikasi('SK (Semua Klasifikasi)')
-        })
-    )
-
-    qase(3922,
-        it('Check on preview page after input unit pengolah', () => {
-            // Input unit pengolah
-            tabRegistrasiPage.inputUnitPengolah('PAD', 'PAD')
-        })
-    )
-
-    qase([4051, 4054, 4061],
-        it('Check on preview page after input tujuan', () => {
-            // Distribusikan surat
-            tabRegistrasiPage.activateToggleDistribusi()
-
-            // Input tujuan from input field
-            tabRegistrasiPage.inputTujuan('staging', '0', 'internal', 'Dra. Hj. I GUSTI AGUNG')
-
-            // Add more tujuan
-            tabRegistrasiPage.addMoreTujuan()
-
-            // Input tujuan eksternal
-            tabRegistrasiPage.inputTujuan('staging', '1', 'eksternal', 'Tujuan Eksternal')
-        })
-    )
-
-    qase([4650, 4651, 4656],
-        it('Check on preview page after select tembusan', () => {
-            // Input tembusan from dropdown
-            tabRegistrasiPage.inputTembusan('staging', '0', 'internal', 'LUDIA ROSEMA DEWI, S.Kom.')
-
-            // Add more tembusan
-            tabRegistrasiPage.addMoreTembusan()
-
-            // Input tembusan from input field
-            tabRegistrasiPage.inputTembusan('staging', '1', 'eksternal', 'Tembusan Eksternal 1')
-        })
-    )
-
-    // PERIHAL //
-    qase(3996,
-        it('Check on preview page after input perihal', () => {
+            // Tab Registrasi - Bank Nomor
+            tabRegistrasiPage.inputPenomoran()
+ 
+            // Tab Registrasi - Tujuan Surat
+            tabRegistrasiPage.inputTujuanTembusanSurat()
+            
+            // Tab Registrasi - Section Identitas Surat
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
 
-            // Input perihal
-            tabRegistrasiPage.inputPerihal('Automation Drafting Luar ' + id, 'Automation Drafting Luar ' + id)
-        })
-    )
+            tabRegistrasiPage.inputPerihal('Automation Drafting Luar Penandatangan Diri Sendiri (SKP) ' + id, 'Automation Drafting Luar Penandatangan Diri Sendiri (SKP) ' + id)
+            tabRegistrasiPage.checkWarnaLabelUrgensi(data_temp.registrasi[7].urgensi_surat, data_temp.registrasi[3].index0)
+            tabRegistrasiPage.inputSifat(data_temp.registrasi[8].sifat_surat1)
 
-    // KOLOM URGENSI //
-    qase(4122,
-        it('Cek dropdown pilihan amat segera', () => {
-            tabRegistrasiPage.checkWarnaLabelUrgensi('Amat Segera', '0')
-        })
-    )
-
-    // SIFAT SURAT //
-    qase(4123,
-        it('Cek dropdown pilihan sifat biasa', () => {
-            // Input sifat
-            tabRegistrasiPage.inputSifat('0')
-        })
-    )
-
-    // PENANDATANGAN //
-    qase(4035,
-        it('Check button tambah penandatangan', () => {
-            // Tambah penandatangan
+            // Tab Registrasi - Section Penandatangan
             tabRegistrasiPage.addMorePenandatangan()
-        })
-    )
-
-    qase(3930,
-        it('Show user login info if user select penandatangan diri sendiri', () => {
-            // Input penandatangan
             tabRegistrasiPage.inputPenandatanganDiriSendiri()
-        })
-    )
 
-    qase(4008,
-        it('Cek kesesuaian file ketika berhasil melakukan upload file', () => {
-            // Upload file
-            tabRegistrasiPage.uploadSuratPengantar('positif')
+            // Upload file pengantar
+            tabRegistrasiPage.uploadSuratPengantar(data_temp.upload[0].upload1)
             tabRegistrasiPage.checkDataFileUpload()
         })
     )
 
-    qase(4078,
+    qase([4078, 4134],
         it('Cek kesesuaian popup tte naskah', () => {
             // Click btn tte naskah
             tandatanganiPage.tandatanganiNaskah()
@@ -172,35 +92,35 @@ describe('Drafting Luar - Test Case Tandatangani (Penandatangan Diri Sendiri)', 
         })
     )
 
-    qase(4097,
+    qase([4097, 4149],
         it('Cek tombol tte naskah pada popup konfirmasi', () => {
             // Click btn tte naskah
             tandatanganiPage.tteNaskah()
         })
     )
 
-    qase(4079,
+    qase([4079, 4135],
         it('Mengosongkan passphrase dan klik button TTE naskah', () => {
             // Click btn tte naskah
             tandatanganiPage.confirmTteNaskah('negatif')
         })
     )
 
-    qase(4085,
+    qase([4085, 4141],
         it('Cek section passphrase TTE', () => {
             // Check input passphrase
             tandatanganiPage.checkInputPassphrase()
         })
     )
 
-    qase(4080,
+    qase([4080, 4136],
         it('Cek tombol periksa kembali', () => {
             // Click tombol periksa kembali
             tandatanganiPage.clickBtnPeriksaKembali()
         })
     )
 
-    qase(4082,
+    qase([4082, 4138],
         it('Cek jika berhasil tandatangani naskah', () => {
             // Click btn tte naskah
             tandatanganiPage.tandatanganiNaskah()

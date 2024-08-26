@@ -169,7 +169,7 @@ export class TandatanganiPage {
         const dialog_panelInputPassphrase = cy.get(tandatangani.dialog_panelInputPassphrase).as('dialog_panelInputPassphrase')
         dialog_panelInputPassphrase.should('be.visible')
 
-        const dialog_panelIconHideShow = cy.xpath(tandatangani.dialog_panelIconHideShow).as('dialog_panelIconHideShow')
+        const dialog_panelIconHideShow = cy.get(tandatangani.dialog_panelIconHideShow).as('dialog_panelIconHideShow')
         dialog_panelIconHideShow.find('svg')
             .should('have.class', 'iconify iconify--material-symbols')
     }
