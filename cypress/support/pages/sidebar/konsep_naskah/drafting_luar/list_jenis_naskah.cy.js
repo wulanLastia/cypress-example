@@ -56,6 +56,7 @@ export class ListNaskahSuratBiasaPage {
 
                 // Access Button Buat Draft
                 btn_draftSuratBiasa.click()
+                    .wait(30000)
             }
         })
     }

@@ -80,7 +80,7 @@ export class DraftingKakiSuratPage {
 
     pilihPenandatanganDiriSendiri(inputanPenandatanganDiriSendiri) {
         const selectPenandatangan = cy.get(kaki_surat.selectPenandatangan).as('selectPenandatangan')
-        selectPenandatangan.select(4).should('have.value', 'DIRI_SENDIRI')
+        selectPenandatangan.select('DIRI_SENDIRI')
 
         const selectedPenandatangan = cy.xpath(kaki_surat.selectedPenandatangan).as('selectedPenandatangan')
         selectedPenandatangan.should('contain', inputanPenandatanganDiriSendiri)

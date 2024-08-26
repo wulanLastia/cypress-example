@@ -269,8 +269,9 @@ export class DraftingKonsepNaskahPage {
     scrollPreviewDownPage() {
         cy.wait(3000)
 
-        const previewPageDown = cy.xpath(konsep_naskah.previewPageDown).as('previewPageDown')
-        previewPageDown.scrollTo('bottom')
+        const previewPageDown = cy.get(konsep_naskah.previewPageDown).as('previewPageDown')
+        previewPageDown.click()
+            .scrollTo('bottom')
     }
 
     clickSimpanSurat() {
