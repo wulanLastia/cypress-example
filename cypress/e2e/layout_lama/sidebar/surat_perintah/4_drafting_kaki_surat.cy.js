@@ -1,7 +1,7 @@
 import { qase } from 'cypress-qase-reporter/mocha';
-import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { DraftingKakiSuratPerintahPage } from "../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/super_drafting_kaki_surat.cy"
-import { DraftingSuratPerintahPage } from "../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_surat_perintah.cy"
+import { LoginPage } from "../../../../support/pages/auth/login.cy"
+import { DraftingKakiSuratPerintahPage } from "../../../../support/pages/sidebar/konsep_naskah/surat_perintah/super_drafting_kaki_surat.cy"
+import { DraftingSuratPerintahPage } from "../../../../support/pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_surat_perintah.cy"
 
 let draftingKakiSuratPerintahPage = new DraftingKakiSuratPerintahPage()
 let draftingSuratPerintahPage = new DraftingSuratPerintahPage()

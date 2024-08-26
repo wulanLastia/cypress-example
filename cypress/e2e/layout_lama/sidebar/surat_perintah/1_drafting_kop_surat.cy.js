@@ -1,8 +1,8 @@
 import { qase } from 'cypress-qase-reporter/mocha';
-import { LoginPage } from "../../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../../support/pages/sidebar/menu/menu.cy"
-import { DraftingSuratPerintahPage } from "../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_surat_perintah.cy"
-import { DraftingKopSuratPerintahPage } from "../../../../../support/pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_kop_surat_perintah.cy"
+import { LoginPage } from "../../../../support/pages/auth/login.cy"
+import { MenuPage } from "../../../../support/pages/sidebar/menu/menu.cy"
+import { DraftingSuratPerintahPage } from "../../../../support/pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_surat_perintah.cy"
+import { DraftingKopSuratPerintahPage } from "../../../../support/pages/sidebar/konsep_naskah/surat_perintah/pgs_drafting_kop_surat_perintah.cy"
 
 
 let loginPage = new LoginPage()

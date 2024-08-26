@@ -26,8 +26,9 @@ export class KembalikanNaskahPage {
                 cy.readFile(perihalNaskah).then((object) => {
                     const titlePerihalNaskah = object.titlePerihal
                     
-                    // Check drafting dalam or drafting luar
-                    if(titlePerihalNaskah.toLowerCase().includes('skp')){
+                    // Ditutup sementara, karena ada perubahan list
+                    // // Check drafting dalam or drafting luar
+                    // if(titlePerihalNaskah.toLowerCase().includes('skp')){
                         // Naskah drafting luar
                         cy.wait(3000)
             
@@ -71,19 +72,19 @@ export class KembalikanNaskahPage {
                             table_kotakMasuk.contains('td', titlePerihalNaskah)
                                 .click()
                         }  
-                    }else{
-                        // Naskah drafting dalam
-                        // Click tab review naskah
-                        const tab_kotakMasukReviewNaskah = cy.get(kotak_masuk.tab_kotakMasukReviewNaskah).as('tab_kotakMasukReviewNaskah')
-                        tab_kotakMasukReviewNaskah.should('contain', 'Review Naskah')
-                            .click()
-                            .wait(6000)
+                    // }else{
+                    //     // Naskah drafting dalam
+                    //     // Click tab review naskah
+                    //     const tab_kotakMasukReviewNaskah = cy.get(kotak_masuk.tab_kotakMasukReviewNaskah).as('tab_kotakMasukReviewNaskah')
+                    //     tab_kotakMasukReviewNaskah.should('contain', 'Review Naskah')
+                    //         .click()
+                    //         .wait(6000)
 
-                        // Get data terakhir 
-                        const label_tableDataJenis = cy.get(kotak_masuk.label_tableDataJenis).as('label_tableDataJenis')
-                        label_tableDataJenis.click()
-                            .wait(6000)
-                    }
+                    //     // Get data terakhir 
+                    //     const label_tableDataJenis = cy.get(kotak_masuk.label_tableDataJenis).as('label_tableDataJenis')
+                    //     label_tableDataJenis.click()
+                    //         .wait(6000)
+                    // }
                 })
             } else {
                 // Go To Menu Kotak Masuk Layout Lama

@@ -43,5 +43,5 @@ module.exports = {
 
     // XPATH
     previewPage: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[1]/div[1]',
-    previewPageDown: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[1]/div[1]'
+    previewPageDown: '[data-testid="core__text-layer-0"]'
 }
