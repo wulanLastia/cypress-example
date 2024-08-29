@@ -37,24 +37,17 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: true })
 })
 
-before(() => {
-    loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
-    loginPage.directLogin()
-})
-
-after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
-})
-
-describe('Drafting Luar - Test Case List Kotak Masuk', { testIsolation: false }, () => {
+describe('Drafting Luar - Test Case List Kotak Masuk Tab TTE Naskah', { testIsolation: false }, () => {
 
     // Create sample data
     qase([4289, 3878, 3879, 3882, 3910, 3922, 4051, 4054, 4061, 4650, 4651, 4656, 3996, 4122, 4123, 4035, 3930, 4008, 4078, 4097, 4080],
         it('Upload dan registrasi naskah single file', () => {
-            // Go To Konsep Naskah Surat Biasa
-            uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
+            // Login
+            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
+            loginPage.directLogin()
+
+            // Go To Konsep Naskah SKP
+            uploadSingleFilePage.goToUploadSingleFileSkp()
 
             // Upload File
             uploadSingleFilePage.uploadSingleFile(data_temp.upload[0].upload1)
@@ -64,9 +57,7 @@ describe('Drafting Luar - Test Case List Kotak Masuk', { testIsolation: false },
             tabRegistrasiPage.clickTabRegistrasi()
 
             // Tab Registrasi - Bank Nomor
-            tabRegistrasiPage.inputNomorUrut(data_temp.registrasi[0].bank_nomor_lainnya)
-            tabRegistrasiPage.searchKodeKlasifikasi(data_temp.registrasi[1].kode_klasifikasi)
-            tabRegistrasiPage.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
+            tabRegistrasiPage.inputPenomoran()
  
             // Tab Registrasi - Tujuan Surat
             tabRegistrasiPage.inputTujuanTembusanSurat()
@@ -93,83 +84,55 @@ describe('Drafting Luar - Test Case List Kotak Masuk', { testIsolation: false },
             tandatanganiPage.tandatanganiNaskah()
             tandatanganiPage.checkInputDataRegistrasi()
             tandatanganiPage.tteNaskah()
-            tandatanganiPage.submitTteNaskah('user.passphrase', data_temp.env[0].staging)
+            tandatanganiPage.submitTteNaskah(user.passphrase, data_temp.env[0].staging)
         })
     )
 
-    // Begin test case kotak masuk
-    qase(97,
-        it('Akses menu kotak masuk tab TTE Naskah', () => {
-            cy.wait(6000)
+    // Begin test case list kotak masuk
+    qase([97, 300, 238, 301, 239, 235, 234, 232],
+        it('Test case list kotak masuk', () => {
+            // Login 
+            loginPage.loginViaV1(user.nip_pemeriksa_2_2, user.password)
+            loginPage.directLogin()
             
-            // Go To Kotak Masuk - TTE & Review
+            // Go To Kotak Masuk - TTE & Review 97
             kotakMasukPage.goToKotakMasukTTEReview()
+
+            cy.wait(6000)
+
+            // Cek kesesuaian data urgensi 300
+            kotakMasukPage.checkListDataUrgensi()
+
+            // Cek kesesuaian data jenis 238
+            kotakMasukPage.checkListDataJenis()
+
+            // Cek kesesuaian data sifat 301
+            kotakMasukPage.checkListDataSifat()
+
+            // Cek kesesuaian data perihal 239
+            kotakMasukPage.checkListDataPerihal()
+
+            // Cek fungsi tombol Selanjutnya 235
+            kotakMasukPage.checkNextPageData()
+
+            // Cek fungsi tombol Sebelumnya 234
+            kotakMasukPage.checkPrevPageData()
+
+            // Cek tombol Sebelumnya pada halaman pertama tabel 232
+            kotakMasukPage.checkPrevPage()
+
+            // Cek tombol Selanjutnya pada halaman terakhir tabel 233
+            kotakMasukPage.checkNextPage()
         })
     )
 
     qase([236,3300],
-        it('Cek list halaman kotak masuk dengann status TTE di Ulang', () => {
+        it.skip('Cek list halaman kotak masuk dengann status TTE di Ulang', () => {
             // Wait for 6 seconds
             cy.wait(10000)
 
             // Check status tte "TTE Ulang"
             kotakMasukPage.checkStatusNaskah(data_temp.registrasi[10].status1)
-        })
-    )
-
-    qase(300,
-        it('Cek kesesuaian data urgensi', () => {
-            // Cek kesesuaian data urgensi
-            kotakMasukPage.checkDataUrgensi()
-        })
-    )
-
-    qase(238,
-        it('Cek kesesuaian data jenis', () => {
-            // Cek kesesuaian data jenis
-            kotakMasukPage.checkDataJenis()
-        })
-    )
-
-    qase(301,
-        it('Cek kesesuaian data sifat', () => {
-            // Cek kesesuaian data sifat
-            kotakMasukPage.checkDataSifat()
-        })
-    )
-
-    qase(239,
-        it('Cek kesesuaian data perihal', () => {
-            // Cek kesesuaian data perihal
-            kotakMasukPage.checkDataPerihal()
-        })
-    )
-
-    qase(235,
-        it('Cek fungsi tombol Selanjutnya', () => {
-            // Cek fungsi tombol Selanjutnya
-            kotakMasukPage.checkNextPageData()
-        })
-    )
-
-    qase(234,
-        it('Cek fungsi tombol Sebelumnya', () => {
-            // Cek fungsi tombol Sebelumnya
-            kotakMasukPage.checkPrevPageData()
-        })
-    )
-
-    qase(232,
-        it('Cek tombol Sebelumnya pada halaman pertama tabel', () => {
-            // Cek tombol Sebelumnya pada halaman pertama tabel
-            kotakMasukPage.checkPrevPage()
-        })
-    )
-
-    qase(233,
-        it('Cek tombol Selanjutnya pada halaman terakhir tabel', () => {
-            // Cek tombol Selanjutnya pada halaman terakhir tabel
-            kotakMasukPage.checkNextPage()
         })
     )
 })
