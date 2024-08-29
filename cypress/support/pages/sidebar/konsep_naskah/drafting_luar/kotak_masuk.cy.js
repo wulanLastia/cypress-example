@@ -77,7 +77,7 @@ export class KotakMasukPage {
                     .click()
             }
             
-            cy.wait(6000)
+            cy.wait(12000)
         })
     }
 
@@ -122,7 +122,7 @@ export class KotakMasukPage {
         }
     }
 
-    checkDataUrgensi() {
+    checkListDataUrgensi() {
         cy.readFile(getPreviewData).then((object) => {
             const urgensiValue = object.identitas_surat[1].urgensi
 
@@ -132,7 +132,7 @@ export class KotakMasukPage {
         })
     }
 
-    checkDataJenis() {
+    checkListDataJenis() {
         cy.readFile(getPreviewData).then((object) => {
             const jenisNaskahValue = object.upload_file[0].jenis_naskah
 
@@ -141,7 +141,7 @@ export class KotakMasukPage {
         })
     }
 
-    checkDataSifat() {
+    checkListDataSifat() {
         cy.readFile(getPreviewData).then((object) => {
             const sifatValue = object.identitas_surat[2].sifat
 
@@ -150,7 +150,7 @@ export class KotakMasukPage {
         })
     }
 
-    checkDataPerihal() {
+    checkListDataPerihal() {
         cy.readFile(getPreviewData).then((object) => {
             const perihalValue = object.identitas_surat[0].perihal
 

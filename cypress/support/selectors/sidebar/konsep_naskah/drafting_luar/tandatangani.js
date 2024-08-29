@@ -9,6 +9,7 @@ module.exports = {
     btn_confirmKirimNaskah: '[data-cy="dialog__dialog-send-document__button--confirm"]',
     btn_closeCsat: '[data-cy="dialog__dialog-csat__button--close"]',
     btn_submitCsat: '[data-cy="dialog__dialog-csat__button--confirm"]',
+    btn_alertConfirm: '[data-cy="dialog__dialog-alert__button--confirm"]',
 
     // LABEL
     label_headerDocumentType: '[data-cy="header__title"]',
@@ -36,6 +37,9 @@ module.exports = {
     dialog_panelIconHideShow: '[data-cy="dialog__dialog-signing__input--show-passphrase"]',
     dialog_successTTENaskah: '[data-cy="dialog__dialog-info__wrapper"]',
     dialog_csat: '[data-cy="dialog__dialog-csat__panel"]',
+    dialog_alert: '[data-cy="dialog__dialog-alert__wrapper"]',
+    dialog_alertTitle: '[data-cy="dialog__dialog-alert__title"]',
+    dialog_alertDesc: '[data-cy="dialog__dialog-alert__description"]',
 
     // INPUT
     input_emotCsat: '[data-cy="dialog__dialog-csat__input-rate-4"]',

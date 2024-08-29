@@ -305,4 +305,12 @@ export class TandatanganiPage {
             }
         })
     }
+
+    // TODO: Refactor action TTE Ulang
+    clickBtnGagalTTE() {
+        // Click btn saya mengerti
+        const btn_alertConfirm = cy.get(tandatangani.btn_alertConfirm).as('btn_alertConfirm')
+        btn_alertConfirm.should('contain', 'Saya mengerti')
+            .click()
+    }
 }

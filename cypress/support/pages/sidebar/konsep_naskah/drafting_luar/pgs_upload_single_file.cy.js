@@ -240,7 +240,7 @@ export class UploadSingleFilePage {
 
         // Access Upload Single File
         btn_uploadFileSkp.click({ force : true })
-            .wait(30000)
+            .wait(50000)
             .then((val) => {
                 // Begin Save Assertion Data
                 cy.readFile(getPreviewData).then((object) => {
