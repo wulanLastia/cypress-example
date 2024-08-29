@@ -55,7 +55,7 @@ export class KotakKeluarPage {
             .should('be.visible')
     }
 
-    checkDataUrgensi() {
+    checkListDataUrgensi() {
         cy.readFile(getPreviewData).then((object) => {
             const urgensiValue = object.identitas_surat[1].urgensi
 
@@ -65,7 +65,7 @@ export class KotakKeluarPage {
         })
     }
 
-    checkDataJenis() {
+    checkListDataJenis() {
         cy.readFile(getPreviewData).then((object) => {
             const jenisNaskahValue = object.upload_file[0].jenis_naskah
 
@@ -74,7 +74,7 @@ export class KotakKeluarPage {
         })
     }
 
-    checkDataSifat() {
+    checkListDataSifat() {
         cy.readFile(getPreviewData).then((object) => {
             const sifatValue = object.identitas_surat[2].sifat
 
@@ -83,7 +83,7 @@ export class KotakKeluarPage {
         })
     }
 
-    checkDataPerihal() {
+    checkListDataPerihal() {
         cy.readFile(getPreviewData).then((object) => {
             const perihalValue = object.identitas_surat[0].perihal
 
@@ -93,7 +93,7 @@ export class KotakKeluarPage {
         })
     }
 
-    checkDataNomorNaskah() {
+    checkListDataNomorNaskah() {
         cy.readFile(getPreviewData).then((object) => {
             const nomorUrutValue = object.bank_nomor[1].nomor_urut
 
@@ -350,7 +350,7 @@ export class KotakKeluarPage {
     }
 
     checkBtnKembali() {
-        const btn_headerKembali = cy.get(kotak_masuk.btn_headerKembali).as('btn_headerKembali')
+        const btn_headerKembali = cy.get(kotak_keluar.btn_headerKembali).as('btn_headerKembali')
         btn_headerKembali.click()
 
         // Assertion

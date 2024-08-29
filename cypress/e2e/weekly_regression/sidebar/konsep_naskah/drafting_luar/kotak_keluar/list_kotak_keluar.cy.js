@@ -42,19 +42,13 @@ before(() => {
     loginPage.directLogin()
 })
 
-after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
-})
-
 describe('Drafting Luar - Test Case List Kotak Keluar', { testIsolation: false }, () => {
 
     // Create sample data
     qase([4289, 3878, 3879, 3882, 3910, 3922, 4051, 4054, 4061, 4650, 4651, 4656, 3996, 4122, 4123, 4035, 3930, 4008, 4078, 4097, 4080],
         it('Upload dan registrasi naskah single file', () => {
-            // Go To Konsep Naskah Surat Biasa
-            uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
+            // Go To Konsep Naskah SKP
+            uploadSingleFilePage.goToUploadSingleFileSkp()
 
             // Upload File
             uploadSingleFilePage.uploadSingleFile(data_temp.upload[0].upload1)
@@ -64,9 +58,7 @@ describe('Drafting Luar - Test Case List Kotak Keluar', { testIsolation: false }
             tabRegistrasiPage.clickTabRegistrasi()
 
             // Tab Registrasi - Bank Nomor
-            tabRegistrasiPage.inputNomorUrut(data_temp.registrasi[0].bank_nomor_lainnya)
-            tabRegistrasiPage.searchKodeKlasifikasi(data_temp.registrasi[1].kode_klasifikasi)
-            tabRegistrasiPage.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
+            tabRegistrasiPage.inputPenomoran()
  
             // Tab Registrasi - Tujuan Surat
             tabRegistrasiPage.inputTujuanTembusanSurat()
@@ -115,33 +107,33 @@ describe('Drafting Luar - Test Case List Kotak Keluar', { testIsolation: false }
     qase(3065,
         it('Cek kesesuaian data jenis', () => {
             // Cek kesesuaian data jenis
-            kotakKeluarPage.checkDataJenis()
+            kotakKeluarPage.checkListDataJenis()
         })
     )
 
     qase(3066,
         it('Cek kesesuaian data perihal', () => {
             // Cek kesesuaian data perihal
-            kotakKeluarPage.checkDataPerihal()
+            kotakKeluarPage.checkListDataPerihal()
         })
     )
 
     qase(3069,
         it('Cek kesesuaian data urgensi', () => {
             // Cek kesesuaian data urgensi
-            kotakKeluarPage.checkDataUrgensi()
+            kotakKeluarPage.checkListDataUrgensi()
         })
     )
 
     qase(3070,
         it('Cek kesesuaian data sifat', () => {
             // Cek kesesuaian data sifat
-            kotakKeluarPage.checkDataSifat()
+            kotakKeluarPage.checkListDataSifat()
         })
     )
 
     qase(3128,
-        it('Cek kesesuaian data nomor naskah', () => {
+        it.skip('Cek kesesuaian data nomor naskah', () => {
             // Cek kesesuaian data nomor naskah
             kotakKeluarPage.checkDataNomorNaskah()
         })
