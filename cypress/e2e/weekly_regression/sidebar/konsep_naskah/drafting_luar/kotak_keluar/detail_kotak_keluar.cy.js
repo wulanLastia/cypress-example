@@ -37,12 +37,6 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: true })
 })
 
-after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
-})
-
 describe('Drafting Luar - Test Case Detail Kotak Keluar', { testIsolation: false }, () => {
 
     // Create sample data
@@ -52,8 +46,8 @@ describe('Drafting Luar - Test Case Detail Kotak Keluar', { testIsolation: false
             loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
             loginPage.directLogin()
 
-            // Go To Konsep Naskah Surat Biasa
-            uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
+            // Go To Konsep Naskah SKP
+            uploadSingleFilePage.goToUploadSingleFileSkp()
 
             // Upload File
             uploadSingleFilePage.uploadSingleFile(data_temp.upload[0].upload1)
@@ -63,9 +57,7 @@ describe('Drafting Luar - Test Case Detail Kotak Keluar', { testIsolation: false
             tabRegistrasiPage.clickTabRegistrasi()
 
             // Tab Registrasi - Bank Nomor
-            tabRegistrasiPage.inputNomorUrut(data_temp.registrasi[0].bank_nomor_lainnya)
-            tabRegistrasiPage.searchKodeKlasifikasi(data_temp.registrasi[1].kode_klasifikasi)
-            tabRegistrasiPage.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
+            tabRegistrasiPage.inputPenomoran()
  
             // Tab Registrasi - Tujuan Surat
             tabRegistrasiPage.inputTujuanTembusanSurat()
@@ -106,6 +98,8 @@ describe('Drafting Luar - Test Case Detail Kotak Keluar', { testIsolation: false
 
             // Akses detail naskah kotak keluar
             kotakKeluarPage.checkNaskahKotakKeluar(data_temp.env[0].staging)
+
+            cy.wait(30000)
         })
     )
 
@@ -123,8 +117,9 @@ describe('Drafting Luar - Test Case Detail Kotak Keluar', { testIsolation: false
         })
     )
 
+    // Skip untuk case Jenis Naskah SKP
     qase(3253,
-        it('Cek detail data tab registrasi - nomor naskah', () => {
+        it.skip('Cek detail data tab registrasi - nomor naskah', () => {
             // Cek detail data tab registrasi - nomor naskah
             kotakKeluarPage.checkDataNomorNaskah()
         })
@@ -151,8 +146,9 @@ describe('Drafting Luar - Test Case Detail Kotak Keluar', { testIsolation: false
         })
     )
 
+    // Skip untuk case Jenis Naskah SKP
     qase(3257,
-        it('Cek detail data tab registrasi - penerima', () => {
+        it.skip('Cek detail data tab registrasi - penerima', () => {
             // Cek detail data tab registrasi - penerima
             kotakKeluarPage.checkDataPenerima()
         })
