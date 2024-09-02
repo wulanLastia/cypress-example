@@ -567,7 +567,7 @@ export class TabRegistrasiPage {
             input_perihal.clear()
                 .type(inputPerihal)
 
-            // Assertion input unit pengolah
+            // Assertion input perihal
             const assert_perihal = cy.get(tab_registrasi.input_perihal).as('assert_perihal')
             assert_perihal.invoke('val')
                 .then((val) => {
