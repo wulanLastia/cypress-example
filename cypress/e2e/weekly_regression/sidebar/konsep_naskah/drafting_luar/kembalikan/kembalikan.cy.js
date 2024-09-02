@@ -39,12 +39,6 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
-})
-
 describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () => {
 
     qase([4289, 3878, 3879, 3882, 3910, 3922, 4051, 4054, 4061, 4650, 4651, 4656, 3996, 4122, 4123, 4035, 3930, 4008, 4078, 4097, 4080],
@@ -53,8 +47,8 @@ describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () =>
             loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
             loginPage.directLogin()
 
-            // Go To Konsep Naskah Surat Biasa
-            uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
+            // Go To Konsep Naskah SKP
+            uploadSingleFilePage.goToUploadSingleFileSkp()
 
             // Upload File
             uploadSingleFilePage.uploadSingleFile(data_temp.upload[0].upload1)
@@ -64,9 +58,7 @@ describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () =>
             tabRegistrasiPage.clickTabRegistrasi()
 
             // Tab Registrasi - Bank Nomor
-            tabRegistrasiPage.inputNomorUrut(data_temp.registrasi[0].bank_nomor_lainnya)
-            tabRegistrasiPage.searchKodeKlasifikasi(data_temp.registrasi[1].kode_klasifikasi)
-            tabRegistrasiPage.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
+            tabRegistrasiPage.inputPenomoran()
  
             // Tab Registrasi - Tujuan Surat
             tabRegistrasiPage.inputTujuanTembusanSurat()
