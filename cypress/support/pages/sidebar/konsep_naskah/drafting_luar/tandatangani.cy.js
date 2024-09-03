@@ -249,7 +249,7 @@ export class TandatanganiPage {
                 input_saranCsat.type('Sip Mantap!')
 
                 const btn_submitCsat = cy.get(tandatangani.btn_submitCsat).as('btn_submitCsat')
-                btn_submitCsat.click()
+                btn_submitCsat.click( { force : true} )
 
                 cy.wait(3000)
 
@@ -291,7 +291,7 @@ export class TandatanganiPage {
                 input_saranCsat.type('Sip Mantap!')
 
                 const btn_submitCsat = cy.get(tandatangani.btn_submitCsat).as('btn_submitCsat')
-                btn_submitCsat.click()
+                btn_submitCsat.click({ force : true})
 
                 cy.wait(3000)
 
@@ -299,7 +299,7 @@ export class TandatanganiPage {
                     if ($body.find(tandatangani.btn_closeCsat).length > 0) {
                         // Close button csat
                         const btn_closeCsat = cy.get(tandatangani.btn_closeCsat).as('btn_closeCsat')
-                        btn_closeCsat.click()
+                        btn_closeCsat.click({ force : true})
                     }
                 })
             }

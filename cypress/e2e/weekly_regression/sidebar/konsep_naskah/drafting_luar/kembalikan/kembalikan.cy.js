@@ -67,7 +67,7 @@ describe('Drafting Luar - Skenario Surat Biasa', { testIsolation: false }, () =>
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
 
-            tabRegistrasiPage.inputPerihal('Automation Drafting Luar Kembalikan (Surat Biasa) ' + id, 'Automation Drafting Luar Kembalikan (Surat Biasa) ' + id)
+            tabRegistrasiPage.inputPerihal('Automation Drafting Luar Kembalikan (SKP) ' + id, 'Automation Drafting Luar Kembalikan (SKP) ' + id)
             tabRegistrasiPage.checkWarnaLabelUrgensi(data_temp.registrasi[7].urgensi_surat, data_temp.registrasi[3].index0)
             tabRegistrasiPage.inputSifat(data_temp.registrasi[8].sifat_surat1)
 

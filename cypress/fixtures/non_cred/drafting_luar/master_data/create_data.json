@@ -43,10 +43,12 @@
       "tembusan_eksternal1": "Tembusan Eksternal"
     },
     {
-      "urgensi_surat": "Amat Segera"
+      "urgensi_surat": "Amat Segera",
+      "urgensi_surat_last": "Segera"
     },
     {
-      "sifat_surat1": "1"
+      "sifat_surat1": "1",
+      "sifat_surat2": "2"
     },
     {
       "atasan1": "RIZKI HUSTINIASARI, S.T., M.T.",

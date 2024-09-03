@@ -2,9 +2,12 @@ module.exports = {
     // TAB
     tab_perbaikan: '[data-cy="tab__detail-revision"]',
     tab_daftar_file: '[data-cy="tab__document-list"]',
+    tab_histori: '[data-cy="tab__detail-histori"]',
+    tab_registration: '[data-cy="tab__document-registration"]',
 
     // BUTTON
     btn_perbaikiNavbar: '[data-cy="tte-review-naskah__button--go-to-document-revision"]',
+    btn_kembaliNavbar: '[data-cy="header__button--back"]',
 
     // LABEL
     label_pemeriksaTitle: '[data-cy="pemeriksa__title"]',
@@ -23,7 +26,6 @@ module.exports = {
     label_inputSifatNaskah: '[data-cy="revision-point__data-7__description"]',
     label_inputKodeKlasifikasi: '[data-cy="revision-point__data-8__description"]',
     
-
     // CHECKBOX
     cb_inputPerihal: '[data-cy="revision-point__data-0__icon"]',
     cb_inputIsiNaskah: '[data-cy="revision-point__data-1__icon"]',

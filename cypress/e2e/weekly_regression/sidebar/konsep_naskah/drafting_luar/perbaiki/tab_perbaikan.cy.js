@@ -43,7 +43,7 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-describe('Drafting Luar - Tab Perbaikan Naskah', () => {
+describe('Drafting Luar - Create, Kembalikan Naskah', () => {
 
     qase([4289, 3878, 3879, 3882, 3910, 3922, 4051, 4054, 4061, 4650, 4651, 4656, 3996, 4122, 4123, 4035, 3930, 4008, 4078, 4097, 4080],
         it('Upload dan registrasi naskah single file', () => {
@@ -51,8 +51,8 @@ describe('Drafting Luar - Tab Perbaikan Naskah', () => {
             loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
             loginPage.directLogin()
 
-            // Go To Konsep Naskah Surat Biasa
-            uploadSingleFilePage.goToUploadSingleFileSuratBiasa()
+            // Go To Konsep Naskah SKP
+            uploadSingleFilePage.goToUploadSingleFileSkp()
 
             // Upload File
             uploadSingleFilePage.uploadSingleFile(data_temp.upload[0].upload1)
@@ -62,10 +62,8 @@ describe('Drafting Luar - Tab Perbaikan Naskah', () => {
             tabRegistrasiPage.clickTabRegistrasi()
 
             // Tab Registrasi - Bank Nomor
-            tabRegistrasiPage.inputNomorUrut(data_temp.registrasi[0].bank_nomor_lainnya)
-            tabRegistrasiPage.searchKodeKlasifikasi(data_temp.registrasi[1].kode_klasifikasi)
-            tabRegistrasiPage.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
-
+            tabRegistrasiPage.inputPenomoran()
+ 
             // Tab Registrasi - Tujuan Surat
             tabRegistrasiPage.inputTujuanTembusanSurat()
 
@@ -73,7 +71,7 @@ describe('Drafting Luar - Tab Perbaikan Naskah', () => {
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
 
-            tabRegistrasiPage.inputPerihal('Automation Drafting Luar Kembalikan (Surat Biasa) ' + id, 'Automation Drafting Luar Kembalikan (Surat Biasa) ' + id)
+            tabRegistrasiPage.inputPerihal('Automation Drafting Luar Kembalikan (SKP) ' + id, 'Automation Drafting Luar Kembalikan (SKP) ' + id)
             tabRegistrasiPage.checkWarnaLabelUrgensi(data_temp.registrasi[7].urgensi_surat, data_temp.registrasi[3].index0)
             tabRegistrasiPage.inputSifat(data_temp.registrasi[8].sifat_surat1)
 
@@ -129,17 +127,34 @@ describe('Drafting Luar - Tab Perbaikan Naskah', () => {
             kotakKeluarPage.checkNaskahKotakKeluar(data_temp.env[0].staging)
         })
     )
+})
 
-    qase([3389, 4223, 4225, 4226, 4214, 4215, 4216, 4217, 4218, 4219, 4220, 4221, 4222],
-        it('Cek Tab Perbaikan', () => {
+describe('Drafting Luar - Perbaiki Naskah', { testIsolation: false }, () => {
+
+    qase([3389, 4213, 4212],
+        it('Perbaiki', () => {
             // Login 
             loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
             loginPage.directLogin()
 
             // Go To Kotak Masuk - TTE & Review 3389
             kotakMasukPage.goToKotakMasukTTEReview()
-            kotakMasukPage.goToPerbaikiNaskah()
+            cy.wait(6000)
+            kotakMasukPage.goToPerbaikiNaskah(data_temp.env[0].staging)
+            cy.wait(6000)
 
+            // Cek tombol perbaiki pada detail naskah 4213
+            perbaikiPage.checkBtnPerbaiki()
+
+            // Cek tombol kembali pada detail data perbaiki naskah 4212
+            perbaikiPage.checkBtnKembali()
+
+            cy.wait(3000)
+        })
+    )
+
+    qase([4223, 4225, 4226, 4214, 4215, 4216, 4217, 4218, 4219, 4220, 4221, 4222],
+        it('Tab Perbaikan', () => {
             // Cek value poin perbaikan naskah berdasarkan inputan poin perbaikan 4223
             perbaikiPage.checkPoinPerbaikan()
 
@@ -172,6 +187,46 @@ describe('Drafting Luar - Tab Perbaikan Naskah', () => {
 
             // Cek value kembalikan naskah berdasarkan checkbox "Kode Klasifikasi" 4222
             perbaikiPage.checkInputPerbaikanKodeKlasifikasi()
+
+            cy.wait(3000)
+        })
+    )
+
+    qase([3862, 4295, 4308, 4305, 4320, 4316],
+        it('Tab Daftar File', () => {
+            // Mengakses halaman perbaiki naskah tab daftar file 3862
+            perbaikiPage.aksesTabDaftarFile()
+
+            // Cek validasi jika upload naskah selain format PDF 4295
+            perbaikiPage.checkUpdatePerbaikanFile(data_temp.upload[0].upload2)
+
+            // Cek perubahan file jika melakukan update file naskah 4308, 4305
+            perbaikiPage.checkUpdatePerbaikanFile(data_temp.upload[0].upload1)
+
+            // Cek nama file pada popup konfirmasi hapus file 4320
+            perbaikiPage.checkDeletePerbaikanFileUpload()
+
+            // Batal melakukan hapus file 4316
+            perbaikiPage.batalDeletePerbaikanFileUpload()
+        })
+    )
+
+    qase([4213, 4356, 4361, 4362, 4363, 4359],
+        it('Tab Registrasi', () => {
+            // Mengakses tab registrasi 4356
+            perbaikiPage.aksesTabRegistrasi()
+
+            // Mengupdate section identitas surat - perihal 4361
+            perbaikiPage.inputPerbaikanPerihal(' Perbaiki')
+
+            // Mengupdate section identitas surat - urgensi 4362
+            perbaikiPage.inputPerbaikanUrgensi(data_temp.registrasi[7].urgensi_surat_last, data_temp.registrasi[3].index3)
+
+            // Mengupdate section identitas surat - sifat surat 4363
+            perbaikiPage.inputPerbaikanSifat(data_temp.registrasi[8].sifat_surat2)
+
+            // Mengupdate section surat pengantar 4359
+            perbaikiPage.uploadPerbaikanSuratPengantar(data_temp.upload[0].upload1)
         })
     )
 })
