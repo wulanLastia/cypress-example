@@ -7,9 +7,11 @@ module.exports = {
     btn_tteCancel: '[data-cy="dialog__dialog-signing__button--cancel"]',
     btn_kirimNaskah: '[data-cy="header__button--submit"]',
     btn_confirmKirimNaskah: '[data-cy="dialog__dialog-send-document__button--confirm"]',
+    btn_cancelKirimNaskah: '[data-cy="dialog__dialog-send-document__button--cancel"]',
     btn_closeCsat: '[data-cy="dialog__dialog-csat__button--close"]',
     btn_submitCsat: '[data-cy="dialog__dialog-csat__button--confirm"]',
     btn_alertConfirm: '[data-cy="dialog__dialog-alert__button--confirm"]',
+    btn_deletePenandatangan: '[data-cy="registrasi__penandatangan__delete-0"]',
 
     // LABEL
     label_headerDocumentType: '[data-cy="header__title"]',

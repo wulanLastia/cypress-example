@@ -313,4 +313,27 @@ export class TandatanganiPage {
         btn_alertConfirm.should('contain', 'Saya mengerti')
             .click()
     }
+
+    batalKirimNaskah() {
+        // Click btn kirim naskah
+        const btn_kirimNaskah = cy.get(tandatangani.btn_kirimNaskah).as('btn_kirimNaskah')
+        btn_kirimNaskah.should('contain', 'Kirim Naskah')
+            .click()
+
+        cy.wait(2000)
+
+        // Click btn kembali
+        const btn_cancelKirimNaskah = cy.get(tandatangani.btn_cancelKirimNaskah).as('btn_cancelKirimNaskah')
+        btn_cancelKirimNaskah.should('contain', 'Kembali')
+            .click()
+
+        cy.wait(2000)
+    }
+
+    deletePenandatangan() {
+        // Click btn delete penandatangan atas nama
+        const btn_deletePenandatangan = cy.get(tandatangani.btn_deletePenandatangan).as('btn_deletePenandatangan')
+        btn_deletePenandatangan.should('be.visible')
+            .click()
+    }
 }

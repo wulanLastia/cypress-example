@@ -42,6 +42,10 @@ module.exports = {
     label_dialogTujuanTembusanInfo: '[data-cy="info__component"]',
     label_penandatanganName1: '[data-cy="penandatangan-name-1"]',
     label_errorSamePenandatangan: '[data-cy="registrasi__penandatangan__error-message"]',
+    label_penandatangaAtasNama: '[data-cy="dialog__atas-nama-label"]',
+    label_iconPenandatanganAtasNama: '[data-cy="penandatangan-image-atas_nama-0"]',
+    label_assertPenandatanganAtasNama: '[data-cy="penandatangan-name-atas_nama-0"]',
+    label_assertJabatanPenandatangaAtasNama: '[data-cy="penandatangan-position-atas_nama-0"]',
 
     // SELECT
     select_bankNomor: '[data-cy="registrasi__nomor-naskah__input--bank-nomor"]',
@@ -63,6 +67,8 @@ module.exports = {
     select_sifatSuratOption: '[data-cy="input__select-',
     select_inputPenandatanganAtasan: '[data-cy="penandatangan__select-option__custom-input-0"]',
     select_inputPenandatanganAtasanSuggest: '[data-cy="penandatangan__select-option__0"]',
+    select_inputPenandatanganAtasNama: '[data-cy="atas-nama__select-option__custom-input-0"]',
+    select_inputPenandatanganAtasNamaSuggest: '[data-cy="atas-nama__select-option__0"]',
     select_inputTujuanSelected: '[data-cy="registrasi__tujuan-naskah__selected-option-0"]',
 
     // CHECKBOX/TOGGLE
