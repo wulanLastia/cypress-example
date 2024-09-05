@@ -35,7 +35,7 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-describe('Drafting Luar - Test Case Penandatangan Atas Nama', { testIsolation: false }, () => {
+describe('Drafting Luar - Test Case Penandatangan Untuk Beliau', { testIsolation: false }, () => {
 
     qase([4289, 3878, 3879],
         it('Upload dan registrasi naskah single file', () => {
@@ -63,41 +63,41 @@ describe('Drafting Luar - Test Case Penandatangan Atas Nama', { testIsolation: f
         })
     )
 
-    qase(4527,
-        it('User select penandatangan mode Atas Nama', () => {
+    qase(4556,
+        it('User select penandatangan mode Untuk Beliau', () => {
             // Add Penandatangan
             tabRegistrasiPage.addMorePenandatangan()
             
-            // Select penandatangan mode atas nama
-            tabRegistrasiPage.selectPenandatanganAtasNama()
+            // Select penandatangan mode untuk beliau
+            tabRegistrasiPage.selectPenandatanganUntukBeliau()
         })
     )
 
-    qase(4530,
-        it('Check on preview (tab registrasi) after select jenis penandatanganan atas nama', () => {
-            // Input penandatangan atas nama
-            tabRegistrasiPage.inputPenandatanganAtasNama(data_temp.registrasi[9].atas_nama, data_temp.registrasi[9].atasan1, data_temp.env[0].staging)
+    qase(4558,
+        it('Check on preview (tab registrasi) after select jenis penandatanganan untuk beliau', () => {
+            // Input penandatangan untuk beliau
+            tabRegistrasiPage.inputPenandatanganUntukBeliau(data_temp.registrasi[9].untuk_beliau, data_temp.registrasi[9].atasan2, data_temp.env[0].staging)
         })
     )
 
-    qase(4530,
-        it('Show flag a.n on display picture selected penandatangan', () => {
-            // Assert penandatangan atas nama
-            tabRegistrasiPage.assertPenandatanganAtasNama()
+    qase(5573,
+        it('Show flag u.b on display picture selected penandatangan', () => {
+            // Assert penandatangan untuk beliau
+            tabRegistrasiPage.assertPenandatanganUntukBeliau()
         })
     )
 
-    qase(4562,
+    qase(4561,
         it('Validate penandatangan > 1 cant be same', () => {
             // Add Penandatangan
             tabRegistrasiPage.addMorePenandatangan()
 
             // Validate same penandatangan
-            tabRegistrasiPage.validateSamePenandatangan(data_temp.registrasi[9].atasan1, data_temp.env[0].staging)
+            tabRegistrasiPage.validateSamePenandatangan(data_temp.registrasi[9].atasan2, data_temp.env[0].staging)
         })
     )
 
-    qase(5614,
+    qase(5615,
         it('Delete penandatangan then select another penandatangan', () => {
             // Batal add penandatangan
             tabRegistrasiPage.cancelPenandatangan()
@@ -105,7 +105,7 @@ describe('Drafting Luar - Test Case Penandatangan Atas Nama', { testIsolation: f
             // Click btn kembali
             tandatanganiPage.batalKirimNaskah()
 
-            // Click btn delete penandatangan atas nama
+            // Click btn delete penandatangan untuk beliau
             tandatanganiPage.deletePenandatanganIndex(data_temp.registrasi[3].index0)
         })
     )

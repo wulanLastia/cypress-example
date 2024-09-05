@@ -46,6 +46,10 @@ module.exports = {
     label_iconPenandatanganAtasNama: '[data-cy="penandatangan-image-atas_nama-0"]',
     label_assertPenandatanganAtasNama: '[data-cy="penandatangan-name-atas_nama-0"]',
     label_assertJabatanPenandatangaAtasNama: '[data-cy="penandatangan-position-atas_nama-0"]',
+    label_penandatangaUntukBeliau: '[data-cy="dialog__untuk-beliau-label"]',
+    label_iconPenandatanganUntukBeliau: '[data-cy="penandatangan-image-untuk_beliau-0"]',
+    label_assertPenandatanganUntukBeliau: '[data-cy="penandatangan-name-untuk_beliau-0"]',
+    label_assertJabatanPenandatangaUntukBeliau: '[data-cy="penandatangan-position-untuk_beliau-0"]',
 
     // SELECT
     select_bankNomor: '[data-cy="registrasi__nomor-naskah__input--bank-nomor"]',
@@ -69,6 +73,8 @@ module.exports = {
     select_inputPenandatanganAtasanSuggest: '[data-cy="penandatangan__select-option__0"]',
     select_inputPenandatanganAtasNama: '[data-cy="atas-nama__select-option__custom-input-0"]',
     select_inputPenandatanganAtasNamaSuggest: '[data-cy="atas-nama__select-option__0"]',
+    select_inputPenandatanganUntukBeliau: '[data-cy="untuk-beliau__select-option__custom-input-0"]',
+    select_inputPenandatanganUntukBeliauSuggest: '[data-cy="untuk-beliau__select-option__0"]',
     select_inputTujuanSelected: '[data-cy="registrasi__tujuan-naskah__selected-option-0"]',
 
     // CHECKBOX/TOGGLE
