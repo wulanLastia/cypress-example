@@ -35,11 +35,6 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-before(() => {
-    loginPage.loginViaV1(user.nip_konseptor_2, user.password)
-    loginPage.directLogin()
-})
-
 describe('Drafting Luar - Test Case Penandatangan Atas Nama', { testIsolation: false }, () => {
 
     qase([4289, 3878, 3879],
@@ -111,7 +106,7 @@ describe('Drafting Luar - Test Case Penandatangan Atas Nama', { testIsolation: f
             tandatanganiPage.batalKirimNaskah()
 
             // Click btn delete penandatangan atas nama
-            tandatanganiPage.deletePenandatangan()
+            tandatanganiPage.deletePenandatanganIndex(data_temp.registrasi[3].index0)
         })
     )
 })
