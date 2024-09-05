@@ -741,6 +741,24 @@ export class TabRegistrasiPage {
             .and('be.visible')
     }
 
+    selectPenandatanganUntukBeliau() {
+        // Select mode penandatangan untuk beliau
+        const dialog_penandatanganModeLabel = cy.get(tab_registrasi.dialog_penandatanganModeLabel).as('dialog_penandatanganModeLabel')
+        dialog_penandatanganModeLabel.should('contain', 'Mode Penandatangan')
+
+        const dialog_penandatanganModeInput = cy.get(tab_registrasi.dialog_penandatanganModeInput).as('dialog_penandatanganModeInput')
+        dialog_penandatanganModeInput.select('UNTUK_BELIAU')
+
+        // Assertion 
+        const label_penandatangaUntukBeliau = cy.get(tab_registrasi.label_penandatangaUntukBeliau).as('label_penandatangaUntukBeliau')
+        label_penandatangaUntukBeliau.should('contain', 'Untuk Beliau')
+            .and('be.visible')
+
+        const dialog_penandatanganLabel = cy.get(tab_registrasi.dialog_penandatanganLabel).as('dialog_penandatanganLabel')
+        dialog_penandatanganLabel.should('contain', 'Penandatangan')
+            .and('be.visible')
+    }
+
     inputPenandatanganDiriSendiri() {
         cy.readFile(getPreviewData).then((object) => {
             if (!object.penandatangan) {
@@ -927,6 +945,94 @@ export class TabRegistrasiPage {
             .click()
     }
 
+    inputPenandatanganUntukBeliau(inputanUntukBeliau, inputanAtasan, inputEnv) {
+        cy.readFile(getPreviewData).then((object) => {
+            if (!object.penandatangan) {
+                object.penandatangan = []; // Initialize as an empty array
+            }
+
+            // Atas Nama
+            const label_penandatangaUntukBeliau = cy.get(tab_registrasi.label_penandatangaUntukBeliau).as('label_penandatangaUntukBeliau')
+            label_penandatangaUntukBeliau.should('contain', 'Untuk Beliau')
+
+            // Intercept all POST network requests
+            if (inputEnv === 'prod') {
+                cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
+            } else {
+                cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
+            }
+            
+            const select_inputPenandatanganUntukBeliau = cy.get(tab_registrasi.select_inputPenandatanganUntukBeliau).as('select_inputPenandatanganUntukBeliau')
+            select_inputPenandatanganUntukBeliau.click()
+                .wait(3000)
+                .type(inputanUntukBeliau, {delay: 500})
+
+            cy.wait('@postRequest', { timeout: 30000 })
+                .then((interception) => {
+                    if (interception.response.statusCode === 200) {
+                        const select_inputPenandatanganUntukBeliauSuggest = cy.get(tab_registrasi.select_inputPenandatanganUntukBeliauSuggest).as('select_inputPenandatanganUntukBeliauSuggest')
+                        select_inputPenandatanganUntukBeliauSuggest.contains(inputanUntukBeliau, { timeout: 10000 }).should('be.visible')
+                            .click()
+                            .invoke('text')
+                            .then((inputanUntukBeliau) => {
+                                // Construct the sub-object
+                                const penandatangan_untuk_beliau_name = {
+                                    penandatangan_untuk_beliau: inputanUntukBeliau.trim()
+                                }
+
+                                // Push the sub-object to the array
+                                object.penandatangan.push(penandatangan_untuk_beliau_name)
+
+                                // Write data to the JSON file
+                                cy.writeFile(getPreviewData, object)
+                            })
+                    }
+                })
+
+            // Penandatangan
+            const dialog_penandatanganLabel = cy.get(tab_registrasi.dialog_penandatanganLabel).as('dialog_penandatanganLabel')
+            dialog_penandatanganLabel.should('contain', 'Penandatangan')
+
+            // Intercept all POST network requests
+            if (inputEnv === 'prod') {
+                cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
+            } else {
+                cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
+            }
+            
+            const select_inputPenandatanganAtasan = cy.get(tab_registrasi.select_inputPenandatanganAtasan).as('select_inputPenandatanganAtasan')
+            select_inputPenandatanganAtasan.click()
+                .wait(3000)
+                .type(inputanAtasan, {delay: 500})
+
+            cy.wait('@postRequest', { timeout: 30000 })
+                .then((interception) => {
+                    if (interception.response.statusCode === 200) {
+                        const select_inputPenandatanganAtasanSuggest = cy.get(tab_registrasi.select_inputPenandatanganAtasanSuggest).as('select_inputPenandatanganAtasanSuggest')
+                        select_inputPenandatanganAtasanSuggest.contains(inputanAtasan, { timeout: 10000 }).should('be.visible')
+                            .click()
+                            .invoke('text')
+                            .then((inputanAtasan) => {
+                                // Construct the sub-object
+                                const penandatangan_name = {
+                                    penandatangan_atasan: inputanAtasan.trim()
+                                }
+
+                                // Push the sub-object to the array
+                                object.penandatangan.push(penandatangan_name)
+
+                                // Write data to the JSON file
+                                cy.writeFile(getPreviewData, object)
+                            })
+                    }
+                })
+        })
+
+        const btn_simpanPenandatangan = cy.get(tab_registrasi.btn_simpanPenandatangan).as('btn_simpanPenandatangan')
+        btn_simpanPenandatangan.should('contain', 'Simpan')
+            .click()
+    }
+
     assertPenandatanganAtasan1(inputanAtasan) {
         // Assertion
         const label_penandatanganName1 = cy.get(tab_registrasi.label_penandatanganName1).as('label_penandatanganName1')
@@ -949,6 +1055,25 @@ export class TabRegistrasiPage {
 
             const label_assertJabatanPenandatangaAtasNama = cy.get(tab_registrasi.label_assertJabatanPenandatangaAtasNama).as('label_assertJabatanPenandatangaAtasNama')
             label_assertJabatanPenandatangaAtasNama.contains(arrPositionAtasNama[0], { matchCase : false })
+        })
+    }
+
+    assertPenandatanganUntukBeliau() {
+        // Assertion
+        const label_iconPenandatanganUntukBeliau = cy.get(tab_registrasi.label_iconPenandatanganUntukBeliau).as('label_iconPenandatanganUntukBeliau')
+        label_iconPenandatanganUntukBeliau.should('be.visible')
+
+        cy.readFile(getPreviewData).then((object) => {
+            // Assertion data penandatangan untuk beliau
+            const penandatanganUntukBeliauValue = object.penandatangan[0].penandatangan_untuk_beliau
+            const arrUntukBeliau = penandatanganUntukBeliauValue.split('(')
+            const arrPositionUntukBeliau = arrUntukBeliau[1].split(')')
+
+            const label_assertPenandatanganUntukBeliau = cy.get(tab_registrasi.label_assertPenandatanganUntukBeliau).as('label_assertPenandatanganUntukBeliau')
+            label_assertPenandatanganUntukBeliau.contains(arrUntukBeliau[0], { matchCase : false })
+
+            const label_assertJabatanPenandatangaUntukBeliau = cy.get(tab_registrasi.label_assertJabatanPenandatangaUntukBeliau).as('label_assertJabatanPenandatangaUntukBeliau')
+            label_assertJabatanPenandatangaUntukBeliau.contains(arrPositionUntukBeliau[0], { matchCase : false })
         })
     }
 

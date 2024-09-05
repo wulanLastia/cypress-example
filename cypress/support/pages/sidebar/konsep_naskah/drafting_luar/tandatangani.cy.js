@@ -330,9 +330,9 @@ export class TandatanganiPage {
         cy.wait(2000)
     }
 
-    deletePenandatangan() {
+    deletePenandatanganIndex(inputIndex) {
         // Click btn delete penandatangan atas nama
-        const btn_deletePenandatangan = cy.get(tandatangani.btn_deletePenandatangan).as('btn_deletePenandatangan')
+        const btn_deletePenandatangan = cy.get(tandatangani.btn_deletePenandatangan + inputIndex + '"]').as('btn_deletePenandatangan')
         btn_deletePenandatangan.should('be.visible')
             .click()
     }
