@@ -67,11 +67,70 @@ export class TandatanganiPage {
             // Assert Penandatangan
             const label_penandatangan = cy.get(tandatangani.label_penandatangan).as('label_penandatangan')
             label_penandatangan.should('contain', 'Penandatangan')
-
+            
+            // Penandatangan Diri Sendiri
             const penandatangan_diri_sendiri = object.penandatangan[0].penandatangan_diri_sendiri
 
-            const label_dataNamaPenandatangan = cy.get(tandatangani.label_dataNamaPenandatangan).as('label_dataNamaPenandatangan')
-            label_dataNamaPenandatangan.contains(penandatangan_diri_sendiri, { matchCase: false })
+            if(penandatangan_diri_sendiri){
+                const label_dataNamaPenandatangan = cy.get(tandatangani.label_dataNamaPenandatangan).as('label_dataNamaPenandatangan')
+                label_dataNamaPenandatangan.contains(penandatangan_diri_sendiri, { matchCase: false })
+            }
+
+            // Penandatangan Atas Nama
+            const atasNama = object.penandatangan[0].atas_nama
+            const arrAtasNama = atasNama.split('(')
+            const arrPositionAtasNama = arrAtasNama[1].split(')')
+            
+            const penandatanganAtasNama = object.penandatangan[1].penandatangan_atas_nama
+            const arrPenandatanganAtasNama = penandatanganAtasNama.split('(')
+            const arrPositionPenandatanganAtasNama = arrPenandatanganAtasNama[1].split(')')
+
+            if(atasNama) {
+                // Assert Penandatangan Atas Nama
+                const label_dataNamaPenandatangan = cy.get(tandatangani.label_dataNamaPenandatangan).as('label_dataNamaPenandatangan')
+                label_dataNamaPenandatangan.contains(arrPenandatanganAtasNama[0], { matchCase: false })
+
+                const label_dataJabatanPenandatangan = cy.get(tandatangani.label_dataJabatanPenandatangan).as('label_dataJabatanPenandatangan')
+                label_dataJabatanPenandatangan.contains(arrPositionPenandatanganAtasNama[0], { matchCase: false })
+
+                // Assert User Atas Nama
+                const dialog_atasNama = cy.get(tandatangani.dialog_atasNama).as('dialog_atasNama')
+                dialog_atasNama.should('be.visible')
+
+                const label_dataAtasNama = cy.get(tandatangani.label_dataAtasNama).as('label_dataAtasNama')
+                label_dataAtasNama.contains(arrAtasNama[0], { matchCase: false })
+
+                const label_dataJabatanAtasNama = cy.get(tandatangani.label_dataJabatanAtasNama).as('label_dataJabatanAtasNama')
+                label_dataJabatanAtasNama.contains(arrPositionAtasNama[0], { matchCase: false })
+            }
+
+            // Penandatangan Atas Nama
+            const untukBeliau = object.penandatangan[2].untuk_beliau
+            const arrUntukBeliau = untukBeliau.split('(')
+            const arrPositionUntukBeliau = arrUntukBeliau[1].split(')')
+            
+            const penandatanganUntukBeliau = object.penandatangan[3].penandatangan_untuk_beliau
+            const arrPenandatanganUntukBeliau = penandatanganUntukBeliau.split('(')
+            const arrPositionPenandatanganUntukBeliau = arrPenandatanganUntukBeliau[1].split(')')
+
+            if(untukBeliau) {
+                // Assert Penandatangan Untuk Beliau
+                const label_dataNamaPenandatangan1 = cy.get(tandatangani.label_dataNamaPenandatangan1).as('label_dataNamaPenandatangan1')
+                label_dataNamaPenandatangan1.contains(arrPenandatanganUntukBeliau[0], { matchCase: false })
+
+                const label_dataJabatanPenandatangan1 = cy.get(tandatangani.label_dataJabatanPenandatangan1).as('label_dataJabatanPenandatangan1')
+                label_dataJabatanPenandatangan1.contains(arrPositionPenandatanganUntukBeliau[0], { matchCase: false })
+
+                // Assert User Untuk Beliau
+                const dialog_untukBeliau = cy.get(tandatangani.dialog_untukBeliau).as('dialog_untukBeliau')
+                dialog_untukBeliau.should('be.visible')
+
+                const label_dataUntukBeliau = cy.get(tandatangani.label_dataUntukBeliau).as('label_dataUntukBeliau')
+                label_dataUntukBeliau.contains(arrUntukBeliau[0], { matchCase: false })
+
+                const label_dataJabatanUntukBeliau = cy.get(tandatangani.label_dataJabatanUntukBeliau).as('label_dataJabatanUntukBeliau')
+                label_dataJabatanUntukBeliau.contains(arrPositionUntukBeliau[0], { matchCase: false })
+            }
 
             // Assert Penerima 
             if (jenis_naskah !== 'Sasaran Kinerja Pegawai (SKP)'){
@@ -270,6 +329,8 @@ export class TandatanganiPage {
             .click()
 
         cy.wait(2000)
+
+        this.checkInputDataRegistrasi()
 
         const btn_confirmKirimNaskah = cy.get(tandatangani.btn_confirmKirimNaskah).as('btn_confirmKirimNaskah')
         btn_confirmKirimNaskah.should('contain', 'Kirim Naskah')

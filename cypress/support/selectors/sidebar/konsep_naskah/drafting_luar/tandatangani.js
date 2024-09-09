@@ -26,6 +26,12 @@ module.exports = {
     label_penandatangan: '[data-cy="dialog__dialog-send-document__penandatangan__title"]',
     label_dataNamaPenandatangan: '[data-cy="dialog__dialog-send-document__penandatangan__card-user__people-name-0"]',
     label_dataJabatanPenandatangan: '[data-cy="dialog__dialog-send-document__penandatangan__card-user__people-position-0"]',
+    label_dataAtasNama: '[data-cy="dialog__dialog-send-document__penandatangan-atas_nama__card-user__people-name-0"]',
+    label_dataJabatanAtasNama: '[data-cy="dialog__dialog-send-document__penandatangan-atas_nama__card-user__people-position-0"]',
+    label_dataNamaPenandatangan1: '[data-cy="dialog__dialog-send-document__penandatangan__card-user__people-name-1"]',
+    label_dataJabatanPenandatangan1: '[data-cy="dialog__dialog-send-document__penandatangan__card-user__people-position-1"]',
+    label_dataUntukBeliau: '[data-cy="dialog__dialog-send-document__penandatangan-untuk_beliau__card-user__people-name-1"]',
+    label_dataJabatanUntukBeliau: '[data-cy="dialog__dialog-send-document__penandatangan-untuk_beliau__card-user__people-position-1"]',
     label_penerima: '[data-cy="dialog__dialog-send-document__tujuan__title"]',
     label_dataNamaPenerima: '[data-cy="dialog__dialog-send__card-tujuan__card-user__people-name-0"]',
     label_dataJabatanPenerima: '[data-cy="dialog__dialog-send__card-tujuan__card-user__people-position-0"]',
@@ -42,6 +48,8 @@ module.exports = {
     dialog_alert: '[data-cy="dialog__dialog-alert__wrapper"]',
     dialog_alertTitle: '[data-cy="dialog__dialog-alert__title"]',
     dialog_alertDesc: '[data-cy="dialog__dialog-alert__description"]',
+    dialog_atasNama: '[data-cy="dialog__dialog-send-document__penandatangan-atas_nama__card-user__avatar-0"]',
+    dialog_untukBeliau: '[data-cy="dialog__dialog-send-document__penandatangan-untuk_beliau__card-user__avatar-1"]',
 
     // INPUT
     input_emotCsat: '[data-cy="dialog__dialog-csat__input-rate-4"]',
