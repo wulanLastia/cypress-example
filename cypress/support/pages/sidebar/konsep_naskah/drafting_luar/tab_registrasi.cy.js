@@ -889,7 +889,7 @@ export class TabRegistrasiPage {
                             .then((inputanAtasNama) => {
                                 // Construct the sub-object
                                 const penandatangan_atas_nama_name = {
-                                    penandatangan_atas_nama: inputanAtasNama.trim()
+                                    atas_nama: inputanAtasNama.trim()
                                 }
 
                                 // Push the sub-object to the array
@@ -927,7 +927,7 @@ export class TabRegistrasiPage {
                             .then((inputanAtasan) => {
                                 // Construct the sub-object
                                 const penandatangan_name = {
-                                    penandatangan_atasan: inputanAtasan.trim()
+                                    penandatangan_atas_nama: inputanAtasan.trim()
                                 }
 
                                 // Push the sub-object to the array
@@ -977,7 +977,7 @@ export class TabRegistrasiPage {
                             .then((inputanUntukBeliau) => {
                                 // Construct the sub-object
                                 const penandatangan_untuk_beliau_name = {
-                                    penandatangan_untuk_beliau: inputanUntukBeliau.trim()
+                                    untuk_beliau: inputanUntukBeliau.trim()
                                 }
 
                                 // Push the sub-object to the array
@@ -1015,7 +1015,7 @@ export class TabRegistrasiPage {
                             .then((inputanAtasan) => {
                                 // Construct the sub-object
                                 const penandatangan_name = {
-                                    penandatangan_atasan: inputanAtasan.trim()
+                                    penandatangan_untuk_beliau: inputanAtasan.trim()
                                 }
 
                                 // Push the sub-object to the array
