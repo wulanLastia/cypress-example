@@ -80,7 +80,8 @@ export class DraftingKopSuratPage {
 
     closeKopSurat() {
         const closeKopSurat = cy.get(kop_surat.closeKopSurat).as('closeKopSurat')
-        closeKopSurat.should('be.visible')
+        closeKopSurat.scrollIntoView()
+            .should('be.visible')
             .click()
 
         draftingKonsepNaskahPage.validateFormDefault()
