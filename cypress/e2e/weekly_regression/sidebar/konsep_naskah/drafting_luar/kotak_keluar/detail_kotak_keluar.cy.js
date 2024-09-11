@@ -43,7 +43,7 @@ describe('Drafting Luar - Test Case Detail Kotak Keluar', { testIsolation: false
     qase([4289, 3878, 3879, 3882, 3910, 3922, 4051, 4054, 4061, 4650, 4651, 4656, 3996, 4122, 4123, 4035, 3930, 4008, 4078, 4097, 4080],
         it('Upload dan registrasi naskah single file', () => {
             // Login
-            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_2, user.password)
             loginPage.directLogin()
 
             // Go To Konsep Naskah SKP
@@ -55,12 +55,6 @@ describe('Drafting Luar - Test Case Detail Kotak Keluar', { testIsolation: false
 
             // Click tab registrasi
             tabRegistrasiPage.clickTabRegistrasi()
-
-            // Tab Registrasi - Bank Nomor
-            tabRegistrasiPage.inputPenomoran()
- 
-            // Tab Registrasi - Tujuan Surat
-            tabRegistrasiPage.inputTujuanTembusanSurat()
 
             // Tab Registrasi - Section Identitas Surat
             const uuid = () => Cypress._.random(0, 1e6)
@@ -74,7 +68,11 @@ describe('Drafting Luar - Test Case Detail Kotak Keluar', { testIsolation: false
             tabRegistrasiPage.addMorePenandatangan()
             tabRegistrasiPage.inputPenandatanganDiriSendiri()
             tabRegistrasiPage.addMorePenandatangan()
-            tabRegistrasiPage.inputPenandatanganAtasan(data_temp.registrasi[9].atasan2, data_temp.env[0].staging)
+            tabRegistrasiPage.selectPenandatanganAtasNama()
+            tabRegistrasiPage.inputPenandatanganAtasNama(data_temp.registrasi[9].atas_nama, data_temp.registrasi[9].atasan1, data_temp.env[0].staging)
+            tabRegistrasiPage.addMorePenandatangan()
+            tabRegistrasiPage.selectPenandatanganUntukBeliau()
+            tabRegistrasiPage.inputPenandatanganUntukBeliau(data_temp.registrasi[9].untuk_beliau, data_temp.registrasi[9].atasan2, data_temp.env[0].staging)
 
             // Upload file pengantar
             tabRegistrasiPage.uploadSuratPengantar(data_temp.upload[0].upload1)
@@ -82,7 +80,7 @@ describe('Drafting Luar - Test Case Detail Kotak Keluar', { testIsolation: false
 
             // Melakukan TTE Naskah (Penandatangan Diri Sendiri)
             tandatanganiPage.tandatanganiNaskah()
-            tandatanganiPage.checkInputDataRegistrasi()
+            tandatanganiPage.checkInputDataRegistrasi('2.5')
             tandatanganiPage.tteNaskah()
             tandatanganiPage.submitTteNaskah(user.passphrase, data_temp.env[0].staging)
 
@@ -154,10 +152,10 @@ describe('Drafting Luar - Test Case Detail Kotak Keluar', { testIsolation: false
         })
     )
 
-    qase(3258,
+    qase([3258, 5810, 5811],
         it('Cek detail data tab registrasi - penandatangan', () => {
             // Cek detail data tab registrasi - penandatangan
-            kotakKeluarPage.checkDataPenandatangan()
+            kotakKeluarPage.checkDataPenandatangan('2.5')
         })
     )
 

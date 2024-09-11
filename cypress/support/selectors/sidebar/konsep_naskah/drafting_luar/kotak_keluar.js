@@ -51,4 +51,15 @@ module.exports = {
     tab_dataPenerima1: '[data-cy="tujuan-data__card-user__people-name-1"]',
     tab_dataPenandatangan0: '[data-cy="penandatangan-data__card-user__people-name-0"]',
     tab_dataPenandatangan1: '[data-cy="penandatangan-data__card-user__people-name-1"]',
+    tab_dataAvatarAtasNama1: '[data-cy="penandatangan-atas_nama__card-user__avatar-1"]',
+    tab_dataAtasNama1: '[data-cy="penandatangan-atas_nama__card-user__people-name-1"]',
+    tab_dataJabatanAtasNama1: '[data-cy="penandatangan-atas_nama__card-user__people-position-1"]',
+    tab_dataPenandatanganAtasNama1: '[data-cy="penandatangan-data__card-user__people-name-1"]',
+    tab_dataJabatanPenandatanganAtasNama1: '[data-cy="penandatangan-data__card-user__people-position-1"]',
+    tab_dataAvatarUntukBeliau2: '[data-cy="penandatangan-untuk_beliau__card-user__avatar-2"]',
+    tab_dataUntukBeliau2: '[data-cy="penandatangan-untuk_beliau__card-user__people-name-2"]',
+    tab_dataJabatanUntukBeliau2: '[data-cy="penandatangan-untuk_beliau__card-user__people-position-2"]',
+    tab_dataPenandatanganUntukBeliau2: '[data-cy="penandatangan-data__card-user__people-name-2"]',
+    tab_dataJabatanPenandatanganUntukBeliau2: '[data-cy="penandatangan-data__card-user__people-position-2"]',
+
 }

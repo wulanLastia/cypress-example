@@ -331,21 +331,78 @@ export class KotakKeluarPage {
         })
     }
 
-    checkDataPenandatangan() {
+    checkDataPenandatangan(inputScenarioPenandatangan) {
         cy.readFile(getPreviewData).then((object) => {
             const label_detailPenandatanganTitle = cy.get(kotak_keluar.label_detailPenandatanganTitle).as('label_detailPenandatanganTitle')
             label_detailPenandatanganTitle.scrollIntoView().should('contain', 'Penandatangan')
 
-            const penandatanganDiriSendiriValue = object.penandatangan[0].penandatangan_diri_sendiri
+            if(inputScenarioPenandatangan == '2.5') { // Penandatangan diri sendiri, atas nama, untuk beliau
+                // Penandatangan Diri Sendiri
+                const penandatangan_diri_sendiri = object.penandatangan[0].penandatangan_diri_sendiri
 
-            const tab_dataPenandatangan0 = cy.get(kotak_keluar.tab_dataPenandatangan0).as('tab_dataPenandatangan0')
-            tab_dataPenandatangan0.contains(penandatanganDiriSendiriValue, { matchCase: false })
+                if(penandatangan_diri_sendiri){
+                    const tab_dataPenandatangan0 = cy.get(kotak_keluar.tab_dataPenandatangan0).as('tab_dataPenandatangan0')
+                    tab_dataPenandatangan0.contains(penandatangan_diri_sendiri, { matchCase: false })
+                }
 
-            const penandatanganAtasanValue = object.penandatangan[1].penandatangan_atasan
-            const arrPenandatanganAtasan = penandatanganAtasanValue.split(" (")
+                // User Atas Nama
+                const atasNama = object.penandatangan[1].atas_nama
+                const arrAtasNama = atasNama.split('(')
+                const arrPositionAtasNama = arrAtasNama[1].split(')')
 
-            const tab_dataPenandatangan1 = cy.get(kotak_keluar.tab_dataPenandatangan1).as('tab_dataPenandatangan1')
-            tab_dataPenandatangan1.contains(arrPenandatanganAtasan[0], { matchCase: false })
+                // Assert User Atas Nama
+                const tab_dataAvatarAtasNama1 = cy.get(kotak_keluar.tab_dataAvatarAtasNama1).as('tab_dataAvatarAtasNama1')
+                tab_dataAvatarAtasNama1.scrollIntoView()
+                    .should('be.visible')
+
+                const tab_dataAtasNama1 = cy.get(kotak_keluar.tab_dataAtasNama1).as('tab_dataAtasNama1')
+                tab_dataAtasNama1.scrollIntoView()
+                    .contains(arrAtasNama[0], { matchCase: false })
+
+                const tab_dataJabatanAtasNama1 = cy.get(kotak_keluar.tab_dataJabatanAtasNama1).as('tab_dataJabatanAtasNama1')
+                tab_dataJabatanAtasNama1.scrollIntoView()
+                    .contains(arrPositionAtasNama[0], { matchCase: false })
+                
+                // Penandatangan Atas Nama
+                const penandatanganAtasNama = object.penandatangan[2].penandatangan_atas_nama
+                const arrPenandatanganAtasNama = penandatanganAtasNama.split('(')
+                const arrPositionPenandatanganAtasNama = arrPenandatanganAtasNama[1].split(')')
+
+                // Assert Penandatangan Atas Nama
+                const tab_dataPenandatanganAtasNama1 = cy.get(kotak_keluar.tab_dataPenandatanganAtasNama1).as('tab_dataPenandatanganAtasNama1')
+                tab_dataPenandatanganAtasNama1.contains(arrPenandatanganAtasNama[0], { matchCase: false })
+
+                const tab_dataJabatanPenandatanganAtasNama1 = cy.get(kotak_keluar.tab_dataJabatanPenandatanganAtasNama1).as('tab_dataJabatanPenandatanganAtasNama1')
+                tab_dataJabatanPenandatanganAtasNama1.contains(arrPositionPenandatanganAtasNama[0], { matchCase: false })
+
+                // User Untuk Beliau
+                const untukBeliau = object.penandatangan[3].untuk_beliau
+                const arrUntukBeliau = untukBeliau.split('(')
+                const arrPositionUntukBeliau = arrUntukBeliau[1].split(')')
+
+                // Assert User Untuk Beliau
+                const tab_dataAvatarUntukBeliau2 = cy.get(kotak_keluar.tab_dataAvatarUntukBeliau2).as('tab_dataAvatarUntukBeliau2')
+                tab_dataAvatarUntukBeliau2.scrollIntoView()
+                    .should('be.visible')
+
+                const tab_dataUntukBeliau2 = cy.get(kotak_keluar.tab_dataUntukBeliau2).as('tab_dataUntukBeliau2')
+                tab_dataUntukBeliau2.contains(arrUntukBeliau[0], { matchCase: false })
+
+                const tab_dataJabatanUntukBeliau2 = cy.get(kotak_keluar.tab_dataJabatanUntukBeliau2).as('tab_dataJabatanUntukBeliau2')
+                tab_dataJabatanUntukBeliau2.contains(arrPositionUntukBeliau[0], { matchCase: false })
+                
+                // Penandatangan Untuk Beliau
+                const penandatanganUntukBeliau = object.penandatangan[4].penandatangan_untuk_beliau
+                const arrPenandatanganUntukBeliau = penandatanganUntukBeliau.split('(')
+                const arrPositionPenandatanganUntukBeliau = arrPenandatanganUntukBeliau[1].split(')')
+
+                // Assert Penandatangan Untuk Beliau
+                const tab_dataPenandatanganUntukBeliau2 = cy.get(kotak_keluar.tab_dataPenandatanganUntukBeliau2).as('tab_dataPenandatanganUntukBeliau2')
+                tab_dataPenandatanganUntukBeliau2.contains(arrPenandatanganUntukBeliau[0], { matchCase: false })
+
+                const tab_dataJabatanPenandatanganUntukBeliau2 = cy.get(kotak_keluar.tab_dataJabatanPenandatanganUntukBeliau2).as('tab_dataJabatanPenandatanganUntukBeliau2')
+                tab_dataJabatanPenandatanganUntukBeliau2.contains(arrPositionPenandatanganUntukBeliau[0], { matchCase: false })
+            }
         })
     }
 
