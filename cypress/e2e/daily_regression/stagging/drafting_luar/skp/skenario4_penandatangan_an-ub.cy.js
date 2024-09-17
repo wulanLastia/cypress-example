@@ -37,7 +37,7 @@ before(() => {
 
 describe('Drafting Luar - Skenario Penandatangan Atas Nama dan Untuk Beliau', { testIsolation: false }, () => {
 
-    qase([4289, 3878, 3879, 4527, 4530, 4558, 4608, 4609],
+    qase([4289, 3878, 3879, 4527, 4530, 4558, 4608, 4609, 5608, 5610],
         it('Upload dan registrasi naskah single file', () => {
             // Login 
             loginPage.loginViaV1(user.nip_konseptor_2, user.password)
@@ -69,7 +69,7 @@ describe('Drafting Luar - Skenario Penandatangan Atas Nama dan Untuk Beliau', { 
             tabRegistrasiPage.selectPenandatanganUntukBeliau()
             tabRegistrasiPage.inputPenandatanganUntukBeliau(data_temp.registrasi[9].untuk_beliau, data_temp.registrasi[9].atasan2, data_temp.env[0].staging)
 
-            // Melakukan kirim naskah a.n dan u.b
+            // Melakukan kirim naskah a.n dan u.b 
             tandatanganiPage.kirimNaskah()
         })
     )
