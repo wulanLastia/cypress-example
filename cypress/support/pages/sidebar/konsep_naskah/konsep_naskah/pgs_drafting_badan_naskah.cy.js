@@ -204,7 +204,8 @@ export class DraftingBadanNaskahPage {
 
     closeBadanNaskah() {
         const closeBadanNaskah = cy.get(badan_naskah.closeBadanNaskah).as('closeBadanNaskah')
-        closeBadanNaskah.click()
+        closeBadanNaskah.scrollIntoView()
+            .click()
 
         draftingKonsepNaskahPage.validateFormDefault()
     }

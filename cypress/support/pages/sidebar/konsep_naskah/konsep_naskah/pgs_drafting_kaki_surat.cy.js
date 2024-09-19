@@ -57,7 +57,7 @@ export class DraftingKakiSuratPage {
 
     closeKakiSurat() {
         const closeKaki = cy.get(kaki_surat.closeKaki).as('closeKaki')
-        closeKaki.should('be.visible')
+        closeKaki.scrollIntoView()
             .click()
 
         draftingKonsepNaskahPage.validateFormDefault()

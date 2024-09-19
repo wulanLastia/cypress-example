@@ -955,20 +955,13 @@ export class DraftingKepalaSuratNotaDinasPage {
             .type('{enter}')
     }
 
-
-
-
-
-
-
-
     // for After Functions
     closeKepalaSurat() {
         const scrollForm = cy.get(kepala_surat.scrollForm).as('scrollForm')
         scrollForm.scrollTo('top')
 
         const closeKepalaSurat = cy.get(kepala_surat.closeKepalaSurat).as('closeKepalaSurat')
-        closeKepalaSurat.should('be.visible')
+        closeKepalaSurat.scrollIntoView()
             .click()
 
         draftingNotaDinasPage.validateFormDefault()
