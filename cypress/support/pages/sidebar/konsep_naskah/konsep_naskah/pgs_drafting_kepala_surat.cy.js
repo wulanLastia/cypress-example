@@ -28,7 +28,7 @@ export class DraftingKepalaSuratPage {
         scrollForm.scrollTo('top')
 
         const closeKepalaSurat = cy.get(kepala_surat.closeKepalaSurat).as('closeKepalaSurat')
-        closeKepalaSurat.should('be.visible')
+        closeKepalaSurat.scrollIntoView()
             .click()
 
         draftingKonsepNaskahPage.validateFormDefault()
