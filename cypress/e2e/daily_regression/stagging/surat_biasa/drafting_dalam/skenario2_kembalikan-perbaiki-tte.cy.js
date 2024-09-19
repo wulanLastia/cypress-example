@@ -39,11 +39,6 @@ beforeEach(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-afterEach(() => {
-    cy.wait(10000)
-    loginPage.logoutV2step2()
-})
-
 describe('Skenario Surat Biasa - Create, Kembalikan, Perbaiki, Tandatangani', () => {
 
     qase([13, 81, 83, 709, 150, 80, 176],

@@ -22,6 +22,7 @@ export class KembalikanNaskahPage {
                 const btn_menuTteReview = cy.get(kotak_masuk.btn_menuTteReview).as('btn_menuTteReview')
                 btn_menuTteReview.should('contain', 'TTE & Review')
                     .click()
+                    .wait(9000)
 
                 cy.readFile(perihalNaskah).then((object) => {
                     const titlePerihalNaskah = object.titlePerihal
