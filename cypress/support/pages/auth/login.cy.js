@@ -438,7 +438,7 @@ export class LoginPage {
                 cy.wait(3000)
 
                 // Assertion Login Sidebar V2 - Siap Jabar
-                cy.url().should('eq', Cypress.env('base_url') + 'konsep-naskah');
+                cy.url().should('eq', Cypress.env('base_url_prod_v2') + 'konsep-naskah');
             }else{
                 if ($body.find(login.closePopupLandingPageV1).length > 0) {
                     // Close popup landing page v1

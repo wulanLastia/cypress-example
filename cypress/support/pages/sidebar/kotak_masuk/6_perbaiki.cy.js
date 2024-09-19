@@ -29,7 +29,7 @@ export class PerbaikiNaskahPage {
                 const btn_menuTteReview = cy.get(kotak_masuk.btn_menuTteReview).as('btn_menuTteReview')
                 btn_menuTteReview.should('contain', 'TTE & Review')
                     .click()
-                    .wait(3000)
+                    .wait(9000)
 
                 // Click Tab Review Naskah
                 const tab_kotakMasukReviewNaskah = cy.get(kotak_masuk.tab_kotakMasukReviewNaskah).as('tab_kotakMasukReviewNaskah')
@@ -37,65 +37,61 @@ export class PerbaikiNaskahPage {
                     .click()
                     .wait(6000)
 
-                // Get data terakhir 
-                const label_tableDataJenis = cy.get(kotak_masuk.label_tableDataJenis).as('label_tableDataJenis')
-                label_tableDataJenis.click()
-                    .wait(6000)
-
-                // Click button perbaiki
-                const getbtnPerbaiki = cy.get(perbaiki.getbtnPerbaiki).as('getbtnPerbaiki')
-                getbtnPerbaiki.should('contain', 'Perbaiki')
-                    .click()
-
-                // TODO : Diopen ketika fungsi search pada tabel review naskah sudah berjalan
-                // cy.readFile(perihalNaskah).then((object) => {
-                //     const titlePerihalNaskah = object.titlePerihal
+                cy.readFile(perihalNaskah).then((object) => {
+                    const titlePerihalNaskah = object.titlePerihal
         
-                //     // Wait until page ready
-                //     cy.wait(3000)
+                    // Wait until page ready
+                    cy.wait(3000)
         
-                //     // Check onboarding
-                //     cy.get('body').then($body => {
-                //         if ($body.find(kotak_masuk.dialog_onboarding).length > 0) {
-                //             // Skip onboarding
-                //             const dialog_onboardingSkip = cy.get(kotak_masuk.dialog_onboardingSkip).as('dialog_onboardingSkip')
-                //             dialog_onboardingSkip.click()
+                    // Check onboarding
+                    cy.get('body').then($body => {
+                        if ($body.find(kotak_masuk.dialog_onboarding).length > 0) {
+                            // Skip onboarding
+                            const dialog_onboardingSkip = cy.get(kotak_masuk.dialog_onboardingSkip).as('dialog_onboardingSkip')
+                            dialog_onboardingSkip.click()
         
-                //             cy.reload()
-                //         }
-                //     })
+                            cy.reload()
+                        }
+                    })
         
-                //     if(inputEnv == "staging"){
-                //         cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
+                    if(inputEnv == "staging"){
+                        cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
         
-                //         const input_searchKotakMasuk = cy.get(kotak_masuk.input_searchKotakMasuk).first().as('input_searchKotakMasuk')
-                //         input_searchKotakMasuk.find('input')
-                //             .clear()
-                //             .type(titlePerihalNaskah)
+                        const input_searchKotakMasuk = cy.get(kotak_masuk.input_searchKotakMasuk).first().as('input_searchKotakMasuk')
+                        input_searchKotakMasuk.find('input')
+                            .clear()
+                            .type(titlePerihalNaskah)
         
-                //         cy.wait('@checkResponse', { timeout: 10000 })
-                //             .then((interception) => {
-                //                 if (interception.response.statusCode === 200) {
-                //                     const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
-                //                     table_kotakMasuk.contains('td', titlePerihalNaskah)
-                //                         .click()
-                //                 }
-                //             })
-                //     }else{
-                //         const input_searchKotakMasuk = cy.get(kotak_masuk.input_searchKotakMasuk).first().as('input_searchKotakMasuk')
-                //         input_searchKotakMasuk.find('input')
-                //             .clear()
-                //             .type(titlePerihalNaskah)
+                        cy.wait('@checkResponse', { timeout: 10000 })
+                            .then((interception) => {
+                                if (interception.response.statusCode === 200) {
+                                    const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
+                                    table_kotakMasuk.contains('td', titlePerihalNaskah)
+                                        .click()
+                                }
+                            })
+                    }else{
+                        const input_searchKotakMasuk = cy.get(kotak_masuk.input_searchKotakMasuk).first().as('input_searchKotakMasuk')
+                        input_searchKotakMasuk.find('input')
+                            .clear()
+                            .type(titlePerihalNaskah)
         
-                //         // Wait until document found
-                //         cy.wait(10000)
+                        // Wait until document found
+                        cy.wait(10000)
         
-                //         const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
-                //         table_kotakMasuk.contains('td', titlePerihalNaskah)
-                //             .click()
-                //     }
+                        const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
+                        table_kotakMasuk.contains('td', titlePerihalNaskah)
+                            .click()
+                    }
                     
-                // })
+                    cy.wait(6000)
+        
+                    const getbtnPerbaiki = cy.get(perbaiki.getbtnPerbaiki).as('getbtnPerbaiki')
+                    getbtnPerbaiki.should('contain', 'Perbaiki')
+                        .click()
+        
+                    this.checkDetail()
+                })
             }else {
                 // Go To Menu Kotak Masuk Layout Lama
                 menuPage.goToKotakMasukReviewNaskah()

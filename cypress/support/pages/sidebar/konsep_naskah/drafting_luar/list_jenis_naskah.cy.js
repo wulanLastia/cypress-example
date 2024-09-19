@@ -222,6 +222,7 @@ export class ListNaskahSuratBiasaPage {
 
                 // Access Button Buat Draft
                 btn_draftNotaDinas.click()
+                    .wait(30000)
             }
         })
     }
