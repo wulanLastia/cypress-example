@@ -26,6 +26,7 @@ module.exports = {
     input_perihal: '[data-cy="registrasi__identitas-naskah__input--perihal"]',
 
     // LABEL
+    label_nomorSurat: '[data-cy="registrasi__nomor-naskah__title"]',
     label_kodeKlasifikasi: '[data-cy="registrasi__nomor-naskah__label--kode-klasifikasi"]',
     label_unitPengolah: '[data-cy="registrasi__nomor-naskah__label--unit-pengolah"]',
     label_perihal: '[data-cy="registrasi__identitas-naskah__label--perihal"]',

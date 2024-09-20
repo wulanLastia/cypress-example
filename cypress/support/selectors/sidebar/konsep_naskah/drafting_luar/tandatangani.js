@@ -43,6 +43,12 @@ module.exports = {
     label_penerima: '[data-cy="dialog__dialog-send-document__tujuan__title"]',
     label_dataNamaPenerima: '[data-cy="dialog__dialog-send__card-tujuan__card-user__people-name-0"]',
     label_dataJabatanPenerima: '[data-cy="dialog__dialog-send__card-tujuan__card-user__people-position-0"]',
+    label_dataNamaTujuan0: '[data-cy="dialog__dialog-send__card-tujuan__card-user__people-name-0"]',
+    label_dataJabatanTujuan0: '[data-cy="dialog__dialog-send__card-tujuan__card-user__people-position-0"]',
+    label_dataNamaTujuan1: '[data-cy="dialog__dialog-send__card-tujuan__card-user__people-name-1"]',
+    label_dataJabatanTujuan1: '[data-cy="dialog__dialog-send__card-tujuan__card-user__people-position-1"]',
+    label_dataNamaTujuan2: '[data-cy="dialog__dialog-send__card-tujuan__card-user__people-name-2"]',
+    label_dataJabatanTujuan2: '[data-cy="dialog__dialog-send__card-tujuan__card-user__people-position-2"]',
 
     // POPUP
     dialog_konfirmasiTandatangani: '[data-cy="dialog__dialog-send-document__panel"]',
