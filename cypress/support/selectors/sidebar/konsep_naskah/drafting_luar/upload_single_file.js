@@ -46,4 +46,10 @@ module.exports = {
     btn_draftNotaDinas: '[data-cy="konsep-naskah__nota-dinas__button--create"]',
     btn_uploadFileNotaDinas: '[data-cy="konsep-naskah__nota-dinas__button--upload"]',
     btn_templateNotaDinas: '[data-cy="konsep-naskah__nota-dinas__button--template"]',
+
+    // LIST JENIS NASKAH BERITA DAERAH
+    list_listJenisNaskahBeritaDaerah: '[data-cy="konsep-naskah__list-jenis-naskah__berita-daerah"]',
+    list_naskahTitleBeritaDaerah: '[data-cy="konsep-naskah__berita-daerah__title"]',
+    btn_uploadFileBeritaDaerah: '[data-cy="konsep-naskah__berita-daerah__button--upload"]',
+    btn_templateBeritaDaerah: '[data-cy="konsep-naskah__berita-daerah__button--template"]',
 }

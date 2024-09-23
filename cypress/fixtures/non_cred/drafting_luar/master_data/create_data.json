@@ -18,7 +18,8 @@
       "kode_klasifikasi": "SK (Semua Klasifikasi)"
     },
     {
-      "unit_pengolah": "PAD"
+      "unit_pengolah": "PAD",
+      "unit_pengolah_diskom": "DISKOMINFO"
     },
     {
       "index0": "0",
@@ -72,7 +73,9 @@
     },
     {
       "sifat_surat1": "1",
-      "sifat_surat2": "2"
+      "sifat_surat2": "2",
+      "sifat_surat3": "3",
+      "sifat_surat4": "4"
     },
     {
       "atasan1": "RIZKI HUSTINIASARI, S.T., M.T.",

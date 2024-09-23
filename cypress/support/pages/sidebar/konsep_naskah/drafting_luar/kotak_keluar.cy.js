@@ -452,4 +452,11 @@ export class KotakKeluarPage {
                 .should('contain', 'Dikembalikan')
         })
     }
+
+    checkDetailStatus() {
+        // Check status dikembalikan
+        const label_detailStatus = cy.get(kotak_keluar.label_detailStatus).as('label_detailStatus')
+        label_detailStatus.find('p')
+            .should('contain', 'Selesai')
+    }
 }

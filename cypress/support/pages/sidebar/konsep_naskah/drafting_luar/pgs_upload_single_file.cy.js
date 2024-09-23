@@ -307,4 +307,57 @@ export class UploadSingleFilePage {
             cy.writeFile(getPreviewData, createDataToWrite)
         })
     }
+
+    goToUploadSingleFileBeritaDaerah() {
+        // Check onboarding
+        cy.get('body').then($body => {
+            if ($body.find(upload_single.dialog_onboarding).length > 0) {
+                // Skip onboarding
+                const dialog_onboardingSkip = cy.get(upload_single.dialog_onboardingSkip).as('dialog_onboardingSkip')
+                dialog_onboardingSkip.click()
+            }
+        })
+
+        // Find Document Type
+        const list_listJenisNaskahBeritaDaerah = cy.get(upload_single.list_listJenisNaskahBeritaDaerah).as('list_listJenisNaskahBeritaDaerah')
+        list_listJenisNaskahBeritaDaerah.find('div')
+            .contains('Berita Daerah')
+            .scrollIntoView()
+
+        // Check Detail List
+        const list_naskahTitleBeritaDaerah = cy.get(upload_single.list_naskahTitleBeritaDaerah).as('list_naskahTitleBeritaDaerah')
+        list_naskahTitleBeritaDaerah.should('contain', 'Berita Daerah')
+            .and('be.visible')
+
+        const btn_uploadFileBeritaDaerah = cy.get(upload_single.btn_uploadFileBeritaDaerah).as('btn_uploadFileBeritaDaerah')
+        btn_uploadFileBeritaDaerah.should('contain', 'Upload')
+            .and('be.visible')
+
+        const btn_templateBeritaDaerah = cy.get(upload_single.btn_templateBeritaDaerah).as('btn_templateBeritaDaerah')
+        btn_templateBeritaDaerah.should('contain', 'Template')
+            .and('be.visible')
+
+        // Access Upload Single File
+        btn_uploadFileBeritaDaerah.click({ force : true })
+            .wait(30000)
+            .then((val) => {
+                // Begin Save Assertion Data
+                cy.readFile(getPreviewData).then((object) => {
+                    const createDataToWrite = {
+                        upload_file: []
+                    }
+
+                    // Construct the sub-object
+                    const jenis_naskah_name = {
+                        jenis_naskah: 'Berita Daerah'
+                    }
+
+                    // Push the sub-object to the array
+                    createDataToWrite.upload_file.push(jenis_naskah_name)
+
+                    // // Write data to the JSON file
+                    cy.writeFile(getPreviewData, createDataToWrite)
+                })
+            })
+    }
 }

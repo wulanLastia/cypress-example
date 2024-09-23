@@ -29,6 +29,7 @@ module.exports = {
     label_detailPenerimaTitle: '[data-cy="tujuan__title"]',
     label_detailPenerimaDescription: '[data-cy="tujuan__description"]',
     label_detailPenandatanganTitle: '[data-cy="penandatangan__title"]',
+    label_detailStatus: '[data-cy="tte-review-naskah__status-tag"]',
 
     // INPUT
     input_searchKotakKeluar: '[data-cy="tte-review__filter-box"]',
