@@ -302,6 +302,6 @@ export class MenuPage {
         cy.url().should('eq', Cypress.env('base_url') + 'naskah-keluar')
 
         const label_naskahKeluarTitle = cy.get(menu.label_naskahKeluarTitle).as('label_naskahKeluarTitle')
-        label_naskahKeluarTitle.should('contain', 'Naskah keluar')
+        label_naskahKeluarTitle.should('contain', 'Naskah Keluar')
     }
 }

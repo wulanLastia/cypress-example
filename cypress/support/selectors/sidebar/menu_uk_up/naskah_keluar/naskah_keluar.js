@@ -36,15 +36,15 @@ module.exports = {
     filter_modeDistribusi_telah_ditribusi: '[data-cy="filter-tindak-lanjut__select__activity__option-1"]',
     filter_modeDistribusi_diluar_sidebar: '[data-cy="filter-tindak-lanjut__select__activity__option-2"]',
     filter_urgensi: '[data-cy="filter-tindak-lanjut__select__urgency__wrapper"]',
-    filter_urgensi_selected: '[data-cy="filter-tindak-lanjut__select__urgency__wrapper"] div[id="vs4__combobox"] div[class="vs__selected-options"]',
+    filter_urgensi_selected: '[data-cy="filter-tindak-lanjut__select__urgency__wrapper"] div[id="vs5__combobox"] div[class="vs__selected-options"]',
     filter_urgensi_biasa: '[data-cy="filter-tindak-lanjut__select__urgency__option-0"]',
     filter_urgensi_penting: '[data-cy="filter-tindak-lanjut__select__urgency__option-1"]',
     filter_urgensi_segera: '[data-cy="filter-tindak-lanjut__select__urgency__option-2"]',
     filter_urgensi_amat_segera: '[data-cy="filter-tindak-lanjut__select__urgency__option-3"]',
     filter_jenis: '[data-cy="filter-tindak-lanjut__select__document-type__wrapper"]',
-    filter_jenis_selected: '[data-cy="filter-tindak-lanjut__select__document-type__wrapper"] div[id="vs5__combobox"] div[class="vs__selected-options"]',
-    filter_jenis_search: '[data-cy="filter-tindak-lanjut__select__document-type__option-2"]', // Berita Acara
-    filter_jenis_search_selected: '[data-cy="filter-tindak-lanjut__select__document-type__wrapper"] div[id="vs5__combobox"] div[class="vs__selected-options"] span[class="vs__selected"]',
+    filter_jenis_selected: '[data-cy="filter-tindak-lanjut__select__document-type__wrapper"] div[id="vs6__combobox"] div[class="vs__selected-options"]',
+    filter_jenis_search: '[data-cy="filter-tindak-lanjut__select__document-type__option-5"]', // Berita Acara
+    filter_jenis_search_selected: '[data-cy="filter-tindak-lanjut__select__document-type__wrapper"] div[id="vs6__combobox"] div[class="vs__selected-options"] span[class="vs__selected"]',
     filter_jenis_check: '[data-cy="filter-tindak-lanjut__select__document-type__option-',
 
     // INPUT
