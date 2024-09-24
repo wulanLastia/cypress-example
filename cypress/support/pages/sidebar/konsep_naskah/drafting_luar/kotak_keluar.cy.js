@@ -23,7 +23,7 @@ export class KotakKeluarPage {
         label_tteReviewTitle.should('contain', 'Kotak Keluar')
 
         const label_tteReviewSubtitle = cy.get(kotak_keluar.label_tteReviewSubtitle).as('label_tteReviewSubtitle')
-        label_tteReviewSubtitle.should('contain', 'TTE & Review')
+        label_tteReviewSubtitle.should('contain', 'TTE dan Review')
 
         const input_searchKotakKeluar = cy.get(kotak_keluar.input_searchKotakKeluar).as('input_searchKotakKeluar')
         input_searchKotakKeluar.should('be.visible')

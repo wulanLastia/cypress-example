@@ -88,13 +88,13 @@ describe('Menu UK dan UP - Filter Naskah Keluar UK', { testIsolation: false }, (
 
             // Select checkbox urgensi penting 5627
             naskahKeluarPage.checkFilterJenis()
-            naskahKeluarPage.selectJenisNaskah('Berita Acara', 2)
+            naskahKeluarPage.selectJenisNaskah('Berita Acara', 5)
             naskahKeluarPage.clearJenisNaskah()
 
             // Select multiple checkbox jenis naskah 5623
             naskahKeluarPage.checkFilterJenis()
-            naskahKeluarPage.selectJenisNaskah('Berita Acara', 2)
-            naskahKeluarPage.selectJenisNaskah('Nota Dinas', 3)
+            naskahKeluarPage.selectJenisNaskah('Berita Acara', 5)
+            naskahKeluarPage.selectJenisNaskah('Nota Dinas', 4)
 
             // Close filter urgensi 5618
             naskahKeluarPage.closeFilterJenisNaskah()

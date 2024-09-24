@@ -46,14 +46,11 @@ export class SetujuiPage {
                             .clear()
                             .type(titlePerihalNaskah)
         
-                        cy.wait('@checkResponse', { timeout: 10000 })
-                            .then((interception) => {
-                                if (interception.response.statusCode === 200) {
-                                    const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
-                                    table_kotakMasuk.contains('td', titlePerihalNaskah)
-                                        .click()
-                                }
-                            })
+                        cy.wait(10000)
+
+                        const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
+                        table_kotakMasuk.contains('td', titlePerihalNaskah)
+                            .click()
                     }else{
                         const input_searchKotakMasuk = cy.get(kotak_masuk.input_searchKotakMasuk).first().as('input_searchKotakMasuk')
                         input_searchKotakMasuk.find('input')

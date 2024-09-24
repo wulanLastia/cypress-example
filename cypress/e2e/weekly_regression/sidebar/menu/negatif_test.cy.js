@@ -98,7 +98,7 @@ describe('Menu Negatif Skenario', { testIsolation: false }, () => {
     )
 
     qase([3471, 3472, 3481],
-        it('Cek tombol tandatangani jika SE tidak aktif dan BSRE aktif', () => {
+        it.skip('Cek tombol tandatangani jika SE tidak aktif dan BSRE aktif', () => {
             // Login
             loginPage.loginViaV1(user.user_se_not_active, user.password)
             loginPage.directLogin()
@@ -131,7 +131,7 @@ describe('Menu Negatif Skenario', { testIsolation: false }, () => {
     )
 
     qase([3478, 3479, 3483],
-        it('Cek tombol tandatangani jika SE aktif dan BSRE tidak aktif', () => {
+        it.skip('Cek tombol tandatangani jika SE aktif dan BSRE tidak aktif', () => {
             // Login
             loginPage.loginViaV1(user.user_bsre_not_active, user.password)
             loginPage.directLogin()

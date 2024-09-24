@@ -320,21 +320,16 @@ export class TandatanganiPage {
 
                 // Assert for success and redirect status codes
                 expect(acceptableStatusCodes, `Result of status code: ${status}`).to.include(status);
-
-                cy.wait('@postRequest', { timeout: 5000 })
-                    .then((interception) => {
-                        if (interception.response.statusCode === 200) {
-                            // Wait for up for the success dialog to appear only 0.5 seconds
-                            const dialog_successTTENaskah = cy.get(tandatangani.dialog_successTTENaskah, { timeout: 15000 }).as('dialog_successTTENaskah')
-                            dialog_successTTENaskah.should('be.visible')
-                        }
-                    })
             } else {
                 // Log and throw error if no response is received
                 cy.log('No response received.');
                 throw new Error('No response received.');
             }
         })
+
+        // Wait for up for the success dialog to appear only 0.5 seconds
+        const dialog_successTTENaskah = cy.get(tandatangani.dialog_successTTENaskah, { timeout: 15000 }).as('dialog_successTTENaskah')
+        dialog_successTTENaskah.should('be.visible')
 
         // Wait until tte process
         cy.wait(6000)
