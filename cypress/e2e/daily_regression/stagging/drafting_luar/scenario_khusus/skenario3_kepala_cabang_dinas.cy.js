@@ -4,13 +4,11 @@ import { TabRegistrasiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/ta
 import { UploadSingleFilePage } from "@pages/sidebar/konsep_naskah/drafting_luar/pgs_upload_single_file.cy"
 import { TandatanganiPage } from "@pages/sidebar/konsep_naskah/drafting_luar/tandatangani.cy"
 import { KotakKeluarPage } from "@pages/sidebar/konsep_naskah/drafting_luar/kotak_keluar.cy"
-import { HistoriPage } from "@pages/sidebar/konsep_naskah/drafting_luar/histori.cy"
 
 let uploadSingleFilePage = new UploadSingleFilePage()
 let tabRegistrasiPage = new TabRegistrasiPage()
 let tandatanganiPage = new TandatanganiPage()
 let kotakKeluarPage = new KotakKeluarPage()
-let historiPage = new HistoriPage()
 let loginPage = new LoginPage()
 let user
 let data_temp
