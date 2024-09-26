@@ -27,6 +27,8 @@ export class KotakMasukPage {
                 cy.reload()
             }
         })
+
+        cy.wait(10000)
     }
 
     checkNaskahKotakMasuk(inputEnv) {
