@@ -37,7 +37,7 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-describe('Drafting Luar - Skenario Kepala Biro', { testIsolation: false }, () => {
+describe('Drafting Luar - Skenario Kepala Biro (Kesejahteraan Rakyat)', { testIsolation: false }, () => {
 
     qase([79, 4289, 3885, 3879, 3884, 4229, 4054, 4061, 3996, 4122, 4126, 3930, 4008, 4134, 4141, 4138],
         it('Upload dan registrasi naskah single file', () => {
@@ -58,21 +58,17 @@ describe('Drafting Luar - Skenario Kepala Biro', { testIsolation: false }, () =>
             // Tab Registrasi - Bank Nomor 3884
             tabRegistrasiPage.inputPenomoran()
  
-            // Tab Registrasi - Tujuan Surat Kepala Biro 4229, 4054, 4061
+            // Tab Registrasi - Tujuan Surat Kepala Biro (Kesejahteraan Rakyat) 4229, 4054, 4061
             tabRegistrasiPage.inputTujuanTembusan()
             tabRegistrasiPage.selectLintasDinas()
-            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_kepala_biro1)
-            tabRegistrasiPage.addMoreTujuan()
-            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_kepala_biro2)
-            tabRegistrasiPage.addMoreTujuan()
-            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index2, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_kepala_biro3)
+            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_kepala_biro3)
             tabRegistrasiPage.simpanTujuanTembusan()
 
             // Tab Registrasi - Section Identitas Surat 3996, 4122, 4126
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
 
-            tabRegistrasiPage.inputPerihal('Testing Skenario E2E Tujuan Kepala Biro ' + id, 'Testing Skenario E2E Tujuan Kepala Biro ' + id)
+            tabRegistrasiPage.inputPerihal('Testing Skenario E2E Tujuan Kepala Biro (Kesejahteraan Rakyat) ' + id, 'Testing Skenario E2E Tujuan Kepala Biro (Kesejahteraan Rakyat) ' + id)
             tabRegistrasiPage.checkWarnaLabelUrgensi(data_temp.registrasi[7].urgensi_surat, data_temp.registrasi[3].index0)
             tabRegistrasiPage.inputSifat(data_temp.registrasi[8].sifat_surat3)
 

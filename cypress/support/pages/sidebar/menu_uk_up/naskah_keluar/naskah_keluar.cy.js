@@ -185,7 +185,7 @@ export class NaskahKeluarPage {
         const filter_urgensi_selected = cy.get(naskah_keluar.filter_urgensi_selected)
         filter_urgensi_selected.find('input')
             .should('be.visible')
-            .and('have.attr', 'placeholder', 'Semua Urgensi')
+            .and('have.attr', 'placeholder', 'Semua urgensi')
     }
 
     selectUrgensi(inputanUrgensi){
@@ -384,7 +384,7 @@ export class NaskahKeluarPage {
         const filter_jenis_selected = cy.get(naskah_keluar.filter_jenis_selected)
         filter_jenis_selected.find('input')
             .should('be.visible')
-            .and('have.attr', 'placeholder', 'Semua jenis dokumen')
+            .and('have.attr', 'placeholder', 'Semua jenis naskah')
     }
 
     searchJenisNaskah(inputanJenis) {
