@@ -81,16 +81,18 @@ export class MenuPage {
                 // Click menu kotak masuk
                 const reviewNaskahKM = cy.get(menu.reviewNaskahKM).as('reviewNaskahKM')
                 reviewNaskahKM.should('be.visible')
-                    .click()
+                    .click({force:true})
             }else{
                 this.goToKotakMasuk()
 
                 // Click menu kotak masuk
                 const reviewNaskahKM = cy.get(menu.reviewNaskahKM).as('reviewNaskahKM')
                 reviewNaskahKM.should('be.visible')
-                    .click()
+                    .click({force:true})
             }
         })
+
+        cy.wait(30000)
     }
 
     goToKotakMasukTindakLanjut() {

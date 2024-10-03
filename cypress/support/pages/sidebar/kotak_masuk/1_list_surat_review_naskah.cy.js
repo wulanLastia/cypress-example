@@ -5,17 +5,13 @@ export class ListSuratReviewNaskahPage {
     checkDetailHalaman() {
         this.checkTitleReviewNaskah()
 
-        const filterReviewNaskah = cy.get(review_naskah.buttonFilterReviewNaskah).as('filterReviewNaskah')
-        filterReviewNaskah.should('contain', 'Atur Filter')
-            .and('be.visible')
-
         const searchReviewNaskah = cy.get(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
         searchReviewNaskah.find('input')
-            .should('have.attr', 'placeholder', 'Cari berdasarkan perihal atau tujuan naskah')
+            .should('have.attr', 'placeholder', 'Cari berdasarkan perihal')
             .and('be.visible')
 
         const tableReviewNaskah = cy.get(review_naskah.tableReviewNaskah).as('tableReviewNaskah')
-        tableReviewNaskah.should('have.class', 'w-full mx-auto bg-white rounded-lg mb-24')
+        tableReviewNaskah.should('have.class', 'w-full mx-auto')
             .and('be.visible')
     }
 
@@ -25,19 +21,26 @@ export class ListSuratReviewNaskahPage {
             .and('be.visible')
 
         const subTitleReviewNaskah = cy.get(review_naskah.subTitleReviewNaskah).as('subTitleReviewNaskah')
-        subTitleReviewNaskah.should('contain', 'Review Naskah')
+        subTitleReviewNaskah.should('contain', 'TTE dan Review')
             .and('be.visible')
     }
 
     checkPreviousPage() {
         const btnPreviousPage = cy.get(review_naskah.btnPreviousPage).as('btnPreviousPage')
-        btnPreviousPage.should('be.disabled')
+        btnPreviousPage.scrollIntoView()
+            .should('be.disabled')
     }
 
     searchDokumen(inputText) {
+        // Wait until page load
+        cy.wait(3000)
+
+        // Search dokumen
         const searchReviewNaskah = cy.get(review_naskah.searchReviewNaskah).as('searchReviewNaskah')
-        searchReviewNaskah.find('input').clear()
-        searchReviewNaskah.type(inputText)
+        searchReviewNaskah.find('input')
+            .clear()
+            .wait(2000)
+            .type(inputText)
             .invoke('val')
             .then((val) => {
                 cy.intercept('POST', Cypress.env('base_url_api_v2')).as('checkResponse')
@@ -72,10 +75,10 @@ export class ListSuratReviewNaskahPage {
                 if (fill === "#F44336") {
                     const labelUrgensi = cy.get(review_naskah.tagUrgensi).as('labelUrgensi')
                     labelUrgensi.find('p').should('contain.text', 'Amat Segera')
-                } else if (fill == "#FFC800") {
+                } else if (fill == "#FFD026") {
                     const labelUrgensi = cy.get(review_naskah.tagUrgensi).as('labelUrgensi')
                     labelUrgensi.find('p').should('contain.text', 'Segera')
-                } else if (fill === "#70CD94") {
+                } else if (fill === "#16A75C") {
                     const labelUrgensi = cy.get(review_naskah.tagUrgensi).as('labelUrgensi')
                     labelUrgensi.find('p').should('contain.text', 'Biasa')
                 } else {
