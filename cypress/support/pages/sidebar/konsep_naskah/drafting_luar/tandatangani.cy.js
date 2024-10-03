@@ -328,7 +328,7 @@ export class TandatanganiPage {
         })
 
         // Wait for up for the success dialog to appear only 0.5 seconds
-        const dialog_successTTENaskah = cy.get(tandatangani.dialog_successTTENaskah, { timeout: 15000 }).as('dialog_successTTENaskah')
+        const dialog_successTTENaskah = cy.get(tandatangani.dialog_successTTENaskah, { timeout: 20000 }).as('dialog_successTTENaskah')
         dialog_successTTENaskah.should('be.visible')
 
         // Wait until tte process

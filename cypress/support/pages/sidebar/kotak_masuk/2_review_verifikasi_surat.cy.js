@@ -23,19 +23,19 @@ export class ReviewVerifikasiSuratPage {
     checkDetailSurat() {
         cy.wait(3000)
 
-        const btnKembali = cy.xpath(review_verifikasi.btnKembali).as('btnKembali')
+        const btnKembali = cy.get(review_verifikasi.btnKembali).as('btnKembali')
         btnKembali.should('have.class', 'flex')
             .and('be.visible')
 
-        const titleSurat = cy.xpath(review_verifikasi.titleSurat).as('titleSurat')
+        const titleSurat = cy.get(review_verifikasi.titleSurat).as('titleSurat')
         titleSurat.should('contain', 'Review Naskah')
             .and('be.visible')
 
-        const jenisNaskah = cy.xpath(review_verifikasi.jenisNaskah).as('jenisNaskah')
+        const jenisNaskah = cy.get(review_verifikasi.jenisNaskah).as('jenisNaskah')
         jenisNaskah.should('be.visible')
 
-        const labelUrgensi = cy.xpath(review_verifikasi.labelUrgensi).as('labelUrgensi')
-        labelUrgensi.then(($urg) => {
+        const labelUrgensi = cy.get(review_verifikasi.labelUrgensi).as('labelUrgensi')
+        labelUrgensi.find('span').then(($urg) => {
             if ($urg.attr('style').includes('background-color: rgb(244, 67, 54)')) {
                 const textUrgensi = cy.xpath(review_verifikasi.textUrgensi).as('textUrgensi')
                 textUrgensi.should('contain', 'Amat Segera')
@@ -63,16 +63,16 @@ export class ReviewVerifikasiSuratPage {
         getbtnKoreksi.should('contain', 'Koreksi')
             .and('be.visible')
 
-        const previewSurat = cy.xpath(review_verifikasi.previewSurat).as('previewSurat')
+        const previewSurat = cy.get(review_verifikasi.previewSurat).as('previewSurat')
         previewSurat.should('not.to.be.empty')
 
-        const btnHistory = cy.xpath(review_verifikasi.btnHistory).as('btnHistory')
+        const btnHistory = cy.get(review_verifikasi.btnHistory).as('btnHistory')
         btnHistory.should('contain', 'Segera lakukan aksi untuk naskah ini')
             .and('be.visible')
     }
 
     lanjutkanReviewDrafting() {
-        const btnKembali = cy.xpath(review_verifikasi.btnKembali).as('btnKembali')
+        const btnKembali = cy.get(review_verifikasi.btnKembali).as('btnKembali')
         btnKembali.should('have.class', 'flex')
             .and('be.visible')
             .click()
