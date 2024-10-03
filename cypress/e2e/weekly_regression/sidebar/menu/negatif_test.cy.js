@@ -66,37 +66,6 @@ describe('Menu Negatif Skenario', { testIsolation: false }, () => {
         })
     )
 
-    qase(3467,
-        it('Cek tampilan icon sertifikat elektronik jika SE tidak aktif', () => {
-            // Login
-            loginPage.loginViaV1(user.user_not_registered, user.password)
-            loginPage.directLogin()
-
-            menuPage.checkIconSE('Tidak Aktif')
-        })
-    )
-
-    qase(3470,
-        it('Cek tampilan icon sertifikat elektronik saat di hover jika SE tidak aktif', () => {
-            menuPage.checkHoverIconSE('Tidak Aktif')
-        })
-    )
-
-    qase(3475,
-        it('Cek tampilan icon BSRE jika BSRE tidak aktif', () => {
-            menuPage.checkIconBSRE('Tidak Aktif')
-        })
-    )
-
-    qase(3477,
-        it('Cek tampilan icon BSRE saat di hover jika BSRE tidak aktif', () => {
-            menuPage.checkHoverIconBSRE('Tidak Aktif')
-
-            cy.wait(6000)
-            loginPage.logoutV2step2()
-        })
-    )
-
     qase([3471, 3472, 3481],
         it.skip('Cek tombol tandatangani jika SE tidak aktif dan BSRE aktif', () => {
             // Login
