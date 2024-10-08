@@ -46,7 +46,7 @@ jobs:
           # sesuaikan
           browser: chrome
           record: true
-          spec: 'cypress/e2e/daily_regression/stagging/*'
+          spec: 'cypress/e2e/daily_regression/stagging/**/*'
           tag: 'automated_trigger'
 
         # sesuaikan kalau ada env lain
