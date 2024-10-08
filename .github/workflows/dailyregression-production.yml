@@ -1,19 +1,26 @@
 # more info see official docs: https://github.com/cypress-io/github-action
-name: E2E Cypress Daily Test at 01:00 WIB
+name: E2E Cypress Production Daily Test at 01:00 WIB
 on:
   workflow_dispatch:
   schedule:
     - cron: '00 18 * * *' # runs everyday at UTC +7 01:00 WIB
 jobs:
   cypress-run:
-    runs-on: self-hosted
+    runs-on: [self-hosted, cypress]
+    timeout-minutes: 120 
     container:
-      image: cypress/included:13.13.1
+      image: cypress/included:13.15.0
       # solution from https://github.com/cypress-io/cypress-docker-images/issues/560#issuecomment-1121774167
       # options: --user 1001
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      # Set XDG_RUNTIME_DIR
+      - name: Set XDG_RUNTIME_DIR
+        run: |
+          mkdir -p /tmp/runtime-dir
+          echo "XDG_RUNTIME_DIR=/tmp/runtime-dir" >> $GITHUB_ENV
 
       # bisa disesuaikan kalau ada banyak fixture lain. jangan lupa tambahkan di setting env repo
       - name: 'Create credential fixture dir'
@@ -39,7 +46,7 @@ jobs:
           # sesuaikan
           browser: chrome
           record: true
-          spec: 'cypress/e2e/daily_regression/**/*'
+          spec: 'cypress/e2e/daily_regression/prod/*'
           tag: 'automated_trigger'
 
         # sesuaikan kalau ada env lain

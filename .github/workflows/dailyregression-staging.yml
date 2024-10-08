@@ -1,0 +1,86 @@
+# more info see official docs: https://github.com/cypress-io/github-action
+name: E2E Cypress Staging Daily Test at 01:00 WIB
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '00 18 * * *' # runs everyday at UTC +7 01:00 WIB
+jobs:
+  cypress-run:
+    runs-on: [self-hosted, cypress]
+    timeout-minutes: 120 
+    container:
+      image: cypress/included:13.15.0
+      # solution from https://github.com/cypress-io/cypress-docker-images/issues/560#issuecomment-1121774167
+      # options: --user 1001
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Set XDG_RUNTIME_DIR
+      - name: Set XDG_RUNTIME_DIR
+        run: |
+          mkdir -p /tmp/runtime-dir
+          echo "XDG_RUNTIME_DIR=/tmp/runtime-dir" >> $GITHUB_ENV
+
+      # bisa disesuaikan kalau ada banyak fixture lain. jangan lupa tambahkan di setting env repo
+      - name: 'Create credential fixture dir'
+        run: |
+          mkdir cypress/fixtures/cred
+          echo "${{ secrets.CREDENTIALS_DEV_JSON_CONTENT }}" | base64 --decode > cypress/fixtures/cred/credentials_dev.json
+          echo "${{ secrets.CREDENTIALS_PROD_JSON_CONTENT }}" | base64 --decode > cypress/fixtures/cred/credentials_prod.json
+
+      # adapted from https://stackoverflow.com/a/76943682/2496217 & https://stackoverflow.com/a/61827163/2496217
+      - name: Get current datedate as env variable
+        run: echo "DATETIME=$(TZ='Asia/Jakarta' date +'%Y-%m-%d_%H:%M:%S')" >> $GITHUB_ENV
+
+      # clear npm
+      - name: Clear npm cache
+        run: npm cache clean --force
+
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        continue-on-error: true
+        with:
+          # sesuaikan
+          browser: chrome
+          record: true
+          spec: 'cypress/e2e/daily_regression/stagging/*'
+          tag: 'automated_trigger'
+
+        # sesuaikan kalau ada env lain
+        env:
+          # override cypress binary cache location. ref: https://docs.cypress.io/guides/references/advanced-installation#Binary-cache
+          # latest solution from https://github.com/cypress-io/cypress-docker-images/issues/560#issuecomment-1121774167
+          CYPRESS_CACHE_FOLDER: "${GITHUB_WORKSPACE}/.cypress-cache"
+          # pass the Cypress Cloud record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # pass the project ID from the secrets through environment variable
+          # CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          # 1: staging
+          QASE_REPORT: 1
+          QASE_MODE: "testops"
+          QASE_RUN_NAME: "${{ env.DATETIME }} - Run github action automation"
+          QASE_API_TOKEN: ${{ secrets.QASE_API_TOKEN }}
+          # settings for cloud.cypress.io
+          COMMIT_INFO_MESSAGE: "${{ env.DATETIME }} - Run github action automation"
+          COMMIT_INFO_AUTHOR: "${{ github.triggering_actor }}"
+          COMMIT_INFO_EMAIL: "jds@example.com"
+
+          BASE_URL: ${{ secrets.BASE_URL }}
+          BASE_URL_V1: ${{ secrets.BASE_URL_V1 }}
+          BASE_URL_PROD_V1: ${{ secrets.BASE_URL_PROD_V1 }}
+          BASE_URL_PROD_V2: ${{ secrets.BASE_URL_PROD_V2 }}
+          BASE_URL_API_V1: ${{ secrets.BASE_URL_API_V1 }}
+          BASE_URL_API_V2: ${{ secrets.BASE_URL_API_V2 }}
+
+          # Unleash override env vars:
+          # in base64 format
+          CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY: ${{ secrets.CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY }}
+          # used algo name: RS256, EdDSA, HS256, etc
+          CYPRESS_UNLEASH_OVERRIDE_KEY_ALGORITHM: ${{ secrets.CYPRESS_UNLEASH_OVERRIDE_KEY_ALGORITHM }}
+          # override unleash v2
+          CYPRESS_DRAFTING_LAYOUT: ${{ secrets.CYPRESS_DRAFTING_LAYOUT }}
