@@ -263,9 +263,10 @@ export class CreateSuratBiasaPage {
         draftingKakiSuratPage.closeKakiSurat()
     }
 
-    inputKakiSuratSkenario5(inputEnv, inputanPenandatanganAtasan1) {
+    inputKakiSuratSkenario5(inputEnv, inputanPenandatanganAtasan1, inputanTembusan1, inputanTembusan2, inputanTembusan3) {
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan1)
+        draftingKakiSuratPage.pilihTembusanSkenario1(inputEnv, inputanTembusan1, inputanTembusan2, inputanTembusan3)
         draftingKakiSuratPage.closeKakiSurat()
     }
 

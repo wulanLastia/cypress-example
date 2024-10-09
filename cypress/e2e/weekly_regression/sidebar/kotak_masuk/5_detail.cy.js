@@ -53,7 +53,10 @@ describe('Detail Review dan Verifikasi hasil Surat (Kotak Masuk) Skenario', () =
             createSuratBiasaPage.inputLampiranSurat2(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputKakiSuratSkenario5(
                 data_temp.env[0].staging,
-                data_temp.kaki_surat[0].penandatangan_atasan2)
+                data_temp.kaki_surat[0].penandatangan_atasan2,
+                data_temp.kaki_surat[2].tembusan_internal4,
+                data_temp.kaki_surat[2].tembusan_internal5,
+                data_temp.kaki_surat[2].tembusan_internal6)
             createSuratBiasaPage.inputKepalaSuratSkenario1(
                 data_temp.env[0].staging,
                 data_temp.kepala_surat[7].tempat1,
