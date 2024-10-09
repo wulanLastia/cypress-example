@@ -7,7 +7,7 @@ on:
 jobs:
   cypress-run:
     runs-on: [self-hosted, cypress]
-    timeout-minutes: 120 
+    timeout-minutes: 60 
     container:
       image: cypress/included:13.15.0
       # solution from https://github.com/cypress-io/cypress-docker-images/issues/560#issuecomment-1121774167
