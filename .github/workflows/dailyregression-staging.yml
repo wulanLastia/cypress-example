@@ -47,7 +47,7 @@ jobs:
           browser: chrome
           record: true
           spec: 'cypress/e2e/daily_regression/stagging/**/*'
-          tag: 'automated_trigger'
+          tag: 'automated_trigger, staging'
 
         # sesuaikan kalau ada env lain
         env:
@@ -63,10 +63,10 @@ jobs:
           # 1: staging
           QASE_REPORT: 1
           QASE_MODE: "testops"
-          QASE_RUN_NAME: "${{ env.DATETIME }} - Run github action automation"
+          QASE_RUN_NAME: "${{ env.DATETIME }} - Run github action automation - Staging"
           QASE_API_TOKEN: ${{ secrets.QASE_API_TOKEN }}
           # settings for cloud.cypress.io
-          COMMIT_INFO_MESSAGE: "${{ env.DATETIME }} - Run github action automation"
+          COMMIT_INFO_MESSAGE: "${{ env.DATETIME }} - Run github action automation - Staging"
           COMMIT_INFO_AUTHOR: "${{ github.triggering_actor }}"
           COMMIT_INFO_EMAIL: "jds@example.com"
 
