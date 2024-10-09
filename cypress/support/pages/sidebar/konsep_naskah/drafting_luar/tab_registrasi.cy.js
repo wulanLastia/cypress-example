@@ -338,6 +338,9 @@ export class TabRegistrasiPage {
 
                 const select_inputTujuanWrapper = cy.get(tab_registrasi.select_inputTujuanWrapper + tujuanKe + '"').as('select_inputTujuanWrapper')
                 select_inputTujuanWrapper.click()
+
+                const select_inputTujuanSearch = cy.get(tab_registrasi.select_inputTujuanSearch).as('select_inputTujuanSearch')
+                select_inputTujuanSearch.click()
                     .wait(1000)
                     .type(inputTujuan, { delay : 500 })
 

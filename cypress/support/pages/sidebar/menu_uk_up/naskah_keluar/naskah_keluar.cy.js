@@ -372,7 +372,7 @@ export class NaskahKeluarPage {
 
         // Assertion
         const filter_urgensi_assert = cy.get(naskah_keluar.filter_urgensi)
-        filter_urgensi_assert.should('have.class', 'v-select w-full max-w-52 font-lato text-sm font-normal filter-select vs--multiple vs--unsearchable')
+        filter_urgensi_assert.should('have.class', 'v-select w-full font-lato text-sm font-normal filter-select max-w-52 vs--multiple vs--unsearchable')
     }
 
     checkFilterJenis() {
@@ -483,6 +483,6 @@ export class NaskahKeluarPage {
 
         // Assertion
         const filter_jenis_assert = cy.get(naskah_keluar.filter_jenis)
-        filter_jenis_assert.should('have.class', 'v-select w-full max-w-52 font-lato text-sm font-normal filter-select vs--multiple vs--unsearchable')
+        filter_jenis_assert.should('have.class', 'v-select w-full font-lato text-sm font-normal filter-select max-w-52 vs--multiple vs--unsearchable')
     }
 }

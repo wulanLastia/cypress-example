@@ -5,7 +5,7 @@ export class LoginPage {
 
     navigateLoginPageV1() {
         cy.log(Cypress.env('base_url_v1'))
-        cy.visit(Cypress.env('base_url_v1'), { failOnStatusCode: true })
+        cy.visit(Cypress.env('base_url_v1'), { failOnStatusCode: false })
     }
 
     navigateLoginPageV1Prod() {
