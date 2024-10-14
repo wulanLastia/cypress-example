@@ -434,4 +434,58 @@ export class PerbaikiPage {
                 .and('have.class', 'filename text-[#C62828]')
         }
     }
+
+    showPenandatanganAn() {
+        // Assert penandatangan title
+        const label_detailPenandatanganTitle = cy.get(tab_registrasi.label_detailPenandatanganTitle).as('label_detailPenandatanganTitle')
+        label_detailPenandatanganTitle.should('contain', 'Penandatangan')
+            .and('be.visible')
+
+        cy.readFile(getPreviewData).then((object) => {
+            // User Atas Nama
+            const atasNama = object.penandatangan[0].atas_nama
+            const arrAtasNama = atasNama.split('(')
+            const arrPositionAtasNama = arrAtasNama[1].split(')')
+
+            // Assert User Atas Nama
+            const tab_dataAvatarAtasNama1 = cy.get(tab_registrasi.label_dataAvatarAtasNama1).as('tab_dataAvatarAtasNama1')
+            tab_dataAvatarAtasNama1.scrollIntoView()
+                .should('be.visible')
+
+            const tab_dataAtasNama1 = cy.get(tab_registrasi.label_dataAtasNama1).as('tab_dataAtasNama1')
+            tab_dataAtasNama1.scrollIntoView()
+                .contains(arrAtasNama[0], { matchCase: false })
+
+            const tab_dataJabatanAtasNama1 = cy.get(tab_registrasi.label_dataJabatanAtasNama1).as('tab_dataJabatanAtasNama1')
+            tab_dataJabatanAtasNama1.scrollIntoView()
+                .contains(arrPositionAtasNama[0], { matchCase: false })
+        })
+    }
+
+    showPenandatanganUb() {
+        // Assert penandatangan title
+        const label_detailPenandatanganTitle = cy.get(tab_registrasi.label_detailPenandatanganTitle).as('label_detailPenandatanganTitle')
+        label_detailPenandatanganTitle.should('contain', 'Penandatangan')
+            .and('be.visible')
+
+        cy.readFile(getPreviewData).then((object) => {
+            // User Untuk Beliau
+            const untukBeliau = object.penandatangan[2].untuk_beliau
+            const arrUntukBeliau = untukBeliau.split('(')
+            const arrPositionUntukBeliau = arrUntukBeliau[1].split(')')
+
+            // Assert User Untuk Beliau
+            const label_dataAvatarUntukBeliau1 = cy.get(tab_registrasi.label_dataAvatarUntukBeliau1).as('label_dataAvatarUntukBeliau1')
+            label_dataAvatarUntukBeliau1.scrollIntoView()
+                .should('be.visible')
+
+            const label_dataUntukBeliau1 = cy.get(tab_registrasi.label_dataUntukBeliau1).as('label_dataUntukBeliau1')
+            label_dataUntukBeliau1.scrollIntoView()
+                .contains(arrUntukBeliau[0], { matchCase: false })
+
+            const label_dataJabatanUntukBeliau1 = cy.get(tab_registrasi.label_dataJabatanUntukBeliau1).as('label_dataJabatanUntukBeliau1')
+            label_dataJabatanUntukBeliau1.scrollIntoView()
+                .contains(arrPositionUntukBeliau[0], { matchCase: false })
+        })
+    }
 }

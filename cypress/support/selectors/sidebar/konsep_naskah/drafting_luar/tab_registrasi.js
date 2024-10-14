@@ -51,6 +51,13 @@ module.exports = {
     label_iconPenandatanganUntukBeliau: '[data-cy="penandatangan-image-untuk_beliau-0"]',
     label_assertPenandatanganUntukBeliau: '[data-cy="penandatangan-name-untuk_beliau-0"]',
     label_assertJabatanPenandatangaUntukBeliau: '[data-cy="penandatangan-position-untuk_beliau-0"]',
+    label_detailPenandatanganTitle: '[data-cy="registrasi__penandatangan__title"]',
+    label_dataAvatarAtasNama1: '[data-cy="penandatangan-image-atas_nama-0"]',
+    label_dataAtasNama1: '[data-cy="penandatangan-name-atas_nama-0"]',
+    label_dataJabatanAtasNama1: '[data-cy="penandatangan-position-atas_nama-0"]',
+    label_dataAvatarUntukBeliau1: '[data-cy="penandatangan-image-untuk_beliau-1"]',
+    label_dataUntukBeliau1: '[data-cy="penandatangan-name-untuk_beliau-1"]',
+    label_dataJabatanUntukBeliau1: '[data-cy="penandatangan-position-untuk_beliau-1"]',
 
     // SELECT
     select_bankNomor: '[data-cy="registrasi__nomor-naskah__input--bank-nomor"]',
