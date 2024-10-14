@@ -8,7 +8,7 @@ export class KembalikanPage {
         const btn_kembalikanNavbar = cy.get(kembalikan.btn_kembalikanNavbar).as('btn_kembalikanNavbar')
         btn_kembalikanNavbar.should('contain', 'Kembalikan')
             .click()
-            .wait(3000)
+            .wait(10000)
 
         // Assertion
         const dialog_popupKembalikan = cy.get(kembalikan.dialog_popupKembalikan).as('dialog_popupKembalikan')

@@ -48,7 +48,7 @@ describe('Drafting Luar - Create, Kembalikan Naskah', () => {
     qase([4289, 3878, 3879, 3882, 3910, 3922, 4051, 4054, 4061, 4650, 4651, 4656, 3996, 4122, 4123, 4035, 3930, 4008, 4078, 4097, 4080],
         it('Upload dan registrasi naskah single file', () => {
             // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_2, user.password)
             loginPage.directLogin()
 
             // Go To Konsep Naskah SKP
@@ -77,7 +77,11 @@ describe('Drafting Luar - Create, Kembalikan Naskah', () => {
 
             // Tab Registrasi - Section Penandatangan
             tabRegistrasiPage.addMorePenandatangan()
-            tabRegistrasiPage.inputPenandatanganAtasan(data_temp.registrasi[9].atasan2, data_temp.env[0].staging)
+            tabRegistrasiPage.selectPenandatanganAtasNama()
+            tabRegistrasiPage.inputPenandatanganAtasNama(data_temp.registrasi[9].atas_nama, data_temp.registrasi[9].atasan1, data_temp.env[0].staging)
+            tabRegistrasiPage.addMorePenandatangan()
+            tabRegistrasiPage.selectPenandatanganUntukBeliau()
+            tabRegistrasiPage.inputPenandatanganUntukBeliau(data_temp.registrasi[9].untuk_beliau, data_temp.registrasi[9].atasan2, data_temp.env[0].staging)
 
             // Upload file pengantar
             tabRegistrasiPage.uploadSuratPengantar(data_temp.upload[0].upload1)
@@ -94,7 +98,7 @@ describe('Drafting Luar - Create, Kembalikan Naskah', () => {
     qase([3389, 3390, 4194, 4195, 4204, 4205, 4206, 4207, 4208, 4209, 4210, 4211],
         it('Kembalikan Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_2_2, user.password)
+            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
             loginPage.directLogin()
 
             // Go To Kotak Masuk - TTE & Review 3389
@@ -134,7 +138,7 @@ describe('Drafting Luar - Perbaiki Naskah', { testIsolation: false }, () => {
     qase([3389, 4213, 4212],
         it('Perbaiki', () => {
             // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_2, user.password)
             loginPage.directLogin()
 
             // Go To Kotak Masuk - TTE & Review 3389
@@ -211,7 +215,7 @@ describe('Drafting Luar - Perbaiki Naskah', { testIsolation: false }, () => {
         })
     )
 
-    qase([4213, 4356, 4361, 4362, 4363, 4359],
+    qase([4213, 4356, 4361, 4362, 4363, 4359, 5759, 5760],
         it('Tab Registrasi', () => {
             // Mengakses tab registrasi 4356
             perbaikiPage.aksesTabRegistrasi()
@@ -227,6 +231,12 @@ describe('Drafting Luar - Perbaiki Naskah', { testIsolation: false }, () => {
 
             // Mengupdate section surat pengantar 4359
             perbaikiPage.uploadPerbaikanSuratPengantar(data_temp.upload[0].upload1)
+
+            // Show flag a.n on display picture and selected penandatangan 5759
+            perbaikiPage.showPenandatanganAn()
+
+            // Show flag u.b on display picture and selected penandatangan 5760
+            perbaikiPage.showPenandatanganUb()
         })
     )
 })

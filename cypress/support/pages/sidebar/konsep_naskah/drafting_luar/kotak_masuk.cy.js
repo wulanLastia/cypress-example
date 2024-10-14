@@ -15,7 +15,7 @@ export class KotakMasukPage {
         btn_menuTteReview.should('contain', 'TTE & Review')
             .click()
 
-        cy.wait(6000)
+        cy.wait(10000)
 
         // Check onboarding
         cy.get('body').then($body => {

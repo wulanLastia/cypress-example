@@ -1045,8 +1045,8 @@ export class TabRegistrasiPage {
         label_iconPenandatanganAtasNama.should('be.visible')
 
         cy.readFile(getPreviewData).then((object) => {
-            // Assertion data penandatangan  atas nama
-            const penandatanganAtasNamaValue = object.penandatangan[0].penandatangan_atas_nama
+            // Assertion data penandatangan atas nama
+            const penandatanganAtasNamaValue = object.penandatangan[0].atas_nama
             const arrAtasNama = penandatanganAtasNamaValue.split('(')
             const arrPositionAtasNama = arrAtasNama[1].split(')')
 
@@ -1065,7 +1065,7 @@ export class TabRegistrasiPage {
 
         cy.readFile(getPreviewData).then((object) => {
             // Assertion data penandatangan untuk beliau
-            const penandatanganUntukBeliauValue = object.penandatangan[0].penandatangan_untuk_beliau
+            const penandatanganUntukBeliauValue = object.penandatangan[0].untuk_beliau
             const arrUntukBeliau = penandatanganUntukBeliauValue.split('(')
             const arrPositionUntukBeliau = arrUntukBeliau[1].split(')')
 
