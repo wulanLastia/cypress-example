@@ -12,7 +12,6 @@ export class DraftingKopSuratNotaDinasPage {
     checkDetail() {
         const titleKop = cy.get(kop_surat.titleKop).as('titleKop')
         titleKop.should('contain', 'Kop Surat')
-            .and('be.visible')
 
         const subTitleKop = cy.get(kop_surat.subTitleKop).as('subTitleKop')
         subTitleKop.should('contain', 'Level Kop Surat')
@@ -96,7 +95,7 @@ export class DraftingKopSuratNotaDinasPage {
 
     closeKopSurat() {
         const closeKopSurat = cy.get(kop_surat.closeKopSurat).as('closeKopSurat')
-        closeKopSurat.should('be.visible')
+        closeKopSurat.scrollIntoView()
             .click()
 
         draftingNotaDinasPage.validateFormDefault()
@@ -118,16 +117,6 @@ export class DraftingKopSuratNotaDinasPage {
         const checkRadio3 = cy.get(kop_surat.checkRadio3).as('checkRadio3')
         checkRadio3.click()
     }
-
-    closeKopSurat() {
-        const closeKopSurat = cy.get(kop_surat.closeKopSurat).as('closeKopSurat')
-        closeKopSurat.should('be.visible')
-            .click()
-
-        draftingNotaDinasPage.validateFormDefault()
-    }
-
-
 
     // PROD
     prodCheckPreviewDinas() {

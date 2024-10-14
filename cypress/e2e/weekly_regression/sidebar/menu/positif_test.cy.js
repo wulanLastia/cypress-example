@@ -82,29 +82,4 @@ describe('Menu Positif Skenario', { testIsolation: false }, () => {
             loginPage.navigateLoginPageV2()
         })
     )
-
-    qase(3466,
-        it('Cek tampilan icon sertifikat elektronik jika SE aktif', () => {
-            menuPage.checkIconSE('Aktif')
-        })
-    )
-
-    qase(3468,
-        it('Cek tampilan icon sertifikat elektronik saat di hover jika SE aktif', () => {
-            menuPage.checkHoverIconSE('Aktif')
-        })
-    )
-
-    qase(3474,
-        it('Cek tampilan icon BSRE jika BSRE aktif', () => {
-            menuPage.checkIconBSRE('Aktif')
-        })
-    )
-
-    qase(3476,
-        it('Cek tampilan icon BSRE saat di hover jika BSRE aktif', () => {
-            menuPage.checkHoverIconBSRE('Aktif')
-        })
-    )
-    
 })

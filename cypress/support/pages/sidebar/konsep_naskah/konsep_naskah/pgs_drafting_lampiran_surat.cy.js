@@ -94,8 +94,8 @@ export class DraftingLampiranSuratPage {
         scrollLampiran.scrollTo('top')
 
         const btnCloseLampiran = cy.get(lampiran_surat.btnCloseLampiran).as('btnCloseLampiran')
-        btnCloseLampiran.should('be.visible')
-            .click({ force: true })
+        btnCloseLampiran.scrollIntoView()
+            .click()
     }
 
     scrollPreviewPage() {

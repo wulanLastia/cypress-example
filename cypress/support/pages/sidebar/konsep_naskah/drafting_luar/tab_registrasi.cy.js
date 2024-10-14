@@ -61,7 +61,7 @@ export class TabRegistrasiPage {
                     this.searchKodeKlasifikasi(data_temp.registrasi[1].kode_klasifikasi)
 
                     // Input unit pengolah
-                    this.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah, data_temp.registrasi[2].unit_pengolah)
+                    this.inputUnitPengolah(data_temp.registrasi[2].unit_pengolah_diskom, data_temp.registrasi[2].unit_pengolah_diskom)
                 });
             }
         });
@@ -338,6 +338,9 @@ export class TabRegistrasiPage {
 
                 const select_inputTujuanWrapper = cy.get(tab_registrasi.select_inputTujuanWrapper + tujuanKe + '"').as('select_inputTujuanWrapper')
                 select_inputTujuanWrapper.click()
+
+                const select_inputTujuanSearch = cy.get(tab_registrasi.select_inputTujuanSearch).as('select_inputTujuanSearch')
+                select_inputTujuanSearch.click()
                     .wait(1000)
                     .type(inputTujuan, { delay : 500 })
 
@@ -347,11 +350,10 @@ export class TabRegistrasiPage {
                             if (interception.response.statusCode === 200) {
                                 const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).first().as('select_inputTujuanSuggest0')
                                 select_inputTujuanSuggest0.scrollIntoView()
-                                    .contains(inputTujuan, { timeout: 10000 }).should('be.visible')
                                     .invoke('text')
                                     .then((inputanTujuanSuggest) => {
                                         // Push the sub-object to the array
-                                        object.tujuan_surat[tujuanKe] = { tujuan_internal: inputanTujuanSuggest.trim() };
+                                        object.tujuan_surat[tujuanKe] = { ['tujuan_internal_' + tujuanKe] : inputanTujuanSuggest.trim() };
 
                                         // Write data to the JSON file
                                         cy.writeFile(getPreviewData, object)
@@ -551,6 +553,14 @@ export class TabRegistrasiPage {
                 })
             }
         })
+    }
+
+    simpanTujuanTembusan() {
+        // Click button simpan
+        const btn_confirmDialogTujuanTembusan = cy.get(tab_registrasi.btn_confirmDialogTujuanTembusan).as('btn_confirmDialogTujuanTembusan')
+        btn_confirmDialogTujuanTembusan.find('div')
+            .should('contain', 'Simpan')
+            .click()
     }
 
     inputPerihal(inputPerihal, assertionPerihal) {

@@ -17,7 +17,7 @@ export class MenuPage {
         hideMenu.click()
 
         const sidebar = cy.xpath(menu.sidebarClass).as('sidebarClass')
-        sidebar.should('have.class', 'flex h-[calc(100%-72px)] bg-white transition-[width] duration-500 w-[64px]')
+        sidebar.should('have.class', 'flex h-full bg-white transition-[width] duration-500 w-[64px]')
     }
 
     clickBtnShowMenu() {
@@ -25,7 +25,7 @@ export class MenuPage {
         showMenu.click()
 
         const sidebar = cy.xpath(menu.sidebarClass).as('sidebarClass')
-        sidebar.should('have.class', 'flex h-[calc(100%-72px)] bg-white transition-[width] duration-500 w-[240px]')
+        sidebar.should('have.class', 'flex h-full bg-white transition-[width] duration-500 w-[240px]')
     }
 
     checkMenu() {
@@ -33,14 +33,16 @@ export class MenuPage {
 
         this.goToKotakMasuk()
 
+        // Assert sub menu TTE & Review
         const reviewNaskahKM = cy.get(menu.reviewNaskahKM).as('reviewNaskahKM')
-        reviewNaskahKM.should('contain', 'Review Naskah')
+        reviewNaskahKM.should('contain', 'TTE & Review')
             .and('be.visible')
 
         this.goToKotakKeluar()
 
+        // Assert sub menu TTE & Review
         const reviewNaskahKK = cy.get(menu.reviewNaskahKK).as('reviewNaskahKK')
-        reviewNaskahKK.should('contain', 'Review Naskah')
+        reviewNaskahKK.should('contain', 'TTE & Review')
             .and('be.visible')
     }
 
@@ -79,16 +81,18 @@ export class MenuPage {
                 // Click menu kotak masuk
                 const reviewNaskahKM = cy.get(menu.reviewNaskahKM).as('reviewNaskahKM')
                 reviewNaskahKM.should('be.visible')
-                    .click()
+                    .click({force:true})
             }else{
                 this.goToKotakMasuk()
 
                 // Click menu kotak masuk
                 const reviewNaskahKM = cy.get(menu.reviewNaskahKM).as('reviewNaskahKM')
                 reviewNaskahKM.should('be.visible')
-                    .click()
+                    .click({force:true})
             }
         })
+
+        cy.wait(30000)
     }
 
     goToKotakMasukTindakLanjut() {
@@ -102,7 +106,7 @@ export class MenuPage {
 
     goToKotakKeluarReviewNaskah() {
         const reviewNaskahKK = cy.get(menu.reviewNaskahKK).as('reviewNaskahKK')
-        reviewNaskahKK.should('contain', 'Review Naskah')
+        reviewNaskahKK.should('contain', 'TTE & Review')
             .and('be.visible')
             .click()
     }
@@ -302,6 +306,6 @@ export class MenuPage {
         cy.url().should('eq', Cypress.env('base_url') + 'naskah-keluar')
 
         const label_naskahKeluarTitle = cy.get(menu.label_naskahKeluarTitle).as('label_naskahKeluarTitle')
-        label_naskahKeluarTitle.should('contain', 'Naskah keluar')
+        label_naskahKeluarTitle.should('contain', 'Naskah Keluar')
     }
 }

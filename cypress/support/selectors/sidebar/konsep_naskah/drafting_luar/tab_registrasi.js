@@ -26,6 +26,7 @@ module.exports = {
     input_perihal: '[data-cy="registrasi__identitas-naskah__input--perihal"]',
 
     // LABEL
+    label_nomorSurat: '[data-cy="registrasi__nomor-naskah__title"]',
     label_kodeKlasifikasi: '[data-cy="registrasi__nomor-naskah__label--kode-klasifikasi"]',
     label_unitPengolah: '[data-cy="registrasi__nomor-naskah__label--unit-pengolah"]',
     label_perihal: '[data-cy="registrasi__identitas-naskah__label--perihal"]',
@@ -65,11 +66,12 @@ module.exports = {
     select_bankNomorlainnya: '[data-cy="input__select-9999"]',
     select_inputNomorUrut: '[data-cy="registrasi__nomor-naskah__input--nomor-urut"]',
     select_inputNomorUrut0: '[data-cy="input__select-0"]',
-    select_inputKodeKlasifikasi: '[data-cy="registrasi__nomor-naskah__input--kode-klasifikasi"]',
+    select_inputKodeKlasifikasi: '[data-cy="registrasi__nomor-naskah__select__kode-klasifikasi__wrapper"]',
     select_inputKodeKlasifikasiSuggest: '[data-cy="input__select-0"]',
-    select_inputTujuanWrapper: '[data-cy="registrasi__tujuan-naskah__wrapper-',
+    select_inputTujuanWrapper: '[data-cy="registrasi__tujuan-naskah__select__wrapper-',
+    select_inputTujuanSearch: '[data-cy="registrasi__tujuan-naskah__select__search"]',
     select_inputTujuan: '[data-cy="registrasi__tujuan-naskah__select-option__custom-input-',
-    select_inputTujuanSuggest0: '[data-cy="registrasi__tujuan-naskah__select-option-0"]',
+    select_inputTujuanSuggest0: '[data-cy="registrasi__tujuan-naskah__select__option-0"]',
     select_inputTembusan: '[data-cy="registrasi__tembusan-naskah__wrapper-',
     select_inputTembusanSuggest0: '[data-cy="registrasi__tembusan-naskah__select-option-0"]',
     select_urgensi: '[data-cy="registrasi__identitas-naskah__select--urgensi"]',

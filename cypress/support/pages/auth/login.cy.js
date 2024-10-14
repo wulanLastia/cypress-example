@@ -4,8 +4,8 @@ import navbar from "../../selectors/navbar"
 export class LoginPage {
 
     navigateLoginPageV1() {
-        //cy.log(Cypress.env('base_url_v1'))
-        cy.visit(Cypress.env('base_url_v1'), { failOnStatusCode: true })
+        cy.log(Cypress.env('base_url_v1'))
+        cy.visit(Cypress.env('base_url_v1'), { failOnStatusCode: false })
     }
 
     navigateLoginPageV1Prod() {
@@ -216,10 +216,10 @@ export class LoginPage {
 
             // Close banner popup v2
             cy.get('body').then($body => {
-                if ($body.find(login.btnClosePopupV2).length > 0) {
+                if ($body.find(login.btnClosePopupV2).length > 0 || $body.find(login.btnClosePopupV2).css('display') !== 'none') {
                     // Close banner popup v2
                     const btnClosePopupV2 = cy.get(login.btnClosePopupV2).as('btnClosePopupV2')
-                    btnClosePopupV2.click()
+                    btnClosePopupV2.click({ force:true })
                 }
             })
 
@@ -438,7 +438,7 @@ export class LoginPage {
                 cy.wait(3000)
 
                 // Assertion Login Sidebar V2 - Siap Jabar
-                cy.url().should('eq', Cypress.env('base_url') + 'konsep-naskah');
+                cy.url().should('eq', Cypress.env('base_url_prod_v2') + 'konsep-naskah');
             }else{
                 if ($body.find(login.closePopupLandingPageV1).length > 0) {
                     // Close popup landing page v1

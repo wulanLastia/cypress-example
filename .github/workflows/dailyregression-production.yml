@@ -1,36 +1,27 @@
 # more info see official docs: https://github.com/cypress-io/github-action
-name: E2E Cypress Test Manual
+name: E2E Cypress Production Daily Test at 01:00 WIB
 on:
   workflow_dispatch:
-    inputs:
-      spec_file:
-        description: 'Path to spec file'
-        required: true
-        default: 'cypress/e2e/daily_regression/auth/positif_test.cy.js'
-        type: string
-      run_name:
-        description: 'Name of the run to be appended with run time. Suggested to include tester name'
-        required: true
-        type: string
-        default: 'Run test github action Fulan'
-
+  schedule:
+    - cron: '00 18 * * *' # runs everyday at UTC +7 01:00 WIB
 jobs:
   cypress-run:
     runs-on: [self-hosted, cypress]
+    timeout-minutes: 60 
     container:
-      image: cypress/included:12.17.4
+      image: cypress/included:13.15.0
       # solution from https://github.com/cypress-io/cypress-docker-images/issues/560#issuecomment-1121774167
       # options: --user 1001
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       # Set XDG_RUNTIME_DIR
       - name: Set XDG_RUNTIME_DIR
         run: |
           mkdir -p /tmp/runtime-dir
           echo "XDG_RUNTIME_DIR=/tmp/runtime-dir" >> $GITHUB_ENV
-          
+
       # bisa disesuaikan kalau ada banyak fixture lain. jangan lupa tambahkan di setting env repo
       - name: 'Create credential fixture dir'
         run: |
@@ -42,6 +33,10 @@ jobs:
       - name: Get current datedate as env variable
         run: echo "DATETIME=$(TZ='Asia/Jakarta' date +'%Y-%m-%d_%H:%M:%S')" >> $GITHUB_ENV
 
+      # clear npm
+      - name: Clear npm cache
+        run: npm cache clean --force
+
       # Install npm dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
@@ -51,8 +46,8 @@ jobs:
           # sesuaikan
           browser: chrome
           record: true
-          spec: ${{ inputs.spec_file }}
-          tag: 'manual_trigger'
+          spec: 'cypress/e2e/daily_regression/prod/**/*'
+          tag: 'automated_trigger, production'
 
         # sesuaikan kalau ada env lain
         env:
@@ -68,20 +63,20 @@ jobs:
           # 1: staging
           QASE_REPORT: 1
           QASE_MODE: "testops"
-          QASE_RUN_NAME: "${{ env.DATETIME }} - ${{ inputs.run_name }}"
+          QASE_RUN_NAME: "${{ env.DATETIME }} - Run github action automation - Prod"
           QASE_API_TOKEN: ${{ secrets.QASE_API_TOKEN }}
           # settings for cloud.cypress.io
-          COMMIT_INFO_MESSAGE: "${{ env.DATETIME }} - ${{ inputs.run_name }}"
+          COMMIT_INFO_MESSAGE: "${{ env.DATETIME }} - Run github action automation - Prod"
           COMMIT_INFO_AUTHOR: "${{ github.triggering_actor }}"
           COMMIT_INFO_EMAIL: "jds@example.com"
-          
+
           BASE_URL: ${{ secrets.BASE_URL }}
           BASE_URL_V1: ${{ secrets.BASE_URL_V1 }}
           BASE_URL_PROD_V1: ${{ secrets.BASE_URL_PROD_V1 }}
           BASE_URL_PROD_V2: ${{ secrets.BASE_URL_PROD_V2 }}
           BASE_URL_API_V1: ${{ secrets.BASE_URL_API_V1 }}
           BASE_URL_API_V2: ${{ secrets.BASE_URL_API_V2 }}
-          
+
           # Unleash override env vars:
           # in base64 format
           CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY: ${{ secrets.CYPRESS_UNLEASH_OVERRIDE_PRIVATE_KEY }}

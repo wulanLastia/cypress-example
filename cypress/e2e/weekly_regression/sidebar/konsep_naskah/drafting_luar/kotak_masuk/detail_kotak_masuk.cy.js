@@ -43,7 +43,7 @@ describe('Drafting Luar - Test Case Detail Kotak Masuk', { testIsolation: false 
     qase([4289, 3878, 3879, 3882, 3910, 3922, 4051, 4054, 4061, 4650, 4651, 4656, 3996, 4122, 4123, 4035, 3930, 4008, 4078, 4097, 4080],
         it('Upload dan registrasi naskah single file', () => {
             // Login
-            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_2, user.password)
             loginPage.directLogin()
 
             // Go To Konsep Naskah SKP
@@ -55,18 +55,12 @@ describe('Drafting Luar - Test Case Detail Kotak Masuk', { testIsolation: false 
 
             // Click tab registrasi
             tabRegistrasiPage.clickTabRegistrasi()
-
-            // Tab Registrasi - Bank Nomor
-            tabRegistrasiPage.inputPenomoran()
- 
-            // Tab Registrasi - Tujuan Surat
-            tabRegistrasiPage.inputTujuanTembusanSurat()
             
             // Tab Registrasi - Section Identitas Surat
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
 
-            tabRegistrasiPage.inputPerihal('Automation Drafting Luar - Kotak Masuk (Surat Biasa) ' + id, 'Automation Drafting Luar - Kotak Masuk (Surat Biasa) ' + id)
+            tabRegistrasiPage.inputPerihal('Automation Drafting Luar - Kotak Masuk (SKP) ' + id, 'Automation Drafting Luar - Kotak Masuk (SKP) ' + id)
             tabRegistrasiPage.checkWarnaLabelUrgensi(data_temp.registrasi[7].urgensi_surat, data_temp.registrasi[3].index0)
             tabRegistrasiPage.inputSifat(data_temp.registrasi[8].sifat_surat1)
 
@@ -74,7 +68,11 @@ describe('Drafting Luar - Test Case Detail Kotak Masuk', { testIsolation: false 
             tabRegistrasiPage.addMorePenandatangan()
             tabRegistrasiPage.inputPenandatanganDiriSendiri()
             tabRegistrasiPage.addMorePenandatangan()
-            tabRegistrasiPage.inputPenandatanganAtasan(data_temp.registrasi[9].atasan2, data_temp.env[0].staging)
+            tabRegistrasiPage.selectPenandatanganAtasNama()
+            tabRegistrasiPage.inputPenandatanganAtasNama(data_temp.registrasi[9].atas_nama, data_temp.registrasi[9].atasan1, data_temp.env[0].staging)
+            tabRegistrasiPage.addMorePenandatangan()
+            tabRegistrasiPage.selectPenandatanganUntukBeliau()
+            tabRegistrasiPage.inputPenandatanganUntukBeliau(data_temp.registrasi[9].untuk_beliau, data_temp.registrasi[9].atasan2, data_temp.env[0].staging)
 
             // Upload file pengantar
             tabRegistrasiPage.uploadSuratPengantar(data_temp.upload[0].upload1)
@@ -82,17 +80,17 @@ describe('Drafting Luar - Test Case Detail Kotak Masuk', { testIsolation: false 
 
             // Melakukan TTE Naskah (Penandatangan Diri Sendiri)
             tandatanganiPage.tandatanganiNaskah()
-            tandatanganiPage.checkInputDataRegistrasi()
+            tandatanganiPage.checkInputDataRegistrasi('2.5')
             tandatanganiPage.tteNaskah()
             tandatanganiPage.submitTteNaskah(user.passphrase, data_temp.env[0].staging)
         })
     )
 
     // Begin test case detail kotak masuk
-    qase([3389, 3390, 3406, 3393, 3395, 3397, 3398, 3399, 3401, 3394],
+    qase([3389, 3390, 3406, 3393, 3395, 3397, 3398, 3399, 3401, 5652, 5667, 3394],
         it('Detail kotak masuk', () => {
             // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_2_2, user.password)
+            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
             loginPage.directLogin()
             
             // Go To Kotak Masuk - TTE & Review 3389
@@ -119,8 +117,8 @@ describe('Drafting Luar - Test Case Detail Kotak Masuk', { testIsolation: false 
             // Cek detail data tab registrasi - sifat 3399
             kotakMasukPage.checkDataSifat()
 
-            // Cek detail data tab registrasi - konseptor 3401
-            kotakMasukPage.checkDataPenandatangan()
+            // Cek detail data tab registrasi - konseptor 3401 & penandatangan atas nama - untuk beliau 5652, 5667
+            kotakMasukPage.checkDataPenandatangan('2.5')
 
             // Cek tombol kembali 3394
             kotakMasukPage.checkBtnKembali()

@@ -18,7 +18,8 @@
       "kode_klasifikasi": "SK (Semua Klasifikasi)"
     },
     {
-      "unit_pengolah": "PAD"
+      "unit_pengolah": "PAD",
+      "unit_pengolah_diskom": "DISKOMINFO"
     },
     {
       "index0": "0",
@@ -34,7 +35,31 @@
     },
     {
       "tujuan_internal1": "Dr. IKA MARDIAH, M.Si.",
-      "tujuan_eksternal1": "Tujuan Eksternal"
+      "tujuan_eksternal1": "Tujuan Eksternal",
+      "tujuan_kepala_dinas1": "Kepala Dinas Pendidikan",
+      "tujuan_kepala_dinas2": "Kepala Dinas Kesehatan",
+      "tujuan_kepala_dinas3": "Kepala Dinas Sosial",
+      "tujuan_kepala_badan1": "Kepala Badan Pendapatan Daerah",
+      "tujuan_kepala_badan2": "Kepala Badan Pengelolaan Keuangan dan Aset Daerah",
+      "tujuan_kepala_badan3": "Kepala Badan Perencanaan Pembangunan Daerah",
+      "tujuan_kepala_cabang_dinas1": "Kepala Cabang Dinas Energi dan Sumber Daya Mineral Wilayah I Cianjur",
+      "tujuan_kepala_cabang_dinas2": "Kepala Cabang Dinas Kelautan dan Perikanan Wilayah Utara",
+      "tujuan_kepala_cabang_dinas3": "Kepala Cabang Dinas Energi dan Sumber Daya Mineral Wilayah VII Cirebon",
+      "tujuan_kepala_uptd1": "Kepala UPTD Pelatihan Kesehatan",
+      "tujuan_kepala_uptd2": "Kepala UPTD Laboratorium Kesehatan",
+      "tujuan_kepala_uptd3": "Kepala UPTD Pusat Pengelolaan Pendapatan Daerah Wilayah Kabupaten Bogor", 
+      "tujuan_sekda1": "Sekretaris Daerah",
+      "tujuan_sekda2": "Iis Rostiasih",
+      "tujuan_sekda3": "Sekretaris DPRD",
+      "tujuan_asisten_sekda1": "Asisten Administrasi Umum",
+      "tujuan_asisten_sekda2": "Asisten Pemerintahan dan Kesejahteraan Rakyat",
+      "tujuan_asisten_sekda3": "Asisten Perekonomian dan Pembangunan",
+      "tujuan_kepala_biro1": "Kepala Biro Pemerintahan dan Otonomi Daerah",
+      "tujuan_kepala_biro2": "Kepala Biro Perekonomian",
+      "tujuan_kepala_biro3": "Kepala Biro Kesejahteraan Rakyat",
+      "tujuan_gubernur": "Gubernur",
+      "tujuan_wakil_gubernur": "Wakil Gubernur",
+      "tujuan_kepala_satuan": "Kepala Satuan Polisi Pamong Praja"
     },
     {
       "tembusan_internal1": "RIZKI HUSTINIASARI, S.T., M.T.",
@@ -48,7 +73,9 @@
     },
     {
       "sifat_surat1": "1",
-      "sifat_surat2": "2"
+      "sifat_surat2": "2",
+      "sifat_surat3": "3",
+      "sifat_surat4": "4"
     },
     {
       "atasan1": "RIZKI HUSTINIASARI, S.T., M.T.",
