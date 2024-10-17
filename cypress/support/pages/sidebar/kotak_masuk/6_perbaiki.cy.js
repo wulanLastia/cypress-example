@@ -15,14 +15,7 @@ const perihalNaskah = "cypress/fixtures/non_cred/kepala_surat/kepala_surat_temp_
 
 export class PerbaikiNaskahPage {
 
-    goToPerbaikiNaskah(inputEnv) {
-        // Go To Menu Kotak Masuk
-        const btn_menuKotakMasuk = cy.get(kotak_masuk.btn_menuKotakMasuk).as('btn_menuKotakMasuk')
-        btn_menuKotakMasuk.should('contain', 'Kotak Masuk')
-            .click()
-            .wait(3000)
-
-        // Check layout lama atau baru
+    goToPerbaikiNaskah(inputEnv) {// Check layout lama atau baru
         cy.get('body').then($body => {
             if ($body.find(kotak_masuk.btn_menuTteReview).css('display') !== 'none') {
                 // Click Menu Submenu TTE & Review
@@ -348,6 +341,8 @@ export class PerbaikiNaskahPage {
         const btnKonfirmasiKirimNaskah = cy.get(perbaiki.btnKonfirmasiKirimNaskah).as('btnKonfirmasiKirimNaskah')
         btnKonfirmasiKirimNaskah.should('contain', 'Kirim naskah')
             .click()
+
+        cy.wait(6000)
     }
 
     perbaikiNaskahNotaDinas(inputanPerbaiki) {

@@ -163,8 +163,6 @@ export class DraftingKakiSuratPage {
     }
 
     pilihTembusanSkenario2(inputEnv, inputanTembusan1, inputanTembusan2, inputanTembusan3) {
-        cy.log('ada')
-        cy.log(inputanTembusan1)
         this.inputTembusanEksternal1(inputEnv, inputanTembusan1)
 
         this.clickTambahTembusan()

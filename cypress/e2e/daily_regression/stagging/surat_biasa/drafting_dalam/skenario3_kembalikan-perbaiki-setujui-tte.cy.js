@@ -39,12 +39,12 @@ beforeEach(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-describe('Skenario Surat Biasa - Create, Kembalikan, Perbaiki, Tandatangani', () => {
+describe('Skenario Surat Biasa - Tujuan Kepala Internal 3 Eksternal 3, Lampiran 2, Penandatangan Atasan', () => {
 
     qase([13, 81, 83, 709, 150, 80, 176],
         it('Create Naskah Surat Biasa', () => {
             // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_2, user.password)
             loginPage.directLogin()
 
             // Create Naskah
@@ -52,18 +52,19 @@ describe('Skenario Surat Biasa - Create, Kembalikan, Perbaiki, Tandatangani', ()
             createSuratBiasaPage.inputKopSurat(data_temp.org[0].org2)
             createSuratBiasaPage.inputLampiranSurat(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputLampiranSurat2(faker.lorem.paragraphs(6, '<br/>\n'))
-            createSuratBiasaPage.inputKakiSuratSkenario5(
+            createSuratBiasaPage.inputKakiSuratSkenario7(
                 data_temp.env[0].staging,
                 data_temp.kaki_surat[0].penandatangan_atasan2,
-                data_temp.kaki_surat[2].tembusan_internal4,
-                data_temp.kaki_surat[2].tembusan_internal5,
-                data_temp.kaki_surat[2].tembusan_internal6)
-            createSuratBiasaPage.inputKepalaSuratSkenario1(
+                data_temp.kaki_surat[1].pemeriksa2)
+            createSuratBiasaPage.inputKepalaSuratSkenario5(
                 data_temp.env[0].staging,
                 data_temp.kepala_surat[7].tempat1,
                 data_temp.kepala_surat[0].tujuan1,
                 data_temp.kepala_surat[0].tujuan2,
                 data_temp.kepala_surat[0].tujuan3,
+                data_temp.kepala_surat[0].tujuan_eksternal1,
+                data_temp.kepala_surat[0].tujuan_eksternal2,
+                data_temp.kepala_surat[0].tujuan_eksternal3,
                 data_temp.kepala_surat[1].lokasi,
                 data_temp.kepala_surat[2].kode_klasifikasi,
                 data_temp.kepala_surat[3].unit_pengolah,
@@ -79,7 +80,7 @@ describe('Skenario Surat Biasa - Create, Kembalikan, Perbaiki, Tandatangani', ()
     qase([399, 101, 377, 402, 100],
         it('Kembalikan Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_2_2, user.password)
+            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
             loginPage.directLogin()
 
             // Create Naskah
@@ -96,11 +97,22 @@ describe('Skenario Surat Biasa - Create, Kembalikan, Perbaiki, Tandatangani', ()
     qase([367, 712, 713, 714, 715],
         it('Perbaiki Naskah', () => {
             // Login 
-            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
+            loginPage.loginViaV1(user.nip_konseptor_2, user.password)
             loginPage.directLogin()
 
             perbaikiNaskahPage.goToPerbaikiNaskah(data_temp.env[0].stagging)
             perbaikiNaskahPage.perbaikiNaskah(data_temp.perbaiki[0].perbaiki_perihal)
+        })
+    )
+
+    qase([358, 102],
+        it('Setujui Naskah', () => {
+            // Login 
+            loginPage.loginViaV1(user.nip_pemeriksa_2_1, user.password)
+            loginPage.directLogin()
+
+            setujuiPage.suratBelumDireview()
+            setujuiPage.setujui()
         })
     )
 
@@ -111,7 +123,7 @@ describe('Skenario Surat Biasa - Create, Kembalikan, Perbaiki, Tandatangani', ()
             loginPage.directLogin()
 
             cy.wait(3000)
-            setujuiPage.suratBelumDireview(data_temp.env[0].stagging)
+            setujuiPage.suratBelumDitandatangani(data_temp.env[0].stagging)
             setujuiPage.doTandaTanganiSurat(user.passphrase) 
             cy.wait(10000)
         })

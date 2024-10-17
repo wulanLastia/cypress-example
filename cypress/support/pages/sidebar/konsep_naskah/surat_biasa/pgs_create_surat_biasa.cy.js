@@ -240,7 +240,6 @@ export class CreateSuratBiasaPage {
     }
 
     inputKakiSuratSkenario2(inputEnv, inputanPenandatanganAtasan1, inputanPemeriksa1, inputanTembusanEksternal1, inputanTembusanEksternal2, inputanTembusanEksternal3) {
-        cy.log(inputanTembusanEksternal1)
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan1)
         draftingKakiSuratPage.pilihPemeriksa(inputEnv, inputanPemeriksa1)
@@ -267,6 +266,20 @@ export class CreateSuratBiasaPage {
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan1)
         draftingKakiSuratPage.pilihTembusanSkenario1(inputEnv, inputanTembusan1, inputanTembusan2, inputanTembusan3)
+        draftingKakiSuratPage.closeKakiSurat()
+    }
+
+    inputKakiSuratSkenario6(inputEnv, inputanPenandatanganDiriSendiri, inputanTembusan1, inputanTembusan2, inputanTembusan3) {
+        draftingKakiSuratPage.inputKakiSurat()
+        draftingKakiSuratPage.pilihPenandatanganDiriSendiri(inputanPenandatanganDiriSendiri)
+        draftingKakiSuratPage.pilihTembusanSkenario1(inputEnv, inputanTembusan1, inputanTembusan2, inputanTembusan3)
+        draftingKakiSuratPage.closeKakiSurat()
+    }
+
+    inputKakiSuratSkenario7(inputEnv, inputanPenandatanganAtasan1, inputanPemeriksa1) {
+        draftingKakiSuratPage.inputKakiSurat()
+        draftingKakiSuratPage.pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan1)
+        draftingKakiSuratPage.pilihPemeriksa(inputEnv, inputanPemeriksa1)
         draftingKakiSuratPage.closeKakiSurat()
     }
 

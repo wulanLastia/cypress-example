@@ -1,7 +1,7 @@
 {
   "kepala_surat": [
     {
-      "tujuan1": "Bey Triadi Machmudin, S.E., M.T.",
+      "tujuan1": "GUBERNUR JAWA BARAT",
       "tujuan2": "Dr. IKA MARDIAH",
       "tujuan3": "RIZKI HUSTINIASARI",
       "tujuan4": "Dra. Hj. I GUSTI AGUNG",
@@ -132,6 +132,7 @@
     },
     {
       "pemeriksa1": "FAJAR LIBRIANTO, S.Si., M.M.",
+      "pemeriksa2": "RIZKI HUSTINIASARI",
       "pemeriksa_prod": "SMOKE TEST FAJAR LIBRIANTO"
     },
     {
@@ -141,7 +142,7 @@
       "tembusan_eksternal4": "Tembusan Eksternal 4",
       "tembusan_eksternal5": "Tembusan Eksternal 5",
       "tembusan_eksternal6": "Tembusan Eksternal 6",
-      "tembusan_internal1": "Bey Triadi Machmudin, S.E., M.T.",
+      "tembusan_internal1": "GUBERNUR JAWA BARAT",
       "tembusan_internal2": "Dr. IKA MARDIAH",
       "tembusan_internal3": "RIZKI HUSTINIASARI",
       "tembusan_internal4": "GUBERNUR JAWA BARAT",

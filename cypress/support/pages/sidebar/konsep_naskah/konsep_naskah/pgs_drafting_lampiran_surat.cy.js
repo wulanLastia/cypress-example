@@ -59,7 +59,7 @@ export class DraftingLampiranSuratPage {
     inputLampiranSurat(textToPaste) {
         draftingKonsepNaskahPage.inputLampiranSurat()
 
-        cy.wait(6000)
+        cy.wait(8000)
 
         cy.window().then(win => {
             win.tinyMCE.activeEditor.setContent(textToPaste)
@@ -70,7 +70,7 @@ export class DraftingLampiranSuratPage {
     inputLampiranSurat2(textToPaste) {
         draftingKonsepNaskahPage.inputLampiranSurat2()
 
-        cy.wait(6000)
+        cy.wait(8000)
 
         cy.window().then(win => {
             win.tinyMCE.activeEditor.setContent(textToPaste)
