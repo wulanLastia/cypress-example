@@ -216,7 +216,7 @@ export class LoginPage {
 
             // Close banner popup v2
             cy.get('body').then($body => {
-                if ($body.find(login.btnClosePopupV2).length > 0 || $body.find(login.btnClosePopupV2).css('display') !== 'none') {
+                if ($body.find(login.btnClosePopupV2).length > 0) {
                     // Close banner popup v2
                     const btnClosePopupV2 = cy.get(login.btnClosePopupV2).as('btnClosePopupV2')
                     btnClosePopupV2.click({ force:true })
