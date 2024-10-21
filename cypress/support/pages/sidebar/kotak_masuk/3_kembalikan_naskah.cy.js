@@ -49,8 +49,8 @@ export class KembalikanNaskahPage {
                             cy.wait('@checkResponse', { timeout: 10000 })
                                 .then((interception) => {
                                     if (interception.response.statusCode === 200) {
-                                        const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
-                                        table_kotakMasuk.contains('td', titlePerihalNaskah)
+                                        const label_tableDataJenis = cy.get(kotak_masuk.label_tableDataJenis).as('label_tableDataJenis')
+                                        label_tableDataJenis.should('contain', titlePerihalNaskah)
                                             .click()
                                     }
                                 })
@@ -63,8 +63,8 @@ export class KembalikanNaskahPage {
                             // Wait until document found
                             cy.wait(10000)
             
-                            const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
-                            table_kotakMasuk.contains('td', titlePerihalNaskah)
+                            const label_tableDataJenis = cy.get(kotak_masuk.label_tableDataJenis).as('label_tableDataJenis')
+                            label_tableDataJenis.should('contain', titlePerihalNaskah)
                                 .click()
                         }  
                     }else{
@@ -86,8 +86,8 @@ export class KembalikanNaskahPage {
                             cy.wait('@checkResponse', { timeout: 10000 })
                                 .then((interception) => {
                                     if (interception.response.statusCode === 200) {
-                                        const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
-                                        table_kotakMasuk.contains('td', titlePerihalNaskah)
+                                        const label_tableDataJenis = cy.get(kotak_masuk.label_tableDataJenis).as('label_tableDataJenis')
+                                        label_tableDataJenis.should('contain', titlePerihalNaskah)
                                             .click()
                                     }
                                 })
@@ -100,8 +100,8 @@ export class KembalikanNaskahPage {
                             // Wait until document found
                             cy.wait(10000)
             
-                            const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
-                            table_kotakMasuk.contains('td', titlePerihalNaskah)
+                            const label_tableDataJenis = cy.get(kotak_masuk.label_tableDataJenis).as('label_tableDataJenis')
+                            label_tableDataJenis.should('contain', titlePerihalNaskah)
                                 .click()
                         }
                     }
@@ -250,6 +250,8 @@ export class KembalikanNaskahPage {
         const btnKirimNaskah = cy.get(kembalikan_naskah.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.should('contain', 'Kirim naskah')
             .click()
+
+        cy.wait(6000)
     }
 
 }

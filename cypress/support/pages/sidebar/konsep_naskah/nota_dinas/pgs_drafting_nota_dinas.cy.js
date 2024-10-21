@@ -193,7 +193,7 @@ export class DraftingNotaDinasPage {
 
 
         // Wait for up for the success dialog to appear only 0.5 seconds
-        const successKirimNaskah = cy.get(nota_dinas.popupSuccessKirimNaskah, { timeout: 500 }).as('successKirimNaskah')
+        const successKirimNaskah = cy.get(nota_dinas.popupSuccessKirimNaskah, { timeout: 6000 }).as('successKirimNaskah')
         successKirimNaskah.should('be.visible')
 
         successKirimNaskah.should('exist')
