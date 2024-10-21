@@ -386,6 +386,31 @@ export class DraftingKepalaSuratNotaDinasPage {
             .type('{enter}')
     }
 
+    inputTembusan3(Nama_Tembusan3) {
+        cy.readFile(getJSONRequestFileCreateNotaDinas).then((data) => {
+            // If there's no Kepala_Surat entry, initialize one
+            if (!data.Kepala_Surat) {
+                data.Kepala_Surat = [{}];
+            }
+
+            // Input data into fields
+            const inputTembusan3 = cy.get(kepala_surat.inputTembusan2).as('inputTembusan3')
+            inputTembusan3.wait(1000)
+                .type(Nama_Tembusan3)
+                .invoke('val')  // Extract the value of the input
+                .then((inputValue3) => {
+                    // Assign the inputValue2 to Tujuan2
+                    data.Kepala_Surat[1].Tembusan3 = inputValue3;
+
+                    // Write data back to the JSON file
+                    cy.writeFile(getJSONRequestFileCreateNotaDinas, data);
+                })
+        });
+
+        const pilihTembusan3 = cy.get(kepala_surat.inputTembusan2).as('pilihTembusan3')
+        pilihTembusan3.wait(3000)
+            .type('{enter}')
+    }
 
     // Field Kode Klasifikasi
     inputKodeKlasifikasi(Kode_Klasifikasi) {
@@ -970,11 +995,8 @@ export class DraftingKepalaSuratNotaDinasPage {
     closeLampiranKepalaSurat() {
         const btnLampiranKepalaSurat = cy.get(kepala_surat.closeLampiranKepalaSurat).as('btnLampiranKepalaSurat')
         btnLampiranKepalaSurat.scrollIntoView()
-            .should('be.visible')
             .click()
 
         draftingNotaDinasPage.validateFormDefault()
     }
-
-
 }

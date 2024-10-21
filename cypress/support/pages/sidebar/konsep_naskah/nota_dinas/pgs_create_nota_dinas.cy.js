@@ -38,7 +38,7 @@ export class CreateNotaDinasPage {
         draftingKopSuratNotaDinasPage.closeKopSurat()
     }
 
-    createKepalaSurat() {
+    createKepalaSuratBkp() {
         draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
 
         // Pilih Penempatan Daftar Tujuan Surat
@@ -71,7 +71,76 @@ export class CreateNotaDinasPage {
         draftingKepalaSuratNotaDinasPage.closeKepalaSurat()
     }
 
-    createLampiranKepalaSurat() {
+    createKepalaSurat(tujuanSurat, tembusanSurat, kodeKlasifikasi, unitPengolah, sifatSurat, urgensi, perihal) {
+        draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
+    
+        // Pilih Penempatan Daftar Tujuan Surat
+        draftingKepalaSuratNotaDinasPage.clickRButton1KepalaSurat()
+    
+        // Input Tujuan Surat (INTERNAL) secara dinamis
+        tujuanSurat.forEach((tujuan, index) => {
+            // Menggunakan index untuk menentukan field mana yang digunakan
+            switch (index) {
+                case 0:
+                    draftingKepalaSuratNotaDinasPage.inputTujuan(tujuan)
+                    break;
+                case 1:
+                    draftingKepalaSuratNotaDinasPage.inputTujuanField2(tujuan)
+                    break;
+                case 2:
+                    draftingKepalaSuratNotaDinasPage.inputTujuanField3(tujuan)
+                    break;
+            }
+            
+            // Hanya memanggil addTujuan untuk elemen selain elemen terakhir
+            if (index < tujuanSurat.length - 1) {
+                draftingKepalaSuratNotaDinasPage.addTujuan()
+            }
+        })
+    
+        // Input Tembusan Surat (INTERNAL) secara dinamis
+        tembusanSurat.forEach((tembusan, index) => {
+            switch (index) {
+                case 0:
+                    draftingKepalaSuratNotaDinasPage.inputTembusan(tembusan)
+                    break;
+                case 1:
+                    draftingKepalaSuratNotaDinasPage.inputTembusan2(tembusan)
+                    break;
+                case 2:
+                    draftingKepalaSuratNotaDinasPage.inputTembusan3(tembusan)
+                    break;
+            }
+            
+            // Hanya memanggil addTembusan untuk elemen selain elemen terakhir
+            if (index < tembusanSurat.length - 1) {
+                draftingKepalaSuratNotaDinasPage.addTembusan()
+            }
+        })
+    
+        // Field Kode Klasifikasi
+        draftingKepalaSuratNotaDinasPage.inputKodeKlasifikasi(kodeKlasifikasi)
+    
+        // Field Unit Pengolah
+        draftingKepalaSuratNotaDinasPage.inputUnitPengolah(unitPengolah)
+    
+        // Tunggu dan validasi Sifat Surat
+        cy.wait(5000)
+        draftingKepalaSuratNotaDinasPage.validateSifatSurat(sifatSurat)
+    
+        // Tunggu dan validasi Urgensi
+        cy.wait(5000)
+        draftingKepalaSuratNotaDinasPage.validateUrgensi(urgensi)
+    
+        // Field Perihal
+        cy.wait(5000)
+        draftingKepalaSuratNotaDinasPage.inputPerihal(perihal)
+    
+        // Tutup Kepala Surat
+        draftingKepalaSuratNotaDinasPage.closeKepalaSurat()
+    }    
+
+    createLampiranKepalaSuratBkp() {
         draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
 
         // Pilih Penempatan Daftar Tujuan Surat
@@ -113,6 +182,89 @@ export class CreateNotaDinasPage {
         cy.wait(3000)
         draftingKepalaSuratNotaDinasPage.closeLampiranKepalaSurat()
     }
+
+    createLampiranKepalaSurat(tujuanLampiran, tembusanSurat, kodeKlasifikasi, unitPengolah, sifatSurat, urgensi, perihal, namaLampiran) {
+        draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
+    
+        // Pilih Penempatan Daftar Tujuan Surat
+        draftingKepalaSuratNotaDinasPage.clickRButton2LampiranSurat()
+    
+        // Input Tujuan Lampiran Surat INTERNAL (inputTujuan1 dikeluarkan dari loop)
+        cy.wait(3000)
+        draftingKepalaSuratNotaDinasPage.inputTujuanLampiran1(tujuanLampiran)
+    
+        // Input Tembusan Surat INTERNAL secara dinamis
+        tembusanSurat.forEach((tembusan, index) => {
+            cy.wait(3000)
+            switch (index) {
+                case 0:
+                    draftingKepalaSuratNotaDinasPage.inputTembusan(tembusan)
+                    break;
+                case 1:
+                    draftingKepalaSuratNotaDinasPage.inputTembusan2(tembusan)
+                    break;
+                case 2:
+                    draftingKepalaSuratNotaDinasPage.inputTembusan3(tembusan)
+                    break;
+            }
+    
+            // Hanya panggil addTembusan jika bukan elemen terakhir
+            if (index < tembusanSurat.length - 1) {
+                draftingKepalaSuratNotaDinasPage.addTembusan()
+            }
+        })
+    
+        // Field Kode Klasifikasi
+        draftingKepalaSuratNotaDinasPage.inputKodeKlasifikasi(kodeKlasifikasi)
+    
+        // Field Unit Pengolah
+        draftingKepalaSuratNotaDinasPage.inputUnitPengolah(unitPengolah)
+    
+        // Validasi Sifat Surat
+        draftingKepalaSuratNotaDinasPage.validateSifatSurat(sifatSurat)
+    
+        // Validasi Urgensi
+        draftingKepalaSuratNotaDinasPage.validateUrgensi(urgensi)
+    
+        // Field Perihal
+        draftingKepalaSuratNotaDinasPage.inputPerihal(perihal)
+    
+        // Direct to Lampiran Kepala Internal Page
+        cy.wait(3000)
+        draftingKepalaSuratNotaDinasPage.buttonBuatTujuanSuratDiLampiran()
+    
+        // Input Tujuan Surat INTERNAL in Lampiran secara dinamis
+        cy.wait(3000)
+        draftingKepalaSuratNotaDinasPage.checkDetailPreviewLampiran()
+    
+        // Input Nama Lampiran INTERNAL secara dinamis
+        namaLampiran.forEach((nama, index) => {
+            cy.wait(3000)
+            switch (index) {
+                case 0:
+                    draftingKepalaSuratNotaDinasPage.inputNamaLampiran1(nama)
+                    break;
+                case 1:
+                    draftingKepalaSuratNotaDinasPage.inputNamaLampiran2(nama)
+                    break;
+                case 2:
+                    draftingKepalaSuratNotaDinasPage.inputNamaLampiran3(nama)
+                    break;
+                default:
+                    // Tambahkan logika untuk lebih dari 3 nama lampiran jika diperlukan
+                    draftingKepalaSuratNotaDinasPage.inputNamaLampiranFieldExtra(index, nama)
+            }
+    
+            // Hanya panggil addLampiranKepala jika bukan elemen terakhir
+            if (index < namaLampiran.length - 1) {
+                draftingKepalaSuratNotaDinasPage.addLampiranKepala()
+            }
+        })
+    
+        // Tutup Lampiran Kepala Surat
+        cy.wait(3000)
+        draftingKepalaSuratNotaDinasPage.closeLampiranKepalaSurat()
+    }      
 
     createKepalaSuratPROD() {
         draftingKepalaSuratNotaDinasPage.aksesFormEditingKepalaSurat()
@@ -214,9 +366,7 @@ export class CreateNotaDinasPage {
         draftingKakiSuratPage.aksesFormEditingKakiSurat()
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.pilihPenandatanganAtasan(inputEnv, inputanPenandatanganAtasan)
-        if(inputanPemeriksa){ 
-            cy.log('masuk')  
-            cy.log(inputanPemeriksa)     
+        if(inputanPemeriksa){     
             draftingKakiSuratPage.pilihPemeriksa(inputanPemeriksa)
         }
         draftingKakiSuratPage.closeKakiSurat()
@@ -251,7 +401,4 @@ export class CreateNotaDinasPage {
             draftingNotaDinasPage.kirimNaskah(inputEnv)
         }
     }
-
-
-
 }
