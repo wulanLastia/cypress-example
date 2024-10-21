@@ -291,6 +291,37 @@ export class TabRegistrasiPage {
             .click()
     }
 
+    selectInternalDinas() {
+        // Pilih internal dinas
+        const btn_daftarInternalDinas = cy.get(tab_registrasi.btn_daftarInternalDinas).as('btn_daftarInternalDinas')
+        btn_daftarInternalDinas
+            .find('div')
+            .should('contain', 'Internal Dinas')
+            .click()
+
+        // Assertion pop up
+        const dialog_tujuanTembusan = cy.get(tab_registrasi.dialog_tujuanTembusan).as('dialog_tujuanTembusan')
+        dialog_tujuanTembusan.should('be.visible')
+
+        const dialog_tujuanTembusanTitle = cy.get(tab_registrasi.dialog_tujuanTembusanTitle).as('dialog_tujuanTembusanTitle')
+        dialog_tujuanTembusanTitle.should('contain', 'Internal Dinas')
+
+        const btn_closeDialogTujuanTembusan = cy.get(tab_registrasi.btn_closeDialogTujuanTembusan).as('btn_closeDialogTujuanTembusan')
+        btn_closeDialogTujuanTembusan.should('be.visible')
+
+        const label_dialogTujuanTembusanInfo = cy.get(tab_registrasi.label_dialogTujuanTembusanInfo).as('label_dialogTujuanTembusanInfo')
+        label_dialogTujuanTembusanInfo.find('span')
+            .should('contain', 'Naskah akan dikirim ke akun Sidebar penerima secara langsung.')
+
+        const btn_cancelDialogTujuanTembusan = cy.get(tab_registrasi.btn_cancelDialogTujuanTembusan).as('btn_cancelDialogTujuanTembusan')
+        btn_cancelDialogTujuanTembusan.find('div')
+            .should('contain', 'Batal')
+
+        const btn_confirmDialogTujuanTembusan = cy.get(tab_registrasi.btn_confirmDialogTujuanTembusan).as('btn_confirmDialogTujuanTembusan')
+        btn_confirmDialogTujuanTembusan.find('div')
+            .should('contain', 'Simpan')
+    }
+
     selectLintasDinas() {
         // Pilih lintas dinas
         const btn_daftarLintasDinas = cy.get(tab_registrasi.btn_daftarLintasDinas).as('btn_daftarLintasDinas')
@@ -312,6 +343,37 @@ export class TabRegistrasiPage {
         const label_dialogTujuanTembusanInfo = cy.get(tab_registrasi.label_dialogTujuanTembusanInfo).as('label_dialogTujuanTembusanInfo')
         label_dialogTujuanTembusanInfo.find('span')
             .should('contain', 'Naskah akan dikirim ke akun Unit Kearsipan penerima untuk didistribusikan.')
+
+        const btn_cancelDialogTujuanTembusan = cy.get(tab_registrasi.btn_cancelDialogTujuanTembusan).as('btn_cancelDialogTujuanTembusan')
+        btn_cancelDialogTujuanTembusan.find('div')
+            .should('contain', 'Batal')
+
+        const btn_confirmDialogTujuanTembusan = cy.get(tab_registrasi.btn_confirmDialogTujuanTembusan).as('btn_confirmDialogTujuanTembusan')
+        btn_confirmDialogTujuanTembusan.find('div')
+            .should('contain', 'Simpan')
+    }
+
+    selectTidakDidistribusikan() {
+        // Pilih tidak didistribusikan
+        const btn_daftarTidakDidistribusikan = cy.get(tab_registrasi.btn_daftarTidakDidistribusikan).as('btn_daftarTidakDidistribusikan')
+        btn_daftarTidakDidistribusikan
+            .find('div')
+            .should('contain', 'Tidak Didistribusikan via Sidebar')
+            .click()
+
+        // Assertion pop up
+        const dialog_tujuanTembusan = cy.get(tab_registrasi.dialog_tujuanTembusan).as('dialog_tujuanTembusan')
+        dialog_tujuanTembusan.should('be.visible')
+
+        const dialog_tujuanTembusanTitle = cy.get(tab_registrasi.dialog_tujuanTembusanTitle).as('dialog_tujuanTembusanTitle')
+        dialog_tujuanTembusanTitle.should('contain', 'Tidak Didistribusikan via Sidebar')
+
+        const btn_closeDialogTujuanTembusan = cy.get(tab_registrasi.btn_closeDialogTujuanTembusan).as('btn_closeDialogTujuanTembusan')
+        btn_closeDialogTujuanTembusan.should('be.visible')
+
+        const label_dialogTujuanTembusanInfo = cy.get(tab_registrasi.label_dialogTujuanTembusanInfo).as('label_dialogTujuanTembusanInfo')
+        label_dialogTujuanTembusanInfo.find('span')
+            .should('contain', 'Naskah akan diproses oleh Unit Kearsipan secara mandiri.')
 
         const btn_cancelDialogTujuanTembusan = cy.get(tab_registrasi.btn_cancelDialogTujuanTembusan).as('btn_cancelDialogTujuanTembusan')
         btn_cancelDialogTujuanTembusan.find('div')
@@ -402,6 +464,72 @@ export class TabRegistrasiPage {
         })
     }
 
+    inputTujuanTidakDidistribusikan(inputTujuan, inputTembusan) {
+        cy.readFile(getPreviewData).then((object) => {
+            if (!object.tujuan_surat) {
+                object.tujuan_surat = [{}]; // Initialize as an empty array
+            }
+
+            // Input Tujuan
+            inputTujuan.forEach((tujuan, index) => {
+                // Menggunakan index untuk menentukan field mana yang digunakan
+                switch (index) {
+                    default:
+                        const select_inputTujuanTidakDidistribusikan = cy.get(tab_registrasi.select_inputTujuanTidakDidistribusikan + index + '"').as('select_inputTujuanTidakDidistribusikan')
+                        select_inputTujuanTidakDidistribusikan.click()
+                            .wait(1000)
+                            .type(tujuan, { delay : 50 })
+                            .invoke('val')
+                            .then((inputanTujuanSuggest) => {
+                                // Push the sub-object to the array
+                                object.tujuan_surat[index] = { ['tujuan_tidak_didistribusikan_' + index] : inputanTujuanSuggest.trim() };
+
+                                // Write data to the JSON file
+                                cy.writeFile(getPreviewData, object)
+                            })
+
+                        break;
+                }
+                
+                // Hanya memanggil addMoreTujuan untuk elemen selain elemen terakhir
+                if (index < inputTujuan.length - 1) {
+                    this.addMoreTujuan()
+                }
+            })
+
+            if (!object.tembusan_surat) {
+                object.tembusan_surat = [{}]; // Initialize as an empty array
+            }
+
+            // Input Tembusan
+            inputTembusan.forEach((tembusan, index) => {
+                // Menggunakan index untuk menentukan field mana yang digunakan
+                switch (index) {
+                    default:
+                        const select_inputTembusanTidakDidistribusikan = cy.get(tab_registrasi.select_inputTembusanTidakDidistribusikan + index + '"').as('select_inputTembusanTidakDidistribusikan')
+                        select_inputTembusanTidakDidistribusikan.click()
+                            .wait(1000)
+                            .type(tembusan, { delay : 50 })
+                            .invoke('val')
+                            .then((inputanTembusanSuggest) => {
+                                // Push the sub-object to the array
+                                object.tembusan_surat[index] = { ['tembusan_tidak_didistribusikan_' + index] : inputanTembusanSuggest.trim() };
+
+                                // Write data to the JSON file
+                                cy.writeFile(getPreviewData, object)
+                            })
+
+                        break;
+                }
+                
+                // Hanya memanggil addMoreTembusan untuk elemen selain elemen terakhir
+                if (index < inputTembusan.length - 1) {
+                    this.addMoreTembusan()
+                }
+            })
+        })
+    }
+
     assertInputTujuan(inputanTujuan) {
         // Assertion
         const select_inputTujuanSelected = cy.get(tab_registrasi.select_inputTujuanSelected).as('select_inputTujuanSelected')
@@ -439,8 +567,11 @@ export class TabRegistrasiPage {
             if (inputTembusan) {
                 const select_inputTembusan = cy.get(tab_registrasi.select_inputTembusan + tembusanKe + '"').as('select_inputTembusan')
                 select_inputTembusan.click()
+
+                const select_inputTembusanSearch = cy.get(tab_registrasi.select_inputTembusanSearch).as('select_inputTembusanSearch')
+                select_inputTembusanSearch.click()
                     .wait(1000)
-                    .type(inputTembusan)
+                    .type(inputTembusan, { delay : 500 })
 
                 if (tujuanInternalEksternal === 'internal') {
                     cy.wait('@postRequest', { timeout: 5000 })
@@ -843,7 +974,7 @@ export class TabRegistrasiPage {
                 .then((interception) => {
                     if (interception.response.statusCode === 200) {
                         const select_inputPenandatanganAtasanSuggest = cy.get(tab_registrasi.select_inputPenandatanganAtasanSuggest).as('select_inputPenandatanganAtasanSuggest')
-                        select_inputPenandatanganAtasanSuggest.contains(inputanAtasan, { timeout: 10000 }).should('be.visible')
+                        select_inputPenandatanganAtasanSuggest.contains(inputanAtasan, { matchCase: false, timeout: 10000 }).should('be.visible')
                             .click()
                             .invoke('text')
                             .then((inputanAtasan) => {

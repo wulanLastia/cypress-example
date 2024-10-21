@@ -339,7 +339,7 @@ export class UploadSingleFilePage {
 
         // Access Upload Single File
         btn_uploadFileBeritaDaerah.click({ force : true })
-            .wait(50000)
+            .wait(5000)
             .then((val) => {
                 // Begin Save Assertion Data
                 cy.readFile(getPreviewData).then((object) => {
