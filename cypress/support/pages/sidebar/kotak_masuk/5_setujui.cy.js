@@ -48,8 +48,8 @@ export class SetujuiPage {
                             cy.wait('@checkResponse', { timeout: 10000 })
                                 .then((interception) => {
                                     if (interception.response.statusCode === 200) {
-                                        const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
-                                        table_kotakMasuk.contains('td', titlePerihalNaskah)
+                                        const label_tableDataJenis = cy.get(kotak_masuk.label_tableDataJenis).as('label_tableDataJenis')
+                                        label_tableDataJenis.should('contain', titlePerihalNaskah)
                                             .click()
                                     }
                                 })
@@ -62,8 +62,8 @@ export class SetujuiPage {
                             // Wait until document found
                             cy.wait(10000)
             
-                            const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
-                            table_kotakMasuk.contains('td', titlePerihalNaskah)
+                            const label_tableDataJenis = cy.get(kotak_masuk.label_tableDataJenis).as('label_tableDataJenis')
+                            label_tableDataJenis.should('contain', titlePerihalNaskah)
                                 .click()
                         }  
                     }else{
@@ -85,8 +85,8 @@ export class SetujuiPage {
                             cy.wait('@checkResponse', { timeout: 10000 })
                                 .then((interception) => {
                                     if (interception.response.statusCode === 200) {
-                                        const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
-                                        table_kotakMasuk.contains('td', titlePerihalNaskah)
+                                        const label_tableDataJenis = cy.get(kotak_masuk.label_tableDataJenis).as('label_tableDataJenis')
+                                        label_tableDataJenis.should('contain', titlePerihalNaskah)
                                             .click()
                                     }
                                 })
@@ -99,8 +99,8 @@ export class SetujuiPage {
                             // Wait until document found
                             cy.wait(10000)
             
-                            const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
-                            table_kotakMasuk.contains('td', titlePerihalNaskah)
+                            const label_tableDataJenis = cy.get(kotak_masuk.label_tableDataJenis).as('label_tableDataJenis')
+                            label_tableDataJenis.should('contain', titlePerihalNaskah)
                                 .click()
                         }
                     }
@@ -161,6 +161,8 @@ export class SetujuiPage {
         const btnKirimNaskah = cy.get(setujui.btnKirimNaskah).as('btnKirimNaskah')
         btnKirimNaskah.should('contain', 'Kirim naskah')
             .click()
+        
+        cy.wait(6000)
     }
 
     doTandaTanganiSurat(passphrase) {
@@ -202,8 +204,8 @@ export class SetujuiPage {
             // Wait until document found
             cy.wait(10000)
 
-            const table_kotakMasuk = cy.get(kotak_masuk.table_kotakMasuk).as('table_kotakMasuk')
-            table_kotakMasuk.contains('td', titlePerihalNaskah)
+            const label_tableDataJenis = cy.get(kotak_masuk.label_tableDataJenis).as('label_tableDataJenis')
+            label_tableDataJenis.should('contain', titlePerihalNaskah)
                 .click()
         })
     }

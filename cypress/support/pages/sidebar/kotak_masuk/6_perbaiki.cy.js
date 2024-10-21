@@ -132,12 +132,6 @@ export class PerbaikiNaskahPage {
     }
 
     goToPerbaikiNaskahNotaDinas(inputEnv) {
-        // Go To Menu Kotak Masuk
-        const btn_menuKotakMasuk = cy.get(kotak_masuk.btn_menuKotakMasuk).as('btn_menuKotakMasuk')
-        btn_menuKotakMasuk.should('contain', 'Kotak Masuk')
-            .click()
-            .wait(3000)
-
         // Check layout lama atau baru
         cy.get('body').then($body => {
             if ($body.find(kotak_masuk.btn_menuTteReview).css('display') !== 'none') {
