@@ -35,6 +35,9 @@
     },
     {
       "tujuan_internal1": "Dr. IKA MARDIAH, M.Si.",
+      "tujuan_internal2": "Pengelola Teknologi Informasi",
+      "tujuan_internal3": "Analis Sistem Informasi",
+      "tujuan_internal4": "Operator Sandi dan Telekomunikasi",
       "tujuan_eksternal1": "Tujuan Eksternal",
       "tujuan_kepala_dinas1": "Kepala Dinas Pendidikan",
       "tujuan_kepala_dinas2": "Kepala Dinas Kesehatan",
@@ -65,7 +68,9 @@
       "tembusan_internal1": "RIZKI HUSTINIASARI, S.T., M.T.",
       "tembusan_internal2": "ALLAMANDA CATHARTICA, S.I.Kom.",
       "tembusan_internal3": "KEPALA BAGIAN TATA USAHA",
-      "tembusan_eksternal1": "Tembusan Eksternal"
+      "tembusan_internal4": "Pengelola Keuangan",
+      "tembusan_eksternal1": "Tembusan Eksternal",
+      "tembusan_eksternal2": "Asisten Administrasi Umum"
     },
     {
       "urgensi_surat": "Amat Segera",

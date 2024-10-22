@@ -29,6 +29,7 @@ module.exports = {
     labelTembusan: '[data-cy="kepala-surat__nota-dinas__tembusan__title"]',
     inputTembusan0: '[data-cy="input-kepala-surat__tembusan__select-option__custom-input-0"]',
     inputTembusan1: '[data-cy="input-kepala-surat__tembusan__select-option__custom-input-1"]',
+    inputTembusan2: '[data-cy="input-kepala-surat__tembusan__select-option__custom-input-2"]',
     addMoreTembusan: '[data-cy="input-kepala-surat__tembusan__add-button"]',
 
     titleKodeKlasifikasi: '[data-cy="input-kepala-surat__kode-klasifikasi__title"]',

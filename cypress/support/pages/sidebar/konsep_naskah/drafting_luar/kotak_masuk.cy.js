@@ -5,11 +5,6 @@ const getPreviewData = "cypress/fixtures/non_cred/drafting_luar/transaction_data
 export class KotakMasukPage {
 
     goToKotakMasukTTEReview() {
-        // Click Menu Kotak Masuk
-        const btn_menuKotakMasuk = cy.get(kotak_masuk.btn_menuKotakMasuk).as('btn_menuKotakMasuk')
-        btn_menuKotakMasuk.should('contain', 'Kotak Masuk')
-            .click()
-
         // CLick Menu TTE & Review
         const btn_menuTteReview = cy.get(kotak_masuk.btn_menuTteReview).as('btn_menuTteReview')
         btn_menuTteReview.should('contain', 'TTE & Review')
