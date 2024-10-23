@@ -17,7 +17,7 @@ module.exports = {
     popup_hoverBSRE: '[data-cy="status-bsre__message"]',
     btnTandatangani: '[data-cy="button--signing"]',
     popup_hoverTTE: '[data-cy="tte-disable__message"]',
-    menu_naskahKeluar: '[data-cy="sidebar-menu-naskah-keluar"]',
+    menu_naskahKeluar: '[data-cy="sidebar-menu-registrasi-keluar"]',
     label_naskahKeluarTitle: '[data-cy="panel__title"]',
 
     // XPATH

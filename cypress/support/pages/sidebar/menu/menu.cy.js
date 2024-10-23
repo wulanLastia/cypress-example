@@ -303,7 +303,7 @@ export class MenuPage {
             .click()
 
         // Assertion
-        cy.url().should('eq', Cypress.env('base_url') + 'naskah-keluar')
+        cy.url().should('eq', Cypress.env('base_url') + 'registrasi-keluar')
 
         const label_naskahKeluarTitle = cy.get(menu.label_naskahKeluarTitle).as('label_naskahKeluarTitle')
         label_naskahKeluarTitle.should('contain', 'Naskah Keluar')

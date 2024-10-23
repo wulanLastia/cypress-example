@@ -339,10 +339,11 @@ export class CreateSuratBiasaPage {
         draftingKakiSuratPage.closeKakiSurat()
     }
 
-    inputKakiSuratSkenarioProd(inputEnv, inputanPenandatanganAtasan1) {
+    inputKakiSuratSkenarioProd(inputEnv, inputanPenandatanganAtasan1, inputanPemeriksa1) {
         cy.log(inputanPenandatanganAtasan1)
         draftingKakiSuratPage.inputKakiSurat()
         draftingKakiSuratPage.pilihPenandatanganAtasanProd(inputEnv, inputanPenandatanganAtasan1)
+        draftingKakiSuratPage.pilihPemeriksaProd(inputEnv, inputanPemeriksa1)
         draftingKakiSuratPage.closeKakiSurat()
     }
 

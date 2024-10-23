@@ -386,10 +386,11 @@ export class CreateNotaDinasPage {
         draftingKakiSuratPage.closeKakiSurat()
     }
 
-    createKakiSuratPROD() {
+    createKakiSuratPROD(inputPenandatangan, inputPemeriksa) {
         draftingKakiSuratPage.aksesFormEditingKakiSurat()
         draftingKakiSuratPage.inputKakiSurat()
-        draftingKakiSuratPage.pilihPenandatanganAtasanPROD()
+        draftingKakiSuratPage.pilihPenandatanganAtasanPROD(inputPenandatangan)
+        draftingKakiSuratPage.pilihPemeriksaPROD(inputPemeriksa)
         draftingKakiSuratPage.closeKakiSurat()
     }
 
