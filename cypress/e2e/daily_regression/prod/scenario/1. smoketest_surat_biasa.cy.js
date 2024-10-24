@@ -2,6 +2,7 @@ import { qase } from 'cypress-qase-reporter/mocha';
 import { LoginPage } from "@pages/auth/login.cy"
 import { CreateSuratBiasaPage } from "@pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
 import { KembalikanNaskahPage } from "@pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
+import { SetujuiPage } from "@pages/sidebar/kotak_masuk/5_setujui.cy"
 import { PerbaikiNaskahPage } from "@pages/sidebar/kotak_masuk/6_perbaiki.cy"
 import { KoreksiSuratPage } from "@pages/sidebar/kotak_masuk/7_koreksi.cy"
 import { ListNaskahSuratBiasaPage } from "@pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
@@ -13,6 +14,7 @@ let kembalikanNaskahPage = new KembalikanNaskahPage()
 let perbaikiNaskahPage = new PerbaikiNaskahPage()
 let koreksiSuratPage = new KoreksiSuratPage()
 let listNaskahSuratBiasaPage = new ListNaskahSuratBiasaPage()
+let setujuiPage = new SetujuiPage()
 let user
 let data_temp
 
@@ -52,7 +54,8 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
             createSuratBiasaPage.inputLampiranSurat2(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputKakiSuratSkenarioProd(
                 data_temp.env[0].prod,
-                data_temp.kaki_surat[0].penandatangan_atasan_prod2)
+                data_temp.kaki_surat[0].penandatangan_atasan_prod,
+                data_temp.kaki_surat[1].pemeriksa_prod)
             createSuratBiasaPage.inputKepalaSuratSkenario5Prod(
                 data_temp.env[0].prod,
                 data_temp.kepala_surat[7].tempat1,
@@ -103,10 +106,21 @@ describe('Skenario Create Surat Biasa Tujuan Internal Eksternal (Tujuan Kepala S
         })
     )
 
+    qase([358, 102],
+        it('Setujui Naskah', () => {
+            // Login 
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1_1, user.password_pemeriksa)
+            loginPage.directLogin()
+
+            setujuiPage.suratBelumDireview()
+            setujuiPage.setujui()
+        })
+    )
+
     qase([368, 370, 372],
         it('Koreksi dan Tandatangani Naskah', () => {
             // Login 
-            loginPage.loginViaV1Prod(user.nip_pemeriksa_1_1, user.password_pemeriksa)
+            loginPage.loginViaV1Prod(user.nip_pemeriksa_1_2, user.password_pemeriksa)
             loginPage.directLogin()
 
             koreksiSuratPage.goToNaskahBelumDireview(data_temp.env[0].prod)

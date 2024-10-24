@@ -7,12 +7,15 @@
       "tujuan4": "Dra. Hj. I GUSTI AGUNG",
       "tujuan5": "Ludia Rosema",
       "tujuan6": "Zenal Mustopa",
-      "tujuan_lampiran": "Staff Internal DISPUSIPDA"
+      "tujuan_lampiran": "Staff Internal DISPUSIPDA",
+      "tujuan_prod1": "SMOKE TEST 1 Dra. Hj. I GUSTI AGUNG"
     },
     {
       "tembusan1": "analis perencanaan, evaluasi dan pelaporan",
       "tembusan2": "Perencana Ahli Muda",
-      "tembusan3": "Pengadministrasi Umum"
+      "tembusan3": "Pengadministrasi Umum",
+      "tembusan_prod1": "SMOKE TEST Raden Andhika",
+      "tembusan_prod2": "SMOKE TEST Upar Suparno"
     },
     {
       "lokasi": "Tempat"
