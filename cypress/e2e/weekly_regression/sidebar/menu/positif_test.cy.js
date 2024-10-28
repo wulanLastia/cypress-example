@@ -59,7 +59,7 @@ describe('Menu Positif Skenario', { testIsolation: false }, () => {
     )
 
     qase(14,
-        it.skip('Akses halaman kotak masuk tindak lanjut', () => {
+        it('Akses halaman kotak masuk tindak lanjut', () => {
             menuPage.goToKotakMasukTindakLanjut()
         })
     )

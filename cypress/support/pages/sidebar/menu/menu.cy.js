@@ -96,15 +96,17 @@ export class MenuPage {
     }
 
     goToKotakMasukTindakLanjut() {
-        this.goToKotakMasuk()
-
-        const tindakLanjutKM = cy.xpath(menu.tindakLanjutKM).as('tindakLanjutKM')
+        const tindakLanjutKM = cy.get(menu.tindakLanjutKM).as('tindakLanjutKM')
         tindakLanjutKM.should('contain', 'Tindak Lanjut')
             .and('be.visible')
             .click()
     }
 
     goToKotakKeluarReviewNaskah() {
+        // Click menu kotak keluar
+        this.goToKotakKeluar()
+
+        // Click sub menu TTE & Review
         const reviewNaskahKK = cy.get(menu.reviewNaskahKK).as('reviewNaskahKK')
         reviewNaskahKK.should('contain', 'TTE & Review')
             .and('be.visible')

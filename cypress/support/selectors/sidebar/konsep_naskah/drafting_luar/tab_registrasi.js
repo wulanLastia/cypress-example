@@ -87,7 +87,7 @@ module.exports = {
     select_inputPenandatanganAtasNamaSuggest: '[data-cy="atas-nama__select-option__0"]',
     select_inputPenandatanganUntukBeliau: '[data-cy="untuk-beliau__select-option__custom-input-0"]',
     select_inputPenandatanganUntukBeliauSuggest: '[data-cy="untuk-beliau__select-option__0"]',
-    select_inputTujuanSelected: '[data-cy="registrasi__tujuan-naskah__selected-option-0"]',
+    select_inputTujuanSelected: '[data-cy="registrasi__tujuan-naskah__selected__option-0"]',
     select_inputTujuanTidakDidistribusikan: '[data-cy="registrasi__tujuan-naskah__input--custom-',
     select_inputTembusanTidakDidistribusikan: '[data-cy="registrasi__tembusan-naskah__input--custom-',
 

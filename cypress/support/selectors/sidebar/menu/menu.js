@@ -19,6 +19,7 @@ module.exports = {
     popup_hoverTTE: '[data-cy="tte-disable__message"]',
     menu_naskahKeluar: '[data-cy="sidebar-menu-registrasi-keluar"]',
     label_naskahKeluarTitle: '[data-cy="panel__title"]',
+    tindakLanjutKM: '[data-cy="sidebar-menu-kotak-masuk-tindak-lanjut"]',
 
     // XPATH
     sidebarClass: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/nav[1]/div[1]'
