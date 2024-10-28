@@ -449,12 +449,6 @@ export class LoginPage {
                     const goToV2 = cy.get(login.goToV2).as('goToV2')
                     goToV2.click()
                         .should('contain', 'SIDEBAR BARU')
-                } else {
-                    // Go To Sidebar V2
-                    const goToV2 = cy.get(login.goToV2).as('goToV2')
-                    goToV2.click()
-                        .should('contain', 'SIDEBAR BARU')
-                
                 }
 
                 // Assertion Login Sidebar V2 - Siap Jabar

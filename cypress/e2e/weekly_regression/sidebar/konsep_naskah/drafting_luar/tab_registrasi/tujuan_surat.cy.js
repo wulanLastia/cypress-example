@@ -69,9 +69,9 @@ describe('Drafting Luar - Test Case Tab Registrasi Tujuan Surat', { testIsolatio
         })
     )
 
-    qase(4054,
-        it('Add tujuan', () => {
-            // Add tujuan
+    qase(4227,
+        it('Click tambah daftar tujuan & tembusan', () => {
+            // Tambah daftar tujuan & tembusan
             tabRegistrasiPage.inputTujuanTembusan()
         })
     )
@@ -90,17 +90,10 @@ describe('Drafting Luar - Test Case Tab Registrasi Tujuan Surat', { testIsolatio
         })
     )
 
-    qase(4061,
-        it('Input free text', () => {
-            // Input tujuan from input field
-            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_internal1)
-        })
-    )
-
     qase(4051,
         it('Check on preview page after input tujuan', () => {
             // Assertion after input tujuan
-            tabRegistrasiPage.assertInputTujuan(data_temp.registrasi[5].tujuan_internal1)
+            tabRegistrasiPage.assertInputTujuan()
         })
     )
 
@@ -122,7 +115,7 @@ describe('Drafting Luar - Test Case Tab Registrasi Tujuan Surat', { testIsolatio
     qase(4656,
         it('Check on preview page after input tembusan', () => {
             // Input tembusan from input field
-            tabRegistrasiPage.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[6].tembusan_internal1)
+            tabRegistrasiPage.inputTembusan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[6].tembusan_eksternal3)
         })
     )
 
@@ -147,6 +140,23 @@ describe('Drafting Luar - Test Case Tab Registrasi Tujuan Surat', { testIsolatio
 
             // Cek tombol kirim
             tabRegistrasiPage.checkBtnSubmit()
+        })
+    )
+    
+    qase(4231,
+        it('Select tujuan/tembusan tidak didistribusikan', () => {
+            // Tambah daftar tujuan & tembusan
+            tabRegistrasiPage.inputTujuanTembusan()
+
+            // Select tujuan/tembusan tidak didistribusikan
+            tabRegistrasiPage.selectTidakDidistribusikan()
+        })
+    )
+
+    qase(4061,
+        it('Input free text', () => {
+            // Input tujuan from input field
+            tabRegistrasiPage.inputTujuanTidakDidistribusikan([data_temp.registrasi[5].tujuan_internal1], [])
         })
     )
 })

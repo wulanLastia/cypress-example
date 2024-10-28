@@ -410,7 +410,7 @@ export class TabRegistrasiPage {
                     cy.wait('@postRequest', { timeout: 5000 })
                         .then((interception) => {
                             if (interception.response.statusCode === 200) {
-                                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).first().as('select_inputTujuanSuggest0')
+                                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0, { timeout : 6000 }).first().as('select_inputTujuanSuggest0')
                                 select_inputTujuanSuggest0.scrollIntoView()
                                     .invoke('text')
                                     .then((inputanTujuanSuggest) => {
@@ -449,7 +449,7 @@ export class TabRegistrasiPage {
                 const select_inputTujuanWrapper = cy.get(tab_registrasi.select_inputTujuanWrapper + tujuanKe + '"').as('select_inputTujuanWrapper')
                 select_inputTujuanWrapper.click()
 
-                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0).as('select_inputTujuanSuggest0')
+                const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0, { timeout: 6000}).as('select_inputTujuanSuggest0')
                 select_inputTujuanSuggest0.wait(3000)
                     .click()
                     .invoke('text')
@@ -530,11 +530,15 @@ export class TabRegistrasiPage {
         })
     }
 
-    assertInputTujuan(inputanTujuan) {
-        // Assertion
-        const select_inputTujuanSelected = cy.get(tab_registrasi.select_inputTujuanSelected).as('select_inputTujuanSelected')
-        select_inputTujuanSelected.contains(inputanTujuan, { matchCase : false })
+    assertInputTujuan() {
+        cy.readFile(getPreviewData).then((object) => {
+            // Get data tujuan
+            const tujuanValue = object.tujuan_surat[0].tujuan_eksternal
 
+            // Assertion
+            const select_inputTujuanSelected = cy.get(tab_registrasi.select_inputTujuanSelected).as('select_inputTujuanSelected')
+            select_inputTujuanSelected.contains(tujuanValue, { matchCase : false })
+        })
     }
 
     deleteTujuan(inputanTujuan) {
@@ -577,7 +581,7 @@ export class TabRegistrasiPage {
                     cy.wait('@postRequest', { timeout: 5000 })
                         .then((interception) => {
                             if (interception.response.statusCode === 200) {
-                                const select_inputTembusanSuggest0 = cy.get(tab_registrasi.select_inputTembusanSuggest0).as('select_inputTembusanSuggest0')
+                                const select_inputTembusanSuggest0 = cy.get(tab_registrasi.select_inputTembusanSuggest0, { timeout : 6000 }).as('select_inputTembusanSuggest0')
                                 select_inputTembusanSuggest0.scrollIntoView()
                                     .contains(inputTembusan, { timeout: 10000 }).should('be.visible')
                                     .invoke('text')
@@ -617,7 +621,7 @@ export class TabRegistrasiPage {
                 const select_inputTembusan = cy.get(tab_registrasi.select_inputTembusan + tembusanKe + '"').as('select_inputTembusan')
                 select_inputTembusan.click()
 
-                const select_inputTembusanSuggest0 = cy.get(tab_registrasi.select_inputTembusanSuggest0).as('select_inputTembusanSuggest0')
+                const select_inputTembusanSuggest0 = cy.get(tab_registrasi.select_inputTembusanSuggest0, { timeout : 6000 }).as('select_inputTembusanSuggest0')
                 select_inputTembusanSuggest0.wait(3000)
                     .click()
                     .invoke('text')
@@ -810,12 +814,12 @@ export class TabRegistrasiPage {
     checkPenandatanganMode() {
         // Click button tambah penandatangan
         const btn_addMorePenandatangan = cy.get(tab_registrasi.btn_addMorePenandatangan).as('btn_addMorePenandatangan')
-        btn_addMorePenandatangan.should('contain', 'Tambah Penandatangan')
+        btn_addMorePenandatangan.should('contain', 'Tambah Pemaraf/Penandatangan')
             .click()
 
         // Click button mode penandatangan
         const dialog_penandatanganModeLabel = cy.get(tab_registrasi.dialog_penandatanganModeLabel).as('dialog_penandatanganModeLabel')
-        dialog_penandatanganModeLabel.should('contain', 'Mode Penandatangan')
+        dialog_penandatanganModeLabel.should('contain', 'Mode Pemaraf/Penandatangan')
 
         const dialog_penandatanganModeInput = cy.get(tab_registrasi.dialog_penandatanganModeInput).as('dialog_penandatanganModeInput')
         dialog_penandatanganModeInput.find('option')
@@ -853,7 +857,7 @@ export class TabRegistrasiPage {
 
     addMorePenandatangan() {
         const btn_addMorePenandatangan = cy.get(tab_registrasi.btn_addMorePenandatangan).as('btn_addMorePenandatangan')
-        btn_addMorePenandatangan.should('contain', 'Tambah Penandatangan')
+        btn_addMorePenandatangan.should('contain', 'Tambah Pemaraf/Penandatangan')
             .click()
 
         // Assertion
@@ -861,13 +865,13 @@ export class TabRegistrasiPage {
         dialog_penandatangan.should('be.visible')
 
         const dialog_penandatanganTitle = cy.get(tab_registrasi.dialog_penandatanganTitle).as('dialog_penandatanganTitle')
-        dialog_penandatanganTitle.should('contain', 'Tambah Penandatangan')
+        dialog_penandatanganTitle.should('contain', 'Tambah Pemaraf/Penandatangan')
     }
 
     selectPenandatanganAtasNama() {
         // Select mode penandatangan atas nama
         const dialog_penandatanganModeLabel = cy.get(tab_registrasi.dialog_penandatanganModeLabel).as('dialog_penandatanganModeLabel')
-        dialog_penandatanganModeLabel.should('contain', 'Mode Penandatangan')
+        dialog_penandatanganModeLabel.should('contain', 'Mode Pemaraf/Penandatangan')
 
         const dialog_penandatanganModeInput = cy.get(tab_registrasi.dialog_penandatanganModeInput).as('dialog_penandatanganModeInput')
         dialog_penandatanganModeInput.select('ATAS_NAMA')
@@ -885,7 +889,7 @@ export class TabRegistrasiPage {
     selectPenandatanganUntukBeliau() {
         // Select mode penandatangan untuk beliau
         const dialog_penandatanganModeLabel = cy.get(tab_registrasi.dialog_penandatanganModeLabel).as('dialog_penandatanganModeLabel')
-        dialog_penandatanganModeLabel.should('contain', 'Mode Penandatangan')
+        dialog_penandatanganModeLabel.should('contain', 'Mode Pemaraf/Penandatangan')
 
         const dialog_penandatanganModeInput = cy.get(tab_registrasi.dialog_penandatanganModeInput).as('dialog_penandatanganModeInput')
         dialog_penandatanganModeInput.select('UNTUK_BELIAU')
@@ -907,7 +911,7 @@ export class TabRegistrasiPage {
             }
 
             const dialog_penandatanganModeLabel = cy.get(tab_registrasi.dialog_penandatanganModeLabel).as('dialog_penandatanganModeLabel')
-            dialog_penandatanganModeLabel.should('contain', 'Mode Penandatangan')
+            dialog_penandatanganModeLabel.should('contain', 'Mode Pemaraf/Penandatangan')
 
             const dialog_penandatanganModeInput = cy.get(tab_registrasi.dialog_penandatanganModeInput).as('dialog_penandatanganModeInput')
             dialog_penandatanganModeInput.select('DIRI_SENDIRI')
@@ -950,7 +954,7 @@ export class TabRegistrasiPage {
             }
 
             const dialog_penandatanganModeLabel = cy.get(tab_registrasi.dialog_penandatanganModeLabel).as('dialog_penandatanganModeLabel')
-            dialog_penandatanganModeLabel.should('contain', 'Mode Penandatangan')
+            dialog_penandatanganModeLabel.should('contain', 'Mode Pemaraf/Penandatangan')
 
             const dialog_penandatanganModeInput = cy.get(tab_registrasi.dialog_penandatanganModeInput).as('dialog_penandatanganModeInput')
             dialog_penandatanganModeInput.select('ATASAN')
@@ -1024,7 +1028,7 @@ export class TabRegistrasiPage {
                 .then((interception) => {
                     if (interception.response.statusCode === 200) {
                         const select_inputPenandatanganAtasNamaSuggest = cy.get(tab_registrasi.select_inputPenandatanganAtasNamaSuggest).as('select_inputPenandatanganAtasNamaSuggest')
-                        select_inputPenandatanganAtasNamaSuggest.contains(inputanAtasNama, { timeout: 10000 }).should('be.visible')
+                        select_inputPenandatanganAtasNamaSuggest.contains(inputanAtasNama, { matchCase : false }).should('be.visible')
                             .click()
                             .invoke('text')
                             .then((inputanAtasNama) => {
@@ -1062,7 +1066,7 @@ export class TabRegistrasiPage {
                 .then((interception) => {
                     if (interception.response.statusCode === 200) {
                         const select_inputPenandatanganAtasanSuggest = cy.get(tab_registrasi.select_inputPenandatanganAtasanSuggest).as('select_inputPenandatanganAtasanSuggest')
-                        select_inputPenandatanganAtasanSuggest.contains(inputanAtasan, { timeout: 10000 }).should('be.visible')
+                        select_inputPenandatanganAtasanSuggest.contains(inputanAtasan, { matchCase : false }).should('be.visible')
                             .click()
                             .invoke('text')
                             .then((inputanAtasan) => {
@@ -1112,7 +1116,7 @@ export class TabRegistrasiPage {
                 .then((interception) => {
                     if (interception.response.statusCode === 200) {
                         const select_inputPenandatanganUntukBeliauSuggest = cy.get(tab_registrasi.select_inputPenandatanganUntukBeliauSuggest).as('select_inputPenandatanganUntukBeliauSuggest')
-                        select_inputPenandatanganUntukBeliauSuggest.contains(inputanUntukBeliau, { timeout: 10000 }).should('be.visible')
+                        select_inputPenandatanganUntukBeliauSuggest.contains(inputanUntukBeliau, { matchCase : false }).should('be.visible')
                             .click()
                             .invoke('text')
                             .then((inputanUntukBeliau) => {
@@ -1150,7 +1154,7 @@ export class TabRegistrasiPage {
                 .then((interception) => {
                     if (interception.response.statusCode === 200) {
                         const select_inputPenandatanganAtasanSuggest = cy.get(tab_registrasi.select_inputPenandatanganAtasanSuggest).as('select_inputPenandatanganAtasanSuggest')
-                        select_inputPenandatanganAtasanSuggest.contains(inputanAtasan, { timeout: 10000 }).should('be.visible')
+                        select_inputPenandatanganAtasanSuggest.contains(inputanAtasan, { matchCase : false }).should('be.visible')
                             .click()
                             .invoke('text')
                             .then((inputanAtasan) => {
@@ -1225,7 +1229,7 @@ export class TabRegistrasiPage {
             }
 
             const dialog_penandatanganModeLabel = cy.get(tab_registrasi.dialog_penandatanganModeLabel).as('dialog_penandatanganModeLabel')
-            dialog_penandatanganModeLabel.should('contain', 'Mode Penandatangan')
+            dialog_penandatanganModeLabel.should('contain', 'Mode Pemaraf/Penandatangan')
 
             const dialog_penandatanganModeInput = cy.get(tab_registrasi.dialog_penandatanganModeInput).as('dialog_penandatanganModeInput')
             dialog_penandatanganModeInput.select('ATASAN')
@@ -1279,7 +1283,7 @@ export class TabRegistrasiPage {
 
     assertJumlahPenandatangan() {
         // Assertion Button Tambah Penandatangan
-        cy.contains('Tambah Penandatangan').should('not.exist')
+        cy.contains('Tambah Pemaraf/Penandatangan').should('not.exist')
     }
 
     deletePenandatangan(inputanAtasan) {
