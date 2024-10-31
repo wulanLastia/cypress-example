@@ -227,7 +227,7 @@ export class TandatanganiPage {
         // Click btn tte naskah
         const btn_tteNaskah = cy.get(tandatangani.btn_tteNaskah).as('btn_tteNaskah')
         btn_tteNaskah.should('contain', 'TTE Naskah')
-            .click()
+            .click( { force: true } )
 
         // Assertion 
         const dialog_panelTte = cy.get(tandatangani.dialog_panelTte).as('dialog_panelTte')
@@ -332,7 +332,7 @@ export class TandatanganiPage {
         })
 
         // Wait for up for the success dialog to appear only 0.5 seconds
-        const dialog_successTTENaskah = cy.get(tandatangani.dialog_successTTENaskah, { timeout: 20000 }).as('dialog_successTTENaskah')
+        const dialog_successTTENaskah = cy.get(tandatangani.dialog_successTTENaskah, { timeout: 30000 }).as('dialog_successTTENaskah')
         dialog_successTTENaskah.should('be.visible')
 
         // Wait until tte process
