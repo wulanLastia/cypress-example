@@ -359,5 +359,16 @@ export class UploadSingleFilePage {
                     cy.writeFile(getPreviewData, createDataToWrite)
                 })
             })
+
+        cy.wait(6000)
+
+        // Check TTE Pemeriksa
+        cy.get('body').then($body => {
+            if ($body.find(upload_single.popupTTEPemeriksaError).length > 0) {
+                // Skip TTE Pemeriksa
+                const btnSkipInfoTTE = cy.get(upload_single.btnSkipInfoTTE).eq(0)
+                btnSkipInfoTTE.click({ force: true })
+            }
+        })
     }
 }

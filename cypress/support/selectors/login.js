@@ -21,6 +21,8 @@ module.exports = {
     btnConfirmLoginSSO: '[id="kc-login"]',
     formLoginSSO: '[id="kc-form-login"]',
     btnClosePopupV2: '[data-cy="dialog__welcoming__button--close"]',
+    popupTTEPemeriksaError: '[data-cy="dialog__error-signing__label-pemeriksa"]',
+    btnSkipInfoTTE: '[data-cy="dialog-popup__button"]',
 
     // SIMULATE V2 STAGING
     btnLoginSso: '/html[1]/body[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/form[1]/div[1]/button[1]',
@@ -35,5 +37,6 @@ module.exports = {
     usernameSiap: '/html[1]/body[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/input[1]',
     passwordSiap: '/html[1]/body[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[2]/input[1]',
     btnConfirmSiap: '/html[1]/body[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[3]/button[1]',
-    alertLimiter: '/html[1]/body[1]/section[1]/div[1]/div[2]/div[2]/div[3]/form[1]/div[1]/div[1]/p[1]'
+    alertLimiter: '/html[1]/body[1]/section[1]/div[1]/div[2]/div[2]/div[3]/form[1]/div[1]/div[1]/p[1]',
+    btnSkipInfoTTE: '[data-cy="dialog-popup__button"]'
 }
