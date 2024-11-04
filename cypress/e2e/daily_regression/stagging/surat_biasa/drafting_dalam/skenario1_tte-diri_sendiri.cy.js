@@ -46,12 +46,12 @@ describe('Skenario Surat Biasa - Tujuan Lampiran Internal 3, Tembusan Internal 3
 
             // Create Naskah
             listNaskahSuratBiasaPage.goToKonsepNaskahSuratBiasa()
-            createSuratBiasaPage.inputKopSurat(data_temp.org[0].org1)
+            createSuratBiasaPage.inputKopSurat(data_temp.org[0].org2)
             createSuratBiasaPage.inputLampiranSurat(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputLampiranSurat2(faker.lorem.paragraphs(6, '<br/>\n'))
             createSuratBiasaPage.inputKakiSuratSkenario6(
                 data_temp.env[0].staging,
-                data_temp.kaki_surat[0].penandatangan_diri_sendiri,
+                data_temp.kaki_surat[0].penandatangan_diri_sendiri2,
                 data_temp.kaki_surat[2].tembusan_internal1,
                 data_temp.kaki_surat[2].tembusan_internal2,
                 data_temp.kaki_surat[2].tembusan_internal3)
