@@ -19,6 +19,7 @@ module.exports = {
     btn_batalAddPenandatangan: '[data-cy="dialog__button--batal"]',
     btn_deletePenandatangan: '[data-cy="registrasi__penandatangan__delete-1"]',
     btn_deleteTujuan: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/section[1]/div[1]/div[1]/div[1]/div[3]/div[1]',
+    btn_klasifikasiClear: '[data-cy="registrasi__nomor-naskah__select__kode-klasifikasi__clear"]',
 
     // INPUT
     input_bankNomorNomorUrut: '[data-cy="registrasi__nomor-naskah__input--nomor-urut"]',
