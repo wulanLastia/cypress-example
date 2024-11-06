@@ -37,12 +37,12 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-describe('Drafting Luar - Skenario Penandatangan Kepala Biro', { testIsolation: false }, () => {
+describe('Drafting Luar - Skenario Penandatangan Wakil Gubernur', { testIsolation: false }, () => {
 
     qase([79, 4289, 3885, 3879, 3884, 4229, 4054, 4061, 3996, 4122, 4126, 3930, 4008, 4134, 4141, 4138],
         it('Upload dan registrasi naskah single file', () => {
             // Login 79
-            loginPage.loginViaV1(user.nip_kepala_biro, user.password)
+            loginPage.loginViaV1(user.nip_wakil_gubernur, user.password)
             loginPage.directLogin()
 
             // Go To Konsep Naskah Berita Daerah 4289
@@ -68,7 +68,7 @@ describe('Drafting Luar - Skenario Penandatangan Kepala Biro', { testIsolation: 
             const uuid = () => Cypress._.random(0, 1e6)
             const id = uuid()
 
-            tabRegistrasiPage.inputPerihal('Testing Skenario E2E Penandatangan Kepala Biro ' + id, 'Testing Skenario E2E Penandatangan Kepala Biro ' + id)
+            tabRegistrasiPage.inputPerihal('Testing Skenario E2E Penandatangan Wakil Gubernur ' + id, 'Testing Skenario E2E Penandatangan Wakil Gubernur ' + id)
             tabRegistrasiPage.checkWarnaLabelUrgensi(data_temp.registrasi[7].urgensi_surat, data_temp.registrasi[3].index0)
             tabRegistrasiPage.inputSifat(data_temp.registrasi[8].sifat_surat3)
 
