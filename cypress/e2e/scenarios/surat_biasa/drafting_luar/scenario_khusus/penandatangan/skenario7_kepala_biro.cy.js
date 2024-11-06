@@ -42,7 +42,7 @@ describe('Drafting Luar - Skenario Penandatangan Kepala Biro', { testIsolation: 
     qase([79, 4289, 3885, 3879, 3884, 4229, 4054, 4061, 3996, 4122, 4126, 3930, 4008, 4134, 4141, 4138],
         it('Upload dan registrasi naskah single file', () => {
             // Login 79
-            loginPage.loginViaV1(user.nip_sekretariat_daerah, user.password)
+            loginPage.loginViaV1(user.nip_kepala_biro, user.password)
             loginPage.directLogin()
 
             // Go To Konsep Naskah Berita Daerah 4289
