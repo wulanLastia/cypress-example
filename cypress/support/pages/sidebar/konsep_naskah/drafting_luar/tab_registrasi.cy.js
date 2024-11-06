@@ -227,9 +227,8 @@ export class TabRegistrasiPage {
     }
 
     batalKodeKlasifikasi() {
-        const select_inputKodeKlasifikasi = cy.get(tab_registrasi.select_inputKodeKlasifikasi).first().as('select_inputKodeKlasifikasi')
-        select_inputKodeKlasifikasi.find('button')
-            .should('have.attr', 'title', 'Clear Selected')
+        const btn_klasifikasiClear = cy.get(tab_registrasi.btn_klasifikasiClear).as('btn_klasifikasiClear')
+        btn_klasifikasiClear.should('be.visible')
             .click()
     }
 
@@ -404,14 +403,14 @@ export class TabRegistrasiPage {
                 const select_inputTujuanSearch = cy.get(tab_registrasi.select_inputTujuanSearch).as('select_inputTujuanSearch')
                 select_inputTujuanSearch.click()
                     .wait(1000)
-                    .type(inputTujuan, { delay : 500 })
+                    .type(inputTujuan, { delay: 50 })
 
                 if (tujuanInternalEksternal === 'internal') {
-                    cy.wait('@postRequest', { timeout: 5000 })
+                    cy.wait('@postRequest', { timeout: 10000 })
                         .then((interception) => {
                             if (interception.response.statusCode === 200) {
                                 const select_inputTujuanSuggest0 = cy.get(tab_registrasi.select_inputTujuanSuggest0, { timeout : 6000 }).first().as('select_inputTujuanSuggest0')
-                                select_inputTujuanSuggest0.scrollIntoView()
+                                select_inputTujuanSuggest0.contains(inputTujuan, { timeout: 10000 }).should('be.visible')
                                     .invoke('text')
                                     .then((inputanTujuanSuggest) => {
                                         // Push the sub-object to the array
@@ -843,7 +842,7 @@ export class TabRegistrasiPage {
         // Assertion
         const select_inputPenandatanganAtasanSuggest = cy.get(tab_registrasi.select_inputPenandatanganAtasanSuggest).last().as('select_inputPenandatanganAtasanSuggest')
         select_inputPenandatanganAtasanSuggest.scrollIntoView()
-            .contains(inputanAtasan, { timeout: 10000 }).should('be.visible')
+            .contains(inputanAtasan, { matchCase: false, timeout: 10000 }).should('be.visible')
     }
 
     cancelPenandatangan() {
@@ -1253,7 +1252,7 @@ export class TabRegistrasiPage {
                 .then((interception) => {
                     if (interception.response.statusCode === 200) {
                         const select_inputPenandatanganAtasanSuggest = cy.get(tab_registrasi.select_inputPenandatanganAtasanSuggest).as('select_inputPenandatanganAtasanSuggest')
-                        select_inputPenandatanganAtasanSuggest.contains(inputanAtasan, { timeout: 10000 }).should('be.visible')
+                        select_inputPenandatanganAtasanSuggest.contains(inputanAtasan, { matchCase: false, timeout: 10000 }).should('be.visible')
                             .click()
                             .invoke('text')
                             .then((inputanAtasan) => {

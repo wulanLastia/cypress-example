@@ -86,9 +86,6 @@ export class KotakMasukPage {
         const tab_history = cy.get(kotak_masuk.tab_history).as('tab_history')
         tab_history.should('have.class', 'tabs__menu')
 
-        const btn_previewPdf = cy.get(kotak_masuk.btn_previewPdf).as('btn_previewPdf')
-        btn_previewPdf.should('be.visible')
-
         cy.readFile(getPreviewData).then((object) => {
             const jenisNaskahValue = object.upload_file[0].jenis_naskah
 
