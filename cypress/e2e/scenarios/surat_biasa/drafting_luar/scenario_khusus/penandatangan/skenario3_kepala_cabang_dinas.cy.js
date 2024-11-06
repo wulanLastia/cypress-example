@@ -37,7 +37,7 @@ before(() => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
-describe('Drafting Luar - Skenario Kepala Cabang Dinas', { testIsolation: false }, () => {
+describe('Drafting Luar - Skenario Penandatangan Kepala Cabang Dinas', { testIsolation: false }, () => {
 
     qase([79, 4289, 3885, 3879, 3884, 4229, 4054, 4061, 3996, 4122, 4126, 3930, 4008, 4134, 4141, 4138],
         it('Upload dan registrasi naskah single file', () => {
@@ -58,14 +58,10 @@ describe('Drafting Luar - Skenario Kepala Cabang Dinas', { testIsolation: false 
             // Tab Registrasi - Bank Nomor 3884
             tabRegistrasiPage.inputPenomoran()
  
-            // Tab Registrasi - Tujuan Surat Kepala Cabang Dinas 4229, 4054, 4061
+            // Tab Registrasi - Tujuan Surat Kepala Dinas 4229, 4054, 4061
             tabRegistrasiPage.inputTujuanTembusan()
             tabRegistrasiPage.selectLintasDinas()
-            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_kepala_cabang_dinas2)
-            tabRegistrasiPage.addMoreTujuan()
-            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index1, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_kepala_cabang_dinas4)
-            tabRegistrasiPage.addMoreTujuan()
-            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index2, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_kepala_cabang_dinas5)
+            tabRegistrasiPage.inputTujuan(data_temp.env[0].staging, data_temp.registrasi[3].index0, data_temp.registrasi[4].input_internal, data_temp.registrasi[5].tujuan_kepala_dinas4)
             tabRegistrasiPage.simpanTujuanTembusan()
 
             // Tab Registrasi - Section Identitas Surat 3996, 4122, 4126
