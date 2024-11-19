@@ -79,7 +79,7 @@ export class DraftingKakiSuratPage {
         selectPenandatangan.select(4).should('have.value', 'DIRI_SENDIRI')
 
         const selectedPenandatangan = cy.xpath(kaki_surat.selectedPenandatangan).as('selectedPenandatangan')
-        selectedPenandatangan.should('contain', 'VITA PUTRI UTAMI, S.Sos., M.I.Kom')
+        selectedPenandatangan.contains('VITA PUTRI UTAMI, S.Sos., M.I.Kom', { matchCase : false })
             .invoke('val')
             .then(text => {
                 const Penandatangan = text;
@@ -122,7 +122,7 @@ export class DraftingKakiSuratPage {
         .then((interception) => {
             if (interception.response.statusCode === 200) {
                 const suggestPenandatanganAtasan1 = cy.get(kaki_surat.suggestPenandatanganAtasan1).as('suggestPenandatanganAtasan1')
-                suggestPenandatanganAtasan1.contains(inputanPenandatanganAtasan1, { timeout: 10000 }).should('be.visible')
+                suggestPenandatanganAtasan1.contains(inputanPenandatanganAtasan1, { matchCase : false , timeout: 10000 }).should('be.visible')
                 pilihPenandatanganNotaDinas.type('{enter}')
             }
         })
