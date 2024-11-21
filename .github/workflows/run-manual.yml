@@ -16,7 +16,8 @@ on:
 
 jobs:
   cypress-run:
-    runs-on: [self-hosted, cypress]
+    #runs-on: [self-hosted, cypress]
+    runs-on: [ubuntu-latest]
     container:
       image: cypress/included:12.17.4
       # solution from https://github.com/cypress-io/cypress-docker-images/issues/560#issuecomment-1121774167
