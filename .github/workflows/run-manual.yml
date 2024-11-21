@@ -50,9 +50,9 @@ jobs:
         with:
           # sesuaikan
           browser: chrome
-          record: false
+          #record: false
           spec: ${{ inputs.spec_file }}
-          tag: 'manual_trigger'
+          #tag: 'manual_trigger'
 
         # sesuaikan kalau ada env lain
         env:
