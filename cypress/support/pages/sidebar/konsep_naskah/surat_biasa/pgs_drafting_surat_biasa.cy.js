@@ -9,7 +9,8 @@ export class DraftingKonsepNaskahPage {
         menuPage.goToKonsepNaskah()
 
         const suratBiasa = cy.get(konsep_naskah.suratBiasa).as('suratBiasa')
-        suratBiasa.should('be.visible')
+        suratBiasa.scrollIntoView()
+            .should('be.visible')
             .click()
     }
 

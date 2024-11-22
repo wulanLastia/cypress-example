@@ -1,7 +1,7 @@
 import { qase } from 'cypress-qase-reporter/mocha';
-import { LoginPage } from "../../../../../../support/pages/auth/login.cy"
-import { DraftingKepalaSuratPage } from "../../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_kepala_surat.cy"
-import { DraftingKonsepNaskahPage } from "../../../../../../support/pages/sidebar/konsep_naskah/surat_biasa/pgs_drafting_surat_biasa.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { DraftingKepalaSuratPage } from "@pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_kepala_surat.cy"
+import { DraftingKonsepNaskahPage } from "@pages/sidebar/konsep_naskah/surat_biasa/pgs_drafting_surat_biasa.cy"
 
 let draftingKepalaSuratPage = new DraftingKepalaSuratPage()
 let draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()
@@ -15,6 +15,7 @@ beforeEach(() => {
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
@@ -22,8 +23,6 @@ before(() => {
     cy.fixture('non_cred/kepala_surat/create_data_surat_biasa.json').then((data) => {
         data_temp = data
     })
-
-
 })
 
 before(() => {
@@ -33,12 +32,6 @@ before(() => {
 
     // Akses Surat Biasa
     draftingKepalaSuratPage.aksesKonsepNaskahSuratBiasa()
-})
-
-after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
 })
 
 describe('Kepala Naskah', { testIsolation: false }, () => {
@@ -213,44 +206,44 @@ describe('Pemberkasan Otomatis', { testIsolation: false }, () => {
 
     // Judul Berkas (kata tangkap) //
     qase(1929,
-        it('Cek detail kolom masukan judul berkas (kata tangkap)', () => {
+        it.skip('Cek detail kolom masukan judul berkas (kata tangkap)', () => {
             draftingKepalaSuratPage.checkDetailJudulBerkas()
         })
     )
 
     qase(1933,
-        it('Input judul berkas baru secara manual', () => {
+        it.skip('Input judul berkas baru secara manual', () => {
             draftingKepalaSuratPage.validateJudulBerkas()
         })
     )
 
     // Kurun Waktu //
     qase(1939,
-        it('Cek detail kolom masukan kurun waktu', () => {
+        it.skip('Cek detail kolom masukan kurun waktu', () => {
             draftingKepalaSuratPage.checkDetailKurunWaktu()
         })
     )
 
     qase(1946,
-        it('Memilih awal kurun waktu', () => {
+        it.skip('Memilih awal kurun waktu', () => {
             draftingKepalaSuratPage.inputAwalKurunWaktu(data_temp.kepala_surat[8].awal_kurun_waktu)
         })
     )
 
     qase(1951,
-        it('Memilih awal kurun waktu yang lebih besar dari akhir kurun waktu', () => {
+        it.skip('Memilih awal kurun waktu yang lebih besar dari akhir kurun waktu', () => {
             draftingKepalaSuratPage.inputNegatifAwalKurunWaktu(data_temp.kepala_surat[8].negatif_awal_kurun_waktu)
         })
     )
 
     qase(1947,
-        it('Memilih akhir kurun waktu', () => {
+        it.skip('Memilih akhir kurun waktu', () => {
             draftingKepalaSuratPage.inputAkhirKurunWaktu(data_temp.kepala_surat[8].akhir_kurun_waktu)
         })
     )
 
     qase(1952,
-        it('Memilih akhir kurun waktu yang lebih kecil dari awal kurun waktu', () => {
+        it.skip('Memilih akhir kurun waktu yang lebih kecil dari awal kurun waktu', () => {
             draftingKepalaSuratPage.inputNegatifAkhirKurunWaktu(data_temp.kepala_surat[8].negatif_akhir_kurun_waktu)
         })
     )

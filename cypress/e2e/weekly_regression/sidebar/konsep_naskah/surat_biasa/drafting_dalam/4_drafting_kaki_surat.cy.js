@@ -1,7 +1,7 @@
 import { qase } from 'cypress-qase-reporter/mocha';
-import { LoginPage } from "../../../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../../../support/pages/sidebar/menu/menu.cy"
-import { DraftingKakiSuratPage } from "../../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_kaki_surat.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { MenuPage } from "@pages/sidebar/menu/menu.cy"
+import { DraftingKakiSuratPage } from "@pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_kaki_surat.cy"
 
 let draftingKakiSuratPage = new DraftingKakiSuratPage()
 let loginPage = new LoginPage()
@@ -11,6 +11,7 @@ let data_temp
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
@@ -20,8 +21,6 @@ before(() => {
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
-
-
 })
 
 before(() => {
@@ -29,13 +28,8 @@ before(() => {
     loginPage.directLogin()
 })
 
-after(() => {
-    qase(411,
-        loginPage.logoutV2()
-    )
-})
-
 describe('Drafting Kaki Surat Skenario', { testIsolation: false }, () => {
+
     qase(150,
         it('Access kaki surat editing form', () => {
             draftingKakiSuratPage.aksesKonsepNaskahSuratBiasa()
@@ -70,19 +64,19 @@ describe('Drafting Kaki Surat Skenario', { testIsolation: false }, () => {
 
     qase(161,
         it('Check dropdown list if user select atasan', () => {
-            draftingKakiSuratPage.pilihPenandatanganAtasan(data_temp.kaki_surat[0].penandatangan_atasan1)
+            draftingKakiSuratPage.pilihPenandatanganAtasan(data_temp.env[0].staging, data_temp.kaki_surat[0].penandatangan_atasan1)
         })
     )
 
     qase(176,
         it('Check field if user select pemeriksa', () => {
-            draftingKakiSuratPage.pilihPemeriksa(data_temp.kaki_surat[1].pemeriksa1)
+            draftingKakiSuratPage.pilihPemeriksa(data_temp.env[0].staging, data_temp.kaki_surat[1].pemeriksa1)
         })
     )
 
     qase(287,
         it('Check on preview page after input tembusan', () => {
-            draftingKakiSuratPage.pilihTembusan(data_temp.kaki_surat[2].tembusan_eksternal1, data_temp.kaki_surat[2].tembusan_eksternal2)
+            draftingKakiSuratPage.pilihTembusan(data_temp.env[0].staging, data_temp.kaki_surat[2].tembusan_eksternal1, data_temp.kaki_surat[2].tembusan_eksternal2)
         })
     )
 

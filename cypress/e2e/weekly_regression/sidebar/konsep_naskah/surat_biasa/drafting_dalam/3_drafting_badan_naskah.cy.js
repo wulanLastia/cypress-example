@@ -1,6 +1,6 @@
 import { qase } from 'cypress-qase-reporter/mocha';
-import { LoginPage } from "../../../../../../support/pages/auth/login.cy"
-import { DraftingBadanNaskahPage } from "../../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_badan_naskah.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { DraftingBadanNaskahPage } from "@pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_badan_naskah.cy"
 
 let draftingBadanNaskahPage = new DraftingBadanNaskahPage()
 let loginPage = new LoginPage()
@@ -8,13 +8,12 @@ let user
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
-
-
 })
 
 before(() => {
@@ -22,13 +21,8 @@ before(() => {
     loginPage.directLogin()
 })
 
-after(() => {
-    qase(411,
-        loginPage.logoutV2()
-    )
-})
-
 describe('Drafting Badan Naskah Skenario', { testIsolation: false }, () => {
+    
     qase(709,
         it('Akses form editing badan naskah', () => {
             draftingBadanNaskahPage.aksesKonsepNaskahSuratBiasa()

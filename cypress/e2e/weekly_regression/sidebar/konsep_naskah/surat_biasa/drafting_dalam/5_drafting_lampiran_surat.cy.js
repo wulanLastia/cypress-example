@@ -1,6 +1,6 @@
 import { qase } from 'cypress-qase-reporter/mocha';
-import { LoginPage } from "../../../../../../support/pages/auth/login.cy"
-import { DraftingLampiranSuratPage } from "../../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_lampiran_surat.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { DraftingLampiranSuratPage } from "@pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_lampiran_surat.cy"
 
 let draftingLampiranSuratPage = new DraftingLampiranSuratPage()
 let loginPage = new LoginPage()
@@ -8,24 +8,17 @@ let user
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
 
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
-
-
 })
 
 before(() => {
     loginPage.loginViaV1(user.nip_konseptor_1, user.password)
     loginPage.directLogin()
-})
-
-after(() => {
-    qase(411,
-        loginPage.logoutV2step2()
-    )
 })
 
 describe('Drafting Lampiran Surat Skenario', { testIsolation: false }, () => {

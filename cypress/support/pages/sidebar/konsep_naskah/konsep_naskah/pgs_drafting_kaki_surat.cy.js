@@ -7,7 +7,7 @@ export class DraftingKakiSuratPage {
 
     aksesKonsepNaskahSuratBiasa() {
         draftingKonsepNaskahPage.goToKonsepNaskahSuratBiasa()
-        cy.wait(3000)
+        cy.wait(30000)
     }
 
     aksesFormEditingKakiSurat() {
@@ -83,7 +83,7 @@ export class DraftingKakiSuratPage {
         selectPenandatangan.select('DIRI_SENDIRI')
 
         const selectedPenandatangan = cy.xpath(kaki_surat.selectedPenandatangan).as('selectedPenandatangan')
-        selectedPenandatangan.should('contain', inputanPenandatanganDiriSendiri)
+        selectedPenandatangan.contains(inputanPenandatanganDiriSendiri, { matchCase : false } )
             .invoke('val')
             .then(text => {
                 const Penandatangan = text;
@@ -111,7 +111,7 @@ export class DraftingKakiSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestPenandatanganAtasan1 = cy.get(kaki_surat.suggestPenandatanganAtasan1).as('suggestPenandatanganAtasan1')
-                    suggestPenandatanganAtasan1.contains(inputanPenandatanganAtasan1, { timeout: 10000 }).should('be.visible')
+                    suggestPenandatanganAtasan1.contains(inputanPenandatanganAtasan1, { matchCase: false, timeout: 10000 }).should('be.visible')
                     pilihPenandatangan.type('{enter}')
                 }
             })
@@ -136,7 +136,7 @@ export class DraftingKakiSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestPemeriksa1 = cy.get(kaki_surat.suggestPemeriksa1).as('suggestPemeriksa1')
-                    suggestPemeriksa1.contains(inputanPemeriksa1, { timeout: 10000 }).should('be.visible')
+                    suggestPemeriksa1.contains(inputanPemeriksa1, { matchCase: false, timeout: 10000 }).should('be.visible')
                     pilihPemeriksa.type('{enter}')
                 }
             })

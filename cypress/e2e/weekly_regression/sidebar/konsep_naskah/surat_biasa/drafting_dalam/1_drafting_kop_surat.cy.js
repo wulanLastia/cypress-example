@@ -1,22 +1,26 @@
 import { qase } from 'cypress-qase-reporter/mocha';
-import { LoginPage } from "../../../../../../support/pages/auth/login.cy"
-import { MenuPage } from "../../../../../../support/pages/sidebar/menu/menu.cy"
-import { DraftingKopSuratPage } from "../../../../../../support/pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_kop_surat.cy"
+import { LoginPage } from "@pages/auth/login.cy"
+import { MenuPage } from "@pages/sidebar/menu/menu.cy"
+import { DraftingKopSuratPage } from "@pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_kop_surat.cy"
 
 let draftingKopSuratPage = new DraftingKopSuratPage()
 let loginPage = new LoginPage()
 let menuPage = new MenuPage()
 let user
+let data_temp
 
 before(() => {
     cy.then(Cypress.session.clearCurrentSessionData)
+
     cy.fixture('cred/credentials_dev.json').then((data) => {
         user = data
     })
 
+    cy.fixture('non_cred/kepala_surat/create_data_surat_biasa.json').then((data) => {
+        data_temp = data
+    })
+
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
-
-
 })
 
 before(() => {
@@ -24,13 +28,8 @@ before(() => {
     loginPage.directLogin()
 })
 
-after(() => {
-    qase(411,
-        loginPage.logoutV2()
-    )
-})
-
 describe('Drafting Kop Surat Skenario', { testIsolation: false }, () => {
+
     qase(81,
         it('Akses form editing kop surat (drafting)', () => {
             draftingKopSuratPage.aksesKonsepNaskahSuratBiasa()
@@ -46,25 +45,25 @@ describe('Drafting Kop Surat Skenario', { testIsolation: false }, () => {
 
     qase(291,
         it('Check selected radio button (default)', () => {
-            draftingKopSuratPage.checkPreviewDefault()
+            draftingKopSuratPage.checkPreviewDefault(data_temp.org[0].org1)
         })
     )
 
     qase(285,
         it('Cek preview setelah memilih kop Sekretariat Daerah', () => {
-            draftingKopSuratPage.checkPreviewSekda()
+            draftingKopSuratPage.checkPreviewSekda(data_temp.org[0].org1)
         })
     )
 
     qase(74,
         it('Cek preview setelah memilih kop Dinas/Badan', () => {
-            draftingKopSuratPage.checkPreviewDinas()
+            draftingKopSuratPage.checkPreviewDinas(data_temp.org[0].org1)
         })
     )
 
     qase(75,
         it('Cek preview setelah memilih kop UPTD/cabang dinas', () => {
-            draftingKopSuratPage.checkPreviewUPTD()
+            draftingKopSuratPage.checkPreviewUPTD(data_temp.org[0].org1)
         })
     )
 

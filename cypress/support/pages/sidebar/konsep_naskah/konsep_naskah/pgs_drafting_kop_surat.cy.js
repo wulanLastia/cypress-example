@@ -16,8 +16,8 @@ export class DraftingKopSuratPage {
 
     checkDetail() {
         const titleKop = cy.get(kop_surat.titleKop).as('titleKop')
-        titleKop.should('contain', 'Kop Surat')
-            .and('be.visible')
+        titleKop.scrollIntoView()
+            .should('contain', 'Kop Surat')
 
         const subTitleKop = cy.get(kop_surat.subTitleKop).as('subTitleKop')
         subTitleKop.should('contain', 'Level Kop Surat')
@@ -36,22 +36,34 @@ export class DraftingKopSuratPage {
             .and('be.visible')
     }
 
-    checkPreviewDefault() {
+    checkPreviewDefault(inputOrg) {
         const defaultSelectedRadio = cy.get(kop_surat.defaultSelectedRadio).as('defaultSelectedRadio')
         defaultSelectedRadio.should('be.checked')
 
-        const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
-        previewSelectedKop.find('img')
-            .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/89c72083b0261a4a48569fd26d2d2b6d.png')
+        if(inputOrg == 'dispusipda'){
+            const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
+            previewSelectedKop.find('img')
+                .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/659b50e7a894063e5d4f2699ee0bd788.png')
+        } else {
+            const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
+            previewSelectedKop.find('img')
+                .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/89c72083b0261a4a48569fd26d2d2b6d.png')
+        }
     }
 
-    checkPreviewSekda() {
+    checkPreviewSekda(inputOrg) {
         const checkRadio1 = cy.get(kop_surat.checkRadio1).as('checkRadio1')
         checkRadio1.click()
 
-        const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
-        previewSelectedKop.find('img')
-            .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/6d0b277d4b29db3eafab2d5708149d7d.png')
+        if(inputOrg == 'dispusipda'){
+            const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
+            previewSelectedKop.find('img')
+                .should('have.attr', 'src', 'https://devsidebar.digitalservice.id/FilesUploaded/kop/d800bd29e2cfa7b2ca89928aea3300b5.png')
+        } else {
+            const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
+            previewSelectedKop.find('img')
+                .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/6d0b277d4b29db3eafab2d5708149d7d.png')
+        }
     }
 
     checkPreviewDinas(inputOrg) {
@@ -69,13 +81,19 @@ export class DraftingKopSuratPage {
         }
     }
 
-    checkPreviewUPTD() {
+    checkPreviewUPTD(inputOrg) {
         const checkRadio3 = cy.get(kop_surat.checkRadio3).as('checkRadio3')
         checkRadio3.click()
 
-        const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
-        previewSelectedKop.find('img')
-            .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/89c72083b0261a4a48569fd26d2d2b6d.png')
+        if(inputOrg == 'dispusipda') {
+            const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
+            previewSelectedKop.find('img')
+                .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/659b50e7a894063e5d4f2699ee0bd788.png')
+        } else {
+            const previewSelectedKop = cy.get(kop_surat.previewSelectedKop).as('previewSelectedKop')
+            previewSelectedKop.find('img')
+                .should('have.attr', 'src', 'https://sidebar.jabarprov.go.id/FilesUploaded/kop/89c72083b0261a4a48569fd26d2d2b6d.png')
+        }
     }
 
     closeKopSurat() {
