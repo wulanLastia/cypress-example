@@ -161,7 +161,7 @@ export class DraftingKepalaSuratPage {
                 .then((interception) => {
                     if (interception.response.statusCode === 200) {
                         const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
-                        suggestInputTujuan.contains(assertInputanTujuan, { timeout: 10000 }).should('be.visible')
+                        suggestInputTujuan.contains(assertInputanTujuan, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                         inputTujuan.type('{enter}')
                     }
@@ -182,7 +182,7 @@ export class DraftingKepalaSuratPage {
                 .then((interception) => {
                     if (interception.response.statusCode === 200) {
                         const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
-                        suggestInputTujuan.contains(inputanTujuan, { timeout: 10000 }).should('be.visible')
+                        suggestInputTujuan.contains(inputanTujuan, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                         inputTujuan.type('{enter}')
                     }
@@ -210,7 +210,7 @@ export class DraftingKepalaSuratPage {
                 .then((interception) => {
                     if (interception.response.statusCode === 200) {
                         const suggestTujuanLampiran = cy.get(kepala_surat.suggestTujuanLampiran).as('suggestTujuanLampiran')
-                        suggestTujuanLampiran.contains(assertInputanTujuan, { timeout: 10000 }).should('be.visible')
+                        suggestTujuanLampiran.contains(assertInputanTujuan, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                         inputTujuanLampiran0.type('{enter}')
                     }
@@ -222,7 +222,7 @@ export class DraftingKepalaSuratPage {
                 .wait(10000)
 
             const suggestTujuanLampiran = cy.get(kepala_surat.suggestTujuanLampiran).as('suggestTujuanLampiran')
-            suggestTujuanLampiran.contains(inputanTujuan, { timeout: 10000 }).should('be.visible')
+            suggestTujuanLampiran.contains(inputanTujuan, { matchCase: false, timeout: 10000 }).should('be.visible')
 
             inputTujuanLampiran0.type('{enter}')
         }
