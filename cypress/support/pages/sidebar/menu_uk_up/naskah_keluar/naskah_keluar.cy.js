@@ -8,6 +8,8 @@ export class NaskahKeluarPage {
         label_dataJenis0.should('be.visible')
             .click()
 
+        cy.wait(9000)
+
         // Assertion 1
         const tab_registrasi = cy.get(naskah_keluar.tab_registrasi)
         tab_registrasi.should('be.visible')

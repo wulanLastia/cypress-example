@@ -304,6 +304,8 @@ export class MenuPage {
         menu_naskahKeluar.should('contain', 'Naskah Keluar')
             .click()
 
+        cy.wait(6000)
+
         // Assertion
         cy.url().should('eq', Cypress.env('base_url') + 'registrasi-keluar')
 
