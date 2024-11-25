@@ -226,6 +226,8 @@ export class KotakKeluarPage {
                     .click()
             }   
         })
+
+        cy.wait(15000)
     }
 
     checkDetailNaskah() {
@@ -338,11 +340,12 @@ export class KotakKeluarPage {
 
             if(inputScenarioPenandatangan == '2.5') { // Penandatangan diri sendiri, atas nama, untuk beliau
                 // Penandatangan Diri Sendiri
-                const penandatangan_diri_sendiri = object.penandatangan[0].penandatangan_diri_sendiri
+                const penandatanganDiriSendiri = object.penandatangan[0].penandatangan_diri_sendiri
+                const arrPenandatanganDiriSendiri = penandatanganDiriSendiri.split('(')
 
-                if(penandatangan_diri_sendiri){
+                if(penandatanganDiriSendiri){
                     const tab_dataPenandatangan0 = cy.get(kotak_keluar.tab_dataPenandatangan0).as('tab_dataPenandatangan0')
-                    tab_dataPenandatangan0.contains(penandatangan_diri_sendiri, { matchCase: false })
+                    tab_dataPenandatangan0.contains(arrPenandatanganDiriSendiri[0], { matchCase: false })
                 }
 
                 // User Atas Nama

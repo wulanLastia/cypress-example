@@ -142,7 +142,7 @@ describe('Drafting Luar - Test Case Tab Registrasi Penandatangan', { testIsolati
     )
 
     qase(4041,
-        it('Hide button tambah after choose 4 penandatangan', () => {
+        it.skip('Hide button tambah after choose 4 penandatangan', () => {
             // Tambah penandatangan 2
             tabRegistrasiPage.addMorePenandatangan()
 

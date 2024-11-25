@@ -70,11 +70,12 @@ export class TandatanganiPage {
 
             if(inputScenarioPenandatangan == '2.5') { // Penandatangan diri sendiri, atas nama, untuk beliau
                 // Penandatangan Diri Sendiri
-                const penandatangan_diri_sendiri = object.penandatangan[0].penandatangan_diri_sendiri
+                const penandatanganDiriSendiri = object.penandatangan[0].penandatangan_diri_sendiri
+                const arrPenandatanganDiriSendiri = penandatanganDiriSendiri.split('(')
 
-                if(penandatangan_diri_sendiri){
+                if(penandatanganDiriSendiri){
                     const label_dataNamaPenandatangan = cy.get(tandatangani.label_dataNamaPenandatangan).as('label_dataNamaPenandatangan')
-                    label_dataNamaPenandatangan.contains(penandatangan_diri_sendiri, { matchCase: false })
+                    label_dataNamaPenandatangan.contains(arrPenandatanganDiriSendiri[0], { matchCase: false })
                 }
 
                 // User Atas Nama

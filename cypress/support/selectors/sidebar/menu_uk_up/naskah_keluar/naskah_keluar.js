@@ -43,7 +43,7 @@ module.exports = {
     filter_urgensi_amat_segera: '[data-cy="filter-tindak-lanjut__select__urgency__option-3"]',
     filter_jenis: '[data-cy="filter-tindak-lanjut__select__document-type__wrapper"]',
     filter_jenis_selected: '[data-cy="filter-tindak-lanjut__select__document-type__wrapper"] div[id="vs6__combobox"] div[class="vs__selected-options"]',
-    filter_jenis_search: '[data-cy="filter-tindak-lanjut__select__document-type__option-5"]', // Berita Acara
+    filter_jenis_search: '[data-cy="filter-tindak-lanjut__select__document-type__option-2"]', // Berita Acara
     filter_jenis_search_selected: '[data-cy="filter-tindak-lanjut__select__document-type__wrapper"] div[id="vs6__combobox"] div[class="vs__selected-options"] span[class="vs__selected"]',
     filter_jenis_check: '[data-cy="filter-tindak-lanjut__select__document-type__option-',
 

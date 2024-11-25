@@ -129,6 +129,8 @@ describe('Drafting Luar - Create, Kembalikan Naskah', () => {
 
             // Check Naskah Di Kotak Keluar
             kotakKeluarPage.checkNaskahKotakKeluar(data_temp.env[0].staging)
+
+            cy.wait(6000)
         })
     )
 })

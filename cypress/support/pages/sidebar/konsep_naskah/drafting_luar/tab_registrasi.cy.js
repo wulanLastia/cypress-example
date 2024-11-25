@@ -959,7 +959,7 @@ export class TabRegistrasiPage {
             dialog_penandatanganModeInput.select('ATASAN')
 
             const dialog_penandatanganLabel = cy.get(tab_registrasi.dialog_penandatanganLabel).as('dialog_penandatanganLabel')
-            dialog_penandatanganLabel.should('contain', 'Penandatangan')
+            dialog_penandatanganLabel.should('contain', 'Pemaraf/Penandatangan')
 
             // Intercept all POST network requests
             if (inputEnv === 'prod') {
