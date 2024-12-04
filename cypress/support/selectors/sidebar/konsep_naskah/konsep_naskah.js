@@ -3,6 +3,7 @@ module.exports = {
     konsepNaskahMenu: '[data-cy="sidebar-menu-konsep-naskah"]',
     titleKonsepNaskah: '[data-cy="template-naskah__title"]',
     subTitleKonsepNaskah: '[data-cy="template-naskah__subtitle"]',
+    suratBiasaLabel: ['data-cy="konsep-naskah__surat-biasa__title"'],
     suratBiasa: '[data-cy="konsep-naskah__surat-biasa__button--create"]',
     notaDinas: '[data-cy="template-naskah__nota-dinas"]',
     btnKembali: '[data-cy="surat-biasa-left-arrow"]',
