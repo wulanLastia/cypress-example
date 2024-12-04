@@ -831,7 +831,8 @@ export class DraftingKepalaSuratNotaDinasPage {
     // Button "Buat tujuan surat di lampiran"
     buttonBuatTujuanSuratDiLampiran() {
         const clickBuatTujuanSuratDiLampiran = cy.get(kepala_surat.btnBuatTujuanSuratDiLampiran).as('clickBuatTujuanSuratDiLampiran')
-        clickBuatTujuanSuratDiLampiran.should('be.visible')
+        clickBuatTujuanSuratDiLampiran.scrollIntoView()
+            .should('be.visible')
             .click({ force: true })
             .wait(5000)
     }

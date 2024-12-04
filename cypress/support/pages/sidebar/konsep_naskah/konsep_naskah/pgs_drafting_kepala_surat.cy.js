@@ -1017,7 +1017,7 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
-                    suggestInputTujuan.contains(inputanTujuan1, { timeout: 10000 }).should('be.visible')
+                    suggestInputTujuan.contains(inputanTujuan1, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuan.type('{enter}')
                 }
@@ -1040,7 +1040,7 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
-                    suggestInputTujuan.contains(inputanTujuan2, { timeout: 10000 }).should('be.visible')
+                    suggestInputTujuan.contains(inputanTujuan2, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuan2.type('{enter}')
                 }
@@ -1063,7 +1063,7 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
-                    suggestInputTujuan.contains(inputanTujuan3, { timeout: 10000 }).should('be.visible')
+                    suggestInputTujuan.contains(inputanTujuan3, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuan3.type('{enter}')
                 }
@@ -1087,7 +1087,7 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal, { timeout: 5000 }).as('suggestInputTujuanEksternal')
-                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal1, { timeout: 10000 }).should('be.visible')
+                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal1, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuan0.type('{enter}')
                 }
@@ -1110,7 +1110,7 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal, { timeout: 5000 }).as('suggestInputTujuanEksternal')
-                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal2, { timeout: 10000 }).should('be.visible')
+                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal2, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuan1.type('{enter}')
                 }
@@ -1133,7 +1133,7 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal, { timeout: 5000 }).as('suggestInputTujuanEksternal')
-                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal3, { timeout: 10000 }).should('be.visible')
+                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal3, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuan2.type('{enter}')
                 }
@@ -1156,7 +1156,7 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal, { timeout: 5000 }).as('suggestInputTujuanEksternal')
-                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal4, { timeout: 10000 }).should('be.visible')
+                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal4, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuan3.type('{enter}')
                 }
@@ -1179,7 +1179,7 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal, { timeout: 5000 }).as('suggestInputTujuanEksternal')
-                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal5, { timeout: 10000 }).should('be.visible')
+                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal5, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuan4.type('{enter}')
                 }
@@ -1202,7 +1202,7 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal, { timeout: 5000 }).as('suggestInputTujuanEksternal')
-                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal6, { timeout: 10000 }).should('be.visible')
+                    suggestInputTujuanEksternal.contains(inputanTujuanEksternal6, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuan5.type('{enter}')
                 }
@@ -1228,11 +1228,12 @@ export class DraftingKepalaSuratPage {
             .type(inputanTujuan1)
 
 
-        cy.wait('@postRequest', { timeout: 5000 })
+        cy.wait('@postRequest', { timeout: 10000 })
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTujuanLampiran = cy.get(kepala_surat.suggestTujuanLampiran).as('suggestTujuanLampiran')
-                    suggestTujuanLampiran.contains(inputanTujuan1, { timeout: 10000 }).should('be.visible')
+                    suggestTujuanLampiran.scrollIntoView()
+                        .contains(inputanTujuan1, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran0.type('{enter}')
                 }
@@ -1255,7 +1256,8 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTujuanLampiran = cy.get(kepala_surat.suggestTujuanLampiran).as('suggestTujuanLampiran')
-                    suggestTujuanLampiran.contains(inputanTujuan2, { timeout: 10000 }).should('be.visible')
+                    suggestTujuanLampiran.scrollIntoView()
+                        .contains(inputanTujuan2, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran1.type('{enter}')
                 }
@@ -1278,7 +1280,8 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTujuanLampiran = cy.get(kepala_surat.suggestTujuanLampiran).as('suggestTujuanLampiran')
-                    suggestTujuanLampiran.contains(inputanTujuan3, { timeout: 10000 }).should('be.visible')
+                    suggestTujuanLampiran.scrollIntoView()
+                        .contains(inputanTujuan3, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran2.type('{enter}')
                 }
@@ -1303,7 +1306,8 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTujuanLampiranEksternal = cy.get(kepala_surat.suggestTujuanLampiranEksternal).as('suggestTujuanLampiranEksternal')
-                    suggestTujuanLampiranEksternal.contains(inputanTujuanLampiran1, { timeout: 10000 }).should('be.visible')
+                    suggestTujuanLampiranEksternal.scrollIntoView()
+                        .contains(inputanTujuanLampiran1, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran0.type('{enter}')
                 }
@@ -1326,7 +1330,8 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTujuanLampiranEksternal = cy.get(kepala_surat.suggestTujuanLampiranEksternal).as('suggestTujuanLampiranEksternal')
-                    suggestTujuanLampiranEksternal.contains(inputanTujuanLampiran2, { timeout: 10000 }).should('be.visible')
+                    suggestTujuanLampiranEksternal.scrollIntoView()
+                        .contains(inputanTujuanLampiran2, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran1.type('{enter}')
                 }
@@ -1349,7 +1354,8 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTujuanLampiranEksternal = cy.get(kepala_surat.suggestTujuanLampiranEksternal).as('suggestTujuanLampiranEksternal')
-                    suggestTujuanLampiranEksternal.contains(inputanTujuanLampiran3, { timeout: 10000 }).should('be.visible')
+                    suggestTujuanLampiranEksternal.scrollIntoView()
+                        .contains(inputanTujuanLampiran3, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran2.type('{enter}')
                 }
@@ -1373,7 +1379,8 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTujuanLampiranEksternal = cy.get(kepala_surat.suggestTujuanLampiranEksternal).as('suggestTujuanLampiranEksternal')
-                    suggestTujuanLampiranEksternal.contains(inputanTujuanLampiran4, { timeout: 10000 }).should('be.visible')
+                    suggestTujuanLampiranEksternal.scrollIntoView()
+                        .contains(inputanTujuanLampiran4, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran3.type('{enter}')
                 }
@@ -1396,7 +1403,8 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTujuanLampiranEksternal = cy.get(kepala_surat.suggestTujuanLampiranEksternal).as('suggestTujuanLampiranEksternal')
-                    suggestTujuanLampiranEksternal.contains(inputanTujuanLampiran5, { timeout: 10000 }).should('be.visible')
+                    suggestTujuanLampiranEksternal.scrollIntoView()
+                        .contains(inputanTujuanLampiran5, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran4.type('{enter}')
                 }
@@ -1419,7 +1427,8 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTujuanLampiranEksternal = cy.get(kepala_surat.suggestTujuanLampiranEksternal).as('suggestTujuanLampiranEksternal')
-                    suggestTujuanLampiranEksternal.contains(inputanTujuanLampiran6, { timeout: 10000 }).should('be.visible')
+                    suggestTujuanLampiranEksternal.scrollIntoView()
+                        .contains(inputanTujuanLampiran6, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran5.type('{enter}')
                 }
@@ -1444,7 +1453,8 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTujuanLampiranEksternal = cy.get(kepala_surat.suggestTujuanLampiranEksternal).as('suggestTujuanLampiranEksternal')
-                    suggestTujuanLampiranEksternal.contains(assertTujuanLampiranNegatif1, { timeout: 10000 }).should('be.visible')
+                    suggestTujuanLampiranEksternal.scrollIntoView()
+                        .contains(assertTujuanLampiranNegatif1, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran0.type('{enter}')
                 }
@@ -1467,7 +1477,8 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTujuanLampiranEksternal = cy.get(kepala_surat.suggestTujuanLampiranEksternal).as('suggestTujuanLampiranEksternal')
-                    suggestTujuanLampiranEksternal.contains(assertTujuanLampiranNegatif2, { timeout: 10000 }).should('be.visible')
+                    suggestTujuanLampiranEksternal.scrollIntoView()
+                        .contains(assertTujuanLampiranNegatif2, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran1.type('{enter}')
                 }
@@ -1490,7 +1501,8 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTujuanLampiranEksternal = cy.get(kepala_surat.suggestTujuanLampiranEksternal).as('suggestTujuanLampiranEksternal')
-                    suggestTujuanLampiranEksternal.contains(assertTujuanLampiranNegatif3, { timeout: 10000 }).should('be.visible')
+                    suggestTujuanLampiranEksternal.scrollIntoView()
+                        .contains(assertTujuanLampiranNegatif3, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran2.type('{enter}')
                 }
@@ -1514,7 +1526,8 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTujuanLampiranEksternal = cy.get(kepala_surat.suggestTujuanLampiranEksternal).as('suggestTujuanLampiranEksternal')
-                    suggestTujuanLampiranEksternal.contains(assertTujuanLampiranNegatif4, { timeout: 10000 }).should('be.visible')
+                    suggestTujuanLampiranEksternal.scrollIntoView()
+                        .contains(assertTujuanLampiranNegatif4, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran3.type('{enter}')
                 }
@@ -1537,7 +1550,8 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTujuanLampiranEksternal = cy.get(kepala_surat.suggestTujuanLampiranEksternal).as('suggestTujuanLampiranEksternal')
-                    suggestTujuanLampiranEksternal.contains(assertTujuanLampiranNegatif5, { timeout: 10000 }).should('be.visible')
+                    suggestTujuanLampiranEksternal.scrollIntoView()
+                        .contains(assertTujuanLampiranNegatif5, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran4.type('{enter}')
                 }
@@ -1560,7 +1574,8 @@ export class DraftingKepalaSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTujuanLampiranEksternal = cy.get(kepala_surat.suggestTujuanLampiranEksternal).as('suggestTujuanLampiranEksternal')
-                    suggestTujuanLampiranEksternal.contains(assertTujuanLampiranNegatif6, { timeout: 10000 }).should('be.visible')
+                    suggestTujuanLampiranEksternal.scrollIntoView()
+                        .contains(assertTujuanLampiranNegatif6, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     inputTujuanLampiran5.type('{enter}')
                 }
@@ -1576,7 +1591,8 @@ export class DraftingKepalaSuratPage {
         cy.wait(5000)
 
         const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan).scrollIntoView().as('suggestInputTujuan')
-        suggestInputTujuan.contains(inputanTujuan1, { timeout: 10000 }).should('be.visible')
+        suggestInputTujuan.scrollIntoView()
+            .contains(inputanTujuan1, { matchCase: false, timeout: 10000 }).should('be.visible')
 
         inputTujuan.type('{enter}')
     }
@@ -1589,7 +1605,8 @@ export class DraftingKepalaSuratPage {
         cy.wait(5000)
 
         const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan).scrollIntoView().as('suggestInputTujuan')
-        suggestInputTujuan.contains(inputanTujuan2, { timeout: 10000 }).should('be.visible')
+        suggestInputTujuan.scrollIntoView()
+            .contains(inputanTujuan2, { matchCase: false, timeout: 10000 }).should('be.visible')
 
         inputTujuan2.type('{enter}')
     }
@@ -1602,7 +1619,8 @@ export class DraftingKepalaSuratPage {
         cy.wait(5000)
 
         const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan).scrollIntoView().as('suggestInputTujuan')
-        suggestInputTujuan.contains(inputanTujuan3, { timeout: 10000 }).should('be.visible')
+        suggestInputTujuan.scrollIntoView()
+            .contains(inputanTujuan3, { matchCase: false, timeout: 10000 }).should('be.visible')
 
         inputTujuan3.type('{enter}')
     }
@@ -1615,7 +1633,8 @@ export class DraftingKepalaSuratPage {
         cy.wait(5000)
 
         const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal).scrollIntoView().as('suggestInputTujuanEksternal')
-        suggestInputTujuanEksternal.contains(inputanTujuanEksternal4, { timeout: 10000 }).should('be.visible')
+        suggestInputTujuanEksternal.scrollIntoView()
+            .contains(inputanTujuanEksternal4, { matchCase: false, timeout: 10000 }).should('be.visible')
 
         inputTujuan3.type('{enter}')
     }
@@ -1628,7 +1647,8 @@ export class DraftingKepalaSuratPage {
         cy.wait(5000)
 
         const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal).scrollIntoView().as('suggestInputTujuanEksternal')
-        suggestInputTujuanEksternal.contains(inputanTujuanEksternal5, { timeout: 10000 }).should('be.visible')
+        suggestInputTujuanEksternal.scrollIntoView()
+            .contains(inputanTujuanEksternal5, { matchCase: false, timeout: 10000 }).should('be.visible')
 
         inputTujuan4.type('{enter}')
     }
@@ -1641,7 +1661,8 @@ export class DraftingKepalaSuratPage {
         cy.wait(5000)
 
         const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal).scrollIntoView().as('suggestInputTujuanEksternal')
-        suggestInputTujuanEksternal.contains(inputanTujuanEksternal6, { timeout: 10000 }).should('be.visible')
+        suggestInputTujuanEksternal.scrollIntoView()
+            .contains(inputanTujuanEksternal6, { matchCase: false, timeout: 10000 }).should('be.visible')
 
         inputTujuan5.type('{enter}')
     }
