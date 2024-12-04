@@ -79,7 +79,7 @@ describe('Skenario Surat Biasa - Tujuan Lampiran Internal 3 Eksternal 3, Tembusa
                 data_temp.kepala_surat[3].unit_pengolah,
                 data_temp.kepala_surat[4].sifat_surat,
                 data_temp.kepala_surat[5].urgensi_surat,
-                data_temp.kepala_surat[6].perihal2)
+                data_temp.kepala_surat[6].perihal3)
             createSuratBiasaPage.inputBadanNaskahSkenarioRegression(faker.lorem.paragraphs(13, '<br/>\n'))
             createSuratBiasaPage.kirimSurat(data_temp.env[0].stagging)
             cy.wait(3000)

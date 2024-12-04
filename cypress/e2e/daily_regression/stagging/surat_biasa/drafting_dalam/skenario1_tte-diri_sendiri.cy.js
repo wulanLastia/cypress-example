@@ -66,7 +66,7 @@ describe('Skenario Surat Biasa - Tujuan Lampiran Internal 3, Tembusan Internal 3
                 data_temp.kepala_surat[3].unit_pengolah,
                 data_temp.kepala_surat[4].sifat_surat,
                 data_temp.kepala_surat[5].urgensi_surat,
-                data_temp.kepala_surat[6].perihal3)
+                data_temp.kepala_surat[6].perihal3 + ' Penandatangan Diri Sendiri')
             createSuratBiasaPage.inputBadanNaskahSkenarioRegression(faker.lorem.paragraphs(13, '<br/>\n'))
             setujuiPage.doTandaTanganiSurat(user.passphrase)
 

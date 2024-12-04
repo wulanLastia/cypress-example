@@ -49,12 +49,12 @@ describe('Skenario Nota Dinas - Tujuan Kepala Internal 3, Tembusan Internal 3, L
                 dataNotaDinas.kepala_surat[4].unit_pengolah, 
                 dataNotaDinas.kepala_surat[5].sifat_surat, 
                 dataNotaDinas.kepala_surat[6].urgensi_surat, 
-                dataNotaDinas.kepala_surat[7].perihal2
+                dataNotaDinas.kepala_surat[7].perihal2 + ' Penandatangan Diri Sendiri'
             )
             cy.wait(3000)
             createNotaDinasPage.createBadanSurat(faker.lorem.paragraphs(13, '<br/>\n'))
             cy.wait(3000)
-            setujuiPage.doTandaTanganiSurat('passphrase')
+            setujuiPage.doTandaTanganiSurat(user.passphrase)
         })
     )
 })

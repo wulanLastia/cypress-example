@@ -85,6 +85,7 @@ describe('Skenario Surat Biasa - Tujuan Kepala Internal 3 Eksternal 3, Lampiran 
 
             // Create Naskah
             kembalikanNaskahPage.goToNaskahBelumDireview(data_temp.env[0].stagging)
+            cy.wait(6000)
             kembalikanNaskahPage.emptyField()
             kembalikanNaskahPage.batalKembalikanNaskah()
             kembalikanNaskahPage.checkHalamanInformasi()
