@@ -19,10 +19,10 @@ export class ListNaskahSuratBiasaPage {
 
     goToKonsepNaskahSuratBiasa() {
         cy.get('body').then($body => {
-            if ($body.find(konsep_naskah.suratBiasa).length > 0) {
+            if ($body.find(konsep_naskah.suratBiasaLabel).length > 0) {
                 // Find Document Type
-                const suratBiasa = cy.get(konsep_naskah.suratBiasa).as('suratBiasa')
-                suratBiasa.contains('Surat Biasa')
+                const suratBiasaLabel = cy.get(konsep_naskah.suratBiasaLabel).as('suratBiasaLabel')
+                suratBiasaLabel.contains('Surat Biasa')
                     .scrollIntoView()
                     .click()
             }else{
