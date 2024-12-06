@@ -223,7 +223,7 @@ export class DraftingKakiSuratPage {
         cy.wait(5000)
 
         const suggestPenandatanganAtasan1 = cy.get(kaki_surat.suggestPenandatanganAtasan1).scrollIntoView().as('suggestPenandatanganAtasan1')
-        suggestPenandatanganAtasan1.contains(inputanPenandatanganAtasan1, { timeout: 10000 }).should('be.visible')
+        suggestPenandatanganAtasan1.contains(inputanPenandatanganAtasan1, { matchCase: false, timeout: 10000 }).should('be.visible')
 
         pilihPenandatangan.type('{enter}')
     }
@@ -239,7 +239,7 @@ export class DraftingKakiSuratPage {
         cy.wait(5000)
 
         const suggestPemeriksa1 = cy.get(kaki_surat.suggestPemeriksa1).scrollIntoView().as('suggestPemeriksa1')
-        suggestPemeriksa1.contains(inputanPemeriksa1, { timeout: 10000 }).should('be.visible')
+        suggestPemeriksa1.contains(inputanPemeriksa1, { matchCase: false, timeout: 10000 }).should('be.visible')
 
         pilihPemeriksa.type('{enter}')
     }
@@ -290,7 +290,7 @@ export class DraftingKakiSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusan = cy.get(kaki_surat.suggestTembusan, { timeout: 10000 }).as('suggestTembusan')
-                    suggestTembusan.contains(inputanTembusanInternal1, { timeout: 15000 }).should('be.visible')
+                    suggestTembusan.contains(inputanTembusanInternal1, { matchCase: false, timeout: 15000 }).should('be.visible')
 
                     pilihTembusan.type('{enter}')
                 }
@@ -313,7 +313,7 @@ export class DraftingKakiSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusan = cy.get(kaki_surat.suggestTembusan, { timeout: 5000 }).as('suggestTembusan')
-                    suggestTembusan.contains(inputanTembusanInternal2, { timeout: 10000 }).should('be.visible')
+                    suggestTembusan.contains(inputanTembusanInternal2, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     pilihTembusan2.type('{enter}')
                 }
@@ -336,7 +336,7 @@ export class DraftingKakiSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusan = cy.get(kaki_surat.suggestTembusan, { timeout: 5000 }).as('suggestTembusan')
-                    suggestTembusan.contains(inputanTembusanInternal3, { timeout: 10000 }).should('be.visible')
+                    suggestTembusan.contains(inputanTembusanInternal3, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     pilihTembusan3.type('{enter}')
                 }
@@ -360,7 +360,8 @@ export class DraftingKakiSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 10000 }).as('suggestTembusanEksternal')
-                    suggestTembusanEksternal.contains(inputanTembusan1, { timeout: 10000 }).should('be.visible')
+                    suggestTembusanEksternal.scrollIntoView()
+                        .contains(inputanTembusan1, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     pilihTembusan.type('{enter}')
                 }
@@ -383,7 +384,8 @@ export class DraftingKakiSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
-                    suggestTembusanEksternal.contains(inputanTembusan2, { timeout: 10000 }).should('be.visible')
+                    suggestTembusanEksternal.scrollIntoView()
+                        .contains(inputanTembusan2, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     pilihTembusan2.type('{enter}')
                 }
@@ -406,7 +408,8 @@ export class DraftingKakiSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
-                    suggestTembusanEksternal.contains(inputanTembusan3, { timeout: 10000 }).should('be.visible')
+                    suggestTembusanEksternal.scrollIntoView()
+                        .contains(inputanTembusan3, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     pilihTembusan3.type('{enter}')
                 }
@@ -429,7 +432,8 @@ export class DraftingKakiSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
-                    suggestTembusanEksternal.contains(inputanTembusan4, { timeout: 10000 }).should('be.visible')
+                    suggestTembusanEksternal.scrollIntoView()
+                        .contains(inputanTembusan4, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     pilihTembusan4.type('{enter}')
                 }
@@ -452,7 +456,8 @@ export class DraftingKakiSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
-                    suggestTembusanEksternal.contains(inputanTembusan5, { timeout: 10000 }).should('be.visible')
+                    suggestTembusanEksternal.scrollIntoView()
+                        .contains(inputanTembusan5, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     pilihTembusan5.type('{enter}')
                 }
@@ -475,7 +480,8 @@ export class DraftingKakiSuratPage {
             .then((interception) => {
                 if (interception.response.statusCode === 200) {
                     const suggestTembusanEksternal = cy.get(kaki_surat.suggestTembusanEksternal, { timeout: 5000 }).as('suggestTembusanEksternal')
-                    suggestTembusanEksternal.contains(inputanTembusan6, { timeout: 10000 }).should('be.visible')
+                    suggestTembusanEksternal.scrollIntoView()
+                        .contains(inputanTembusan6, { matchCase: false, timeout: 10000 }).should('be.visible')
 
                     pilihTembusan6.type('{enter}')
                 }
