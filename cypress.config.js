@@ -61,10 +61,10 @@ module.exports = defineConfig({
 
     testIsolation: true,
 
-    // retries: {
-    //   runMode: 2,
-    //   openMode: 1,
-    // },
+    retries: {
+      runMode: 2,
+      openMode: 1,
+    },
 
   },
   reporter: 'cypress-multi-reporters',
