@@ -23,6 +23,7 @@ module.exports = {
     btnClosePopupV2: '[data-cy="dialog__welcoming__button--close"]',
     popupTTEPemeriksaError: '[data-cy="dialog__error-signing__label-pemeriksa"]',
     btnSkipInfoTTE: '[data-cy="dialog-popup__button"]',
+    showInputLogin: '[data-cy="login__button--toggle-nip-password"]',
 
     // SIMULATE V2 STAGING
     btnLoginSso: '/html[1]/body[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/form[1]/div[1]/button[1]',
@@ -33,7 +34,6 @@ module.exports = {
     btnKeluar: '/html[1]/body[1]/div[1]/header[1]/nav[1]/div[1]/ul[1]/li[2]/ul[1]/li[2]/div[2]/a[1]',
     konsepNaskahMenu: '/html[1]/body[1]/div[1]/aside[1]/div[1]/section[1]/ul[1]/li[3]/a[1]/span[1]',
     skipOnboarding: '.introjs-skipbutton',
-    showInputLogin: '/html[1]/body[1]/section[1]/div[1]/div[2]/div[2]/button[1]',
     usernameSiap: '/html[1]/body[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/input[1]',
     passwordSiap: '/html[1]/body[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[2]/input[1]',
     btnConfirmSiap: '/html[1]/body[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[3]/button[1]',

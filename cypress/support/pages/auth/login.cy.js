@@ -1,5 +1,5 @@
-import login from "../../selectors/login"
-import navbar from "../../selectors/navbar"
+import login from "@selectors/login"
+import navbar from "@selectors/navbar"
 
 export class LoginPage {
 
@@ -55,7 +55,7 @@ export class LoginPage {
 
         this.navigateLoginPageV1()
       
-        const showInputLogin = cy.xpath(login.showInputLogin).as('showInputLogin')
+        const showInputLogin = cy.get(login.showInputLogin).as('showInputLogin')
         showInputLogin.scrollIntoView()
             .click({ force: true })
 
@@ -130,7 +130,7 @@ export class LoginPage {
 
                 cy.wait(3000)
 
-                const showInputLogin = cy.xpath(login.showInputLogin).as('showInputLogin')
+                const showInputLogin = cy.get(login.showInputLogin).as('showInputLogin')
                 showInputLogin.scrollIntoView()
                     .click({ force: true })
 
@@ -158,7 +158,7 @@ export class LoginPage {
                 // No popup, proceed with login
                 cy.wait(3000)
 
-                const showInputLogin = cy.xpath(login.showInputLogin).as('showInputLogin')
+                const showInputLogin = cy.get(login.showInputLogin).as('showInputLogin')
                 showInputLogin.scrollIntoView()
                     .click({ force: true })
 
