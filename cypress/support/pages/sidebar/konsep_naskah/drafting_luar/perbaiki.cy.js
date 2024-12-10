@@ -1,6 +1,6 @@
-import perbaiki from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/perbaiki"
-import tab_registrasi from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/tab_registrasi"
-import upload_single from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/upload_single_file"
+import perbaiki from "@selectors/sidebar/konsep_naskah/drafting_luar/perbaiki"
+import tab_registrasi from "@selectors/sidebar/konsep_naskah/drafting_luar/tab_registrasi"
+import upload_single from "@selectors/sidebar/konsep_naskah/drafting_luar/upload_single_file"
 
 const getPreviewData = "cypress/fixtures/non_cred/drafting_luar/transaction_data/preview_data.json"
 
