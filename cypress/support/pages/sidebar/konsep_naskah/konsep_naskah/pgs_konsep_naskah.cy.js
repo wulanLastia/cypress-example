@@ -1,5 +1,5 @@
-import navbar from "../../../../selectors/navbar"
-import konsep_naskah from "../../../../selectors/sidebar/konsep_naskah/konsep_naskah"
+import navbar from "@selectors/navbar"
+import konsep_naskah from "@selectors/sidebar/konsep_naskah/konsep_naskah"
 import { MenuPage } from "../../menu/menu.cy"
 
 const menuPage = new MenuPage()
