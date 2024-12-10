@@ -1,7 +1,7 @@
-import kembalikan_naskah from "../../../selectors/sidebar/kotak_masuk/kembalikan_naskah"
-import review_verifikasi_surat from "../../../selectors/sidebar/kotak_masuk/review_verifikasi_surat"
-import review_naskah from "../../../selectors/sidebar/kotak_masuk/list_review_naskah"
-import kotak_masuk from "../../../selectors/sidebar/konsep_naskah/drafting_luar/kotak_masuk"
+import kembalikan_naskah from "@selectors/sidebar/kotak_masuk/kembalikan_naskah"
+import review_verifikasi_surat from "@selectors/sidebar/kotak_masuk/review_verifikasi_surat"
+import review_naskah from "@selectors/sidebar/kotak_masuk/list_review_naskah"
+import kotak_masuk from "@selectors/sidebar/konsep_naskah/drafting_luar/kotak_masuk"
 import { MenuPage } from "../menu/menu.cy"
 
 const menuPage = new MenuPage()

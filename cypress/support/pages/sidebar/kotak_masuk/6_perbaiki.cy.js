@@ -1,10 +1,10 @@
-import review_verifikasi_surat from "../../../selectors/sidebar/kotak_masuk/review_verifikasi_surat"
-import review_naskah from "../../../selectors/sidebar/kotak_masuk/list_review_naskah"
-import perbaiki from "../../../selectors/sidebar/kotak_masuk/perbaiki"
+import review_verifikasi_surat from "@selectors/sidebar/kotak_masuk/review_verifikasi_surat"
+import review_naskah from "@selectors/sidebar/kotak_masuk/list_review_naskah"
+import perbaiki from "@selectors/sidebar/kotak_masuk/perbaiki"
 import { CreateSuratBiasaPage } from "../konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
 import { UpdateNotaDinasPage } from "../konsep_naskah/nota_dinas/pgs_update_nota_dinas.cy.js"
 import { DraftingKepalaSuratPerintahPage } from "../konsep_naskah/surat_perintah/super_drafting_kepala_surat.cy"
-import kotak_masuk from "../../../selectors/sidebar/konsep_naskah/drafting_luar/kotak_masuk"
+import kotak_masuk from "@selectors/sidebar/konsep_naskah/drafting_luar/kotak_masuk"
 import { MenuPage } from "../menu/menu.cy"
 
 const menuPage = new MenuPage()
