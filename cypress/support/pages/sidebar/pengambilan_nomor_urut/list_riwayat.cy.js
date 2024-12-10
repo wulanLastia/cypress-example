@@ -1,5 +1,5 @@
-import list_riwayat from "../../../selectors/sidebar/pengambilan_nomor_urut/list_riwayat"
-import ambil_nomor_otomatis from "../../../selectors/sidebar/pengambilan_nomor_urut/ambil_nomor_otomatis"
+import list_riwayat from "@selectors/sidebar/pengambilan_nomor_urut/list_riwayat"
+import ambil_nomor_otomatis from "@selectors/sidebar/pengambilan_nomor_urut/ambil_nomor_otomatis"
 
 const filename = "cypress/fixtures/non_cred/penomoran/ambil_nomor_otomatis.json"
 export class ListRiwayatPage {

@@ -1,4 +1,4 @@
-import pengambilan_nomor_urut from "../../../selectors/sidebar/pengambilan_nomor_urut/pengambilan_nomor_urut"
+import pengambilan_nomor_urut from "@selectors/sidebar/pengambilan_nomor_urut/pengambilan_nomor_urut"
 
 export class PengambilanNomorUrutPage {
 
