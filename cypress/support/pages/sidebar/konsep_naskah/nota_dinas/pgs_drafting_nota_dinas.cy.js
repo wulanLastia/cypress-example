@@ -1,5 +1,5 @@
-import konsep_naskah from "../../../../selectors/sidebar/konsep_naskah/konsep_naskah"
-import nota_dinas from "../../../../selectors/sidebar/konsep_naskah/nota_dinas/drafting_nota_dinas"
+import konsep_naskah from "@selectors/sidebar/konsep_naskah/konsep_naskah"
+import nota_dinas from "@selectors/sidebar/konsep_naskah/nota_dinas/drafting_nota_dinas"
 import { MenuPage } from "../../menu/menu.cy"
 
 const menuPage = new MenuPage()
