@@ -39,6 +39,14 @@ module.exports = defineConfig({
       }));
     },
 
+    // Command for exclude spec / folder
+    excludeSpecPattern: [
+      //'cypress/e2e/daily_regression/prod',
+      'cypress/e2e/scenarios',
+      'cypress/e2e/layout_lama',
+      'cypress/e2e/weekly_regression/sidebar/pengambilan_nomor_urut',
+    ],
+
     env: {
       base_url: process.env.BASE_URL,
       base_url_v1: process.env.BASE_URL_V1,

@@ -1,4 +1,4 @@
-import lampiran_surat from "../../../../selectors/sidebar/konsep_naskah/surat_biasa/drafting_lampiran_surat"
+import lampiran_surat from "@selectors/sidebar/konsep_naskah/surat_biasa/drafting_lampiran_surat"
 import { DraftingNotaDinasPage } from "../nota_dinas/pgs_drafting_nota_dinas.cy"
 
 const draftingNotaDinasPage = new DraftingNotaDinasPage()

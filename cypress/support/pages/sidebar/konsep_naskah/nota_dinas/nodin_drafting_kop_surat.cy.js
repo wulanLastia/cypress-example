@@ -1,4 +1,4 @@
-import kop_surat from "../../../../selectors/sidebar/konsep_naskah/surat_biasa/drafting_kop_surat"
+import kop_surat from "@selectors/sidebar/konsep_naskah/surat_biasa/drafting_kop_surat"
 import { DraftingNotaDinasPage } from "../nota_dinas/pgs_drafting_nota_dinas.cy"
 
 const draftingNotaDinasPage = new DraftingNotaDinasPage()

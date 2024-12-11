@@ -1,4 +1,4 @@
-import kotak_keluar from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/kotak_keluar"
+import kotak_keluar from "@selectors/sidebar/konsep_naskah/drafting_luar/kotak_keluar"
 
 const getPreviewData = "cypress/fixtures/non_cred/drafting_luar/transaction_data/preview_data.json"
 export class KotakKeluarPage {

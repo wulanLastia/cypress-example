@@ -1,4 +1,4 @@
-import review_naskah from "../../../selectors/sidebar/kotak_keluar/list_review_naskah"
+import review_naskah from "@selectors/sidebar/kotak_keluar/list_review_naskah"
 
 export class ListSuratReviewNaskahKeluarPage {
 

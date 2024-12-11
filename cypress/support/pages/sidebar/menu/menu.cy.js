@@ -1,6 +1,6 @@
-import login from "../../../selectors/login"
-import navbar from "../../../selectors/navbar"
-import menu from "../../../selectors/sidebar/menu/menu"
+import login from "@selectors/login"
+import navbar from "@selectors/navbar"
+import menu from "@selectors/sidebar/menu/menu"
 
 export class MenuPage {
 

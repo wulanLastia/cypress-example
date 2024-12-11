@@ -1,4 +1,4 @@
-import draft from "../../../../selectors/sidebar/konsep_naskah/draft"
+import draft from "@selectors/sidebar/konsep_naskah/draft"
 import { MenuPage } from "../../menu/menu.cy"
 
 const menuPage = new MenuPage()

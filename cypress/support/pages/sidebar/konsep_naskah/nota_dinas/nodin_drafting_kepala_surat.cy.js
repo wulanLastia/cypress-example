@@ -1,4 +1,4 @@
-import kepala_surat from "../../../../selectors/sidebar/konsep_naskah/nota_dinas/drafting_kepala_surat"
+import kepala_surat from "@selectors/sidebar/konsep_naskah/nota_dinas/drafting_kepala_surat"
 import { DraftingNotaDinasPage } from "../nota_dinas/pgs_drafting_nota_dinas.cy"
 
 const draftingNotaDinasPage = new DraftingNotaDinasPage()

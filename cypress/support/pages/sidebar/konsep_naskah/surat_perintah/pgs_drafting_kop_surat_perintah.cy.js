@@ -1,4 +1,4 @@
-import kop_surat from "../../../../selectors/sidebar/konsep_naskah/surat_perintah/drafting_surat_perintah_kop_surat"
+import kop_surat from "@selectors/sidebar/konsep_naskah/surat_perintah/drafting_surat_perintah_kop_surat"
 import { DraftingSuratPerintahPage } from "../surat_perintah/pgs_drafting_surat_perintah.cy"
 
 const getJSONRequestFileKopSuratPerintah = "cypress/fixtures/non_cred/surat_perintah/kop_surat/kop_super_list_dropdown_UPTD.json"

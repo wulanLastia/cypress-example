@@ -1,5 +1,5 @@
-import ambil_nomor_otomatis from "../../../selectors/sidebar/pengambilan_nomor_urut/ambil_nomor_otomatis"
-import pengambilan_nomor_urut from "../../../selectors/sidebar/pengambilan_nomor_urut/pengambilan_nomor_urut"
+import ambil_nomor_otomatis from "@selectors/sidebar/pengambilan_nomor_urut/ambil_nomor_otomatis"
+import pengambilan_nomor_urut from "@selectors/sidebar/pengambilan_nomor_urut/pengambilan_nomor_urut"
 
 const filename = "cypress/fixtures/non_cred/penomoran/ambil_nomor_otomatis.json"
 

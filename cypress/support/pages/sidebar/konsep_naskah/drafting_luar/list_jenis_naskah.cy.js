@@ -1,6 +1,6 @@
-import list_surat_biasa from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah"
-import konsep_naskah from "../../../../selectors/sidebar/konsep_naskah/konsep_naskah"
-import nota_dinas from "../../../../selectors/sidebar/konsep_naskah/nota_dinas/drafting_nota_dinas"
+import list_surat_biasa from "@selectors/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah"
+import konsep_naskah from "@selectors/sidebar/konsep_naskah/konsep_naskah"
+import nota_dinas from "@selectors/sidebar/konsep_naskah/nota_dinas/drafting_nota_dinas"
 export class ListNaskahSuratBiasaPage {
 
     assertHalamanKonsepNaskah() {

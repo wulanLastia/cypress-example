@@ -1,4 +1,4 @@
-import histori from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/histori"
+import histori from "@selectors/sidebar/konsep_naskah/drafting_luar/histori"
 
 const getPreviewData = "cypress/fixtures/non_cred/drafting_luar/transaction_data/preview_data.json"
 

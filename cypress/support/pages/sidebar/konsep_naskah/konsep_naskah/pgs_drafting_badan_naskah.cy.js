@@ -1,4 +1,4 @@
-import badan_naskah from "../../../../selectors/sidebar/konsep_naskah/surat_biasa/drafting_badan_naskah"
+import badan_naskah from "@selectors/sidebar/konsep_naskah/surat_biasa/drafting_badan_naskah"
 import { MenuPage } from "../../menu/menu.cy"
 import { DraftingKonsepNaskahPage } from "../surat_biasa/pgs_drafting_surat_biasa.cy"
 

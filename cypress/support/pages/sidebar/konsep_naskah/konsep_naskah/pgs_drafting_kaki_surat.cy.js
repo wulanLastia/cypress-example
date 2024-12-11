@@ -1,4 +1,4 @@
-import kaki_surat from "../../../../selectors/sidebar/konsep_naskah/surat_biasa/drafting_kaki_surat"
+import kaki_surat from "@selectors/sidebar/konsep_naskah/surat_biasa/drafting_kaki_surat"
 import { DraftingKonsepNaskahPage } from "../surat_biasa/pgs_drafting_surat_biasa.cy"
 
 const draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()

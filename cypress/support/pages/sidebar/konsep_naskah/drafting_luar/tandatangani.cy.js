@@ -1,4 +1,4 @@
-import tandatangani from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/tandatangani"
+import tandatangani from "@selectors/sidebar/konsep_naskah/drafting_luar/tandatangani"
 
 const getPreviewData = "cypress/fixtures/non_cred/drafting_luar/transaction_data/preview_data.json"
 

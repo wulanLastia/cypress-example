@@ -1,4 +1,4 @@
-import kotak_masuk from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/kotak_masuk"
+import kotak_masuk from "@selectors/sidebar/konsep_naskah/drafting_luar/kotak_masuk"
 
 const getPreviewData = "cypress/fixtures/non_cred/drafting_luar/transaction_data/preview_data.json"
 

@@ -1,4 +1,4 @@
-import kaki_surat from "../../../../selectors/sidebar/konsep_naskah/surat_perintah/drafting_kaki_surat.js"
+import kaki_surat from "@selectors/sidebar/konsep_naskah/surat_perintah/drafting_kaki_surat.js"
 import { DraftingSuratPerintahPage } from "../surat_perintah/pgs_drafting_surat_perintah.cy"
 
 const draftingSuratPerintahPage = new DraftingSuratPerintahPage()

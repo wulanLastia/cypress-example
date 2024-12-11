@@ -1,4 +1,4 @@
-import tab_registrasi from "../../../../selectors/sidebar/konsep_naskah/drafting_luar/tab_registrasi"
+import tab_registrasi from "@selectors/sidebar/konsep_naskah/drafting_luar/tab_registrasi"
 
 const getMasterData = "cypress/fixtures/non_cred/drafting_luar/master_data/create_data.json"
 const getPreviewData = "cypress/fixtures/non_cred/drafting_luar/transaction_data/preview_data.json"

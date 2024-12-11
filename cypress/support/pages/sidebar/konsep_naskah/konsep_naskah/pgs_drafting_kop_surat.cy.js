@@ -1,4 +1,4 @@
-import kop_surat, { checkradio3 } from "../../../../selectors/sidebar/konsep_naskah/surat_biasa/drafting_kop_surat"
+import kop_surat, { checkradio3 } from "@selectors/sidebar/konsep_naskah/surat_biasa/drafting_kop_surat"
 import { DraftingKonsepNaskahPage } from "../surat_biasa/pgs_drafting_surat_biasa.cy"
 
 const draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()

@@ -1,7 +1,7 @@
-import setujui from "../../../selectors/sidebar/kotak_masuk/setujui"
-import koreksi from "../../../selectors/sidebar/kotak_masuk/koreksi"
-import review_naskah from "../../../selectors/sidebar/kotak_masuk/list_review_naskah"
-import kotak_masuk from "../../../selectors/sidebar/konsep_naskah/drafting_luar/kotak_masuk"
+import setujui from "@selectors/sidebar/kotak_masuk/setujui"
+import koreksi from "@selectors/sidebar/kotak_masuk/koreksi"
+import review_naskah from "@selectors/sidebar/kotak_masuk/list_review_naskah"
+import kotak_masuk from "@selectors/sidebar/konsep_naskah/drafting_luar/kotak_masuk"
 import { MenuPage } from "../menu/menu.cy"
 
 const menuPage = new MenuPage()

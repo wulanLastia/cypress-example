@@ -1,4 +1,4 @@
-import kepala_surat from "../../../../selectors/sidebar/konsep_naskah/surat_perintah/drafting_kepala_surat"
+import kepala_surat from "@selectors/sidebar/konsep_naskah/surat_perintah/drafting_kepala_surat"
 import { DraftingSuratPerintahPage } from "../surat_perintah/pgs_drafting_surat_perintah.cy"
 
 const draftingSuratPerintahPage = new DraftingSuratPerintahPage()
