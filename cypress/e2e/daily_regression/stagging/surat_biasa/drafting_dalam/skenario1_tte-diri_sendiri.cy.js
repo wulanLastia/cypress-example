@@ -1,11 +1,13 @@
 import { qase } from 'cypress-qase-reporter/mocha';
 import { LoginPage } from "@pages/auth/login.cy"
 import { CreateSuratBiasaPage } from "@pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { DraftingKepalaSuratPage } from "@pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_kepala_surat.cy"
 import { SetujuiPage } from "@pages/sidebar/kotak_masuk/5_setujui.cy"
 import { ListNaskahSuratBiasaPage } from "@pages/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah.cy"
 
 const { faker } = require('@faker-js/faker')
 let createSuratBiasaPage = new CreateSuratBiasaPage()
+let draftingKepalaSuratPage = new DraftingKepalaSuratPage()
 let setujuiPage = new SetujuiPage()
 let listNaskahSuratBiasaPage = new ListNaskahSuratBiasaPage()
 let loginPage = new LoginPage()
@@ -55,18 +57,22 @@ describe('Skenario Surat Biasa - Tujuan Lampiran Internal 3, Tembusan Internal 3
                 data_temp.kaki_surat[2].tembusan_internal1,
                 data_temp.kaki_surat[2].tembusan_internal2,
                 data_temp.kaki_surat[2].tembusan_internal3)
-            createSuratBiasaPage.inputKepalaSuratSkenario2(
+            draftingKepalaSuratPage.inputKepalaSurat(
                 data_temp.env[0].staging,
                 data_temp.kepala_surat[7].tempat1,
-                data_temp.kepala_surat[0].tujuan1,
-                data_temp.kepala_surat[0].tujuan2,
-                data_temp.kepala_surat[0].tujuan4,
+                data_temp.position_tujuan[0].position_lampiran,
+                [
+                    data_temp.kepala_surat[0].tujuan1,
+                    data_temp.kepala_surat[0].tujuan2,
+                    data_temp.kepala_surat[0].tujuan4
+                ],
                 data_temp.kepala_surat[1].lokasi,
                 data_temp.kepala_surat[2].kode_klasifikasi,
                 data_temp.kepala_surat[3].unit_pengolah,
                 data_temp.kepala_surat[4].sifat_surat,
                 data_temp.kepala_surat[5].urgensi_surat,
-                data_temp.kepala_surat[6].perihal3 + ' Penandatangan Diri Sendiri')
+                data_temp.kepala_surat[6].perihal3 + ' Penandatangan Diri Sendiri'
+            )
             createSuratBiasaPage.inputBadanNaskahSkenarioRegression(faker.lorem.paragraphs(13, '<br/>\n'))
             setujuiPage.doTandaTanganiSurat(user.passphrase)
 

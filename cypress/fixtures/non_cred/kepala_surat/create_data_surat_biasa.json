@@ -159,10 +159,17 @@
       "prod": "prod",
       "staging": "staging"
     }
-  ],"org": [
+  ],
+  "org": [
     {
       "org1": "dispusipda",
       "org2": "diskominfo"
+    }
+  ],
+  "position_tujuan": [
+    {
+      "position_kepala": "KepalaSurat",
+      "position_lampiran": "LampiranSurat"
     }
   ]
 }
