@@ -542,6 +542,113 @@ export class DraftingKepalaSuratPage {
         xpath_popupKurunWaktu.parent().first().should('have.class', 'cell disabled')
     }
 
+    // Tujuan Surat
+    inputKepalaSurat(inputanEnv, inputanTempat, tempatTujuanSurat, tujuanSurat, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
+        // Akses Edit Kepala Surat
+        this.aksesFormEditingKepalaSurat()
+
+        // Validate Komponen Kepala Surat
+        const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
+        titleTujuan.should('contain', 'Kepada Yth.')
+
+        // Input Tempat Surat
+        this.validateTempat(inputanTempat)
+
+        // Pilih Penempatan Daftar Tujuan Surat - Defaultnya di Kepala Surat
+        if(tempatTujuanSurat == 'LampiranSurat') {
+            this.handleLampiran()
+        }
+
+        // Input Tujuan Surat (INTERNAL) secara dinamis
+        this.inputTujuanSurat(tujuanSurat, true, tempatTujuanSurat, inputanEnv)
+
+        // Input Lokasi Surat
+        this.validateLokasi(inputanLokasi)
+
+        // Input Kode Klasifikasi
+        this.validateKodeKlasifikasi(inputanKodeKlasifikasi)
+
+        // Input Unit Pengolah
+        this.validateUnitPengolah(inputanUnitPengolah)
+
+        // Input Sifat Surat
+        this.validateSifatSurat(inputanSifatSurat)
+
+        // Input Urgensi Surat
+        this.validateUrgensiSurat(inputanUrgensiSurat)
+
+        // Input Perihal Surat
+        this.validatePerihal(inputanPerihalSurat)
+
+        // Close Kepala Surat
+        this.closeKepalaSurat()
+    }
+
+    handleLampiran() {
+        // Pilih Tujuan Surat Lampiran
+        const radio2 = cy.get(kepala_surat.radio2).as('radio2')
+        radio2.should('be.visible')
+            .click()
+
+        // Assert Pilihan Tujuan Lampiran Sesuai
+        const labelRadio2 = cy.get(kepala_surat.labelRadio2).as('labelRadio2')
+        labelRadio2.should('contain', 'Lampiran')
+
+        // Input Label Tujuan Lampiran
+        const inputTujuanLampiran = cy.get(kepala_surat.inputTujuanLampiran).as('inputTujuanLampiran')
+        inputTujuanLampiran.wait(1000)
+            .type('Tujuan Lampiran Regression')
+            .wait(3000)
+            .type('{enter}')
+
+        // Akses Input Tujuan Lampiran
+        const previewPage = cy.xpath(konsep_naskah.previewPage).as('previewPage')
+        previewPage.scrollTo(180, 1000, { force: true })
+
+        const previewKepalaLampiran = cy.get(konsep_naskah.previewKepalaLampiran).as('previewKepalaLampiran')
+        previewKepalaLampiran.click()
+    }
+
+    inputTujuanSurat(tujuanSurat, isInternal = true, position = 'KepalaSurat', inputanEnv) {
+        // Input Data Tujuan Surat
+        tujuanSurat.forEach((tujuan, index) => {
+            if (position === 'KepalaSurat') {
+                // Input untuk posisi Kepala Surat
+                if (isInternal) {
+                    this[`inputTujuanSurat${index + 1}`](inputanEnv, tujuan); // Internal
+                } else {
+                    this[`inputTujuanEksternal${index + 1}`](inputanEnv, tujuan); // Eksternal
+                }
+
+                // Tambahkan tujuan jika bukan elemen terakhir
+                if (index < tujuanSurat.length - 1) {
+                    this.clickTambahTujuan();
+                }
+            } else if (position === 'LampiranSurat') {
+                // Input untuk posisi Lampiran Surat
+                if (isInternal) {
+                    this[`inputTujuanLampiranSurat${index + 1}`](inputanEnv, tujuan); // Internal
+                } else {
+                    this[`inputTujuanLampiranEksternal${index + 1}`](inputanEnv, tujuan); // Eksternal
+                }
+
+                // Tambahkan tujuan jika bukan elemen terakhir
+                if (index < tujuanSurat.length - 1) {
+                    this.clickTambahTujuanLampiran();
+                }
+            }
+        });
+
+        // Wait Until Input Finished
+        cy.wait(3000)
+
+        // Scroll Up 
+        draftingKonsepNaskahPage.scrollPreviewPage()
+
+        // Akses Kepala Surat
+        this.aksesFormEditingKepalaSurat()
+    }
+    
     validateTujuanSkenario1(inputEnv, inputanTujuan1, inputanTujuan2, inputanTujuan3) {
         const titleTujuan = cy.get(kepala_surat.titleTujuan).as('titleTujuan')
         titleTujuan.should('contain', 'Kepada Yth.')
