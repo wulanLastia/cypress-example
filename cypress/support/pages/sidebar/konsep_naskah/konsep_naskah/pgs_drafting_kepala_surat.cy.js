@@ -3,6 +3,7 @@ import konsep_naskah from "@selectors/sidebar/konsep_naskah/konsep_naskah"
 import { DraftingKonsepNaskahPage } from "../surat_biasa/pgs_drafting_surat_biasa.cy"
 
 const filename = "cypress/fixtures/non_cred/kepala_surat/kepala_surat_temp_data.json"
+const getPreviewData = "cypress/fixtures/non_cred/drafting_dalam/transaction_data/preview_data.json"
 
 const draftingKonsepNaskahPage = new DraftingKonsepNaskahPage()
 
@@ -543,7 +544,7 @@ export class DraftingKepalaSuratPage {
     }
 
     // Tujuan Surat
-    inputKepalaSurat(inputanEnv, inputanTempat, tempatTujuanSurat, tujuanSurat, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
+    inputKepalaSurat(inputanEnv, inputanTempat, tempatTujuanSurat, tujuanSurat, isInternal, inputanLokasi, inputanKodeKlasifikasi, inputanUnitPengolah, inputanSifatSurat, inputanUrgensiSurat, inputanPerihalSurat) {
         // Akses Edit Kepala Surat
         this.aksesFormEditingKepalaSurat()
 
@@ -560,7 +561,7 @@ export class DraftingKepalaSuratPage {
         }
 
         // Input Tujuan Surat (INTERNAL) secara dinamis
-        this.inputTujuanSurat(tujuanSurat, true, tempatTujuanSurat, inputanEnv)
+        this.inputTujuanSurat(tujuanSurat, isInternal, tempatTujuanSurat, inputanEnv)
 
         // Input Lokasi Surat
         this.validateLokasi(inputanLokasi)
@@ -609,9 +610,11 @@ export class DraftingKepalaSuratPage {
         previewKepalaLampiran.click()
     }
 
-    inputTujuanSurat(tujuanSurat, isInternal = true, position = 'KepalaSurat', inputanEnv) {
+    inputTujuanSurat(tujuanSurat, isInternalArray = [], position = 'KepalaSurat', inputanEnv) {
         // Input Data Tujuan Surat
         tujuanSurat.forEach((tujuan, index) => {
+            const isInternal = isInternalArray[index]; // Default ke internal jika tidak ditentukan
+    
             if (position === 'KepalaSurat') {
                 // Input untuk posisi Kepala Surat
                 if (isInternal) {
@@ -619,34 +622,90 @@ export class DraftingKepalaSuratPage {
                 } else {
                     this[`inputTujuanEksternal${index + 1}`](inputanEnv, tujuan); // Eksternal
                 }
-
+    
                 // Tambahkan tujuan jika bukan elemen terakhir
                 if (index < tujuanSurat.length - 1) {
                     this.clickTambahTujuan();
                 }
             } else if (position === 'LampiranSurat') {
                 // Input untuk posisi Lampiran Surat
-                if (isInternal) {
-                    this[`inputTujuanLampiranSurat${index + 1}`](inputanEnv, tujuan); // Internal
-                } else {
-                    this[`inputTujuanLampiranEksternal${index + 1}`](inputanEnv, tujuan); // Eksternal
-                }
-
+                this.inputTujuanLampiran(inputanEnv, index, isInternal, tujuan);
+    
                 // Tambahkan tujuan jika bukan elemen terakhir
                 if (index < tujuanSurat.length - 1) {
                     this.clickTambahTujuanLampiran();
                 }
             }
         });
-
+    
         // Wait Until Input Finished
-        cy.wait(3000)
-
+        cy.wait(3000);
+    
         // Scroll Up 
-        draftingKonsepNaskahPage.scrollPreviewPage()
-
+        draftingKonsepNaskahPage.scrollPreviewPage();
+    
         // Akses Kepala Surat
-        this.aksesFormEditingKepalaSurat()
+        this.aksesFormEditingKepalaSurat();
+    }
+
+    inputTujuanLampiran(inputEnv, tujuanKe, tujuanInternalEksternal, inputTujuan) {
+        cy.readFile(getPreviewData).then((object) => {
+            if (!object.tujuan_surat) {
+                object.tujuan_surat = [{}]; // Initialize as an empty array
+            }
+
+            // Intercept all POST network requests
+            if (inputEnv === 'prod') {
+                cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
+            } else {
+                cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
+            }
+
+            const selectTujuanLampiran = cy.get(kepala_surat.selectTujuanLampiran + tujuanKe + '"').as('selectTujuanLampiran')
+            selectTujuanLampiran.wait(1000)
+                .type(inputTujuan)
+
+            if (tujuanInternalEksternal == true) {
+                cy.wait('@postRequest', { timeout: 10000 })
+                    .then((interception) => {
+                        if (interception.response.statusCode === 200) {
+                            const suggestTujuanLampiran = cy.get(kepala_surat.suggestTujuanLampiran).as('suggestTujuanLampiran')
+                            suggestTujuanLampiran.scrollIntoView()
+                                .contains(inputTujuan, { matchCase: false, timeout: 10000 }).should('be.visible')
+                                .invoke('text')
+                                .then((suggestTujuanLampiran) => {
+                                    // Push the sub-object to the array
+                                    object.tujuan_surat[tujuanKe] = { ['tujuan_lampiran_internal_' + tujuanKe] : suggestTujuanLampiran.trim() };
+
+                                    // Write data to the JSON file
+                                    cy.writeFile(getPreviewData, object)
+
+                                    // Select Tujuan
+                                    selectTujuanLampiran.type('{enter}')
+                                })
+                        }
+                    })
+            } else {
+                cy.wait('@postRequest', { timeout: 5000 })
+                    .then((interception) => {
+                        if (interception.response.statusCode === 200) {
+                            const suggestTujuanLampiranEksternal = cy.get(kepala_surat.suggestTujuanLampiranEksternal).as('suggestTujuanLampiranEksternal')
+                            suggestTujuanLampiranEksternal.scrollIntoView()
+                                .contains(inputTujuan, { matchCase: false, timeout: 10000 }).should('be.visible')
+                                .then((suggestTujuanLampiranEksternal) => {
+                                    // Push the sub-object to the array
+                                    object.tujuan_surat[tujuanKe] = { ['tujuan_lampiran_eksternal_' + tujuanKe] : suggestTujuanLampiranEksternal };
+
+                                    // Write data to the JSON file
+                                    cy.writeFile(getPreviewData, object)
+
+                                    // Select Tujuan
+                                    selectTujuanLampiran.type('{enter}')
+                                })
+                        }
+                    })
+            }
+        })
     }
     
     validateTujuanSkenario1(inputEnv, inputanTujuan1, inputanTujuan2, inputanTujuan3) {

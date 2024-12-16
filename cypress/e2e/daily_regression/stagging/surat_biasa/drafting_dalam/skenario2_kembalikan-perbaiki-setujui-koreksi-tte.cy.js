@@ -1,6 +1,7 @@
 import { qase } from 'cypress-qase-reporter/mocha';
 import { LoginPage } from "@pages/auth/login.cy"
 import { CreateSuratBiasaPage } from "@pages/sidebar/konsep_naskah/surat_biasa/pgs_create_surat_biasa.cy"
+import { DraftingKepalaSuratPage } from "@pages/sidebar/konsep_naskah/konsep_naskah/pgs_drafting_kepala_surat.cy"
 import { KembalikanNaskahPage } from "@pages/sidebar/kotak_masuk/3_kembalikan_naskah.cy"
 import { PerbaikiNaskahPage } from "@pages/sidebar/kotak_masuk/6_perbaiki.cy"
 import { SetujuiPage } from "@pages/sidebar/kotak_masuk/5_setujui.cy"
@@ -9,6 +10,7 @@ import { ListNaskahSuratBiasaPage } from "@pages/sidebar/konsep_naskah/drafting_
 
 const { faker } = require('@faker-js/faker')
 let createSuratBiasaPage = new CreateSuratBiasaPage()
+let draftingKepalaSuratPage = new DraftingKepalaSuratPage()
 let kembalikanNaskahPage = new KembalikanNaskahPage()
 let perbaikiNaskahPage = new PerbaikiNaskahPage()
 let setujuiPage = new SetujuiPage()
@@ -65,21 +67,33 @@ describe('Skenario Surat Biasa - Tujuan Lampiran Internal 3 Eksternal 3, Tembusa
                 data_temp.kaki_surat[2].tembusan_eksternal1,
                 data_temp.kaki_surat[2].tembusan_eksternal2,
                 data_temp.kaki_surat[2].tembusan_eksternal3)
-            createSuratBiasaPage.inputKepalaSuratSkenario6(
+            draftingKepalaSuratPage.inputKepalaSurat(
                 data_temp.env[0].staging,
                 data_temp.kepala_surat[7].tempat1,
-                data_temp.kepala_surat[0].tujuan1,
-                data_temp.kepala_surat[0].tujuan2,
-                data_temp.kepala_surat[0].tujuan3,
-                data_temp.kepala_surat[0].tujuan_eksternal1,
-                data_temp.kepala_surat[0].tujuan_eksternal2,
-                data_temp.kepala_surat[0].tujuan_eksternal3,
+                data_temp.position_tujuan[0].position_lampiran,
+                [
+                    data_temp.kepala_surat[0].tujuan1,
+                    data_temp.kepala_surat[0].tujuan2,
+                    data_temp.kepala_surat[0].tujuan3,
+                    data_temp.kepala_surat[0].tujuan_eksternal1,
+                    data_temp.kepala_surat[0].tujuan_eksternal2,
+                    data_temp.kepala_surat[0].tujuan_eksternal3,
+                ],
+                [
+                    true,
+                    true,
+                    true,
+                    false,
+                    false,
+                    false
+                ],
                 data_temp.kepala_surat[1].lokasi,
                 data_temp.kepala_surat[2].kode_klasifikasi,
                 data_temp.kepala_surat[3].unit_pengolah,
                 data_temp.kepala_surat[4].sifat_surat,
                 data_temp.kepala_surat[5].urgensi_surat,
-                data_temp.kepala_surat[6].perihal3)
+                data_temp.kepala_surat[6].perihal3
+            )
             createSuratBiasaPage.inputBadanNaskahSkenarioRegression(faker.lorem.paragraphs(13, '<br/>\n'))
             createSuratBiasaPage.kirimSurat(data_temp.env[0].stagging)
             cy.wait(3000)

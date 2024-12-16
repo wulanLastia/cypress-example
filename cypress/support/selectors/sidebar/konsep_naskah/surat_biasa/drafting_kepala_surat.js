@@ -42,6 +42,7 @@ module.exports = {
     previewKepalaLampiran: '[data-cy="surat__kepala-surat"]',
     radio2: '[data-cy="input-kepala-surat__penempatan-tujuan-surat--radio-button-1"]',
     labelRadio2: '[data-cy="input-kepala-surat__penempatan-tujuan-surat--label-1"]',
+    selectTujuanLampiran: '[data-cy="input-lampiran-tujuan__tujuan__select-option__custom-input-',
     inputTujuanLampiran0: '[data-cy="input-lampiran-tujuan__tujuan__select-option__custom-input-0"]',
     inputTujuanLampiran1: '[data-cy="input-lampiran-tujuan__tujuan__select-option__custom-input-1"]',
     inputTujuanLampiran2: '[data-cy="input-lampiran-tujuan__tujuan__select-option__custom-input-2"]',

@@ -1,6 +1,8 @@
 import list_surat_biasa from "@selectors/sidebar/konsep_naskah/drafting_luar/list_jenis_naskah"
 import konsep_naskah from "@selectors/sidebar/konsep_naskah/konsep_naskah"
 import nota_dinas from "@selectors/sidebar/konsep_naskah/nota_dinas/drafting_nota_dinas"
+
+const getPreviewData = "cypress/fixtures/non_cred/drafting_dalam/transaction_data/preview_data.json"
 export class ListNaskahSuratBiasaPage {
 
     assertHalamanKonsepNaskah() {
@@ -57,6 +59,24 @@ export class ListNaskahSuratBiasaPage {
                 // Access Button Buat Draft
                 btn_draftSuratBiasa.click()
                     .wait(30000)
+
+                // Begin Save Assertion Data
+                cy.readFile(getPreviewData).then((object) => {
+                    const createDataToWrite = {
+                        jenis_naskah: []
+                    }
+
+                    // Construct the sub-object
+                    const jenis_naskah_name = {
+                        jenis_naskah: 'Surat Biasa'
+                    }
+
+                    // Push the sub-object to the array
+                    createDataToWrite.jenis_naskah.push(jenis_naskah_name)
+
+                    // // Write data to the JSON file
+                    cy.writeFile(getPreviewData, createDataToWrite)
+                })
             }
         })
     }
