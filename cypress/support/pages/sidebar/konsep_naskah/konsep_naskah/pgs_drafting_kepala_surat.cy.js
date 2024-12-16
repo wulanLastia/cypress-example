@@ -692,9 +692,10 @@ export class DraftingKepalaSuratPage {
                             const suggestTujuanLampiranEksternal = cy.get(kepala_surat.suggestTujuanLampiranEksternal).as('suggestTujuanLampiranEksternal')
                             suggestTujuanLampiranEksternal.scrollIntoView()
                                 .contains(inputTujuan, { matchCase: false, timeout: 10000 }).should('be.visible')
-                                .then((suggestTujuanLampiranEksternal) => {
+                                .invoke('text')
+                                .then((suggestTujuan) => {
                                     // Push the sub-object to the array
-                                    object.tujuan_surat[tujuanKe] = { ['tujuan_lampiran_eksternal_' + tujuanKe] : suggestTujuanLampiranEksternal };
+                                    object.tujuan_surat[tujuanKe] = { ['tujuan_lampiran_eksternal_' + tujuanKe] : suggestTujuan.trim() };
 
                                     // Write data to the JSON file
                                     cy.writeFile(getPreviewData, object)
