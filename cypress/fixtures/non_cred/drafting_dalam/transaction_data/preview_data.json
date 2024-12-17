@@ -1,0 +1,183 @@
+{
+  "jenis_naskah": [
+    {
+      "jenis_naskah": "Surat Biasa"
+    }
+  ],
+  "tujuan_surat": [
+    {
+      "tujuan_lampiran_internal_0": "Bey Triadi Machmudin, S.E., M.T. (Pj Gubernur Jawa Barat)"
+    },
+    {
+      "tujuan_lampiran_internal_1": "Dr. Ika Mardiah, M.Si. (Kepala Dinas Komunikasi dan Informatika Provinsi Jawa Barat)"
+    },
+    {
+      "tujuan_lampiran_internal_2": "Rizki Hustiniasari, S.T., M.T. (Kepala UPTD Pusat Layanan Digital Data dan Informasi Geospasial)"
+    },
+    {
+      "tujuan_lampiran_eksternal_3": {
+        "0": {
+          "_prevClass": "whitespace-normal break-words w-[50]",
+          "__hj_mutation_summary_node_map_id__": 13336
+        },
+        "length": 1,
+        "prevObject": {
+          "0": {
+            "_prevClass": "whitespace-normal break-words w-[50]",
+            "__hj_mutation_summary_node_map_id__": 13336
+          },
+          "length": 1,
+          "prevObject": {
+            "0": {
+              "_prevClass": "whitespace-normal break-words w-[50]",
+              "__hj_mutation_summary_node_map_id__": 13336
+            },
+            "length": 1,
+            "prevObject": {
+              "0": {
+                "location": {
+                  "ancestorOrigins": {
+                    "0": "https://devsidebar.digitalservice.id"
+                  },
+                  "href": "https://sidebar-jabarprov.netlify.app/konsep-naskah/surat-biasa",
+                  "origin": "https://sidebar-jabarprov.netlify.app",
+                  "protocol": "https:",
+                  "host": "sidebar-jabarprov.netlify.app",
+                  "hostname": "sidebar-jabarprov.netlify.app",
+                  "port": "",
+                  "pathname": "/konsep-naskah/surat-biasa",
+                  "search": "",
+                  "hash": ""
+                },
+                "webL10n": {},
+                "__hj_mutation_summary_node_map_id__": 1,
+                "sizzle1734310947112": {
+                  "undefined": {
+                    "parentNode": [
+                      22505,
+                      9241,
+                      false
+                    ]
+                  }
+                },
+                "mce-data-1if70noa2": 2
+              },
+              "length": 1
+            },
+            "selector": "[data-cy=\"input-lampiran-tujuan__tujuan__select-option__external\"]"
+          }
+        }
+      }
+    },
+    {
+      "tujuan_lampiran_eksternal_4": {
+        "0": {
+          "_prevClass": "whitespace-normal break-words w-[50]",
+          "__hj_mutation_summary_node_map_id__": 13890
+        },
+        "length": 1,
+        "prevObject": {
+          "0": {
+            "_prevClass": "whitespace-normal break-words w-[50]",
+            "__hj_mutation_summary_node_map_id__": 13890
+          },
+          "length": 1,
+          "prevObject": {
+            "0": {
+              "_prevClass": "whitespace-normal break-words w-[50]",
+              "__hj_mutation_summary_node_map_id__": 13890
+            },
+            "length": 1,
+            "prevObject": {
+              "0": {
+                "location": {
+                  "ancestorOrigins": {
+                    "0": "https://devsidebar.digitalservice.id"
+                  },
+                  "href": "https://sidebar-jabarprov.netlify.app/konsep-naskah/surat-biasa",
+                  "origin": "https://sidebar-jabarprov.netlify.app",
+                  "protocol": "https:",
+                  "host": "sidebar-jabarprov.netlify.app",
+                  "hostname": "sidebar-jabarprov.netlify.app",
+                  "port": "",
+                  "pathname": "/konsep-naskah/surat-biasa",
+                  "search": "",
+                  "hash": ""
+                },
+                "webL10n": {},
+                "__hj_mutation_summary_node_map_id__": 1,
+                "sizzle1734310947112": {
+                  "undefined": {
+                    "parentNode": [
+                      22588,
+                      9297,
+                      false
+                    ]
+                  }
+                },
+                "mce-data-1if70noa2": 2
+              },
+              "length": 1
+            },
+            "selector": "[data-cy=\"input-lampiran-tujuan__tujuan__select-option__external\"]"
+          }
+        }
+      }
+    },
+    {
+      "tujuan_lampiran_eksternal_5": {
+        "0": {
+          "_prevClass": "whitespace-normal break-words w-[50]",
+          "__hj_mutation_summary_node_map_id__": 14486
+        },
+        "length": 1,
+        "prevObject": {
+          "0": {
+            "_prevClass": "whitespace-normal break-words w-[50]",
+            "__hj_mutation_summary_node_map_id__": 14486
+          },
+          "length": 1,
+          "prevObject": {
+            "0": {
+              "_prevClass": "whitespace-normal break-words w-[50]",
+              "__hj_mutation_summary_node_map_id__": 14486
+            },
+            "length": 1,
+            "prevObject": {
+              "0": {
+                "location": {
+                  "ancestorOrigins": {
+                    "0": "https://devsidebar.digitalservice.id"
+                  },
+                  "href": "https://sidebar-jabarprov.netlify.app/konsep-naskah/surat-biasa",
+                  "origin": "https://sidebar-jabarprov.netlify.app",
+                  "protocol": "https:",
+                  "host": "sidebar-jabarprov.netlify.app",
+                  "hostname": "sidebar-jabarprov.netlify.app",
+                  "port": "",
+                  "pathname": "/konsep-naskah/surat-biasa",
+                  "search": "",
+                  "hash": ""
+                },
+                "webL10n": {},
+                "__hj_mutation_summary_node_map_id__": 1,
+                "sizzle1734310947112": {
+                  "undefined": {
+                    "parentNode": [
+                      22671,
+                      9353,
+                      false
+                    ]
+                  }
+                },
+                "mce-data-1if70noa2": 2
+              },
+              "length": 1
+            },
+            "selector": "[data-cy=\"input-lampiran-tujuan__tujuan__select-option__external\"]"
+          }
+        }
+      }
+    }
+  ]
+}

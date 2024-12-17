@@ -66,6 +66,11 @@ describe('Skenario Surat Biasa - Tujuan Lampiran Internal 3, Tembusan Internal 3
                     data_temp.kepala_surat[0].tujuan2,
                     data_temp.kepala_surat[0].tujuan4
                 ],
+                [
+                    true,
+                    true,
+                    true
+                ],
                 data_temp.kepala_surat[1].lokasi,
                 data_temp.kepala_surat[2].kode_klasifikasi,
                 data_temp.kepala_surat[3].unit_pengolah,
