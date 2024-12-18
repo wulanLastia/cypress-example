@@ -13,6 +13,7 @@ module.exports = {
     titleTujuan: '[data-cy="input-kepala-surat__tujuan__title"]',
     titleTujuanLampiran: '[data-cy="input-lampiran-tujuan__tujuan__title"]',
     selectTujuan: '[data-cy="input-kepala-surat__tujuan__select-option"]',
+    selectTujuanKepala: '[data-cy="input-kepala-surat__tujuan__select-option__custom-input-',
     inputTujuan0: '[data-cy="input-kepala-surat__tujuan__select-option__custom-input-0"]',
     inputTujuan1: '[data-cy="input-kepala-surat__tujuan__select-option__custom-input-1"]',
     inputTujuan2: '[data-cy="input-kepala-surat__tujuan__select-option__custom-input-2"]',
