@@ -617,11 +617,7 @@ export class DraftingKepalaSuratPage {
     
             if (position === 'KepalaSurat') {
                 // Input untuk posisi Kepala Surat
-                if (isInternal) {
-                    this[`inputTujuanSurat${index + 1}`](inputanEnv, tujuan); // Internal
-                } else {
-                    this[`inputTujuanEksternal${index + 1}`](inputanEnv, tujuan); // Eksternal
-                }
+                this.inputTujuanKepala(inputanEnv, index, isInternal, tujuan);
     
                 // Tambahkan tujuan jika bukan elemen terakhir
                 if (index < tujuanSurat.length - 1) {
@@ -702,6 +698,65 @@ export class DraftingKepalaSuratPage {
 
                                     // Select Tujuan
                                     selectTujuanLampiran.type('{enter}')
+                                })
+                        }
+                    })
+            }
+        })
+    }
+
+    inputTujuanKepala(inputEnv, tujuanKe, tujuanInternalEksternal, inputTujuan) {
+        cy.readFile(getPreviewData).then((object) => {
+            if (!object.tujuan_surat) {
+                object.tujuan_surat = [{}]; // Initialize as an empty array
+            }
+
+            // Intercept all POST network requests
+            if (inputEnv === 'prod') {
+                cy.intercept('POST', Cypress.env('base_url_api_prod_v2')).as('postRequest')
+            } else {
+                cy.intercept('POST', Cypress.env('base_url_api_v2')).as('postRequest')
+            }
+
+            const selectTujuanKepala = cy.get(kepala_surat.selectTujuanKepala + tujuanKe + '"').as('selectTujuanKepala')
+            selectTujuanKepala.wait(1000)
+                .type(inputTujuan)
+
+            if (tujuanInternalEksternal == true) {
+                cy.wait('@postRequest', { timeout: 10000 })
+                    .then((interception) => {
+                        if (interception.response.statusCode === 200) {
+                            const suggestInputTujuan = cy.get(kepala_surat.suggestInputTujuan, { timeout: 5000 }).as('suggestInputTujuan')
+                            suggestInputTujuan.contains(inputTujuan, { matchCase: false, timeout: 10000 }).should('be.visible')
+                                .invoke('text')
+                                .then((suggestTujuanLampiran) => {
+                                    // Push the sub-object to the array
+                                    object.tujuan_surat[tujuanKe] = { ['tujuan_kepala_internal_' + tujuanKe] : suggestTujuanLampiran.trim() };
+
+                                    // Write data to the JSON file
+                                    cy.writeFile(getPreviewData, object)
+
+                                    // Select Tujuan
+                                    selectTujuanKepala.type('{enter}')
+                                })
+                        }
+                    })
+            } else {
+                cy.wait('@postRequest', { timeout: 5000 })
+                    .then((interception) => {
+                        if (interception.response.statusCode === 200) {
+                            const suggestInputTujuanEksternal = cy.get(kepala_surat.suggestInputTujuanEksternal, { timeout: 5000 }).as('suggestInputTujuanEksternal')
+                            suggestInputTujuanEksternal.contains(inputTujuan, { matchCase: false, timeout: 10000 }).should('be.visible')
+                                .invoke('text')
+                                .then((suggestTujuan) => {
+                                    // Push the sub-object to the array
+                                    object.tujuan_surat[tujuanKe] = { ['tujuan_lampiran_eksternal_' + tujuanKe] : suggestTujuan.trim() };
+
+                                    // Write data to the JSON file
+                                    cy.writeFile(getPreviewData, object)
+
+                                    // Select Tujuan
+                                    selectTujuanKepala.type('{enter}')
                                 })
                         }
                     })
