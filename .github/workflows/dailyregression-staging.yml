@@ -3,7 +3,7 @@ name: E2E Cypress Staging Daily Test at 01:00 WIB
 on:
   workflow_dispatch:
   schedule:
-    - cron: '00 18 * * *' # runs everyday at UTC +7 01:00 WIB
+   # - cron: '00 18 * * *' # runs everyday at UTC +7 01:00 WIB
 jobs:
   cypress-run:
     runs-on: [self-hosted, cypress]
